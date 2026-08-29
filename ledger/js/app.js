@@ -438,9 +438,9 @@ document.getElementById('view').addEventListener('click', e => {
       progress.spills = progress.spills.slice(-200);
       saveProgress();
       state.tools.spillWhat = ''; state.tools.spillCost = '';
-      say('Logged \u2014 '+what.trim()+'.');
+      say('Logged: '+what.trim()+'.');
     } else {
-      say('Nothing logged \u2014 say what went in the bin first.');
+      say('Nothing logged: say what went in the bin first.');
     }
   }
   else if(act==='spill-del'){
@@ -458,9 +458,9 @@ document.getElementById('view').addEventListener('click', e => {
       progress.openBottles = progress.openBottles.slice(-60);
       saveProgress();
       state.tools.obName = ''; state.tools.obDays = '';
-      say('Dated \u2014 '+name.trim()+'.');
+      say('Dated: '+name.trim()+'.');
     } else {
-      say('Nothing dated \u2014 name the bottle first.');
+      say('Nothing dated: name the bottle first.');
     }
   }
   else if(act==='ob-del'){
@@ -480,7 +480,7 @@ document.getElementById('view').addEventListener('click', e => {
       state.tools.bottleName = '';
       say('Filed at $'+(Number(state.tools.bottlePrice)||0).toFixed(2)+'.');
     } else {
-      say('Not filed \u2014 the book needs a name, a price, and a size.');
+      say('Not filed: the book needs a name, a price, and a size.');
     }
   }
   else if(act==='pour-log'){
@@ -496,7 +496,7 @@ document.getElementById('view').addEventListener('click', e => {
       state.practice.pourOz = '';
       say('Logged '+oz.toFixed(2)+' ounces against '+target+'.');
     } else {
-      say('Not logged \u2014 measure the pour and enter the ounces.');
+      say('Not logged: measure the pour and enter the ounces.');
     }
   }
   else if(act==='rail-called'){ if(state.practice.rail) state.practice.rail.called = el.dataset.ok==='1'; }

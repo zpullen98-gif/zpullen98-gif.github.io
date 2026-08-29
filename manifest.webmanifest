@@ -1,8 +1,9 @@
 {
   "id": "/",
-  "name": "Outside Of Time",
+  "name": "Outside Of Time Hospitality",
   "short_name": "Outside Of Time",
-  "description": "The complete life of the hospitality professional: the craft, the reset, and the road. Five wings in one app, all of it free and all of it offline.",
+  "_short_name_note": "The caption under the home-screen icon. Phones cut this to about twelve characters, so the full name would arrive as 'Outside Of T...'. The full name is on 'name', which is what the install prompt and the app listing show.",
+  "description": "Outside Of Time Hospitality. The complete life of the hospitality professional: the craft, the reset, and the road. Five wings in one app, all of it free and all of it offline.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

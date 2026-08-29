@@ -46,17 +46,17 @@ const LIFE=[
    (FL.prefs.canonLines === 'on'). Every alternate was chosen against primary
    sources in the same spirit as the citation audit. */
 const LIFE_ALT = {
-"Name three things given":"Nothing is more honourable than a grateful heart. \u2014 Seneca, Letters 81",
-"Have the conversation you are avoiding":"If it is not right, do not do it; if it is not true, do not say it. \u2014 Marcus Aurelius 12.17",
-"Keep one full day of rest":"What lacks alternating rest will not endure. \u2014 Ovid, Heroides 4",
-"Share one unhurried table":"Consider who you eat and drink with, rather than what you eat and drink. \u2014 Epicurus, kept in Seneca\u2019s Letters 19",
-"Do one small good consistently":"Practice is the best of all instructors. \u2014 Publilius Syrus",
-"Go where things grow":"The mind is nourished and refreshed by open air and wandering walks. \u2014 Seneca, On Tranquility of Mind 17",
-"Begin or deepen one relationship":"You must live for another if you wish to live for yourself. \u2014 Seneca, Letters 48",
-"Give time or resources away":"He gives twice who gives quickly. \u2014 Publilius Syrus",
-"Take a three-day retreat":"Nowhere can a man find a quieter retreat than in his own soul. \u2014 Marcus Aurelius 4.3",
-"Complete one creative work":"No great thing is created suddenly. \u2014 Epictetus, Discourses 1.15",
-"Forgive one person":"The best revenge is to be unlike him who performed the injury. \u2014 Marcus Aurelius 6.6",
-"Mentor someone coming after you":"Men learn while they teach. \u2014 Seneca, Letters 7",
-"Leave the world measurably better":"The fruit of this life is a good character and acts for the common good. \u2014 Marcus Aurelius 6.30"
+"Name three things given":"Nothing is more honourable than a grateful heart. (Seneca, Letters 81)",
+"Have the conversation you are avoiding":"If it is not right, do not do it; if it is not true, do not say it. (Marcus Aurelius 12.17)",
+"Keep one full day of rest":"What lacks alternating rest will not endure. (Ovid, Heroides 4)",
+"Share one unhurried table":"Consider who you eat and drink with, rather than what you eat and drink. (Epicurus, kept in Seneca\u2019s Letters 19)",
+"Do one small good consistently":"Practice is the best of all instructors. (Publilius Syrus)",
+"Go where things grow":"The mind is nourished and refreshed by open air and wandering walks. (Seneca, On Tranquility of Mind 17)",
+"Begin or deepen one relationship":"You must live for another if you wish to live for yourself. (Seneca, Letters 48)",
+"Give time or resources away":"He gives twice who gives quickly. (Publilius Syrus)",
+"Take a three-day retreat":"Nowhere can a man find a quieter retreat than in his own soul. (Marcus Aurelius 4.3)",
+"Complete one creative work":"No great thing is created suddenly. (Epictetus, Discourses 1.15)",
+"Forgive one person":"The best revenge is to be unlike him who performed the injury. (Marcus Aurelius 6.6)",
+"Mentor someone coming after you":"Men learn while they teach. (Seneca, Letters 7)",
+"Leave the world measurably better":"The fruit of this life is a good character and acts for the common good. (Marcus Aurelius 6.30)"
 };

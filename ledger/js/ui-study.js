@@ -33,20 +33,20 @@ function renderHome(){
      moves band by moving one line here; nothing else knows the difference. */
   const TILE_BANDS = [
     ['Learn', 'Read it first, then drill what you read', [
-      ['families','The Families',FAMILIES ? Object.keys(FAMILIES).length+' templates unlock the whole canon \u2014 each with the marks that say a pour went right. Start here; this is the map.' : ''],
-      ['library','The Library','All '+COCKTAILS.length+' specs \u2014 one for every day of the year \u2014 on ledger tickets with balance breakdowns.'],
+      ['families','The Families',FAMILIES ? Object.keys(FAMILIES).length+' templates unlock the whole canon, each with the marks that say a pour went right. Start here; this is the map.' : ''],
+      ['library','The Library','All '+COCKTAILS.length+' specs, one for every day of the year, on ledger tickets with balance breakdowns.'],
       ['prep','The Prep Room','Syrups, infusions, cordials, juice and garnish specs, plus opening and closing checklists.'],
-      ['producers','The Producers','Benchmark houses across nine categories \u2014 how they actually make it, and why it matters.'],
+      ['producers','The Producers','Benchmark houses across nine categories: how they actually make it, and why it matters.'],
       ['na','Zero Proof','85 spirit-free drinks across nine families, the pantry behind them, and the ethics of sober service.'],
       ['shots','The Shot Board','75 calls, a round-batching builder, the layering density drill, and the service craft.'],
-      ['service','Behind the Stick','Beer and draught, wine service, the legal floor, the register, conflict and glassware \u2014 the half of the job that is not a cocktail.'],
+      ['service','Behind the Stick','Beer and draught, wine service, the legal floor, the register, conflict and glassware: the half of the job that is not a cocktail.'],
       ['notes','Study Notes','Spirits, technique, syrups, hospitality, sober service, and history.']
     ]],
     ['Practise', 'Until the spec comes without thinking', [
       ['flashcards','Flashcards',FC_MODES.length+' drill modes across every cocktail, shot, and zero-proof drink in the ledger.'],
       ['quiz','Quiz Rounds','Families, blind tickets, bar knowledge, real-service scenarios, and the dealer\'s-choice call.'],
       ['practice','Practice & Tasting','Nine hands-on drills, the Ticket Rail, the Hold-the-Round memory test, the free-pour bench, tasting scorecards, and twelve guided flights.'],
-      ['riffs','Riff Builder','Improvise on the templates \u2014 the difference between knowing 50 drinks and 500.'],
+      ['riffs','Riff Builder','Improvise on the templates: the difference between knowing 50 drinks and 500.'],
       ['mybar','My Bar','The list you actually pour. Enter your house specs and they drill alongside the canon.'],
       ['tools','Bar Tools','Batching, shelf inventory with the 86 drill, strength estimates, pour costing with the bottle book, the spill log, open-bottle dating, unit conversion, and your backups.']
     ]]

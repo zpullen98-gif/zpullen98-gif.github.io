@@ -14,7 +14,7 @@
     /* "Hospitality" is not here. It appears once, as static markup in the hub's
        masthead, and nowhere else: not in the return chip, not in a Stripe
        product name. Keeping it out of config is what stops it spreading. */
-    name: 'Outside Of Time',
+    name: 'Outside Of Time Hospitality',
     tagline: 'The craft, the reset, and the road.',
     blurb: 'Master the timeless art of hospitality',
 

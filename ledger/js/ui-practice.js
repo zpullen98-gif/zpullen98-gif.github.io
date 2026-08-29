@@ -906,12 +906,12 @@ function costTicketHTML(){
   const menuPrice = useBar ? parseMenuPrice(b.price) : null;
   const actualPct = menuPrice ? (totalCost / menuPrice) * 100 : null;
   const verdict = actualPct === null ? '' :
-    actualPct > 24 ? 'above the 18\u201324% band \u2014 cut cost or raise the price' :
-    actualPct < 18 ? 'below the band \u2014 healthy, or an incomplete cost' : 'inside the 18\u201324% band';
+    actualPct > 24 ? 'above the 18\u201324% band: cut cost or raise the price' :
+    actualPct < 18 ? 'below the band: healthy, or an incomplete cost' : 'inside the 18\u201324% band';
   const actualRows = menuPrice
     ? '<div class="tix-rule"></div>'
       + '<div><span class="tix-label">Your menu price </span>$'+menuPrice.toFixed(2)+'</div>'
-      + '<div><span class="tix-label">Actual pour cost </span>'+actualPct.toFixed(1)+'% \u2014 '+verdict+'</div>'
+      + '<div><span class="tix-label">Actual pour cost </span>'+actualPct.toFixed(1)+'%, '+verdict+'</div>'
     : (useBar ? '<div class="tix-rule"></div><div class="tix-note">Give this drink a price in My Bar and the sheet scores your ACTUAL pour cost against the band.</div>' : '');
   return '<div class="ticket"><div class="ticket-inner">'
     + '<div class="tc"><div class="tix-label">Costing</div><div class="tix-name">'+esc(c.name.toUpperCase())+'</div></div>'
@@ -949,9 +949,9 @@ function costHTML(){
   }).join(' ');
   const bookBlock = '<div class="panel p4 col" style="gap:8px;max-width:460px;width:100%">'
     + '<h2 class="eyebrow">The bottle book</h2>'
-    + '<div class="tiny dim lh">File the bottle once and the reprice keeps the old number \u2014 the previous price is the one thing a reprice normally destroys, and it is the whole reason to keep a book. A red percent is invoice creep, caught.</div>'
+    + '<div class="tiny dim lh">File the bottle once and the reprice keeps the old number; the previous price is the one thing a reprice normally destroys, and it is the whole reason to keep a book. A red percent is invoice creep, caught.</div>'
     + '<div class="row" style="gap:8px;flex-wrap:wrap">'
-    + '<input class="input" id="cost-bottle-name" aria-label="Bottle name" placeholder="Bottle \u2014 e.g. Rittenhouse Rye" value="'+esc(String(t.bottleName||''))+'" style="flex:1;min-width:160px">'
+    + '<input class="input" id="cost-bottle-name" aria-label="Bottle name" placeholder="Bottle: e.g. Rittenhouse Rye" value="'+esc(String(t.bottleName||''))+'" style="flex:1;min-width:160px">'
     + '<button class="chip" data-act="cost-file-bottle" title="Files the price and size the sheet above shows">File this bottle</button></div>'
     + (bookChips ? '<div class="row" style="gap:6px;flex-wrap:wrap">'+bookChips+'</div>' : '')
     + '</div>';

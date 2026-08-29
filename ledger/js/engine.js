@@ -281,7 +281,7 @@ const DRILLS = [
   { id:'pour', name:'Free-Pour Calibration', unit:'accurate of 10', dir:'high',
     desc:'Pour 1 oz, 1.5 oz, and 2 oz ten times each with a speed pourer, checking every pour against a jigger. Log how many of 10 landed within an eighth of an ounce. Re-run weekly: counts drift.' },
   { id:'speed', name:'Speed Round', unit:'seconds', dir:'low', pick:4,
-    desc:'Four different cocktails from four different families, clean station at the end or it doesn\u2019t count. The drill deals them \u2014 picking your own four is how you quietly practise what you already know. Log total seconds. Under 360 is service-ready; under 240 is Saturday-night ready.' },
+    desc:'Four different cocktails from four different families, clean station at the end or it doesn\u2019t count. The drill deals them; picking your own four is how you quietly practise what you already know. Log total seconds. Under 360 is service-ready; under 240 is Saturday-night ready.' },
   { id:'blind', name:'Blind Tasting', unit:'correct of 3', dir:'high',
     desc:'Three spirits from one category, poured blind by a friend. Nose, sip, add water, sip again, write notes, then identify. Log how many of 3 you called. Your palate is a muscle.' },
   { id:'foam', name:'Dry-Shake Discipline', unit:'sec foam holds', dir:'high',

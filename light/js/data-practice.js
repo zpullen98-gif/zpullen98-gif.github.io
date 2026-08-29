@@ -26,7 +26,7 @@ const REFLECTIONS=[
 "What is the one honest sentence you have been avoiding?",
 "What season is your life in, and are you fighting it or keeping it?",
 "What, in this single day, is worthy of gratitude so specific it could be photographed?",
-  "The night\u2019s number measures the room, the weather, and the hour. What does the work say about you \u2014 the question the number cannot answer?",
+  "The night\u2019s number measures the room, the weather, and the hour. What does the work say about you, the question the number cannot answer?",
   "What would \u2018enough for tonight\u2019 mean if you decided it before the shift instead of after the tip-out?",
   "The lean week and the loaded week ask the same question: is your standard for yourself indexed to the take?",
 ];
@@ -35,17 +35,17 @@ const REFLECTIONS=[
    so a double shift does not read the same sentence six times. */
 const RESET_LINES = [
   "The guest's mood is theirs. Your steadiness is yours.",
-  "You are an impression, and not at all what you appear to be. \u2014 said to the anger, not the guest",
+  "You are an impression, and not at all what you appear to be. (said to the anger, not the guest)",
   "Ninety seconds is a real amount of time. The floor will still be there.",
   "The table is not up to you. The next thing you do is.",
   "Nobody good at this was calm by accident."
 ];
 
-/* The Turn \u2014 one application prompt under the daily voice, rotated like the
+/* The Turn: one application prompt under the daily voice, rotated like the
    reflections. Epictetus's rule: a line you cannot use is a line you do not
    yet have. */
 const TURN_PROMPTS = [
-  "Say it back in your own words \u2014 out loud counts double.",
+  "Say it back in your own words; out loud counts double.",
   "Name the one place tonight this will be tested.",
   "Who on the floor tonight needs you to have understood this?",
   "What would doing this badly look like? You have seen someone do it badly.",
@@ -61,19 +61,19 @@ const TURN_PROMPTS = [
   "How would the calmest person you have worked with read this?"
 ];
 
-/* The Sorting \u2014 Enchiridion 1 as a drill instead of a quotation. Each row is
+/* The Sorting: Enchiridion 1 as a drill instead of a quotation. Each row is
    a floor situation; the worker calls it Mine or Not mine, and a wrong call
    gets one corrective line, never a score. DELIBERATELY UNRECORDED. */
 const SORT_SITUATIONS = [
   { s: "A six-top walks in nine minutes before last call.", mine: false, why: "Their timing was never yours. The pour, the pace, and the grace of the next hour are." },
   { s: "A guest is cruel about a dish you did not cook.", mine: false, why: "The dish and their mood are not yours. Your face, your next sentence, and the handoff to the kitchen are." },
-  { s: "The manager cuts your section on the busiest night.", mine: false, why: "The floor plan is theirs. What you do with three tables instead of five \u2014 that is the whole of your evening." },
+  { s: "The manager cuts your section on the busiest night.", mine: false, why: "The floor plan is theirs. What you do with three tables instead of five: that is the whole of your evening." },
   { s: "Tips are thin on a slow Tuesday.", mine: false, why: "The room decides the volume. You decide the standard the four guests you did get will remember." },
-  { s: "The printer dies mid-rush.", mine: false, why: "Machines fail on schedule \u2014 theirs. Handwriting the next three tickets legibly is yours." },
+  { s: "The printer dies mid-rush.", mine: false, why: "Machines fail on schedule, theirs. Handwriting the next three tickets legibly is yours." },
   { s: "How you speak to the barback after the glass breaks.", mine: true, why: "" },
   { s: "Whether you eat before doors.", mine: true, why: "" },
   { s: "The tone you take when the kitchen is forty minutes behind.", mine: true, why: "" },
-  { s: "A regular\u2019s comment that crossed the line.", mine: false, why: "Their words are theirs, and so is the consequence. Naming the line \u2014 out loud, to them or to a manager \u2014 is what is yours. Steadiness is not tolerance." },
+  { s: "A regular\u2019s comment that crossed the line.", mine: false, why: "Their words are theirs, and so is the consequence. Naming the line (out loud, to them or to a manager) is what is yours. Steadiness is not tolerance." },
   { s: "Whether you repeat the order back before your hands move.", mine: true, why: "" },
   { s: "The weather on the patio you were assigned.", mine: false, why: "The sky answers to no one. The towel over your shoulder and the third round of waters are yours." },
   { s: "The review that names you, posted at 2am.", mine: false, why: "A stranger\u2019s keyboard is not your jurisdiction. Tomorrow\u2019s first table is." },
