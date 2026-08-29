@@ -1,6 +1,6 @@
 /* ---------------- MY BAR: the venue's own menu ---------------- */
 /* The drink you actually sell is the drink you actually get asked for. My Bar
-   holds the venue's own cocktail list — entered by hand, kept in this browser
+   holds the venue's own cocktail list, entered by hand, kept in this browser
    inside the same ledger store as everything else, and drilled by the same
    engines as the canon 365: flashcards, quiz rounds, the Ticket Rail, and
    tonight's session.
@@ -43,7 +43,7 @@ function barChanged(){
    These take the RAW bar record. They stay out of the canon constructors on
    purpose: qFamily dereferences FAMILIES[c.family] and a house drink filed
    under 'Other' would throw it. Name decoys come from the rest of the bar
-   first — the drinks a colleague actually confuses — topped up from canon. */
+   first, the drinks a colleague actually confuses, topped up from canon. */
 function myBarNameDecoys(b, n){
   const own = (progress.bar||[]).filter(x => x.id !== b.id).map(x => x.name);
   const canon = COCKTAILS.map(c => c.name).filter(nm => nm !== b.name && own.indexOf(nm) < 0);
@@ -123,7 +123,7 @@ function renderMyBar(){
   const form = state.mybar.form ? myBarFormHTML() : '';
   const empty = !bar.length && !state.mybar.form
     ? '<div class="panel p5 col tc" style="align-items:center;gap:12px">'
-      + '<div class="small dim lh" style="max-width:440px">Nothing on the list yet. Start with the drink you make most — '
+      + '<div class="small dim lh" style="max-width:440px">Nothing on the list yet. Start with the drink you make most: '
       + 'four drinks in, the quiz opens a round built entirely from your menu.</div>'
       + '<button class="btn btn-brass" data-act="mybar-new">Add the first drink</button></div>'
     : '';

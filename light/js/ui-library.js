@@ -16,7 +16,7 @@ var libWork = null, libPart = null, libChapter = null;
 
 function libHas(workId) { return !!(typeof FL_LIBRARY !== 'undefined' && FL_LIBRARY[workId]); }
 
-/* ——— rendering a block of text ———
+/* --- rendering a block of text ---
    Verse works keep their lineation; prose is joined. The heuristic is average line
    length, because the source files preserve the translator's line breaks and there
    is no other marker: Arnold's Gita and the poem sections of Legge's Tao Te Ching
@@ -35,7 +35,7 @@ function libVerses(arr, startAt) {
   }).join('') + '</p>';
 }
 
-/* ——— the shelf ——— */
+/* --- the shelf --- */
 function libShelf() {
   /* Count what is actually here rather than asserting a number. The Upanishads are
      still unbaked, and a header claiming ten works while showing nine is exactly the
@@ -146,7 +146,7 @@ function libChamber(tr) {
     '<div class="card"><p class="px">' + esc(tr.reading) + '</p></div>';
 }
 
-/* ——— a work's contents ——— */
+/* --- a work's contents --- */
 function libContents(workId) {
   var L = FL_LIBRARY[workId];
   var tr = traditionOfWork(workId);
@@ -203,7 +203,7 @@ function libReader(workId, part) {
         return '<div class="chaphead">Hymn ' + hy.h + (hy.deity ? ' · ' + esc(hy.deity) : '') + '</div>' +
                (hy.v.length ? libVerses(hy.v)
                  /* Griffith did translate this hymn; he exiled it to an appendix and
-                    put part of it in Latin. Say that, rather than "unavailable" — the
+                    put part of it in Latin. Say that, rather than "unavailable": the
                     omission is a fact about the translation worth knowing. */
                  : '<p class="loadnote">Not translated here. ' +
                    (hy.note ? esc(hy.note) : 'Griffith omitted this hymn from the main text.') +
@@ -314,7 +314,7 @@ FL_VIEWS.library = {
       if (!el) return;
       /* Do not branch on navigator.onLine. It reports true on a captive portal, and
          true again when the machine has a connection but this app's own host is
-         unreachable — which is precisely the case a reader hits most often. The
+         unreachable, which is precisely the case a reader hits most often. The
          browser gives a script load no error detail, so the honest move is one
          sentence that is true whichever it was, and a next step that works for both. */
       el.innerHTML = 'This book has not been opened on this device yet, and it cannot be ' +

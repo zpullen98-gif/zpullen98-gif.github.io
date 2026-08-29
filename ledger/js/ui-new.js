@@ -181,7 +181,7 @@ function renderSearch(){
        keystrokes or the caret snaps to the end while editing mid-string */
     ol.innerHTML = '<div class="search-back" data-search-close="1"></div>'
       + '<div class="search-panel" role="dialog" aria-modal="true" aria-label="Search the ledger">'
-      + '<input id="search-in" class="input" type="text" aria-label="Search the ledger" placeholder="Search the ledger — drinks, preps, producers, notes…" autocomplete="off">'
+      + '<input id="search-in" class="input" type="text" aria-label="Search the ledger" placeholder="Search the ledger: drinks, preps, producers, notes…" autocomplete="off">'
       + '<div class="search-results" id="search-results"></div></div>';
     ol.classList.add('open');
     const inp = document.getElementById('search-in');
@@ -208,7 +208,7 @@ function renderSearchResults(){
 }
 
 function openSearch(){
-  /* remember where the keyboard was — Escape should land the reader back on
+  /* remember where the keyboard was: Escape should land the reader back on
      the control that summoned the dialog, not at the top of the document */
   search.returnTo = document.activeElement;
   search.open = true; search.q = ''; search.sel = 0;
@@ -284,7 +284,7 @@ const PLATES = [
     caption:'Set the small tin into the large at an angle, then strike the crown once with the heel of your hand. The vacuum of the cold does the rest: a straight-on jam sticks; the angle releases with a squeeze and a twist.',
     svg:'<path d="M62 138 L74 64 L130 64 L142 138 Z"/><path d="M78 66 L94 14 L146 26 L118 70" transform="rotate(-4 100 40)"/><path d="M70 96 L134 96" stroke-dasharray="3 4" opacity="0.5"/><path d="M155 40 C165 46 168 56 164 66" fill="none" marker-end="none"/><path d="M160 68 L164 66 L166 60" fill="none"/>' },
   { id:'gate', title:'Plate II · The Hawthorne Gate',
-    caption:'The spring is the filter; your forefinger is the gate. Pressed forward, the strainer closes tight for a controlled pour; eased back, it opens wide. Ice shards and herb flecks stay behind — that is the whole job.',
+    caption:'The spring is the filter; your forefinger is the gate. Pressed forward, the strainer closes tight for a controlled pour; eased back, it opens wide. Ice shards and herb flecks stay behind: that is the whole job.',
     svg:'<circle cx="88" cy="78" r="46"/><circle cx="88" cy="78" r="36" stroke-dasharray="5 4" opacity="0.7"/><circle cx="88" cy="78" r="26" stroke-dasharray="5 4" opacity="0.45"/><rect x="132" y="72" width="52" height="12" rx="4"/><path d="M60 42 L54 30 M116 42 L122 30"/><circle cx="88" cy="78" r="3" fill="currentColor"/>' },
   { id:'dstrain', title:'Plate III · The Double Strain',
     caption:'Hawthorne on the tin, fine mesh held over the glass: the second net catches what the first forgives. Standard for every shaken drink served up: nothing should float in a coupe but the garnish.',
@@ -293,7 +293,7 @@ const PLATES = [
     caption:'Hold the peel skin-side down a hand above the drink and snap it once, sharply: the oils rain, they don\'t drip. Then wipe the rim with the skin and drop it in or discard it, as the spec demands. Express high; the spray should fall like weather.',
     svg:'<path d="M34 36 C48 26 66 26 80 36" stroke-width="7" stroke-linecap="round"/><path d="M88 44 L102 56 M92 34 L110 44 M96 24 L114 30" stroke-dasharray="1 5" stroke-linecap="round"/><path d="M96 78 C102 90 116 96 128 96 C140 96 154 90 160 78 Z"/><path d="M128 96 L128 122 M112 128 C112 124 120 122 128 122 C136 122 144 124 144 128 Z"/>' },
   { id:'dome', title:'Plate V · The Julep Dome',
-    caption:'Pack crushed ice past the rim and shape it into a dome — the meltwater is an ingredient, and the dome meters it. Swizzle until the metal frosts; the frost line is your doneness indicator.',
+    caption:'Pack crushed ice past the rim and shape it into a dome: the meltwater is an ingredient, and the dome meters it. Swizzle until the metal frosts; the frost line is your doneness indicator.',
     svg:'<path d="M64 78 L72 140 L128 140 L136 78"/><path d="M60 78 L140 78"/><path d="M66 78 C66 52 84 40 100 40 C116 40 134 52 134 78" stroke-dasharray="3 3"/><circle cx="86" cy="64" r="4"/><circle cx="102" cy="54" r="4"/><circle cx="116" cy="66" r="4"/><circle cx="98" cy="70" r="4"/><path d="M112 44 L134 12 M120 20 C126 14 132 12 138 14" opacity="0.8"/>' },
   { id:'dryshake', title:'Plate VI · The Dry Shake',
     caption:'Egg-white drinks shake twice: first without ice (hard, ten seconds, to build the foam), then again with ice to chill. Skip the dry shake and the drink reads thin; do it lazily and the foam won\'t hold a straw.',
@@ -354,7 +354,7 @@ function recordSessionComplete(withHands, night){
   const s = progress.streakData || { last: null, n: 0, hands: 0, lastHands: null };
   if(s.hands === undefined){ s.hands = 0; s.lastHands = null; }
   /* `night` is the day the SESSION STARTED. A session straddling midnight
-     used to stamp both calendar days — cards before twelve, the drill after —
+     used to stamp both calendar days (cards before twelve, the drill after),
      crediting two nights of streak for one sitting and pre-banking tomorrow.
      One sitting is one night, dated by when it began. */
   const today = night || dateKey(0);
@@ -451,7 +451,7 @@ function sessionPanelHTML(){
       + (handsTonight
         ? '<div class="small dim lh">The ledger is closed for tonight: cards, quiz, and <span class="brass2">'+esc(drill.name)+'</span> logged. That is a complete night.</div>'
         : '<div class="small dim lh">Cards and quiz are done, but tonight went in the book without hands. '
-          + 'If a bottle and a tin are within reach, <span class="brass2">'+esc(drill.name)+'</span> still counts — log it and tonight upgrades.</div>'
+          + 'If a bottle and a tin are within reach, <span class="brass2">'+esc(drill.name)+'</span> still counts: log it and tonight upgrades.</div>'
           + '<div class="row"><button class="btn btn-ghost tiny" data-act="sess-hands">Take it to the practice room →</button></div>')
       + '</div>';
   }
@@ -621,7 +621,7 @@ function dataImport(file){
         const mine = progress.cards[k];
         if(!mine){ progress.cards[k] = s; return; }
         /* net record (right minus wrong) decides the winner, and the loser's
-           SRS schedule is grafted on if the winner never earned one — so a
+           SRS schedule is grafted on if the winner never earned one, so a
            mastered card can't be demoted and an earned interval isn't reset */
         const theirsWins = ((s.r||0) - (s.w||0)) > ((mine.r||0) - (mine.w||0));
         const winner = { ...(theirsWins ? s : mine) };
@@ -707,7 +707,7 @@ function dataImport(file){
          merge-restore onto a new phone zeroed a 200-night streak because
          nothing named it. More recent night wins (last is YYYY-MM-DD, so
          string compare IS date compare); ties keep the longer run. vidPrefs
-         stays unnamed on purpose — a preference is device-local. */
+         stays unnamed on purpose: a preference is device-local. */
       if(p.streakData && p.streakData.last){
         const mineS = progress.streakData;
         if(!mineS || !mineS.last){ progress.streakData = p.streakData; }
@@ -737,7 +737,7 @@ function dataImport(file){
         progress.bar = progress.bar || [];
         p.bar.forEach(b => {
           if(!b || !b.name) return;
-          /* case-insensitive, matching mybar-save's own uniqueness rule — and
+          /* case-insensitive, matching mybar-save's own uniqueness rule, and
              when the kept record's name differs in case, its card record rides
              along to the new key instead of stranding */
           const i = progress.bar.findIndex(x => (b.id && x.id === b.id) || x.name.toLowerCase() === b.name.toLowerCase());
@@ -797,7 +797,7 @@ function fillStorageLine(){
   ]).then(([est, persisted]) => {
     const used = est.usage ? (est.usage/1024/1024).toFixed(1) + ' MB used' : '';
     el.textContent = (persisted
-      ? 'Storage is persistent — the browser has promised not to evict the ledger. '
+      ? 'Storage is persistent: the browser has promised not to evict the ledger. '
       : 'Storage is best-effort: a storage-pressed browser could evict it, so export now and then. ') + used;
     const btn = document.getElementById('data-persist-btn');
     if(btn && persisted) btn.remove();
@@ -925,30 +925,30 @@ const RIFF_INGREDIENT_NOTES = [
   [/blended scotch/i, "Blended scotch is gentler than its reputation: this will drink soft and malty. A bar spoon of Islay over the top would give it weather without taking over."],
   [/honey/i, "Honey syrup is richer and rounder than simple: most palates read it a shade sweeter at the same measure. Consider pulling it back an eighth, or lean in and call it deliberate."],
   [/maple/i, "Maple brings autumn and a faint bitterness at the finish. It loves aged spirits and quarrels politely with unaged ones."],
-  [/orgeat/i, "Orgeat is doing two jobs — sweetness and almond body. Your drink now has one foot in tiki; a lime component and it's fully across the border."],
+  [/orgeat/i, "Orgeat is doing two jobs: sweetness and almond body. Your drink now has one foot in tiki; a lime component and it's fully across the border."],
   [/ginger syrup/i, "Ginger syrup bites back. It pairs beautifully with whiskey and rum, and it will happily bully a delicate gin."],
-  [/demerara/i, "Demerara deepens without complicating — the safest upgrade in the well. Good call."],
+  [/demerara/i, "Demerara deepens without complicating: the safest upgrade in the well. Good call."],
   [/fino sherry/i, "Fino instead of vermouth is a dry, saline, nutty read: the drink gets quieter and more adult. Serve it colder than usual; sherry blooms with the chill."],
-  [/blanc vermouth/i, "Blanc vermouth is sweeter than dry but brighter than rosso — it flatters citrus-forward gins and makes tequila taste expensive."],
+  [/blanc vermouth/i, "Blanc vermouth is sweeter than dry but brighter than rosso; it flatters citrus-forward gins and makes tequila taste expensive."],
   [/dry vermouth/i, "With dry vermouth this leans Continental: crisp, pale, before-dinner. Watch that your bitters don't outweigh the wine."],
   [/^campari/i, "Campari as the base makes this an aperitivo drink, full stop: low-slung, bitter, sessionable. Own it: serve it before dinner and garnish with something orange."],
   [/pisco/i, "Pisco brings grape and altitude: floral, unoaked, a little wild. It rewards fresh citrus and resents heavy syrup."],
   [/cachaça|cacha/i, "Cachaça's green funk is the point: don't sand it down. Lime is its oldest friend."],
-  [/mole bitters/i, "Mole bitters bring chocolate and chile warmth — made for agave and aged rum, surprisingly good over cognac."],
-  [/peychaud/i, "Peychaud's is lighter and more anise-forward than Angostura — it perfumes rather than anchors. Two dashes is a whisper, not a wall."],
+  [/mole bitters/i, "Mole bitters bring chocolate and chile warmth: made for agave and aged rum, surprisingly good over cognac."],
+  [/peychaud/i, "Peychaud's is lighter and more anise-forward than Angostura; it perfumes rather than anchors. Two dashes is a whisper, not a wall."],
   [/apple brandy/i, "Apple brandy is orchard-in-a-glass: it makes old templates taste like October. Bonded if you can get it; the 80-proof stuff disappears under sugar."],
-  [/aged rum/i, "Aged rum slots into whiskey templates almost one-for-one — expect it rounder and a touch sweeter than the rye version of the same math."],
-  [/tonic/i, "Tonic's quinine is a flavor, not just fizz — it argues with heavily sweet drinks and loves botanical and bitter ones."],
+  [/aged rum/i, "Aged rum slots into whiskey templates almost one-for-one: expect it rounder and a touch sweeter than the rye version of the same math."],
+  [/tonic/i, "Tonic's quinine is a flavor, not just fizz; it argues with heavily sweet drinks and loves botanical and bitter ones."],
   [/grapefruit soda/i, "Grapefruit soda self-balances: sweet, sour and bitter in one pour. Keep any added syrup out or it turns to candy."],
   [/cola/i, "Cola is already a finished cocktail's worth of spice and sugar: the spirit is seasoning. A squeeze of lime keeps it honest."],
   [/dry sparkling wine/i, "Sparkling wine as mixer turns any build into an occasion: pour it last, over the back of a spoon, and don't stir the wedding away."],
 ];
 
 const RIFF_TWIST_NOTES = [
-  [/egg white/i, "The egg white wants a dry shake first — hard, no ice — then the cold shake. It'll mute the sharp edges and add three minutes of theater. Worth it."],
+  [/egg white/i, "The egg white wants a dry shake first (hard, no ice) then the cold shake. It'll mute the sharp edges and add three minutes of theater. Worth it."],
   [/soda/i, "Topping with soda makes it a long drink; rebalance in your head: the dilution is built in now, so keep the shake short and the ice fresh."],
-  [/maraschino/i, "That quarter ounce of maraschino is the Martinez move — funky cherry-almond that reads as 'old money.' It counts toward your sweet total; adjust accordingly."],
-  [/red wine/i, "The wine float is pure New York Sour lineage — pour it over the back of a spoon and let it sit like a sunset. Tell the guest to drink through it, not stir."],
+  [/maraschino/i, "That quarter ounce of maraschino is the Martinez move, funky cherry-almond that reads as 'old money.' It counts toward your sweet total; adjust accordingly."],
+  [/red wine/i, "The wine float is pure New York Sour lineage: pour it over the back of a spoon and let it sit like a sunset. Tell the guest to drink through it, not stir."],
   [/absinthe/i, "Absinthe is a seasoning here: rinse and dump, or one dash. At two dashes the anise annexes the drink."],
   [/half lemon, half lime/i, "Splitting the citrus is a bartender's hedge that usually wins: lemon for lift, lime for bite. No spec change needed."],
   [/amaro/i, "Swapping toward amaro deepens and darkens: you're trading wine's freshness for root-and-herb weight. Start 1:1 with the original modifier before going all in."],
@@ -996,7 +996,7 @@ function critiqueRiff(frame, deal){
   const b = balanceOf(pseudo);
   const notes = [];
 
-  /* 1 — the math, checked against the family's target */
+  /* 1: the math, checked against the family's target */
   if(frame.fam === 'Sour'){
     const gap = b.sweet - b.sour;
     if(Math.abs(gap) <= 0.25) notes.push("The math checks out: "+ozNice(b.strong)+" strong against "+ozNice(b.sour)+" sour and "+ozNice(b.sweet)+" sweet, textbook sour architecture.");
@@ -1016,7 +1016,7 @@ function critiqueRiff(frame, deal){
     else notes.push("Your mixer's running short at "+ozNice(b.long)+" oz: under 1.5× the spirit, it's a strong drink with fizz, not a highball. Either commit taller or serve it over one big rock and call it something else.");
   }
 
-  /* 2 — ingredient-aware observations */
+  /* 2: ingredient-aware observations */
   const allPicks = Object.values(deal.picks).join(' ');
   RIFF_INGREDIENT_NOTES.forEach(([re, note]) => { if(re.test(allPicks)) notes.push(note); });
 

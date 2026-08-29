@@ -120,7 +120,7 @@ self.addEventListener('install', e => {
          complete worker keeps serving. HTTP errors install anyway: throwing
          on a genuinely missing file would recreate addAll's permanent wedge,
          and check-syntax now catches missing ASSETS before deploy. */
-      if (netFail) throw new Error('precache incomplete over the network — retrying on the next update check');
+      if (netFail) throw new Error('precache incomplete over the network: retrying on the next update check');
     } else {
       console.log('First Light: precached ' + ASSETS.length + ' assets into ' + CACHE + '.');
     }
@@ -149,7 +149,7 @@ self.addEventListener('fetch', e => {
   /* Scripture, YouTube titles and thumbnails are all cross-origin. Let them go
      straight to the network: they are handled by their own code, which knows how to
      fail honestly, and caching them here would hide that from it. Phase 2 stores
-     passages in IndexedDB — deliberately not here, where a naive sibling reap could
+     passages in IndexedDB: deliberately not here, where a naive sibling reap could
      reach them and where {ignoreSearch:true} would collide with the ?translation=
      and ?version= query strings that identify them. */
   const url = new URL(req.url);
@@ -157,7 +157,7 @@ self.addEventListener('fetch', e => {
 
   /* Scripture: cache-first into the permanent text cache, filling on first read.
      This is what makes "keep this book on the device" a plain script load rather
-     than a second storage system — no IndexedDB schema, no quota negotiation, and
+     than a second storage system: no IndexedDB schema, no quota negotiation, and
      the same code path serves a cached book and a fresh one.
 
      ignoreSearch is NOT used here. These URLs carry ?v=N identifying which bake of

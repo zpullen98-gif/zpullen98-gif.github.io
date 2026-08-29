@@ -78,7 +78,7 @@
       /* An EXPIRED access token is still an identity: the refresh token
          stored beside it can mint a new one, and the SDK does exactly that
          when it loads. Treating expiry as sign-out looked cautious and was
-         the opposite — access tokens live for about an hour, the ordinary
+         the opposite: access tokens live for about an hour, the ordinary
          page load never loads the SDK, so every subscriber was signed out
          by their next visit and the gate's whole 7-day offline grace was
          unreachable. Freshness is the caller's business: accessToken()
@@ -308,7 +308,7 @@
       OOT.auth.user = shape(s.user);
       emit();
       /* The identity stands; if its access token has lapsed, wake the SDK in
-         the background to spend the refresh token. Online only — offline the
+         the background to spend the refresh token. Online only. Offline the
          gate's grace window is exactly what covers this. If the refresh token
          is dead, onAuthStateChange delivers the sign-out and everything
          corrects on the normal path. */

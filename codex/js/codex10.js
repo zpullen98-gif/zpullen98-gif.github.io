@@ -1,7 +1,7 @@
 /* ============ Codex X: stable question identity ============
    Until now a question's primary key was the first 80 characters of its stem.
    That key is written into six stores: ST.q, ST.srs, ST.flags, ST.notes,
-   ST.grader, ST.bad — so editing a stem silently orphaned every scrap of
+   ST.grader, ST.bad, so editing a stem silently orphaned every scrap of
    progress attached to it, and the banks carried a standing rule never to
    reword an existing question.
 
@@ -98,7 +98,7 @@ function qidRekey(force){
    install that predates ids arrives full of stem-slice keys. The live store has
    already migrated, so nothing would ever rekey them and the imported progress
    would be silently invisible. Rekey the incoming payload *before* the merge, so
-   the existing per-store merge logic still does the summing — rekeying after the
+   the existing per-store merge logic still does the summing; rekeying after the
    merge would instead strand the imported counts behind keys that already exist. */
 var _v10MergeStats=mergeStats;
 mergeStats=function(inc){

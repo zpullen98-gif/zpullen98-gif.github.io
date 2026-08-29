@@ -1,4 +1,4 @@
-/* First Light — Astrology.
+/* First Light: Astrology.
 
    Phase 1 ports the artifact's chapter intact. Phase 4 replaces the arithmetic with
    a real ephemeris: true planetary longitudes, Moon sign, Ascendant, Midheaven,
@@ -61,7 +61,7 @@ function relationBetween(a, b) {
     1: ['Semi-sextile: adjacent', 'No classical aspect. Different element and modality both; the tradition reads this as mutual incomprehension that can be learned past, but rarely felt past.'],
     2: ['Sextile: two apart', 'Compatible elements and easy cooperation, but an opportunity rather than a given: it works when both choose it.'],
     3: ['Square: three apart', 'Shared modality, clashing element. Read as the friction that produces growth, genuinely difficult, genuinely generative.'],
-    4: ['Trine — four apart', 'Same element. The most harmonious classical aspect: instinctive understanding, with the risk of never being challenged.'],
+    4: ['Trine: four apart', 'Same element. The most harmonious classical aspect: instinctive understanding, with the risk of never being challenged.'],
     5: ['Quincunx: five apart', 'Nothing in common by element or modality. The tradition calls this the aspect of adjustment: workable only by continual deliberate accommodation.'],
     6: ['Opposition: opposite signs', 'The axis. Same modality, complementary elements: each carries what the other lacks. Read as the most instructive pairing and the most demanding.']
   };
@@ -94,7 +94,7 @@ FL_ACTS.lookupSign = function () {
 
   /* Prefer the real solar longitude. The fixed date table this chapter used to rely
      on is wrong by up to a day at the sign boundaries, because the Sun does not cross
-     into a sign at the same clock time every year — which is exactly the case a
+     into a sign at the same clock time every year, which is exactly the case a
      reader born on a cusp is asking about. */
   if (window.Astronomy && typeof geoLon === 'function') {
     var noon = new Date(Date.UTC(p[0], p[1] - 1, p[2], 12, 0));
@@ -107,7 +107,7 @@ FL_ACTS.lookupSign = function () {
        and saying so is more useful than a confident answer that may be wrong. */
     var toEdge = Math.min(sg.within, 30 - sg.within);
     var cusp = toEdge < 1
-      ? '<p class="loadnote" style="margin-top:10px">This birthday sits within a degree of the boundary — about a day\'s travel for the Sun. ' +
+      ? '<p class="loadnote" style="margin-top:10px">This birthday sits within a degree of the boundary, about a day\'s travel for the Sun. ' +
         'Which sign it falls in depends on the hour of birth. Draw the full chart for a definite answer.</p>'
       : '';
 
@@ -162,7 +162,7 @@ FL_VIEWS.astro = {
       '</div>' +
 
       '<div class="label">Your placement</div>' +
-      '<p class="px" style="color:var(--faint);margin-bottom:12px">Enter a birth date for the Sun sign and its full attributions. A complete chart also needs birth time and place — see <em>Reading a chart</em> below.</p>' +
+      '<p class="px" style="color:var(--faint);margin-bottom:12px">Enter a birth date for the Sun sign and its full attributions. A complete chart also needs birth time and place: see <em>Reading a chart</em> below.</p>' +
       '<div class="drawrow">' +
         '<input type="date" id="a-date" aria-label="Birth date">' +
         '<button class="btn" data-act="lookupSign">Find</button>' +
@@ -224,7 +224,7 @@ FL_VIEWS.astro = {
           '</div><div class="gp">' + esc(h[1]) + '</div></div></div>';
       }) +
 
-      '<p class="mintro" style="margin-top:30px">Presented as the tradition understands itself. Astrology is a symbolic and interpretive art with a long history, not a predictive science — it has not been borne out under controlled testing. Read it as you would a myth: for what it illuminates, not for what it forecasts.</p>';
+      '<p class="mintro" style="margin-top:30px">Presented as the tradition understands itself. Astrology is a symbolic and interpretive art with a long history, not a predictive science; it has not been borne out under controlled testing. Read it as you would a myth: for what it illuminates, not for what it forecasts.</p>';
   },
 
   after: function () {

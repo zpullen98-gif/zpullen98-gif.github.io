@@ -83,7 +83,7 @@ function drawWheel(chart, opts) {
            '" class="w-sign" text-anchor="middle" dominant-baseline="central">' + ZGLYPH[i] + '</text>');
   }
 
-  /* degree ticks — the 1° ticks alias into mush on a phone, so they are dropped there */
+  /* degree ticks: the 1° ticks alias into mush on a phone, so they are dropped there */
   for (var d = 0; d < 360; d++) {
     var isTen = d % 10 === 0, isFive = d % 5 === 0;
     if (small && !isFive) continue;

@@ -11,7 +11,7 @@ body::before{ display:none !important; }
 .masthead, nav.tabs, footer.foot, #bnav, #sheet, #search-ol, .sw-toast{ display:none !important; }
 
 /* default (non-print-mode) printing: flatten panels */
-/* utility colour classes carry the felt theme's light inks — on white paper
+/* utility colour classes carry the felt theme's light inks: on white paper
    .dim is 2.2:1 and .brass2 is 1.6:1, near-invisible. Black ink for all. */
 #view .dim, #view .brass2, #view .eyebrow, #view .chip, #view .accordion-btn,
 #view .drink-head, #view .story-body, #view details.story summary{ color:#000 !important; }

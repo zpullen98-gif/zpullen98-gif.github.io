@@ -14,7 +14,7 @@
    exactly the set they can search meaningfully anyway.
 
    The corpus that is always searchable (the almanac, goals, chambers, threads,
-   journal) is small — a few hundred kilobytes — and a linear scan over it is
+   journal) is small, a few hundred kilobytes, and a linear scan over it is
    imperceptible. */
 
 var SEARCH_MAX = 60;
@@ -59,7 +59,7 @@ function flSearch(query) {
     }
   };
 
-  /* ——— the almanac ——— */
+  /* --- the almanac --- */
   var track = FL.prefs.track || 'philosophers';
   Object.keys(Q).forEach(function (m) {
     Q[m].forEach(function (e) {
@@ -129,7 +129,7 @@ function flSearch(query) {
     });
   });
 
-  /* ——— the body ——— */
+  /* --- the body --- */
   BODY_TEACH.forEach(function (t) {
     if (sHit(t[0], q) || sHit(t[1], q)) push('The Body', t[0], 'Teaching', String(t[1]).replace(/<[^>]+>/g, ''), '#/body');
   });

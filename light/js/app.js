@@ -1,4 +1,4 @@
-/* First Light — router, render loop, and boot.
+/* First Light: router, render loop, and boot.
 
    Loads last. Every ui-*.js file has already registered itself into FL_VIEWS by the
    time this runs, so the nav builds itself from that registry rather than from a
@@ -13,8 +13,8 @@
 /* FL_VIEWS and FL_ACTS are declared in registry.js, which loads before the views. */
 
 /* --- escaping ---
-   Every view builds HTML by string concatenation, so anything the reader typed —
-   a journal entry, a city name — must pass through here. The artifact never
+   Every view builds HTML by string concatenation, so anything the reader typed (
+   a journal entry, a city name) must pass through here. The artifact never
    interpolated user input, so it got away without one; this app has a journal. */
 function esc(s) {
   return String(s == null ? '' : s)
@@ -53,7 +53,7 @@ window.addEventListener('fl:storage', function (e) {
   }
 });
 
-/* ——— routing ———
+/* --- routing ---
    "#/hall/bible" -> {view:'hall', arg:'bible'} */
 function parseHash() {
   var h = (location.hash || '').replace(/^#\/?/, '');
@@ -72,11 +72,11 @@ function go(view, arg) {
 
 var flRoute = { view: 'today', arg: null };
 
-/* Four clusters, because eleven equal items is not a menu — it is a list, and
+/* Four clusters, because eleven equal items is not a menu; it is a list, and
    on a 375px screen it wrapped to three ragged rows with the Vault orphaned on
    its own line. The clusters follow what a reader is actually doing:
 
-     Today          the daily loop — one tap, no sub-row
+     Today          the daily loop: one tap, no sub-row
      The Practice   the work: the body, the Vault's rehearsal room, the ladder
      The Book       the reading: the 366, the Library's one door, the sky
      The Desk       the instruments: writing, finding, the record, the workings
@@ -156,12 +156,12 @@ document.addEventListener('keydown', function (e) {
 });
 
 /* First run: three honest answers and one choice, before anything else.
-   Shown once, to a record with at most the boot-marked day in it — an
+   Shown once, to a record with at most the boot-marked day in it: an
    imported year of mornings never sees this screen. */
 function flOnboardHTML() {
   return '<div class="kick">First Light</div>' +
     '<h1>Two minutes, most mornings</h1>' +
-    '<p class="note">Nothing leaves this phone. No account, no manager, no feed — what you write ' +
+    '<p class="note">Nothing leaves this phone. No account, no manager, no feed: what you write ' +
     'stays in this browser, and exports to a file you own.</p>' +
     '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
     '<div class="pacer-label" id="pacer-label">Ready</div>' +
@@ -171,7 +171,7 @@ function flOnboardHTML() {
       ((typeof pacer !== 'undefined' && pacer.on) ? 'Let it fade' : 'Try ten slow breaths first') + '</button></div>' +
     '<div class="label" style="margin-top:26px">One choice before you begin</div>' +
     '<div class="card">' +
-      '<p class="px" style="margin-bottom:12px">First Light includes a religious Library — scripture and ' +
+      '<p class="px" style="margin-bottom:12px">First Light includes a religious Library: scripture and ' +
       'reading plans across seven traditions. It stays behind its own door either way. ' +
       'Show today’s readings on your morning page?</p>' +
       '<div class="drawrow">' +
@@ -205,7 +205,7 @@ function render() {
   var v = FL_VIEWS[flRoute.view];
   var host = document.getElementById('view');
   /* the venue screen, the mid-shift refuge, the floor book, and the private
-     room answer their own doors — onboarding waits for a personal one */
+     room answer their own doors; onboarding waits for a personal one */
   var noOnboard = { lineup: 1, reset: 1, clear: 1, floor: 1 };
   if (!FL.prefs.onboarded && FL.days.length <= 1 && !noOnboard[flRoute.view]) {
     host.innerHTML = flOnboardHTML();
@@ -239,7 +239,7 @@ function navigate() {
        stays parked in the nav and has to tab through it again on every move. */
     var host = document.getElementById('view');
     host.focus({ preventScroll: true });
-    announce((FL_VIEWS[flRoute.view].title || flRoute.view) + ' — loaded');
+    announce((FL_VIEWS[flRoute.view].title || flRoute.view) + ': loaded');
   }
 }
 
@@ -283,7 +283,7 @@ document.addEventListener('change', function (e) {
   if (FL_ACTS[act]) FL_ACTS[act](el, e);
 });
 
-/* ——— service worker ———
+/* --- service worker ---
    ?nosw on the URL skips registration, which is how you debug a caching problem
    without fighting the cache to do it. */
 var flReloading = false;

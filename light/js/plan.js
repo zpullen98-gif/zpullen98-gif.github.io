@@ -18,7 +18,7 @@
    given date drew a different voice depending on the year. A fixed table
    guarantees date → voice is permanent. The cost is that in a common year slot 60
    is never reached, so the leap-day voice appears once in four years. That is the
-   right cost: the artifact's own subtitle promises "366 voices — one for every day
+   right cost: the artifact's own subtitle promises "366 voices, one for every day
    of the year, including the leap day", and a voice reserved for the twenty-ninth
    of February should be rare. */
 
@@ -155,11 +155,11 @@ var PLAN_VEDA = PLAN_VEDA_UNITS.map(function (day) {
   return 'Rig Veda, Mandala ' + a[0] + ' Hymn ' + a[1] + ' to Mandala ' + b[0] + ' Hymn ' + b[1];
 });
 
-/* ——— the five canons ———
+/* --- the five canons ---
    [id, name, subtitle, planDescription, plan[], epigraph, epigraphSource, blurb, teachings] */
 var HALL_YEARS = [
  ['bible', 'The Bible', 'The Christian Scriptures',
-  'Whole Bible in a year — all 1,189 chapters, Genesis to Revelation, three to four chapters a day.', PLAN_BIBLE,
+  'Whole Bible in a year: all 1,189 chapters, Genesis to Revelation, three to four chapters a day.', PLAN_BIBLE,
   'In the beginning was the Word, and the Word was with God, and the Word was God.', 'John 1:1',
   'Two testaments, one arc: creation, covenant, incarnation, and the promised restoration of all things.',
   'Incarnation · Grace · Resurrection · the Kingdom of God · Agape'],
@@ -174,7 +174,7 @@ var HALL_YEARS = [
   'The oldest scriptures still in daily use, carried by voice for three millennia, culminating in the Upanishads.',
   'Ṛta · Brahman and Atman · Yajña · Om · the Four Ends of Life'],
  ['pali', 'The Tripiṭaka', 'The Pali Canon',
-  'The complete Dhammapada in a year — all 423 verses, one or two a day, chapter by chapter.', PLAN_PALI,
+  'The complete Dhammapada in a year: all 423 verses, one or two a day, chapter by chapter.', PLAN_PALI,
   'Mind precedes all things; mind is their chief, mind is their maker.', 'Dhammapada 1',
   'The Buddha’s teaching as his first hearers preserved it: discipline, discourse, and analysis.',
   'the Four Noble Truths · the Eightfold Path · the Three Marks · Dependent Origination · the Brahmavihāras'],
@@ -190,12 +190,12 @@ function hallById(id) {
   return null;
 }
 
-/* ——— personal reading progress ———
+/* --- personal reading progress ---
    The artifact locked every plan to the calendar: open the Bible year in August and
    you begin at day 227, with no way to read the first 226 chapters. These helpers
    back the Phase 2 UI, where a canon starts the day you enter it and remembers what
    you actually finished. `start` null means the reader has chosen to follow the
-   calendar instead, which stays available on purpose — a shared cycle is the older
+   calendar instead, which stays available on purpose: a shared cycle is the older
    and in some ways better discipline. */
 function canonState(id) {
   if (!FL.canon[id]) FL.canon[id] = { start: null, done: {} };

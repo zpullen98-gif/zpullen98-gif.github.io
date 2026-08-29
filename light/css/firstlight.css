@@ -87,7 +87,7 @@
   --shadow:  0 1px 2px rgba(43,44,52,.06);
 }
 
-/* Below civil twilight. A real dark surface, not an inverted one — warm brass on
+/* Below civil twilight. A real dark surface, not an inverted one: warm brass on
    near-black, so reading at five in the morning doesn't scald. */
 :root[data-phase="night"] {
   --bg:      #14161A;
@@ -381,7 +381,7 @@ h1 {
 .w-planet { font-size: 36px; fill: var(--ink); font-family: var(--serif); }
 .w-minor  { fill: var(--faint); font-size: 30px; }
 .w-retro  { font-size: 17px; fill: var(--faint); font-family: var(--serif); }
-/* Dash pattern per aspect kind, not colour alone — the palette moves through the day
+/* Dash pattern per aspect kind, not colour alone: the palette moves through the day
    and a good share of readers cannot rely on hue anyway. */
 .w-asp { stroke-width: 1.5; fill: none; }
 .w-asp-major { stroke: var(--ink); }
@@ -495,13 +495,13 @@ footer {
 .seqtrack { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
 .seqbar { height: 100%; width: 0; background: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
-  /* The disc still resizes — that IS the instrument, not decoration — but nothing
+  /* The disc still resizes (that IS the instrument, not decoration) but nothing
      else in the app animates, and the numeral carries the same information. */
   .pacer-disc { transition: none !important; }
 }
 
 /* ═══ provenance ═══
-   Shown under a quotation whose citation needed correcting — a line is a loose
+   Shown under a quotation whose citation needed correcting: a line is a loose
    modern rendering, or is not the named author's at all. Set quietly and small:
    the reader came for the voice, not the apparatus, but the truth is on the page
    rather than buried in a commit message. */

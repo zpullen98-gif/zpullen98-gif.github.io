@@ -1,4 +1,4 @@
-/* First Light — the practice engine.
+/* First Light: the practice engine.
 
    The artifact's Body chapter was six YouTube embeds. Good ones, but a practice you
    cannot do without a connection is not a practice you can rely on, and the app's
@@ -10,7 +10,7 @@
    Everything here is driven by requestAnimationFrame against a wall-clock start
    time, never by counting frames or by setInterval. A backgrounded tab throttles
    timers to once a second or stops them, and a pacer that drifts is worse than no
-   pacer — you would be breathing to a rhythm the screen has lost. */
+   pacer: you would be breathing to a rhythm the screen has lost. */
 
 var BREATH_PATTERNS = [
   { id: 'box', name: 'Box breath', phases: [['In', 4], ['Hold', 4], ['Out', 4], ['Hold', 4]],
@@ -53,7 +53,7 @@ var SEQUENCES = [
   { id: 'feet', name: 'Feet and calves', mins: 3,
     note: 'For the standing trade, in work shoes, in a doorway. The feet carry every hour of the shift; three minutes returns some of the interest.',
     steps: [
-      ['Slow calf raises', 40, 'Rise on both feet, three seconds up, three down. The calf is the second heart — this is the pump that clears a standing shift’s pooling.'],
+      ['Slow calf raises', 40, 'Rise on both feet, three seconds up, three down. The calf is the second heart; this is the pump that clears a standing shift’s pooling.'],
       ['Wall calf stretch, right', 30, 'Hands on the wall, right leg back, heel down. Straight knee first, then a soft bend for the deeper fibres.'],
       ['Wall calf stretch, left', 30, 'The other side. The side that plants at the well is usually tighter.'],
       ['Ankle circles', 30, 'One foot off the floor, big slow circles both directions. Balance on the standing leg is part of the work.'],
@@ -62,7 +62,7 @@ var SEQUENCES = [
   { id: 'wrists', name: 'Wrists and grip', mins: 3,
     note: 'For hands that shake tins, carry trays, and hold a knife, the repetitive strain nobody stretches for until it complains.',
     steps: [
-      ['Flexor stretch, right', 30, 'Arm out, palm up; draw the fingers gently back with the other hand. The forearm’s underside — the shaking muscles.'],
+      ['Flexor stretch, right', 30, 'Arm out, palm up; draw the fingers gently back with the other hand. The forearm’s underside, the shaking muscles.'],
       ['Flexor stretch, left', 30, 'The other arm. The tin hand will tell you which one it is.'],
       ['Extensor stretch, right', 30, 'Palm down now, fingers drawn toward you. The top of the forearm, the tray and knife side of the strain.'],
       ['Extensor stretch, left', 30, 'The other arm, same slow pull.'],
@@ -71,7 +71,7 @@ var SEQUENCES = [
   { id: 'neck', name: 'Neck and shoulders', mins: 3,
     note: 'For pass-window posture and the tray shoulder. All of it standing, none of it conspicuous.',
     steps: [
-      ['Chin tucks', 30, 'Draw the chin straight back — a horizontal slide, not a nod. The head has been forward over a bar top all night.'],
+      ['Chin tucks', 30, 'Draw the chin straight back, a horizontal slide, not a nod. The head has been forward over a bar top all night.'],
       ['Ear to shoulder, right', 30, 'Let the right ear sink toward the shoulder, left arm hanging heavy. No pulling; weight is enough.'],
       ['Ear to shoulder, left', 30, 'The other side. The tray side will speak up.'],
       ['Doorway chest opener', 45, 'Forearm on the door frame, elbow at shoulder height, step gently through. The front of the shoulder gives back the pass-window hunch.'],
@@ -91,22 +91,22 @@ var SEQUENCES = [
     note: 'Premeditatio malorum, time-boxed. Rehearsal is choosing your response in advance; rumination is losing the evening to it. Three minutes, one small thing, and it always ends in the return. On a raw day, skip this and name Grief or Hope in the morning picker instead: this drill is for steady ground.',
     steps: [
       ['Settle', 30, 'Sit or stand still. Slow the breath: in four, out six. Nothing has happened.'],
-      ['Choose one small thing', 30, 'One only, and small: a smooth service, decent tips, a calm room. Not health, not the people you love — the drill is for the shift, and one item is the whole discipline.'],
-      ['Rehearse losing it', 60, 'Picture it plainly gone: the room slams, the tips are thin, the calm breaks. Now rehearse your first response — the breath, the sentence, the next task. They will be rude; it will get loud; none of it will be aimed at you.'],
+      ['Choose one small thing', 30, 'One only, and small: a smooth service, decent tips, a calm room. Not health, not the people you love: the drill is for the shift, and one item is the whole discipline.'],
+      ['Rehearse losing it', 60, 'Picture it plainly gone: the room slams, the tips are thin, the calm breaks. Now rehearse your first response: the breath, the sentence, the next task. They will be rude; it will get loud; none of it will be aimed at you.'],
       ['The return', 45, 'It has not happened. The shift is still whole and in front of you, and you have already met its worst hour once. Notice what you have tonight that the rehearsal just threatened.'],
       ['Close', 15, 'One full breath. Done. Do not reopen it. The rehearsal works because it ends.']
     ] },
   { id: 'sit', name: 'Sitting', mins: 20,
     note: 'Not a posture routine. The seat, the breath, and twenty minutes.',
     steps: [
-      ['Settling', 120, 'Find the position you can hold. Cross-legged on a cushion, kneeling, or a chair with both feet down — the tradition cares that it is steady and comfortable, not that it is impressive.'],
+      ['Settling', 120, 'Find the position you can hold. Cross-legged on a cushion, kneeling, or a chair with both feet down: the tradition cares that it is steady and comfortable, not that it is impressive.'],
       ['Following the breath', 600, 'Attention at the nostrils or the belly. When you notice you have wandered, that noticing IS the practice. Return without comment.'],
       ['Open attention', 360, 'Let the object go. Whatever arises, note it and let it pass.'],
       ['Closing', 120, 'Widen to the room, the sounds, the light. Move slowly when you get up.']
     ] }
 ];
 
-/* ——— the pacer ——— */
+/* --- the pacer --- */
 var pacer = { on: false, raf: null, start: 0, pattern: null, cycles: 0 };
 
 function pacerTotal(p) { return p.phases.reduce(function (s, x) { return s + x[1]; }, 0); }
@@ -172,7 +172,7 @@ function pacerTick() {
   pacer.raf = requestAnimationFrame(pacerTick);
 }
 
-/* ——— the sequence timer ——— */
+/* --- the sequence timer --- */
 var seq = { on: false, id: null, step: 0, start: 0, raf: null };
 
 function seqFind(id) {
@@ -210,7 +210,7 @@ function seqTick() {
     seq.start = performance.now();
     if (seq.step >= s.steps.length) { seq.on = false; FL.sessions[flToday()] = (FL.sessions[flToday()] || 0) + 1; flSave(); render(); announce('Sequence complete.'); return; }
     render();
-    /* the loop must re-arm itself — a bare return here froze every sequence
+    /* the loop must re-arm itself: a bare return here froze every sequence
        at its first step boundary, since nothing else ever re-enters the tick */
     seq.raf = requestAnimationFrame(seqTick);
     return;

@@ -471,7 +471,7 @@ input[type=date].sainput{font-family:'EB Garamond',Georgia,serif;color:var(--ink
 
 /* ═══════════ Codex IX: typographic interface ═══════════
    The pictorial icons are gone. What carries hierarchy now is type, rule and
-   space — which is what a professional reference should have used all along. */
+   space, which is what a professional reference should have used all along. */
 
 /* mode plates: title-led, evenly ranked, no icon gutter */
 .mode{padding:18px 20px}

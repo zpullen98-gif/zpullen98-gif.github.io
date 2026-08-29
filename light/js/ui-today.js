@@ -1,4 +1,4 @@
-/* First Light — Today.
+/* First Light: Today.
 
    The artifact's Today was one long scroll: quote, practice, reflection, five canon
    lines, all at once, asking nothing and recording nothing. This is the same
@@ -113,7 +113,7 @@ FL_ACTS.todayMode = function (el) {
     FL.prefs.todayMode = m; flSave();
     /* clear the session override, or these buttons silently do nothing after
        a forced morning/evening. 'Guided' chosen during the evening forces the
-       morning walk — that is what the button promises at that hour — while a
+       morning walk, that is what the button promises at that hour, while a
        daytime choice leaves the automatic dusk turn intact. */
     todayForceMode = (m === 'guided' && sunIsEvening()) ? 'morning' : null;
   }
@@ -123,7 +123,7 @@ FL_ACTS.todayMode = function (el) {
   window.scrollTo(0, 0);
 };
 
-/* FL.intents is the ONLY source of truth for the chosen intent — a session
+/* FL.intents is the ONLY source of truth for the chosen intent: a session
    mirror made the chip need two taps to clear after a reload. */
 FL_ACTS.pickIntent = function (el) {
   var name = el.getAttribute('data-intent');
@@ -256,7 +256,7 @@ function todayGuided(m, d, e, doy, p) {
         return '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
           '<div class="pacer-label" id="pacer-label">' + (on ? '' : 'Ready') + '</div>' +
           '<div class="ds" id="pacer-count"></div>' +
-          '<p class="mintro">A minute, or the length of ten slow breaths. Nothing to achieve — ' +
+          '<p class="mintro">A minute, or the length of ten slow breaths. Nothing to achieve: ' +
           'this is the interval in which the line stops being information and becomes yours.</p>' +
           '<div style="text-align:center;margin-top:10px">' +
           '<button class="mchip' + (on ? ' on' : '') + '" data-act="sitBreath">' +
@@ -302,7 +302,7 @@ function todayGuided(m, d, e, doy, p) {
       '</div>' +
       ready +
       '<p class="px" style="text-align:center;margin-top:10px"><a class="readmini" href="#/reset">' +
-        'Later, mid-shift: the Walk-In — ninety seconds</a></p>' +
+        'Later, mid-shift: the Walk-In: ninety seconds</a></p>' +
       (sunIsEvening() ? '<div class="drawrow" style="justify-content:center">' +
         '<button class="btn" data-act="todayMode" data-mode="evening">The evening examen</button></div>' : '');
   }
@@ -358,7 +358,7 @@ function todayExamen() {
 
   var kept = shift
     ? '<p class="mintro" style="margin-top:22px">Kept. What got left here, stays here.</p>' +
-      '<p class="px" style="text-align:center"><a href="#/body">After close — twelve minutes on the floor before bed</a></p>'
+      '<p class="px" style="text-align:center"><a href="#/body">After close: twelve minutes on the floor before bed</a></p>'
     : '<p class="mintro" style="margin-top:22px">Kept. The day is closed.</p>';
 
   return '<div class="disc" aria-hidden="true"></div>' +

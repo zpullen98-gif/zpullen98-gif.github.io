@@ -1,4 +1,4 @@
-/* First Light — the natal chart view.
+/* First Light: the natal chart view.
 
    Birth details in, a real chart out. The whole point of doing the arithmetic
    properly is that the app can now be honest about what it does and does not know,
@@ -133,7 +133,7 @@ FL_VIEWS.chart = {
         '<input type="time" id="b-time" value="' + esc(b.time || '') + '" aria-label="Birth time">' +
       '</div>' +
       '<div class="drawrow">' +
-        '<input type="text" id="b-city" placeholder="Birth place — start typing a city"' +
+        '<input type="text" id="b-city" placeholder="Birth place: start typing a city"' +
         ' data-input="chartCity" value="" aria-label="Birth place">' +
       '</div>' +
       '<div class="months" id="city-hits" style="justify-content:flex-start"></div>' +
@@ -204,7 +204,7 @@ FL_VIEWS.chart = {
   }
 };
 
-/* The ephemeris and the city list are ~260 KB together — real weight for a feature
+/* The ephemeris and the city list are ~260 KB together: real weight for a feature
    most mornings will not touch. They load on demand and the service worker keeps
    them, so it is once per device rather than once per launch. */
 var chartLoading = null;

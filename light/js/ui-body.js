@@ -15,7 +15,7 @@ FL_ACTS.seqStart = function (el) { seqStart(el.getAttribute('data-id'), 0); rend
 /* ---- THE WALK-IN (#/reset) ----
    Ninety seconds, one tap, phone propped on a shelf in the cooler. Two doors
    into the same minute and a half: the rough table wants the long exhale, the
-   coming push wants the box. DELIBERATELY RECORDS NOTHING — written down as a
+   coming push wants the box. DELIBERATELY RECORDS NOTHING: written down as a
    decision: a mid-shift reset that showed up in any count would stop being a
    refuge and start being a metric, and this room is a refuge. */
 var resetState = { on: false, done: false, timer: null, nonce: 0 };

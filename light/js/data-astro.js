@@ -7,13 +7,13 @@ const SIGNS=[
  d:"The first sign, and it behaves like one: initiating, direct, allergic to deliberation. Aries energy is the raw act of beginning, the spark before strategy. Ruled by Mars, it is framed in the tradition as courage in its unrefined state: fast to commit, fast to move, and largely uninterested in whether the ground has been surveyed.",
  s:"Initiative, courage, honesty, momentum",gr:"Patience; finishing what was begun; considering the second-order consequence"},
 {n:"Taurus",g:"♉",from:[4,20],to:[5,20],el:"Earth",mo:"Fixed",ru:"Venus",po:"Yin",kw:"I have",body:"Neck and throat",
- d:"Fixed earth: the principle of consolidation. Where Aries starts, Taurus builds something that lasts and then declines to move it. Venus-ruled, it is associated with the senses — food, texture, music, the physical pleasure of a well-made thing — and with a stubbornness the tradition treats as the shadow side of reliability.",
+ d:"Fixed earth: the principle of consolidation. Where Aries starts, Taurus builds something that lasts and then declines to move it. Venus-ruled, it is associated with the senses (food, texture, music, the physical pleasure of a well-made thing) and with a stubbornness the tradition treats as the shadow side of reliability.",
  s:"Steadiness, patience, loyalty, practical skill",gr:"Flexibility; releasing what has outlived its use; distinguishing security from stagnation"},
 {n:"Gemini",g:"♊",from:[5,21],to:[6,20],el:"Air",mo:"Mutable",ru:"Mercury",po:"Yang",kw:"I think",body:"Hands, arms, lungs",
  d:"Mutable air, ruled by Mercury: the sign of connection, language, and the restless traffic of ideas. Gemini is read as the mind in motion: curious, quick, comfortable holding two contradictory positions long enough to examine both. Its classical weakness is dispersal: many beginnings, shallow roots.",
  s:"Curiosity, wit, adaptability, communication",gr:"Depth over breadth; following one thread to its end; stillness"},
 {n:"Cancer",g:"♋",from:[6,21],to:[7,22],el:"Water",mo:"Cardinal",ru:"Moon",po:"Yin",kw:"I feel",body:"Chest and stomach",
- d:"Cardinal water, ruled by the Moon: the sign of home, memory, and protection. Cancer initiates through care rather than force — it makes a container and defends it. The tradition gives it the crab's shell deliberately: great tenderness kept behind armour, and a long memory for who was safe and who was not.",
+ d:"Cardinal water, ruled by the Moon: the sign of home, memory, and protection. Cancer initiates through care rather than force: it makes a container and defends it. The tradition gives it the crab's shell deliberately: great tenderness kept behind armour, and a long memory for who was safe and who was not.",
  s:"Loyalty, empathy, memory, protectiveness",gr:"Letting the shell open; not confusing withdrawal with safety; releasing old injuries"},
 {n:"Leo",g:"♌",from:[7,23],to:[8,22],el:"Fire",mo:"Fixed",ru:"Sun",po:"Yang",kw:"I will",body:"Heart and spine",
  d:"Fixed fire, ruled by the Sun: the only sign whose ruler is the light itself. Leo is read as sustained creative warmth: the capacity to hold a room, to give generously, to make. Its classical fault is needing the warmth returned; the tradition's counsel is that the fire must burn whether or not anyone is watching.",
@@ -31,20 +31,20 @@ const SIGNS=[
  d:"Mutable fire under Jupiter: the sign of the search: travel, philosophy, meaning, the horizon. Sagittarius is read as the impulse to widen the frame, to ask what it all amounts to. Its classical excess is the tactless truth and the promise made larger than the promiser: enthusiasm outrunning follow-through.",
  s:"Optimism, honesty, vision, love of learning",gr:"Tact; keeping commitments; finding the infinite in what is near"},
 {n:"Capricorn",g:"♑",from:[12,22],to:[1,19],el:"Earth",mo:"Cardinal",ru:"Saturn",po:"Yin",kw:"I use",body:"Bones, knees, skin",
- d:"Cardinal earth, ruled by Saturn: structure, ambition, and the long view. Capricorn initiates by building institutions that outlast the builder — the tradition associates it with mastery earned slowly, authority, and time itself. Its shadow is coldness and the reduction of a life to its output.",
+ d:"Cardinal earth, ruled by Saturn: structure, ambition, and the long view. Capricorn initiates by building institutions that outlast the builder: the tradition associates it with mastery earned slowly, authority, and time itself. Its shadow is coldness and the reduction of a life to its output.",
  s:"Discipline, endurance, responsibility, strategy",gr:"Warmth; rest without guilt; measuring life by more than achievement"},
 {n:"Aquarius",g:"♒",from:[1,20],to:[2,18],el:"Air",mo:"Fixed",ru:"Saturn (traditional) · Uranus (modern)",po:"Yang",kw:"I know",body:"Ankles and circulation",
  d:"Fixed air: despite the water-bearer's imagery, an air sign throughout the tradition. Aquarius holds ideas with the tenacity Taurus holds ground: the reformer, the systems-thinker, loyal to principle and to humanity in the collective. Its named fault is detachment: loving the many while remaining cool to the one in front of you.",
  s:"Originality, principle, humanitarian vision, independence",gr:"Intimacy; warmth toward individuals; questioning one's own certainties"},
 {n:"Pisces",g:"♓",from:[2,19],to:[3,20],el:"Water",mo:"Mutable",ru:"Jupiter (traditional) · Neptune (modern)",po:"Yin",kw:"I believe",body:"Feet and lymphatic system",
- d:"Mutable water, the last sign — the dissolution of boundaries back into the whole. Pisces is given compassion, imagination, mysticism, and art; the tradition treats it as the most permeable sign, absorbing whatever surrounds it. Its shadows are escapism and the loss of self in others' needs.",
+ d:"Mutable water, the last sign, the dissolution of boundaries back into the whole. Pisces is given compassion, imagination, mysticism, and art; the tradition treats it as the most permeable sign, absorbing whatever surrounds it. Its shadows are escapism and the loss of self in others' needs.",
  s:"Compassion, imagination, intuition, forgiveness",gr:"Boundaries; facing what is; distinguishing empathy from absorption"}];
 
 const A_HISTORY=[
 ["Babylon: the first records","Systematic sky-watching begins in Mesopotamia. Babylonian scribes kept omen records for centuries, the <em>Enūma Anu Enlil</em> collects some seventy tablets of them, reading celestial events as messages concerning the king and the state, not the individual. By roughly the fifth century BCE the zodiac had been divided into the twelve equal thirty-degree segments still used today, and the first personal birth charts appear."],
 ["Hellenistic Egypt: the system takes shape","In Alexandria, Babylonian records met Greek geometry and philosophy, and between roughly the second century BCE and the second century CE nearly everything modern astrology uses was assembled: the houses, the aspects, the rulerships, the ascendant. Ptolemy's <em>Tetrabiblos</em> (2nd century CE) became the standard reference for well over a millennium."],
-["The Islamic world: preservation and refinement","From the eighth century, scholars working in Arabic translated, corrected, and extended the Greek material. Abu Ma'shar, Al-Kindi, and Māshā'allāh advanced the technical apparatus considerably, and their work — alongside genuine advances in observational astronomy — returned to Europe through Spain and Sicily."],
-["Medieval and Renaissance Europe","Astrology became a university subject, taught alongside medicine and astronomy, which were not then separate disciplines. Physicians consulted charts before treatment; courts retained astrologers. Kepler cast horoscopes while discovering the laws of planetary motion — and was openly sceptical of much of the practice he earned his living by."],
+["The Islamic world: preservation and refinement","From the eighth century, scholars working in Arabic translated, corrected, and extended the Greek material. Abu Ma'shar, Al-Kindi, and Māshā'allāh advanced the technical apparatus considerably, and their work, alongside genuine advances in observational astronomy, returned to Europe through Spain and Sicily."],
+["Medieval and Renaissance Europe","Astrology became a university subject, taught alongside medicine and astronomy, which were not then separate disciplines. Physicians consulted charts before treatment; courts retained astrologers. Kepler cast horoscopes while discovering the laws of planetary motion, and was openly sceptical of much of the practice he earned his living by."],
 ["The split and the return","The Scientific Revolution severed astrology from astronomy, and it left the universities. It returned in the twentieth century in a different key: Alan Leo simplified it for a mass audience, newspaper sun-sign columns appeared in the 1930s, and Dane Rudhyar recast the whole system as psychological and symbolic rather than predictive: the frame most contemporary practitioners work in."]];
 
 const A_ELEMENTS=[
@@ -75,9 +75,9 @@ const A_HOUSES=[
 ["Second","Resources, possessions, income, and the sense of one's own worth."],
 ["Third","Communication, siblings, short journeys, early learning, the immediate neighbourhood."],
 ["Fourth: the IC","Home, roots, family of origin, the private foundation beneath a life."],
-["Fifth","Creativity, play, romance, children — what is made for the joy of making it."],
+["Fifth","Creativity, play, romance, children: what is made for the joy of making it."],
 ["Sixth","Work, routine, health, service; the daily maintenance of a life."],
-["Seventh — the Descendant","Partnership, marriage, close alliances, and open enemies. The mirror of the first."],
+["Seventh: the Descendant","Partnership, marriage, close alliances, and open enemies. The mirror of the first."],
 ["Eighth","Shared resources, inheritance, sexuality, death and transformation."],
 ["Ninth","Philosophy, higher learning, long journeys, religion, meaning."],
 ["Tenth: the Midheaven","Vocation, public standing, authority, what one is known for."],
@@ -87,7 +87,7 @@ const A_HOUSES=[
 const A_ASPECTS=[
 ["Conjunction","0°","~8°","Two bodies at the same point. Fusion: their natures blend and intensify, for better or worse."],
 ["Sextile","60°","~6°","Two signs apart. Opportunity: easy cooperation, but one that must be taken up deliberately."],
-["Square","90°","~8°","Three signs apart. Friction, tension, and the engine of growth — the aspect that forces action."],
+["Square","90°","~8°","Three signs apart. Friction, tension, and the engine of growth: the aspect that forces action."],
 ["Trine","120°","~8°","Four signs apart, same element. Natural flow and talent: so easy it can go unused."],
 ["Opposition","180°","~8°","Opposite signs. Polarity: a tension between two valid needs, resolved only by balancing them."]];
 
@@ -100,8 +100,8 @@ const A_HOWTO=[
 ["Read the whole before the parts","The classical warning is against interpreting a single placement in isolation. A chart is a system: one hard aspect may be answered elsewhere by an easy one, and any factor can be reinforced or contradicted by the rest."]];
 
 const A_RELATIONS=[
-["Same element (trine)","Signs four apart share an element — Aries/Leo/Sagittarius, Taurus/Virgo/Capricorn, Gemini/Libra/Aquarius, Cancer/Scorpio/Pisces. The tradition reads these as the easiest pairings: instinctive understanding, shared tempo, and the risk that nothing ever challenges either party."],
+["Same element (trine)","Signs four apart share an element: Aries/Leo/Sagittarius, Taurus/Virgo/Capricorn, Gemini/Libra/Aquarius, Cancer/Scorpio/Pisces. The tradition reads these as the easiest pairings: instinctive understanding, shared tempo, and the risk that nothing ever challenges either party."],
 ["Same modality (square or opposition)","Signs three apart share a modality and are read as friction: two cardinal signs both wanting to lead, two fixed signs both refusing to move, two mutable signs both changing shape. Classically the most difficult and the most productive combination."],
 ["Opposite signs","Six apart, always the same modality and complementary elements: Aries/Libra, Taurus/Scorpio, Gemini/Sagittarius, Cancer/Capricorn, Leo/Aquarius, Virgo/Pisces. Read as the axis: each holds what the other lacks, and the pairing works exactly to the degree both stop insisting they are right."],
 ["Compatible elements","Fire warms air and air feeds fire; earth holds water and water softens earth. The tradition treats fire/air and earth/water as natural affinities, and fire/water or earth/air as needing deliberate translation."],
-["Adjacent signs","Neighbours share no element or modality and form no classical aspect. Read as blind to one another — not hostile, simply operating on different assumptions, which the tradition says must be learned rather than felt."]];
+["Adjacent signs","Neighbours share no element or modality and form no classical aspect. Read as blind to one another: not hostile, simply operating on different assumptions, which the tradition says must be learned rather than felt."]];

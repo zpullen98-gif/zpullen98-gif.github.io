@@ -10,13 +10,13 @@
    survives every applyLevel; no pictorial glyphs. */
 
 /* Deliberately NOT registered in ST_DEFAULTS: stReset walks that list, and
-   "Erase all study statistics" must not take the venue's wine list with it —
+   "Erase all study statistics" must not take the venue's wine list with it;
    the list is the venue's property, not a statistic. The schema guarantee
    the registration would have given is covered by the line below. */
 ST.cellar=ST.cellar||[];
 
 /* Every render site below builds HTML by string, and every bottle field is
-   user text — escape at the sink, always. accept[] stays raw: the grader
+   user text: escape at the sink, always. accept[] stays raw: the grader
    normalizes it itself and never renders it. */
 function escB(s){return escT(s==null?'':s);}
 
@@ -37,7 +37,7 @@ function bottleLabel(b){
 
 /* ═══════════ the drill ═══════════
    startClassQuiz is the precedent: build plain question literals at click
-   time, hand them to S.pool, and the whole quiz engine — timer, results view,
+   time, hand them to S.pool, and the whole quiz engine (timer, results view,
    stats, the OOT hooks) treats them as first-class. Per-question ids are
    minted off the bottle id so the stat store never records stem-slice keys. */
 function cellarPriceOpts(correct){
@@ -97,7 +97,7 @@ function startCellarDrill(){
     }
     if(b.producer&&b.name){
       qs.push({id:b.id+'-pr',cat:'Our List',sa:1,q:'Who makes our '+escB(b.name)+(b.vintage?' '+escB(b.vintage):'')+'? Name the producer.',
-        accept:[b.producer],ans:escB(b.producer),exp:escB(b.producer)+' — '+label+'.'});
+        accept:[b.producer],ans:escB(b.producer),exp:escB(b.producer)+': '+label+'.'});
     }
   });
   if(!qs.length){ if(typeof toast==='function')toast('The list needs grapes, regions or producers before it can ask about them.'); return; }
@@ -127,8 +127,8 @@ function cellarReciteView(){
     return done;
   }
   var b=w.deck[w.idx];
-  var prompt=b.region?'The '+escB(b.region)+' pour'+(b.glass?' at '+escB(b.glass):'')+' — call it.':
-             b.style?'The '+escB(b.style.toLowerCase())+' — call it.':'Pour '+(w.idx+1)+' — call it.';
+  var prompt=b.region?'The '+escB(b.region)+' pour'+(b.glass?' at '+escB(b.glass):'')+': call it.':
+             b.style?'The '+escB(b.style.toLowerCase())+': call it.':'Pour '+(w.idx+1)+': call it.';
   var card='<div class="viewhead"><h2>Recite the list</h2><div class="sub">Card '+(w.idx+1)+' of '+w.deck.length+'. Say it out loud before you flip.</div></div>'
     +'<div class="secgroup">'+prompt+'</div>';
   if(w.revealed){
@@ -158,7 +158,7 @@ function cellarView(){
   var list=ST.cellar||[];
   var f=S._cellarForm;
   var html='<div class="viewhead"><h2>Our List</h2>'
-    +'<div class="sub">The list the guest is holding. Enter it bottle by bottle and drill it like the Court’s — '
+    +'<div class="sub">The list the guest is holding. Enter it bottle by bottle and drill it like the Court’s; '
     +'it lives in this browser and travels inside your progress export.</div></div>';
   if(!f){
     html+='<div class="sarow"><button class="btn gold" id="cl-add">Add a bottle</button>'

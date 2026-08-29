@@ -72,13 +72,13 @@ quran:[
 ["And He is with you wherever you are.","Al-Hadid 57:4"],
 ["Which of the favors of your Lord will you deny?","Ar-Rahman 55:13"],
 ["God is the Light of the heavens and the earth, light upon light.","An-Nur 24:35"],
-["Whoever puts his trust in God — He is sufficient for him.","At-Talaq 65:3"],
+["Whoever puts his trust in God, He is sufficient for him.","At-Talaq 65:3"],
 ["He who created death and life to test you as to which of you is best in deed.","Al-Mulk 67:2"],
 ["Remember the name of your Lord and devote yourself to Him completely.","Al-Muzzammil 73:8"],
 ["He has succeeded who purifies himself, and remembers the name of his Lord, and prays.","Al-A'la 87:14–15"],
 ["He has succeeded who purifies the soul, and failed who corrupts it.","Ash-Shams 91:9–10"],
 ["And as for the favor of your Lord, proclaim it.","Ad-Duha 93:11"],
-["By time, indeed mankind is in loss — except those who believe and do righteous deeds and counsel one another to truth and patience.","Al-'Asr 103:1–3"],
+["By time, indeed mankind is in loss, except those who believe and do righteous deeds and counsel one another to truth and patience.","Al-'Asr 103:1–3"],
 ["Verily, in the remembrance of God do hearts find rest.","Ar-Ra'd 13:28"],
 ["We created you into peoples and tribes that you may know one another.","Al-Hujurat 49:13"]],
 veda:[
@@ -98,7 +98,7 @@ veda:[
 ["The knower of Brahman attains the highest.","Taittiriya Upanishad 2.1"],
 ["From joy all beings are born; by joy they live; into joy they return.","Taittiriya Upanishad 3.6"],
 ["All this, verily, is Brahman.","Chandogya Upanishad 3.14.1"],
-["Aham Brahmasmi — I am Brahman.","Brihadaranyaka Upanishad 1.4.10"],
+["Aham Brahmasmi: I am Brahman.","Brihadaranyaka Upanishad 1.4.10"],
 ["Consciousness is Brahman.","Aitareya Upanishad 3.3"],
 ["Common be your intention, common your hearts, so that all may happily agree.","Rig Veda 10.191"],
 ["I praise Agni, the priest of the sacrifice, the giver of treasures.","Rig Veda 1.1.1"],
@@ -112,7 +112,7 @@ veda:[
 ["The Self is not born, nor does it die; unborn, eternal, everlasting, ancient.","Katha Upanishad 1.2.18"],
 ["This Self cannot be attained by instruction, nor by intellect, nor by much learning.","Katha Upanishad 1.2.23"],
 ["May we hear what is good; may we see what is good.","Vedic invocation"],
-["Om — this syllable is all this. Its further explanation: all that is past, present, and future is Om.","Mandukya Upanishad 1"]],
+["Om: this syllable is all this. Its further explanation: all that is past, present, and future is Om.","Mandukya Upanishad 1"]],
 pali:[
 ["Mind precedes all things; mind is their chief, mind is their maker.","Dhammapada 1"],
 ["Hatred does not cease by hatred, but only by love; this is the eternal rule.","Dhammapada 5"],
@@ -175,6 +175,6 @@ tanakh:[
 ["Return to me, and I will return to you, says the Lord of hosts.","Malachi 3:7"],
 ["The world stands on three things: on Torah, on service, and on deeds of loving-kindness.","Pirkei Avot 1:2"],
 ["It is not incumbent upon you to complete the work, but neither are you free to desist from it.","Pirkei Avot 2:16"],
-["For everything there is a season — a time to weep, and a time to laugh.","Ecclesiastes 3:1,4"],
+["For everything there is a season: a time to weep, and a time to laugh.","Ecclesiastes 3:1,4"],
 ["Arise, shine, for your light has come.","Isaiah 60:1"]]
 };

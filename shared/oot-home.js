@@ -216,7 +216,7 @@
            types their name first. Ask, once, only when there is something to
            inherit. Cancelling leaves the roster empty rather than creating a
            non-legacy profile, because adopt() is only reachable while the
-           roster is empty — a plain profile here would strand the existing
+           roster is empty: a plain profile here would strand the existing
            record behind a key nobody reads. */
         var hasHistory = false;
         try {

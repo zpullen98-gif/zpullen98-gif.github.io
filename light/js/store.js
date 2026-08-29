@@ -39,7 +39,7 @@ function flProfileKey(base) {
 var FL_KEY = flProfileKey(FL_KEY_BASE);
 
 /* The whole of the reader's record. Every field defaults to empty, so a missing
-   key from an older version is indistinguishable from a fresh install — which is
+   key from an older version is indistinguishable from a fresh install, which is
    what makes additive migration safe. */
 var FL = {
   v: 1,
@@ -75,7 +75,7 @@ function flDateKey(dt) {
          String(dt.getDate()).padStart(2, '0');
 }
 function flToday() { return flDateKey(new Date()); }
-/* The same shift applied to a Date — for views that need the day's month,
+/* The same shift applied to a Date: for views that need the day's month,
    date, or weekday to agree with the record's idea of "today". */
 function flShiftedNow() {
   var edge = Number(FL.prefs.dayEnd) || 0;
@@ -121,11 +121,11 @@ function flNotifyStorage(state, err) {
     }));
   } catch (e) { /* very old browser; the console line below still lands */ }
   if (state === 'fail') {
-    console.warn('First Light: writes are failing — this session will not be saved.', err);
+    console.warn('First Light: writes are failing; this session will not be saved.', err);
   }
 }
 
-/* ——— save ———
+/* --- save ---
    Debounced. Typing in the journal fires on every keystroke and re-serialising the
    whole record each time is wasteful, but the delay must be short enough that a
    reader who closes the tab mid-sentence keeps the sentence. */
@@ -138,7 +138,7 @@ function flSave(immediate) {
 }
 function flWriteNow() {
   flSaveTimer = null;
-  /* under a corrupt-blob hold, the original IS the record — nothing this
+  /* under a corrupt-blob hold, the original IS the record: nothing this
      session produces may replace it */
   if (flHoldSaves) return false;
   try {
@@ -202,7 +202,7 @@ function flLongestStreak(days) {
   return best;
 }
 
-/* Record that today was observed. Idempotent — safe to call on every render. */
+/* Record that today was observed. Idempotent: safe to call on every render. */
 function flMarkDay() {
   var k = flToday();
   if (FL.days.indexOf(k) === -1) { FL.days.push(k); FL.days.sort(); flSave(); return true; }
@@ -277,7 +277,7 @@ function flBootMigrate() {
   var changed = false;
 
   /* The artifact's three keys. On the small chance a reader used it somewhere
-     `window.storage` did resolve — or in a build where these reached localStorage —
+     `window.storage` did resolve, or in a build where these reached localStorage,
      their vault is still on the device under the old names. Take it once. */
   if (!FL.prefs.migratedFl2) {
     changed = flAdoptLegacy('fl2:kept', function (v) {
@@ -350,12 +350,12 @@ function flImport(text) {
   var added = { kept: 0, checks: 0, days: 0, journal: 0, examen: 0, practice: 0 };
 
   /* byheart merges keep-the-higher-band: two devices disagreeing about how
-     well you know a line resolve toward the stronger claim — you can always
+     well you know a line resolve toward the stronger claim: you can always
      step a band back by rehearsing. */
   if (rec.byheart) Object.keys(rec.byheart).forEach(function (k) {
     if ((rec.byheart[k] || 0) > (FL.byheart[k] || 0)) FL.byheart[k] = rec.byheart[k];
   });
-  /* sessions merge toward the larger count per day — two devices cannot
+  /* sessions merge toward the larger count per day: two devices cannot
      double-bill a morning, and neither can erase the other's */
   if (rec.sessions) Object.keys(rec.sessions).forEach(function (k) {
     if ((rec.sessions[k] || 0) > (FL.sessions[k] || 0)) FL.sessions[k] = rec.sessions[k];
@@ -400,7 +400,7 @@ function flImport(text) {
   });
 
   /* the additive promise held on boot (flAdopt carries unknown keys) but not
-     on import — a backup from a newer build lost its new buckets here */
+     on import: a backup from a newer build lost its new buckets here */
   var trusted = (parsed && parsed.app === 'First Light') || (rec && rec.v !== undefined);
   if (trusted) Object.keys(rec).forEach(function (k) {
     if (!Object.prototype.hasOwnProperty.call(FL, k)) FL[k] = rec[k];

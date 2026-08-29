@@ -1,4 +1,4 @@
-/* First Light — the body chapter
+/* First Light: the body chapter
    Extracted verbatim from first_light_year_4.html.
    Declares globals; loaded by a classic <script> tag. */
 
@@ -8,7 +8,7 @@ const BODY_TEACH=[
 ["The nightcap","Here is the physiology, plainly, from an app that also teaches people to build drinks and respects the craft. Alcohol shortens the walk to sleep \u2014 that part is true, and it is why the shift drink works. Then it collects: the second half of the night fragments, REM is suppressed, and the recovery the body was owed is quietly repossessed. The nightcap borrows from tomorrow at interest. This is not temperance copy; it is arithmetic, and the trade deserves the honest ledger. The practices in this book already hold the alternative \u2014 Voluntary Discomfort was built for exactly this trade: skip the shift drink once this week, on purpose, and watch what the morning gives back. If skipping it once feels larger than it should, that is information too, worth exactly one honest line in the examen \u2014 and there is a longer word on this in the small hours of the app when you want it."],
 ["Water and the small hours","Kitchens run hot and bars run fast, and both sweat more than anyone credits. The complaint that arrives at hour eight as exhaustion, a headache, or a temper with a short fuse is often just fluid \u2014 the body\u2019s gauges are coarse, and thirst reports late. The craft answer is the same as every other station discipline: mise en place. A litre bottle filled at line-up, finished by the push, filled again; a glass of water with whatever is eaten before doors; one more before bed after a close, because tomorrow\u2019s first hour is poured tonight. The Stoics would call this the body\u2019s portion of prosoch\u0113 \u2014 attention \u2014 and they would be right: nobody good at this trade runs their station out of ice, and the body is the first station."],
 
-["The body is not the obstacle","Every ascetic tradition was tempted to treat the body as an enemy, and the deepest teachers of each one refused. The Buddha abandoned six years of starvation for the middle way, having learned that a body too weak to sit is no use to a mind trying to see. Yoga makes the point structurally: the postures exist to make sitting possible. Musonius Rufus, who taught the lame Epictetus, insisted the body be trained alongside the soul — not worshipped, but kept fit for its work, because the body is the instrument the work is done with."],
+["The body is not the obstacle","Every ascetic tradition was tempted to treat the body as an enemy, and the deepest teachers of each one refused. The Buddha abandoned six years of starvation for the middle way, having learned that a body too weak to sit is no use to a mind trying to see. Yoga makes the point structurally: the postures exist to make sitting possible. Musonius Rufus, who taught the lame Epictetus, insisted the body be trained alongside the soul: not worshipped, but kept fit for its work, because the body is the instrument the work is done with."],
 ["Steady and comfortable","Patañjali defines a posture in three Sanskrit words: <em>sthira sukham āsanam</em>, steady and at ease. That is the entire instruction, and it is a corrective to nearly everything modern exercise culture assumes. Not maximal, not impressive, not painful. A posture is correct when you can hold it with stability and without strain, which means the standard is set by your body today, not by the person beside you or the one you were last year."],
 ["Breath is the bridge","Prāṇāyāma sits at the center of the eight limbs because breath is the one system that is both automatic and voluntary: the hinge between what the body does to you and what you do with it. Slow the breath and the nervous system follows; this is the oldest known technology for governing one's own state. The Stoic pause before responding, the Zen count of ten, the Sufi <em>dhikr</em>, all of them work the same lever."],
 ["Strength is a form of service","Socrates told a young Athenian it was shameful to grow old without ever seeing what his body was capable of, not out of vanity, but because a citizen owed the city a body that could carry its share. The Stoics inherited this: the point of physical training is capability for duty, not display. What you build in the body is spent on other people: the friend helped to move, the child carried, the decades of usefulness you keep in reserve."],
@@ -17,13 +17,13 @@ const BODY_TEACH=[
 
 const EIGHT_LIMBS=[
 ["Yama","Restraint toward others: non-harming, truthfulness, non-stealing, moderation, non-grasping."],
-["Niyama","Restraint toward oneself — cleanliness, contentment, disciplined effort, self-study, surrender."],
+["Niyama","Restraint toward oneself: cleanliness, contentment, disciplined effort, self-study, surrender."],
 ["Āsana","Posture. Steady and comfortable; the seat the rest of the practice is built on."],
 ["Prāṇāyāma","Regulation of the breath, and through it, of energy and attention."],
 ["Pratyāhāra","Withdrawal of the senses: the deliberate turning down of external input."],
 ["Dhāraṇā","Concentration: holding attention on a single point without wandering."],
 ["Dhyāna","Meditation: the point held so steadily that the effort of holding falls away."],
-["Samādhi","Absorption — the observer and the observed no longer standing apart."]];
+["Samādhi","Absorption: the observer and the observed no longer standing apart."]];
 
 const BODY_VIDEOS=[
 {id:"y87vSUoIMGU",frame:"Unwinding",note:"A full-body stretch to close a working day, or to stand alone on a rest day."},

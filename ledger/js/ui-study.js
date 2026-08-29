@@ -87,7 +87,7 @@ function renderHome(){
       + '<div class="eyebrow">Start here</div>'
       + '<div class="small dim lh" style="max-width:520px">This is a working bartender’s study ledger, not a recipe app. '
       + 'It holds '+COCKTAILS.length+' cocktails with the history behind each one, '+SHOTS.length+' shots, '+NA_DRINKS.length+' zero-proof drinks, '
-      + PREPS.length+' prep sheets and a full behind-the-bar curriculum — and it drills you, offline, for as long as you keep showing up.</div>'
+      + PREPS.length+' prep sheets and a full behind-the-bar curriculum, and it drills you, offline, for as long as you keep showing up.</div>'
       + '<div class="small dim lh" style="max-width:520px"><span class="brass2">Pour tonight’s session</span> above is the whole routine: '
       + 'a handful of cards in canon order, a ten-question round, then a drill you do with your hands. '
       + 'Ten minutes. Come back tomorrow and it deals what you’re about to forget.</div>'
@@ -142,7 +142,7 @@ function renderHome(){
     + '<span class="chip">'+KNOWLEDGE.length+' quiz questions</span></div>'
     + (tastings ? '<div class="tiny dim mt2">'+tastings+' tasting note'+(tastings===1?'':'s')+' logged'
         + (drillLogs ? ' · '+drillLogs+' practice result'+(drillLogs===1?'':'s')+' recorded' : '')+'</div>'
-        : '<div class="tiny dim mt2">No tasting notes yet — the Practice tab has scorecards and twelve guided flights.</div>')
+        : '<div class="tiny dim mt2">No tasting notes yet; the Practice tab has scorecards and twelve guided flights.</div>')
     + '</div>'
     + '<div class="panel p5"><div class="eyebrow mb2">The four pillars</div><div class="small dim lh">'
     + '<span style="color:var(--cream)">Craft</span> from the Bar-Tender\'s Guide of 1862: precision and pride in execution. '
@@ -252,7 +252,7 @@ function allDrinks(){
   });
   SHOTS.forEach(function(s){
     out.push({ src:'Shots', name:s.name, spec:s.spec, method:s.method, glass:'Shot glass',
-      garnish:'—', note:s.note, group:s.cat, spirit:'—', tier:null, ref:s });
+      garnish:'-', note:s.note, group:s.cat, spirit:'-', tier:null, ref:s });
   });
   NA_DRINKS.forEach(function(d){
     out.push({ src:'Zero Proof', name:d.name, spec:d.spec, method:d.method, glass:d.glass,
@@ -314,7 +314,7 @@ function isMastered(name){
   if(!(s && s.r>=3 && s.r>s.w)) return false;
   return s.due === undefined || s.due > Date.now();
 }
-/* lapses weigh in, mirroring the home screen's weakness list — a card that
+/* lapses weigh in, mirroring the home screen's weakness list: a card that
    keeps collapsing accumulates r on every relearn cycle and w*2-r alone
    buries exactly the cards this ordering exists to surface */
 function weakScore(name){ const s=progress.cards[name]; return s ? (s.w*2 + (s.lapses||0)*1.5 - s.r + Math.random()*0.5) : (1 + Math.random()*0.5); }
@@ -368,7 +368,7 @@ function prepCard(){
   if(fc.mode==='cloze'){
     fc.clozeIdx = Math.floor(Math.random()*c.spec.length);
     const ans = c.spec[fc.clozeIdx];
-    /* the blanked line's own role and unit shouldn't give it away — a decoy in
+    /* the blanked line's own role and unit shouldn't give it away: a decoy in
        ounces against a "2 dashes" answer is answerable without knowing the drink */
     const role = classifyLine(ans);
     const unit = (ans.match(/\b(oz|dash|dashes|drops?|barspoon|part|leaves|sprig|cube|splash|top)\b/i)||[''])[0].toLowerCase();
@@ -386,15 +386,15 @@ function prepCard(){
        "Coupe" against a correct answer of "Coupe or Nick & Nora" and scored it
        a miss, which then went into the scheduler as a lapse. */
     const fields = ['glass','garnish','method']
-      .filter(f => c[f] && c[f] !== '—' && !(f==='glass' && c.src==='Shots'));
+      .filter(f => c[f] && c[f] !== '-' && !(f==='glass' && c.src==='Shots'));
     /* A My Bar drink saved as name+spec only has nothing to ask here; a
        zero-question card would render an instant 'Not clean.' and record
-       nothing. Skip it — the deck end check above is the recursion floor. */
+       nothing. Skip it: the deck end check above is the recursion floor. */
     if(!fields.length){ fc.idx++; return prepCard(); }
     const opts = {}, keyed = {};
     fields.forEach(f => {
       if(f === 'garnish'){                       /* free text: no clean categories */
-        const others = [...new Set(pool.map(x => x[f]).filter(v => v && v !== '—' && v !== c[f]))];
+        const others = [...new Set(pool.map(x => x[f]).filter(v => v && v !== '-' && v !== c[f]))];
         opts[f] = shuffle([c[f], ...sample(others, 3)]);
         keyed[f] = null;
         return;
@@ -419,7 +419,7 @@ function recordCard(ok){
 }
 function clozeTicketHTML(c, hideIdx){
   const specLines = c.spec.map((l,i) => '<div class="spec-line"><span>·</span><span>'
-    + (i===hideIdx ? '<span class="bold" style="letter-spacing:0.15em">— ? ? ? —</span>' : esc(l)) + '</span></div>').join('');
+    + (i===hideIdx ? '<span class="bold" style="letter-spacing:0.15em">- ? ? ? -</span>' : esc(l)) + '</span></div>').join('');
   const label = c.src==='Cocktails' ? "The Bartender's Ledger · Drink Ticket"
     : c.src==='Shots' ? esc(c.group)+' · Shot Call' : esc(c.group)+' · Zero Proof';
   return '<div class="ticket"><div class="ticket-inner">'
@@ -480,7 +480,7 @@ function renderFlashcards(){
       + '<div class="col-sm">'+modeBtns+'</div>'
       + '</div>'
       + '<div class="row center"><button class="btn btn-ghost" data-act="fc-board">Mastery board →</button></div>'
-      + '<div class="tiny dim lh" style="padding:0 4px">Every drink in the ledger is drillable — all '+COCKTAILS.length+' cocktails, '+SHOTS.length+' shots, '+((progress.bar||[]).length ? NA_DRINKS.length+' zero-proof drinks, and your '+progress.bar.length+' My Bar drink'+(progress.bar.length===1?'':'s') : 'and '+NA_DRINKS.length+' zero-proof drinks')+', '+allDrinks().length+' cards in total. Path to mastery: run <span class="brass2">Name → Spec</span> until clean, prove it in <span class="brass2">Assemble the Ticket</span>, then keep <span class="brass2">Trouble cards</span> + <span class="brass2">Weakest first</span> in rotation. Three honest wins with a winning record masters a card.</div>'
+      + '<div class="tiny dim lh" style="padding:0 4px">Every drink in the ledger is drillable: all '+COCKTAILS.length+' cocktails, '+SHOTS.length+' shots, '+((progress.bar||[]).length ? NA_DRINKS.length+' zero-proof drinks, and your '+progress.bar.length+' My Bar drink'+(progress.bar.length===1?'':'s') : 'and '+NA_DRINKS.length+' zero-proof drinks')+', '+allDrinks().length+' cards in total. Path to mastery: run <span class="brass2">Name → Spec</span> until clean, prove it in <span class="brass2">Assemble the Ticket</span>, then keep <span class="brass2">Trouble cards</span> + <span class="brass2">Weakest first</span> in rotation. Three honest wins with a winning record masters a card.</div>'
       + '</div>';
   }
 
@@ -670,7 +670,7 @@ function dealerAxes(c){
   if(!e) return null;   /* parts/counts specs have no computable strength */
   const bal = balanceOf(c);
   /* liqueur/aperitivo bases: balanceOf promotes the sweet base into strong,
-     so the remaining sweet column understates the drink — a Midori Sour is
+     so the remaining sweet column understates the drink: a Midori Sour is
      not 'on the dry side'. No lean claim where the base carries the sugar. */
   const lean = /liqueur|aperitivo|amaro|sparkling/i.test(c.spirit || '') ? null
     : Math.abs(bal.sweet - bal.sour) >= 0.25
@@ -699,7 +699,7 @@ function qDealer(cands, used){
   const missCount = ax => (ax.spirit !== axes.spirit ? 1 : 0) + (ax.band !== axes.band ? 1 : 0)
     + (axes.lean !== undefined && ax.lean !== axes.lean ? 1 : 0)
     + (axes.fam !== undefined && ax.fam !== axes.fam ? 1 : 0);
-  /* the hard invariant: no distractor may satisfy EVERY axis — a second
+  /* the hard invariant: no distractor may satisfy EVERY axis; a second
      valid answer is the failure mode, an imperfect near-miss is not */
   const others = cands.filter(x => x.c.name !== pick.c.name && !satisfies(x.ax));
   const oneOff = shuffle(others.filter(x => missCount(x.ax) === 1));
@@ -709,7 +709,7 @@ function qDealer(cands, used){
   const leanPhrase = axes.lean === 'sweet' ? 'a touch sweet' : axes.lean === 'dry' ? 'on the dry side, not sweet' : null;
   const famPhrase = axes.fam ? 'built like ' + (/^[AEIOU]/.test(axes.fam) ? 'an ' : 'a ') + axes.fam : null;
   const prompt = 'Guest: “Something with ' + axes.spirit.toLowerCase() + ', ' + bandPhrase
-    + (leanPhrase ? ', ' + leanPhrase : '') + (famPhrase ? ' — ' + famPhrase.toLowerCase() : '') + '.” Your call?';
+    + (leanPhrase ? ', ' + leanPhrase : '') + (famPhrase ? ', ' + famPhrase.toLowerCase() : '') + '.” Your call?';
   const missWhy = x => x.ax.spirit !== axes.spirit ? 'wrong spirit (' + x.ax.spirit.toLowerCase() + ')'
     : x.ax.band !== axes.band ? (DEALER_BAND_PHRASE[x.ax.band] || x.ax.band) + ' where the guest asked ' + bandPhrase
     : (axes.lean !== undefined && x.ax.lean !== axes.lean) ? (x.ax.lean ? 'leans ' + x.ax.lean : 'leans neither way')
@@ -717,7 +717,7 @@ function qDealer(cands, used){
   const explain = pick.c.name + ' fits every ask: ' + axes.spirit.toLowerCase() + ', ' + bandPhrase
     + (leanPhrase ? ', ' + leanPhrase : '') + '. '
     + distractors.map(x => x.c.name + ': ' + missWhy(x) + '.').join(' ')
-    + ' All computed from the specs — the sheet cannot drift from the book.';
+    + ' All computed from the specs: the sheet cannot drift from the book.';
   return { prompt: prompt, options: shuffle([pick.c.name].concat(distractors.map(x => x.c.name))), answer: pick.c.name, explain: explain };
 }
 /* legacy entries carry no topic; the authored SCENARIO ones are service
@@ -727,7 +727,7 @@ function knowledgeByTopic(t){
   const pool = KNOWLEDGE.filter(k => topicOf(k) === t);
   return pool.length ? pool : KNOWLEDGE;
 }
-/* options MUST be shuffled — 68 of the authored entries put the answer second */
+/* options MUST be shuffled: 68 of the authored entries put the answer second */
 function qKnowledge(k){
   return { prompt:k.q, options:shuffle(k.options), answer:k.options[k.a], explain:k.explain, topic:topicOf(k) };
 }
@@ -743,7 +743,7 @@ function qCocktailTicket(c){
   const wrong = sample(sameFam, Math.min(2,sameFam.length)).concat(sample(others,3)).slice(0,3);
   return { prompt:'Name this drink from the ticket:', ticket:c,
     options: shuffle([c.name,...wrong]), answer:c.name,
-    explain: c.name+' — '+c.method.toLowerCase()+', '+c.glass.toLowerCase()+'. '+(c.note||'') };
+    explain: c.name+': '+c.method.toLowerCase()+', '+c.glass.toLowerCase()+'. '+(c.note||'') };
 }
 function qBlindOther(){
   if(Math.random() < 0.5){
@@ -751,7 +751,7 @@ function qBlindOther(){
     const wrong = sample(SHOTS.filter(x=>x.name!==s.name).map(x=>x.name),3);
     return { prompt:'Name this shot from the ticket:', ticket:s, ticketType:'shot',
       options: shuffle([s.name,...wrong]), answer:s.name,
-      explain: s.name+' — '+s.cat.toLowerCase()+'. '+(s.note||'') };
+      explain: s.name+': '+s.cat.toLowerCase()+'. '+(s.note||'') };
   }
   const d = sample(NA_DRINKS,1)[0];
   const wrong = sample(NA_DRINKS.filter(x=>x.name!==d.name).map(x=>x.name),3);
@@ -812,7 +812,7 @@ function buildRound(mode, pool){
        per drink, sliced to ten. The setup chip guards the <4-drink case. */
     shuffle((progress.bar||[]).slice()).forEach(b => {
       qs.push(qMyBarTicket(b));
-      if(b.glass && b.glass !== '—') qs.push(qMyBarGlass(b));
+      if(b.glass && b.glass !== '-') qs.push(qMyBarGlass(b));
       if((b.spec||[]).length) qs.push(qMyBarSpecLine(b));
     });
     return shuffle(qs).slice(0,10);
@@ -870,7 +870,7 @@ function renderQuiz(){
     const blurb = (QUIZ_MODES.find(([k]) => k===mode) || QUIZ_MODES[0])[2];
     const pool = mode==='mixed' || mode==='tickets' || mode==='mybar' ? null : knowledgeByTopic(mode);
     const thin = pool && pool === KNOWLEDGE
-      ? '<div class="tiny dim">Nothing written for this domain yet — you\'ll get a mixed pool until there is.</div>' : '';
+      ? '<div class="tiny dim">Nothing written for this domain yet; you\'ll get a mixed pool until there is.</div>' : '';
     return '<div class="col">'
       + '<div class="panel p5 tc col" style="align-items:center">'
       + '<div class="eyebrow">Quiz rounds</div>'
@@ -884,7 +884,7 @@ function renderQuiz(){
   if(z.stage==='done'){
     const total = z.round.length;
     const pct = z.score/total;
-    const verdict = pct>=0.9 ? 'Clean round. Recognition is not the same as doing it — take it to the drills.'
+    const verdict = pct>=0.9 ? 'Clean round. Recognition is not the same as doing it: take it to the drills.'
       : pct>=0.7 ? 'Solid. Read the misses below before you deal another.'
       : pct>=0.5 ? 'Half is a start. The explanations are where the round pays you back.'
       : 'Everyone starts by polishing glassware. Run it again.';
@@ -915,7 +915,7 @@ function renderQuiz(){
   const opts = q.options.map((opt,i) => {
     let cls = 'opt-btn', mark = '', sr = '';
     /* dark green vs dark red is the ONLY signal for a deuteranopic user, and no
-       signal at all in forced-colors mode — carry it in text and a glyph too */
+       signal at all in forced-colors mode: carry it in text and a glyph too */
     if(answered && opt===q.answer){ cls += ' correct'; mark = '<span aria-hidden="true" class="opt-mark">✓</span> '; sr = '<span class="sr-only">Correct answer: </span>'; }
     else if(answered && i===z.picked){ cls += ' wrong'; mark = '<span aria-hidden="true" class="opt-mark">✗</span> '; sr = '<span class="sr-only">Your answer, incorrect: </span>'; }
     return '<button class="'+cls+'" data-act="quiz-pick" data-i="'+i+'"'+(answered?' disabled':'')+'>'+mark+sr+esc(opt)+'</button>';
@@ -946,7 +946,7 @@ function videoSettingsHTML(){
     + '<div class="eyebrow">Video settings</div>'
     + '<div class="small dim lh">Every drink, prep, and technique in this guide links out to a live YouTube search. These two settings shape every one of those links.</div>'
     + '<div><div class="tiny eyebrow mb1">Preferred channel</div><div class="row" style="gap:6px">'+chips+'</div>'
-    + '<div class="tiny dim mt1">Auto routes each drink to the channel that covers it best. Pin one if you like a particular bartender\'s style — it becomes the first button everywhere.</div></div>'
+    + '<div class="tiny dim mt1">Auto routes each drink to the channel that covers it best. Pin one if you like a particular bartender\'s style; it becomes the first button everywhere.</div></div>'
     + '<div><div class="tiny eyebrow mb1">Result length</div><div class="row" style="gap:6px">'
     + '<button class="chip'+(!p.longform?' on':'')+'" aria-pressed="'+(!p.longform?'true':'false')+'" data-act="vid-len" data-v="any">Any length</button>'
     + '<button class="chip'+(p.longform?' on':'')+'" aria-pressed="'+(p.longform?'true':'false')+'" data-act="vid-len" data-v="long">Full tutorials only</button></div>'

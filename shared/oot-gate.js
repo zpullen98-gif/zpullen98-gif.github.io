@@ -1,4 +1,4 @@
-/* Outside Of Time — the entitlement gate.
+/* Outside Of Time: the entitlement gate.
    Resolves tier = 'anon' | 'free' | 'paid' and caches it with a 7-day offline
    grace. Classic script, loaded after oot-auth.js. Phase 3 adds the paywall
    overlay on top of this; nothing here draws UI.

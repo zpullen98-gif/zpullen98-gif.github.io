@@ -52,7 +52,7 @@
 /* CONTRAST: --oot-dim is already the muted colour, and it was chosen to MEET
    AA against the paper. Five rules below then stacked opacity .6-.68 on top of
    it and one dimmed --oot-ink the same way, which took measured 4.55:1 down to
-   2.33:1 in day service and 5.70:1 down to 2.97:1 at night — the whole point of
+   2.33:1 in day service and 5.70:1 down to 2.97:1 at night: the whole point of
    the token, undone by the line after it.
 
    Do not put opacity back on text. If something needs to recede, give it a

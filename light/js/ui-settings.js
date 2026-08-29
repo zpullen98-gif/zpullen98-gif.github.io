@@ -1,19 +1,19 @@
-/* First Light — Settings.
+/* First Light: Settings.
 
    Three jobs: let the reader see and correct what the app believes about their sky,
    choose how the palette behaves, and get their record out of the device. The last
-   one matters most — localStorage is per-origin and does not survive a new phone, a
+   one matters most: localStorage is per-origin and does not survive a new phone, a
    cleared cache, or a change of hosting. A year of mornings has to be portable. */
 
 FL_ACTS.setDayEnd = function (el) {
   var v = Number(el.value) || 0;
   FL.prefs.dayEnd = v;
   flSave(true);
-  /* the day the reader is living under the NEW clock gets marked now —
+  /* the day the reader is living under the NEW clock gets marked now:
      without this the streak shows a hole until the next app-open */
   if (flRoute.view !== 'lineup') flMarkDay();
   render();
-  toast(v ? 'Your day now ends at ' + v + 'am — a night that runs past midnight still counts as tonight.'
+  toast(v ? 'Your day now ends at ' + v + 'am: a night that runs past midnight still counts as tonight.'
           : 'Your day ends at midnight.');
 };
 
@@ -131,7 +131,7 @@ FL_VIEWS.settings = {
     var located = sky.exact
       ? '<p class="px">Using your location: ' + sky.lat.toFixed(2) + '°, ' + sky.lon.toFixed(2) + '°.</p>' +
         '<button class="keep" data-act="clearLocation">Forget it</button>'
-      : '<p class="px">Estimating from your time zone — longitude about ' + sky.lon.toFixed(0) + '°, ' +
+      : '<p class="px">Estimating from your time zone: longitude about ' + sky.lon.toFixed(0) + '°, ' +
         'latitude assumed 40°. Good enough to know whether it is dark; not exact.</p>' +
         '<button class="keep" data-act="useLocation">Use my location</button>';
 
@@ -151,7 +151,7 @@ FL_VIEWS.settings = {
 
       '<div class="label">Light</div>' +
       '<div class="card">' +
-        '<p class="px" style="margin-bottom:10px">The app follows your sky by default — night before first light, ' +
+        '<p class="px" style="margin-bottom:10px">The app follows your sky by default: night before first light, ' +
         'warm through sunrise, plain by day, cooler at dusk. You can hold it at one instead.</p>' +
         '<select class="sel" data-change="setTheme" aria-label="Palette">' +
           opt('auto', 'Follow the sun') + opt('firstlight', 'Always first light') +
@@ -217,7 +217,7 @@ FL_VIEWS.settings = {
       '<div class="card">' +
         '<p class="px">Every quotation in the year is being checked against primary texts. ' +
         'Where a line turns out not to belong to the author whose name it carried, the line stays ' +
-        'and a note underneath says so — a much-loved sentence is not worth less for having the ' +
+        'and a note underneath says so: a much-loved sentence is not worth less for having the ' +
         'wrong byline, but the byline should not be wrong.</p>' +
         '<div class="astrorow" style="margin-top:12px"><span class="k">Audited so far</span> ' +
           esc(auditedMonths()) + '</div>' +

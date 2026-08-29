@@ -1,4 +1,4 @@
-/* First Light — the journal.
+/* First Light: the journal.
 
    Writing attached to something: a day, a voice you kept, a passage you read, or the
    evening's examen. The tradition's words are on one side and yours are on the other,
@@ -73,7 +73,7 @@ function jAll() {
     .sort(function (a, b) { return (b.d || '').localeCompare(a.d || '') || (b.u || 0) - (a.u || 0); });
 }
 
-/* ——— the writing surface ———
+/* --- the writing surface ---
    A textarea that saves as you type. Deliberately not a rich editor: the value here
    is that a sentence is cheap to write at six in the morning, and every affordance
    between the thought and the text is a reason not to bother. */
@@ -143,7 +143,7 @@ function jFlush() {
   if (wrote) flSave(true);
 }
 
-/* ——— human labels for a ref ———
+/* --- human labels for a ref ---
    The journal view shows what each entry was written against, and a raw ref is
    meaningless to a reader. */
 function jLabel(ref) {

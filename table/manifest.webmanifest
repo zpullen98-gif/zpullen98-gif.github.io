@@ -1,7 +1,7 @@
 {
 	"name": "The World Table",
 	"short_name": "World Table",
-	"description": "An interactive culinary field guide — 970 recipes, a 479-term chef's lexicon, pantry matching and a ten-semester path of study.",
+	"description": "An interactive culinary field guide: 970 recipes, a 479-term chef's lexicon, pantry matching and a ten-semester path of study.",
 	"start_url": ".",
 	"scope": ".",
 	"display": "standalone",

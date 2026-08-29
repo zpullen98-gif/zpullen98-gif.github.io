@@ -2,7 +2,7 @@
    AUTHORED IN-PROJECT by an AI assistant, as recorded in HANDOFF.md, and
    COMPANY_OWNED on the same footing as the Advanced and Master question banks.
    Fact-reviewed for the first time on 27 Aug 2026, against the questions of
-   their own categories — a chapter that teaches one figure while its questions
+   their own categories: a chapter that teaches one figure while its questions
    key another is the defect that review existed to find.
 
    Native format {cat, lead, exam, facts[[label,text]], traps[]}. Written for the
@@ -82,13 +82,13 @@ facts:[
 ["Noble four","Riesling, Gewurztraminer, Pinot Gris, Muscat. Exceptions: Zotzenberg (Sylvaner), Altenberg de Bergheim and Kaefferkopf (blends), and since 2022 Pinot Noir for red at Hengst, Kirchberg de Barr and Vorbourg."],
 ["Sweetness","VT = late harvest, may finish near-dry; SGN = botrytized, always sweet. Since 2021, sweetness indication is mandatory on labels."],
 ["Crémant d'Alsace","France's second-largest traditional-method appellation; largely Pinot Blanc, rosé must be 100% Pinot Noir."],
-["The philosophical split","Deiss champions co-planted field-blend crus; Ostertag and Trimbach argue varietal precision. Both positions are defensible — know them."],
+["The philosophical split","Deiss champions co-planted field-blend crus; Ostertag and Trimbach argue varietal precision. Both positions are defensible: know them."],
 ["Geography","Vosges rain shadow makes Colmar one of France's driest towns; flûte bottle mandatory for AOP Alsace still wine."]],
 traps:[
-"Pinot Blanc is respected but not noble — no grand cru.",
+"Pinot Blanc is respected but not noble: no grand cru.",
 "Klevener de Heiligenstein is Savagnin Rose; 'Klevner' without the e is Pinot Blanc.",
 "Alsace Riesling defaults dry; do not transpose German expectations.",
-"Trimbach's Clos Sainte-Hune comes from grand cru Rosacker — the label just won't say so."]},
+"Trimbach's Clos Sainte-Hune comes from grand cru Rosacker: the label just won't say so."]},
 
 {cat:"Rhône",
 lead:"Two valleys, one name, and an examiner who wants to know which cru forbids white grapes, which permits co-fermentation, and how many varieties Châteauneuf actually allows depending on how you count.",
@@ -104,7 +104,7 @@ traps:[
 "Cornas is the all-Syrah cru; Côte-Rôtie is the one permitting Viognier. Candidates reverse them constantly.",
 "Château-Grillet is a single-estate AOP inside Condrieu, owned by Artémis.",
 "Crozes-Hermitage is the largest northern appellation, not a junior Hermitage vineyard.",
-"Tavel makes rosé only — no red, no white."]},
+"Tavel makes rosé only: no red, no white."]},
 
 {cat:"Southern France",
 lead:"The Midi is where Advanced candidates lose easy marks: Bandol's Mourvèdre minimum, Cahors' Malbec minimum, Madiran's micro-oxygenation, Jurançon's passerillage, and a Languedoc appellation map that changes every few years.",
@@ -123,7 +123,7 @@ traps:[
 "Mas de Daumas Gassac sells as IGP by choice, not by failure."]},
 
 {cat:"Jura, Savoie & Corsica",
-lead:"Small regions, outsized exam weight. Vin Jaune's six years and three months, the clavelin's 62 cl, the difference between ouillé and sous voile — these are pure marks for anyone who studied and pure loss for anyone who didn't.",
+lead:"Small regions, outsized exam weight. Vin Jaune's six years and three months, the clavelin's 62 cl, the difference between ouillé and sous voile: these are pure marks for anyone who studied and pure loss for anyone who didn't.",
 exam:"Vin Jaune rules and bottle, Château-Chalon's self-cancelling appellation, Jura's grapes, Savoie's crus, Corsica's grapes and their Italian identities.",
 facts:[
 ["Vin Jaune","Savagnin, minimum six years three months in cask sans ouillage, at least 60 of those months under voile, bottled in the 62 cl clavelin. Château-Chalon is Vin Jaune only and may declare a vintage void."],
@@ -134,7 +134,7 @@ facts:[
 ["Corsica","Nielluccio (=Sangiovese, Patrimonio's limestone), Sciacarello (granite, Ajaccio), Vermentino, Muscat du Cap Corse VDN."]],
 traps:[
 "Savagnin is not Sauvignon. Different grape, different everything.",
-"Vin Jaune is never fortified — Sherry-like flavour at table-wine strength.",
+"Vin Jaune is never fortified: Sherry-like flavour at table-wine strength.",
 "Nielluccio is Sangiovese; Vermentino is Rolle in Provence. Synonyms are the exam.",
 "Macvin is a mistelle (unfermented juice plus marc), not a fortified wine."]},
 
@@ -159,7 +159,7 @@ lead:"Sangiovese under four names, one town-versus-grape trap that has failed th
 exam:"Brunello and Chianti Classico rules, the Montepulciano trap, Super Tuscan legal history, Aglianico, Etna, Primitivo's identity, Verdicchio's two zones.",
 facts:[
 ["Brunello","100% Sangiovese Grosso, 2 years in wood, released in the 5th year (6th for Riserva). Rosso di Montalcino is the younger sibling."],
-["Chianti Classico","Sangiovese ≥80% for Annata and Riserva, black rooster seal. Annata 12 months, Riserva 24, Gran Selezione 30 with estate fruit, ≥90% Sangiovese and native red varieties only — and since 2023, 11 UGA village names on Gran Selezione."],
+["Chianti Classico","Sangiovese ≥80% for Annata and Riserva, black rooster seal. Annata 12 months, Riserva 24, Gran Selezione 30 with estate fruit, ≥90% Sangiovese and native red varieties only, and since 2023, 11 UGA village names on Gran Selezione."],
 ["The Montepulciano trap","Vino Nobile di Montepulciano = Sangiovese (Prugnolo Gentile) from the Tuscan town. Montepulciano d'Abruzzo = the grape Montepulciano in Abruzzo."],
 ["Super Tuscan history","Vino da Tavola → IGT (1992 Goria law) → Bolgheri DOC (1994) and Bolgheri Sassicaia (2013, Italy's only single-estate DOC)."],
 ["The south","Taurasi DOCG (Aglianico, Campania) and Aglianico del Vulture Superiore (Basilicata); Fiano di Avellino and Greco di Tufo for whites; Primitivo di Manduria (= Zinfandel = Tribidrag)."],
@@ -167,7 +167,7 @@ facts:[
 traps:[
 "Montepulciano is both a Tuscan town and an Abruzzese grape. This single fact fails more candidates than any other in Italy.",
 "Brunello must be 100% Sangiovese; Chianti Classico only 80% minimum.",
-"Carmignano's 1716 delimitation was geographic — its Cabernet requirement dates to the 1975 DOC, the first Italian appellation to require Cabernet in its blend. Italy's first DOC outright was Vernaccia di San Gimignano, 1966.",
+"Carmignano's 1716 delimitation was geographic: its Cabernet requirement dates to the 1975 DOC, the first Italian appellation to require Cabernet in its blend. Italy's first DOC outright was Vernaccia di San Gimignano, 1966.",
 "Vernaccia di San Gimignano is white, despite the red-wine company it keeps."]},
 
 {cat:"Spain",
@@ -197,7 +197,7 @@ facts:[
 ["Madeira","Estufagem (45–50°C, 3 months) versus canteiro (slow lodge heat). Sercial → Verdelho → Bual → Malmsey, dry to sweet; Tinta Negra does the volume. Frasqueira = 20 years in cask, single vintage."],
 ["Island oddities","Colares' ungrafted Ramisco in dune sand; Pico's basalt currais (UNESCO); Setúbal's Moscatel (≥85%)."]],
 traps:[
-"Vinho Verde means young wine, not green grapes — and it can be red.",
+"Vinho Verde means young wine, not green grapes, and it can be red.",
 "Tinta Roriz and Aragonez are both Tempranillo.",
 "Alicante Bouschet is a teinturier: red flesh, red juice.",
 "Port's fortifying spirit is 77%; VDN's is 96%. Different worlds, same idea."]},
@@ -224,7 +224,7 @@ exam:"Steinfeder/Federspiel/Smaragd thresholds, DAC logic and the three-tier str
 facts:[
 ["Wachau ladder","Steinfeder ≤11.5%, Federspiel 11.5–12.5%, Smaragd ≥12.5%. A private Vinea Wachau classification, valid nowhere else."],
 ["DAC","Districtus Austriae Controllatus ties each region to typical varieties; wines outside the type label under the broader state. Most DACs now use Gebietswein → Ortswein → Riedenwein."],
-["Danube soils","Urgestein (primary rock/gneiss) favours Riesling; löss favours Grüner Veltliner. Wachau, Kremstal, Kamptal — plus Heiligenstein's odd desert conglomerate."],
+["Danube soils","Urgestein (primary rock/gneiss) favours Riesling; löss favours Grüner Veltliner. Wachau, Kremstal, Kamptal, plus Heiligenstein's odd desert conglomerate."],
 ["Burgenland","Blaufränkisch DACs: Mittelburgenland, Eisenberg, Leithaberg. Zweigelt (Blaufränkisch × St. Laurent) is the most-planted red."],
 ["Sweet","Neusiedlersee humidity: Spätlese → Auslese → BA → Ausbruch (Rust) → TBA, plus Eiswein and Schilfwein (reed-mat dried)."],
 ["1985","Diethylene glycol adulteration collapsed exports and produced Europe's strictest wine law, the foundation of modern Austrian quality."]],
@@ -251,7 +251,7 @@ traps:[
 "Santorini's vines are ungrafted because volcanic ash defeats phylloxera."]},
 
 {cat:"Producers & Icons",
-lead:"Advanced turns producer questions into short answers: not 'which house makes Grange' but 'name Penfolds' luxury tier beneath Grange'. Learn houses as clusters — region, flagship, style, one fact.",
+lead:"Advanced turns producer questions into short answers: not 'which house makes Grange' but 'name Penfolds' luxury tier beneath Grange'. Learn houses as clusters: region, flagship, style, one fact.",
 exam:"Producer → region → flagship, in both directions. Monopoles, cult wines, historical firsts, and the winemakers behind them.",
 facts:[
 ["France","DRC's nine grand cru holdings; Leroy and d'Auvenay; Coche-Dury and Roulot in Meursault; Guigal's La-Las; Chave; Beaucastel and Rayas; d'Yquem; Pétrus and Le Pin (Thienpont)."],
@@ -296,7 +296,7 @@ traps:[
 "Seattle's rain is coastal; Columbia Valley needs irrigation.",
 "The Rocks District is in Oregon but its wines ride with Walla Walla, Washington.",
 "Oregon's 90% varietal rule beats the federal 75%.",
-"Icewine's freeze must occur on the vine — artificial freezing disqualifies."]},
+"Icewine's freeze must occur on the vine: artificial freezing disqualifies."]},
 
 {cat:"South America",
 lead:"Altitude in Argentina, transverse valleys in Chile, and one ampelographer's identification in 1994 that renamed a whole country's second grape. Advanced expects the subzones by name.",
@@ -304,7 +304,7 @@ exam:"Mendoza's GIs and altitude, Uco subzones and calcareous soils, Torrontés,
 facts:[
 ["Mendoza","Luján de Cuyo (classic) and Uco Valley (Gualtallary, Paraje Altamira, Los Chacayes, San Pablo): soil-mapped GIs drawn by alluvial fan, with calcareous caliche the prized feature."],
 ["Altitude science","UV at 1,000–1,500 m thickens skins: more colour, tannin and florals, with diurnal swing preserving acid. Catena's Adrianna vineyard is the research site."],
-["Argentina's whites","Torrontés (Muscat of Alexandria × Criolla Chica) at Cafayate/Salta up to ~3,000 m — smells sweet, finishes dry."],
+["Argentina's whites","Torrontés (Muscat of Alexandria × Criolla Chica) at Cafayate/Salta up to ~3,000 m: smells sweet, finishes dry."],
 ["Chile's axis","The 2011 law added Costa / Entre Cordilleras / Andes to the north-south valleys. Casablanca and Leyda coastal; Maipo's Puente Alto for Cabernet; Colchagua's Apalta; Itata/Maule for old-vine País and Carignan (VIGNO)."],
 ["Carmenère","Identified by Boursiquot in 1994 after decades as 'Merlot'. Needs long hanging; hoisin, paprika, bell pepper."],
 ["Phylloxera","Chile remains essentially free of it: own-rooted vinifera behind desert, mountains and ocean."]],
@@ -312,7 +312,7 @@ traps:[
 "Uco Valley is higher and cooler than Luján de Cuyo: the style is floral and taut, not bigger.",
 "Torrontés is aromatic but dry.",
 "Bonarda in Argentina is Douce Noir/Corbeau (California's Charbono), not Italy's Bonarda.",
-"Berlin Tasting (2004), not Paris — Chile's own blind-tasting coup."]},
+"Berlin Tasting (2004), not Paris, Chile's own blind-tasting coup."]},
 
 {cat:"Australia",
 lead:"Not one hot country but a federation of climates with the world's oldest vines. Advanced wants old-vine charters, GI rules, and the Grange-versus-Hill-of-Grace contrast delivered cleanly.",
@@ -344,7 +344,7 @@ traps:[
 "Central Otago is semi-continental, the exception in a maritime country.",
 "NZ Syrah is cool-climate and peppery, closer to Crozes than Barossa.",
 "Kumeu River (Auckland) makes the country's most acclaimed Chardonnay, not Marlborough.",
-"The 2008 oversupply crisis is part of the region's history — bulk exports damaged the brand."]},
+"The 2008 oversupply crisis is part of the region's history: bulk exports damaged the brand."]},
 
 {cat:"South Africa",
 lead:"The Cape's story is 1659, 1925, 1973, 1994 and 2010: founding, Pinotage, Wine of Origin, democracy, and the Swartland revolution. Advanced expects the dates and the ethics.",
@@ -359,7 +359,7 @@ facts:[
 traps:[
 "Pinotage's parents are Pinot Noir and Cinsaut: 'Hermitage' was Cinsaut's local alias.",
 "Vin de Constance is unfortified, sun-raisined Muscat.",
-"The KWV's statutory control ended in 1997 — everything modern dates from after that.",
+"The KWV's statutory control ended in 1997; everything modern dates from after that.",
 "Any serious answer acknowledges the dop system's legacy and transformation work."]},
 
 {cat:"Sparkling Wine World",
@@ -403,7 +403,7 @@ facts:[
 ["Freezing","Eiswein −7°C (Germany/Austria), Icewine −8°C (Canada VQA); pressed frozen, no botrytis character, cryoextraction banned in Canada."],
 ["Arrested","Moscato d'Asti chilled and filtered to a halt at ~5.5%; fortified sweets stopped with spirit."],
 ["Numbers","BA ~110–128° Oe, TBA ~150+. Aszú 5 puttonyos ≥120 g/L, 6 ≥150. Eszencia 450+ g/L."],
-["Balance","Great sweet wine is defined by acidity carrying sugar — Mosel TBA at 7% alcohol, Furmint's spine, Sauternes' Sauvignon lift."]],
+["Balance","Great sweet wine is defined by acidity carrying sugar: Mosel TBA at 7% alcohol, Furmint's spine, Sauternes' Sauvignon lift."]],
 traps:[
 "Eiswein carries no botrytis character; if you smell saffron and marmalade, think BA/TBA.",
 "Vin Santo is deliberately oxidative, sealed in small barrels for years.",
@@ -438,7 +438,7 @@ facts:[
 ["Shaken classics","Daiquiri, Margarita, Sidecar, Whiskey Sour, Last Word (equal parts gin, Green Chartreuse, maraschino, lime), Ramos Gin Fizz."]],
 traps:[
 "Age statements count the youngest component in the blend.",
-"Bourbon requires NEW charred oak every time — used barrels are exported.",
+"Bourbon requires NEW charred oak every time: used barrels are exported.",
 "Shake with juice, dairy or egg; stir spirits-only. The reason is dilution, texture and clarity.",
 "Baco 22A is a hybrid legal in Armagnac, the only one in a French AOC spirit."]},
 
@@ -507,7 +507,7 @@ traps:[
 "USDA Organic Wine forbids added sulfites; 'made with organic grapes' allows them."]},
 
 {cat:"Viticulture & Winemaking",
-lead:"Advanced expects you to explain a technique's mechanism and its stylistic consequence — not just name it. Every tasting note you defend traces back to a decision in this chapter.",
+lead:"Advanced expects you to explain a technique's mechanism and its stylistic consequence, not just name it. Every tasting note you defend traces back to a decision in this chapter.",
 exam:"Training and pruning systems, vine disorders, harvest chemistry, fermentation choices, oak, lees, special methods, faults and their prevention.",
 facts:[
 ["Training","Guyot is cane-pruned and renewed annually; cordon is spur-pruned on a permanent arm; gobelet is bush-trained. Apical dominance explains cane arching."],
@@ -518,7 +518,7 @@ facts:[
 ["Preparation","Fining: bentonite for proteins, egg white for tannin, isinglass and casein for clarity and browning. SO2 is antioxidant, antimicrobial and antioxidasic."]],
 traps:[
 "Véraison is the mid-summer colour change, not the harvest.",
-"Grafting onto American rootstock saved Europe — the fruiting variety stayed vinifera.",
+"Grafting onto American rootstock saved Europe: the fruiting variety stayed vinifera.",
 "Carbonic maceration proper requires whole intact berries under CO2; Beaujolais mostly uses semi-carbonic.",
 "Micro-oxygenation was invented in Madiran to tame Tannat."]},
 
@@ -547,7 +547,7 @@ facts:[
 ["Decanting","Old wine: stand upright a day, single continuous pour over a light, stop at the first sediment. Young structured wine: for aeration. Fragile old Pinot or Nebbiolo: often better not; offer and follow the host."],
 ["Temperatures","Sparkling 42–50°F, but vintage and mature Champagne cellar-cool at 50–55 so the autolytic and oxidative complexity reads; light whites and rosé 45–50; full whites 50–55; light reds 55–60; full reds 60–65. Fino coldest; Vintage Port like a full red; aged Tawny lightly chilled."],
 ["Tools","Waiter's friend as standard; ah-so for fragile corks; Durand for the very old; port tongs for fused corks. Preservation: Coravin (argon through the cork), inert gas blankets, vacuum pumps in descending effectiveness."],
-["Recovery","A rejected bottle is replaced graciously without debate and verified away from the table. A dropped cork is acknowledged lightly and the service continues — composure is the graded skill."]],
+["Recovery","A rejected bottle is replaced graciously without debate and verified away from the table. A dropped cork is acknowledged lightly and the service continues: composure is the graded skill."]],
 traps:[
 "The host tastes first but is served last.",
 "Never sniff the cork yourself at the table; present it.",
@@ -555,7 +555,7 @@ traps:[
 "Sound-but-disliked and faulty are two different conversations. Know which one you are in."]},
 
 {cat:"Food & Pairing",
-lead:"Advanced pairing wants mechanisms, not lists. Why salt softens tannin, why umami hardens it, why the wine must outrank the dessert in sweetness — then the canonical marriages delivered without hesitation.",
+lead:"Advanced pairing wants mechanisms, not lists. Why salt softens tannin, why umami hardens it, why the wine must outrank the dessert in sweetness, then the canonical marriages delivered without hesitation.",
 exam:"Structural principles with reasons, problem ingredients and solutions, the classic canon, cheese strategy, and modern ferment-to-ferment logic.",
 facts:[
 ["Principles","Match intensity; acid meets acid; the wine must be sweeter than the dish; salt softens tannin and flatters acid; fat wants acid to cut or tannin to scrub."],
@@ -565,7 +565,7 @@ facts:[
 ["Cheese","White beats red across most of the board: acid versus fat with no tannin-umami fight; aged cheese's glutamate amplifies tannin's bitterness and astringency, while its salt actually softens tannin. Blue plus sweet is the great law; hard aged cheeses can carry reds."],
 ["Modern doctrine","Ferment meets ferment: Sherry, orange wine, sake and gueuze with kimchi, aged rinds and funk. The 'bridge ingredient' technique moves the plate toward the wine."]],
 traps:[
-"Big reds with delicate fish is the classic scored error: weight mismatch, and the metallic fishy aftertaste comes from the wine's ferrous iron oxidising the fish's polyunsaturated fats into fishy aldehydes — not from tannin, which is why a low-iron red pairs cleanly.",
+"Big reds with delicate fish is the classic scored error: weight mismatch, and the metallic fishy aftertaste comes from the wine's ferrous iron oxidising the fish's polyunsaturated fats into fishy aldehydes, not from tannin, which is why a low-iron red pairs cleanly.",
 "Sweet wine below the dessert's sweetness tastes thin and sour.",
 "'Red with all cheese' is folklore.",
 "Chilli heat is amplified by alcohol and tannin: reach for off-dry Riesling, not Shiraz."]},

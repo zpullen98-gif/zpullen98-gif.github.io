@@ -1,4 +1,4 @@
-/* First Light — The Year. All 366, month by month. */
+/* First Light: The Year. All 366, month by month. */
 
 var yearMonth = 0;   // 0 = no explicit pick; defaults per render on the shifted clock
 

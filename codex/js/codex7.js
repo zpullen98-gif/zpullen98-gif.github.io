@@ -1,12 +1,12 @@
 /* ============ Codex VII: the Four-Level Court ============
-   Regionale / Village / Premier Cru / Grand Cru as one app — the Court's four
+   Regionale / Village / Premier Cru / Grand Cru as one app: the Court's four
    examinations under the names of Burgundy's pyramid, which climbs the same way
    a student does: the whole region, then one village, then a named parcel, then
    the few hectares that need no further qualification. The level KEYS below (intro/certified/advanced/
    master) are load-bearing: qKey bakes them into every stored stat key, so only
    the display strings may ever change. Levels switch by
    rebinding the data globals (all layers resolve them at call time); stats
-   namespace by key prefix — certified keys stay UNPREFIXED so existing
+   namespace by key prefix: certified keys stay UNPREFIXED so existing
    progress survives untouched. */
 
 /* ---- snapshots of the certified globals (taken before any rebinding) ---- */
@@ -24,7 +24,7 @@ var LEVELS={
  intro:{key:'intro',label:"The Régionale Examination",short:'Régionale',
   bank:INTRO_QUESTIONS,grapes:INTRO_CORE12,primers:INTRO_PRIMERS,groups:INTRO_GROUPS,
   mock:{n:70,secs:45*60},pass:0.6,
-  note:'A régionale wine is the whole district in one glass, and this is the whole subject in one paper: seventy questions in forty-five minutes, all multiple choice, sixty in a hundred to pass. Foundations, the world map, the classics — speed and certainty win it.'},
+  note:'A régionale wine is the whole district in one glass, and this is the whole subject in one paper: seventy questions in forty-five minutes, all multiple choice, sixty in a hundred to pass. Foundations, the world map, the classics: speed and certainty win it.'},
  certified:{key:'certified',label:"The Village Examination",short:'Village',
   bank:CERT_QUESTIONS,grapes:CERT_GRAPES,primers:CERT_PRIMERS,groups:CERT_GROUPS,
   mock:{n:45,secs:38*60},pass:0.6,
@@ -34,12 +34,12 @@ if(typeof ADV_QUESTIONS!=='undefined')LEVELS.advanced={key:'advanced',label:"The
  bank:ADV_QUESTIONS,grapes:CERT_GRAPES.concat(typeof GRAPES_PLUS!=='undefined'?GRAPES_PLUS:[]),
  primers:typeof ADV_PRIMERS!=='undefined'?ADV_PRIMERS:CERT_PRIMERS,groups:CERT_GROUPS,
  mock:{n:60,secs:35*60},pass:0.6,
- note:'A named parcel is claimed, not guessed. Short-answer country: some sixty questions at thirty-five seconds each, deep in appellation law, producers and vintages. Produce the answer cold — recognition is no longer enough.'};
+ note:'A named parcel is claimed, not guessed. Short-answer country: some sixty questions at thirty-five seconds each, deep in appellation law, producers and vintages. Produce the answer cold; recognition is no longer enough.'};
 if(typeof MASTER_QUESTIONS!=='undefined')LEVELS.master={key:'master',label:"The Grand Cru Examination",short:'Grand Cru',
  bank:MASTER_QUESTIONS,grapes:CERT_GRAPES.concat(typeof GRAPES_PLUS!=='undefined'?GRAPES_PLUS:[]),
  primers:typeof MASTER_PRIMERS!=='undefined'?MASTER_PRIMERS:CERT_PRIMERS,groups:CERT_GROUPS,
  mock:{n:50,secs:50*60,oral:true},pass:0.6,
- note:'Grand cru needs no qualifier and neither may you: examined aloud, fifty minutes across the table, answers produced from memory with nothing to lean on, and seventy-five in a hundred demanded in every section. The Gauntlet mirrors it — rapid prompts, your own words, self-graded on your honour.'};
+ note:'Grand cru needs no qualifier and neither may you: examined aloud, fifty minutes across the table, answers produced from memory with nothing to lean on, and seventy-five in a hundred demanded in every section. The Gauntlet mirrors it: rapid prompts, your own words, self-graded on your honour.'};
 var LEVEL_ORDER=['intro','certified','advanced','master'];
 
 var activeLevel='certified';
@@ -216,7 +216,7 @@ decorateHome=function(){
   var mock=document.getElementById('m-mock');
   if(mock){
     if(L.mock.oral){ mock.querySelector('h3').textContent='The Oral Gauntlet';
-      mock.querySelector('p').textContent='Fifty minutes of rapid prompts, answered in your own words and graded on your honour — the shape of the ruler\'s table.'; }
+      mock.querySelector('p').textContent='Fifty minutes of rapid prompts, answered in your own words and graded on your honour, the shape of the ruler\'s table.'; }
     else mock.querySelector('p').textContent=L.mock.n+' random questions, '+Math.round(L.mock.secs/60)+'-minute clock, '+Math.round(L.pass*100)+'% to pass. Drawn from every section, just like the day itself.';
   }
   /* level-true studyline */
@@ -473,7 +473,7 @@ function grapesView(c,back){
     INTRO_GRAPES.filter(function(x){return x.c===g[1];}).forEach(function(x){
       html+='<div class="grape-row"><div class="grape-head"><b>'+escT(x.n)+'</b><span class="grape-struct">Acid '+dots(x.acid)+' · Body '+dots(x.body)+(x.c==='red'?' · Tannin '+dots(x.tan):'')+(x.sweet?' · '+escT(x.sweet):'')+'</span></div>'
         +'<div class="grape-line"><b>Aromas</b> '+escT(x.aroma)+'</div>'
-        +'<div class="grape-line"><b>Regions</b> '+escT(x.reg).replace(/★/g,'*')+(x.syn&&x.syn!=='—'?' · <b>Also called</b> '+escT(x.syn):'')+'</div>'
+        +'<div class="grape-line"><b>Regions</b> '+escT(x.reg).replace(/★/g,'*')+(x.syn&&x.syn!=='-'?' · <b>Also called</b> '+escT(x.syn):'')+'</div>'
         +'<div class="grape-line trapline"><b>Trap</b> '+escT(x.trap)+'</div>'
         +(x.wines?'<div class="grape-line"><b>Look for</b> '+escT(x.wines)+'</div>':'')
         +'</div>';

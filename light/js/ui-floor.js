@@ -11,19 +11,19 @@
    discipline of assent governs your judgment of the event, never your right to
    end it. That card is the reason this file exists.
 
-   Content only — nothing here is recorded, counted, or surfaced anywhere else. */
+   Content only: nothing here is recorded, counted, or surfaced anywhere else. */
 
 const FLOOR_CARDS = [
   { t: "The camper",
     sit: "Table 12 finished forty minutes ago. They are on coffee number three and your section is cut in half.",
     thought: "They are stealing from me.",
-    turn: "They are not thinking about you at all — which is the insult and also the cure. The table was never yours; the turn rate never was. What is yours: the water glass kept full without theatre, the check dropped warmly at the right moment, and the arithmetic of the section you still have.",
+    turn: "They are not thinking about you at all, which is the insult and also the cure. The table was never yours; the turn rate never was. What is yours: the water glass kept full without theatre, the check dropped warmly at the right moment, and the arithmetic of the section you still have.",
     carry: "Can I be generous to the last table of their night while running the first table of someone else's?" },
   { t: "The walked check",
     sit: "The four-top by the window is gone. The check is not paid, and the house policy makes it your problem.",
     thought: "That came out of my pocket.",
-    turn: "Two separate injuries — the strangers' theft, and the policy. The first belongs to people you will never see again; carrying their act home doubles it. The second is real and has a real venue: the manager, the policy conversation, in daylight, calmly, once. Epictetus lost more to actual thieves and logged it as a lesson in what was ever his.",
-    carry: "Which of these two things has a door I can actually knock on — and will I knock on it, or just carry it?" },
+    turn: "Two separate injuries: the strangers' theft, and the policy. The first belongs to people you will never see again; carrying their act home doubles it. The second is real and has a real venue: the manager, the policy conversation, in daylight, calmly, once. Epictetus lost more to actual thieves and logged it as a lesson in what was ever his.",
+    carry: "Which of these two things has a door I can actually knock on, and will I knock on it, or just carry it?" },
   { t: "Last-call belligerence",
     sit: "You called it, politely. He is loud now, and the room is watching how you handle him.",
     thought: "Do not let him win.",
@@ -37,12 +37,12 @@ const FLOOR_CARDS = [
   { t: "The eight percent",
     sit: "Flawless service. Great table, laughing, thanked you by name. The tip is eight percent.",
     thought: "That was a verdict on me.",
-    turn: "You are reading a stranger's arithmetic as a review of your worth — but you graded the service yourself, live, all night, and you know what it was. Marcus's move was to look inside the judges themselves: see what kind of judges you were afraid of (Meditations 9.18). Some judges are broke, some are foreign to the custom, some are just like that. Your standard survived them.",
+    turn: "You are reading a stranger's arithmetic as a review of your worth, but you graded the service yourself, live, all night, and you know what it was. Marcus's move was to look inside the judges themselves: see what kind of judges you were afraid of (Meditations 9.18). Some judges are broke, some are foreign to the custom, some are just like that. Your standard survived them.",
     carry: "Did I serve for the twenty percent, or was the service itself the thing I would sign?" },
   { t: "The cut section",
     sit: "Saturday, and the floor chart has you on three tables while the new hire gets the rail.",
     thought: "This is personal.",
-    turn: "Maybe. You cannot see the manager's whole board — the training plan, the complaint you never heard about, the favour owed. Sorting it as 'not mine' is not surrender; the conversation about the pattern is fully yours, in daylight, with the calm the three-table night just gave you time to prepare.",
+    turn: "Maybe. You cannot see the manager's whole board: the training plan, the complaint you never heard about, the favour owed. Sorting it as 'not mine' is not surrender; the conversation about the pattern is fully yours, in daylight, with the calm the three-table night just gave you time to prepare.",
     carry: "Three tables tonight: can they get the best service in the building, as a matter of private record?" },
   { t: "The slam",
     sit: "Kitchen is forty minutes behind, it is not your fault, and every table in your section is looking at you.",
@@ -57,7 +57,7 @@ const FLOOR_CARDS = [
   { t: "The rush that will not end",
     sit: "You are four deep at the well, the printer will not stop, and there is no horizon on it.",
     thought: "I cannot do all of this.",
-    turn: "Correct — no one can do all of it, and no one is being asked to. You are being asked to do the next one. The rail is a rosary: one ticket, then one ticket, then one ticket. Panic is the attempt to serve the whole board at once; craft is the refusal to.",
+    turn: "Correct: no one can do all of it, and no one is being asked to. You are being asked to do the next one. The rail is a rosary: one ticket, then one ticket, then one ticket. Panic is the attempt to serve the whole board at once; craft is the refusal to.",
     carry: "What is the next single ticket, and can I let it be the only one that exists while my hands are on it?" },
   { t: "The determined unhappy",
     sit: "They arrived disappointed. The food will not fix it, the comp will not fix it, and you can feel yourself trying harder for less.",

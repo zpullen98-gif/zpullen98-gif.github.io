@@ -45,7 +45,7 @@
 
        This is a checkout URL, not a secret. The hub appends
        client_reference_id=<supabase user id> when it sends someone there, which
-       is how the webhook knows whose entitlement to write — and why the hub
+       is how the webhook knows whose entitlement to write, and why the hub
        requires sign-in before checkout. See supabase/README.md for the
        runbook. */
     stripe: {

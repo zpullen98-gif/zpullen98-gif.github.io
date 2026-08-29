@@ -9,7 +9,7 @@ const PRACTICES=[
 ["The Discipline of Assent","Place one breath between every provocation and your response. In that breath ask: is this within my control?"],
 ["Memento Mori","Hold, for one quiet minute, the fact that this day is subtracted from a finite store. Then spend it as something that cannot be replaced."],
 ["The Examined Evening","Tonight, plead your case before your own court: what was done well, where you fell short, what tomorrow will do differently."],
-["The Boundless Heart","Extend one deliberate kindness beyond your circle today — to a stranger, an opponent, or someone who cannot repay it."]];
+["The Boundless Heart","Extend one deliberate kindness beyond your circle today: to a stranger, an opponent, or someone who cannot repay it."]];
 
 const REFLECTIONS=[
 "What would today look like if you needed nothing to go your way?",
@@ -19,7 +19,7 @@ const REFLECTIONS=[
 "If today were examined by your finest teacher tonight, what would make them nod?",
 "What are you gripping that would be lighter if carried with open hands?",
 "What did yesterday teach you that today can practice?",
-"Where does your attention go when no one directs it — and is that where you want to live?",
+"Where does your attention go when no one directs it, and is that where you want to live?",
 "What would you do today if you fully believed the light returns?",
 "Which small good, repeated weekly, would change your year?",
 "Whose burden could you quietly lift before sunset?",

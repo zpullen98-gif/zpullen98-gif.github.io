@@ -617,7 +617,7 @@ reputation on ripe Cabernet Franc, and Kadarka, pale and spicy, is the old
 Hungarian red worth the trouble it causes. Somlo, a single volcanic hill, gives
 hard, smoky Juhfark.</p>
  `},
- {g:"North America", id:"calnorth", t:"California — North Coast", body:`
+ {g:"North America", id:"calnorth", t:"California: North Coast", body:`
 <p>The North Coast is the block of counties north of San Francisco Bay, chiefly
 Napa, Sonoma, Mendocino and Lake, with Marin and Solano inside the AVA as well.
 Its climate is barely a question of latitude. A cold

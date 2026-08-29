@@ -12,7 +12,7 @@ function say(msg){
 
 /* Every control carries a unique data-act/data-i/data-tab signature, so we can
    find "the same button" again after the DOM is rebuilt. Without this, render()
-   destroys the focused element and the next Tab restarts from the masthead —
+   destroys the focused element and the next Tab restarts from the masthead,
    which on a 365-row library is hundreds of presses. */
 function focusSignature(el){
   if(!el || el === document.body) return null;
@@ -41,11 +41,11 @@ function render(){
     try{ back = document.querySelector(sig); }catch(e){}
     /* !back.disabled: focus() on a disabled control is a spec-defined no-op,
        so the designed fallback below was unreachable on the app's single most
-       repeated act — answering a question disables the tapped option, the
+       repeated act: answering a question disables the tapped option, the
        signature still matches it, and a Tab user restarted from the masthead
        after EVERY answer. A disabled match is a gone control. */
     if(back && back.focus && !back.disabled) back.focus();
-    else view.focus();                 /* the control is gone — land in the view, not at the top */
+    else view.focus();                 /* the control is gone: land in the view, not at the top */
   }
   /* bring whatever the user just opened into sight */
   const opened = document.querySelector('[data-open="1"]');
@@ -347,7 +347,7 @@ document.getElementById('view').addEventListener('click', e => {
       progress.quizzes = [...(progress.quizzes||[]), { date:new Date().toLocaleDateString(), ts:Date.now(),
         score:z.score, total:z.round.length, mode:z.mode||'mixed', replay: !!z.replay }].slice(-20);
       saveProgress();
-      /* cards + quiz banks the night even if the drill never happens — without
+      /* cards + quiz banks the night even if the drill never happens: without
          this, closing the tab here loses the streak entirely */
       if(state.sess && state.sess.active && state.sess.step==='quiz') recordSessionComplete(false, state.sess.night);
       z.stage = 'done';
@@ -568,7 +568,7 @@ document.getElementById('view').addEventListener('click', e => {
     prTicks[id] = setInterval(() => {
       const btn = document.getElementById('pr-timer-'+id);
       if(!btn || !state.practice.timers[id]){ clearInterval(prTicks[id]); delete prTicks[id]; return; }
-      btn.textContent = ((Date.now()-state.practice.timers[id])/1000).toFixed(1) + ' — Stop';
+      btn.textContent = ((Date.now()-state.practice.timers[id])/1000).toFixed(1) + ': Stop';
     }, 100);
     return; }
   else if(act==='pr-log'){
@@ -728,7 +728,7 @@ document.getElementById('view').addEventListener('click', e => {
 
 /* THE CAPTURE RULE, systematised. render() rebuilds the whole view, so any
    text sitting in a live input dies with the DOM unless it is read back into
-   state first — captureBarForm learned this for My Bar, and then four new
+   state first; captureBarForm learned this for My Bar, and then four new
    forms shipped without it: tapping a reason chip wiped the spill you had
    just described, and picking a pour target ate the ounces you had measured.
    Called before EVERY render from the click handler; the views render these
@@ -827,10 +827,10 @@ function showUpdateToast(worker, reg){
   const t = document.createElement('button');
   t.id = 'sw-toast';
   t.className = 'sw-toast';
-  t.innerHTML = '<span class="font-display">A new edition is pressed</span><span class="tiny dim"> — tap to refresh</span>';
+  t.innerHTML = '<span class="font-display">A new edition is pressed</span><span class="tiny dim"> : tap to refresh</span>';
   /* resolve the target at CLICK time: if a second deploy landed while the
      toast sat there, the captured worker is already redundant and a message
-     to it does nothing — reg.waiting is always the live one */
+     to it does nothing: reg.waiting is always the live one */
   t.addEventListener('click', () => {
     swWantReload = true;
     const w = (reg && reg.waiting) || worker;

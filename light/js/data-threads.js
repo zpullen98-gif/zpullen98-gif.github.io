@@ -1,4 +1,4 @@
-/* First Light — the threads.
+/* First Light: the threads.
 
    One question, and what each tradition in the Library says about it, in its own
    words, with the citation attached so any of it can be checked.
@@ -28,7 +28,7 @@ var FL_THREADS = [
     { t: 'buddhist', text: 'All tremble at violence; all fear death. Comparing others with oneself, one should neither kill nor cause to kill.', cite: 'Dhammapada 129' },
     { t: 'christian', text: 'Therefore whatever you desire for men to do to you, you shall also do to them; for this is the law and the prophets.', cite: 'Matthew 7:12' },
     { t: 'muslim', text: 'None of you truly believes until he loves for his brother what he loves for himself.', cite: 'Hadith, Bukhari 13' },
-    { t: 'taoist', text: 'To those who are good to me, I am good; and to those who are not good to me, I am also good — and thus all get to be good.', cite: 'Tao Te Ching 49' }
+    { t: 'taoist', text: 'To those who are good to me, I am good; and to those who are not good to me, I am also good, and thus all get to be good.', cite: 'Tao Te Ching 49' }
   ],
   close: 'The Taoist entry is the outlier, and worth sitting with. Every other voice takes your own preferences as the measure of your conduct toward others. Laozi declines the symmetry entirely: goodness is not a response to be earned but a way of proceeding, extended to people who have not extended it to you. Confucius, asked whether one should repay injury with kindness, answered no: repay injury with justice, and kindness with kindness. Two Chinese teachers, a century apart, in flat contradiction. The tradition kept both.'
 },
@@ -46,7 +46,7 @@ var FL_THREADS = [
     { t: 'taoist', text: 'Under heaven nothing is more soft and yielding than water. Yet for attacking the solid and strong, nothing is better.', cite: 'Tao Te Ching 78' },
     { t: 'confucian', text: 'The gem cannot be polished without friction, nor a person perfected without trials.', cite: 'Chinese proverb, in the Confucian tradition' }
   ],
-  close: 'Job is the honest one, and the reason his book is in the canon at all. Three friends arrive to explain his suffering with the standard theology — you must have deserved it — and the book\'s verdict is that they are wrong and have spoken falsely about God. No explanation is ever given to Job. He is shown the wild ass and the storehouses of snow, and that is the answer. Any tradition that claims to have solved this should be read against that book.'
+  close: 'Job is the honest one, and the reason his book is in the canon at all. Three friends arrive to explain his suffering with the standard theology (you must have deserved it) and the book\'s verdict is that they are wrong and have spoken falsely about God. No explanation is ever given to Job. He is shown the wild ass and the storehouses of snow, and that is the answer. Any tradition that claims to have solved this should be read against that book.'
 },
 
 { id: 'death',
@@ -88,7 +88,7 @@ var FL_THREADS = [
   voices: [
     { t: 'jewish', text: 'The stranger that sojourneth with you shall be unto you as the home-born among you, and thou shalt love him as thyself; for ye were strangers in the land of Egypt.', cite: 'Leviticus 19:34' },
     { t: 'christian', text: 'Inasmuch as you did it to one of the least of these my brothers, you did it to me.', cite: 'Matthew 25:40' },
-    { t: 'muslim', text: 'They give food, in spite of their own need, to the needy, the orphan and the captive — saying: we feed you only for the countenance of God; we wish from you neither reward nor thanks.', cite: "Qur'an 76:8–9" },
+    { t: 'muslim', text: 'They give food, in spite of their own need, to the needy, the orphan and the captive, saying: we feed you only for the countenance of God; we wish from you neither reward nor thanks.', cite: "Qur'an 76:8–9" },
     { t: 'buddhist', text: 'As a mother would protect her only child with her life, even so let one cultivate a boundless heart toward all beings.', cite: 'Karaniya Metta Sutta' },
     { t: 'hindu', text: 'The gift that is given to one from whom no return is expected, at a fit place and time and to a worthy person, that gift is held to be pure.', cite: 'Bhagavad Gita 17.20' },
     { t: 'confucian', text: 'Within the four seas, all are brothers.', cite: 'Analects 12.5' },
@@ -108,9 +108,9 @@ var FL_THREADS = [
     { t: 'christian', text: 'For where your treasure is, there your heart will be also.', cite: 'Matthew 6:21' },
     { t: 'muslim', text: 'Rivalry in worldly increase distracts you, until you come to the graves.', cite: "Qur'an 102:1–2" },
     { t: 'hindu', text: 'Let right deeds be thy motive, not the fruit which comes from them.', cite: 'Bhagavad Gita 2.47' },
-    { t: 'confucian', text: 'With coarse rice to eat, water to drink, and my bended arm for a pillow — I have still joy in the midst of these things.', cite: 'Analects 7.15' }
+    { t: 'confucian', text: 'With coarse rice to eat, water to drink, and my bended arm for a pillow, I have still joy in the midst of these things.', cite: 'Analects 7.15' }
   ],
-  close: 'None of these texts is against wealth as such, which is a modern misreading. The Hebrew Bible treats prosperity as a blessing; the Qur\'an assumes trade and regulates it; Confucius says that if riches could be properly sought he would seek them. The objection is to a particular relation — being held by what you hold. The Gita puts it most precisely: the problem is not the action or its result, but the grip.'
+  close: 'None of these texts is against wealth as such, which is a modern misreading. The Hebrew Bible treats prosperity as a blessing; the Qur\'an assumes trade and regulates it; Confucius says that if riches could be properly sought he would seek them. The objection is to a particular relation: being held by what you hold. The Gita puts it most precisely: the problem is not the action or its result, but the grip.'
 },
 
 { id: 'beginning-again',

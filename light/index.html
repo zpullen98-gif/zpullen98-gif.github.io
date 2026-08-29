@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>First Light — A Year of Mornings</title>
+<title>First Light: A Year of Mornings</title>
 <meta name="description" content="A year of mornings: 366 voices, five canons read through, a practice for the body, and a record of your own.">
 <meta name="theme-color" content="#EDEFEC">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,7 +30,7 @@ try {
       : (flH < 5 || flH >= 21) ? 'night' : flH < 8 ? 'firstlight' : flH < 18 ? 'day' : 'dusk';
   document.documentElement.setAttribute('data-phase', flPhase);
   /* Match the status bar to the phase immediately. The <meta> above already exists
-     by the time this runs, so set it in place — leaving the default would show a
+     by the time this runs, so set it in place: leaving the default would show a
      bright bar over a dark page until sun.js catches up. */
   var flMeta = document.querySelector('meta[name="theme-color"]');
   if (flMeta) flMeta.setAttribute('content',

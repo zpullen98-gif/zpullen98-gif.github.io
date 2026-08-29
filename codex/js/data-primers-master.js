@@ -11,7 +11,7 @@ var MASTER_PRIMERS=[
 
 {cat:"Wine Fundamentals",
 lead:"The Master theory examination is oral. Fifty minutes, three examiners, no options to lean on. What is graded is not only what you know but how you deliver it: promptly, precisely, and without padding.",
-exam:"Everything, at conversational speed. The examiners move on when satisfied, so brevity earns you more questions — and more questions is how you pass.",
+exam:"Everything, at conversational speed. The examiners move on when satisfied, so brevity earns you more questions, and more questions is how you pass.",
 facts:[
 ["Answer structure","Lead with the answer. Then, if the answer invites it, one clause of support. 'Cornas: one hundred percent Syrah, no white permitted.' Not a paragraph."],
 ["Say 'I don't know'","Cleanly and immediately, then move. Guessing burns clock and credibility; the examiners are timing your composure as much as your recall."],
@@ -24,7 +24,7 @@ traps:[
 
 {cat:"Burgundy",
 lead:"Burgundy at Master level is recitation under pressure: grand cru rosters by commune, monopoles with owners, and the ability to place any climat on the slope without hesitating.",
-exam:"Full grand cru lists, monopole ownership, premier cru aristocrats, négociant structures, and the historical spine — Bèze in 630, Philippe the Bold in 1395, the 1935 AOC framework.",
+exam:"Full grand cru lists, monopole ownership, premier cru aristocrats, négociant structures, and the historical spine: Bèze in 630, Philippe the Bold in 1395, the 1935 AOC framework.",
 facts:[
 ["Recite, don't reconstruct","Gevrey's nine and Vosne's six should come out as lists, in one breath, not derived from a mental map."],
 ["Ownership is examinable","La Grande Rue (Lamarche, promoted 1992), La Romanée (Liger-Belair), Clos de Tart (Artémis), Clos des Lambrays (LVMH), Musigny Blanc (de Vogüé, declassified since 1994)."],
@@ -97,7 +97,7 @@ facts:[
 ["The brett conversation","High-pH warm Grenache is brett-prone; be ready to discuss where terroir ends and fault begins without sneering at either camp."]],
 traps:[
 "Reversing Cornas and Côte-Rôtie on the white-grape question.",
-"Quoting VDN mutage at 77% — that is Port; VDN uses 96%.",
+"Quoting VDN mutage at 77%: that is Port; VDN uses 96%.",
 "Treating Crozes-Hermitage as a junior Hermitage vineyard."]},
 
 {cat:"Southern France",
@@ -111,7 +111,7 @@ facts:[
 traps:[
 "Attributing Jurançon's sweetness to botrytis.",
 "Forgetting that Limoux claims 1531 priority via Saint-Hilaire.",
-"Treating IGP labeling as a quality failure — Daumas Gassac chose it."]},
+"Treating IGP labeling as a quality failure: Daumas Gassac chose it."]},
 
 {cat:"Jura, Savoie & Corsica",
 lead:"Small regions, precise numbers. These are the questions that separate the prepared from the merely experienced.",
@@ -145,7 +145,7 @@ exam:"Brunello's crisis and rules, Chianti Classico's tiers and UGAs, Super Tusc
 facts:[
 ["Brunellopoli","2008 blending investigation, US import holds, 2009 consorzio vote retaining 100% Sangiovese. Know the chronology."],
 ["Chianti Classico","Annata 12, Riserva 24, Gran Selezione 30 with estate fruit, ≥90% Sangiovese with no international varieties, plus 11 UGA village names permitted on Gran Selezione from 2023."],
-["Carmignano","Delimited by Cosimo III in 1716 — geography, not grapes; at DOC in 1975 it became the first Italian appellation to require Cabernet in the blend, DOCG 1990. Italy's first DOC was Vernaccia di San Gimignano, 1966."],
+["Carmignano","Delimited by Cosimo III in 1716: geography, not grapes; at DOC in 1975 it became the first Italian appellation to require Cabernet in the blend, DOCG 1990. Italy's first DOC was Vernaccia di San Gimignano, 1966."],
 ["The south","Taurasi and Aglianico del Vulture; Fiano and Greco; Etna's contrade and altitude bands; Cerasuolo di Vittoria as Sicily's only DOCG."]],
 traps:[
 "The Montepulciano trap, town versus grape, under oral pressure.",
@@ -184,7 +184,7 @@ exam:"Prädikat and Oechsle, VDP tiers, the 13 regions, AP numbers, Grosslage ve
 facts:[
 ["AP number","The final digits give the year of application, distinguishing multiple bottlings of the same Prädikat and vineyard. Collectors read it before the price."],
 ["The 1971 problem","Grosslagen with vineyard-sounding names: Piesporter Michelsberg versus Goldtröpfchen, Niersteiner Gutes Domtal versus the Roter Hang."],
-["The 2021 reform","Reorients toward geographic narrowing — the Romance model — with Prädikat terms surviving atop it."],
+["The 2021 reform","Reorients toward geographic narrowing, the Romance model, with Prädikat terms surviving atop it."],
 ["The arc","1970s–80s bulk sweet exports destroyed the reputation; VDP's dry GG programme and grower Riesling rebuilt it from the top."]],
 traps:[
 "Equating Prädikat with sweetness in the glass.",
@@ -275,7 +275,7 @@ exam:"Quarantine and old-vine charters, Penfolds' tiers and Schubert's history, 
 facts:[
 ["Why the vines survived","South Australia's 1899 quarantine, now enforced by Vinehealth Australia. Langmeil's 1843 Freedom Shiraz; the Barossa charter's four tiers to Ancestor Vine (125+)."],
 ["Penfolds","Grange (multi-region, made secretly 1957–59 after management ordered it stopped), Bin 707, RWT, St Henri (no new oak), Yattarna."],
-["Hunter Semillon","~10.5%, unoaked, neutral young, toast and lanolin over twenty years — a transformation with no oak involved."],
+["Hunter Semillon","~10.5%, unoaked, neutral young, toast and lanolin over twenty years, a transformation with no oak involved."],
 ["Renamings","Topaque replaced Tokay, Apera replaced Sherry, under EU agreements."]],
 traps:[
 "Confusing Grange (blend) with Hill of Grace (single vineyard).",
@@ -287,7 +287,7 @@ lead:"A young industry with precise chemistry and one cautionary tale. Examiners
 exam:"Marlborough's valleys and compounds, Central Otago's exception, Gimblett Gravels' definition, screwcap history, the oversupply crisis.",
 facts:[
 ["Chemistry","Volatile thiols (3MH, 3MHA) for passionfruit; methoxypyrazine for capsicum. Machine harvest and skin contact amplify thiols."],
-["Soil-defined district","Gimblett Gravels is bounded by the 1867 river course — soil, not politics."],
+["Soil-defined district","Gimblett Gravels is bounded by the 1867 river course: soil, not politics."],
 ["The exception","Central Otago is semi-continental, schist-based, among the world's southernmost vineyards."],
 ["The crisis","2008's vast crop crashed prices, pushed bulk exports and damaged brand equity, the argument against monoculture."]],
 traps:[
@@ -313,7 +313,7 @@ lead:"Place any bubble into its method family and quote its law. Then explain wh
 exam:"Method families and minimums, Crémant rules, English PDO, ancestral method, transfer method, pressure classes.",
 facts:[
 ["Minimums to hand","Champagne 15/36; Cava 9/18/30; Franciacorta 18/30/60; Crémant 9–12; Cap Classique 12; VDP Sekt Prestige 36."],
-["Terminology","Col Fondo, sui lieviti, Satèn, sur latte, dosage zéro — know each precisely."],
+["Terminology","Col Fondo, sui lieviti, Satèn, sur latte, dosage zéro: know each precisely."],
 ["Method traps","Asti is a single interrupted tank fermentation; German 'Flaschengärung' may be transfer method while 'traditionelle Flaschengärung' may not."],
 ["England","Same Paris-Basin chalk; Sussex earned its own PDO in 2022; economics remain fragile on frost risk and capital cycle."]],
 traps:[
@@ -378,7 +378,7 @@ lead:"Beer and cider appear because a Master sommelier runs a whole beverage pro
 exam:"Yeast division, Belgian and German families, spontaneous fermentation, cider techniques, service specifications, list strategy.",
 facts:[
 ["Definitions","Trappist requires brewing within the abbey under monastic control; 'abbey-style' is marketing. Lambic ferments spontaneously in a coolship."],
-["Diacetyl","Butterscotch from fermentation, cured by a warm diacetyl rest — a defect in lager, a feature in Chardonnay."],
+["Diacetyl","Butterscotch from fermentation, cured by a warm diacetyl rest: a defect in lager, a feature in Chardonnay."],
 ["Cider","Keeving strips nutrients via pectin gel for natural sweetness; Basque txotx pours from height; Québec's cidre de glace freezes."],
 ["List logic","Gueuze earns a place on a fine-dining list: bottle-aged vintages, wine-like acidity, and pairing power where wine fails."]],
 traps:[
@@ -419,7 +419,7 @@ facts:[
 ["Physiology","Apical dominance explains cane arching; véraison is the mid-summer colour change; phenolic ripeness may lag sugar ripeness in warm climates."],
 ["Rootstock","110R and 1103P for drought; 41B for limestone and chlorosis (Champagne's choice); Riparia Gloire to devigorate."],
 ["Technology","Reverse osmosis and spinning cone manage alcohol; flash détente and thermovinification extract by heat; micro-oxygenation polymerizes tannin. Explain without sneering."],
-["The frontier","PIWI fungus-resistant varieties (Souvignier Gris, Solaris, Voltis on trial in Champagne) and regenerative farming — no-till, cover crops, compost, grazing."]],
+["The frontier","PIWI fungus-resistant varieties (Souvignier Gris, Solaris, Voltis on trial in Champagne) and regenerative farming: no-till, cover crops, compost, grazing."]],
 traps:[
 "Calling malolactic a second alcoholic fermentation.",
 "Describing carbonic maceration when you mean semi-carbonic.",
@@ -448,7 +448,7 @@ facts:[
 ["Leadership","A floor team that tastes daily sells wine; the Master's job is to build that team, not to outshine it."]],
 traps:[
 "Overriding a guest's preference with your own theory.",
-"Losing composure after a dropped cork — the recovery is the exam.",
+"Losing composure after a dropped cork: the recovery is the exam.",
 "Pouring a comparative flight without consistent placement and narration."]},
 
 {cat:"Food & Pairing",

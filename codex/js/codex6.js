@@ -95,7 +95,7 @@ function tastingIntro(){
     +(life!==null?'<div class="stat"><b>'+life+'%</b><span>Lifetime calls · '+ST.tast.n+'</span></div>':'')
     +'</div>'
     +'<div class="modes">'
-    +'<button class="mode" id="tt-start"><div class="band"></div><h3>Pour a Blind Flight</h3><p>Six mystery glasses. Sight, nose, and palate from the grid — you make the initial conclusion.</p></button>'
+    +'<button class="mode" id="tt-start"><div class="band"></div><h3>Pour a Blind Flight</h3><p>Six mystery glasses. Sight, nose, and palate from the grid: you make the initial conclusion.</p></button>'
     +'<button class="mode" id="tt-grid"><div class="band"></div><h3>Study the Grid</h3><p>The full deductive tasting grid, step by step: what to say aloud, in order, and what each observation narrows.</p></button>'
     +'</div></div>');
   v.querySelector('#tt-start').onclick=startTastingFlight;
@@ -122,7 +122,7 @@ function tastingTally(){
 /* ---- the grid reference ---- */
 var TASTING_GRID=[
  ['Sight',[
-  ['Clarity & brightness','Clear or hazy; dull, bright, day-bright, star-bright. Nearly every sound wine today is clear and bright — say it and move on.'],
+  ['Clarity & brightness','Clear or hazy; dull, bright, day-bright, star-bright. Nearly every sound wine today is clear and bright: say it and move on.'],
   ['Concentration','Pale, medium, or deep. Judge against a white page. Deep color in a red points toward thick-skinned grapes: Cabernet, Syrah, Malbec.'],
   ['Color & hue','Whites: straw, yellow, gold. Reds: purple, ruby, garnet. Purple says youth; garnet says age or a naturally lighter variety like Nebbiolo or Pinot Noir.'],
   ['Rim variation','A wide, pale or orange rim on a red suggests age or Nebbiolo/Sangiovese; magenta rim points to Malbec; little rim variation implies youth.'],
@@ -183,13 +183,13 @@ var SERVICE=[
   ['Pour to the sensible measure','Roughly 5–6 oz for still wine: a 750 ml bottle serves five to six. Champagne in a two-stage pour; never fill past two-thirds.'],
   ['Keep the table dressed','Fresh glasses for each new wine, crumb between courses, water topped without being asked.']]},
  {t:'Opening Still Wine',ic:'⚜',steps:[
-  ['Present the bottle to the host, label forward','Announce producer, wine, appellation, and vintage aloud, and wait for confirmation — this is the moment mislistings are caught.'],
+  ['Present the bottle to the host, label forward','Announce producer, wine, appellation, and vintage aloud, and wait for confirmation: this is the moment mislistings are caught.'],
   ['Cut the capsule below the bottom lip','Two draws around with the knife, one vertical, lift the cap. The lip keeps any drip off the foil edge; the label never turns away from the host.'],
   ['Wipe the exposed cork and lip with the serviette','Cellar dust and mold live under capsules. Wipe before the worm goes anywhere near the cork.'],
   ['Insert the worm just off-center and screw to the last spiral','Off-center entry drives the worm down the cork’s true center. Never pierce through the bottom: cork dust in the wine is a fault of technique.'],
   ['Lever in two stages, ease the cork silently by hand','First notch, then second, then fingers for the last half-inch. A still wine opens with no sound at all.'],
   ['Wipe the neck inside and out; present the cork to the host’s right','The guest may read the cork’s branding and condition. Do not sniff it theatrically yourself.'],
-  ['Pour the host a taste — about an ounce — and await approval','Then serve the table in order, return to top the host’s glass last, and station the bottle to the host’s right, label facing them.']]},
+  ['Pour the host a taste, about an ounce, and await approval','Then serve the table in order, return to top the host’s glass last, and station the bottle to the host’s right, label facing them.']]},
  {t:'Sparkling Wine',ic:'❈',steps:[
   ['Serve well chilled: 42–50°F (6–10°C)','Cold keeps the mousse fine and the cork docile. A warm bottle of Champagne is a projectile with a label.'],
   ['Present, then remove the foil above the cage','A neat tear at the tab or a knife-assisted peel: the presentation continues; the label still faces the host.'],
@@ -202,8 +202,8 @@ var SERVICE=[
   ['Set the station: candle or torch, decanter, serviette, saucer for the cork','The flame sits under the shoulder of the bottle where sediment first shows. Everything within reach before the cork moves.'],
   ['Open gently, at the table or in the cradle, without disturbing the wine','Same still-wine ritual, softer hands. With very old corks, an ah-so (two-pronged puller) saves crumbling.'],
   ['Pour in one slow, continuous motion over the light','Stopping and restarting stirs the wine. Watch the shoulder: the first wisp of sediment reaching the neck ends the pour.'],
-  ['Serve from the decanter; present the original bottle alongside','The empty bottle and cork stay on display — provenance remains visible through the last glass.'],
-  ['Know why you decant — and when not to','Old wine: off sediment. Young, structured wine: aeration. Fragile old Burgundy often should not be decanted at all — offer, and follow the host.']]},
+  ['Serve from the decanter; present the original bottle alongside','The empty bottle and cork stay on display: provenance remains visible through the last glass.'],
+  ['Know why you decant, and when not to','Old wine: off sediment. Young, structured wine: aeration. Fragile old Burgundy often should not be decanted at all: offer, and follow the host.']]},
  {t:'Temperatures & Glassware',ic:'⚖',steps:[
   ['Sparkling: 42–50°F (6–10°C), flute or tulip','Cold preserves pressure and bead; a tulip gives the nose room the straight flute denies.'],
   ['Light whites & rosé: 45–50°F; fuller whites: 50–55°F','Over-chilling mutes aroma: the ice bucket is a tool, not a parking space. Oaked Chardonnay shows best nearer 55°F.'],
@@ -212,7 +212,7 @@ var SERVICE=[
   ['Fortified & sweet: Fino and Tokaji cold; Tawny cool; Vintage Port at red temperature','Sweetness and alcohol both magnify with warmth; chill disciplines them. Vintage Port needs decanting besides.'],
   ['All-purpose stem, generous bowl, tapering rim','One good glass beats six novelty shapes: swirl room below, aroma focus above, and a polish that survives candlelight.']]},
  {t:'The Practical, as Graded',ic:'❖',steps:[
-  ['Salesmanship is scored, not just technique','Recommend an aperitif, a wine for the table, a digestif — by name, producer, and price bracket, with a reason.'],
+  ['Salesmanship is scored, not just technique','Recommend an aperitif, a wine for the table, a digestif: by name, producer, and price bracket, with a reason.'],
   ['Expect theory fired at you mid-pour','Classic cocktail builds, spirit bases, vintages, and pairing calls come as conversation while your hands stay busy. The pour must not waver.'],
   ['Hospitality is the tiebreaker','Warmth, eye contact, unhurried confidence. The examiner plays a guest; treat the exam as a real table, never a demonstration.'],
   ['Recover, don’t freeze','A dropped cork or a missed question costs a point; flustering costs the room. Acknowledge, correct gracefully, continue the service.'],
@@ -338,7 +338,7 @@ decorateHome=function(){
   const m6=el('<div class="modes" style="margin-top:14px"></div>');
   const tast=ST.tast.n?Math.round(100*ST.tast.c/ST.tast.n)+'% over '+ST.tast.n+' lifetime calls.':'The second half of the examination.';
   m6.appendChild(el('<button class="mode" id="t-tast"><div class="band"></div><h3>Deductive Tasting</h3><p>The grid, then blind flights of six built from the '+GRAPES.length+' examinable grapes. '+tast+'</p></button>'));
-  m6.appendChild(el('<button class="mode" id="t-prim"><div class="band"></div><h3>Study Primers</h3><p>'+PRIMERS.length+' written chapters — what the exam asks per section, the anchor facts, and the classic traps.</p></button>'));
+  m6.appendChild(el('<button class="mode" id="t-prim"><div class="band"></div><h3>Study Primers</h3><p>'+PRIMERS.length+' written chapters: what the exam asks per section, the anchor facts, and the classic traps.</p></button>'));
   m6.appendChild(el('<button class="mode" id="t-svc"><div class="band"></div><h3>The Service Ritual</h3><p>Still, sparkling, and decanting choreography as the examiners grade it, as a rehearsal checklist.</p></button>'));
   anchor.parentNode.insertBefore(m6,anchor.nextSibling);
   m6.querySelector('#t-tast').onclick=function(){S.tt=null;S.view='tasting';render();};

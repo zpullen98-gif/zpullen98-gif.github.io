@@ -71,7 +71,7 @@ function readHasLocally(canonId, doy) {
   return parts.length > 0 && parts.every(function (p) { return FLTextHas(p.work, p.part); });
 }
 
-/* ——— rendering ——— */
+/* --- rendering --- */
 function readVerses(list) {
   return '<p class="passage">' + list.map(function (v) {
     return '<span class="vnum">' + esc(String(v[0])) + '</span>' + esc(v[1]) + ' ';
@@ -106,7 +106,7 @@ function readRender(canonId, doy) {
     out = groups.map(function (g) {
       var s = all[g.n - 1];
       if (!s) return '';
-      return '<div class="chaphead">' + s.n + '. ' + esc(s.name) + ' — ' + esc(s.tr) + '</div>' +
+      return '<div class="chaphead">' + s.n + '. ' + esc(s.name) + ': ' + esc(s.tr) + '</div>' +
              readVerses(g.v.map(function (a) { return [a, s.v[a - 1] || '']; }));
     }).join('');
 

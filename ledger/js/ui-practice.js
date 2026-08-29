@@ -7,7 +7,7 @@ const TASTE_CATS = {
     benchmarks:["Buffalo Trace: the neutral American reference","Heaven Hill's Rittenhouse BiB: what rye spice actually tastes like","Laphroaig 10: the peat benchmark","Midleton's Redbreast 12: single pot still texture"],
   },
   'Gin':{
-    glass:"Copita, or a small wine glass. Add a few drops of water — gin opens dramatically.",
+    glass:"Copita, or a small wine glass. Add a few drops of water; gin opens dramatically.",
     nose:['juniper/pine','coriander','citrus peel','angelica/root','licorice','cardamom','cassia/cinnamon','floral','cucumber','herbal/grassy','pepper','earthy','almond','sweet/malty'],
     markers:["Juniper should be identifiable; if you can't find it, you may be tasting a contemporary style.","Coriander reads as lemony and slightly soapy; angelica as dry, woody, and earthy.","Steeped gins feel heavier and oilier; vapor-infused gins feel lighter and brighter.","Old Tom will register as noticeably sweeter; genever will read malty, almost like a light whiskey."],
     benchmarks:["Tanqueray: the London Dry reference","Plymouth: softer, root-forward","Hayman's Old Tom: the sweetened historical style","Monkey 47: the contemporary/botanical extreme"],
@@ -15,8 +15,8 @@ const TASTE_CATS = {
   'Rum':{
     glass:"Copita or Glencairn. Rum hides badly: heat and sugar both show fast.",
     nose:['molasses','fresh cane/grassy','banana','pineapple','overripe fruit','glue/ester funk','vanilla','caramel','coconut','baking spice','oak','smoke','brine/olive','nutty','burnt sugar'],
-    markers:["Grassy and vegetal means cane juice (agricole); molasses reads darker and sweeter.","Banana, pineapple, and glue are esters — the Jamaican signature.","A syrupy, heavy mouthfeel with little aromatic complexity often means added sugar.","Tropical aging gives concentrated wood character at young ages; a tropical 8-year can taste like a continental 20."],
-    benchmarks:["Foursquare Doorly's — honest Barbadian blend, no additives","Hampden — the ester extreme","Rhum J.M or Neisson — agricole's grassy signature","El Dorado — Demerara wooden-still richness"],
+    markers:["Grassy and vegetal means cane juice (agricole); molasses reads darker and sweeter.","Banana, pineapple, and glue are esters, the Jamaican signature.","A syrupy, heavy mouthfeel with little aromatic complexity often means added sugar.","Tropical aging gives concentrated wood character at young ages; a tropical 8-year can taste like a continental 20."],
+    benchmarks:["Foursquare Doorly's: honest Barbadian blend, no additives","Hampden: the ester extreme","Rhum J.M or Neisson: agricole's grassy signature","El Dorado: Demerara wooden-still richness"],
   },
   'Agave':{
     glass:"Copita or veladora (the traditional clay/glass cup). Never shoot it.",
@@ -34,7 +34,7 @@ const TASTE_CATS = {
     glass:"Small wine glass, lightly chilled. Taste them the way you'd serve them.",
     nose:['gentian/root bitter','citrus peel','rhubarb','wormwood','mint/menthol','saffron','caramel','vanilla','dried herbs','cola/spice','cherry','wine/oxidized','floral','anise','chocolate'],
     markers:["Locate the bitterness first: root (gentian, rhubarb), peel (citrus pith), or herbal (wormwood, menthol).","Vermouth should taste like wine underneath: if it tastes flat and raisiny, the bottle is oxidized and dead.","Sweetness in amaro masks bitterness; taste for how quickly the sweetness fades and the bitter arrives.","A dead vermouth is the most common flaw on any back bar. Check yours weekly against a fresh bottle."],
-    benchmarks:["Campari — the aperitivo bitterness standard","Fernet-Branca — the menthol/saffron extreme","Carpano Antica — rich sweet vermouth","Dolin Dry — light alpine dry vermouth"],
+    benchmarks:["Campari: the aperitivo bitterness standard","Fernet-Branca: the menthol/saffron extreme","Carpano Antica: rich sweet vermouth","Dolin Dry: light alpine dry vermouth"],
   },
 };
 
@@ -62,7 +62,7 @@ const FLIGHTS = [
   { name:"Molasses, Cane, and Funk", cat:"Rum", teaches:"That 'rum' describes at least three unrelated spirits.",
     pours:["A clean Spanish-style white (Havana Club 3 or Probitas)","A Jamaican pot still (Appleton Signature or Hampden)","A rhum agricole blanc (Rhum J.M or Neisson)"],
     look:"Nose all three before tasting. The agricole should smell like a cut lawn; the Jamaican like overripe fruit and glue.",
-    lesson:"Base material and still type matter more than color or age. Once you can identify these three poles blind, you can reverse-engineer almost any rum cocktail — and you'll understand why swapping rums changes a Daiquiri completely." },
+    lesson:"Base material and still type matter more than color or age. Once you can identify these three poles blind, you can reverse-engineer almost any rum cocktail, and you'll understand why swapping rums changes a Daiquiri completely." },
   { name:"Terroir in Agave", cat:"Agave", teaches:"That where the plant grew is legible in the glass.",
     pours:["A Los Altos highland blanco (Tequila Ocho or G4)","A valley blanco (Cascahuín or Fortaleza)","An espadín mezcal (Del Maguey Vida)"],
     look:"Rank by fruitiness, then by earthiness and pepper. Note where minerality appears.",
@@ -76,13 +76,13 @@ const FLIGHTS = [
     look:"Nose both. Fresh vermouth smells like wine with herbs; oxidized vermouth smells like raisins, sherry, and dust.",
     lesson:"Vermouth is wine. An open bottle at room temperature is noticeably degraded within a week and undrinkable within a month. Refrigerate, date the bottle, buy smaller formats. This one habit improves more of your cocktails than any technique you can practice." },
   { name:"Where the Bitterness Lives", cat:"Amaro & Vermouth", teaches:"To place a bitter liqueur by its source, not its brand.",
-    pours:["Campari — citrus-peel and root bitterness","Cynar — vegetal artichoke bitterness","Fernet-Branca — menthol, saffron, and aggressive root"],
-    look:"Note when the bitterness arrives — immediately, mid-palate, or only at the finish — and how long it stays.",
+    pours:["Campari: citrus-peel and root bitterness","Cynar: vegetal artichoke bitterness","Fernet-Branca: menthol, saffron, and aggressive root"],
+    look:"Note when the bitterness arrives (immediately, mid-palate, or only at the finish) and how long it stays.",
     lesson:"Amari differ less in intensity than in the location and timing of their bitterness. Once you can identify that, substituting intelligently becomes possible: a Negroni made with Cynar isn't worse, it's a different drink with a known shape." },
   { name:"Proof, Water, and Texture", cat:"Whiskey", teaches:"That dilution is a tool, not a compromise.",
     pours:["Any cask-strength whiskey, poured three times","Glass one neat","Glass two with a few drops of water; glass three with roughly 20% water"],
     look:"Nose and taste each in order. Track when aromas open up and when they flatten out.",
-    lesson:"Water breaks alcohol's surface tension and releases volatile aromatics — this is precisely what shaking and stirring do for a cocktail. Finding the point where a whiskey opens and the point where it collapses is the most direct lesson available in why dilution is an ingredient." },
+    lesson:"Water breaks alcohol's surface tension and releases volatile aromatics: this is precisely what shaking and stirring do for a cocktail. Finding the point where a whiskey opens and the point where it collapses is the most direct lesson available in why dilution is an ingredient." },
   { name:"Pot Still Versus Column", cat:"Brandy", teaches:"How still design shapes a spirit before wood ever touches it.",
     pours:["A VSOP cognac (double pot distilled)","A Bas-Armagnac (single continuous column, lower proof)","A pisco (pot, distilled to proof, unaged)"],
     look:"Compare weight and aromatic intensity before judging the wood.",
@@ -90,13 +90,13 @@ const FLIGHTS = [
 ];
 
 const TASTE_METHOD = [
-  ["Set up honestly","Use the same glass for every pour — a Glencairn or copita, never a rocks glass or balloon snifter. Pour equal, modest measures (half an ounce is plenty). Room temperature. Good light against a white background. If you're evaluating rather than enjoying, have a spit cup; a serious flight will otherwise end your usefulness for the evening."],
-  ["Nose it properly","Keep your mouth slightly open and take short, gentle sniffs from just above the rim — jamming your nose into the glass anaesthetizes you with ethanol. Nose each pour before tasting any of them. Your first impression is the most honest one you'll get, so write it down before you start second-guessing."],
-  ["Then taste","Take a small sip and let it coat your whole mouth before swallowing or spitting. The first sip mostly registers alcohol — it's the second that tells you anything. Note where flavors appear: front palate, mid, or only after you swallow. Finish length is a real quality signal; count the seconds it lingers."],
-  ["Add water deliberately","A few drops opens most spirits above 45% ABV, releasing aromatics that alcohol was masking. Nose again after the water — it's often a different spirit. This is the clearest demonstration of why dilution belongs in a cocktail rather than being a necessary evil."],
-  ["Manage palate fatigue","Taste light to heavy, unpeated before peated, low proof before high. Three to five pours is a real session; beyond six, you're guessing. Reset with plain water and unsalted crackers, not coffee. If everything starts tasting like alcohol, you're done — stop and come back tomorrow."],
+  ["Set up honestly","Use the same glass for every pour: a Glencairn or copita, never a rocks glass or balloon snifter. Pour equal, modest measures (half an ounce is plenty). Room temperature. Good light against a white background. If you're evaluating rather than enjoying, have a spit cup; a serious flight will otherwise end your usefulness for the evening."],
+  ["Nose it properly","Keep your mouth slightly open and take short, gentle sniffs from just above the rim: jamming your nose into the glass anaesthetizes you with ethanol. Nose each pour before tasting any of them. Your first impression is the most honest one you'll get, so write it down before you start second-guessing."],
+  ["Then taste","Take a small sip and let it coat your whole mouth before swallowing or spitting. The first sip mostly registers alcohol; it's the second that tells you anything. Note where flavors appear: front palate, mid, or only after you swallow. Finish length is a real quality signal; count the seconds it lingers."],
+  ["Add water deliberately","A few drops opens most spirits above 45% ABV, releasing aromatics that alcohol was masking. Nose again after the water; it's often a different spirit. This is the clearest demonstration of why dilution belongs in a cocktail rather than being a necessary evil."],
+  ["Manage palate fatigue","Taste light to heavy, unpeated before peated, low proof before high. Three to five pours is a real session; beyond six, you're guessing. Reset with plain water and unsalted crackers, not coffee. If everything starts tasting like alcohol, you're done: stop and come back tomorrow."],
   ["Write before you look","Always record your notes before you learn what you tasted. Knowing the label rewrites your perception instantly and permanently. Blind tasting isn't a party trick; it's the only way to know whether your palate or your expectations are doing the work."],
-  ["Build the vocabulary","Use the same words consistently, even imprecise ones, so your notes are comparable over time. Aroma vocabulary is learned, not innate — smell your ingredients deliberately: crack a coriander seed, smell juniper berries, taste your syrups. Nearly all of what people call taste is smell, and smell is trainable."],
+  ["Build the vocabulary","Use the same words consistently, even imprecise ones, so your notes are comparable over time. Aroma vocabulary is learned, not innate; smell your ingredients deliberately: crack a coriander seed, smell juniper berries, taste your syrups. Nearly all of what people call taste is smell, and smell is trainable."],
 ];
 
 function renderTastingForm(){
@@ -141,15 +141,15 @@ function renderTastingForm(){
    data already on every cocktail: method, carbonation, egg, and glassware. */
 const RAIL_STAGES = [
   /* rank 0 is the dry-shake station, so it must key off the METHOD, not the word
-     "cream" in a spec — coconut cream and a cream float are not dry-shaken */
+     "cream" in a spec: coconut cream and a cream float are not dry-shaken */
   { rank:0, test:c => /dry shake/i.test(c.method) || (/\begg\b/i.test(c.spec.join(' ')) && /shake/i.test(c.method)),
-    why:'Egg takes the longest — dry shake it first while everything else waits.' },
+    why:'Egg takes the longest: dry shake it first while everything else waits.' },
   /* anchored: "Build over ice, stir" is a built drink, not a stirred one */
   { rank:1, test:c => /^\s*stir/i.test(c.method),
     why:'Stirred goes into the mixing glass early. It chills and dilutes while your hands are elsewhere.' },
   /* affirmative shake verb only: Bloody Mary's "never shake" must not match */
   { rank:2, test:c => /^\s*(dry\s+|whip\s+|hard\s+)?shake|,\s*shake/i.test(c.method),
-    why:'Shaken next — and if two drinks share a tin size, they share a shake.' },
+    why:'Shaken next, and if two drinks share a tin size, they share a shake.' },
   { rank:3, test:c => /soda|tonic|ginger beer|cola|champagne|prosecco|sparkling|beer/i.test(c.spec.join(' ')) || /build/i.test(c.method),
     why:'Carbonated and built go last. Every second a highball waits, it goes flatter.' },
 ];
@@ -198,7 +198,7 @@ function railDeal(){
 }
 /* ---- HOLD THE ROUND: the order arrives by voice, not by ticket ----
    The rail trains sequencing with all four tickets visible; this trains the
-   step before it — holding a called order in your head while your hands are
+   step before it: holding a called order in your head while your hands are
    mid-build. The call shows for a chosen window, disappears, and you re-tap
    the round from a decoy-laced list, then pin the mod to the drink that
    carried it. Score is private and banded like everything else here. */
@@ -271,7 +271,7 @@ function holdHTML(){
     return '<div class="panel p5 col tc" style="align-items:center;gap:12px">'
       + '<h2 class="eyebrow">The call</h2>'
       + '<div class="bold lh" style="max-width:460px;font-size:1.05rem">“'+esc(holdCallText(h))+'”</div>'
-      + '<div class="tiny dim">Hold it. The ticket disappears in '+h.band+' seconds — or tap when you have it.</div>'
+      + '<div class="tiny dim">Hold it. The ticket disappears in '+h.band+' seconds, or tap when you have it.</div>'
       + '<button class="btn btn-ghost" data-act="hold-got">Got it</button></div>';
   }
   const all = h.deck.map(e => e.name).concat(h.decoys);
@@ -298,7 +298,7 @@ function holdHTML(){
     const got = (h.picks||[]).indexOf(n) >= 0;
     return '<div class="small lh"><span aria-hidden="true" class="opt-mark">'+(got?'✓':'✗')+'</span> '
       + '<span class="sr-only">'+(got?'Held: ':'Dropped: ')+'</span>'+esc(n)
-      + (h.mod && h.mod.drink === n ? ' <span class="tiny dim">— '+esc(h.mod.label)+(h.modPick===n?' ✓':' (mod went to '+esc(h.modPick||'nobody')+')')+'</span>' : '')
+      + (h.mod && h.mod.drink === n ? ' <span class="tiny dim">- '+esc(h.mod.label)+(h.modPick===n?' ✓':' (mod went to '+esc(h.modPick||'nobody')+')')+'</span>' : '')
       + '</div>';
   }).join('');
   return '<div class="panel p5 col tc" style="align-items:center;gap:12px">'
@@ -337,7 +337,7 @@ function railHTML(){
         if(r.revealed) return '<div class="spec-line"><span>'+(picked ? (pick+1)+'.' : '·')+'</span><span class="bold">'+esc(c.name.toUpperCase())+'</span></div>';
         return '<button class="spec-line" style="width:100%;text-align:left;background:none;border:0;cursor:pointer;color:inherit;font:inherit'+(picked?';opacity:.55':'')+'" '
           + 'data-act="rail-tap" data-i="'+i+'" aria-pressed="'+(picked?'true':'false')+'">'
-          + '<span>'+(picked ? (pick+1)+'.' : '—')+'</span><span class="bold">'+esc(c.name.toUpperCase())+'</span></button>';
+          + '<span>'+(picked ? (pick+1)+'.' : '-')+'</span><span class="bold">'+esc(c.name.toUpperCase())+'</span></button>';
       }).join('')
     + '<div class="tix-rule"></div><div class="tix-note">'
     + (r.revealed ? 'Fired '+drinks.length+' · one guest waiting on all of them'
@@ -407,7 +407,7 @@ function renderPractice(){
         + '<span class="tiny dim push">'+esc(e.date)+'</span>'
         + '<span class="plusminus">'+(open?'−':'+')+'</span></button>'
         + (open ? '<div class="drink-body"><div class="small dim lh" style="max-width:440px">'
-            + '<span class="brass2">Appearance · </span>'+esc(e.appearance||'—')+'<br>'
+            + '<span class="brass2">Appearance · </span>'+esc(e.appearance||'-')+'<br>'
             + '<span class="brass2">Nose · </span>'+esc((e.nose||[]).join(', ')||'-')+'<br>'
             + '<span class="brass2">Palate · </span>sweet '+(e.palate.sweet||'-')+' · acid '+(e.palate.acid||'-')+' · bitter '+(e.palate.bitter||'-')+' · body '+(e.palate.body||'-')+' · heat '+(e.palate.heat||'-')+'<br>'
             + '<span class="brass2">Finish · </span>'+esc(e.finish||'-')
@@ -419,7 +419,7 @@ function renderPractice(){
     log.forEach(e => byCat[e.cat] = (byCat[e.cat]||0)+1);
     const stats = Object.keys(TASTE_CATS).map(c =>
       '<div class="hist-row"><span class="small">'+esc(c)+'</span><span class="font-tix brass2">'+(byCat[c]||0)+'</span></div>').join('');
-    return wrap('<div class="small dim lh" style="padding:0 4px">A structured card forces you to look for things you\'d otherwise skip. Fill it in <span class="brass2">before</span> you check the label — knowing what you\'re drinking rewrites your perception permanently.</div>'
+    return wrap('<div class="small dim lh" style="padding:0 4px">A structured card forces you to look for things you\'d otherwise skip. Fill it in <span class="brass2">before</span> you check the label: knowing what you\'re drinking rewrites your perception permanently.</div>'
       + renderTastingForm()
       + '<div class="panel p4 col-sm"><div class="eyebrow">Pours logged by category</div>'+stats
       + '<div class="tiny dim">'+log.length+' notes total. Twenty pours in one category is where patterns start appearing.</div></div>'
@@ -528,7 +528,7 @@ function scaleLine(l, f){
     return out + (sp||'') + (unit||'');
   });
 }
-/* "4 sugar cube" reads wrong — pluralize scaled countables, including when a
+/* "4 sugar cube" reads wrong: pluralize scaled countables, including when a
    modifier sits between the number and the noun ("4 sugar cube" -> "cubes"). */
 /* UNITS pluralize even when an ingredient follows ("5 dashes Angostura").
    HEADS are the ingredient itself, so they only pluralize when nothing
@@ -564,7 +564,7 @@ function batchOutHTML(){
   const f = t.serv;
   const lines = c.spec.map(l => '<div class="spec-line"><span>·</span><span>'+esc(pluralize(scaleLine(l,f)))+'</span></div>').join('');
   const perDrink = c.spec.reduce((s,l)=>s+lineOz(l),0);
-  /* Parts, pints, shots and per-batch lines parse as 0 oz — the strength
+  /* Parts, pints, shots and per-batch lines parse as 0 oz: the strength
      tool already refuses those specs in words, and a batch sheet that
      prints a confident zero-yield is worse than one that says why not. */
   if(!(perDrink > 0)){
@@ -580,12 +580,12 @@ function batchOutHTML(){
   const muddle = /muddle|swizzle|press/i.test(c.method);
   const layered = /layer|float/i.test(c.method);
   let warn = [];
-  if(citrus) warn.push('batch everything EXCEPT the citrus — juice it the day you serve and add à la minute');
+  if(citrus) warn.push('batch everything EXCEPT the citrus; juice it the day you serve and add à la minute');
   if(carb) warn.push('never bottle the carbonated component; top each glass to order');
-  if(egg) warn.push('egg and aquafaba cannot be batched ahead — they must be shaken per drink');
+  if(egg) warn.push('egg and aquafaba cannot be batched ahead; they must be shaken per drink');
   if(dairy) warn.push('dairy batches keep only 2–3 days refrigerated and will separate; shake before pouring');
   if(muddle) warn.push('muddled fruit and herbs go in per drink, not in the batch');
-  if(layered) warn.push('layered builds cannot be batched — the pour order is the recipe');
+  if(layered) warn.push('layered builds cannot be batched: the pour order is the recipe');
   // bottle math on the batchable portion
   const bottles750 = finalOz / 25.36;
   const containerL = finalOz * 0.02957;
@@ -606,7 +606,7 @@ function batchOutHTML(){
 /* ---- ABV / dilution estimator ---- */
 const ABV_TABLE = [
   /* zero row FIRST: ginger beer was matching /gin/, sparkling lemonade was
-     matching /sparkling/ — a Mule read as 4.3 standard drinks, and this table
+     matching /sparkling/: a Mule read as 4.3 standard drinks, and this table
      is the number behind the responsible-service teaching */
   [/ginger beer|ginger ale|ginger syrup|honey-ginger|lemonade/i, 0],
   [/irish cream|baileys|amarula|rumchata/i, 0.17],
@@ -661,7 +661,7 @@ function convertHTML(){
   }).join(' ');
   return '<div class="panel p5 col" style="gap:14px">'
     + '<h2 class="eyebrow">Unit converter</h2>'
-    + '<div class="small dim lh">Most of the world specs in ml; American bar books spec in ounces. A jigger marked 1 oz is 29.6ml, not 30 — the 30ml jiggers sold as "1 oz" run about 1.5% over on every pour.</div>'
+    + '<div class="small dim lh">Most of the world specs in ml; American bar books spec in ounces. A jigger marked 1 oz is 29.6ml, not 30: the 30ml jiggers sold as "1 oz" run about 1.5% over on every pour.</div>'
     + '<div class="row" style="gap:10px"><input class="input" type="number" step="any" id="conv-val" aria-label="Amount to convert" value="'+esc(String(t.convVal))+'" style="max-width:140px"><div class="row" style="gap:6px">'+fromChips+'</div></div>'
     + '<div id="conv-out">'+convOutHTML()+'</div>'
     + '<div class="tiny dim lh">Handy anchors: 1 oz = 29.6ml · 1.5 oz = 44ml · 2 oz = 59ml · 750ml bottle = 25.4 oz = about 16 two-ounce pours.</div>'
@@ -710,9 +710,9 @@ function pourHTML(){
             + Math.abs((avgDev / t) * 100).toFixed(0)+'% '+(avgDev>0?'over':'under')+' on every pour. '
             + (avgDev>0
                 ? (perOzMed !== null
-                    ? 'At your bottle book\u2019s median $'+perOzMed.toFixed(2)+'/oz, that habit gives away $'+(avgDev*perOzMed*100).toFixed(0)+' every hundred pours — invisible and constant.'
+                    ? 'At your bottle book\u2019s median $'+perOzMed.toFixed(2)+'/oz, that habit gives away $'+(avgDev*perOzMed*100).toFixed(0)+' every hundred pours, invisible and constant.'
                     : 'The guide prices the habit: an eighth-ounce heavy on every jigger is 6% of spirit cost, invisible and constant.')
-                : 'Under-pouring is not thrift — it is a short drink a guest can taste, and a reputation leak instead of a cost one.'))
+                : 'Under-pouring is not thrift: it is a short drink a guest can taste, and a reputation leak instead of a cost one.'))
       + '</div>';
   const targets = POUR_TARGETS.map(x =>
     '<button class="chip'+(x===t?' brass':'')+'" data-act="pour-target" data-t="'+x+'" aria-pressed="'+(x===t?'true':'false')+'">'+x+' oz</button>').join(' ');
@@ -736,7 +736,7 @@ function pourHTML(){
    quoted from this app's own service pages: "Waste rung honestly all night is
    a rounding error. Waste never rung at all is why a variance report starts
    to look like a crime scene." The reasons are the section's own list (
-   remake, spill & breakage, comp, foam & line — and there is NO THEFT KEY on
+   remake, spill & breakage, comp, foam & line, and there is NO THEFT KEY on
    purpose: the same pages put theft LAST in the order of suspicion, and it is
    what the variance says after honest logging, never a button you press. */
 const SPILL_REASONS = [
@@ -770,17 +770,17 @@ function spillHTML(){
     : '';
   return '<div class="col" style="align-items:center"><div class="panel p5 col" style="gap:12px;max-width:540px;width:100%">'
     + '<h2 class="eyebrow">The spill log</h2>'
-    + '<div class="small dim lh">The register pages put it plainly: waste rung honestly all night is a rounding error — '
+    + '<div class="small dim lh">The register pages put it plainly: waste rung honestly all night is a rounding error; '
     + 'waste never rung at all is why a variance report starts to look like a crime scene. This is the habit, drilled: '
     + 'log the remake, the break, the comp, the foam, at the moment it happens.</div>'
     + '<div class="row" style="gap:6px;flex-wrap:wrap">'+chips+'</div>'
     + '<div class="row" style="gap:8px;flex-wrap:wrap">'
-    + '<input class="input" id="spill-what" aria-label="What went in the bin" placeholder="What — House Daiquiri, pint of hazy" value="'+esc(String(t.spillWhat||''))+'" style="flex:2;min-width:170px">'
+    + '<input class="input" id="spill-what" aria-label="What went in the bin" placeholder="What: House Daiquiri, pint of hazy" value="'+esc(String(t.spillWhat||''))+'" style="flex:2;min-width:170px">'
     + '<input class="input" type="number" step="any" inputmode="decimal" id="spill-cost" aria-label="Estimated cost in dollars" placeholder="est. $ (optional)" value="'+esc(String(t.spillCost||''))+'" style="flex:1;min-width:110px">'
     + '<button class="btn btn-brass" data-act="spill-log">Log it</button></div>'
     + rollup
     + (rows ? '<div class="col-sm" style="gap:4px"><div class="eyebrow">Entry by entry</div>'+rows+'</div>' : '')
-    + '<div class="tiny dim lh">No theft key, on purpose. The same pages put theft LAST in the order of suspicion — '
+    + '<div class="tiny dim lh">No theft key, on purpose. The same pages put theft LAST in the order of suspicion: '
     + 'over-pour, unrung drinks, unlogged comps and remakes, spillage and breakage first. Theft is what the variance '
     + 'says after honest logging, never a button.</div>'
     + '</div></div>';
@@ -794,7 +794,7 @@ function spillHTML(){
    whites and reds three to four." The board is the dating habit those pages
    assign, done for you: log the open, and the age does the arithmetic. */
 const BOTTLE_KINDS = [
-  ['vermouth',  'Vermouth / fortified', 30, 'replace it monthly — it is wine'],
+  ['vermouth',  'Vermouth / fortified', 30, 'replace it monthly: it is wine'],
   ['citrus',    'Citrus juice',          1, 'taste your citrus daily'],
   ['syrup',     'Syrup',                30, 'fridge, about a month'],
   ['sparkling', 'Sparkling wine',        2, 'one to two days under a proper stopper'],
@@ -823,7 +823,7 @@ function obHTML(){
   }).join('');
   return '<div class="col" style="align-items:center"><div class="panel p5 col" style="gap:12px;max-width:540px;width:100%">'
     + '<h2 class="eyebrow">The open bottle board</h2>'
-    + '<div class="small dim lh">The pages of this ledger keep saying it: date the bottle. This board is that habit — '
+    + '<div class="small dim lh">The pages of this ledger keep saying it: date the bottle. This board is that habit: '
     + 'log the open, and the age does the arithmetic against the app\u2019s own windows: vermouth a month, citrus a day, '
     + 'syrup a month, open wine one to four days by its weight.</div>'
     + '<div class="row" style="gap:8px;flex-wrap:wrap">'
@@ -832,7 +832,7 @@ function obHTML(){
     + '<input class="input" type="number" min="0" max="365" id="ob-days" aria-label="Opened how many days ago" placeholder="days ago (0)" value="'+esc(String(state.tools.obDays||''))+'" style="max-width:120px">'
     + '<button class="btn btn-brass" data-act="ob-add">Date it</button></div>'
     + (rows ? '<div class="col-sm" style="gap:4px">'+rows+'</div>'
-            : '<div class="tiny dim">Nothing dated yet. Start with the vermouth — a Manhattan on tired vermouth is a dead Manhattan.</div>')
+            : '<div class="tiny dim">Nothing dated yet. Start with the vermouth: a Manhattan on tired vermouth is a dead Manhattan.</div>')
     + '</div></div>';
 }
 
@@ -843,13 +843,13 @@ function parseMenuPrice(raw){
   const n = parseFloat(String(raw).replace(/[^\d.]/g, ''));
   return isFinite(n) && n > 0 ? n : null;
 }
-/* Factored so a keystroke repaints ONLY the ticket — a full render() per
+/* Factored so a keystroke repaints ONLY the ticket: a full render() per
    keystroke destroyed the focused input after one character, and rebuilding
    the book block emptied the bottle-name field mid-flow. The name input
    lives OUTSIDE cost-out for exactly that reason. */
 /* One resolver for every tool that takes "a drink": the canon by index, or
    the house list when the source toggle says so. Batching and strength used
-   to see only the canon — the list a working bartender actually batches is
+   to see only the canon; the list a working bartender actually batches is
    their own. */
 function toolDrink(){
   const t = state.tools;
@@ -891,7 +891,7 @@ function costTicketHTML(){
     return '<div class="ticket"><div class="ticket-inner">'
       + '<div class="tc"><div class="tix-label">Costing</div><div class="tix-name">'+esc(c.name.toUpperCase())+'</div></div>'
       + '<div class="tix-rule"></div>'
-      + '<div class="tix-note">'+esc(c.name)+' has no spirit or fortified line this sheet can price by the ounce — '
+      + '<div class="tix-note">'+esc(c.name)+' has no spirit or fortified line this sheet can price by the ounce: '
       + 'beer, bubbles, and juice are bought by the unit. Cost it from the bottle or the keg, not from this sheet.</div>'
       + '</div></div>';
   }
@@ -990,7 +990,7 @@ function strengthHTML(){
   }
   return '<div class="panel p5 col" style="gap:14px">'
     + '<h2 class="eyebrow">Strength &amp; dilution</h2>'
-    + '<div class="small dim lh">Shaking adds roughly 25% water, stirring 20–25%, and building over ice keeps adding it in the glass. Knowing where a drink lands is how you pace a guest honestly — and it is the number behind responsible service.</div>'
+    + '<div class="small dim lh">Shaking adds roughly 25% water, stirring 20–25%, and building over ice keeps adding it in the glass. Knowing where a drink lands is how you pace a guest honestly, and it is the number behind responsible service.</div>'
     + '<div class="row"><span class="tiny dim" style="width:70px">Dilution</span>'+chips+'</div>'
     + body
     + '<div class="tiny dim lh">Estimates use category averages, not label proof, so treat them as a guide. A US standard drink is 0.6 oz of pure alcohol.</div>'
@@ -1074,7 +1074,7 @@ function renderTools(){
       }).join(' ');
       return wrap('<div class="panel p5 col" style="gap:14px">'
         + '<div class="row between"><div class="eyebrow">86 drill</div><div class="row" style="gap:6px">'+modeChips+'</div></div>'
-        + '<div class="small dim lh">The guest is standing there and the bottle is empty. Tap what just died and the ledger shows you what died with it — and the closest thing you can still pour. Answer out loud before you read the substitutes.</div>'
+        + '<div class="small dim lh">The guest is standing there and the bottle is empty. Tap what just died and the ledger shows you what died with it, and the closest thing you can still pour. Answer out loud before you read the substitutes.</div>'
         + (t.shelf.length ? '<div class="row" style="gap:6px">'+owned+'</div>'
             : '<div class="row"><button class="btn btn-ghost tiny" data-act="shelf-mode" data-m="stock">Stock a shelf first →</button></div>')
         + '</div>'
@@ -1105,7 +1105,7 @@ function renderTools(){
       + (t.shelf.length ? '<div class="panel p5 col" style="gap:12px">'
           + '<div class="row">'+srcChips+'</div>'
           + '<div><div class="eyebrow mb1">Ready to pour: '+ready.length+' of '+pool.length+'</div>'
-          + '<div class="row" style="gap:6px">'+(readyChips||'<span class="tiny dim">nothing yet — keep stocking</span>')+'</div></div>'
+          + '<div class="row" style="gap:6px">'+(readyChips||'<span class="tiny dim">nothing yet, keep stocking</span>')+'</div></div>'
           + (next.length ? '<div><div class="eyebrow mb1">Best next bottle</div>'
               + '<div class="small dim lh mb2">Each of these unlocks the listed drinks on its own.</div>'
               + '<div class="col-sm">'+nextRows+'</div></div>' : '')
@@ -1113,7 +1113,7 @@ function renderTools(){
           + '</div>' : ''));
   }
 
-  /* the same source toggle the cost sheet earned — a working bartender
+  /* the same source toggle the cost sheet earned: a working bartender
      batches their own list, not just the canon */
   const bsr = toolSrcRowHTML();
   const opts = COCKTAILS.map(function(c,i){ return '<option value="'+i+'"'+(t.drink===i?' selected':'')+'>'+esc(c.name)+'</option>'; }).join('');

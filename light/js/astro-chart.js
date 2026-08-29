@@ -9,7 +9,7 @@
 
    1. Astronomy.EclipticLongitude() is HELIOCENTRIC and throws on the Sun. For
       2026-08-16 it puts Mars in Gemini; the geocentric position, the one a chart
-      means — is Cancer. Using it produces charts that look entirely plausible and
+      means, is Cancer. Using it produces charts that look entirely plausible and
       are entirely wrong. Everything here goes through geoLon().
 
    2. The library returns ecliptic-of-date, which IS the tropical zodiac: precession
@@ -22,7 +22,7 @@
       and the Ascendant silently wrong. Half the output looking right is the hardest
       kind of bug to notice.
 
-   4. Placidus is undefined above about 66.56° — not a rounding problem; the cusp
+   4. Placidus is undefined above about 66.56°: not a rounding problem; the cusp
       genuinely does not exist because that degree never crosses the horizon. */
 
 var DEG = Math.PI / 180, RAD = 180 / Math.PI;
@@ -72,7 +72,7 @@ function isRetrograde(body, date) {
   return d < 0;
 }
 
-/* Mean lunar node — a polynomial, and traditional enough that leaving it out would
+/* Mean lunar node: a polynomial, and traditional enough that leaving it out would
    be conspicuous. The true node oscillates about this by up to ~1.5°. */
 function meanNode(date) {
   var T = window.Astronomy.MakeTime(date).tt / 36525.0;
@@ -80,7 +80,7 @@ function meanNode(date) {
                  + T * T * T / 467441 - T * T * T * T / 60616000);
 }
 
-/* ——— angles ——— */
+/* --- angles --- */
 function chartAngles(date, lat, lon) {
   var A = window.Astronomy;
   var gst = A.SiderealTime(date);                       // Greenwich apparent, hours

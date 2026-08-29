@@ -121,7 +121,7 @@ function readinessLine(lvl){
   if(r.ready)return 'Every examined section has a record that clears the bar.';
   if(r.missing.length===levelSections(r.lvl).length)return 'No section has been measured yet.';
   return 'Measured on '+(levelSections(r.lvl).length-r.missing.length)+' of '
-    +levelSections(r.lvl).length+' sections — '+r.missing.join(' and ')+' still unproven.';
+    +levelSections(r.lvl).length+' sections: '+r.missing.join(' and ')+' still unproven.';
 }
 
 /* ---- 4. a verdict only where a verdict belongs ---- */
@@ -224,7 +224,7 @@ studyPlan=function(){
     if(r.tasting.state==='none')
       add.push({t:'Pour a blind flight',d:'No tasting calls on record. A '+L.short+' is examined on tasting as well as theory: no amount of paper answers this section.',go:function(){S.tt=null;S.view='tasting';render();}});
     else if(r.tasting.state==='thin')
-      add.push({t:'Keep tasting',d:'Only '+r.tasting.calls+' call'+(r.tasting.calls===1?'':'s')+' on record — too few to read as a trend. Ten is a beginning.',go:function(){S.tt=null;S.view='tasting';render();}});
+      add.push({t:'Keep tasting',d:'Only '+r.tasting.calls+' call'+(r.tasting.calls===1?'':'s')+' on record: too few to read as a trend. Ten is a beginning.',go:function(){S.tt=null;S.view='tasting';render();}});
     else if(r.tasting.state==='below')
       add.push({t:'Tasting is your weakest section',d:'Calling '+r.tasting.acc+'% across '+r.tasting.calls+' flights, against a '+r.tasting.need+'% bar. Theory will not carry it.',go:function(){S.tt=null;S.view='tasting';render();}});
   }
@@ -264,7 +264,7 @@ function readinessRows(lvl){
     ('best '+t.best+'%, needs '+t.need+'%'));
   if(r.tasting)add('Tasting',r.tasting.state,
     r.tasting.state==='none'?'no calls on record':
-    r.tasting.state==='thin'?(r.tasting.calls+' call'+(r.tasting.calls===1?'':'s')+' — too few to read'):
+    r.tasting.state==='thin'?(r.tasting.calls+' call'+(r.tasting.calls===1?'':'s')+': too few to read'):
     (r.tasting.acc+'% over '+r.tasting.calls+' calls, needs '+r.tasting.need+'%'));
   if(r.service)add('Service',r.service.state,
     r.service.state==='none'?'not rehearsed':
@@ -293,7 +293,7 @@ planView=function(){
       +(levelSections(activeLevel).length>1
         ? 'The Court examines a '+LEVELS[activeLevel].short+' on '+levelSections(activeLevel).join(', ')
           +'. A theory score is one section of three, and the Codex will not call you ready on it alone.'
-        : "The Régionale examination is theory only — there is no tasting or service section to measure.")
+        : "The Régionale examination is theory only: there is no tasting or service section to measure.")
       +'</div></div>');
     /* sits above "Your sitting" so the standing frames the plan */
     v.insertBefore(block,head);

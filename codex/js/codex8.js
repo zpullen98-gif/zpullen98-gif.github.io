@@ -6,7 +6,7 @@
 /* ═══════════ Part I: honest grading ═══════════
    Short answer is the dominant format at Advanced and Master, where the model
    answer is a sentence rather than a word. A fuzzy matcher cannot adjudicate
-   that fairly — so it stops pretending to. When the grader is uncertain it says
+   that fairly, so it stops pretending to. When the grader is uncertain it says
    so, hands the call to the candidate, and records the disagreement so weak
    accept lists can be found and widened. */
 
@@ -14,7 +14,7 @@ ST.grader=ST.grader||{};   /* qKey -> {r:overrides-to-right, w:overrides-to-wron
 
 function saTrueSA(q){ return !!(q&&q.sa&&!q.mt&&!q.sel); }
 
-/* Distinctive terms of the model answer — the vocabulary a correct answer should touch. */
+/* Distinctive terms of the model answer: the vocabulary a correct answer should touch. */
 var SA_STOP={the:1,and:1,for:1,with:1,its:1,are:1,was:1,were:1,also:1,that:1,this:1,from:1,
  into:1,than:1,then:1,them:1,they:1,their:1,there:1,when:1,what:1,which:1,while:1,where:1,
  have:1,has:1,had:1,but:1,not:1,any:1,all:1,one:1,two:1,you:1,your:1,over:1,under:1,after:1,
@@ -159,11 +159,11 @@ function graderDisputes(){
 function disputesView(){
   var rows=graderDisputes();
   var html='<div><div class="viewhead"><h2>Where the Grader Was Wrong</h2><div class="sub">'
-    +'Questions you overruled. Each one is an accept list too narrow for the answer you gave — '
+    +'Questions you overruled. Each one is an accept list too narrow for the answer you gave: '
     +'export your progress to carry these into a content fix.</div></div>';
   if(!rows.length){
     html+='<div class="fmtnote" style="margin-top:14px">No disagreements recorded at this level. '
-      +'When the grader marks you wrong and you know you were right, press <b>R</b> — it is logged here.</div>';
+      +'When the grader marks you wrong and you know you were right, press <b>R</b>; it is logged here.</div>';
   } else {
     rows.forEach(function(x){
       var lab=LEVELS[x.lvl]?LEVELS[x.lvl].short:x.lvl;
@@ -273,7 +273,7 @@ function studyPlan(){
   var needPerDay=(days&&days>0)?Math.ceil(remaining/days):null;
   var onTrack=(needPerDay===null)?null:(pace>=needPerDay);
   var acts=[];
-  if(due)acts.push({t:'Daily Review',d:due+' question'+(due===1?'':'s')+' due today — the schedule decides, not you.',go:startDaily});
+  if(due)acts.push({t:'Daily Review',d:due+' question'+(due===1?'':'s')+' due today: the schedule decides, not you.',go:startDaily});
   if(weak&&weak.acc<70)acts.push({t:'Repair '+weak.cat,d:'Your weakest section at '+weak.acc+'% over '+weak.n+' answers. Read the chapter, then drill it.',
     go:function(){S.primerKey=weak.cat;S.view='primer';render();},go2:function(){startDrill(weak.cat);},go2t:'Drill it'});
   if(cov.pct<60)acts.push({t:'Widen your coverage',d:'You have faced '+cov.pct+'% of this level. '+(needPerDay?'About '+needPerDay+' new a day clears the bar.':'Endless practice serves unseen questions first.'),go:startEndless});
@@ -396,7 +396,7 @@ revealBlock=function(q,ok,isSA){
   var wrap=_v7RevealBlock2(q,ok,isSA);
   if(!oralActive()||!S._oralUngraded)return wrap;
   var v=wrap.querySelector('.verdict');
-  if(v){ v.className='verdict unsure'; v.textContent='You answered aloud — now grade yourself'; }
+  if(v){ v.className='verdict unsure'; v.textContent='You answered aloud; now grade yourself'; }
   var sg=wrap.querySelector('.selfgrade');
   if(sg){
     sg.className='selfgrade primary';
@@ -439,7 +439,7 @@ decorateQuiz=function(){
     var row=document.querySelector('.sarow');
     if(row){
       row.innerHTML='';
-      var b=el('<button class="btn gold oralreveal">Answered — reveal <span class="key2">space</span></button>');
+      var b=el('<button class="btn gold oralreveal">Answered: reveal <span class="key2">space</span></button>');
       b.onclick=answerAloud;
       row.appendChild(b);
       row.appendChild(el('<div class="oralhint">Say the answer out loud, in full, as you would across the table.</div>'));
@@ -494,7 +494,7 @@ revealBlock=function(q,ok,isSA){
   var wrap=_v7RevealBlock3(q,ok,isSA);
   if(wrap.querySelector('.reportbox'))return wrap;
   var box=el('<div class="reportbox"><button class="reporttoggle">Report an error in this question</button>'
-    +'<div class="reportbody" hidden><textarea class="noteinput reportinput" rows="2" placeholder="What is wrong — the answer, the accepted phrasings, a fact?"></textarea>'
+    +'<div class="reportbody" hidden><textarea class="noteinput reportinput" rows="2" placeholder="What is wrong: the answer, the accepted phrasings, a fact?"></textarea>'
     +'<div class="planrow"><button class="btn small ghost rsend">Send report</button></div></div></div>');
   var body=box.querySelector('.reportbody'), ta=box.querySelector('textarea');
   box.querySelector('.reporttoggle').onclick=function(){ body.hidden=!body.hidden; if(!body.hidden)ta.focus(); };

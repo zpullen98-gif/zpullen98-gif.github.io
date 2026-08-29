@@ -35,7 +35,7 @@
        Ranks I AND II are free, by owner decision (17 Aug 2026): the Page and
        Squire banks were imported from established material whose rights chain
        is unconfirmed, and nothing with an unconfirmed provenance belongs
-       behind a paywall. The paid tier is the Knight and Ruler banks — 1,007
+       behind a paywall. The paid tier is the Knight and Ruler banks: 1,007
        questions written for this product, plus the drills generated from the
        venue's own wine list (entering and READING the list is own-data and
        stays free; the generated study surfaces are the product). */
@@ -106,7 +106,7 @@
                               chapters open protects nothing.
 
                               /learn, /practise and /service are hub pages. They hold
-                              no guide content — each is a set of links and counts —
+                              no guide content, each is a set of links and counts,
                               and they are the pitch for what is behind them. Gate the
                               CONTENT, not the tab that describes it.
 
@@ -254,11 +254,11 @@
         return;
       }
       if (!OOT.gate.allow('codex', w.activeLevel)) {
-        /* A gated rank on a free paint corrects to Certified — the wing's own
+        /* A gated rank on a free paint corrects to Certified: the wing's own
            default boot level, and free. applyLevel persists the new level to
            localStorage codexLevel. A subscriber whose entitlement has not
            resolved yet reads as free for one tick, and without this their
-           saved rank would be overwritten permanently — the tier recovers,
+           saved rank would be overwritten permanently: the tier recovers,
            the record of where they were studying does not. Put it back; the
            tier change re-applies it (see correct(true) above). */
         var savedLevel = null;
@@ -289,7 +289,7 @@
         if (!OOT.gate.allow('codex', 'cellardrill')) {
           OOT.gate.paywall({
             what: 'Drilling your own list is part of the subscription',
-            detail: 'Entering and reading your wine list stays free forever, on every tier — ' +
+            detail: 'Entering and reading your wine list stays free forever, on every tier; ' +
                     'the drills built from it come with the subscription.'
           });
           return;
@@ -451,7 +451,7 @@
 
          data-oot-tier="free" says who the visitor is, and is set on every route.
          The partial masks (the study semesters, the lexicon definitions) live on
-         FREE routes — /study and /lexicon are both free, because seeing the
+         FREE routes: /study and /lexicon are both free, because seeing the
          shape of what you would buy is the pitch. Scoping those masks to the
          route verdict meant they only applied where the elements do not exist,
          so every semester and all 479 definitions were delivered in clear.

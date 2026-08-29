@@ -10,7 +10,7 @@ FL_VIEWS.journal = {
   title: 'Journal',
   render: function () {
     var all = jAll();
-    /* the clear filter runs BEFORE the stats and the empty check — a journal
+    /* the clear filter runs BEFORE the stats and the empty check: a journal
        holding only Clear Mornings notes must read as empty here */
     all = all.filter(function (e) { return String(e.ref).indexOf('clear:') !== 0; });
     var head = '<div class="kick">Your own words</div><h1>Journal</h1>';
@@ -157,7 +157,7 @@ FL_VIEWS.stats = {
       if (wrote[dateKey]) marks++;
       if (FL.practice[dateKey] || FL.sessions[dateKey]) marks++;
 
-      var title = MONTHS[m - 1][0] + ' ' + d + (skipped ? ' — leap day only' : (marks ? ' — ' + marks + ' marks' : ''));
+      var title = MONTHS[m - 1][0] + ' ' + d + (skipped ? ': leap day only' : (marks ? ': ' + marks + ' marks' : ''));
       cells.push('<span class="cell l' + Math.min(marks, 4) + (skipped ? ' skip' : '') +
                  '" title="' + esc(title) + '"></span>');
     }

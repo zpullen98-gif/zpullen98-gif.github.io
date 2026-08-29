@@ -17,7 +17,7 @@ const COCKTAILS = [
   { name:"Daiquiri", tier:1, family:"Sour", spirit:"Rum",
     spec:["2 oz white rum","1 oz lime juice","3/4 oz simple syrup"],
     method:"Shake, double strain up", glass:"Coupe", garnish:"Lime wheel",
-    note:"The bartender's handshake as a skills test — order one to read a bar; the truest test of balance and shake. (The handshake you are poured is Fernet.)" },
+    note:"The bartender's handshake as a skills test: order one to read a bar; the truest test of balance and shake. (The handshake you are poured is Fernet.)" },
   { name:"Margarita", tier:1, family:"Sour", spirit:"Tequila",
     spec:["2 oz blanco tequila","1 oz lime juice","3/4 oz orange liqueur","1/4 oz agave (optional)"],
     method:"Shake, strain over fresh ice", glass:"Rocks, salt rim", garnish:"Lime wheel",
@@ -33,7 +33,7 @@ const COCKTAILS = [
   { name:"Mojito", tier:1, family:"Highball", spirit:"Rum",
     spec:["2 oz white rum","3/4 oz lime juice","3/4 oz simple syrup","8 mint leaves","soda top"],
     method:"Gently muddle mint, build, swizzle", glass:"Highball, crushed or cracked ice", garnish:"Mint bouquet",
-    note:"Press the mint, don't shred it — oils, not chlorophyll." },
+    note:"Press the mint, don't shred it: oils, not chlorophyll." },
   { name:"Moscow Mule", tier:1, family:"Highball", spirit:"Vodka",
     spec:["2 oz vodka","3/4 oz lime juice","4 oz ginger beer"],
     method:"Build over ice", glass:"Copper mug", garnish:"Lime wedge",
@@ -119,7 +119,7 @@ const COCKTAILS = [
   { name:"Vieux Carré", tier:2, family:"Spirit & Vermouth", spirit:"Whiskey",
     spec:["3/4 oz rye","3/4 oz cognac","3/4 oz sweet vermouth","1/4 oz Bénédictine","dash Angostura + dash Peychaud's"],
     method:"Stir over ice", glass:"Rocks", garnish:"Lemon peel or cherry",
-    note:"Hotel Monteleone, New Orleans, 1930s — the French Quarter in a glass." },
+    note:"Hotel Monteleone, New Orleans, 1930s: the French Quarter in a glass." },
   { name:"Ramos Gin Fizz", tier:2, family:"Egg & Cream", spirit:"Gin",
     spec:["2 oz gin","1/2 oz lemon + 1/2 oz lime","3/4 oz simple","1 oz cream","1 egg white","3 drops orange flower water","soda"],
     method:"Dry shake, shake with ice, strain, rest, top with soda", glass:"Collins", garnish:"The meringue tower is the garnish",
@@ -213,7 +213,7 @@ const COCKTAILS = [
   { name:"Brandy Alexander", tier:3, family:"Egg & Cream", spirit:"Brandy",
     spec:["1.5 oz cognac","1 oz dark crème de cacao","1 oz cream"],
     method:"Shake hard, strain up", glass:"Coupe", garnish:"Grated nutmeg",
-    note:"Dessert in a coupe — always fresh nutmeg on top." },
+    note:"Dessert in a coupe: always fresh nutmeg on top." },
   { name:"White Russian", tier:3, family:"Duo & Trio", spirit:"Vodka",
     spec:["2 oz vodka","1 oz coffee liqueur","1 oz cream float"],
     method:"Build over ice, float cream", glass:"Rocks", garnish:"None",
@@ -225,7 +225,7 @@ const COCKTAILS = [
   { name:"Cinderella", tier:3, family:"Sour", spirit:"Spirit-free",
     spec:["1 oz orange juice","1 oz pineapple juice","1/2 oz lemon juice","1/4 oz grenadine","2 oz soda water"],
     method:"Shake juices, strain over ice, top soda", glass:"Collins", garnish:"Orange slice + cherry",
-    note:"A pre-Prohibition-era spirit-free classic — proof the sober canon is older than the mocktail menu." },
+    note:"A pre-Prohibition-era spirit-free classic: proof the sober canon is older than the mocktail menu." },
   { name:"Shirley Temple", tier:3, family:"Highball", spirit:"Spirit-free",
     spec:["4 oz ginger ale","1/2 oz grenadine","squeeze of lime (optional)"],
     method:"Build over ice", glass:"Highball", garnish:"Two cherries, always two",
@@ -269,7 +269,7 @@ const COCKTAILS = [
 
   /* ===== TIER 5: TIKI & TROPICAL ===== */
   { name:"Zombie", tier:5, family:"Tiki", spirit:"Rum", spec:["1.5 oz gold Puerto Rican rum","1.5 oz aged Jamaican rum","1 oz 151 demerara rum","3/4 oz lime juice","1/2 oz falernum","1/2 oz grapefruit juice","1/4 oz cinnamon syrup","1 tsp grenadine","1 dash Angostura","6 drops absinthe"], method:"Whip shake, pour over crushed ice", glass:"Tiki mug or tall", garnish:"Mint bouquet", note:"Don the Beachcomber, 1934. Limit two per customer, a house rule for a reason." },
-  { name:"Painkiller", tier:5, family:"Tiki", spirit:"Rum", spec:["2 oz dark rum","4 oz pineapple juice","1 oz orange juice","1 oz coconut cream"], method:"Shake, pour over crushed ice", glass:"Hurricane", garnish:"Grated nutmeg + pineapple", note:"Soggy Dollar Bar, BVI — Pusser's holds the trademark." },
+  { name:"Painkiller", tier:5, family:"Tiki", spirit:"Rum", spec:["2 oz dark rum","4 oz pineapple juice","1 oz orange juice","1 oz coconut cream"], method:"Shake, pour over crushed ice", glass:"Hurricane", garnish:"Grated nutmeg + pineapple", note:"Soggy Dollar Bar, BVI: Pusser's holds the trademark." },
   { name:"Hurricane", tier:5, family:"Tiki", spirit:"Rum", spec:["2 oz dark rum","1 oz white rum","1 oz lime juice","1 oz passion fruit syrup","1/2 oz simple syrup"], method:"Shake, strain over crushed ice", glass:"Hurricane", garnish:"Orange + cherry", note:"Pat O'Brien's, New Orleans, 1940s." },
   { name:"Navy Grog", tier:5, family:"Tiki", spirit:"Rum", spec:["1 oz dark Jamaican rum","1 oz gold demerara rum","1 oz white rum","3/4 oz lime juice","3/4 oz grapefruit juice","3/4 oz honey syrup","1 oz soda"], method:"Shake, strain over crushed ice", glass:"Double rocks", garnish:"Ice cone with straw (traditional)", note:"Don the Beachcomber; a standing order of mid-century Hollywood." },
   { name:"Three Dots and a Dash", tier:5, family:"Tiki", spirit:"Rum", spec:["1.5 oz aged rhum agricole","1/2 oz gold demerara rum","1/2 oz lime juice","1/2 oz orange juice","1/2 oz honey syrup","1/4 oz falernum","1/4 oz allspice dram","1 dash Angostura"], method:"Whip shake, crushed ice", glass:"Tall tiki", garnish:"3 cherries + pineapple frond (morse code for V)", note:"Don the Beachcomber's WWII victory drink." },
@@ -285,7 +285,7 @@ const COCKTAILS = [
   { name:"Test Pilot", tier:5, family:"Tiki", spirit:"Rum", spec:["1.5 oz dark Jamaican rum","3/4 oz white rum","1/2 oz lime juice","1/2 oz Cointreau","1/2 oz falernum","1 dash Angostura","6 drops absinthe"], method:"Whip shake, crushed ice", glass:"Double rocks", garnish:"Cherry", note:"Don the Beachcomber: ancestor of the Jet Pilot." },
   { name:"Jet Pilot", tier:5, family:"Tiki", spirit:"Rum", spec:["1 oz dark Jamaican rum","3/4 oz gold rum","3/4 oz 151 demerara rum","1/2 oz lime juice","1/2 oz grapefruit juice","1/2 oz cinnamon syrup","1/2 oz falernum","1 dash Angostura","6 drops absinthe"], method:"Whip shake, crushed ice", glass:"Double rocks or tiki", garnish:"None traditional", note:"The Test Pilot goes supersonic, a Zombie-class drink." },
   { name:"Ancient Mariner", tier:5, family:"Tiki", spirit:"Rum", spec:["1 oz dark Jamaican rum","1 oz demerara rum","3/4 oz lime juice","1/2 oz grapefruit juice","1/2 oz simple syrup","1/4 oz allspice dram"], method:"Shake, pour over crushed ice", glass:"Double rocks", garnish:"Mint + lime", note:"A tiki-revival original, built in the classic Grog idiom." },
-  { name:"Port Light", tier:5, family:"Sour", spirit:"Whiskey", spec:["2 oz bourbon","1 oz lemon juice","1 oz passion fruit syrup","1/2 oz grenadine"], method:"Whip shake or blend, crushed ice", glass:"Pilsner or tiki", garnish:"Pineapple frond", note:"Rare bourbon tiki — Kon-Tiki Ports, 1960s." },
+  { name:"Port Light", tier:5, family:"Sour", spirit:"Whiskey", spec:["2 oz bourbon","1 oz lemon juice","1 oz passion fruit syrup","1/2 oz grenadine"], method:"Whip shake or blend, crushed ice", glass:"Pilsner or tiki", garnish:"Pineapple frond", note:"Rare bourbon tiki: Kon-Tiki Ports, 1960s." },
   { name:"Suffering Bastard", tier:5, family:"Highball", spirit:"Gin", spec:["1 oz gin","1 oz cognac","1/2 oz lime juice","2 dashes Angostura","4 oz ginger beer"], method:"Build over ice, stir", glass:"Double rocks or mug", garnish:"Mint + orange", note:"Shepheard's Hotel, Cairo, 1942: invented as a hangover cure during the war." },
   { name:"Singapore Sling", tier:5, family:"Sour", spirit:"Gin", spec:["1.5 oz gin","1/2 oz cherry Heering","1/4 oz Cointreau","1/4 oz Bénédictine","2 oz pineapple juice","1/2 oz lime juice","1/4 oz grenadine","1 dash Angostura"], method:"Shake, strain over ice", glass:"Highball", garnish:"Pineapple + cherry", note:"Raffles Hotel, c. 1915." },
   { name:"Planter's Punch", tier:5, family:"Punch", spirit:"Rum", spec:["2 oz dark Jamaican rum","3/4 oz lime juice","3/4 oz simple syrup","2 dashes Angostura","1 oz water or soda"], method:"Shake, pour over crushed ice", glass:"Collins", garnish:"Nutmeg + mint", note:"One of sour, two of sweet, three of strong, four of weak." },
@@ -307,12 +307,12 @@ const COCKTAILS = [
   { name:"Bijou", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["1 oz gin","1 oz green Chartreuse","1 oz sweet vermouth","1 dash orange bitters"], method:"Stir, strain up", glass:"Coupe", garnish:"Cherry + lemon twist", note:"'Jewel': gin for diamond, Chartreuse for emerald, vermouth for ruby." },
   { name:"Tuxedo", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["1.5 oz gin","1.5 oz dry vermouth","1/4 oz maraschino","2 dashes orange bitters","absinthe rinse"], method:"Stir, strain into rinsed glass", glass:"Coupe", garnish:"Cherry + lemon twist", note:"The Martini in formal wear: maraschino, absinthe, and bitters all at once." },
   { name:"Alaska", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["2.25 oz gin","3/4 oz yellow Chartreuse","1 dash orange bitters"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"The Savoy Cocktail Book: 'presumably it was first thought of in South Carolina.'" },
-  { name:"Bronx", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["2 oz gin","1/2 oz sweet vermouth","1/2 oz dry vermouth","1 oz orange juice"], method:"Shake, strain up", glass:"Coupe", garnish:"Orange twist", note:"Once as famous as the Martini and Manhattan — the third borough." },
+  { name:"Bronx", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["2 oz gin","1/2 oz sweet vermouth","1/2 oz dry vermouth","1 oz orange juice"], method:"Shake, strain up", glass:"Coupe", garnish:"Orange twist", note:"Once as famous as the Martini and Manhattan, the third borough." },
   { name:"Income Tax", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["2 oz gin","1/2 oz sweet vermouth","1/2 oz dry vermouth","3/4 oz orange juice","2 dashes Angostura"], method:"Shake, strain up", glass:"Coupe", garnish:"Orange twist", note:"A Bronx with bitters, because taxes always add bitterness." },
   { name:"Ward 8", tier:6, family:"Sour", spirit:"Whiskey", spec:["2 oz rye","1/2 oz lemon juice","1/2 oz orange juice","2 tsp grenadine"], method:"Shake, strain up", glass:"Coupe", garnish:"Cherry + orange", note:"Boston, 1898: allegedly for a ward-machine election victory." },
   { name:"Jack Rose", tier:6, family:"Sour", spirit:"Brandy", spec:["2 oz applejack","3/4 oz lemon juice","1/2 oz grenadine"], method:"Shake, double strain up", glass:"Coupe", garnish:"Apple slice or lemon twist", note:"It gets an order of its own in The Sun Also Rises (1926)." },
   { name:"Pegu Club", tier:6, family:"Sour", spirit:"Gin", spec:["2 oz gin","3/4 oz orange curaçao","3/4 oz lime juice","1 dash Angostura","1 dash orange bitters"], method:"Shake, double strain up", glass:"Coupe", garnish:"Lime wheel", note:"The gentlemen's club of colonial Rangoon; later the name of the NYC bar that revived it." },
-  { name:"Twentieth Century", tier:6, family:"Sour", spirit:"Gin", spec:["1.5 oz gin","3/4 oz Lillet Blanc","3/4 oz lemon juice","1/2 oz white crème de cacao"], method:"Shake, double strain up", glass:"Coupe", garnish:"Lemon twist", note:"Named for the luxury train — citrus up front, chocolate on the caboose." },
+  { name:"Twentieth Century", tier:6, family:"Sour", spirit:"Gin", spec:["1.5 oz gin","3/4 oz Lillet Blanc","3/4 oz lemon juice","1/2 oz white crème de cacao"], method:"Shake, double strain up", glass:"Coupe", garnish:"Lemon twist", note:"Named for the luxury train: citrus up front, chocolate on the caboose." },
   { name:"Monkey Gland", tier:6, family:"Sour", spirit:"Gin", spec:["1.5 oz gin","1.5 oz orange juice","1 tsp grenadine","1 tsp absinthe"], method:"Shake, strain up", glass:"Coupe", garnish:"Orange twist", note:"Named for a dubious 1920s rejuvenation surgery. The drink aged better." },
   { name:"Mary Pickford", tier:6, family:"Sour", spirit:"Rum", spec:["1.5 oz white rum","1.5 oz pineapple juice","1/4 oz grenadine","1/4 oz maraschino"], method:"Shake, double strain up", glass:"Coupe", garnish:"Cherry", note:"Mixed for the silent-film star in Prohibition Havana." },
   { name:"El Presidente", tier:6, family:"Spirit & Vermouth", spirit:"Rum", spec:["1.5 oz white rum","3/4 oz blanc vermouth","1/2 oz orange curaçao","1 tsp grenadine"], method:"Stir, strain up", glass:"Coupe", garnish:"Orange twist", note:"Havana's elegant answer to the Manhattan." },
@@ -324,9 +324,9 @@ const COCKTAILS = [
   { name:"Chrysanthemum", tier:6, family:"Spirit & Vermouth", spirit:"Fortified wine", spec:["2 oz dry vermouth","1 oz Bénédictine","3 dashes absinthe"], method:"Stir, strain up", glass:"Coupe", garnish:"Orange twist", note:"A low-ABV Savoy gem; the vermouth takes the lead." },
   { name:"Bamboo", tier:6, family:"Spirit & Vermouth", spirit:"Fortified wine", spec:["1.5 oz fino sherry","1.5 oz dry vermouth","1 dash orange bitters","1 dash Angostura"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"Yokohama, 1890s: the great Japanese-invented classic." },
   { name:"Adonis", tier:6, family:"Spirit & Vermouth", spirit:"Fortified wine", spec:["1.5 oz fino sherry","1.5 oz sweet vermouth","2 dashes orange bitters"], method:"Stir, strain up", glass:"Coupe", garnish:"Orange twist", note:"The Bamboo's sweeter twin, named for an 1884 Broadway hit." },
-  { name:"Coronation", tier:6, family:"Spirit & Vermouth", spirit:"Fortified wine", spec:["1.5 oz fino sherry","1.5 oz dry vermouth","1/4 oz maraschino","2 dashes orange bitters"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"Sherry-based and barely 15% ABV — the kind of drink you can serve someone at 2pm." },
-  { name:"Diamondback", tier:6, family:"Old Fashioned", spirit:"Whiskey", spec:["1.5 oz rye","3/4 oz applejack","3/4 oz yellow Chartreuse"], method:"Stir, strain over ice or up", glass:"Rocks or coupe", garnish:"Cherry", note:"Baltimore, 1950s — sneaky-strong and honeyed." },
-  { name:"Widow's Kiss", tier:6, family:"Old Fashioned", spirit:"Brandy", spec:["1.5 oz calvados","3/4 oz yellow Chartreuse","3/4 oz Bénédictine","2 dashes Angostura"], method:"Stir, strain up", glass:"Coupe", garnish:"Cherry", note:"1895 — autumn in a glass, all orchard and herbs." },
+  { name:"Coronation", tier:6, family:"Spirit & Vermouth", spirit:"Fortified wine", spec:["1.5 oz fino sherry","1.5 oz dry vermouth","1/4 oz maraschino","2 dashes orange bitters"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"Sherry-based and barely 15% ABV, the kind of drink you can serve someone at 2pm." },
+  { name:"Diamondback", tier:6, family:"Old Fashioned", spirit:"Whiskey", spec:["1.5 oz rye","3/4 oz applejack","3/4 oz yellow Chartreuse"], method:"Stir, strain over ice or up", glass:"Rocks or coupe", garnish:"Cherry", note:"Baltimore, 1950s: sneaky-strong and honeyed." },
+  { name:"Widow's Kiss", tier:6, family:"Old Fashioned", spirit:"Brandy", spec:["1.5 oz calvados","3/4 oz yellow Chartreuse","3/4 oz Bénédictine","2 dashes Angostura"], method:"Stir, strain up", glass:"Coupe", garnish:"Cherry", note:"1895: autumn in a glass, all orchard and herbs." },
   { name:"Japanese Cocktail", tier:6, family:"Old Fashioned", spirit:"Brandy", spec:["2 oz cognac","1/2 oz orgeat","2 dashes Angostura"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"An 1862 invention: nothing Japanese about it but the occasion." },
   { name:"East India", tier:6, family:"Old Fashioned", spirit:"Brandy", spec:["2 oz cognac","1/4 oz orange curaçao","1/4 oz maraschino","1/4 oz pineapple juice","1 dash Angostura"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"For the colonial trade routes: brandy dressed for the tropics." },
   { name:"Brandy Crusta", tier:6, family:"Sour", spirit:"Brandy", spec:["2 oz cognac","1/2 oz lemon juice","1/4 oz orange curaçao","1/4 oz maraschino","1 dash Angostura"], method:"Shake, strain into prepared glass", glass:"Sugar-rimmed, whole lemon peel inside", garnish:"The peel and crust ARE the garnish", note:"New Orleans, 1850s: the missing link between cocktail and Sidecar." },
@@ -340,8 +340,8 @@ const COCKTAILS = [
   { name:"Satan's Whiskers", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["1/2 oz each: gin, sweet vermouth, dry vermouth, orange juice","1/4 oz Grand Marnier","1 dash orange bitters"], method:"Shake, strain up", glass:"Coupe", garnish:"Orange twist", note:"'Straight' with Grand Marnier, 'curled' with orange curaçao." },
   { name:"Old Pal", tier:6, family:"Spirit & Vermouth", spirit:"Whiskey", spec:["1 oz rye","1 oz dry vermouth","1 oz Campari"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"The Boulevardier's drier Parisian cousin." },
 
-  /* ===== TIER 7 — HIGHBALLS, SPRITZES & PARTY CALLS ===== */
-  { name:"Cuba Libre", tier:7, family:"Highball", spirit:"Rum", spec:["2 oz white rum","1/2 oz lime juice","4 oz cola"], method:"Build over ice", glass:"Highball", garnish:"Lime wedge", note:"Born with Cuban independence, c. 1900 — the lime is what separates it from rum and coke." },
+  /* ===== TIER 7: HIGHBALLS, SPRITZES & PARTY CALLS ===== */
+  { name:"Cuba Libre", tier:7, family:"Highball", spirit:"Rum", spec:["2 oz white rum","1/2 oz lime juice","4 oz cola"], method:"Build over ice", glass:"Highball", garnish:"Lime wedge", note:"Born with Cuban independence, c. 1900: the lime is what separates it from rum and coke." },
   { name:"Greyhound", tier:7, family:"Highball", spirit:"Vodka", spec:["2 oz vodka","4 oz grapefruit juice"], method:"Build over ice", glass:"Highball", garnish:"Grapefruit wedge", note:"Two ingredients, so the grapefruit must be fresh: bottled juice is what gives this drink its bad reputation." },
   { name:"Salty Dog", tier:7, family:"Highball", spirit:"Vodka", spec:["2 oz vodka (or gin)","4 oz grapefruit juice","salt rim"], method:"Build over ice in rimmed glass", glass:"Highball, salt rim", garnish:"Grapefruit wedge", note:"A Greyhound that learned about salt and grapefruit's friendship." },
   { name:"Sea Breeze", tier:7, family:"Highball", spirit:"Vodka", spec:["1.5 oz vodka","3 oz cranberry juice","1 oz grapefruit juice"], method:"Build over ice", glass:"Highball", garnish:"Lime wedge", note:"Cranberry and grapefruit both bring bitterness, which is why this drinks drier than it sounds." },
@@ -353,18 +353,18 @@ const COCKTAILS = [
   { name:"Tequila Sunrise", tier:7, family:"Highball", spirit:"Tequila", spec:["2 oz blanco tequila","4 oz orange juice","1/2 oz grenadine, sunk"], method:"Build, pour grenadine down the inside", glass:"Highball", garnish:"Orange + cherry", note:"Don't stir; the sunrise is the whole point." },
   { name:"Long Island Iced Tea", tier:7, family:"Highball", spirit:"Vodka", spec:["1/2 oz each: vodka, gin, white rum, blanco tequila, triple sec","3/4 oz lemon juice","3/4 oz simple syrup","2 oz cola top"], method:"Shake spirits and citrus, strain over ice, top", glass:"Collins", garnish:"Lemon wedge", note:"Contains no tea. Handle with respect: it drinks easy and lands hard." },
   { name:"Whiskey Highball", tier:7, family:"Highball", spirit:"Whiskey", spec:["2 oz whisky","4 oz chilled soda water"], method:"Build over tall ice, one lift of the spoon", glass:"Highball", garnish:"Lemon twist (optional)", note:"Japan turned this into a ritual: precise ice, precise pour, precise stir count." },
-  { name:"Presbyterian", tier:7, family:"Highball", spirit:"Whiskey", spec:["2 oz rye or bourbon","2 oz ginger ale","2 oz soda water"], method:"Build over ice", glass:"Highball", garnish:"Lemon twist", note:"Half ginger ale, half soda — the point is a lighter, drier highball than either alone." },
+  { name:"Presbyterian", tier:7, family:"Highball", spirit:"Whiskey", spec:["2 oz rye or bourbon","2 oz ginger ale","2 oz soda water"], method:"Build over ice", glass:"Highball", garnish:"Lemon twist", note:"Half ginger ale, half soda: the point is a lighter, drier highball than either alone." },
   { name:"Horse's Neck", tier:7, family:"Highball", spirit:"Brandy", spec:["2 oz brandy (or bourbon)","4 oz ginger ale","2 dashes Angostura"], method:"Build over ice", glass:"Highball", garnish:"Full lemon-peel spiral over the rim", note:"The spiral is the horse's neck: cut it in one unbroken ribbon." },
-  { name:"Mamie Taylor", tier:7, family:"Highball", spirit:"Whiskey", spec:["2 oz blended scotch","1/2 oz lime juice","4 oz ginger beer"], method:"Build over ice", glass:"Highball", garnish:"Lime wedge", note:"1899 — the scotch buck that predates the Moscow Mule by decades." },
+  { name:"Mamie Taylor", tier:7, family:"Highball", spirit:"Whiskey", spec:["2 oz blended scotch","1/2 oz lime juice","4 oz ginger beer"], method:"Build over ice", glass:"Highball", garnish:"Lime wedge", note:"1899: the scotch buck that predates the Moscow Mule by decades." },
   { name:"El Diablo", tier:7, family:"Highball", spirit:"Tequila", spec:["1.5 oz blanco tequila","1/2 oz crème de cassis","1/2 oz lime juice","3 oz ginger beer"], method:"Build over ice", glass:"Highball", garnish:"Lime wedge", note:"Trader Vic's, 1946: tequila's devilish buck." },
   { name:"Gin Rickey", tier:7, family:"Highball", spirit:"Gin", spec:["2 oz gin","1/2 oz lime juice + spent shell","4 oz soda water"], method:"Build over ice", glass:"Highball", garnish:"The lime shell", note:"No sugar, ever: the Rickey's whole identity is bone-dry refreshment." },
   { name:"Ranch Water", tier:7, family:"Highball", spirit:"Tequila", spec:["2 oz blanco tequila","1/2 oz lime juice","4 oz sparkling mineral water"], method:"Build over ice (or in the bottle)", glass:"Highball or the Topo bottle", garnish:"Lime wedge", note:"West Texas' unofficial official drink." },
   { name:"Batanga", tier:7, family:"Highball", spirit:"Tequila", spec:["2 oz blanco tequila","1/2 oz lime juice","4 oz cola","pinch salt"], method:"Build over ice in salt-rimmed glass, stir with a knife", glass:"Highball, salt rim", garnish:"Lime wedge", note:"At La Capilla, every one was stirred with the same kitchen knife for 60 years." },
   { name:"Hugo Spritz", tier:7, family:"Highball", spirit:"Sparkling wine", spec:["3/4 oz St-Germain","3 oz prosecco","1 oz soda water","5 mint leaves"], method:"Build over ice", glass:"Large wine glass", garnish:"Mint + lime wheel", note:"South Tyrol, 2005, the Aperol Spritz's floral cousin." },
-  { name:"Limoncello Spritz", tier:7, family:"Highball", spirit:"Liqueur", spec:["1.5 oz limoncello","3 oz prosecco","1 oz soda water"], method:"Build over ice", glass:"Large wine glass", garnish:"Lemon wheel + mint", note:"Italy's summer answer to the Aperol Spritz — sweeter, brighter, and best when the limoncello is house-made." },
+  { name:"Limoncello Spritz", tier:7, family:"Highball", spirit:"Liqueur", spec:["1.5 oz limoncello","3 oz prosecco","1 oz soda water"], method:"Build over ice", glass:"Large wine glass", garnish:"Lemon wheel + mint", note:"Italy's summer answer to the Aperol Spritz: sweeter, brighter, and best when the limoncello is house-made." },
   { name:"Negroni Sbagliato", tier:7, family:"Highball", spirit:"Aperitivo", spec:["1 oz Campari","1 oz sweet vermouth","2 oz prosecco"], method:"Build over ice", glass:"Rocks or wine glass", garnish:"Orange slice", note:"'Mistaken' Negroni: a Milanese bartender grabbed prosecco instead of gin. The mistake stuck." },
   { name:"Tinto de Verano", tier:7, family:"Highball", spirit:"Wine", spec:["3 oz red wine","3 oz lemon soda"], method:"Build over ice", glass:"Highball", garnish:"Lemon slice", note:"What Spaniards actually drink while tourists order sangria." },
-  { name:"Kalimotxo", tier:7, family:"Highball", spirit:"Wine", spec:["3 oz red wine","3 oz cola"], method:"Build over ice", glass:"Highball", garnish:"None", note:"Basque Country street classic — sounds wrong, tastes right." },
+  { name:"Kalimotxo", tier:7, family:"Highball", spirit:"Wine", spec:["3 oz red wine","3 oz cola"], method:"Build over ice", glass:"Highball", garnish:"None", note:"Basque Country street classic: sounds wrong, tastes right." },
   { name:"Michelada", tier:7, family:"Highball", spirit:"Beer", spec:["12 oz Mexican lager","3/4 oz lime juice","2 dashes hot sauce","2 dashes Worcestershire","pinch salt"], method:"Build in rimmed glass over ice, top gradually", glass:"Pint, salt-chile rim", garnish:"Lime wedge", note:"The beer cocktail: refresh the glass as the bottle empties." },
   { name:"Shandy", tier:7, family:"Highball", spirit:"Beer", spec:["4 oz lager","4 oz sparkling lemonade"], method:"Pour beer, then lemonade, gently", glass:"Pint", garnish:"None", note:"The Radler, if you bike to it." },
   { name:"Pimm's Cup", tier:7, family:"Highball", spirit:"Liqueur", spec:["2 oz Pimm's No. 1","4 oz sparkling lemonade","cucumber, strawberry, orange, mint"], method:"Build over ice with the garden", glass:"Highball", garnish:"The fruit and cucumber ARE the drink", note:"Wimbledon in a glass, also a New Orleans adoptee at Napoleon House." },
@@ -378,27 +378,27 @@ const COCKTAILS = [
   /* ===== TIER 8: DESSERT, HOT & AFTER-DINNER ===== */
   { name:"Grasshopper", tier:8, family:"Egg & Cream", spirit:"Liqueur", spec:["1 oz green crème de menthe","1 oz white crème de cacao","1 oz cream"], method:"Shake hard, strain up", glass:"Coupe", garnish:"Mint leaf or shaved chocolate", note:"New Orleans, c. 1918, mint chip ice cream's older, boozier sibling." },
   { name:"Golden Cadillac", tier:8, family:"Egg & Cream", spirit:"Liqueur", spec:["1 oz Galliano","1 oz white crème de cacao","1 oz cream"], method:"Shake hard, strain up", glass:"Coupe", garnish:"None", note:"Poor Red's, California, 1952." },
-  { name:"Pink Squirrel", tier:8, family:"Egg & Cream", spirit:"Liqueur", spec:["1 oz crème de noyaux (or amaretto)","1 oz white crème de cacao","1 oz cream"], method:"Shake hard, strain up", glass:"Coupe", garnish:"None", note:"Wisconsin supper-club royalty — often blended with ice cream there." },
+  { name:"Pink Squirrel", tier:8, family:"Egg & Cream", spirit:"Liqueur", spec:["1 oz crème de noyaux (or amaretto)","1 oz white crème de cacao","1 oz cream"], method:"Shake hard, strain up", glass:"Coupe", garnish:"None", note:"Wisconsin supper-club royalty: often blended with ice cream there." },
   { name:"Brandy Milk Punch", tier:8, family:"Egg & Cream", spirit:"Brandy", spec:["2 oz cognac","1/2 oz rich simple","3 oz whole milk","dash vanilla extract"], method:"Shake hard, strain over ice", glass:"Highball or rocks", garnish:"Grated nutmeg", note:"New Orleans' breakfast cocktail, no apologies." },
   { name:"Mudslide", tier:8, family:"Duo & Trio", spirit:"Vodka", spec:["1 oz vodka","1 oz coffee liqueur","1 oz Irish cream","1 oz cream (or blend with ice cream)"], method:"Shake or blend", glass:"Rocks or hurricane", garnish:"Chocolate drizzle", note:"Rum Point, Grand Cayman." },
   { name:"Toasted Almond", tier:8, family:"Duo & Trio", spirit:"Liqueur", spec:["1 oz amaretto","1 oz coffee liqueur","2 oz cream"], method:"Shake, strain over ice", glass:"Rocks", garnish:"None", note:"Add vodka and it's a Roasted Toasted Almond." },
   { name:"Black Russian", tier:8, family:"Duo & Trio", spirit:"Vodka", spec:["2 oz vodka","1 oz coffee liqueur"], method:"Build over ice, brief stir", glass:"Rocks", garnish:"None", note:"Brussels, 1949: add cream and the Dude takes over." },
   { name:"Bushwacker", tier:8, family:"Tiki", spirit:"Rum", spec:["1 oz dark rum","1 oz coffee liqueur","1 oz dark crème de cacao","2 oz coconut cream","2 oz milk"], method:"Blend with crushed ice", glass:"Hurricane", garnish:"Grated nutmeg", note:"Gulf Coast beach-bar milkshake, born in the Virgin Islands." },
-  { name:"Stinger", tier:8, family:"Duo & Trio", spirit:"Brandy", spec:["2 oz cognac","3/4 oz white crème de menthe"], method:"Shake (the rare stirrable that's shaken), strain over crushed ice or up", glass:"Rocks or coupe", garnish:"Mint leaf", note:"The society nightcap of the 1920s — always WHITE menthe." },
+  { name:"Stinger", tier:8, family:"Duo & Trio", spirit:"Brandy", spec:["2 oz cognac","3/4 oz white crème de menthe"], method:"Shake (the rare stirrable that's shaken), strain over crushed ice or up", glass:"Rocks or coupe", garnish:"Mint leaf", note:"The society nightcap of the 1920s: always WHITE menthe." },
   { name:"Rusty Nail", tier:8, family:"Duo & Trio", spirit:"Whiskey", spec:["2 oz blended scotch","3/4 oz Drambuie"], method:"Build over ice, stir", glass:"Rocks, large cube", garnish:"Lemon twist", note:"The 1960s lounge order: screwdriver-free hardware." },
   { name:"Godfather", tier:8, family:"Duo & Trio", spirit:"Whiskey", spec:["2 oz blended scotch","3/4 oz amaretto"], method:"Build over ice, stir", glass:"Rocks", garnish:"None", note:"Named in the wake of the 1972 film; swap scotch for vodka and it's a Godmother." },
-  { name:"Godmother", tier:8, family:"Duo & Trio", spirit:"Vodka", spec:["2 oz vodka","3/4 oz amaretto"], method:"Build over ice, stir", glass:"Rocks", garnish:"None", note:"Vodka's turn in the Godfather family — same amaretto, softer base." },
+  { name:"Godmother", tier:8, family:"Duo & Trio", spirit:"Vodka", spec:["2 oz vodka","3/4 oz amaretto"], method:"Build over ice, stir", glass:"Rocks", garnish:"None", note:"Vodka's turn in the Godfather family: same amaretto, softer base." },
   { name:"French Connection", tier:8, family:"Duo & Trio", spirit:"Brandy", spec:["2 oz cognac","3/4 oz amaretto"], method:"Build over ice, stir", glass:"Rocks", garnish:"None", note:"Named for the 1971 film: cognac completes the family trio." },
   { name:"Chocolate Martini", tier:8, family:"Duo & Trio", spirit:"Vodka", spec:["1.5 oz vodka","1 oz dark crème de cacao","1/2 oz chocolate liqueur","1/2 oz cream"], method:"Shake hard, strain up", glass:"Coupe, cocoa rim", garnish:"Shaved chocolate", note:"Not a Martini. Still sells hundreds." },
-  { name:"Sgroppino", tier:8, family:"Duo & Trio", spirit:"Vodka", spec:["1 oz vodka","1 scoop lemon sorbet","2 oz prosecco"], method:"Whisk together until frothy", glass:"Flute or coupe", garnish:"Lemon zest", note:"Venetian palate cleanser — dessert and digestif in one glass." },
+  { name:"Sgroppino", tier:8, family:"Duo & Trio", spirit:"Vodka", spec:["1 oz vodka","1 scoop lemon sorbet","2 oz prosecco"], method:"Whisk together until frothy", glass:"Flute or coupe", garnish:"Lemon zest", note:"Venetian palate cleanser, dessert and digestif in one glass." },
   { name:"Spanish Coffee", tier:8, family:"Hot", spirit:"Rum", spec:["3/4 oz overproof rum (flamed)","1/2 oz triple sec","3/4 oz coffee liqueur","4 oz hot coffee","lightly whipped cream"], method:"Flame the rum in a sugar-rimmed glass, build, float cream", glass:"Footed mug, caramelized sugar rim", garnish:"Grated nutmeg", note:"Huber's in Portland flames these tableside all night." },
   { name:"Mexican Coffee", tier:8, family:"Hot", spirit:"Tequila", spec:["1 oz añejo tequila","1 oz coffee liqueur","4 oz hot coffee","lightly whipped cream"], method:"Build hot, float cream", glass:"Pre-heated mug", garnish:"Cinnamon dust", note:"Añejo tequila's vanilla and oak sit surprisingly naturally in hot coffee." },
   { name:"Keoke Coffee", tier:8, family:"Hot", spirit:"Brandy", spec:["1 oz brandy","1/2 oz coffee liqueur","1/2 oz dark crème de cacao","4 oz hot coffee","lightly whipped cream"], method:"Build hot, float cream", glass:"Pre-heated mug", garnish:"None", note:"San Diego's answer to Irish Coffee." },
-  { name:"Hot Buttered Rum", tier:8, family:"Hot", spirit:"Rum", spec:["2 oz dark rum","1 heaping tbsp spiced butter batter","4 oz hot water"], method:"Melt batter in hot water, add rum, stir", glass:"Pre-heated mug", garnish:"Cinnamon stick + nutmeg", note:"Batter: butter, brown sugar, cinnamon, nutmeg, clove — make it by the tub in winter." },
+  { name:"Hot Buttered Rum", tier:8, family:"Hot", spirit:"Rum", spec:["2 oz dark rum","1 heaping tbsp spiced butter batter","4 oz hot water"], method:"Melt batter in hot water, add rum, stir", glass:"Pre-heated mug", garnish:"Cinnamon stick + nutmeg", note:"Batter: butter, brown sugar, cinnamon, nutmeg, clove: make it by the tub in winter." },
   { name:"Tom & Jerry", tier:8, family:"Egg & Cream", spirit:"Rum", spec:["1 oz cognac","1 oz dark rum","2 tbsp Tom & Jerry batter (whipped egg, sugar, spice)","4 oz hot milk"], method:"Batter in mug, spirits, top with hot milk", glass:"Tom & Jerry mug", garnish:"Grated nutmeg", note:"Claimed (falsely) by the 1862 guide: still the king of Wisconsin winters." },
   { name:"Eggnog", tier:8, family:"Egg & Cream", spirit:"Brandy", spec:["1.5 oz cognac","1/2 oz dark rum","1 whole egg","1/2 oz rich simple","2 oz whole milk","1 oz cream"], method:"Dry shake, shake with ice, strain", glass:"Rocks or punch cup", garnish:"Grated nutmeg", note:"Single-serve; age a batched version for weeks and it only improves." },
   { name:"Coquito", tier:8, family:"Egg & Cream", spirit:"Rum", spec:["2 oz white rum","1.5 oz coconut cream","1.5 oz sweetened condensed milk","1.5 oz evaporated milk","cinnamon + vanilla"], method:"Blend, chill well, serve cold", glass:"Small rocks or cordial", garnish:"Cinnamon dust", note:"Puerto Rico's Christmas: every family guards its own ratio." },
-  { name:"Mulled Wine", tier:8, family:"Hot", spirit:"Wine", spec:["5 oz red wine","1/2 oz brandy","1/2 oz honey","orange peel, clove, cinnamon, star anise"], method:"Warm gently — never boil", glass:"Mug", garnish:"Orange wheel + cinnamon stick", note:"Glühwein, vin chaud, glögg — every cold country invented it independently." },
+  { name:"Mulled Wine", tier:8, family:"Hot", spirit:"Wine", spec:["5 oz red wine","1/2 oz brandy","1/2 oz honey","orange peel, clove, cinnamon, star anise"], method:"Warm gently; never boil", glass:"Mug", garnish:"Orange wheel + cinnamon stick", note:"Glühwein, vin chaud, glögg: every cold country invented it independently." },
   { name:"Café Brûlot", tier:8, family:"Hot", spirit:"Brandy", spec:["1.5 oz cognac","1/2 oz orange curaçao","clove-studded orange peel + cinnamon","4 oz hot coffee"], method:"Flame the spirits with the spices, ladle over coffee", glass:"Brûlot or demitasse cup", garnish:"The flaming peel ribbon IS the show", note:"Antoine's, New Orleans: fire poured down a spiral of orange peel." },
   { name:"Sherry Flip", tier:8, family:"Egg & Cream", spirit:"Fortified wine", spec:["2 oz oloroso sherry","1 whole egg","1/2 oz rich simple"], method:"Dry shake, shake with ice, strain up", glass:"Coupe", garnish:"Grated nutmeg", note:"The Victorian protein shake." },
   { name:"Porto Flip", tier:8, family:"Egg & Cream", spirit:"Fortified wine", spec:["1.5 oz ruby port","3/4 oz cognac","1 whole egg","1 tsp simple"], method:"Dry shake, shake with ice, strain up", glass:"Coupe", garnish:"Grated nutmeg", note:"The port-and-cognac flip is the richest of the family, a dessert course in a coupe." },
@@ -407,20 +407,20 @@ const COCKTAILS = [
   { name:"Dirty Banana", tier:8, family:"Tiki", spirit:"Rum", spec:["1.5 oz gold rum","1/2 oz coffee liqueur","1/2 oz banana liqueur","1 ripe banana","1 oz cream"], method:"Blend with crushed ice", glass:"Hurricane", garnish:"Banana slice", note:"Jamaica's beach-bar dessert." },
   { name:"Nutty Irishman", tier:8, family:"Duo & Trio", spirit:"Liqueur", spec:["1 oz Frangelico","1 oz Irish cream"], method:"Build over ice (or into hot coffee)", glass:"Rocks or mug", garnish:"None", note:"Equal parts, no measuring drama: served cold over ice or poured into hot coffee." },
   { name:"Snowball", tier:8, family:"Highball", spirit:"Liqueur", spec:["2 oz advocaat","4 oz sparkling lemonade","squeeze of lime"], method:"Build over ice", glass:"Highball", garnish:"Cherry", note:"Britain's Christmas classic: custard learns to fizz." },
-  { name:"Ferrari", tier:8, family:"Duo & Trio", spirit:"Aperitivo", spec:["1 oz Fernet-Branca","1 oz Campari"], method:"Stir briefly over ice or serve as a chilled shot", glass:"Rocks or shot", garnish:"None", note:"Fernet + Campari = the industry handshake, named for the F and C badge. Also on the Shot Board — poured over ice as a drink, or straight as a shot." },
+  { name:"Ferrari", tier:8, family:"Duo & Trio", spirit:"Aperitivo", spec:["1 oz Fernet-Branca","1 oz Campari"], method:"Stir briefly over ice or serve as a chilled shot", glass:"Rocks or shot", garnish:"None", note:"Fernet + Campari = the industry handshake, named for the F and C badge. Also on the Shot Board: poured over ice as a drink, or straight as a shot." },
   { name:"Brave Bull", tier:8, family:"Duo & Trio", spirit:"Tequila", spec:["2 oz blanco tequila","1 oz coffee liqueur"], method:"Build over ice, stir", glass:"Rocks", garnish:"None", note:"The Black Russian goes to Jalisco." },
 
-  /* ===== TIER 9 — DRINKS OF THE WORLD ===== */
+  /* ===== TIER 9: DRINKS OF THE WORLD ===== */
   { name:"Caesar", tier:9, family:"Highball", spirit:"Vodka", spec:["1.5 oz vodka","4 oz Clamato","2 dashes hot sauce","2 dashes Worcestershire","pinch celery salt"], method:"Roll or build over ice in rimmed glass", glass:"Highball, celery-salt rim", garnish:"Celery + lime (Canadians go maximalist)", note:"Calgary, 1969: Canada's national cocktail, 350 million a year." },
   { name:"Toronto", tier:9, family:"Old Fashioned", spirit:"Whiskey", spec:["2 oz Canadian rye","1/4 oz Fernet-Branca","1/4 oz demerara syrup","2 dashes Angostura"], method:"Stir, strain over large cube or up", glass:"Rocks or coupe", garnish:"Orange twist", note:"The Fernet Old Fashioned: Canada's great contribution to the amaro canon." },
-  { name:"Brandy Old Fashioned", tier:9, family:"Old Fashioned", spirit:"Brandy", spec:["2 oz brandy","1 sugar cube + 2 dashes Angostura","muddled orange slice + cherry","2 oz lemon-lime soda (sweet) or grapefruit soda / sour mix (sour)"], method:"Muddle, build over ice, top", glass:"Rocks", garnish:"Orange + cherry", note:"Wisconsin drinks more brandy per capita than anywhere — 'sweet or sour?' is the state's password. A 'press' is half lemon-lime, half seltzer; plain 'soda' means seltzer alone." },
+  { name:"Brandy Old Fashioned", tier:9, family:"Old Fashioned", spirit:"Brandy", spec:["2 oz brandy","1 sugar cube + 2 dashes Angostura","muddled orange slice + cherry","2 oz lemon-lime soda (sweet) or grapefruit soda / sour mix (sour)"], method:"Muddle, build over ice, top", glass:"Rocks", garnish:"Orange + cherry", note:"Wisconsin drinks more brandy per capita than anywhere; 'sweet or sour?' is the state's password. A 'press' is half lemon-lime, half seltzer; plain 'soda' means seltzer alone." },
   { name:"Pisco Punch", tier:9, family:"Punch", spirit:"Brandy", spec:["2 oz pisco","3/4 oz lemon juice","3/4 oz pineapple gum syrup (or pineapple + rich simple)"], method:"Shake, strain up or over ice", glass:"Coupe or punch cup", garnish:"Pineapple wedge", note:"The legend of Gold Rush San Francisco: the true recipe was never written down, and it did not outlive the Bank Exchange saloon." },
   { name:"Chilcano", tier:9, family:"Highball", spirit:"Brandy", spec:["2 oz pisco","1/2 oz lime juice","4 oz ginger ale","1 dash Angostura"], method:"Build over ice", glass:"Highball", garnish:"Lime wheel", note:"Peru's everyday pisco serve, lighter than the Sour, twice as sessionable." },
   { name:"Piscola", tier:9, family:"Highball", spirit:"Brandy", spec:["2 oz pisco","4 oz cola"], method:"Build over ice", glass:"Highball", garnish:"Lemon slice", note:"Chile's national ritual, so beloved it has its own holiday." },
-  { name:"Terremoto", tier:9, family:"Punch", spirit:"Wine", spec:["4 oz pipeño (young sweet white wine)","1 scoop pineapple ice cream","1/2 oz grenadine (optional)"], method:"Build; the ice cream melts into the wine", glass:"Tall", garnish:"None", note:"Chilean 'Earthquake' — the second one is called the Aftershock." },
+  { name:"Terremoto", tier:9, family:"Punch", spirit:"Wine", spec:["4 oz pipeño (young sweet white wine)","1 scoop pineapple ice cream","1/2 oz grenadine (optional)"], method:"Build; the ice cream melts into the wine", glass:"Tall", garnish:"None", note:"Chilean 'Earthquake': the second one is called the Aftershock." },
   { name:"Caipiroska", tier:9, family:"Sour", spirit:"Vodka", spec:["2 oz vodka","1/2 lime, cut in wedges","2 tsp sugar"], method:"Muddle lime and sugar, add spirit and ice, stir", glass:"Rocks", garnish:"The muddled lime", note:"Brazil's Caipirinha with vodka, hugely popular across South America." },
-  { name:"Batida", tier:9, family:"Tiki", spirit:"Cachaça", spec:["2 oz cachaça","2 oz coconut milk (or passion fruit purée)","1/2 oz sweetened condensed milk"], method:"Blend with ice", glass:"Tall", garnish:"None", note:"Brazil's beach blender family — coco, maracujá, morango, pick your fruit." },
-  { name:"Rabo de Galo", tier:9, family:"Spirit & Vermouth", spirit:"Cachaça", spec:["2 oz cachaça","1 oz sweet vermouth","1/4 oz Cynar (optional)"], method:"Stir over ice", glass:"Rocks", garnish:"Orange peel", note:"Literally 'rooster's tail' — Brazil's cachaça Manhattan." },
+  { name:"Batida", tier:9, family:"Tiki", spirit:"Cachaça", spec:["2 oz cachaça","2 oz coconut milk (or passion fruit purée)","1/2 oz sweetened condensed milk"], method:"Blend with ice", glass:"Tall", garnish:"None", note:"Brazil's beach blender family: coco, maracujá, morango, pick your fruit." },
+  { name:"Rabo de Galo", tier:9, family:"Spirit & Vermouth", spirit:"Cachaça", spec:["2 oz cachaça","1 oz sweet vermouth","1/4 oz Cynar (optional)"], method:"Stir over ice", glass:"Rocks", garnish:"Orange peel", note:"Literally 'rooster's tail': Brazil's cachaça Manhattan." },
   { name:"Fernet con Coca", tier:9, family:"Highball", spirit:"Aperitivo", spec:["2 oz Fernet-Branca","6 oz cola"], method:"Build over ice in stages: it foams", glass:"Tall", garnish:"None", note:"Argentina drinks most of the world's Fernet, almost all of it exactly like this." },
   { name:"Carajillo", tier:9, family:"Duo & Trio", spirit:"Liqueur", spec:["1.5 oz Licor 43","1 shot hot espresso"], method:"Shake with ice or pour espresso over the liqueur", glass:"Rocks", garnish:"None", note:"Mexico City's after-lunch institution (Spain claims the original with brandy)." },
   { name:"Cantarito", tier:9, family:"Highball", spirit:"Tequila", spec:["2 oz blanco tequila","1/2 oz lime + 1/2 oz lemon juice","1 oz orange juice","3 oz grapefruit soda","pinch salt"], method:"Build over ice in a clay cup", glass:"Clay cantarito (the cup flavors the drink)", garnish:"Citrus wheels + chile salt", note:"Jalisco roadside standard, a Paloma with the whole citrus bowl." },
@@ -429,15 +429,15 @@ const COCKTAILS = [
   { name:"Rebujito", tier:9, family:"Highball", spirit:"Fortified wine", spec:["3 oz fino sherry","4 oz lemon-lime soda","5 mint leaves"], method:"Build over ice", glass:"Highball", garnish:"Mint", note:"What all of Seville drinks during Feria week." },
   { name:"Agua de Valencia", tier:9, family:"Punch", spirit:"Sparkling wine", spec:["3 oz cava","2 oz orange juice","1/4 oz vodka","1/4 oz gin","1 tsp sugar"], method:"Build in pitcher over ice, stir gently", glass:"Wine glass", garnish:"Orange slice", note:"Café Madrid, Valencia, 1959: dangerously easy pitcher drinking." },
   { name:"Sangria", tier:9, family:"Punch", spirit:"Wine", spec:["4 oz red wine","1/2 oz brandy","1/2 oz orange liqueur","1/2 oz lemon juice","1 tsp sugar","seasonal fruit"], method:"Build in pitcher, rest an hour, serve over ice", glass:"Wine glass", garnish:"The macerated fruit", note:"The fruit needs the rest; fresh-made sangria is just wet wine." },
-  { name:"Ti' Punch", tier:9, family:"Old Fashioned", spirit:"Rum", spec:["2 oz rhum agricole blanc","1 tsp cane syrup","1 lime disc with plenty of peel"], method:"Squeeze lime, add syrup and rhum, brief stir — often no ice", glass:"Small rocks", garnish:"The lime disc", note:"Martinique's ritual: 'chacun prépare sa mort' — each prepares their own." },
+  { name:"Ti' Punch", tier:9, family:"Old Fashioned", spirit:"Rum", spec:["2 oz rhum agricole blanc","1 tsp cane syrup","1 lime disc with plenty of peel"], method:"Squeeze lime, add syrup and rhum, brief stir, often no ice", glass:"Small rocks", garnish:"The lime disc", note:"Martinique's ritual: 'chacun prépare sa mort': each prepares their own." },
   { name:"Jamaican Rum Punch", tier:9, family:"Punch", spirit:"Rum", spec:["1.5 oz Jamaican rum","3/4 oz lime juice","3/4 oz simple syrup","1/4 oz grenadine","2 oz orange + pineapple juice"], method:"Shake, pour over crushed ice", glass:"Tall", garnish:"Grated nutmeg", note:"One of sour, two of sweet, three of strong, four of weak: the rhyme is the recipe." },
   { name:"Canchánchara", tier:9, family:"Sour", spirit:"Rum", spec:["2 oz aguardiente or white rum","3/4 oz lime juice","3/4 oz honey","splash of water"], method:"Dissolve honey, build over ice", glass:"Clay cup", garnish:"Lime wheel", note:"Cuba's oldest cocktail, fuel of the independence fighters, from Trinidad de Cuba." },
-  { name:"Wray & Ting", tier:9, family:"Highball", spirit:"Rum", spec:["2 oz Jamaican overproof rum","6 oz grapefruit soda","squeeze of lime"], method:"Build over ice", glass:"Highball", garnish:"Lime wedge", note:"Wray & Nephew plus Ting — Jamaica's two-word national highball." },
+  { name:"Wray & Ting", tier:9, family:"Highball", spirit:"Rum", spec:["2 oz Jamaican overproof rum","6 oz grapefruit soda","squeeze of lime"], method:"Build over ice", glass:"Highball", garnish:"Lime wedge", note:"Wray & Nephew plus Ting: Jamaica's two-word national highball." },
   { name:"Chu-Hai", tier:9, family:"Highball", spirit:"Shochu", spec:["1.5 oz shochu","4 oz sparkling water","big squeeze of lemon"], method:"Build over ice", glass:"Highball or the can", garnish:"Lemon wedge", note:"Japan's convenience-store highball: 'shochu highball,' infinitely flavored." },
   { name:"Somaek", tier:9, family:"Highball", spirit:"Soju", spec:["1 part soju","3 parts cold lager"], method:"Pour soju into beer, one chopstick tap to mix", glass:"Beer glass", garnish:"None", note:"Korea's portmanteau (soju + maekju): ratios are a matter of fierce personal doctrine." },
   { name:"Snakebite", tier:9, family:"Highball", spirit:"Beer", spec:["half pint lager","half pint hard cider","dash crème de cassis (for a Snakebite & Black)"], method:"Pour carefully, lager first", glass:"Pint", garnish:"None", note:"The British student union classic; some pubs famously refuse to serve it." },
   { name:"Suze Tonic", tier:9, family:"Highball", spirit:"Aperitivo", spec:["1.5 oz Suze","4 oz tonic water"], method:"Build over ice", glass:"Highball", garnish:"Lemon wheel", note:"France's bright-yellow gentian aperitif hour." },
-  { name:"Pastis", tier:9, family:"Highball", spirit:"Absinthe", spec:["1 oz pastis","5 oz cold water"], method:"Serve the water alongside — the drinker pours and watches it louche", glass:"Small tumbler", garnish:"None", note:"Marseille's afternoon. The cloud (louche) is anise oils blooming in water." },
+  { name:"Pastis", tier:9, family:"Highball", spirit:"Absinthe", spec:["1 oz pastis","5 oz cold water"], method:"Serve the water alongside: the drinker pours and watches it louche", glass:"Small tumbler", garnish:"None", note:"Marseille's afternoon. The cloud (louche) is anise oils blooming in water." },
   { name:"Lemon Sour", tier:9, family:"Highball", spirit:"Shochu", spec:["1.5 oz shochu","3/4 oz lemon juice","1/2 oz simple syrup","2 oz soda water"], method:"Build over ice, stir", glass:"Highball", garnish:"Lemon wheels", note:"The izakaya standard, Japan's working answer to the highball." },
   { name:"Porto Tónico", tier:9, family:"Highball", spirit:"Fortified wine", spec:["2 oz white port","4 oz tonic water"], method:"Build over ice", glass:"Wine glass or highball", garnish:"Lemon + mint", note:"Porto's summer secret, the G&T's Portuguese cousin." },
   { name:"Caribou", tier:9, family:"Punch", spirit:"Wine", spec:["3 oz red wine","1 oz Canadian whisky","1/2 oz maple syrup"], method:"Stir; serve warm outdoors or chilled", glass:"Mug or rocks", garnish:"None", note:"Québec Winter Carnival fuel, carried in plastic canes." },
@@ -453,7 +453,7 @@ const COCKTAILS = [
   { name:"Cocktail à la Louisiane", tier:10, family:"Spirit & Vermouth", spirit:"Whiskey", spec:["3/4 oz rye","3/4 oz sweet vermouth","3/4 oz Bénédictine","3 dashes absinthe","3 dashes Peychaud's"], method:"Stir, strain up", glass:"Coupe", garnish:"Brandied cherry", note:"House drink of Restaurant de la Louisiane, the Vieux Carré's richer cousin." },
   { name:"Remember the Maine", tier:10, family:"Spirit & Vermouth", spirit:"Whiskey", spec:["2 oz rye","3/4 oz sweet vermouth","1/4 oz cherry Heering","2 dashes absinthe"], method:"Stir, strain up", glass:"Coupe", garnish:"Brandied cherry", note:"Havana, 1933, 'as the cannons boomed': stir clockwise, as the original instruction had it." },
   { name:"Army & Navy", tier:10, family:"Sour", spirit:"Gin", spec:["2 oz gin","3/4 oz lemon juice","1/2 oz orgeat","2 dashes Angostura"], method:"Shake, double strain up", glass:"Coupe", garnish:"Lemon twist", note:"The gin-orgeat sour: almond gives it a velvet finish." },
-  { name:"Lion's Tail", tier:10, family:"Sour", spirit:"Whiskey", spec:["2 oz bourbon","3/4 oz lime juice","1/2 oz allspice dram","1/4 oz simple syrup","1 dash Angostura"], method:"Shake, double strain up", glass:"Coupe", garnish:"Lime wheel", note:"1937 London — bourbon meets the spice islands." },
+  { name:"Lion's Tail", tier:10, family:"Sour", spirit:"Whiskey", spec:["2 oz bourbon","3/4 oz lime juice","1/2 oz allspice dram","1/4 oz simple syrup","1 dash Angostura"], method:"Shake, double strain up", glass:"Coupe", garnish:"Lime wheel", note:"1937 London: bourbon meets the spice islands." },
   { name:"Cameron's Kick", tier:10, family:"Sour", spirit:"Whiskey", spec:["1 oz blended scotch","1 oz Irish whiskey","3/4 oz lemon juice","1/2 oz orgeat"], method:"Shake, double strain up", glass:"Coupe", garnish:"Lemon twist", note:"Scotch and Irish in the same glass, a diplomatic miracle from the Savoy." },
   { name:"Champs-Élysées", tier:10, family:"Sour", spirit:"Brandy", spec:["1.5 oz cognac","3/4 oz lemon juice","1/2 oz green Chartreuse","1/4 oz simple syrup","1 dash Angostura"], method:"Shake, double strain up", glass:"Coupe", garnish:"Lemon twist", note:"The Sidecar takes a detour past the monastery." },
   { name:"Brown Derby", tier:10, family:"Sour", spirit:"Whiskey", spec:["2 oz bourbon","3/4 oz grapefruit juice","1/2 oz honey syrup"], method:"Shake, double strain up", glass:"Coupe", garnish:"Grapefruit twist", note:"1930s Hollywood, named for the hat-shaped diner." },
@@ -465,7 +465,7 @@ const COCKTAILS = [
   { name:"Stone Fence", tier:10, family:"Highball", spirit:"Brandy", spec:["2 oz applejack (or rye)","4 oz hard cider","2 dashes Angostura"], method:"Build over ice", glass:"Highball", garnish:"Apple slice", note:"The Green Mountain Boys allegedly drank these before taking Fort Ticonderoga, 1775." },
   { name:"Prescription Julep", tier:10, family:"Julep & Smash", spirit:"Brandy", spec:["1.5 oz cognac","1/2 oz rye","1/4 oz rich simple","8 mint leaves"], method:"Press mint, pack with crushed ice, swizzle until frosted", glass:"Julep cup", garnish:"Mint bouquet", note:"1857, 'prescribed' in Harper's: the julep as the doctor intended, cognac first." },
   { name:"Creole Cocktail", tier:10, family:"Spirit & Vermouth", spirit:"Whiskey", spec:["1.5 oz rye","1.5 oz sweet vermouth","1 dash Bénédictine","1 dash Amer Picon (or bitter amaro)"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"A Manhattan gone to New Orleans, with Bénédictine and Amer Picon doing the accent work." },
-  { name:"Angel Face", tier:10, family:"Spirit & Vermouth", spirit:"Gin", spec:["1 oz gin","1 oz apricot liqueur","1 oz calvados"], method:"Stir (or brief shake), strain up", glass:"Coupe", garnish:"None", note:"Savoy equal-parter — orchard fruit with a deceptive halo." },
+  { name:"Angel Face", tier:10, family:"Spirit & Vermouth", spirit:"Gin", spec:["1 oz gin","1 oz apricot liqueur","1 oz calvados"], method:"Stir (or brief shake), strain up", glass:"Coupe", garnish:"None", note:"Savoy equal-parter: orchard fruit with a deceptive halo." },
   { name:"Fancy Free", tier:10, family:"Old Fashioned", spirit:"Whiskey", spec:["2 oz rye","1/2 oz maraschino","1 dash Angostura","1 dash orange bitters"], method:"Stir, strain into sugar-rimmed glass", glass:"Rocks, sugar rim", garnish:"Orange twist", note:"The maraschino Old Fashioned." },
   { name:"Monte Carlo", tier:10, family:"Old Fashioned", spirit:"Whiskey", spec:["2 oz rye","1/2 oz Bénédictine","2 dashes Angostura"], method:"Stir over ice or strain up", glass:"Rocks or coupe", garnish:"Lemon twist", note:"An Old Fashioned where the monks supply the sugar." },
   { name:"Tipperary", tier:10, family:"Spirit & Vermouth", spirit:"Whiskey", spec:["1.5 oz Irish whiskey","3/4 oz sweet vermouth","1/2 oz green Chartreuse"], method:"Stir, strain up", glass:"Coupe", garnish:"Orange twist", note:"It's a long way to Tipperary; this shortens it." },
@@ -477,12 +477,12 @@ const COCKTAILS = [
   { name:"Knickerbocker", tier:10, family:"Sour", spirit:"Rum", spec:["2 oz aged rum","1/2 oz orange curaçao","1/2 oz lemon juice","1/2 oz raspberry syrup"], method:"Shake, strain over crushed ice", glass:"Rocks", garnish:"Seasonal berries", note:"1860s-era: arguably the proto-tiki drink, a century early." },
   { name:"Coffee Cocktail", tier:10, family:"Egg & Cream", spirit:"Fortified wine", spec:["1.5 oz ruby port","1 oz cognac","1 whole egg","1 tsp simple"], method:"Dry shake, shake with ice, strain up", glass:"Small wine glass", garnish:"Grated nutmeg", note:"Contains no coffee, named because it LOOKS like one. The old guides shrugged about it in print." },
   { name:"Bensonhurst", tier:10, family:"Spirit & Vermouth", spirit:"Whiskey", spec:["2 oz rye","3/4 oz dry vermouth","1/2 oz maraschino","1 tsp Cynar"], method:"Stir, strain up", glass:"Coupe", garnish:"None", note:"The dry entry in the Brooklyn-neighborhood series." },
-  { name:"Preakness", tier:10, family:"Spirit & Vermouth", spirit:"Whiskey", spec:["2 oz rye","1 oz sweet vermouth","1/4 oz Bénédictine","1 dash Angostura"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"Born for the 1936 Preakness Stakes — a Manhattan with racing silks." },
+  { name:"Preakness", tier:10, family:"Spirit & Vermouth", spirit:"Whiskey", spec:["2 oz rye","1 oz sweet vermouth","1/4 oz Bénédictine","1 dash Angostura"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"Born for the 1936 Preakness Stakes, a Manhattan with racing silks." },
   { name:"Fourth Regiment", tier:10, family:"Spirit & Vermouth", spirit:"Whiskey", spec:["1.5 oz rye","1.5 oz sweet vermouth","1 dash each: celery, orange, and Peychaud's bitters"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"1889: the three-bitters Manhattan; the celery dash is the revelation." },
   { name:"Metropole", tier:10, family:"Spirit & Vermouth", spirit:"Brandy", spec:["1.5 oz cognac","1.5 oz dry vermouth","2 dashes Peychaud's","1 dash orange bitters"], method:"Stir, strain up", glass:"Coupe", garnish:"Cherry", note:"From the Hotel Metropole, Times Square, when Times Square was elegant." },
-  { name:"Waldorf", tier:10, family:"Spirit & Vermouth", spirit:"Whiskey", spec:["2 oz rye","3/4 oz sweet vermouth","1/4 oz absinthe","1 dash Angostura"], method:"Stir, strain up", glass:"Coupe", garnish:"None", note:"Pre-Prohibition Waldorf-Astoria bar book — the absinthe Manhattan." },
+  { name:"Waldorf", tier:10, family:"Spirit & Vermouth", spirit:"Whiskey", spec:["2 oz rye","3/4 oz sweet vermouth","1/4 oz absinthe","1 dash Angostura"], method:"Stir, strain up", glass:"Coupe", garnish:"None", note:"Pre-Prohibition Waldorf-Astoria bar book, the absinthe Manhattan." },
   { name:"Rock and Rye", tier:10, family:"Old Fashioned", spirit:"Whiskey", spec:["2 oz rye","1/2 oz rock candy syrup","citrus peel + dried fruit, macerated"], method:"Traditionally bottled and rested; or stir and serve over ice", glass:"Rocks", garnish:"Orange peel", note:"Sold in 19th-century pharmacies as cough medicine. The prescription still works." },
-  /* ===== CANON REPAIR — core drink that belonged all along ===== */
+  /* ===== CANON REPAIR: core drink that belonged all along ===== */
   { name:"Gin Fizz", tier:2, family:"Sour", spirit:"Gin", spec:["2 oz gin","3/4 oz lemon juice","3/4 oz simple syrup","1 egg white (optional: with it, a Silver Fizz)","2 oz soda water"], method:"Dry shake if egg, then shake with ice, strain, top with soda slowly", glass:"Highball, no ice", garnish:"None: the foam is the point", note:"Plain, it's the bar-call fizz. The egg white makes it a Silver, a yolk a Golden, both a Royal. Serve it fast: the foam waits for no one." },
 
   /* ===== TIER 4 ADDITIONS: modern craft ===== */
@@ -497,10 +497,10 @@ const COCKTAILS = [
 
   { name:"Cynar Julep", tier:4, family:"Julep & Smash", spirit:"Aperitivo", spec:["2 oz Cynar","1/2 oz lime juice","1/4 oz simple syrup","10 mint leaves"], method:"Lightly press mint, build over crushed ice, swizzle until frosted", glass:"Julep cup or rocks", garnish:"Big mint bouquet", note:"A PDT creation: a low-proof julep built on artichoke amaro that converts Cynar skeptics on the first sip." },
   { name:"Bitter Mai Tai", tier:4, family:"Tiki", spirit:"Rum", spec:["1.5 oz Campari","3/4 oz Jamaican rum","3/4 oz lime juice","1/2 oz orgeat","1/4 oz orange curaçao"], method:"Whip shake, pour over crushed ice", glass:"Rocks", garnish:"Mint sprig + spent lime shell", note:"Dram, Brooklyn: Campari takes the base spirit's chair and the orgeat keeps it from turning astringent. Contains tree nuts." },
-  /* ===== TIER 6 ADDITIONS — golden age ===== */
+  /* ===== TIER 6 ADDITIONS: golden age ===== */
   { name:"Pink Lady", tier:6, family:"Egg & Cream", spirit:"Gin", spec:["1.5 oz gin","1/2 oz applejack","1/2 oz lemon juice","1/2 oz grenadine","1 egg white"], method:"Dry shake, shake with ice, strain up", glass:"Coupe", garnish:"Brandied cherry", note:"Unfairly mocked for decades as a 'lady's drink'; it's a well-built applejack sour and it's excellent." },
   { name:"Corpse Reviver #1", tier:6, family:"Spirit & Vermouth", spirit:"Brandy", spec:["1.5 oz cognac","3/4 oz calvados","3/4 oz sweet vermouth"], method:"Stir, strain up", glass:"Coupe", garnish:"Apple slice or orange twist", note:"The spirit-forward original, all orchard and oak; the shaken #2 gets the fame, but this one is the better nightcap." },
-  { name:"Casino", tier:6, family:"Sour", spirit:"Gin", spec:["2 oz Old Tom gin","1/2 oz maraschino","1/2 oz lemon juice","2 dashes orange bitters"], method:"Shake, double strain up", glass:"Coupe", garnish:"Brandied cherry + lemon twist", note:"The Aviation's drier ancestor — no violette, just maraschino doing all the work." },
+  { name:"Casino", tier:6, family:"Sour", spirit:"Gin", spec:["2 oz Old Tom gin","1/2 oz maraschino","1/2 oz lemon juice","2 dashes orange bitters"], method:"Shake, double strain up", glass:"Coupe", garnish:"Brandied cherry + lemon twist", note:"The Aviation's drier ancestor: no violette, just maraschino doing all the work." },
   { name:"Delmonico", tier:6, family:"Spirit & Vermouth", spirit:"Brandy", spec:["1 oz cognac","1/2 oz gin","1/2 oz dry vermouth","1/2 oz sweet vermouth","1 dash Angostura"], method:"Stir, strain up", glass:"Coupe", garnish:"Orange twist", note:"From New York's first great restaurant, a perfect Manhattan that couldn't choose a base spirit." },
   { name:"Fourth Degree", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["1 oz gin","1 oz dry vermouth","1 oz sweet vermouth","4 dashes absinthe"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"A Perfect Martini that walked past the absinthe bottle and thought better of restraint." },
 
@@ -510,7 +510,7 @@ const COCKTAILS = [
   { name:"Blue Lagoon", tier:7, family:"Highball", spirit:"Vodka", spec:["1.5 oz vodka","1 oz blue curaçao","4 oz lemonade"], method:"Build over ice", glass:"Highball", garnish:"Lemon wheel + cherry", note:"Harry's New York Bar, Paris. Blue curaçao is just orange liqueur wearing a costume." },
   { name:"Midori Sour", tier:7, family:"Sour", spirit:"Liqueur", spec:["1.5 oz melon liqueur","1 oz lemon juice","1/2 oz simple syrup","1 oz soda water"], method:"Shake, strain over ice, top", glass:"Rocks or highball", garnish:"Lemon wheel + cherry", note:"The 1980s in a glass. Made with fresh lemon instead of sour mix, it's a perfectly respectable drink." },
   { name:"Kentucky Mule", tier:7, family:"Highball", spirit:"Whiskey", spec:["2 oz bourbon","3/4 oz lime juice","4 oz ginger beer"], method:"Build over ice", glass:"Copper mug or highball", garnish:"Lime wedge + mint", note:"The mule family works with any base: learn one template, answer five different orders." },
-  { name:"Mexican Mule", tier:7, family:"Highball", spirit:"Tequila", spec:["2 oz blanco tequila","3/4 oz lime juice","4 oz ginger beer"], method:"Build over ice", glass:"Copper mug or highball", garnish:"Lime wedge", note:"Agave and ginger are natural allies — add a jalapeño slice for a spicy version." },
+  { name:"Mexican Mule", tier:7, family:"Highball", spirit:"Tequila", spec:["2 oz blanco tequila","3/4 oz lime juice","4 oz ginger beer"], method:"Build over ice", glass:"Copper mug or highball", garnish:"Lime wedge", note:"Agave and ginger are natural allies: add a jalapeño slice for a spicy version." },
   { name:"Irish Mule", tier:7, family:"Highball", spirit:"Whiskey", spec:["2 oz Irish whiskey","3/4 oz lime juice","4 oz ginger beer"], method:"Build over ice", glass:"Copper mug or highball", garnish:"Lime wedge", note:"Also called a Dublin Mule. Irish whiskey's softness suits ginger beautifully." },
   { name:"Gin Buck", tier:7, family:"Highball", spirit:"Gin", spec:["2 oz gin","1/2 oz lemon juice","4 oz ginger ale"], method:"Build over ice", glass:"Highball", garnish:"Lemon wedge", note:"The buck family is spirit + citrus + ginger. Every mule is a buck; not every buck is a mule." },
   { name:"John Collins", tier:7, family:"Sour", spirit:"Whiskey", spec:["2 oz bourbon","3/4 oz lemon juice","3/4 oz simple syrup","3 oz soda water"], method:"Shake, strain over ice, top", glass:"Collins", garnish:"Lemon wheel + cherry", note:"The Tom Collins' whiskey brother. Historically the John came first, with genever: the names have swapped more than once." },
@@ -521,29 +521,29 @@ const COCKTAILS = [
   /* ===== TIER 9 ADDITIONS: the world ===== */
   { name:"Rosita", tier:9, family:"Spirit & Vermouth", spirit:"Tequila", spec:["1.5 oz reposado tequila","1/2 oz Campari","1/2 oz sweet vermouth","1/2 oz dry vermouth","1 dash Angostura"], method:"Stir over ice", glass:"Rocks", garnish:"Lemon twist", note:"Printed in Mexico's own bar books and pulled back into print in the 1990s: the tequila Negroni that predates the trend by decades." },
   { name:"Bloody Maria", tier:9, family:"Highball", spirit:"Tequila", spec:["2 oz blanco tequila","4 oz tomato juice","1/2 oz lime juice","hot sauce, Worcestershire, salt, pepper"], method:"Roll between tins", glass:"Highball, chile-salt rim", garnish:"Lime, pickled jalapeño, celery", note:"Tequila's vegetal edge suits tomato better than vodka does. Mezcal makes it a Smoky Maria." },
-  { name:"Charro Negro", tier:9, family:"Highball", spirit:"Tequila", spec:["2 oz blanco tequila","1/2 oz lime juice","4 oz cola","pinch salt"], method:"Build over ice", glass:"Highball, salt rim", garnish:"Lime wedge", note:"Mexico's 'black cowboy' — the Batanga's cousin, and proof that tequila and cola belong together." },
+  { name:"Charro Negro", tier:9, family:"Highball", spirit:"Tequila", spec:["2 oz blanco tequila","1/2 oz lime juice","4 oz cola","pinch salt"], method:"Build over ice", glass:"Highball, salt rim", garnish:"Lime wedge", note:"Mexico's 'black cowboy': the Batanga's cousin, and proof that tequila and cola belong together." },
   { name:"Rossini", tier:9, family:"Highball", spirit:"Sparkling wine", spec:["2 oz fresh strawberry purée","4 oz prosecco"], method:"Purée first, pour bubbles gently", glass:"Flute", garnish:"None", note:"Venice names its bubbles for artists: Bellini (peach), Rossini (strawberry), Tintoretto (pomegranate), Puccini (mandarin)." },
   { name:"Chuflay", tier:9, family:"Highball", spirit:"Brandy", spec:["2 oz singani","4 oz ginger ale","squeeze of lime"], method:"Build over ice", glass:"Highball", garnish:"Lime wheel", note:"Bolivia's national highball, built on singani, a high-altitude muscat brandy that drinks like pisco's floral cousin." },
 
-  /* ===== TIER 10 ADDITIONS — deeper cuts ===== */
+  /* ===== TIER 10 ADDITIONS: deeper cuts ===== */
   { name:"Twelve Mile Limit", tier:10, family:"Sour", spirit:"Rum", spec:["1 oz white rum","1/2 oz rye","1/2 oz cognac","1/2 oz lemon juice","1/2 oz grenadine"], method:"Shake, double strain up", glass:"Coupe", garnish:"Lemon twist", note:"Named for the 1924 extension of US territorial waters, the distance rum-runners had to sail to be legal." },
   { name:"Hop Toad", tier:10, family:"Sour", spirit:"Brandy", spec:["1.5 oz apricot brandy","3/4 oz lime juice","1 dash Angostura"], method:"Shake, double strain up", glass:"Coupe", garnish:"Lime wheel", note:"1860s-era; two ingredients and better than it deserves to be." },
   { name:"Bishop", tier:10, family:"Punch", spirit:"Fortified wine", spec:["3 oz ruby port","1 oz dark rum","3/4 oz lemon juice","1/2 oz simple syrup"], method:"Shake, pour over crushed ice", glass:"Wine glass or goblet", garnish:"Orange wheel + nutmeg", note:"A 19th-century port punch, the drink Bob Cratchit's family toasts in A Christmas Carol." },
 
   /* ===== TIER 11: THE MARTINI BOOK ===== */
   { name:"Vesper", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["3 oz gin","1 oz vodka","1/2 oz Lillet Blanc"], method:"Bond says shake; every bartender says stir. Stir it.", glass:"Coupe or Nick & Nora", garnish:"Large lemon peel, expressed", note:"Written into Casino Royale in 1953 and named for its character Vesper Lynd. The original Kina Lillet was more bitter: a dash of quinine or Cocchi Americano gets you closer." },
-  { name:"Gibson", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["2.5 oz gin","1/2 oz dry vermouth"], method:"Stir, strain up", glass:"Nick & Nora", garnish:"Cocktail onion (or three)", note:"Identical to a Martini until the garnish — which changes everything. The onion's savory bite makes it a different drink entirely." },
-  { name:"Dirty Martini", tier:11, family:"Spirit & Vermouth", spirit:"Vodka", spec:["2.5 oz vodka or gin","1/2 oz dry vermouth","1/2 oz olive brine"], method:"Shake or stir per the guest's preference", glass:"Coupe or Nick & Nora", garnish:"Three olives on a pick", note:"'Extra dirty' means more brine, not more olives — always confirm which they mean. Good brine from good olives is the whole difference." },
-  { name:"Vodka Martini", tier:11, family:"Spirit & Vermouth", spirit:"Vodka", spec:["2.5 oz vodka","1/2 oz dry vermouth"], method:"Stir (or shake if requested)", glass:"Coupe or Nick & Nora", garnish:"Lemon twist or olives", note:"Shaking bruises nothing — it aerates and over-chills, giving a cloudy, softer drink. Some guests love exactly that. Make it their way." },
+  { name:"Gibson", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["2.5 oz gin","1/2 oz dry vermouth"], method:"Stir, strain up", glass:"Nick & Nora", garnish:"Cocktail onion (or three)", note:"Identical to a Martini until the garnish, which changes everything. The onion's savory bite makes it a different drink entirely." },
+  { name:"Dirty Martini", tier:11, family:"Spirit & Vermouth", spirit:"Vodka", spec:["2.5 oz vodka or gin","1/2 oz dry vermouth","1/2 oz olive brine"], method:"Shake or stir per the guest's preference", glass:"Coupe or Nick & Nora", garnish:"Three olives on a pick", note:"'Extra dirty' means more brine, not more olives; always confirm which they mean. Good brine from good olives is the whole difference." },
+  { name:"Vodka Martini", tier:11, family:"Spirit & Vermouth", spirit:"Vodka", spec:["2.5 oz vodka","1/2 oz dry vermouth"], method:"Stir (or shake if requested)", glass:"Coupe or Nick & Nora", garnish:"Lemon twist or olives", note:"Shaking bruises nothing: it aerates and over-chills, giving a cloudy, softer drink. Some guests love exactly that. Make it their way." },
   { name:"Perfect Martini", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["2 oz gin","1/2 oz dry vermouth","1/2 oz sweet vermouth"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"'Perfect' is a technical term, not a compliment; it means equal parts dry and sweet vermouth. Applies to Manhattans too." },
-  { name:"Fifty-Fifty Martini", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["1.5 oz gin","1.5 oz dry vermouth","1 dash orange bitters"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"How the Martini was actually drunk before the 20th century got dry. Lower proof, more flavor — use vermouth you'd happily drink alone." },
+  { name:"Fifty-Fifty Martini", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["1.5 oz gin","1.5 oz dry vermouth","1 dash orange bitters"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"How the Martini was actually drunk before the 20th century got dry. Lower proof, more flavor; use vermouth you'd happily drink alone." },
   { name:"Smoky Martini", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["2.5 oz gin","1/2 oz dry vermouth","1/4 oz Islay scotch"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"A rinse of peated scotch instead of the quarter ounce is the subtler move." },
   { name:"Dukes Martini", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["3 oz freezer-cold gin","vermouth rinse only","large lemon peel"], method:"Rinse the frozen glass with vermouth, pour gin straight from the freezer, no ice at all", glass:"Frozen Nick & Nora", garnish:"Amalfi lemon peel, expressed hard", note:"The tableside ritual at Dukes Hotel, London: no dilution whatsoever, which is why they limit guests to two." },
   { name:"Obituary Cocktail", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["2.5 oz gin","1/2 oz dry vermouth","1/4 oz absinthe"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"Lafitte's Blacksmith Shop, New Orleans: the Martini with a green streak, and the namesake of a great NOLA bar book." },
   { name:"Blue Moon", tier:11, family:"Sour", spirit:"Gin", spec:["2 oz gin","1/2 oz crème de violette","1/4 oz lemon juice"], method:"Stir or brief shake, strain up", glass:"Coupe", garnish:"Lemon twist", note:"The Aviation stripped to its floral core, a genuine pale blue-grey when made with real violette." },
-  { name:"Turf Cocktail", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["1.5 oz gin","1.5 oz dry vermouth","1/4 oz maraschino","2 dashes orange bitters","absinthe rinse"], method:"Stir, strain into a rinsed glass", glass:"Coupe", garnish:"Lemon twist", note:"1890s New York — everything the pre-Prohibition palate loved in one glass." },
+  { name:"Turf Cocktail", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["1.5 oz gin","1.5 oz dry vermouth","1/4 oz maraschino","2 dashes orange bitters","absinthe rinse"], method:"Stir, strain into a rinsed glass", glass:"Coupe", garnish:"Lemon twist", note:"1890s New York: everything the pre-Prohibition palate loved in one glass." },
   { name:"Astoria", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["1.5 oz Old Tom gin","1.5 oz dry vermouth","2 dashes orange bitters"], method:"Stir, strain up", glass:"Coupe", garnish:"Olive", note:"From the old Waldorf-Astoria bar book, when the Martini was still half vermouth and proud." },
-  { name:"Bradford", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["2 oz gin","1 oz dry vermouth","1 dash orange bitters"], method:"SHAKE — that is the entire point", glass:"Coupe", garnish:"Lemon twist", note:"The Waldorf's name for a shaken Martini, from the era when shaken and stirred versions were considered different drinks with different names." },
+  { name:"Bradford", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["2 oz gin","1 oz dry vermouth","1 dash orange bitters"], method:"SHAKE: that is the entire point", glass:"Coupe", garnish:"Lemon twist", note:"The Waldorf's name for a shaken Martini, from the era when shaken and stirred versions were considered different drinks with different names." },
   { name:"French Martini", tier:11, family:"Sour", spirit:"Vodka", spec:["2 oz vodka","1/2 oz Chambord (black raspberry)","2 oz pineapple juice"], method:"Shake hard, double strain up", glass:"Coupe", garnish:"None (or a raspberry)", note:"Not a Martini in any structural sense, but the pineapple foam on top is genuinely lovely. Shake it hard enough to build that head." },
   { name:"Breakfast Martini", tier:11, family:"Sour", spirit:"Gin", spec:["2 oz gin","1/2 oz Cointreau","3/4 oz lemon juice","1 heaping barspoon orange marmalade"], method:"Stir the marmalade into the gin first, then shake and double strain", glass:"Coupe", garnish:"Orange twist or a triangle of toast", note:"London, 1996: breakfast marmalade in a coupe. Dissolve the marmalade fully or it clogs the strainer." },
   { name:"Appletini", tier:11, family:"Sour", spirit:"Vodka", spec:["2 oz vodka","1 oz sour apple schnapps","1/2 oz lemon juice","1/4 oz simple syrup"], method:"Shake, double strain up", glass:"Coupe", garnish:"Thin apple slice", note:"Peak 1999. Made with fresh lemon and a good apple liqueur it's tart, bracing, and no more embarrassing than any other sour." },
@@ -554,29 +554,29 @@ const COCKTAILS = [
   { name:"Frozen Margarita", tier:12, family:"Sour", spirit:"Tequila", spec:["2 oz blanco tequila","1 oz lime juice","3/4 oz orange liqueur","1/2 oz agave syrup","1.5 cups ice"], method:"Blend until smooth, no chunks", glass:"Coupe or margarita glass, salt rim", garnish:"Lime wheel", note:"A soft-serve machine adapted in Dallas, 1971, changed American drinking. Blended drinks need MORE sugar and acid, because cold mutes both." },
   { name:"Frozen Daiquiri", tier:12, family:"Sour", spirit:"Rum", spec:["2 oz white rum","1 oz lime juice","3/4 oz simple syrup","1/4 oz maraschino (optional)","1.5 cups ice"], method:"Blend until smooth and pourable", glass:"Coupe", garnish:"Lime wheel", note:"El Floridita's house style, and the bar poured a sugar-free double version of it too." },
   { name:"Strawberry Daiquiri", tier:12, family:"Sour", spirit:"Rum", spec:["2 oz white rum","5 fresh strawberries","3/4 oz lime juice","3/4 oz simple syrup","1 cup ice"], method:"Blend until smooth", glass:"Hurricane or coupe", garnish:"Strawberry on the rim", note:"Fresh berries, never the neon mix; the difference is the entire drink." },
-  { name:"Banana Daiquiri", tier:12, family:"Sour", spirit:"Rum", spec:["2 oz gold rum","1/2 ripe banana","3/4 oz lime juice","1/2 oz simple syrup","1 cup ice"], method:"Blend until smooth", glass:"Hurricane", garnish:"Banana slice + nutmeg", note:"A very ripe banana is essential — it brings both sweetness and the body that makes this drink work." },
+  { name:"Banana Daiquiri", tier:12, family:"Sour", spirit:"Rum", spec:["2 oz gold rum","1/2 ripe banana","3/4 oz lime juice","1/2 oz simple syrup","1 cup ice"], method:"Blend until smooth", glass:"Hurricane", garnish:"Banana slice + nutmeg", note:"A very ripe banana is essential: it brings both sweetness and the body that makes this drink work." },
   { name:"Frozen Piña Colada", tier:12, family:"Tiki", spirit:"Rum", spec:["2 oz white rum","2 oz pineapple juice","1.5 oz coconut cream","1/2 oz lime juice","1.5 cups ice"], method:"Blend until velvety", glass:"Hurricane", garnish:"Pineapple wedge + cherry", note:"Puerto Rico's national drink, and the reason every beach bar owns a blender." },
   { name:"Miami Vice", tier:12, family:"Tiki", spirit:"Rum", spec:["Half batch frozen strawberry daiquiri","Half batch frozen piña colada"], method:"Blend separately, then pour in careful layers", glass:"Hurricane", garnish:"Pineapple + strawberry", note:"Two blenders or two rounds; the layers only hold if both batches are equally thick." },
-  { name:"Lava Flow", tier:12, family:"Tiki", spirit:"Rum", spec:["Frozen piña colada base","2 oz strawberry purée, poured into the glass first"], method:"Pour purée into the glass, then pour the colada slowly through the center", glass:"Hurricane", garnish:"Pineapple wedge", note:"The Miami Vice's Hawaiian cousin — the red 'lava' erupts up the sides as you pour." },
-  { name:"Frosé", tier:12, family:"Punch", spirit:"Wine", spec:["4 oz rosé wine, frozen into cubes","1/2 oz strawberry syrup","1/2 oz lemon juice","1/2 oz vodka (optional, keeps it slushy)"], method:"Freeze the wine first, then blend", glass:"Wine glass", garnish:"Strawberry + mint", note:"Bar Primi, NYC, 2016. Wine alone won't freeze solid enough — the small vodka addition is a texture tool, not a strength play." },
-  { name:"Frozen Painkiller", tier:12, family:"Tiki", spirit:"Rum", spec:["2 oz dark rum","3 oz pineapple juice","1 oz orange juice","1 oz coconut cream","1.5 cups ice"], method:"Blend until smooth", glass:"Hurricane", garnish:"Heavy grated nutmeg", note:"The nutmeg is not optional — it's the drink's signature aroma and the first thing the nose gets." },
+  { name:"Lava Flow", tier:12, family:"Tiki", spirit:"Rum", spec:["Frozen piña colada base","2 oz strawberry purée, poured into the glass first"], method:"Pour purée into the glass, then pour the colada slowly through the center", glass:"Hurricane", garnish:"Pineapple wedge", note:"The Miami Vice's Hawaiian cousin: the red 'lava' erupts up the sides as you pour." },
+  { name:"Frosé", tier:12, family:"Punch", spirit:"Wine", spec:["4 oz rosé wine, frozen into cubes","1/2 oz strawberry syrup","1/2 oz lemon juice","1/2 oz vodka (optional, keeps it slushy)"], method:"Freeze the wine first, then blend", glass:"Wine glass", garnish:"Strawberry + mint", note:"Bar Primi, NYC, 2016. Wine alone won't freeze solid enough; the small vodka addition is a texture tool, not a strength play." },
+  { name:"Frozen Painkiller", tier:12, family:"Tiki", spirit:"Rum", spec:["2 oz dark rum","3 oz pineapple juice","1 oz orange juice","1 oz coconut cream","1.5 cups ice"], method:"Blend until smooth", glass:"Hurricane", garnish:"Heavy grated nutmeg", note:"The nutmeg is not optional: it's the drink's signature aroma and the first thing the nose gets." },
   { name:"Frozen Irish Coffee", tier:12, family:"Egg & Cream", spirit:"Whiskey", spec:["1.5 oz Irish whiskey","4 oz cold coffee","1 oz simple syrup","2 oz whole milk","1.5 cups ice"], method:"Blend until soft-serve thick", glass:"Rocks or mug", garnish:"Whipped cream", note:"The Erin Rose in New Orleans made this famous, a hot classic that works even better frozen in a Gulf Coast August." },
   { name:"Frozen Mudslide", tier:12, family:"Duo & Trio", spirit:"Vodka", spec:["1 oz vodka","1 oz coffee liqueur","1 oz Irish cream","2 scoops vanilla ice cream"], method:"Blend with ice cream, not ice", glass:"Hurricane", garnish:"Chocolate drizzle + whipped cream", note:"Ice cream instead of ice keeps it rich instead of watery: the trick for any frozen dessert drink." },
   { name:"Frozen Negroni", tier:12, family:"Spirit & Vermouth", spirit:"Gin", spec:["1.5 oz gin","1.5 oz Campari","1.5 oz sweet vermouth","1/2 oz simple syrup","1.5 cups ice"], method:"Blend briefly: you want slush, not soup", glass:"Rocks or coupe", garnish:"Orange wheel", note:"Cold mutes bitterness, so the added syrup and slightly larger pour are corrections, not indulgence." },
-  { name:"Frozen Aperol Spritz", tier:12, family:"Highball", spirit:"Aperitivo", spec:["2 oz Aperol","1 oz orange juice","1/2 oz lemon juice","1 cup ice","3 oz prosecco, poured over after blending"], method:"Blend everything but the prosecco, then top", glass:"Large wine glass", garnish:"Orange slice", note:"Never blend the bubbles — carbonation dies instantly in a blender. Top it after, always." },
+  { name:"Frozen Aperol Spritz", tier:12, family:"Highball", spirit:"Aperitivo", spec:["2 oz Aperol","1 oz orange juice","1/2 oz lemon juice","1 cup ice","3 oz prosecco, poured over after blending"], method:"Blend everything but the prosecco, then top", glass:"Large wine glass", garnish:"Orange slice", note:"Never blend the bubbles: carbonation dies instantly in a blender. Top it after, always." },
 ];
 
 /* ---------------- DATA: FAMILIES ---------------- */
 
 const FAMILIES = {
   "Old Fashioned": {
-    /* Observable at the glass, holding for every member — conditionals
+    /* Observable at the glass, holding for every member: conditionals
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
-      "The sweetness arrives dissolved — stirred through where the drink is built on syrup or muddled sugar, or streaming up from the cube where the cube is the point. Grit in the last sip means the stir stopped early.",
+      "The sweetness arrives dissolved: stirred through where the drink is built on syrup or muddled sugar, or streaming up from the cube where the cube is the point. Grit in the last sip means the stir stopped early.",
       "Cold and slightly softened, never watery: the first sip has lost its raw-spirit heat, and the last sip still tastes of the spirit rather than the melt.",
-      "The nose gets there first — expressed oils, a rinse, or bitters on the surface reach you before the liquid does.",
+      "The nose gets there first: expressed oils, a rinse, or bitters on the surface reach you before the liquid does.",
       "The spirit is still the drink. Everything else frames it; nothing covers it.",
     ],
     fault:"Rushed. Sugar half-dissolved and dilution skipped, so the first sip is hot and dry and the bottom of the glass is syrup. The water is an ingredient: stir until the drink has taken it.",
@@ -585,7 +585,7 @@ const FAMILIES = {
     parent:"Old Fashioned",
   },
   "Sour": {
-    /* Observable at the glass, holding for every member — conditionals
+    /* Observable at the glass, holding for every member: conditionals
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
@@ -600,7 +600,7 @@ const FAMILIES = {
     parent:"Daiquiri",
   },
   "Spirit & Vermouth": {
-    /* Observable at the glass, holding for every member — conditionals
+    /* Observable at the glass, holding for every member: conditionals
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
@@ -611,31 +611,31 @@ const FAMILIES = {
     ],
     fault:"The vermouth died on a warm shelf weeks ago, and everything made with it is quietly flat. Refrigerate it, date it, and pour it like the wine it is.",
     formula:"2 oz spirit + 1 oz aromatized wine (+ bitters)",
-    lesson:"Stirred whenever the glass holds only spirit and wine; the juiced cousins (the Bronx wing) shake. Vermouth is wine — refrigerate it, date the bottle, replace it monthly. A Manhattan on tired vermouth is a dead Manhattan.",
+    lesson:"Stirred whenever the glass holds only spirit and wine; the juiced cousins (the Bronx wing) shake. Vermouth is wine: refrigerate it, date the bottle, replace it monthly. A Manhattan on tired vermouth is a dead Manhattan.",
     parent:"Manhattan",
   },
   "Highball": {
-    /* Observable at the glass, holding for every member — conditionals
+    /* Observable at the glass, holding for every member: conditionals
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
-      "Where it sparkles, it sparkles to the last sip: cold glass, cold bottle, a gentle build, one lift of the spoon — never a hard stir that beats the gas out.",
+      "Where it sparkles, it sparkles to the last sip: cold glass, cold bottle, a gentle build, one lift of the spoon, never a hard stir that beats the gas out.",
       "A full column of ice. Half a glass of ice is a warmer drink with a swim in it, not a colder one.",
       "The spirit stays present through the lengthener, long, never lost.",
       "The rolled and juiced members pour even and seasoned through, with nothing separating in the glass.",
     ],
-    fault:"A warm glass and a hard stir. The sparkle is gone before it reaches the table, and what lands is flat mixer with spirit in it — in the one family whose entire point was the lift.",
+    fault:"A warm glass and a hard stir. The sparkle is gone before it reaches the table, and what lands is flat mixer with spirit in it, in the one family whose entire point was the lift.",
     formula:"2 oz spirit + 4–6 oz carbonated lengthener",
     lesson:"Carbonation is fragile. Cold glass, cold mixer, gentle build, one lift of the barspoon, never a hard stir.",
     parent:"Gin & Tonic",
   },
   "Egg & Cream": {
-    /* Observable at the glass, holding for every member — conditionals
+    /* Observable at the glass, holding for every member: conditionals
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
       "Where egg builds the head, the dry shake came first: the foam sets dense in the glass and holds a drop of bitters on its surface without swallowing it.",
-      "Silk, not slick — the texture reads as body, with no eggy smell riding over the aromatics.",
+      "Silk, not slick: the texture reads as body, with no eggy smell riding over the aromatics.",
       "Cream members pour rich but drinkable: the dairy rounds the drink without flattening the spirit.",
       "Where there is a head, it lasts the length of the drink, not the length of a minute.",
     ],
@@ -645,25 +645,25 @@ const FAMILIES = {
     parent:"Ramos Gin Fizz",
   },
   "Julep & Smash": {
-    /* Observable at the glass, holding for every member — conditionals
+    /* Observable at the glass, holding for every member: conditionals
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
       "The herb is pressed awake, never shredded: bruised leaves give up their nose, torn ones give up bitterness and flecks through the ice.",
-      "The vessel frosts on the outside — the visible mark that the crushed ice and the work have done their job.",
+      "The vessel frosts on the outside: the visible mark that the crushed ice and the work have done their job.",
       "Crushed ice mounded proud of the rim, with the herb bouquet planted where the nose meets the straw.",
     ],
     fault:"Muddled like it owed money. Shredded leaves turn the drink grassy-bitter and stud the ice with green: the herb is a perfume here, not an ingredient.",
     formula:"Spirit + sugar + mint (or fruit) + crushed ice",
-    lesson:"Slap or press mint — never shred it. Crushed ice is the engine: it dilutes, chills, and frosts the cup.",
+    lesson:"Slap or press mint, never shred it. Crushed ice is the engine: it dilutes, chills, and frosts the cup.",
     parent:"Mint Julep",
   },
   "Tiki": {
-    /* Observable at the glass, holding for every member — conditionals
+    /* Observable at the glass, holding for every member: conditionals
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
-      "Where it rides crushed or pebble ice, it is packed full — the dilution is designed in, and big cubes wash that design out.",
+      "Where it rides crushed or pebble ice, it is packed full: the dilution is designed in, and big cubes wash that design out.",
       "Where the serve is crushed ice, a whip shake wakes it and no more: the glass finishes the chilling. Blended members take their dilution from the blender; members strained over cube ice take a full shake, because there the tin does all the work.",
       "The sweeteners layer instead of merging into syrup: nut, citrus and cane arrive as different voices in one chord.",
       "The garnish is architecture, and the straw still reaches the drink.",
@@ -674,12 +674,12 @@ const FAMILIES = {
     parent:"Mai Tai",
   },
   "Duo & Trio": {
-    /* Observable at the glass, holding for every member — conditionals
+    /* Observable at the glass, holding for every member: conditionals
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
       "The liqueur is measured like the spirit, not poured like a mixer: the sweetness sits inside the drink, framing the proof.",
-      "Where the serve is cold — most of the family — the chill tightens it: properly chilled the sugar reads as roundness; lukewarm, the same spec reads as dessert. The hot-coffee serves run hot on purpose.",
+      "Where the serve is cold, most of the family, the chill tightens it: properly chilled the sugar reads as roundness; lukewarm, the same spec reads as dessert. The hot-coffee serves run hot on purpose.",
       "Where a float is called, it floats: a distinct layer laid over the back of a spoon, not a stir that greys the whole glass.",
     ],
     fault:"A heavy hand on the liqueur. Two or three ingredients leave nowhere to hide, and a quarter ounce over turns a grown-up drink into a milkshake.",
@@ -688,22 +688,22 @@ const FAMILIES = {
     parent:"Espresso Martini",
   },
   "Hot": {
-    /* Observable at the glass, holding for every member — conditionals
+    /* Observable at the glass, holding for every member: conditionals
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
       "The glass was hot before the drink was: pre-heated, so it is still hot at the bottom rather than merely warm at the top.",
-      "Balance holds at temperature — heat amplifies both sweetness and burn, so the spirit is measured, never guessed.",
+      "Balance holds at temperature: heat amplifies both sweetness and burn, so the spirit is measured, never guessed.",
       "Where cream finishes it, the cream floats: poured over a spoon to sit as a cool layer the hot drink is drunk through.",
       "The steam carries the aromatics (spice, citrus, coffee) before the first sip does.",
     ],
     fault:"Built in a cold glass. The drink arrives warm and finishes cold, the float sinks, and the one step that carried all the others, heating the glass, was the one skipped.",
     formula:"Spirit + sweetener + hot liquid, in a pre-heated vessel",
-    lesson:"Heat amplifies both sweetness and alcohol burn, so under-sweeten slightly compared to a cold build. Pre-heat the glass or the drink is lukewarm by the second sip, and never boil — boiling drives off the aromatics you're paying for.",
+    lesson:"Heat amplifies both sweetness and alcohol burn, so under-sweeten slightly compared to a cold build. Pre-heat the glass or the drink is lukewarm by the second sip, and never boil: boiling drives off the aromatics you're paying for.",
     parent:"Hot Toddy",
   },
   "Punch": {
-    /* Observable at the glass, holding for every member — conditionals
+    /* Observable at the glass, holding for every member: conditionals
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
@@ -738,7 +738,7 @@ function tierOptions(cur){
 
 const KNOWLEDGE = [
   { q:"When do you shake a cocktail instead of stirring it?",
-    options:["Whenever the guest is watching — shaking is theatre","When it contains citrus, egg, cream, or juice","Only when a drink is served over ice, never up","When four or more ingredients need forcing together"],
+    options:["Whenever the guest is watching: shaking is theatre","When it contains citrus, egg, cream, or juice","Only when a drink is served over ice, never up","When four or more ingredients need forcing together"],
     a:1, explain:"Shake for texture, not for mixing: citrus, egg, cream and juice want aeration and a cloudy chill. Ingredient count is the tempting rule and it's wrong: a Vieux Carré runs rye, cognac, sweet vermouth, Bénédictine and two bitters, and it still gets stirred, because nothing in it is cloudy." },
   { q:"Roughly how much of a properly made cocktail is water from dilution?",
     options:["Almost none","5–10%","20–25%","Half the drink"],
@@ -754,7 +754,7 @@ const KNOWLEDGE = [
     a:1, explain:"Vermouth is fortified wine, not a spirit: it oxidizes the moment the cork comes out. Refrigerate, date it, replace monthly. The freezer is tempting: it slows that clock but doesn't stop it, and 'indefinitely' is how a bar ends up building Manhattans on a bottle that died two months ago." },
   { q:"What is the purpose of a dry shake?",
     options:["To chill the drink fully without diluting","To emulsify egg white before adding ice","To warm the tin so the egg white sets up","To blend carbonated mixers in without ice"],
-    a:1, explain:"No ice means no chill and no dilution, so that can't be the point — the point is mechanical. With nothing in the way, the shake works the egg protein into a stable emulsion; then ice goes in and the second shake gets it cold. Skip the first pass and the foam dies in a minute." },
+    a:1, explain:"No ice means no chill and no dilution, so that can't be the point: the point is mechanical. With nothing in the way, the shake works the egg protein into a stable emulsion; then ice goes in and the second shake gets it cold. Skip the first pass and the foam dies in a minute." },
   { q:"By law, the dominant botanical in gin must be…",
     options:["Coriander","Citrus peel","Juniper","Angelica root"],
     a:2, explain:"No juniper dominance, no gin. Everything else is the supporting cast." },
@@ -763,7 +763,7 @@ const KNOWLEDGE = [
     a:2, explain:"Agave hearts roast in earthen pits over hot rocks and wood before they are ever crushed or fermented: the smoke is in the sugar, not added later. Barrel char is the tempting answer and it's wrong twice: most mezcal is joven, never sees a barrel, and is smoky anyway." },
   { q:"Cognac is primarily distilled from which grape?",
     options:["Chardonnay","Ugni Blanc","Riesling","Muscat"],
-    a:1, explain:"Ugni Blanc — Trebbiano under a French name — is over 95% of the plantings. It makes thin, sharp, low-alcohol wine nobody wants to drink, which is exactly what double pot distillation wants. Chardonnay is the tempting guess by French reflex; too ripe, too little acid." },
+    a:1, explain:"Ugni Blanc, Trebbiano under a French name, is over 95% of the plantings. It makes thin, sharp, low-alcohol wine nobody wants to drink, which is exactly what double pot distillation wants. Chardonnay is the tempting guess by French reflex; too ripe, too little acid." },
   { q:"When were cocktail specs first collected and published in a bar guide?",
     options:["1806","1862","1930","1948"],
     a:1, explain:"1862, in the first Bar-Tender's Guide: the first time anyone wrote the specs down. 1806 is the tempting answer, because that is when the word 'cocktail' was first defined in print, but a definition is not a book of recipes. The Savoy Cocktail Book of 1930 is the more famous volume, and it lands 68 years later, codifying a canon that guide had already started." },
@@ -781,7 +781,7 @@ const KNOWLEDGE = [
     a:1, explain:"Spirits, sugar, water and bitters: 'a stimulating liquor,' as the Balance and Columbian Repository put it. Citrus and ice is the tempting swap because that's what a modern drink looks like, but bitters is the load-bearing word: drop it and 1806 called the same glass a sling." },
   { q:"Why is a Bloody Mary rolled between tins instead of shaken?",
     options:["Rolling saves seconds, and brunch rush demands speed","Shaking aerates and breaks the tomato juice's texture","Rolling chills the mix harder than a shaken tin does","Pure tradition, with no functional reason behind it"],
-    a:1, explain:"Rolling passes the drink between tins over ice — it mixes and chills without whipping air into the tomato. Shake it and you get something pink, thin and frothy. 'Rolling chills harder' is the tempting reason and it's backwards: rolling chills less than a hard shake, and you accept that to protect the texture." },
+    a:1, explain:"Rolling passes the drink between tins over ice: it mixes and chills without whipping air into the tomato. Shake it and you get something pink, thin and frothy. 'Rolling chills harder' is the tempting reason and it's backwards: rolling chills less than a hard shake, and you accept that to protect the texture." },
   { q:"Old Tom gin is the historically correct choice for which cocktail?",
     options:["Negroni","Martinez","Aviation","Gimlet"],
     a:1, explain:"The Martinez: Old Tom's sweetness is what lets the sweet vermouth and maraschino sit right; build it with London Dry and it turns lean and juniper-sharp where it should be round. The Aviation is the tempting pick as the other old gin classic, but it was written for dry gin from the start." },
@@ -799,10 +799,10 @@ const KNOWLEDGE = [
     a:1, explain:"Mint's oil sits in surface glands, and a slap or a light press pops them without breaking the leaf. Muddling to a paste is the tempting one because it feels thorough, but shredding releases chlorophyll: that's the bitter, vegetal julep." },
   { q:"An Islay single malt scotch is famous for tasting of…",
     options:["Honey and heather","Peat smoke and sea air","Sherry and dried fruit","Vanilla and coconut"],
-    a:1, explain:"Islay malt is dried over peat fires and matured beside the sea — it's the smoke on your Penicillin's float. Sherry and dried fruit is the tempting miss: that's cask influence, not region, and it can sit on top of an Islay spirit as easily as a Speyside one." },
+    a:1, explain:"Islay malt is dried over peat fires and matured beside the sea: it's the smoke on your Penicillin's float. Sherry and dried fruit is the tempting miss: that's cask influence, not region, and it can sit on top of an Islay spirit as easily as a Speyside one." },
   { q:"Rich simple syrup is what ratio of sugar to water?",
     options:["1:1","2:1","1:2","3:1"],
-    a:1, explain:"2:1 sugar to water by weight — twice the sugar against the same water, so more sweetness per ounce, real body, and a longer shelf life. 1:2 is the trap: the same two numbers reversed, and it lands thinner than standard 1:1 simple. 3:1 is the honey syrup ratio, a different sheet entirely." },
+    a:1, explain:"2:1 sugar to water by weight: twice the sugar against the same water, so more sweetness per ounce, real body, and a longer shelf life. 1:2 is the trap: the same two numbers reversed, and it lands thinner than standard 1:1 simple. 3:1 is the honey syrup ratio, a different sheet entirely." },
   { q:"With a standard speed pourer, a steady 4-count is approximately…",
     options:["1/2 oz","1 oz","1.5 oz","2 oz"],
     a:1, explain:"Four counts is roughly 1 oz, which makes a standard 2 oz pour an 8-count, and that's the tempting error, matching the count to the drink instead of the ounce. Pourer wear and spirit viscosity both shift it, so calibrate your own count against a jigger weekly." },
@@ -821,7 +821,7 @@ const STUDY = [
     ["Vodka","Distilled from anything fermentable, rectified toward neutrality. Wheat = soft, rye = spicy, potato = creamy. Its cocktail job is carrying other flavors."],
     ["Gin","Neutral spirit redistilled with botanicals; juniper must dominate. Styles: London Dry, Plymouth, Old Tom (sweetened), Genever (malty ancestor), contemporary."],
     ["Whiskey","Bourbon: ≥51% corn, new charred oak, USA. Rye: ≥51% rye, spicier, the original cocktail whiskey. Scotch regions: Speyside (fruit), Highland (varied), Islay (peat), Lowland (light), Campbeltown (brine). Irish: triple-distilled, single pot still signature."],
-    ["Rum","Cane juice or molasses. Spanish style: light, column still. English: rich pot-still funk (Jamaica). French rhum agricole: grassy, fresh cane juice. Color ≠ age — learn producers."],
+    ["Rum","Cane juice or molasses. Spanish style: light, column still. English: rich pot-still funk (Jamaica). French rhum agricole: grassy, fresh cane juice. Color ≠ age: learn producers."],
     ["Agave","Tequila: ≥51% Blue Weber (buy 100%), Jalisco. Blanco / Reposado (2–12 mo) / Añejo (1–3 yr) / Extra Añejo (3+). Mezcal: many agave species, pit-roasted (smoke), mostly Oaxaca."],
     ["Brandy","Cognac: double pot-distilled Ugni Blanc; VS 2yr+ / VSOP 4+ / XO 10+. Armagnac: rustic single-column. Pisco: unaged grape brandy. The pre-1870s cocktail canon was built on cognac."],
   ]},
@@ -832,7 +832,7 @@ const STUDY = [
     ["Ice","Big cold dry ice dilutes slowly; wet small ice dilutes fast. Large cube for rocks, cracked for shaking, crushed for juleps and tiki. Never scoop with the glass."],
     ["Straining","Hawthorne for shaken, julep for stirred, double strain anything shaken with citrus or herbs going 'up'."],
     ["Pouring","Jigger for accuracy. Free-pour counts: 1 = 1/4 oz, 2 = 1/2, 4 = 1, 8 = 2 oz. Calibrate weekly with water and a jigger."],
-    ["Garnish","The garnish is the first thing the nose meets — an ingredient, not decoration. Express peels skin-side down; flame orange peels through a match for caramelized oil; slap mint; cut fresh every shift."],
+    ["Garnish","The garnish is the first thing the nose meets: an ingredient, not decoration. Express peels skin-side down; flame orange peels through a match for caramelized oil; slap mint; cut fresh every shift."],
   ]},
   { title:"Syrups, Citrus & Bitters", rows:[
     ["Simple syrup","1:1 sugar:water by weight. Rich simple: 2:1, more body, longer life. Fridge, ~1 month."],
@@ -843,12 +843,12 @@ const STUDY = [
   ]},
   { title:"Hospitality: The Other Half", rows:[
     ["First 30 seconds","Acknowledge everyone within 30 seconds: eye contact and a nod buys you five minutes."],
-    ["Read the guest","Celebrating, decompressing, first date, or wanting silence — serve the mood, not just the order."],
+    ["Read the guest","Celebrating, decompressing, first date, or wanting silence: serve the mood, not just the order."],
     ["Guide the undecided","Offer a fork, not a menu recital: 'Refreshing and citrusy, or spirit-forward and boozy?' Then: spirit → style → flavor direction."],
     ["Never argue taste","If they want a shaken Martini with olives in a rocks glass, make the best version of that."],
     ["Own mistakes","Wrong drink? 'My fault, let me fix that.' Remake without drama. Speed of recovery is what guests remember."],
-    ["Volume service","Mise en place before doors: juice, syrups, garnish, ice. Read three tickets, group the builds, pour like spirits together. Clean as you go — a cluttered station is a slow station."],
-    ["Responsible service","The floor of the whole job, and it has its own section now — read The Law and the Line before your first solo shift. The short version: check IDs under ~30, count drinks rather than glasses, watch the cues, slow service with water and food. Your right to refuse is also your duty. And you cannot stop a guest driving — what you can do is make the alternative easier than the drive, then call it in if he goes anyway."],
+    ["Volume service","Mise en place before doors: juice, syrups, garnish, ice. Read three tickets, group the builds, pour like spirits together. Clean as you go: a cluttered station is a slow station."],
+    ["Responsible service","The floor of the whole job, and it has its own section now: read The Law and the Line before your first solo shift. The short version: check IDs under ~30, count drinks rather than glasses, watch the cues, slow service with water and food. Your right to refuse is also your duty. And you cannot stop a guest driving: what you can do is make the alternative easier than the drive, then call it in if he goes anyway."],
   ]},
   { title:"History: Know Your Lineage", rows:[
     ["1806","First printed definition of 'cock-tail': spirits, sugar, water, bitters."],

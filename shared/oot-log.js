@@ -1,4 +1,4 @@
-/* Outside Of Time — result logging.
+/* Outside Of Time: result logging.
    One fire-and-forget insert into the Supabase `results` table per completed
    round, and the per-wing hooks that decide what "completed" means. That table
    IS the entire B2B concierge backend: the founder reads it weekly and emails
@@ -198,7 +198,7 @@
     var state = G('state');
     if (!state) return;
 
-    /* The one authoritative "a session was completed" writer — but the wing
+    /* The one authoritative "a session was completed" writer, but the wing
        calls it more than once per night (when the quiz round closes, again
        when the drill is logged, again from "No bar tonight"), staying honest
        itself via per-day stamps in progress.streakData. Mirror the stamps:
@@ -333,7 +333,7 @@
      listener is the other half. A future build that loses the dispatch stops
      logging rather than breaking anything.
 
-     detail: { kind: 'quiz', right: n, of: n } — anything else is dropped. */
+     detail: { kind: 'quiz', right: n, of: n }; anything else is dropped. */
 
   function hookTable() {
     w.addEventListener('oot:round-complete', function (e) {

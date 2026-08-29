@@ -27,14 +27,14 @@ const PREPS = [
     steps:["Warm the water, not boiling, which dulls honey's aromatics.","Stir honey into the water until fully incorporated.","Cool and bottle."],
     keeps:"1 month refrigerated.",
     uses:"Bee's Knees, Gold Rush, Penicillin, Airmail.",
-    note:"Straight honey will not incorporate into a cold drink — it seizes and sinks. Always cut it. Vary the honey (orange blossom, buckwheat, wildflower) and the drink changes noticeably." },
+    note:"Straight honey will not incorporate into a cold drink: it seizes and sinks. Always cut it. Vary the honey (orange blossom, buckwheat, wildflower) and the drink changes noticeably." },
   { name:"Ginger Syrup", cat:"Syrups", ratio:"1 part fresh ginger juice : 1 part sugar, by weight", yield:"≈ 16 oz from 8 oz ginger juice",
     steps:["Juice fresh ginger root: a centrifugal juicer is ideal; otherwise grate and squeeze through cloth.","Stir in an equal weight of sugar until dissolved. Do not heat: heat kills the fresh burn that makes this worth making.","Let the sediment settle, then decant off the top for a cleaner syrup, or leave it for more bite."],
     keeps:"2 weeks refrigerated: it's raw juice with no heat step, so nothing pasteurized it; smell it before every service.",
     uses:"Penicillin, mules, Kentucky Buck, Gin Gin Mule, and house ginger beer.",
     note:"The difference between fresh ginger syrup and the bottled stuff is the difference between a Penicillin and a disappointment." },
   { name:"Cinnamon Syrup", cat:"Syrups", ratio:"2:1 rich syrup + 4–5 cinnamon sticks per quart", yield:"≈ 32 oz",
-    steps:["Crack the cinnamon sticks to expose more surface.","Combine with sugar and water, warm gently for 5 minutes, then kill the heat.","Steep off the heat at least 2 hours — overnight is better.","Strain and bottle."],
+    steps:["Crack the cinnamon sticks to expose more surface.","Combine with sugar and water, warm gently for 5 minutes, then kill the heat.","Steep off the heat at least 2 hours; overnight is better.","Strain and bottle."],
     keeps:"1 month refrigerated.",
     uses:"Zombie, Jet Pilot, Nui Nui, Hot Buttered Rum batter, and autumn drinks generally.",
     note:"Use true Ceylon cinnamon if you can find it: cassia (the supermarket default) is harsher and more one-note." },
@@ -49,7 +49,7 @@ const PREPS = [
     uses:"Mai Tai, Army & Navy, Japanese Cocktail, Trinidad Sour, Saturn.",
     note:"MAJOR ALLERGEN: tree nuts. Label it clearly and always disclose it; a Mai Tai is not an obvious nut hazard to a guest with an allergy." },
   { name:"Grenadine", cat:"Syrups", ratio:"1 part pomegranate juice : 1 part sugar, by weight", yield:"≈ 24 oz",
-    steps:["Warm unsweetened pomegranate juice gently — do not boil.","Stir in an equal weight of sugar until dissolved.","Add 1/2 oz pomegranate molasses per quart for depth and 2 dashes orange flower water for lift.","Cool and bottle."],
+    steps:["Warm unsweetened pomegranate juice gently: do not boil.","Stir in an equal weight of sugar until dissolved.","Add 1/2 oz pomegranate molasses per quart for depth and 2 dashes orange flower water for lift.","Cool and bottle."],
     keeps:"3–4 weeks refrigerated.",
     uses:"Jack Rose, Ward 8, Shirley Temple, tiki, and every drink where the neon stuff has been ruining things for decades.",
     note:"Commercial grenadine is usually corn syrup, red dye, and no pomegranate at all. This is a ten-minute prep that upgrades a dozen drinks." },
@@ -69,7 +69,7 @@ const PREPS = [
     uses:"Garden cocktails, gin drinks, and most of the zero-proof herbal list.",
     note:"The 20-minute limit is the whole trick. Over-steeped rosemary tastes like a pine cleaner." },
   { name:"Spicy Chile Syrup", cat:"Syrups", ratio:"1:1 simple + 2 sliced jalapeños or 1 habanero per quart", yield:"≈ 24 oz",
-    steps:["Warm the syrup, add sliced chiles (seeds in for heat, out for flavor only).","Steep 30 minutes, tasting every 10 — chile heat escalates fast and unpredictably.","Strain the moment it's where you want it. It will keep getting hotter if you don't."],
+    steps:["Warm the syrup, add sliced chiles (seeds in for heat, out for flavor only).","Steep 30 minutes, tasting every 10: chile heat escalates fast and unpredictably.","Strain the moment it's where you want it. It will keep getting hotter if you don't."],
     keeps:"3 weeks refrigerated.",
     uses:"Spicy Margaritas, agave drinks, Mango Chile Cooler.",
     note:"Capsaicin varies wildly pepper to pepper. Taste every batch and adjust the spec, not the recipe." },
@@ -82,9 +82,9 @@ const PREPS = [
     steps:["Toss fruit with sugar and let it macerate 2–4 hours at room temperature: the sugar draws the juice out cold, preserving flavor.","Add water, warm gently for 5 minutes to dissolve fully.","Strain through fine mesh without pressing hard, or it turns cloudy."],
     keeps:"2 weeks refrigerated; freeze in portions for longer.",
     uses:"Clover Club, Bramble, Knickerbocker, Frosé.",
-    note:"Frozen berries work as well as fresh and are cheaper year-round — they've already broken down." },
+    note:"Frozen berries work as well as fresh and are cheaper year-round: they've already broken down." },
   { name:"Passion Fruit Syrup", cat:"Syrups", ratio:"1 part passion fruit purée : 1 part rich syrup", yield:"≈ 24 oz",
-    steps:["Use frozen unsweetened purée — it's more consistent and cheaper than fresh fruit.","Blend with an equal volume of 2:1 rich syrup.","Bottle and refrigerate."],
+    steps:["Use frozen unsweetened purée: it's more consistent and cheaper than fresh fruit.","Blend with an equal volume of 2:1 rich syrup.","Bottle and refrigerate."],
     keeps:"2 weeks refrigerated.",
     uses:"Hurricane, Port Light, Saturn, Porn Star Martini.",
     note:"Passion fruit is the most acidic common tropical fruit: treat it as part of your sour, not just your sweet." },
@@ -92,47 +92,47 @@ const PREPS = [
     steps:["Dice fresh pineapple, including some core, and cover with warm gum syrup.","Infuse refrigerated for 24–48 hours.","Strain, pressing gently."],
     keeps:"3 weeks refrigerated.",
     uses:"Pisco Punch, Chartreuse Swizzle, and tropical builds needing weight.",
-    note:"The legendary missing ingredient of Pisco Punch. Fresh pineapple contains bromelain, an enzyme that breaks down protein — it will thin egg-white drinks, so pair carefully." },
+    note:"The legendary missing ingredient of Pisco Punch. Fresh pineapple contains bromelain, an enzyme that breaks down protein; it will thin egg-white drinks, so pair carefully." },
   { name:"Coffee & Tea Syrups", cat:"Syrups", ratio:"Strong brew + equal weight sugar", yield:"≈ 24 oz",
     steps:["Brew coffee or tea at double strength and cool completely.","Stir in an equal weight of sugar.","For tea, never steep beyond the recommended time: tannin turns astringent fast."],
     keeps:"2 weeks refrigerated.",
     uses:"Espresso builds, Sober Sour, Black Tea Negroni, and any drink needing tannic grip.",
     note:"Tea syrup is the most underrated zero-proof tool on the bar: it supplies the astringency alcohol used to provide." },
   { name:"Coconut Cream Mix", cat:"Syrups", ratio:"1 part coconut cream : 1 part coconut milk : 1/4 part rich syrup", yield:"≈ 24 oz",
-    steps:["Whisk or blend all three together until fully homogeneous.","Keep refrigerated and shake hard before every use — it separates constantly.","Discard at the first sign of sourness."],
+    steps:["Whisk or blend all three together until fully homogeneous.","Keep refrigerated and shake hard before every use; it separates constantly.","Discard at the first sign of sourness."],
     keeps:"5 days refrigerated. This is a dairy-analogue product; treat it like dairy.",
     uses:"Piña Colada, Painkiller, Bushwacker, Coconaut.",
     note:"Canned coconut cream alone is too thick and too sweet. This mix pours and integrates properly." },
 
   // ===== INFUSIONS & WASHES =====
   { name:"Fat-Washing", cat:"Infusions & Washes", ratio:"1–2 oz melted fat per 750ml spirit", yield:"Roughly the original volume, minus a little loss",
-    steps:["Melt the fat — bacon fat, browned butter, toasted sesame oil, coconut oil.","Combine with the spirit in a sealed container and shake.","Let it sit at room temperature 4–6 hours, shaking occasionally.","Freeze overnight. The fat solidifies into a cap.","Skim the solid fat and strain through a coffee filter — twice if needed."],
+    steps:["Melt the fat: bacon fat, browned butter, toasted sesame oil, coconut oil.","Combine with the spirit in a sealed container and shake.","Let it sit at room temperature 4–6 hours, shaking occasionally.","Freeze overnight. The fat solidifies into a cap.","Skim the solid fat and strain through a coffee filter, twice if needed."],
     keeps:"Indefinitely, refrigerated, once fully strained.",
     uses:"Benton's Old Fashioned (bacon bourbon), brown-butter rum, sesame-oil whiskey.",
-    note:"Fat carries flavor compounds alcohol can't. Strain thoroughly — residual fat goes rancid and will ruin the bottle." },
+    note:"Fat carries flavor compounds alcohol can't. Strain thoroughly: residual fat goes rancid and will ruin the bottle." },
   { name:"Milk-Washing / Clarification", cat:"Infusions & Washes", ratio:"1 part whole milk : 4 parts acidified punch", yield:"≈ 80% of starting volume after filtering",
-    steps:["Build your punch: spirit, citrus, sugar, water. The citrus is essential — it does the curdling.","Warm the milk gently in a large vessel.","Add the punch TO the milk, never the reverse, or you'll get a broken mess.","Let it curdle and rest 1 hour, then refrigerate several hours.","Filter through a coffee filter or superbag — slowly. The first pass may take hours; the curd itself becomes the filter."],
-    keeps:"Months refrigerated — clarification is also a preservation technique.",
+    steps:["Build your punch: spirit, citrus, sugar, water. The citrus is essential: it does the curdling.","Warm the milk gently in a large vessel.","Add the punch TO the milk, never the reverse, or you'll get a broken mess.","Let it curdle and rest 1 hour, then refrigerate several hours.","Filter through a coffee filter or superbag, slowly. The first pass may take hours; the curd itself becomes the filter."],
+    keeps:"Months refrigerated: clarification is also a preservation technique.",
     uses:"Clarified Milk Punch, batched clear cocktails, high-volume service.",
     note:"An 18th-century technique, and a genuinely magical one: the milk protein strips harshness, tannin, and color while leaving flavor. Franklin and Dickens both had recipes." },
   { name:"Spirit Infusions", cat:"Infusions & Washes", ratio:"Varies wildly by ingredient: see timings", yield:"Original volume",
     steps:["Chiles: 30 minutes to 2 hours. Taste every 15 minutes.","Fresh herbs: 1–4 hours, then strain; they turn bitter and grassy overnight.","Coffee beans: 4–12 hours.","Vanilla, cinnamon, whole spice: 3–7 days.","Fresh fruit: 2–5 days refrigerated.","Tea: 30 minutes to 2 hours: tannin makes it astringent quickly."],
-    keeps:"Once strained, essentially as long as the base spirit — but fruit infusions should be refrigerated and used within a month.",
+    keeps:"Once strained, essentially as long as the base spirit, but fruit infusions should be refrigerated and used within a month.",
     uses:"House spirits, signature cocktails, working around gaps in your back bar.",
     note:"Always strain when it's right, not when it's convenient. Nearly every failed infusion is an over-infusion." },
   { name:"High-Proof Tinctures", cat:"Infusions & Washes", ratio:"1 part botanical : 4 parts overproof neutral spirit",
     yield:"Small: you're making a dasher bottle, not a cocktail ingredient",
     steps:["Cover the botanical (saline, celery seed, cardamom, chile, smoked tea) with high-proof neutral spirit.","Steep 3–14 days depending on intensity, shaking daily.","Strain through a coffee filter into dasher bottles and label clearly."],
     keeps:"A year or more at room temperature.",
-    uses:"Adjusting drinks by drops instead of ounces — the finest-resolution tool you have.",
+    uses:"Adjusting drinks by drops instead of ounces, the finest-resolution tool you have.",
     note:"High proof extracts far more efficiently than 40% spirit. A few drops of a tincture can rescue a flat drink." },
-  { name:"20% Saline Solution", cat:"Infusions & Washes", ratio:"20 g fine sea salt : 80 g warm water", yield:"≈ 3.5 oz — a dropper bottle's worth",
+  { name:"20% Saline Solution", cat:"Infusions & Washes", ratio:"20 g fine sea salt : 80 g warm water", yield:"≈ 3.5 oz, a dropper bottle's worth",
     steps:["Dissolve the salt fully in warm water.","Cool and transfer to a dropper bottle.","Label it clearly: it looks exactly like water."],
     keeps:"Indefinitely at room temperature.",
     uses:"2–4 drops in almost any drink; essential in zero-proof and grapefruit-based builds.",
     note:"Salt suppresses bitterness selectively and lengthens the finish. This is the highest-leverage, lowest-effort prep on this entire page." },
   { name:"House Bitters", cat:"Infusions & Washes", ratio:"Bittering agent + aromatics, infused separately in overproof spirit", yield:"≈ 8 oz",
-    steps:["Infuse your bittering agents (gentian root, cinchona bark, wormwood) in overproof neutral spirit separately from your aromatics — they extract at different rates.","Steep bittering agents 2 weeks, aromatics 3–7 days, shaking daily.","Strain both, then blend to taste, adding a little rich syrup to round it.","Rest the blend a week before judging it."],
+    steps:["Infuse your bittering agents (gentian root, cinchona bark, wormwood) in overproof neutral spirit separately from your aromatics; they extract at different rates.","Steep bittering agents 2 weeks, aromatics 3–7 days, shaking daily.","Strain both, then blend to taste, adding a little rich syrup to round it.","Rest the blend a week before judging it."],
     keeps:"Years at room temperature.",
     uses:"House Old Fashioneds, signature drinks, and understanding what commercial bitters actually do.",
     note:"Cinchona contains quinine: potentially dangerous in quantity. Keep it to trace amounts, and buy from a reputable botanical supplier." },
@@ -145,14 +145,14 @@ const PREPS = [
     note:"The single most aromatic thing you can make behind a bar, and it costs you only the peels you were already discarding. Make it whenever you juice a case of lemons." },
   { name:"Super Juice", cat:"Acids & Cordials", ratio:"Peels of the fruit + citric & malic acid + water", yield:"About 6× the juice from the same fruit",
     steps:["Peel your limes (or lemons), then juice them and set the juice aside.","Weigh the peels. Add citric acid at 66% of the peel weight and malic acid at 33% (for limes; use mostly citric for lemons).","Toss peels with the acids and rest 1–2 hours to make an acid-oleo.","Add water equal to about 16× the peel weight and blend until fully dissolved.","Strain, then combine with the reserved fresh juice."],
-    keeps:"1–2 weeks refrigerated — dramatically longer than fresh juice.",
+    keeps:"1–2 weeks refrigerated, dramatically longer than fresh juice.",
     uses:"High-volume service, catering, and any bar where lime cost or waste is a real problem.",
     note:"A modern bar technique that produces a stable, remarkably accurate lime substitute using the whole fruit. It is not identical to fresh juice, it's flatter aromatically, but it's far better than bottled and it eliminates waste." },
   { name:"Lime Cordial", cat:"Acids & Cordials", ratio:"Lime oleo + lime juice + sugar", yield:"≈ 16 oz",
     steps:["Make an oleo saccharum from the lime peels.","Combine with equal parts fresh lime juice and dissolve the sugar fully.","Add 1 g citric acid per 100 ml to stabilize and brighten.","Strain and bottle."],
     keeps:"3 weeks refrigerated.",
     uses:"Gimlets made the historical way, Ti' Punch variations, Lemon Lime & Bitters.",
-    note:"The Gimlet was built on cordial, not fresh juice and syrup. Make one of each and taste them side by side — they're different drinks." },
+    note:"The Gimlet was built on cordial, not fresh juice and syrup. Make one of each and taste them side by side; they're different drinks." },
   { name:"Fruit Shrub (Drinking Vinegar)", cat:"Acids & Cordials", ratio:"1 part fruit : 1 part sugar : 1 part vinegar, by weight", yield:"≈ 20 oz per pound of fruit",
     steps:["COLD METHOD (better flavor): Macerate chopped fruit with sugar 24–48 hours refrigerated until syrupy. Strain, then stir in the vinegar. Rest 3–7 days before using: the harshness mellows.","HOT METHOD (faster): Simmer fruit, sugar, and water briefly, strain, then add vinegar off the heat.","Use apple cider or champagne vinegar; white distilled is too aggressive."],
     keeps:"2–3 months refrigerated: the acid preserves it. It improves for the first few weeks.",
@@ -176,12 +176,12 @@ const PREPS = [
     keeps:"Lime: peaks around 2–4 hours after pressing, declines noticeably after 8, unusable by 24. Lemon: more forgiving, good for about two days refrigerated. Orange and grapefruit: oxidize fast, press to order where possible.",
     uses:"Everything. Fresh citrus is the single largest quality variable in any cocktail program.",
     note:"Lime juice genuinely improves for the first few hours and then falls off a cliff. If your Daiquiris taste different at 6pm and midnight, this is why." },
-  { name:"Cutting Garnishes", cat:"Juice & Garnish", ratio:"Cut fresh every shift — no exceptions", yield:"1 lemon ≈ 8 wheels or 6 twists · 1 lime ≈ 8 wedges",
+  { name:"Cutting Garnishes", cat:"Juice & Garnish", ratio:"Cut fresh every shift, no exceptions", yield:"1 lemon ≈ 8 wheels or 6 twists · 1 lime ≈ 8 wedges",
     steps:["WHEELS: slice evenly about 1/4 inch, notch to sit on the rim.","WEDGES: halve lengthwise, then cut each half into 3–4 wedges; trim the membrane so they squeeze cleanly.","TWISTS: Y-peeler, minimal pith, trim to a clean rectangle.","HORSE'S NECK: one continuous spiral peel from the whole fruit. Practice on cheap fruit.","FLAG: cherry and orange slice on a pick.","Store cut garnish covered and refrigerated; keep twists in a sealed container with a barely damp towel."],
     keeps:"One shift. A dried-out lime wheel tells a guest everything about your standards.",
     uses:"Every drink that leaves your station.",
     note:"The doctrine here: the garnish is the first thing the guest's nose meets. It is an ingredient, not decoration." },
-  { name:"Dehydrated Garnishes", cat:"Juice & Garnish", ratio:"Thin, even slices — about 1/8 inch", yield:"1 orange ≈ 10–12 wheels",
+  { name:"Dehydrated Garnishes", cat:"Juice & Garnish", ratio:"Thin, even slices, about 1/8 inch", yield:"1 orange ≈ 10–12 wheels",
     steps:["Slice citrus as thinly and evenly as you can. A mandoline helps.","Dehydrate at 135°F for 6–12 hours, or bake at your oven's lowest setting on parchment, flipping occasionally.","They're done when completely leathery with no soft spots.","Store airtight with a silica packet if you have one."],
     keeps:"Several weeks airtight, well away from humidity.",
     uses:"Garnish for high-volume service, batched drinks, and anything where you can't cut to order.",
@@ -215,7 +215,7 @@ const PREP_LISTS = [
   ]],
   ["Pre-Shift (15 minutes before doors)",[
     "Taste your citrus. Lime acidity varies daily and your specs may need a nudge.",
-    "Taste anything you're unsure of — a dead vermouth caught now saves twenty bad drinks.",
+    "Taste anything you're unsure of: a dead vermouth caught now saves twenty bad drinks.",
     "Review the 86 list and know your substitutions before a guest asks.",
     "Review reservations, large parties, and any VIP or allergy notes.",
     "Confirm tonight's specials and any new menu items, including how they're built.",
@@ -256,11 +256,11 @@ const PREP_LISTS = [
 const PREP_SAFETY = [
   ["Label everything, always","Every container gets the contents, the date made, and the discard date. Masking tape and a sharpie is enough. An unlabeled container is a mystery, and mysteries get thrown away, which is more expensive than the label. Health inspectors check this first, and in most jurisdictions it's a violation on its own."],
   ["Know the shelf lives","Rough guide, all refrigerated: fresh juice 1 day (lime), 2 days (lemon); 1:1 simple 3–4 weeks; 2:1 rich 6–8 weeks; honey syrup 1 month; fresh ginger syrup 2 weeks; herb syrups 2 weeks; dairy and coconut mixes 5 days; shrubs 2–3 months; anything with high-proof spirit in it, months. When in doubt, dump it: a bad batch costs you a guest, and the syrup costs you a dollar."],
-  ["Recognize spoilage","Look for cloudiness in a syrup that was clear, surface film, mold at the neck or under the cap, bubbles or fizzing (that's fermentation), and any sour or 'off' smell. Mold in one spot means the whole container is compromised — you cannot scoop it out. Yeast and bacteria travel throughout the liquid long before you see anything."],
-  ["Refrigeration and cooling","Cool preparations completely before sealing and refrigerating — trapped steam creates condensation, which dilutes the surface and invites mold. Keep the fridge at or below 40°F, and never store syrups in the ice well. Shallow containers cool faster and more safely than deep ones."],
+  ["Recognize spoilage","Look for cloudiness in a syrup that was clear, surface film, mold at the neck or under the cap, bubbles or fizzing (that's fermentation), and any sour or 'off' smell. Mold in one spot means the whole container is compromised: you cannot scoop it out. Yeast and bacteria travel throughout the liquid long before you see anything."],
+  ["Refrigeration and cooling","Cool preparations completely before sealing and refrigerating: trapped steam creates condensation, which dilutes the surface and invites mold. Keep the fridge at or below 40°F, and never store syrups in the ice well. Shallow containers cool faster and more safely than deep ones."],
   ["Raw egg and dairy","Use fresh, properly refrigerated eggs and crack them into a separate container so a bad one doesn't ruin a drink. Never hold pre-separated whites at room temperature. Aquafaba is a legitimate substitute that eliminates the risk entirely and works for vegan guests. Some jurisdictions require pasteurized eggs for raw service: know your local rule."],
-  ["Allergens are your responsibility","Orgeat and falernum contain tree nuts and are not obvious hazards to a guest. Cream, Irish cream, and coconut mixes are dairy or dairy-adjacent. Egg white appears in far more classics than most guests expect. Some bitters and amari contain gluten. Label these preps clearly on the container and know your menu's allergens without having to check — a guest asking is often asking because the answer really matters."],
-  ["Cross-contamination and hygiene","Separate cutting boards and knives for citrus and for anything savory. Never use the same tongs for garnish and for anything else. Wash hands after handling money, phones, or trash — every time. Sanitizer bucket at proper dilution, changed when cloudy. Never use your hands to scoop ice, and never put a glass in the ice well as a scoop; if it chips, the entire well is gone."],
+  ["Allergens are your responsibility","Orgeat and falernum contain tree nuts and are not obvious hazards to a guest. Cream, Irish cream, and coconut mixes are dairy or dairy-adjacent. Egg white appears in far more classics than most guests expect. Some bitters and amari contain gluten. Label these preps clearly on the container and know your menu's allergens without having to check: a guest asking is often asking because the answer really matters."],
+  ["Cross-contamination and hygiene","Separate cutting boards and knives for citrus and for anything savory. Never use the same tongs for garnish and for anything else. Wash hands after handling money, phones, or trash, every time. Sanitizer bucket at proper dilution, changed when cloudy. Never use your hands to scoop ice, and never put a glass in the ice well as a scoop; if it chips, the entire well is gone."],
   ["FIFO and stock rotation","First in, first out. New stock goes behind old stock, every time you restock. Date everything on arrival, not just on opening. This applies as much to your syrups and juices as to your bottles, and it's the difference between a program that runs on par levels and one that runs on panic."],
 ];
 
@@ -325,7 +325,7 @@ function renderPrep(){
 
 /* ---------------- WATCH IT MADE: VIDEO LINKS ----------------
    Design note: these are SEARCH links, not hardcoded video IDs.
-   A pinned video ID rots — channels delete, privatize, and re-upload,
+   A pinned video ID rots: channels delete, privatize, and re-upload,
    and a study guide full of dead links is worse than none. A search
    URL is permanently stable and always returns current results. */
 
@@ -344,7 +344,7 @@ const CHANNELS = [
     best:'Advanced technique, clarified and batched drinks' },
   { id:'barfly', name:'The Educated Barfly', handle:'@TheEducatedBarfly',
     url:'https://www.youtube.com/@TheEducatedBarfly',
-    about:'Encyclopedic recipe library plus opinionated list videos — best bourbon under $30, which gin for which drink. Good for building a shopping brain.',
+    about:'Encyclopedic recipe library plus opinionated list videos: best bourbon under $30, which gin for which drink. Good for building a shopping brain.',
     best:'Recipe completism, syrups and prep, bottle picks' },
   { id:'howtodrink', name:'How to Drink', handle:'@HowToDrink',
     url:'https://www.youtube.com/@HowToDrink',
@@ -444,7 +444,7 @@ function videoQuery(d, mode){
   const has = function(w){ return low.indexOf(w)>=0; };
   let q = n;
 
-  // Classify by what the drink IS, not just which list it sits in — the
+  // Classify by what the drink IS, not just which list it sits in: the
   // cocktail list contains a few spirit-free drinks and a couple of shots.
   const isShot = d.src==='Shots' || /\bshot\b/i.test(n) || /\bshooter\b/i.test(n);
   const isNA = d.src==='Zero Proof' || d.spirit==='Spirit-free';
@@ -537,7 +537,7 @@ function videoRowHTML(d){
     + (v.native ? '<a class="btn btn-ghost tiny" href="'+v.nativeSearch+'" target="_blank" rel="noopener noreferrer">▶ '+esc(v.native)+'</a>' : '')
     + '</div>'
     + '<div class="tiny dim lh">'
-    + (v.native ? 'The last button searches in the drink\'s home language — that is where the people who grew up making it post. ' : '')
+    + (v.native ? 'The last button searches in the drink\'s home language: that is where the people who grew up making it post. ' : '')
     + 'Two takes beats one: watching different bartenders build the same drink teaches you which choices are the recipe and which are the house.'
     + (v.pinned ? ' <span class="brass2">Channel pinned in Notes → Video settings.</span>' : '')
     + '</div></div>';
@@ -569,7 +569,7 @@ const TECHNIQUE_VIDEOS = [
   ['Expressing a citrus peel','how to express a citrus peel cocktail garnish','Skin-side down, snap, wipe the rim. Two seconds of video replaces a paragraph.'],
   ['The flamed orange peel','flamed orange peel cocktail garnish technique','The signature move of the Rainbow Room revival. Watch it before you try it near a guest.'],
   ['Cutting garnishes','how to cut cocktail garnish twist wheel wedge','Wheels, wedges, twists, and the one-piece horse\'s neck spiral.'],
-  ['Layering shots','how to layer shots bar spoon density technique','The inverted barspoon against the glass wall — the motion is the whole skill.'],
+  ['Layering shots','how to layer shots bar spoon density technique','The inverted barspoon against the glass wall: the motion is the whole skill.'],
   ['Swizzling','how to swizzle cocktail crushed ice technique','Spinning the stick between your palms until the tin frosts. Looks trivial, isn\'t.'],
   ['Free pouring','how to free pour count bartender technique','Calibrating your count against a jigger. Watch a pro, then practice with water.'],
   ['Clear ice','how to make clear ice directional freezing','Directional freezing in a cooler, the cheapest upgrade to how your drinks look.'],
@@ -586,7 +586,7 @@ function techniqueHTML(){
       + '<div class="small dim lh">'+esc(t[2])+'</div></div>';
   }).join('');
   return '<div class="col-sm">'
-    + '<div class="small dim lh" style="padding:0 4px">Specs are text; technique is physical. These fourteen searches cover the motions a written guide genuinely cannot teach — watch each one once before you practice it.</div>'
+    + '<div class="small dim lh" style="padding:0 4px">Specs are text; technique is physical. These fourteen searches cover the motions a written guide genuinely cannot teach: watch each one once before you practice it.</div>'
     + rows + '</div>';
 }
 

@@ -31,7 +31,7 @@
 *{ box-sizing:border-box; margin:0; padding:0; }
 body{ background:var(--felt); min-height:100vh; color:var(--cream);
   font-family:'Libre Franklin', system-ui, sans-serif; overscroll-behavior-y:none; }
-/* felt grain — one inline feTurbulence tile, fixed so it doesn't swim on scroll */
+/* felt grain: one inline feTurbulence tile, fixed so it doesn't swim on scroll */
 body::before{ content:''; position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:0.5;
   background-color:var(--felt);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E"); }
@@ -40,7 +40,7 @@ body::before{ content:''; position:fixed; inset:0; pointer-events:none; z-index:
 .font-display{ font-family:'Rye','Georgia',serif; }
 .font-tix{ font-family:'Courier Prime','Courier New',monospace; }
 .eyebrow{ letter-spacing:0.22em; text-transform:uppercase; font-size:0.66rem; color:var(--brass); font-weight:600; }
-/* eyebrows promoted to h2/h3 keep the exact same face — the heading is
+/* eyebrows promoted to h2/h3 keep the exact same face: the heading is
    for the accessibility tree, not the eye */
 h2.eyebrow,h3.eyebrow{ margin:0; }
 .dim{ color:var(--cream-dim); }
@@ -84,7 +84,7 @@ nav.tabs{ display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
 .cl-btn.cl-search:hover{ color:var(--brass-2); }
 .subtabs{ display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; justify-content:center; flex-wrap:wrap; }
 /* sub-navs rendered inside a view (Practice, Tools, Shots, Zero Proof) reuse
-   nav.tabs — they must stay a horizontal row, not inherit the masthead column */
+   nav.tabs: they must stay a horizontal row, not inherit the masthead column */
 #view nav.tabs{ flex-direction:row; flex-wrap:wrap; gap:8px; }
 .tab-btn{ font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:600;
   color:var(--cream-dim); background:transparent; border:1px solid var(--felt-3);
@@ -291,7 +291,7 @@ details.story[open] summary{ margin-bottom:6px; }
 .opt-mark{ font-weight:700; }
 
 /* Windows High Contrast strips every background, and this design system signals
-   state with nothing but colour swaps — so without this block the correct
+   state with nothing but colour swaps, so without this block the correct
    answer, the owned shelf bottles and the active tab all vanish. */
 @media (forced-colors: active){
   .opt-btn.correct, .opt-btn.wrong,

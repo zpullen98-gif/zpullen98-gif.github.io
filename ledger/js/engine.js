@@ -72,7 +72,7 @@ function recordBottle(name, price, sizeMl){
   b.price = p; b.sizeMl = ml; b.ts = Date.now(); b.name = nm;
   return true;
 }
-/* The move since last time, in percent — null until there is a last time,
+/* The move since last time, in percent: null until there is a last time,
    and only within comparable sizes (a 700ml at the 750ml price is not a cut). */
 function bottleMovePct(b){
   const h = (b.history||[]).filter(x => x && x.price > 0);
@@ -116,7 +116,7 @@ function ticketHTML(c, hideName){
   const gi = (!hideName && typeof glassIcon==='function') ? '<span class="tix-glass">'+glassIcon(c.glass)+'</span>' : '';
   return '<div class="ticket"><div class="ticket-inner">'+gi
     + '<div class="tc"><div class="tix-label">The Bartender\'s Ledger · Drink Ticket</div>'
-    + '<div class="tix-name">'+(hideName ? '— ? —' : esc(c.name.toUpperCase()))+'</div></div>'
+    + '<div class="tix-name">'+(hideName ? '- ? -' : esc(c.name.toUpperCase()))+'</div></div>'
     + '<div class="tix-rule"></div>' + specLines + '<div class="tix-rule"></div>'
     + '<div><span class="tix-label">Method </span>'+esc(c.method)+'</div>'
     + '<div><span class="tix-label">Glass </span>'+esc(c.glass)+'</div>'
@@ -128,7 +128,7 @@ const idxOf = (name) => COCKTAILS.findIndex(c => c.name === name);
 /* ---------------- BALANCE ENGINE (the sweet-sour correction) ---------------- */
 function classifyLine(l){
   const s = l.toLowerCase();
-  /* aromatics are dashes and rinses — but a measured pour of bitters is a base
+  /* aromatics are dashes and rinses, but a measured pour of bitters is a base
      spirit (the Trinidad Sour is 1.5 oz of Angostura), so check volume first */
   if(/bitters|rinse|drops|flower water|dash/.test(s) && lineOz(l) === 0) return 'aromatic';
   /* non-spirit bulk: mixers, beer, dairy and juices that lengthen rather than sour */
@@ -193,7 +193,7 @@ function balanceOf(c){
   });
   // Liqueur- and wine-based drinks (Aperol Spritz, Midori Sour, Mimosa) have no
   // conventional base spirit. Promote their largest sweet, or failing that,
-  // largest modifier — into the strong column so the read isn't misleading.
+  // largest modifier into the strong column so the read isn't misleading.
   // A 'long' line is never promoted: a mixer is not a base, and promoting one
   // made a Michelada read as 12 oz of spirit.
   if(b.strong === 0){
@@ -215,7 +215,7 @@ function balanceLineHTML(c){
   return '<div class="tix-rule"></div><div><span class="tix-label">Balance ≈ </span><span style="color:var(--ink-dim)">' + parts.join(' · ') + ' oz</span></div>';
 }
 const BALANCE_TIPS = {
-  'Sour':"The dials: too tart → nudge the sweet up ⅛ oz; cloying → add ¼ oz citrus; thin → suspect your shake and your ice before the spec. Citrus varies daily — taste it before service.",
+  'Sour':"The dials: too tart → nudge the sweet up ⅛ oz; cloying → add ¼ oz citrus; thin → suspect your shake and your ice before the spec. Citrus varies daily: taste it before service.",
   'Old Fashioned':"Sweetness should whisper. If it drinks hot, the fix is usually ten more seconds of stirring: water is the missing ingredient, not sugar.",
   'Spirit & Vermouth':"The ratio is the personality: 2:1 is the modern standard, 1:1 is 1880s silk. If it tastes dull, suspect the vermouth's age before you blame the ratio.",
   'Highball':"Balance here is temperature and fizz, not math. Everything cold, gentle build, one lift of the spoon: a hard stir murders the carbonation.",
@@ -289,7 +289,7 @@ const DRILLS = [
   { id:'garnish', name:'Garnish Prep Speed', unit:'sec for 20 twists + 10 wheels', dir:'low',
     desc:'Twenty lemon twists, no pith, and ten lime wheels slit for the rim: against the clock, into a clean caddy. This is where a slow bartender loses ten minutes of every prep hour, and it is the first thing a manager watches on a trail. Under 300 is respectable; under 180 is a professional.' },
   { id:'mise', name:'Station Setup', unit:'sec to set the station', dir:'low',
-    desc:'From an empty rail: ice, tins, jiggers, strainers, bar spoon, muddler, juice, syrups, garnish caddy, towels — everything within a pivot, nothing you have to look for twice. Set it, time it, then stand in it and reach for six things blind. If you had to look, it is in the wrong place.' },
+    desc:'From an empty rail: ice, tins, jiggers, strainers, bar spoon, muddler, juice, syrups, garnish caddy, towels: everything within a pivot, nothing you have to look for twice. Set it, time it, then stand in it and reach for six things blind. If you had to look, it is in the wrong place.' },
   { id:'glassware', name:'Glass Call', unit:'correct of 10', dir:'high', pick:10,
     desc:'The drill deals ten drinks. Say the glass out loud before you check: coupe or Nick & Nora, rocks or double rocks, Collins or highball. Glass choice is the first thing a guest sees and a standard interview question. Log how many of ten you called.' },
   /* hidden: run from its own Ticket Rail view, but charted with the rest */
@@ -298,17 +298,17 @@ const DRILLS = [
   { id:'hold', name:'Hold the Round', hidden:true, unit:'correct of 5', dir:'high',
     desc:'A server calls a round while your hands are full. Hold it, then prove you held it.' },
   { id:'strain', name:'Double-Strain Discipline', unit:'sec, flecks-free', dir:'low',
-    desc:'A Gin Basil Smash or any herb-shaken sour, double-strained into a chilled coupe. The clock runs from tin-open to glass-down, and the run only counts if the surface is clean — one green fleck and it is a failed attempt, not a slow one.' },
+    desc:'A Gin Basil Smash or any herb-shaken sour, double-strained into a chilled coupe. The clock runs from tin-open to glass-down, and the run only counts if the surface is clean: one green fleck and it is a failed attempt, not a slow one.' },
 ];
 
 /* Served-strength bands, shared by the Tools strength panel and the
-   Dealer's Choice quiz — one scale, so the two can never disagree. */
+   Dealer's Choice quiz: one scale, so the two can never disagree. */
 function strengthBand(abvServed){
-  return abvServed >= 30 ? { key:'very strong', line:'Very strong — a sipping drink, and one you pace a guest on.' }
+  return abvServed >= 30 ? { key:'very strong', line:'Very strong: a sipping drink, and one you pace a guest on.' }
     : abvServed >= 22 ? { key:'spirit-forward', line:'Spirit-forward. Standard for a stirred classic served up.' }
-    : abvServed >= 14 ? { key:'moderate', line:'Moderate — a sour or a short highball.' }
+    : abvServed >= 14 ? { key:'moderate', line:'Moderate: a sour or a short highball.' }
     : abvServed >= 8 ? { key:'sessionable', line:'Sessionable. This is the strength most long drinks land at.' }
-    : { key:'light', line:'Low-ABV. Aperitivo territory — you can serve two.' };
+    : { key:'light', line:'Low-ABV. Aperitivo territory: you can serve two.' };
 }
 
 /* ---------------- SHELF KEYWORDS (inventory mode) ---------------- */
@@ -330,7 +330,7 @@ const SHELF = [
   ['mint','Fresh mint',/\bmint\b/i],['egg','Eggs',/\begg\b/i],['cream','Cream',/(?<!coconut )(?<!irish )(?<!ice )(?<!amarula )\bcream\b/i],['coco','Coconut cream',/coconut(?! rum)/i],
   ['soda','Soda water',/\bsoda\b/i],['tonic','Tonic',/tonic/i],['gb','Ginger beer',/ginger beer/i],
   /* 'ginger' itself: the Zero-proof station preset referenced this id and no
-     row defined it — the preset silently stocked one item fewer than it
+     row defined it: the preset silently stocked one item fewer than it
      claimed. The lookahead leaves beer and ale their own rows. */
   ['ginger','Fresh ginger / ginger syrup',/\bginger\b(?! beer| ale)/i],
   ['espresso','Espresso',/espresso/i],['hotcoffee','Hot coffee',/hot coffee/i],
@@ -410,7 +410,7 @@ function eightySixReport(key, pool){
         if(!bits.length && shared) bits.push(shared + ' shared ingredient' + (shared===1?'':'s'));
         why = bits.join(', ') || null;
       }
-      return { name:d.name, family:famOf(d)||'—', spirit:d.spirit||'—', sub: best ? best.name : null, why:why };
+      return { name:d.name, family:famOf(d)||'-', spirit:d.spirit||'-', sub: best ? best.name : null, why:why };
     }),
   };
 }

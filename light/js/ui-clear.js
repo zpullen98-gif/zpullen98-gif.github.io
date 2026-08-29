@@ -21,20 +21,20 @@ const CLEAR_SECTIONS = [
    "question is harder here than anywhere else, and worth better tools than a hangover and a vow. " +
    "Nobody sees this room. It is not in the menu, not in your stats, not in search. The only person it reports to is you."],
   ["The honest ledger",
-   "The shift drink works — that is the problem with it. It lands on an empty tank, after adrenaline, at the exact " +
+   "The shift drink works: that is the problem with it. It lands on an empty tank, after adrenaline, at the exact " +
    "hour the body is defenseless, which makes it the most efficient drink of the week. Efficiency builds tolerance; " +
    "tolerance quietly moves the goalposts; and one becomes the new zero without a single dramatic night. " +
    "No lecture follows. Just arithmetic worth doing while the pencil is yours: what did this week actually pour, " +
-   "and who decided each one — you, or the end of the shift?"],
+   "and who decided each one: you, or the end of the shift?"],
   ["Seneca kept this ledger too",
-   "This is not a modern anxiety. Seneca wrote a whole letter on drunkenness — the eighty-third — and his sharpest " +
+   "This is not a modern anxiety. Seneca wrote a whole letter on drunkenness, the eighty-third, and his sharpest " +
    "line is not about wine at all: he calls drunkenness 'voluntary madness,' chosen one cup at a time, and asks why " +
    "a man who would never sign away his judgment sells it nightly for the price of feeling nothing. " +
    "The letter is not temperance copy. It is a professional noticing what a habit does to the instrument he works " +
-   "with — which is also your situation, exactly."],
+   "with, which is also your situation, exactly."],
   ["The pour question",
    "One question, asked after the night, never before it: did tonight's drink pour itself, or did you pour it? " +
-   "A drink you poured (chose, wanted, enjoyed) needs no defending. A drink that poured itself — that arrived by " +
+   "A drink you poured (chose, wanted, enjoyed) needs no defending. A drink that poured itself, that arrived by " +
    "autopilot, because close-out ends that way, because everyone was having one, is information. Not guilt; " +
    "information. Noticing the difference is the entire practice, and nobody gets it right every night."],
   ["If it is bigger than this room",

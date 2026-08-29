@@ -1,4 +1,4 @@
-/* First Light — the sun, and the palette it drives.
+/* First Light: the sun, and the palette it drives.
 
    The app is named for a moment of the day, so it should know when that moment is.
    This computes real local sunrise, sunset and civil twilight, and puts the result
@@ -18,7 +18,7 @@ function sunRad(d) { return d * Math.PI / 180; }
 function sunDeg(r) { return r * 180 / Math.PI; }
 
 /* Day of the year on the REAL calendar. Deliberately not plan.js's doyOf(), which
-   is the almanac's fixed 366-slot table — the sun does not observe that fiction. */
+   is the almanac's fixed 366-slot table: the sun does not observe that fiction. */
 function sunDayOfYear(dt) {
   return Math.floor((dt - new Date(dt.getFullYear(), 0, 0)) / 86400000);
 }
@@ -102,7 +102,7 @@ function sunAskLocation() {
    every branch has to guard a null and then invent a clock-based fallback; and the
    events are points, so "how far through twilight are we" needs interpolation
    between them. Altitude is continuous, defined at every latitude on every day of
-   the year, and cheaper — no iterative search. Rise and set times are still
+   the year, and cheaper: no iterative search. Rise and set times are still
    computed above, but only to be shown to the reader, never to be depended on. */
 function sunAltitude(dt, lat, lon) {
   var doy = sunDayOfYear(dt);
@@ -163,7 +163,7 @@ function sunIsEvening(now) {
   if (sunAltitude(now, w.lat, w.lon) >= 0) {
     /* polar day: the sun will not set for weeks, and an examen gated on
        darkness would simply vanish. Where there is genuinely no sunset
-       today, the clock stands in — the same promise the palette keeps. */
+       today, the clock stands in, the same promise the palette keeps. */
     var t = sunTimes(now, w.lat, w.lon);
     if (t.sunset === null) return h >= 21 || h < edge;
     return false;
@@ -216,7 +216,7 @@ function sunDescribe() {
   var w = sunWhere();
   var t = sunTimes(new Date(), w.lat, w.lon);
   var fmt = function (d) {
-    return d ? d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }) : '—';
+    return d ? d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }) : '-';
   };
   return {
     exact: w.exact,

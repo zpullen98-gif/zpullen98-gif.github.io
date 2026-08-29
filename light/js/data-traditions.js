@@ -32,7 +32,7 @@ var FL_TRADITIONS = [
   concepts: [
     ['Brahman', 'The ground of being: not a god among gods but the reality of which everything is a modification. Defined mostly by negation: not this, not this.'],
     ['Ātman', 'The self, in the deepest sense: not personality or memory but the awareness those happen inside. The great claim of the Upanishads is that ātman and Brahman are not two.'],
-    ['Dharma', 'What is right, given who and where you are. Both cosmic order and the specific duty of this person in this life — which is why the Gita can argue that a soldier’s dharma is not a monk’s.'],
+    ['Dharma', 'What is right, given who and where you are. Both cosmic order and the specific duty of this person in this life, which is why the Gita can argue that a soldier’s dharma is not a monk’s.'],
     ['Karma', 'Action, and the consequence carried in it. Not reward and punishment administered from outside, but the moral grain of the universe running its course.'],
     ['Saṃsāra', 'The round of birth, death, and rebirth. The problem, not the goal.'],
     ['Mokṣa', 'Release from that round. The goal, reached by knowledge, by devotion, or by action offered without grasping at its fruit, depending on whom you ask.'],
@@ -80,8 +80,8 @@ var FL_TRADITIONS = [
   epigraph: ['Hear, O Israel: the Lord our God, the Lord is one.', 'Deuteronomy 6:4'],
 
   opening: [
-    'Judaism is the covenant of a particular people with one God, and almost everything distinctive about it follows from that sentence. Not a philosophy that happens to have adherents but a relationship with a history — including the parts where the people argue with God, and win.',
-    'The Tanakh is an acronym: Torah (the five books of teaching), Nevi’im (prophets), Ketuvim (writings). It is the same collection Christians call the Old Testament, in a different order and read very differently — it ends not with prophecy pointing forward but with Chronicles and the instruction to go up and rebuild.',
+    'Judaism is the covenant of a particular people with one God, and almost everything distinctive about it follows from that sentence. Not a philosophy that happens to have adherents but a relationship with a history, including the parts where the people argue with God, and win.',
+    'The Tanakh is an acronym: Torah (the five books of teaching), Nevi’im (prophets), Ketuvim (writings). It is the same collection Christians call the Old Testament, in a different order and read very differently; it ends not with prophecy pointing forward but with Chronicles and the instruction to go up and rebuild.',
     'What is easy to miss from outside is that scripture is only half of it. The other half is the oral tradition eventually written down as Mishnah and Talmud: centuries of argument about what the text requires, preserving the minority opinions alongside the majority, on the principle that a rejected argument may be needed later. Judaism is less a set of answers than a very long, very careful conversation that no one is permitted to end.'
   ],
 
@@ -91,7 +91,7 @@ var FL_TRADITIONS = [
     ['Tzedakah', 'Usually translated charity, but built on the root for justice: giving is owed, not generous.'],
     ['Teshuvah', 'Repentance, literally "return". The assumption is that you were already on the path and can rejoin it.'],
     ['Shabbat', 'The seventh day, and the first thing in the Hebrew Bible called holy. A law about stopping.'],
-    ['Mitzvot', 'The commandments — traditionally 613 — through which the covenant is lived in ordinary detail.'],
+    ['Mitzvot', 'The commandments, traditionally 613, through which the covenant is lived in ordinary detail.'],
     ['Tikkun olam', 'Repair of the world. A late phrase that has become the tradition’s shorthand for social obligation.'],
     ['Chesed', 'Steadfast, loyal kindness: the quality God is repeatedly said to keep even when it is not deserved.']
   ],
@@ -147,7 +147,7 @@ var FL_TRADITIONS = [
     ['Anicca', 'Impermanence. Not a mood but a description: everything composite comes apart.'],
     ['Anattā', 'Not-self. There is experience, but no unchanging owner of it standing behind the experience.'],
     ['Nibbāna', 'The going out of a flame: craving extinguished. Described almost entirely by what it is not.'],
-    ['The Eightfold Path', 'Right view, intention, speech, action, livelihood, effort, mindfulness, concentration — practised together, not in sequence.'],
+    ['The Eightfold Path', 'Right view, intention, speech, action, livelihood, effort, mindfulness, concentration: practised together, not in sequence.'],
     ['Karma', 'Intentional action and its fruit. Buddhism sharpens the Vedic idea by locating it in intention specifically.'],
     ['Mettā', 'Loving-kindness, deliberately cultivated, beginning with yourself and widened until it excludes no one.'],
     ['Saṅgha', 'The community of practitioners, and one of the three refuges alongside the Buddha and the Dhamma.']
@@ -162,8 +162,8 @@ var FL_TRADITIONS = [
   ],
 
   branches: [
-    ['Theravāda', '"The way of the elders" — Sri Lanka and Southeast Asia, closest to the Pali canon, centred on monastic practice.'],
-    ['Mahāyāna', 'The "great vehicle" — East Asia; the ideal shifts from personal liberation to the bodhisattva who postpones it for others.'],
+    ['Theravāda', '"The way of the elders": Sri Lanka and Southeast Asia, closest to the Pali canon, centred on monastic practice.'],
+    ['Mahāyāna', 'The "great vehicle": East Asia; the ideal shifts from personal liberation to the bodhisattva who postpones it for others.'],
     ['Vajrayāna', 'Tibetan and Himalayan, with an elaborate contemplative technology and a strong teacher-student lineage.'],
     ['Zen / Chan', 'Mahāyāna stripped toward direct practice: sitting, and the suspicion that words get in the way.']
   ],
@@ -186,7 +186,7 @@ var FL_TRADITIONS = [
   reading: 'The Dhammapada is designed for exactly the way this app serves it: a verse or two at a time, returned to. Read it slowly and it will seem repetitive; that is the method, not a flaw. When you want the argument rather than the aphorism, the Fire Sermon and the Kalama Sutta are short and will reset most assumptions a Western reader arrives with.'
 },
 
-{ id: 'confucian', name: 'Confucianism', also: 'Rújiā — the school of scholars',
+{ id: 'confucian', name: 'Confucianism', also: 'Rújiā: the school of scholars',
   works: ['analects'],
   era: 'Confucius 551–479 BCE; the Analects compiled by his students',
   where: 'China, Korea, Japan, Vietnam, as much a civilisation’s grammar as a religion',
@@ -195,7 +195,7 @@ var FL_TRADITIONS = [
   opening: [
     'Confucius spent his life trying to get a government job and failing. He wanted to demonstrate that a state run on moral example rather than force would outperform its neighbours, could not persuade any ruler to let him try, and died believing he had accomplished nothing. His students wrote down what he said, and two and a half thousand years later it is the operating system of a fifth of humanity.',
     'The Analects is not a treatise. It is fragments (a question from a student, a remark on a walk, a comment on someone’s conduct) with no argument connecting them and no system on offer. Read straight through it can feel like eavesdropping. Read slowly, one saying at a time, a coherent picture emerges: that character is built by practice rather than declared, that ritual and courtesy are the forms through which decency becomes reliable, and that how you treat your family is the training ground for how you will treat everyone.',
-    'Whether it is a religion at all is genuinely disputed, including inside China. It has no creator god and says almost nothing about an afterlife — asked about serving the spirits, Confucius replied that if you cannot yet serve people, how can you serve spirits. But it has scripture, sages, ritual, and a doctrine of Heaven, and it has shaped more lives than most things that are certainly religions.'
+    'Whether it is a religion at all is genuinely disputed, including inside China. It has no creator god and says almost nothing about an afterlife: asked about serving the spirits, Confucius replied that if you cannot yet serve people, how can you serve spirits. But it has scripture, sages, ritual, and a doctrine of Heaven, and it has shaped more lives than most things that are certainly religions.'
   ],
 
   concepts: [
@@ -239,7 +239,7 @@ var FL_TRADITIONS = [
     ['Zhongyuan', 'Jul–Aug', 'The ghost festival: offerings to ancestors and to the unremembered dead.']
   ],
 
-  reading: 'Read the Analects the way you would a book of proverbs — one saying, then stop. It rewards return and punishes speed. Book 1 and Book 2 are the usual doorway. When a passage seems banal, it is worth assuming you have missed something and reading it again in a year; that is the standard experience of this text.'
+  reading: 'Read the Analects the way you would a book of proverbs: one saying, then stop. It rewards return and punishes speed. Book 1 and Book 2 are the usual doorway. When a passage seems banal, it is worth assuming you have missed something and reading it again in a year; that is the standard experience of this text.'
 },
 
 { id: 'taoist', name: 'Taoism', also: 'Dàojiā: the way',
@@ -260,9 +260,9 @@ var FL_TRADITIONS = [
     ['Zìrán', 'Self-so, spontaneity: what a thing does when nothing is interfering with it.'],
     ['Pǔ', 'The uncarved block: potential before it has been made into something useful and therefore limited.'],
     ['Yīn and yáng', 'Paired opposites that generate each other. Not good and evil; shaded and sunlit slopes of one hill.'],
-    ['Dé', 'Virtue in the older English sense — the particular power a thing has by being fully what it is.'],
+    ['Dé', 'Virtue in the older English sense: the particular power a thing has by being fully what it is.'],
     ['Wàng', 'Forgetting. In the Zhuangzi a positive achievement: dropping the distinctions that were never in the world to begin with.'],
-    ['Fǎn', 'Return. The Tao’s characteristic motion is not forward but back — things reach an extreme and reverse.']
+    ['Fǎn', 'Return. The Tao’s characteristic motion is not forward but back: things reach an extreme and reverse.']
   ],
 
   figures: [
@@ -284,7 +284,7 @@ var FL_TRADITIONS = [
     ['Sitting and forgetting', 'Zuowang: meditation aimed at dropping distinctions rather than concentrating on an object.'],
     ['Breath work', 'Slow regulated breathing as the lever on one’s own state; the oldest such technology on record.'],
     ['Tai chi and qigong', 'Slow movement forms descended from internal alchemy, now practised worldwide for health.'],
-    ['Simplicity', 'Fewer wants deliberately cultivated — "he who knows that enough is enough will always have enough".'],
+    ['Simplicity', 'Fewer wants deliberately cultivated: "he who knows that enough is enough will always have enough".'],
     ['Non-contention', 'Declining to compete where competing would cost more than losing.']
   ],
 
@@ -311,7 +311,7 @@ var FL_TRADITIONS = [
   ],
 
   concepts: [
-    ['Incarnation', 'That God took on a human life — not appeared as a human, but became one, with a body and a death.'],
+    ['Incarnation', 'That God took on a human life: not appeared as a human, but became one, with a body and a death.'],
     ['Grace', 'Unearned favour. The insistence that acceptance precedes achievement rather than rewarding it.'],
     ['Agapē', 'Love as a decision and an action toward the unlovely, distinguished from affection and from desire.'],
     ['The Kingdom of God', 'God’s rule breaking into the present, described almost entirely in parables and almost never defined.'],
@@ -347,7 +347,7 @@ var FL_TRADITIONS = [
   festivals: [
     ['Christmas', 'Dec 25 / Jan 7', 'The nativity. Fixed near the solstice, and shaped by it.'],
     ['Lent', 'Feb–Apr', 'Forty days of fasting and self-examination before Easter.'],
-    ['Easter', 'Mar–Apr', 'The resurrection, and the oldest and most important feast — Christmas is a latecomer.'],
+    ['Easter', 'Mar–Apr', 'The resurrection, and the oldest and most important feast; Christmas is a latecomer.'],
     ['Pentecost', 'May–Jun', 'The Spirit given fifty days after Easter; the church’s birthday.']
   ],
 
@@ -362,7 +362,7 @@ var FL_TRADITIONS = [
 
   opening: [
     'Islam is the insistence that there is one God and no other, that this has been said by every prophet from Adam onward, and that Muhammad is the last of them. Muslims do not regard it as a new religion but as the original one, restated after drift.',
-    'The Qur’an is understood as the speech of God, revealed in Arabic over twenty-three years, and this changes what a translation is: the English here is a reading aid, not the Qur’an. It is not arranged as narrative and does not tell a story from beginning to end. Its 114 surahs run roughly longest to shortest, so the reader who starts at the front meets the most demanding material first, and its power is bound up with sound — it is meant to be heard, and millions have it entirely by heart.',
+    'The Qur’an is understood as the speech of God, revealed in Arabic over twenty-three years, and this changes what a translation is: the English here is a reading aid, not the Qur’an. It is not arranged as narrative and does not tell a story from beginning to end. Its 114 surahs run roughly longest to shortest, so the reader who starts at the front meets the most demanding material first, and its power is bound up with sound: it is meant to be heard, and millions have it entirely by heart.',
     'The practice is famously concrete. Five prayers at fixed times that reorganise the day around God; a month of daylight fasting; a fixed share of wealth given annually; a pilgrimage where every distinction of rank is stripped down to two pieces of white cloth. Alongside the Qur’an stands the hadith, the recorded sayings and conduct of the Prophet, sifted by an elaborate science of transmission.'
   ],
 
@@ -371,7 +371,7 @@ var FL_TRADITIONS = [
     ['Raḥma', 'Mercy. The divine attribute named at the head of all but one surah, twice, in two different intensities.'],
     ['Islām', 'Submission: the same root as salām, peace. The peace is understood to follow from the submission.'],
     ['Ummah', 'The community of believers, cutting across tribe, nation and race by design.'],
-    ['Ṣalāh', 'The five daily prayers — dawn, midday, afternoon, sunset, night — which set the shape of the day.'],
+    ['Ṣalāh', 'The five daily prayers (dawn, midday, afternoon, sunset, night), which set the shape of the day.'],
     ['Zakāt', 'The obligatory annual share of accumulated wealth, normally a fortieth. A due, not a donation.'],
     ['Jihād', 'Struggle. Primarily the inner struggle against one’s own worse self; the martial sense is secondary and hedged with conditions.'],
     ['Sharīʿa', 'Literally the path to water. The whole way of life derived from Qur’an and sunna, interpreted through several schools.']
@@ -407,7 +407,7 @@ var FL_TRADITIONS = [
     ['Eid al-Adha', 'lunar', 'The feast of sacrifice at the close of the hajj, remembering Abraham; the meat is shared in thirds.']
   ],
 
-  reading: 'Do not begin at surah 2. The order is roughly by length, not chronology or difficulty, and the second surah is one of the longest and most legally dense in the book. Begin with al-Fatiha, the seven-verse opening, then read the short surahs at the very end — 93 through 114 — which are the earliest revealed, brief, and close to poetry. Then Yusuf (12), the one sustained narrative. Then work outward. And if you can, hear it recited once; the text assumes it.'
+  reading: 'Do not begin at surah 2. The order is roughly by length, not chronology or difficulty, and the second surah is one of the longest and most legally dense in the book. Begin with al-Fatiha, the seven-verse opening, then read the short surahs at the very end, 93 through 114, which are the earliest revealed, brief, and close to poetry. Then Yusuf (12), the one sustained narrative. Then work outward. And if you can, hear it recited once; the text assumes it.'
 }
 
 ];

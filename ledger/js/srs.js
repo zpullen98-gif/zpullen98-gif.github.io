@@ -1,7 +1,7 @@
 /* ---------------- SPACED REPETITION: SM-2-LITE ----------------
    Layers onto progress.cards records ({r, w}) without touching those
    fields. Added per card: ef (ease), ivl (days), reps (win streak),
-   due (epoch ms), last (epoch ms). Binary grades — the flashcard UI
+   due (epoch ms), last (epoch ms). Binary grades: the flashcard UI
    is right/wrong, so no Hard/Good/Easy buttons. */
 
 const SRS_DAY = 86400000;

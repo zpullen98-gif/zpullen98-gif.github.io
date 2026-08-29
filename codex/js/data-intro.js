@@ -1792,15 +1792,15 @@ var INTRO_QUESTIONS=[
 
 var INTRO_GRAPES = [
 /* acid/body/tan on a 0–3 scale: 0 none · 1 low · 2 medium · 3 high. ★ in reg = region that implies the grape. */
-{"n":"Riesling","c":"white","clim":"Cool to moderate","acid":3,"body":1,"tan":0,"sweet":"Dry → lusciously sweet","aroma":"Lime, green apple, peach, honey, jasmine; petrol with age","reg":"Mosel & Rheingau ★ (Germany), Alsace, Clare/Eden Valley (Australia), Finger Lakes","syn":"None","trap":"Low alcohol often signals residual sugar. Bone-dry to sweet — read the label. Petrol = aged Riesling.","wines":"German Kabinett→TBA, Alsace Riesling, Eiswein; dry Clare/Eden Valley"},
+{"n":"Riesling","c":"white","clim":"Cool to moderate","acid":3,"body":1,"tan":0,"sweet":"Dry → lusciously sweet","aroma":"Lime, green apple, peach, honey, jasmine; petrol with age","reg":"Mosel & Rheingau ★ (Germany), Alsace, Clare/Eden Valley (Australia), Finger Lakes","syn":"None","trap":"Low alcohol often signals residual sugar. Bone-dry to sweet: read the label. Petrol = aged Riesling.","wines":"German Kabinett→TBA, Alsace Riesling, Eiswein; dry Clare/Eden Valley"},
 {"n":"Chardonnay","c":"white","clim":"Cool to warm","acid":2,"body":2,"tan":0,"sweet":"Dry","aroma":"Apple, citrus, melon; butter, hazelnut, vanilla if oaked/malo","reg":"Burgundy ★ & Champagne ★ (France), California, Oregon, Victoria","syn":"N/A","trap":"Most-planted noble white. Lean steely Chablis vs rich oaky Napa = same grape. Blanc de Blancs Champagne = Chardonnay.","wines":"White Burgundy (Chablis, Meursault, Montrachet), Blanc de Blancs Champagne"},
 {"n":"Sauvignon Blanc","c":"white","clim":"Cool to moderate","acid":3,"body":1,"tan":0,"sweet":"Dry","aroma":"Grapefruit, gooseberry, cut grass, bell pepper, passionfruit","reg":"Loire ★ (Sancerre, Pouilly-Fumé), Marlborough, Bordeaux (white), Casablanca","syn":"Fumé Blanc (California)","trap":"Green/herbaceous notes come from pyrazines. Pungent and high-acid; Marlborough is the loudest style.","wines":"Sancerre, Pouilly-Fumé, Marlborough; white Bordeaux & (with Sémillon) Sauternes"},
 {"n":"Chenin Blanc","c":"white","clim":"Cool to moderate","acid":3,"body":2,"tan":0,"sweet":"Dry → sweet → sparkling","aroma":"Quince, apple, chamomile, honey, wet wool, lanolin","reg":"Loire (Vouvray, Savennières), South Africa","syn":"Steen (South Africa)","trap":"Hugely versatile: one grape makes dry, off-dry, sweet (botrytis) and traditional-method sparkling.","wines":"Vouvray, Savennières, Coteaux du Layon; Crémant de Loire; SA 'Steen'"},
-{"n":"Pinot Gris / Grigio","c":"white","clim":"Cool – moderate","acid":2,"body":2,"tan":0,"sweet":"Dry → off-dry","aroma":"Pear, apple, citrus, almond; ginger & honey in richer styles","reg":"Alsace (rich), N. Italy (lean 'Grigio'), Oregon","syn":"Grauburgunder / Ruländer (Germany)","trap":"Same grape, two styles: full, spicy Alsace 'Gris' vs light, crisp Italian 'Grigio'.","wines":"Alsace Pinot Gris, Italian Pinot Grigio, Oregon Pinot Gris"},
-{"n":"Gewürztraminer","c":"white","clim":"Cool – moderate","acid":1,"body":3,"tan":0,"sweet":"Dry → sweet","aroma":"Lychee, rose, ginger, baking spice — intensely perfumed","reg":"Alsace ★, Germany, Alto Adige","syn":"—","trap":"Pink-skinned, low-acid, full-bodied and unmistakably floral/lychee. Often slightly off-dry.","wines":"Alsace Gewürztraminer (incl. Vendange Tardive & SGN), Alto Adige"},
+{"n":"Pinot Gris / Grigio","c":"white","clim":"Cool to moderate","acid":2,"body":2,"tan":0,"sweet":"Dry → off-dry","aroma":"Pear, apple, citrus, almond; ginger & honey in richer styles","reg":"Alsace (rich), N. Italy (lean 'Grigio'), Oregon","syn":"Grauburgunder / Ruländer (Germany)","trap":"Same grape, two styles: full, spicy Alsace 'Gris' vs light, crisp Italian 'Grigio'.","wines":"Alsace Pinot Gris, Italian Pinot Grigio, Oregon Pinot Gris"},
+{"n":"Gewürztraminer","c":"white","clim":"Cool to moderate","acid":1,"body":3,"tan":0,"sweet":"Dry → sweet","aroma":"Lychee, rose, ginger, baking spice, intensely perfumed","reg":"Alsace ★, Germany, Alto Adige","syn":"-","trap":"Pink-skinned, low-acid, full-bodied and unmistakably floral/lychee. Often slightly off-dry.","wines":"Alsace Gewürztraminer (incl. Vendange Tardive & SGN), Alto Adige"},
 {"n":"Grüner Veltliner","c":"white","clim":"Cool to moderate","acid":3,"body":2,"tan":0,"sweet":"Dry","aroma":"White pepper, lentil, citrus, green herb","reg":"Austria ★ (Wachau, Kamptal, Kremstal)","syn":"-","trap":"Austria's flagship white: peppery, savory, high-acid. Danube regions.","wines":"Austrian Grüner: Wachau (Smaragd), Kamptal & Kremstal DAC"},
 {"n":"Viognier","c":"white","clim":"Moderate to warm","acid":1,"body":3,"tan":0,"sweet":"Dry","aroma":"Apricot, peach, honeysuckle, orange blossom","reg":"N. Rhône (Condrieu ★); co-fermented into Côte-Rôtie","reg2":"","syn":"N/A","trap":"Full-bodied, low-acid, heady florals. A little is blended into Syrah at Côte-Rôtie.","wines":"Condrieu, Château-Grillet; co-fermented into Côte-Rôtie"},
-{"n":"Sémillon","c":"white","clim":"Moderate – warm","acid":2,"body":3,"tan":0,"sweet":"Dry → sweet","aroma":"Lemon, lanolin, wax, honey, toast (aged)","reg":"Bordeaux (Sauternes botrytis & dry blends), Hunter Valley","syn":"—","trap":"Thin skin = prone to botrytis → key Sauternes grape (with Sauvignon Blanc). Also age-worthy dry whites.","wines":"Sauternes & Barsac (with Sauvignon), white Bordeaux, Hunter Valley Sémillon"},
+{"n":"Sémillon","c":"white","clim":"Moderate to warm","acid":2,"body":3,"tan":0,"sweet":"Dry → sweet","aroma":"Lemon, lanolin, wax, honey, toast (aged)","reg":"Bordeaux (Sauternes botrytis & dry blends), Hunter Valley","syn":"-","trap":"Thin skin = prone to botrytis → key Sauternes grape (with Sauvignon Blanc). Also age-worthy dry whites.","wines":"Sauternes & Barsac (with Sauvignon), white Bordeaux, Hunter Valley Sémillon"},
 {"n":"Muscat","c":"white","clim":"Warm","acid":1,"body":2,"tan":0,"sweet":"Dry → very sweet","aroma":"Fresh grape, orange blossom, rose: 'smells like grapes'","reg":"Alsace, Asti (Moscato), VDN (Beaumes-de-Venise), Rutherglen","syn":"Moscato (Italy), Moscatel","trap":"One of few grapes whose wine smells like the grape itself. Spans dry to fortified sweet.","wines":"Moscato d'Asti, Muscat de Beaumes-de-Venise, Rutherglen Muscat, Alsace Muscat"},
 {"n":"Albariño","c":"white","clim":"Cool to moderate","acid":3,"body":2,"tan":0,"sweet":"Dry","aroma":"Citrus, peach, saline, white flowers","reg":"Rías Baixas ★ (Spain), Vinho Verde (Portugal)","syn":"Alvarinho (Portugal)","trap":"Coastal, Atlantic, saline and high-acid, Galicia's signature white.","wines":"Rías Baixas (Spain); Vinho Verde (as Alvarinho)"},
 {"n":"Torrontés","c":"white","clim":"Warm (high altitude)","acid":2,"body":2,"tan":0,"sweet":"Dry","aroma":"Rose, peach, citrus blossom, aromatic","reg":"Argentina ★ (Cafayate, Salta)","syn":"--","trap":"Smells sweet and floral but tastes dry. Usually unoaked. Argentina's signature white.","wines":"Argentine Torrontés (Salta / Cafayate)"},
@@ -1815,35 +1815,35 @@ var INTRO_GRAPES = [
 {"n":"Nebbiolo","c":"red","clim":"Moderate","acid":3,"body":2,"tan":3,"sweet":"","aroma":"Tar, rose, sour cherry, dried herb, truffle","reg":"Piedmont ★ (Barolo, Barbaresco)","syn":"Spanna, Chiavennasca (local)","trap":"Pale brick color but ferocious tannin and acid: looks light, drinks powerful and age-worthy.","wines":"Barolo & Barbaresco; Gattinara & Ghemme; Valtellina"},
 {"n":"Tempranillo","c":"red","clim":"Moderate to warm","acid":2,"body":2,"tan":2,"sweet":"","aroma":"Red cherry, leather, tobacco, dill/coconut (American oak)","reg":"Rioja ★ & Ribera del Duero (Spain), Douro (Portugal)","syn":"Tinta Roriz / Aragonez (Portugal)","trap":"Rioja's signature; dill/vanilla often = American-oak aging, not the grape itself.","wines":"Rioja, Ribera del Duero, Toro; Douro (as Tinta Roriz)"},
 {"n":"Malbec","c":"red","clim":"Warm (high altitude)","acid":2,"body":3,"tan":2,"sweet":"","aroma":"Blackberry, plum, violet, cocoa","reg":"Argentina ★ (Mendoza), Cahors (France)","syn":"Côt / Auxerrois (Cahors)","trap":"Inky purple, plush. Argentina's flagship; the original French home is Cahors.","wines":"Argentine Malbec (Mendoza); Cahors (France, 'Côt')"},
-{"n":"Zinfandel","c":"red","clim":"Warm – hot","acid":2,"body":3,"tan":2,"sweet":"Dry (also off-dry rosé)","aroma":"Brambly blackberry, raisin, black pepper, sweet spice; high alcohol","reg":"California ★ (old-vine)","syn":"Primitivo (Italy), Tribidrag (Croatia)","trap":"= Primitivo. Often jammy & high-alcohol. 'White Zinfandel' is an off-dry pink, not a different grape.","wines":"California Zinfandel (Lodi, Sonoma); Primitivo (Puglia); White Zinfandel"},
+{"n":"Zinfandel","c":"red","clim":"Warm to hot","acid":2,"body":3,"tan":2,"sweet":"Dry (also off-dry rosé)","aroma":"Brambly blackberry, raisin, black pepper, sweet spice; high alcohol","reg":"California ★ (old-vine)","syn":"Primitivo (Italy), Tribidrag (Croatia)","trap":"= Primitivo. Often jammy & high-alcohol. 'White Zinfandel' is an off-dry pink, not a different grape.","wines":"California Zinfandel (Lodi, Sonoma); Primitivo (Puglia); White Zinfandel"},
 {"n":"Gamay","c":"red","clim":"Cool to moderate","acid":3,"body":1,"tan":1,"sweet":"","aroma":"Red cherry, banana, bubblegum (carbonic), violet","reg":"Beaujolais ★ (France)","syn":"none","trap":"Carbonic maceration gives the candied banana/bubblegum note. Light, juicy, low-tannin.","wines":"Beaujolais & Cru Beaujolais (Morgon, Fleurie); Beaujolais Nouveau"},
 {"n":"Barbera","c":"red","clim":"Moderate","acid":3,"body":2,"tan":1,"sweet":"","aroma":"Red cherry, plum, sour-tart finish","reg":"Piedmont (Asti, Alba)","syn":"","trap":"High acid but LOW tannin: Piedmont's everyday red, the opposite tannin profile of its neighbor Nebbiolo.","wines":"Barbera d'Asti & Barbera d'Alba (Piedmont)"},
-{"n":"Carmenère","c":"red","clim":"Warm","acid":2,"body":2,"tan":2,"sweet":"","aroma":"Black fruit, green peppercorn, herbs, soy, tobacco","reg":"Chile ★","syn":"—","trap":"A Bordeaux grape that thrives in Chile; long mistaken for Merlot. Pronounced green-pepper pyrazine.","wines":"Chilean Carmenère (Colchagua, Maipo)"},
-{"n":"Marsanne","c":"white","clim":"Moderate to warm","acid":1,"body":3,"tan":0,"sweet":"Dry","aroma":"Almond, marzipan, pear, honeysuckle, beeswax","reg":"N. Rhône blanc (Hermitage, Crozes, St-Joseph), Australia","syn":"—","trap":"Full-bodied, low-acid N. Rhône white; blended with Roussanne. Waxy and nutty with age.","wines":"White Hermitage, Crozes-Hermitage & St-Joseph (with Roussanne); Australian Marsanne"},
+{"n":"Carmenère","c":"red","clim":"Warm","acid":2,"body":2,"tan":2,"sweet":"","aroma":"Black fruit, green peppercorn, herbs, soy, tobacco","reg":"Chile ★","syn":"-","trap":"A Bordeaux grape that thrives in Chile; long mistaken for Merlot. Pronounced green-pepper pyrazine.","wines":"Chilean Carmenère (Colchagua, Maipo)"},
+{"n":"Marsanne","c":"white","clim":"Moderate to warm","acid":1,"body":3,"tan":0,"sweet":"Dry","aroma":"Almond, marzipan, pear, honeysuckle, beeswax","reg":"N. Rhône blanc (Hermitage, Crozes, St-Joseph), Australia","syn":"-","trap":"Full-bodied, low-acid N. Rhône white; blended with Roussanne. Waxy and nutty with age.","wines":"White Hermitage, Crozes-Hermitage & St-Joseph (with Roussanne); Australian Marsanne"},
 {"n":"Roussanne","c":"white","clim":"Moderate to warm","acid":2,"body":3,"tan":0,"sweet":"Dry","aroma":"Pear, herbal tea, honey, white flowers","reg":"N. Rhône blanc (with Marsanne), Châteauneuf blanc, Savoie","syn":"none","trap":"More aromatic, higher-acid partner to Marsanne in Rhône whites.","wines":"White Rhône blends: Hermitage, Châteauneuf-du-Pape blanc (with Marsanne)"},
-{"n":"Vermentino","c":"white","clim":"Moderate – warm","acid":2,"body":2,"tan":0,"sweet":"Dry","aroma":"Lime, green almond, saline, fresh herbs","reg":"Sardinia, Liguria, Tuscany, Provence, Corsica","syn":"Rolle (France), Pigato (Liguria)","trap":"Coastal Mediterranean white — citrus, almond, salty bite. Called Rolle in Provence.","wines":"Sardinian Vermentino, Ligurian; French Rolle (Provence, Corsica)"},
+{"n":"Vermentino","c":"white","clim":"Moderate to warm","acid":2,"body":2,"tan":0,"sweet":"Dry","aroma":"Lime, green almond, saline, fresh herbs","reg":"Sardinia, Liguria, Tuscany, Provence, Corsica","syn":"Rolle (France), Pigato (Liguria)","trap":"Coastal Mediterranean white: citrus, almond, salty bite. Called Rolle in Provence.","wines":"Sardinian Vermentino, Ligurian; French Rolle (Provence, Corsica)"},
 {"n":"Verdejo","c":"white","clim":"Moderate","acid":3,"body":2,"tan":0,"sweet":"Dry","aroma":"Citrus, fennel, green herbs, faint bitterness","reg":"Rueda ★ (Spain)","syn":"none","trap":"Rueda’s signature: herbaceous, can resemble Sauvignon Blanc, with a faintly bitter finish.","wines":"Rueda (Spain)"},
 {"n":"Garganega","c":"white","clim":"Moderate","acid":2,"body":2,"tan":0,"sweet":"Dry","aroma":"White peach, almond, citrus blossom, marzipan","reg":"Soave ★ (Veneto)","syn":"-","trap":"The grape of Soave: gentle almond and stone fruit.","wines":"Soave & Soave Classico; Recioto di Soave"},
 {"n":"Cortese","c":"white","clim":"Cool to moderate","acid":3,"body":1,"tan":0,"sweet":"Dry","aroma":"Green apple, citrus, white flowers, mineral","reg":"Gavi ★ (Piedmont)","syn":"-","trap":"Light, high-acid, mineral Piedmont white, the grape of Gavi (Cortese di Gavi).","wines":"Gavi / Cortese di Gavi (Piedmont)"},
-{"n":"Furmint","c":"white","clim":"Cool – moderate","acid":3,"body":2,"tan":0,"sweet":"Dry → lusciously sweet","aroma":"Apple, pear, citrus, honey, smoke; botrytis","reg":"Tokaj ★ (Hungary)","syn":"—","trap":"Tokaji’s backbone — searing acidity; dry to botrytized Aszú. Thin-skinned, botrytis-prone.","wines":"Tokaji Aszú & dry Tokaji (Hungary)"},
+{"n":"Furmint","c":"white","clim":"Cool to moderate","acid":3,"body":2,"tan":0,"sweet":"Dry → lusciously sweet","aroma":"Apple, pear, citrus, honey, smoke; botrytis","reg":"Tokaj ★ (Hungary)","syn":"-","trap":"Tokaji’s backbone: searing acidity; dry to botrytized Aszú. Thin-skinned, botrytis-prone.","wines":"Tokaji Aszú & dry Tokaji (Hungary)"},
 {"n":"Assyrtiko","c":"white","clim":"Warm (island)","acid":3,"body":2,"tan":0,"sweet":"Dry","aroma":"Lemon, lime, flint, saline, smoke","reg":"Santorini ★ (Greece)","syn":"-","trap":"Volcanic Santorini white: bracing acidity and salinity even in heat.","wines":"Santorini (Greece), incl. Vinsanto"},
 {"n":"Glera","c":"white","clim":"Moderate","acid":2,"body":1,"tan":0,"sweet":"Dry → off-dry (sparkling)","aroma":"Pear, green apple, white flowers, citrus","reg":"Prosecco ★ (Veneto/Friuli)","syn":"formerly “Prosecco”","trap":"The grape of Prosecco (tank method). Renamed from “Prosecco” to protect the place name.","wines":"Prosecco (Veneto)"},
 {"n":"Melon de Bourgogne","c":"white","clim":"Cool","acid":3,"body":1,"tan":0,"sweet":"Dry","aroma":"Citrus, green apple, saline, bready (sur lie)","reg":"Muscadet ★ (Pays Nantais, Loire)","syn":"Muscadet (the wine)","trap":"The grape of Muscadet: lean, saline, often aged ‘sur lie’. Not Muscat!","wines":"Muscadet (Sèvre-et-Maine, sur lie)"},
-{"n":"Silvaner","c":"white","clim":"Cool – moderate","acid":2,"body":2,"tan":0,"sweet":"Dry","aroma":"Pear, green apple, earthy, herbal","reg":"Franken ★ (Germany, Bocksbeutel), Alsace","syn":"Sylvaner (Alsace)","trap":"Earthy, understated dry white; Franken’s specialty in the flask-shaped Bocksbeutel.","wines":"Franken Silvaner (Bocksbeutel); Alsace"},
+{"n":"Silvaner","c":"white","clim":"Cool to moderate","acid":2,"body":2,"tan":0,"sweet":"Dry","aroma":"Pear, green apple, earthy, herbal","reg":"Franken ★ (Germany, Bocksbeutel), Alsace","syn":"Sylvaner (Alsace)","trap":"Earthy, understated dry white; Franken’s specialty in the flask-shaped Bocksbeutel.","wines":"Franken Silvaner (Bocksbeutel); Alsace"},
 {"n":"Pinot Blanc","c":"white","clim":"Cool to moderate","acid":2,"body":2,"tan":0,"sweet":"Dry","aroma":"Apple, pear, almond, subtle floral","reg":"Alsace, Germany, N. Italy, Austria","syn":"Weissburgunder (Germany), Pinot Bianco (Italy)","trap":"Soft, mild, dry, a gentler cousin of Chardonnay. ‘Weissburgunder’ in Germany/Austria.","wines":"Alsace Pinot Blanc & Crémant d'Alsace; Italian Pinot Bianco; German Weissburgunder"},
 {"n":"Palomino","c":"white","clim":"Warm","acid":1,"body":2,"tan":0,"sweet":"Dry (fortified)","aroma":"Neutral, almond, bruised apple; develops under flor","reg":"Jerez ★ (Sherry, Spain)","syn":"Listán (Canary Islands)","trap":"Neutral base of dry Sherry (Fino/Oloroso). Character comes from flor & solera, not the grape.","wines":"Sherry: Fino, Manzanilla, Amontillado, Oloroso (Jerez)"},
 {"n":"Touriga Nacional","c":"red","clim":"Warm","acid":2,"body":3,"tan":3,"sweet":"","aroma":"Violet, blackberry, blueberry, bergamot, slate","reg":"Douro ★ & Dão (Portugal): Port and dry reds","syn":"","trap":"Portugal’s top red: deep color, floral lift, firm structure. A key Port grape.","wines":"Port; Douro & Dão reds (Portugal)"},
 {"n":"Carignan","c":"red","clim":"Warm to hot","acid":3,"body":2,"tan":3,"sweet":"","aroma":"Red & black fruit, dried herb, licorice; rustic","reg":"Languedoc (S. France), Priorat, Rioja","syn":"Cariñena / Mazuelo (Spain), Carignano (Sardinia)","trap":"High acid AND high tannin; old vines tame the rusticity. ‘Mazuelo’ in Rioja blends.","wines":"Languedoc & Corbières reds; Spanish Cariñena/Mazuelo; Priorat blends"},
-{"n":"Cinsault","c":"red","clim":"Warm to hot","acid":2,"body":1,"tan":1,"sweet":"","aroma":"Red berry, floral, fresh; light-bodied","reg":"S. France, S. Rhône blends, South Africa","syn":"—","trap":"Soft, perfumed, low-tannin blender (often in rosé). A parent of Pinotage (with Pinot Noir).","wines":"Southern Rhône & Languedoc blends, Provence rosé; a parent of Pinotage"},
+{"n":"Cinsault","c":"red","clim":"Warm to hot","acid":2,"body":1,"tan":1,"sweet":"","aroma":"Red berry, floral, fresh; light-bodied","reg":"S. France, S. Rhône blends, South Africa","syn":"-","trap":"Soft, perfumed, low-tannin blender (often in rosé). A parent of Pinotage (with Pinot Noir).","wines":"Southern Rhône & Languedoc blends, Provence rosé; a parent of Pinotage"},
 {"n":"Petit Verdot","c":"red","clim":"Warm","acid":2,"body":3,"tan":3,"sweet":"","aroma":"Blackberry, violet, leather, spice; deep color","reg":"Bordeaux (left-bank blends, minor), warm New World","syn":"–","trap":"Late-ripening Bordeaux blender adding color, tannin and spice in small amounts.","wines":"Bordeaux blends (small %); New World varietal"},
 {"n":"Aglianico","c":"red","clim":"Warm","acid":3,"body":3,"tan":3,"sweet":"","aroma":"Black cherry, plum, leather, tar, smoke","reg":"Taurasi ★ (Campania), Vulture (Basilicata)","syn":"-","trap":"‘Barolo of the South’: powerful, high-acid, high-tannin southern Italian red.","wines":"Taurasi (Campania); Aglianico del Vulture (Basilicata)"},
 {"n":"Nero d’Avola","c":"red","clim":"Hot","acid":2,"body":3,"tan":2,"sweet":"","aroma":"Black cherry, plum, licorice, spice","reg":"Sicily ★","syn":"Calabrese","trap":"Sicily’s flagship red, ripe dark fruit, supple. Warm-climate richness.","wines":"Sicilian Nero d'Avola; Cerasuolo di Vittoria (with Frappato)"},
 {"n":"Corvina","c":"red","clim":"Moderate","acid":3,"body":2,"tan":2,"sweet":"","aroma":"Sour cherry, red berry, almond; raisin when dried","reg":"Valpolicella ★ & Amarone (Veneto)","syn":"-","trap":"Base of Valpolicella/Amarone: high acid; dried (appassimento) for Amarone & Recioto.","wines":"Valpolicella, Amarone & Recioto della Valpolicella, Bardolino"},
 {"n":"Dolcetto","c":"red","clim":"Cool to moderate","acid":1,"body":2,"tan":2,"sweet":"","aroma":"Black plum, blackberry, licorice, almond","reg":"Piedmont (Dogliani, Alba)","syn":"-","trap":"Piedmont’s early-drinking red: low acid (the name means ‘little sweet one’), soft and dry.","wines":"Dolcetto d'Alba & Dogliani (Piedmont)"},
 {"n":"Tannat","c":"red","clim":"Warm","acid":3,"body":3,"tan":3,"sweet":"","aroma":"Black fruit, licorice, smoke; gripping tannin","reg":"Madiran ★ (SW France), Uruguay ★","syn":"","trap":"One of the most tannic grapes: Madiran in France, the signature of Uruguay.","wines":"Madiran (France); Uruguayan Tannat"},
-{"n":"Blaufränkisch","c":"red","clim":"Cool – moderate","acid":3,"body":2,"tan":3,"sweet":"","aroma":"Blackberry, sour cherry, black pepper, spice","reg":"Burgenland ★ (Austria), Germany, Hungary","syn":"Lemberger (Germany), Kékfrankos (Hungary)","trap":"Austria’s serious red — peppery, dark, high-acid & tannic. Many synonyms.","wines":"Austrian Blaufränkisch (Burgenland); Hungarian Kékfrankos; US 'Lemberger'"},
+{"n":"Blaufränkisch","c":"red","clim":"Cool to moderate","acid":3,"body":2,"tan":3,"sweet":"","aroma":"Blackberry, sour cherry, black pepper, spice","reg":"Burgenland ★ (Austria), Germany, Hungary","syn":"Lemberger (Germany), Kékfrankos (Hungary)","trap":"Austria’s serious red: peppery, dark, high-acid & tannic. Many synonyms.","wines":"Austrian Blaufränkisch (Burgenland); Hungarian Kékfrankos; US 'Lemberger'"},
 {"n":"Zweigelt","c":"red","clim":"Cool to moderate","acid":2,"body":2,"tan":2,"sweet":"","aroma":"Sour cherry, red berry, pepper; juicy","reg":"Austria ★ (most-planted red)","syn":"-","trap":"Austria’s most-planted red, a Blaufränkisch × St. Laurent cross; juicy and approachable.","wines":"Austrian Zweigelt (everyday reds & Heuriger)"},
-{"n":"Mencía","c":"red","clim":"Cool – moderate","acid":3,"body":2,"tan":2,"sweet":"","aroma":"Red & blue fruit, floral, graphite, herbs","reg":"Bierzo ★ & Ribeira Sacra (NW Spain)","syn":"Jaen (Dão, Portugal)","trap":"Fragrant, mineral NW-Spain red on steep slate; once wrongly thought related to Cabernet Franc.","wines":"Bierzo & Ribeira Sacra (Spain)"},
+{"n":"Mencía","c":"red","clim":"Cool to moderate","acid":3,"body":2,"tan":2,"sweet":"","aroma":"Red & blue fruit, floral, graphite, herbs","reg":"Bierzo ★ & Ribeira Sacra (NW Spain)","syn":"Jaen (Dão, Portugal)","trap":"Fragrant, mineral NW-Spain red on steep slate; once wrongly thought related to Cabernet Franc.","wines":"Bierzo & Ribeira Sacra (Spain)"},
 {"n":"Pinotage","c":"red","clim":"Warm","acid":2,"body":3,"tan":3,"sweet":"","aroma":"Dark berry, plum, smoke, mocha; sometimes rubber/banana","reg":"South Africa ★","syn":"-","trap":"South Africa’s signature: a Pinot Noir × Cinsault cross bred in 1925. Smoky dark fruit.","wines":"South African Pinotage; 'coffee' Pinotage; Cape blends"}
 ];
 
@@ -1851,7 +1851,7 @@ var INTRO_GRAPES = [
    Original stylized study maps (simplified silhouettes, not survey-accurate).
    Geographic layer: rivers, mountains (mtns), seas/oceans (water), cities, lakes, currents (feats).
    Each region carries its signature soil type(s) in `soil`. */
-var INTRO_ATLAS=[{"name":"France","flag":"🇫🇷","vb":"0 0 180 170","d":"M70,20 L150,28 L150,70 L168,120 L120,138 L70,150 L40,128 L32,92 L18,72 L8,60 L34,52 L46,34 Z","r":[{"n":"Champagne","x":118,"y":46,"g":"Chardonnay, Pinot Noir, Pinot Meunier — sparkling","soil":"Chalk (belemnite limestone)"},{"n":"Alsace","x":142,"y":52,"g":"Riesling, Gewürztraminer, Pinot Gris (varietally labeled)","soil":"Mosaic — granite, limestone, schist, sandstone"},{"n":"Loire Valley","x":56,"y":80,"g":"Muscadet, Chenin Blanc, Sauvignon Blanc, Cabernet Franc","soil":"Tuffeau limestone, flint (silex), schist, gravel"},{"n":"Burgundy","x":118,"y":74,"g":"Chardonnay & Pinot Noir","soil":"Limestone & clay-limestone marl"},{"n":"Beaujolais","x":120,"y":90,"g":"Gamay (often carbonic)","soil":"Granite (Crus); clay-limestone to the south"},{"n":"Rhône Valley","x":124,"y":108,"g":"N: Syrah / Viognier · S: Grenache (GSM)","soil":"North: granite · South: galets roulés, clay-limestone, sand"},{"n":"Provence","x":142,"y":120,"g":"Dry rosé (Grenache, Cinsault, Mourvèdre)","soil":"Limestone, clay and schist"},{"n":"Bordeaux","x":44,"y":104,"g":"Left: Cabernet Sauvignon · Right: Merlot","soil":"Left Bank gravel · Right Bank clay & limestone"},{"n":"Languedoc-Roussillon","x":96,"y":128,"g":"Grenache, Syrah, Carignan; VDN sweet wines","soil":"Varied — limestone, schist, clay, galets"}],"rivers":[{"n":"Loire","d":"M104,98 Q78,76 50,80 T26,86","lx":64,"ly":73},{"n":"Rhône","d":"M120,86 L123,110 L119,134","lx":128,"ly":122,"a":"s"},{"n":"Gironde","d":"M64,120 L46,106 L34,93","lx":31,"ly":95,"a":"e"},{"n":"Rhine","d":"M150,40 L150,68","lx":154,"ly":55,"a":"s"}],"mtns":[{"n":"Pyrenees","d":"M46,132 L82,147 L112,139","lx":80,"ly":153},{"n":"Alps","d":"M150,82 L163,105","lx":161,"ly":93,"a":"s"},{"n":"Vosges","d":"M135,42 L137,61","lx":131,"ly":50,"a":"e"}],"water":[{"n":"ATLANTIC OCEAN","x":9,"y":150,"a":"s"},{"n":"Mediterranean Sea","x":108,"y":160},{"n":"English Channel","x":74,"y":13}],"cities":[{"n":"Paris","x":88,"y":38}]},{"name":"Italy","flag":"🇮🇹","vb":"0 0 200 200","d":"M60,30 L110,24 L140,30 L130,55 L150,95 L165,120 L150,132 L138,122 L120,142 L112,162 L100,150 L108,128 L88,100 L70,70 L55,50 Z M94,170 L120,170 L108,184 Z M40,96 L54,96 L54,126 L40,126 Z","r":[{"n":"Piedmont","x":64,"y":42,"g":"Nebbiolo (Barolo, Barbaresco), Barbera, Dolcetto","soil":"Calcareous marl (Barolo & Barbaresco)"},{"n":"Lombardy","x":88,"y":36,"g":"Franciacorta sparkling; Nebbiolo (Valtellina)","soil":"Morainic gravel; alpine terraces (Valtellina)"},{"n":"Veneto","x":120,"y":40,"g":"Prosecco (Glera), Soave (Garganega), Valpolicella/Amarone","soil":"Volcanic basalt & limestone (Soave); limestone-clay (Valpolicella)"},{"n":"Friuli","x":136,"y":34,"g":"Crisp whites (Friulano, Pinot Grigio)","soil":"Ponca (marl & sandstone), gravel"},{"n":"Trentino-Alto Adige","x":104,"y":30,"g":"Alpine whites; Pinot Grigio, Gewürztraminer","soil":"Limestone, dolomite & porphyry (volcanic)"},{"n":"Tuscany","x":78,"y":74,"g":"Sangiovese (Chianti, Brunello); Super Tuscans","soil":"Galestro & alberese (calcareous clay/schist)"},{"n":"Umbria","x":96,"y":82,"g":"Sagrantino (Montefalco), Orvieto whites","soil":"Clay-limestone; volcanic tuff (Orvieto)"},{"n":"Abruzzo","x":120,"y":90,"g":"Montepulciano d'Abruzzo, Trebbiano","soil":"Clay-limestone"},{"n":"Campania","x":106,"y":110,"g":"Aglianico (Taurasi), Fiano, Greco","soil":"Volcanic (Vesuvius); limestone"},{"n":"Puglia","x":150,"y":114,"g":"Primitivo (= Zinfandel), Negroamaro","soil":"Limestone & iron-rich red clay"},{"n":"Sicily","x":107,"y":176,"g":"Nero d'Avola; Etna (Nerello Mascalese); Marsala","soil":"Volcanic (Etna); limestone, clay, sand"},{"n":"Sardinia","x":47,"y":111,"g":"Cannonau (Grenache), Vermentino","soil":"Granite, limestone and sand"}],"rivers":[{"n":"Po","d":"M64,46 L108,46 L130,50","lx":88,"ly":43}],"mtns":[{"n":"Alps","d":"M62,34 L100,28 L134,34","lx":96,"ly":25},{"n":"Apennines","d":"M64,54 L92,98 L112,138","lx":66,"ly":66,"a":"s"}],"water":[{"n":"Adriatic Sea","x":152,"y":82},{"n":"Tyrrhenian Sea","x":72,"y":128},{"n":"Ionian Sea","x":148,"y":158}],"cities":[{"n":"Rome","x":92,"y":99}]},{"name":"Spain","flag":"🇪🇸","vb":"0 0 200 150","d":"M38,42 L150,36 L168,58 L150,98 L120,122 L70,118 L48,96 L40,66 Z","dash":"M54,62 L62,90 L70,116","r":[{"n":"Rías Baixas","x":46,"y":54,"g":"Albariño (Galicia, Atlantic)","soil":"Granite & sandy alluvium"},{"n":"Bierzo","x":62,"y":54,"g":"Mencía","soil":"Slate & clay-limestone on slopes"},{"n":"Ribera del Duero","x":96,"y":62,"g":"Tempranillo (Tinto Fino) — powerful reds","soil":"Limestone, clay and sand"},{"n":"Rueda / Toro","x":84,"y":68,"g":"Verdejo (Rueda); Tinta de Toro (Toro)","soil":"Sand, gravel & limestone (Rueda); sandy clay (Toro)"},{"n":"Rioja","x":110,"y":54,"g":"Tempranillo (American-oak aging)","soil":"Clay-limestone, ferrous clay, alluvial"},{"n":"Navarra","x":120,"y":52,"g":"Garnacha, Tempranillo, rosado","soil":"Clay-limestone & alluvial"},{"n":"Penedès (Cava)","x":150,"y":58,"g":"Macabeo, Xarel·lo, Parellada, sparkling","soil":"Limestone, clay and sand"},{"n":"Priorat","x":140,"y":66,"g":"Garnacha & Cariñena on llicorella slate","soil":"Llicorella (slate & quartz)"},{"n":"La Mancha","x":104,"y":86,"g":"Airén, Tempranillo (Cencibel), high volume","soil":"Clay-limestone over chalk (high plateau)"},{"n":"Jumilla / Yecla","x":132,"y":94,"g":"Monastrell (= Mourvèdre)","soil":"Limestone & sand (poor, arid)"},{"n":"Jerez (Sherry)","x":78,"y":112,"g":"Palomino (Fino/Oloroso); PX sweet, flor & solera","soil":"Albariza (chalky white limestone)"}],"rivers":[{"n":"Ebro","d":"M150,46 L120,52 L100,66","lx":134,"ly":46,"a":"e"},{"n":"Duero","d":"M120,62 L80,68 L52,74","lx":98,"ly":60}],"mtns":[{"n":"Pyrenees","d":"M120,38 L150,41","lx":132,"ly":34}],"water":[{"n":"ATLANTIC OCEAN","x":8,"y":64,"a":"s"},{"n":"Bay of Biscay","x":80,"y":30},{"n":"Mediterranean Sea","x":176,"y":96}],"cities":[{"n":"Madrid","x":100,"y":80}]},{"name":"Portugal","flag":"🇵🇹","vb":"20 20 70 100","d":"M40,30 L70,30 L72,60 L78,95 L78,110 L46,112 L44,80 L42,55 Z","r":[{"n":"Vinho Verde","x":56,"y":40,"g":"Alvarinho, Loureiro — light, fresh, low alcohol","soil":"Granite"},{"n":"Douro / Port","x":66,"y":47,"g":"Touriga Nacional/Franca — Port & dry reds (schist)","soil":"Schist (xisto); some granite"},{"n":"Dão","x":60,"y":58,"g":"Touriga Nacional, Encruzado (granite)","soil":"Granite"},{"n":"Bairrada","x":50,"y":58,"g":"Baga reds; traditional-method sparkling","soil":"Clay-limestone; some sand"},{"n":"Lisboa","x":50,"y":78,"g":"Arinto (Bucelas) and varied reds","soil":"Clay-limestone & sand"},{"n":"Tejo","x":62,"y":76,"g":"Castelão, Touriga; everyday reds","soil":"Alluvial sand & clay; limestone"},{"n":"Setúbal","x":52,"y":86,"g":"Moscatel de Setúbal (fortified Muscat)","soil":"Sand & clay-limestone"},{"n":"Alentejo","x":64,"y":92,"g":"Ripe reds; cork country","soil":"Granite, schist, clay-limestone"},{"n":"Madeira","x":30,"y":106,"g":"Atlantic island: fortified (Sercial→Malmsey)","soil":"Volcanic basalt (terraced)"}],"rivers":[{"n":"Douro","d":"M70,46 L58,46 L46,47","lx":60,"ly":43},{"n":"Tejo (Tagus)","d":"M72,78 L58,79 L49,80","lx":64,"ly":75}],"water":[{"n":"ATLANTIC OCEAN","x":23,"y":72,"a":"s"}],"cities":[]},{"name":"Germany","flag":"🇩🇪","vb":"40 20 110 100","d":"M70,30 L120,28 L130,55 L120,90 L95,105 L75,95 L80,75 L65,60 L72,45 Z","r":[{"n":"Ahr","x":66,"y":58,"g":"Spätburgunder (Pinot Noir), red specialist","soil":"Slate with volcanic rock (steep)"},{"n":"Mosel","x":66,"y":67,"g":"Riesling: slate, low alcohol, off-dry","soil":"Blue & red Devonian slate"},{"n":"Rheingau","x":78,"y":64,"g":"Riesling; Spätburgunder at Assmannshausen","soil":"Slate, quartzite, loess, clay"},{"n":"Nahe","x":73,"y":71,"g":"Riesling: varied soils","soil":"Diverse: slate, quartzite, porphyry, loess"},{"n":"Rheinhessen","x":82,"y":71,"g":"Largest region; Riesling, Silvaner","soil":"Loess, limestone, clay; red slate (Roter Hang)"},{"n":"Pfalz","x":78,"y":80,"g":"Ripe Riesling & Pinot family","soil":"Limestone, loess, sandstone, basalt"},{"n":"Franken","x":104,"y":66,"g":"Dry Silvaner (Bocksbeutel bottle)","soil":"Limestone (Muschelkalk) & sandstone"},{"n":"Württemberg","x":94,"y":86,"g":"Reds: Trollinger, Lemberger","soil":"Marl & clay-limestone (Keuper)"},{"n":"Baden","x":86,"y":94,"g":"Warmest; Spätburgunder, Grauburgunder","soil":"Loess, volcanic (Kaiserstuhl), limestone"}],"rivers":[{"n":"Rhine","d":"M84,93 L80,76 L70,59 L72,46","lx":86,"ly":70,"a":"s"},{"n":"Mosel","d":"M61,64 L72,60","lx":58,"ly":64,"a":"e"},{"n":"Main","d":"M128,66 L108,66 L92,70","lx":118,"ly":62,"a":"s"},{"n":"Danube","d":"M93,99 L114,92","lx":104,"ly":102}],"mtns":[{"n":"Black Forest","d":"M83,86 L87,98","lx":90,"ly":94,"a":"s"}],"water":[],"cities":[]},{"name":"Austria","flag":"🇦🇹","vb":"20 35 140 55","d":"M30,55 L60,50 L100,48 L140,46 L150,60 L135,72 L100,70 L70,68 L45,64 Z","r":[{"n":"Wachau / Kamptal / Kremstal","x":116,"y":55,"g":"Grüner Veltliner & Riesling (Danube)","soil":"Primary rock (gneiss) & loess"},{"n":"Wien (Vienna)","x":132,"y":55,"g":"Gemischter Satz (field blend)","soil":"Limestone, brown earth, gravel"},{"n":"Weinviertel","x":122,"y":50,"g":"Peppery Grüner Veltliner","soil":"Loess & limestone"},{"n":"Burgenland","x":140,"y":61,"g":"Blaufränkisch reds; botrytis sweet (Neusiedlersee)","soil":"Gravel, sand, clay, schist (Neusiedlersee)"},{"n":"Steiermark (Styria)","x":120,"y":67,"g":"Sauvignon Blanc, Morillon (Chardonnay)","soil":"Volcanic basalt, slate, limestone, sand"}],"rivers":[{"n":"Danube","d":"M150,52 L120,55 L100,58 L70,62","lx":110,"ly":52}],"mtns":[{"n":"Alps","d":"M40,62 L72,66 L102,67","lx":52,"ly":69,"a":"s"}],"water":[],"cities":[],"lakes":[{"n":"Neusiedlersee","cx":144,"cy":62,"rx":2.4,"ry":3.6}]},{"name":"United States","flag":"🇺🇸","vb":"10 30 150 70","d":"M18,42 L150,40 L148,50 L138,54 L130,66 L120,64 L112,76 L106,82 L100,72 L88,70 L78,76 L70,68 L40,66 L22,60 L20,48 Z","r":[{"n":"Columbia Valley (WA)","x":33,"y":47,"g":"Cabernet, Merlot, Syrah, Riesling","soil":"Wind-blown loess over basalt; flood gravels"},{"n":"Willamette Valley (OR)","x":28,"y":55,"g":"Pinot Noir, Pinot Gris","soil":"Jory (volcanic basalt), marine sediment, loess"},{"n":"Napa & Sonoma (CA)","x":26,"y":61,"g":"Cabernet, Chardonnay, Zinfandel, Pinot","soil":"Very diverse: volcanic, alluvial, marine sediment"},{"n":"Central Coast (CA)","x":34,"y":64,"g":"Paso Robles, Santa Barbara: Rhône & Pinot","soil":"Limestone & calcareous shale (Paso Robles); diverse"},{"n":"Finger Lakes (NY)","x":130,"y":50,"g":"Riesling (lake-moderated)","soil":"Glacial shale, gravel & silt over slate"},{"n":"Long Island (NY)","x":140,"y":54,"g":"Bordeaux varieties (maritime)","soil":"Sandy loam & gravel (glacial, maritime)"},{"n":"Virginia","x":128,"y":60,"g":"Cabernet Franc, Viognier","soil":"Clay-loam, granite, slate"},{"n":"Texas","x":80,"y":72,"g":"Tempranillo, Rhône varieties (High Plains)","soil":"Limestone, sandy loam, caliche (High Plains)"}],"rivers":[{"n":"Columbia R.","d":"M24,55 L36,49 L42,46","lx":44,"ly":45,"a":"s"}],"mtns":[{"n":"Cascades","d":"M27,44 L28,61","lx":23,"ly":53,"a":"e"},{"n":"Rockies","d":"M60,43 L62,64","lx":62,"ly":41}],"water":[{"n":"PACIFIC OCEAN","x":11,"y":58,"a":"s"},{"n":"ATLANTIC OCEAN","x":159,"y":50,"a":"e"}],"cities":[],"lakes":[{"n":"Great Lakes","cx":124,"cy":44,"rx":5,"ry":2.2}]},{"name":"Australia","flag":"🇦🇺","vb":"20 25 150 110","d":"M40,42 L120,38 L150,55 L140,92 L110,102 L70,100 L45,82 L38,60 Z M118,110 L132,110 L125,123 Z","r":[{"n":"Margaret River (WA)","x":42,"y":84,"g":"Cabernet Sauvignon, Chardonnay (maritime)","soil":"Gravelly/sandy loam over granite-gneiss"},{"n":"Barossa / Eden Valley (SA)","x":96,"y":88,"g":"Old-vine Shiraz; Eden Riesling","soil":"Clay, sand, ironstone; Eden = schist & quartz"},{"n":"Clare Valley (SA)","x":92,"y":82,"g":"Riesling (lime, mineral)","soil":"Slate & limestone; red clay over limestone"},{"n":"McLaren Vale (SA)","x":94,"y":94,"g":"Shiraz, Grenache (GSM)","soil":"Diverse: sand, clay, limestone, ironstone"},{"n":"Coonawarra (SA)","x":106,"y":96,"g":"Cabernet on terra rossa","soil":"Terra rossa over limestone"},{"n":"Hunter Valley (NSW)","x":138,"y":72,"g":"Age-worthy Semillon; Shiraz","soil":"Sandy alluvial & volcanic-derived loam"},{"n":"Yarra Valley (VIC)","x":124,"y":92,"g":"Cool-climate Pinot, Chardonnay, sparkling","soil":"Grey loam & red volcanic soils"},{"n":"Rutherglen (VIC)","x":118,"y":84,"g":"Fortified Muscat ('stickies')","soil":"Sandy & red clay loam"},{"n":"Tasmania","x":125,"y":116,"g":"Cool: sparkling base, Pinot, Chardonnay","soil":"Basalt, sandstone, dolerite, alluvial"}],"mtns":[{"n":"Great Dividing Range","d":"M140,52 L143,92","lx":145,"ly":72,"a":"s"}],"water":[{"n":"INDIAN OCEAN","x":24,"y":66,"a":"s"},{"n":"Southern Ocean","x":76,"y":108},{"n":"Tasman Sea","x":152,"y":70,"a":"s"}],"cities":[]},{"name":"New Zealand","flag":"🇳🇿","vb":"35 30 70 90","d":"M70,40 L88,38 L92,55 L80,70 L66,62 L64,48 Z M58,72 L74,78 L60,112 L44,100 L48,80 Z","r":[{"n":"Gisborne","x":88,"y":50,"g":"Chardonnay","soil":"Fertile alluvial loam & clay"},{"n":"Hawke's Bay","x":84,"y":58,"g":"Bordeaux blends & Syrah (Gimblett Gravels)","soil":"Gravel ('Gimblett Gravels'), silt, clay"},{"n":"Martinborough (Wairarapa)","x":76,"y":66,"g":"Pinot Noir","soil":"River gravels & silt loam"},{"n":"Marlborough","x":64,"y":78,"g":"Sauvignon Blanc (Wairau & Awatere)","soil":"Free-draining stony gravel (Wairau); clay (Awatere)"},{"n":"Nelson","x":54,"y":78,"g":"Aromatic whites, Pinot Noir","soil":"Clay-gravel (Moutere); alluvial (Waimea)"},{"n":"Canterbury / Waipara","x":58,"y":92,"g":"Riesling, Pinot Noir","soil":"Gravel, limestone & clay"},{"n":"Central Otago","x":52,"y":100,"g":"Pinot Noir (continental, southernmost)","soil":"Schist-based loess & gravel"}],"mtns":[{"n":"Southern Alps","d":"M52,80 L46,98","lx":42,"ly":92,"a":"e"}],"water":[{"n":"Tasman Sea","x":37,"y":68,"a":"s"},{"n":"Pacific Ocean","x":90,"y":44,"a":"s"}],"cities":[]},{"name":"South Africa","flag":"🇿🇦","vb":"20 30 130 75","d":"M40,42 L120,38 L142,55 L120,82 L95,94 L70,96 L48,84 L40,62 Z","note":"Most regions cluster around the Western Cape (Cape Town).","r":[{"n":"Swartland","x":50,"y":76,"g":"Old-vine Chenin; Rhône-style reds","soil":"Granite, schist, shale, clay"},{"n":"Stellenbosch","x":56,"y":85,"g":"Cabernet & Bordeaux blends","soil":"Decomposed granite; sandstone, alluvial"},{"n":"Paarl","x":61,"y":80,"g":"Shiraz, Chenin; historic KWV","soil":"Granite, sandstone, shale"},{"n":"Franschhoek","x":67,"y":82,"g":"Huguenot heritage; varied","soil":"Granite, sandstone, alluvial"},{"n":"Constantia","x":51,"y":87,"g":"Sauvignon Blanc; historic Vin de Constance (Muscat)","soil":"Decomposed granite (Table Mountain sandstone)"},{"n":"Elgin","x":59,"y":88,"g":"Cool — Sauvignon Blanc, Chardonnay, Pinot","soil":"Clay-rich shale & sandstone"},{"n":"Walker Bay / Hemel-en-Aarde","x":68,"y":87,"g":"Pinot Noir & Chardonnay (maritime)","soil":"Clay & shale over decomposed granite"},{"n":"Robertson","x":75,"y":83,"g":"Chardonnay (lime soils)","soil":"Limestone-rich (lime soils), alluvial"}],"water":[{"n":"ATLANTIC OCEAN","x":22,"y":58,"a":"s"},{"n":"INDIAN OCEAN","x":120,"y":88,"a":"s"}],"cities":[{"n":"Cape of Good Hope","x":62,"y":98}],"feats":[{"n":"Benguela Current (cold)","d":"M44,94 L43,78 L45,64","lx":28,"ly":78,"a":"e"}]},{"name":"Argentina","flag":"🇦🇷","vb":"50 20 60 130","d":"M70,30 L90,32 L88,60 L92,90 L80,120 L74,142 L66,120 L70,90 L66,60 Z","r":[{"n":"Salta / Cafayate","x":78,"y":38,"g":"Torrontés; high-altitude Malbec","soil":"Sandy, alluvial, stony (high altitude)"},{"n":"La Rioja","x":76,"y":50,"g":"Torrontés Riojano","soil":"Sandy & alluvial"},{"n":"San Juan","x":74,"y":58,"g":"Syrah, Bonarda","soil":"Sandy, alluvial, stony"},{"n":"Mendoza (Uco, Luján de Cuyo)","x":74,"y":66,"g":"Malbec — high-altitude Andes","soil":"Alluvial sand, clay, gravel; calcareous (Uco)"},{"n":"Patagonia (Río Negro/Neuquén)","x":76,"y":98,"g":"Cooler Pinot Noir & Malbec","soil":"Alluvial sand & gravel over clay"}],"rivers":[{"n":"Río Negro","d":"M70,97 L86,99","lx":88,"ly":99,"a":"s"}],"mtns":[{"n":"Andes","d":"M66,32 L66,90 L73,132","lx":60,"ly":70,"a":"e"}],"water":[{"n":"ATLANTIC OCEAN","x":94,"y":84,"a":"s"}],"cities":[]},{"name":"Chile","flag":"🇨🇱","vb":"50 20 40 130","d":"M64,28 L73,28 L79,140 L70,142 L62,30 Z","r":[{"n":"Elqui / Limarí","x":71,"y":50,"g":"Cool north: Syrah, Chardonnay","soil":"Limestone, clay & alluvial (semi-desert)"},{"n":"Aconcagua / Casablanca","x":70,"y":68,"g":"Casablanca & San Antonio: Sauvignon Blanc, Pinot","soil":"Granitic, clay & sand (coastal)"},{"n":"Maipo Valley","x":69,"y":78,"g":"Cabernet Sauvignon ('Bordeaux of S. America')","soil":"Alluvial gravel, clay & sand"},{"n":"Rapel / Colchagua","x":69,"y":88,"g":"Bold reds — Cabernet, Carménère, Syrah","soil":"Alluvial clay, gravel, granite"},{"n":"Curicó / Maule","x":69,"y":100,"g":"Carménère, Cabernet; old-vine País","soil":"Granite, volcanic, clay, alluvial"},{"n":"Itata / Bío Bío","x":69,"y":114,"g":"Cool south — País, Cinsault, Riesling","soil":"Granite, volcanic & clay (dry-farmed)"}],"mtns":[{"n":"Andes","d":"M76,30 L78,138","lx":80,"ly":84,"a":"s"}],"water":[{"n":"PACIFIC OCEAN","x":51,"y":84,"a":"s"}],"cities":[],"feats":[{"n":"Humboldt Current (cold)","d":"M63,124 L62,92 L63,58","lx":52,"ly":108,"a":"s"}]}];
+var INTRO_ATLAS=[{"name":"France","flag":"🇫🇷","vb":"0 0 180 170","d":"M70,20 L150,28 L150,70 L168,120 L120,138 L70,150 L40,128 L32,92 L18,72 L8,60 L34,52 L46,34 Z","r":[{"n":"Champagne","x":118,"y":46,"g":"Chardonnay, Pinot Noir, Pinot Meunier (sparkling)","soil":"Chalk (belemnite limestone)"},{"n":"Alsace","x":142,"y":52,"g":"Riesling, Gewürztraminer, Pinot Gris (varietally labeled)","soil":"Mosaic: granite, limestone, schist, sandstone"},{"n":"Loire Valley","x":56,"y":80,"g":"Muscadet, Chenin Blanc, Sauvignon Blanc, Cabernet Franc","soil":"Tuffeau limestone, flint (silex), schist, gravel"},{"n":"Burgundy","x":118,"y":74,"g":"Chardonnay & Pinot Noir","soil":"Limestone & clay-limestone marl"},{"n":"Beaujolais","x":120,"y":90,"g":"Gamay (often carbonic)","soil":"Granite (Crus); clay-limestone to the south"},{"n":"Rhône Valley","x":124,"y":108,"g":"N: Syrah / Viognier · S: Grenache (GSM)","soil":"North: granite · South: galets roulés, clay-limestone, sand"},{"n":"Provence","x":142,"y":120,"g":"Dry rosé (Grenache, Cinsault, Mourvèdre)","soil":"Limestone, clay and schist"},{"n":"Bordeaux","x":44,"y":104,"g":"Left: Cabernet Sauvignon · Right: Merlot","soil":"Left Bank gravel · Right Bank clay & limestone"},{"n":"Languedoc-Roussillon","x":96,"y":128,"g":"Grenache, Syrah, Carignan; VDN sweet wines","soil":"Varied: limestone, schist, clay, galets"}],"rivers":[{"n":"Loire","d":"M104,98 Q78,76 50,80 T26,86","lx":64,"ly":73},{"n":"Rhône","d":"M120,86 L123,110 L119,134","lx":128,"ly":122,"a":"s"},{"n":"Gironde","d":"M64,120 L46,106 L34,93","lx":31,"ly":95,"a":"e"},{"n":"Rhine","d":"M150,40 L150,68","lx":154,"ly":55,"a":"s"}],"mtns":[{"n":"Pyrenees","d":"M46,132 L82,147 L112,139","lx":80,"ly":153},{"n":"Alps","d":"M150,82 L163,105","lx":161,"ly":93,"a":"s"},{"n":"Vosges","d":"M135,42 L137,61","lx":131,"ly":50,"a":"e"}],"water":[{"n":"ATLANTIC OCEAN","x":9,"y":150,"a":"s"},{"n":"Mediterranean Sea","x":108,"y":160},{"n":"English Channel","x":74,"y":13}],"cities":[{"n":"Paris","x":88,"y":38}]},{"name":"Italy","flag":"🇮🇹","vb":"0 0 200 200","d":"M60,30 L110,24 L140,30 L130,55 L150,95 L165,120 L150,132 L138,122 L120,142 L112,162 L100,150 L108,128 L88,100 L70,70 L55,50 Z M94,170 L120,170 L108,184 Z M40,96 L54,96 L54,126 L40,126 Z","r":[{"n":"Piedmont","x":64,"y":42,"g":"Nebbiolo (Barolo, Barbaresco), Barbera, Dolcetto","soil":"Calcareous marl (Barolo & Barbaresco)"},{"n":"Lombardy","x":88,"y":36,"g":"Franciacorta sparkling; Nebbiolo (Valtellina)","soil":"Morainic gravel; alpine terraces (Valtellina)"},{"n":"Veneto","x":120,"y":40,"g":"Prosecco (Glera), Soave (Garganega), Valpolicella/Amarone","soil":"Volcanic basalt & limestone (Soave); limestone-clay (Valpolicella)"},{"n":"Friuli","x":136,"y":34,"g":"Crisp whites (Friulano, Pinot Grigio)","soil":"Ponca (marl & sandstone), gravel"},{"n":"Trentino-Alto Adige","x":104,"y":30,"g":"Alpine whites; Pinot Grigio, Gewürztraminer","soil":"Limestone, dolomite & porphyry (volcanic)"},{"n":"Tuscany","x":78,"y":74,"g":"Sangiovese (Chianti, Brunello); Super Tuscans","soil":"Galestro & alberese (calcareous clay/schist)"},{"n":"Umbria","x":96,"y":82,"g":"Sagrantino (Montefalco), Orvieto whites","soil":"Clay-limestone; volcanic tuff (Orvieto)"},{"n":"Abruzzo","x":120,"y":90,"g":"Montepulciano d'Abruzzo, Trebbiano","soil":"Clay-limestone"},{"n":"Campania","x":106,"y":110,"g":"Aglianico (Taurasi), Fiano, Greco","soil":"Volcanic (Vesuvius); limestone"},{"n":"Puglia","x":150,"y":114,"g":"Primitivo (= Zinfandel), Negroamaro","soil":"Limestone & iron-rich red clay"},{"n":"Sicily","x":107,"y":176,"g":"Nero d'Avola; Etna (Nerello Mascalese); Marsala","soil":"Volcanic (Etna); limestone, clay, sand"},{"n":"Sardinia","x":47,"y":111,"g":"Cannonau (Grenache), Vermentino","soil":"Granite, limestone and sand"}],"rivers":[{"n":"Po","d":"M64,46 L108,46 L130,50","lx":88,"ly":43}],"mtns":[{"n":"Alps","d":"M62,34 L100,28 L134,34","lx":96,"ly":25},{"n":"Apennines","d":"M64,54 L92,98 L112,138","lx":66,"ly":66,"a":"s"}],"water":[{"n":"Adriatic Sea","x":152,"y":82},{"n":"Tyrrhenian Sea","x":72,"y":128},{"n":"Ionian Sea","x":148,"y":158}],"cities":[{"n":"Rome","x":92,"y":99}]},{"name":"Spain","flag":"🇪🇸","vb":"0 0 200 150","d":"M38,42 L150,36 L168,58 L150,98 L120,122 L70,118 L48,96 L40,66 Z","dash":"M54,62 L62,90 L70,116","r":[{"n":"Rías Baixas","x":46,"y":54,"g":"Albariño (Galicia, Atlantic)","soil":"Granite & sandy alluvium"},{"n":"Bierzo","x":62,"y":54,"g":"Mencía","soil":"Slate & clay-limestone on slopes"},{"n":"Ribera del Duero","x":96,"y":62,"g":"Tempranillo (Tinto Fino), powerful reds","soil":"Limestone, clay and sand"},{"n":"Rueda / Toro","x":84,"y":68,"g":"Verdejo (Rueda); Tinta de Toro (Toro)","soil":"Sand, gravel & limestone (Rueda); sandy clay (Toro)"},{"n":"Rioja","x":110,"y":54,"g":"Tempranillo (American-oak aging)","soil":"Clay-limestone, ferrous clay, alluvial"},{"n":"Navarra","x":120,"y":52,"g":"Garnacha, Tempranillo, rosado","soil":"Clay-limestone & alluvial"},{"n":"Penedès (Cava)","x":150,"y":58,"g":"Macabeo, Xarel·lo, Parellada, sparkling","soil":"Limestone, clay and sand"},{"n":"Priorat","x":140,"y":66,"g":"Garnacha & Cariñena on llicorella slate","soil":"Llicorella (slate & quartz)"},{"n":"La Mancha","x":104,"y":86,"g":"Airén, Tempranillo (Cencibel), high volume","soil":"Clay-limestone over chalk (high plateau)"},{"n":"Jumilla / Yecla","x":132,"y":94,"g":"Monastrell (= Mourvèdre)","soil":"Limestone & sand (poor, arid)"},{"n":"Jerez (Sherry)","x":78,"y":112,"g":"Palomino (Fino/Oloroso); PX sweet, flor & solera","soil":"Albariza (chalky white limestone)"}],"rivers":[{"n":"Ebro","d":"M150,46 L120,52 L100,66","lx":134,"ly":46,"a":"e"},{"n":"Duero","d":"M120,62 L80,68 L52,74","lx":98,"ly":60}],"mtns":[{"n":"Pyrenees","d":"M120,38 L150,41","lx":132,"ly":34}],"water":[{"n":"ATLANTIC OCEAN","x":8,"y":64,"a":"s"},{"n":"Bay of Biscay","x":80,"y":30},{"n":"Mediterranean Sea","x":176,"y":96}],"cities":[{"n":"Madrid","x":100,"y":80}]},{"name":"Portugal","flag":"🇵🇹","vb":"20 20 70 100","d":"M40,30 L70,30 L72,60 L78,95 L78,110 L46,112 L44,80 L42,55 Z","r":[{"n":"Vinho Verde","x":56,"y":40,"g":"Alvarinho, Loureiro: light, fresh, low alcohol","soil":"Granite"},{"n":"Douro / Port","x":66,"y":47,"g":"Touriga Nacional/Franca: Port & dry reds (schist)","soil":"Schist (xisto); some granite"},{"n":"Dão","x":60,"y":58,"g":"Touriga Nacional, Encruzado (granite)","soil":"Granite"},{"n":"Bairrada","x":50,"y":58,"g":"Baga reds; traditional-method sparkling","soil":"Clay-limestone; some sand"},{"n":"Lisboa","x":50,"y":78,"g":"Arinto (Bucelas) and varied reds","soil":"Clay-limestone & sand"},{"n":"Tejo","x":62,"y":76,"g":"Castelão, Touriga; everyday reds","soil":"Alluvial sand & clay; limestone"},{"n":"Setúbal","x":52,"y":86,"g":"Moscatel de Setúbal (fortified Muscat)","soil":"Sand & clay-limestone"},{"n":"Alentejo","x":64,"y":92,"g":"Ripe reds; cork country","soil":"Granite, schist, clay-limestone"},{"n":"Madeira","x":30,"y":106,"g":"Atlantic island: fortified (Sercial→Malmsey)","soil":"Volcanic basalt (terraced)"}],"rivers":[{"n":"Douro","d":"M70,46 L58,46 L46,47","lx":60,"ly":43},{"n":"Tejo (Tagus)","d":"M72,78 L58,79 L49,80","lx":64,"ly":75}],"water":[{"n":"ATLANTIC OCEAN","x":23,"y":72,"a":"s"}],"cities":[]},{"name":"Germany","flag":"🇩🇪","vb":"40 20 110 100","d":"M70,30 L120,28 L130,55 L120,90 L95,105 L75,95 L80,75 L65,60 L72,45 Z","r":[{"n":"Ahr","x":66,"y":58,"g":"Spätburgunder (Pinot Noir), red specialist","soil":"Slate with volcanic rock (steep)"},{"n":"Mosel","x":66,"y":67,"g":"Riesling: slate, low alcohol, off-dry","soil":"Blue & red Devonian slate"},{"n":"Rheingau","x":78,"y":64,"g":"Riesling; Spätburgunder at Assmannshausen","soil":"Slate, quartzite, loess, clay"},{"n":"Nahe","x":73,"y":71,"g":"Riesling: varied soils","soil":"Diverse: slate, quartzite, porphyry, loess"},{"n":"Rheinhessen","x":82,"y":71,"g":"Largest region; Riesling, Silvaner","soil":"Loess, limestone, clay; red slate (Roter Hang)"},{"n":"Pfalz","x":78,"y":80,"g":"Ripe Riesling & Pinot family","soil":"Limestone, loess, sandstone, basalt"},{"n":"Franken","x":104,"y":66,"g":"Dry Silvaner (Bocksbeutel bottle)","soil":"Limestone (Muschelkalk) & sandstone"},{"n":"Württemberg","x":94,"y":86,"g":"Reds: Trollinger, Lemberger","soil":"Marl & clay-limestone (Keuper)"},{"n":"Baden","x":86,"y":94,"g":"Warmest; Spätburgunder, Grauburgunder","soil":"Loess, volcanic (Kaiserstuhl), limestone"}],"rivers":[{"n":"Rhine","d":"M84,93 L80,76 L70,59 L72,46","lx":86,"ly":70,"a":"s"},{"n":"Mosel","d":"M61,64 L72,60","lx":58,"ly":64,"a":"e"},{"n":"Main","d":"M128,66 L108,66 L92,70","lx":118,"ly":62,"a":"s"},{"n":"Danube","d":"M93,99 L114,92","lx":104,"ly":102}],"mtns":[{"n":"Black Forest","d":"M83,86 L87,98","lx":90,"ly":94,"a":"s"}],"water":[],"cities":[]},{"name":"Austria","flag":"🇦🇹","vb":"20 35 140 55","d":"M30,55 L60,50 L100,48 L140,46 L150,60 L135,72 L100,70 L70,68 L45,64 Z","r":[{"n":"Wachau / Kamptal / Kremstal","x":116,"y":55,"g":"Grüner Veltliner & Riesling (Danube)","soil":"Primary rock (gneiss) & loess"},{"n":"Wien (Vienna)","x":132,"y":55,"g":"Gemischter Satz (field blend)","soil":"Limestone, brown earth, gravel"},{"n":"Weinviertel","x":122,"y":50,"g":"Peppery Grüner Veltliner","soil":"Loess & limestone"},{"n":"Burgenland","x":140,"y":61,"g":"Blaufränkisch reds; botrytis sweet (Neusiedlersee)","soil":"Gravel, sand, clay, schist (Neusiedlersee)"},{"n":"Steiermark (Styria)","x":120,"y":67,"g":"Sauvignon Blanc, Morillon (Chardonnay)","soil":"Volcanic basalt, slate, limestone, sand"}],"rivers":[{"n":"Danube","d":"M150,52 L120,55 L100,58 L70,62","lx":110,"ly":52}],"mtns":[{"n":"Alps","d":"M40,62 L72,66 L102,67","lx":52,"ly":69,"a":"s"}],"water":[],"cities":[],"lakes":[{"n":"Neusiedlersee","cx":144,"cy":62,"rx":2.4,"ry":3.6}]},{"name":"United States","flag":"🇺🇸","vb":"10 30 150 70","d":"M18,42 L150,40 L148,50 L138,54 L130,66 L120,64 L112,76 L106,82 L100,72 L88,70 L78,76 L70,68 L40,66 L22,60 L20,48 Z","r":[{"n":"Columbia Valley (WA)","x":33,"y":47,"g":"Cabernet, Merlot, Syrah, Riesling","soil":"Wind-blown loess over basalt; flood gravels"},{"n":"Willamette Valley (OR)","x":28,"y":55,"g":"Pinot Noir, Pinot Gris","soil":"Jory (volcanic basalt), marine sediment, loess"},{"n":"Napa & Sonoma (CA)","x":26,"y":61,"g":"Cabernet, Chardonnay, Zinfandel, Pinot","soil":"Very diverse: volcanic, alluvial, marine sediment"},{"n":"Central Coast (CA)","x":34,"y":64,"g":"Paso Robles, Santa Barbara: Rhône & Pinot","soil":"Limestone & calcareous shale (Paso Robles); diverse"},{"n":"Finger Lakes (NY)","x":130,"y":50,"g":"Riesling (lake-moderated)","soil":"Glacial shale, gravel & silt over slate"},{"n":"Long Island (NY)","x":140,"y":54,"g":"Bordeaux varieties (maritime)","soil":"Sandy loam & gravel (glacial, maritime)"},{"n":"Virginia","x":128,"y":60,"g":"Cabernet Franc, Viognier","soil":"Clay-loam, granite, slate"},{"n":"Texas","x":80,"y":72,"g":"Tempranillo, Rhône varieties (High Plains)","soil":"Limestone, sandy loam, caliche (High Plains)"}],"rivers":[{"n":"Columbia R.","d":"M24,55 L36,49 L42,46","lx":44,"ly":45,"a":"s"}],"mtns":[{"n":"Cascades","d":"M27,44 L28,61","lx":23,"ly":53,"a":"e"},{"n":"Rockies","d":"M60,43 L62,64","lx":62,"ly":41}],"water":[{"n":"PACIFIC OCEAN","x":11,"y":58,"a":"s"},{"n":"ATLANTIC OCEAN","x":159,"y":50,"a":"e"}],"cities":[],"lakes":[{"n":"Great Lakes","cx":124,"cy":44,"rx":5,"ry":2.2}]},{"name":"Australia","flag":"🇦🇺","vb":"20 25 150 110","d":"M40,42 L120,38 L150,55 L140,92 L110,102 L70,100 L45,82 L38,60 Z M118,110 L132,110 L125,123 Z","r":[{"n":"Margaret River (WA)","x":42,"y":84,"g":"Cabernet Sauvignon, Chardonnay (maritime)","soil":"Gravelly/sandy loam over granite-gneiss"},{"n":"Barossa / Eden Valley (SA)","x":96,"y":88,"g":"Old-vine Shiraz; Eden Riesling","soil":"Clay, sand, ironstone; Eden = schist & quartz"},{"n":"Clare Valley (SA)","x":92,"y":82,"g":"Riesling (lime, mineral)","soil":"Slate & limestone; red clay over limestone"},{"n":"McLaren Vale (SA)","x":94,"y":94,"g":"Shiraz, Grenache (GSM)","soil":"Diverse: sand, clay, limestone, ironstone"},{"n":"Coonawarra (SA)","x":106,"y":96,"g":"Cabernet on terra rossa","soil":"Terra rossa over limestone"},{"n":"Hunter Valley (NSW)","x":138,"y":72,"g":"Age-worthy Semillon; Shiraz","soil":"Sandy alluvial & volcanic-derived loam"},{"n":"Yarra Valley (VIC)","x":124,"y":92,"g":"Cool-climate Pinot, Chardonnay, sparkling","soil":"Grey loam & red volcanic soils"},{"n":"Rutherglen (VIC)","x":118,"y":84,"g":"Fortified Muscat ('stickies')","soil":"Sandy & red clay loam"},{"n":"Tasmania","x":125,"y":116,"g":"Cool: sparkling base, Pinot, Chardonnay","soil":"Basalt, sandstone, dolerite, alluvial"}],"mtns":[{"n":"Great Dividing Range","d":"M140,52 L143,92","lx":145,"ly":72,"a":"s"}],"water":[{"n":"INDIAN OCEAN","x":24,"y":66,"a":"s"},{"n":"Southern Ocean","x":76,"y":108},{"n":"Tasman Sea","x":152,"y":70,"a":"s"}],"cities":[]},{"name":"New Zealand","flag":"🇳🇿","vb":"35 30 70 90","d":"M70,40 L88,38 L92,55 L80,70 L66,62 L64,48 Z M58,72 L74,78 L60,112 L44,100 L48,80 Z","r":[{"n":"Gisborne","x":88,"y":50,"g":"Chardonnay","soil":"Fertile alluvial loam & clay"},{"n":"Hawke's Bay","x":84,"y":58,"g":"Bordeaux blends & Syrah (Gimblett Gravels)","soil":"Gravel ('Gimblett Gravels'), silt, clay"},{"n":"Martinborough (Wairarapa)","x":76,"y":66,"g":"Pinot Noir","soil":"River gravels & silt loam"},{"n":"Marlborough","x":64,"y":78,"g":"Sauvignon Blanc (Wairau & Awatere)","soil":"Free-draining stony gravel (Wairau); clay (Awatere)"},{"n":"Nelson","x":54,"y":78,"g":"Aromatic whites, Pinot Noir","soil":"Clay-gravel (Moutere); alluvial (Waimea)"},{"n":"Canterbury / Waipara","x":58,"y":92,"g":"Riesling, Pinot Noir","soil":"Gravel, limestone & clay"},{"n":"Central Otago","x":52,"y":100,"g":"Pinot Noir (continental, southernmost)","soil":"Schist-based loess & gravel"}],"mtns":[{"n":"Southern Alps","d":"M52,80 L46,98","lx":42,"ly":92,"a":"e"}],"water":[{"n":"Tasman Sea","x":37,"y":68,"a":"s"},{"n":"Pacific Ocean","x":90,"y":44,"a":"s"}],"cities":[]},{"name":"South Africa","flag":"🇿🇦","vb":"20 30 130 75","d":"M40,42 L120,38 L142,55 L120,82 L95,94 L70,96 L48,84 L40,62 Z","note":"Most regions cluster around the Western Cape (Cape Town).","r":[{"n":"Swartland","x":50,"y":76,"g":"Old-vine Chenin; Rhône-style reds","soil":"Granite, schist, shale, clay"},{"n":"Stellenbosch","x":56,"y":85,"g":"Cabernet & Bordeaux blends","soil":"Decomposed granite; sandstone, alluvial"},{"n":"Paarl","x":61,"y":80,"g":"Shiraz, Chenin; historic KWV","soil":"Granite, sandstone, shale"},{"n":"Franschhoek","x":67,"y":82,"g":"Huguenot heritage; varied","soil":"Granite, sandstone, alluvial"},{"n":"Constantia","x":51,"y":87,"g":"Sauvignon Blanc; historic Vin de Constance (Muscat)","soil":"Decomposed granite (Table Mountain sandstone)"},{"n":"Elgin","x":59,"y":88,"g":"Cool: Sauvignon Blanc, Chardonnay, Pinot","soil":"Clay-rich shale & sandstone"},{"n":"Walker Bay / Hemel-en-Aarde","x":68,"y":87,"g":"Pinot Noir & Chardonnay (maritime)","soil":"Clay & shale over decomposed granite"},{"n":"Robertson","x":75,"y":83,"g":"Chardonnay (lime soils)","soil":"Limestone-rich (lime soils), alluvial"}],"water":[{"n":"ATLANTIC OCEAN","x":22,"y":58,"a":"s"},{"n":"INDIAN OCEAN","x":120,"y":88,"a":"s"}],"cities":[{"n":"Cape of Good Hope","x":62,"y":98}],"feats":[{"n":"Benguela Current (cold)","d":"M44,94 L43,78 L45,64","lx":28,"ly":78,"a":"e"}]},{"name":"Argentina","flag":"🇦🇷","vb":"50 20 60 130","d":"M70,30 L90,32 L88,60 L92,90 L80,120 L74,142 L66,120 L70,90 L66,60 Z","r":[{"n":"Salta / Cafayate","x":78,"y":38,"g":"Torrontés; high-altitude Malbec","soil":"Sandy, alluvial, stony (high altitude)"},{"n":"La Rioja","x":76,"y":50,"g":"Torrontés Riojano","soil":"Sandy & alluvial"},{"n":"San Juan","x":74,"y":58,"g":"Syrah, Bonarda","soil":"Sandy, alluvial, stony"},{"n":"Mendoza (Uco, Luján de Cuyo)","x":74,"y":66,"g":"Malbec, high-altitude Andes","soil":"Alluvial sand, clay, gravel; calcareous (Uco)"},{"n":"Patagonia (Río Negro/Neuquén)","x":76,"y":98,"g":"Cooler Pinot Noir & Malbec","soil":"Alluvial sand & gravel over clay"}],"rivers":[{"n":"Río Negro","d":"M70,97 L86,99","lx":88,"ly":99,"a":"s"}],"mtns":[{"n":"Andes","d":"M66,32 L66,90 L73,132","lx":60,"ly":70,"a":"e"}],"water":[{"n":"ATLANTIC OCEAN","x":94,"y":84,"a":"s"}],"cities":[]},{"name":"Chile","flag":"🇨🇱","vb":"50 20 40 130","d":"M64,28 L73,28 L79,140 L70,142 L62,30 Z","r":[{"n":"Elqui / Limarí","x":71,"y":50,"g":"Cool north: Syrah, Chardonnay","soil":"Limestone, clay & alluvial (semi-desert)"},{"n":"Aconcagua / Casablanca","x":70,"y":68,"g":"Casablanca & San Antonio: Sauvignon Blanc, Pinot","soil":"Granitic, clay & sand (coastal)"},{"n":"Maipo Valley","x":69,"y":78,"g":"Cabernet Sauvignon ('Bordeaux of S. America')","soil":"Alluvial gravel, clay & sand"},{"n":"Rapel / Colchagua","x":69,"y":88,"g":"Bold reds: Cabernet, Carménère, Syrah","soil":"Alluvial clay, gravel, granite"},{"n":"Curicó / Maule","x":69,"y":100,"g":"Carménère, Cabernet; old-vine País","soil":"Granite, volcanic, clay, alluvial"},{"n":"Itata / Bío Bío","x":69,"y":114,"g":"Cool south: País, Cinsault, Riesling","soil":"Granite, volcanic & clay (dry-farmed)"}],"mtns":[{"n":"Andes","d":"M76,30 L78,138","lx":80,"ly":84,"a":"s"}],"water":[{"n":"PACIFIC OCEAN","x":51,"y":84,"a":"s"}],"cities":[],"feats":[{"n":"Humboldt Current (cold)","d":"M63,124 L62,92 L63,58","lx":52,"ly":108,"a":"s"}]}];
 
 /* ============ Classifications & Labels reference ============
    Per country: framework, quality pyramid (top→bottom), classification/aging systems,
@@ -1860,20 +1860,20 @@ var INTRO_CLASS=[
 {name:"France",flag:"🇫🇷",
  framework:"EU origin tiers: AOC/AOP (strictest) › IGP (Vin de Pays) › Vin de France. Quality is tied to PLACE; the grape is usually implied by the appellation, not printed, and the word 'Cru' means something different in every region.",
  pyramid:[
-  {t:"AOC / AOP",d:"Appellation d'Origine Contrôlée/Protégée — defined area, permitted grapes, max yields, methods. The strictest, top tier."},
-  {t:"IGP (Vin de Pays)",d:"Indication Géographique Protégée — broader regions, looser rules; the grape variety is often named on the label."},
+  {t:"AOC / AOP",d:"Appellation d'Origine Contrôlée/Protégée: defined area, permitted grapes, max yields, methods. The strictest, top tier."},
+  {t:"IGP (Vin de Pays)",d:"Indication Géographique Protégée: broader regions, looser rules; the grape variety is often named on the label."},
   {t:"Vin de France",d:"Basic tier, no geographic claim. Vintage and variety may still appear."}
  ],
  systems:[
   {n:"Bordeaux: 1855 Classification",d:"Médoc reds (plus Haut-Brion) ranked into FIVE growths, Premier → Cinquième Cru, on 1855 market prices. Essentially frozen; only change: Mouton Rothschild promoted to First Growth in 1973. Sauternes/Barsac ranked separately: Premier Cru Supérieur (d'Yquem) above Premiers and Deuxièmes Crus."},
-  {n:"Bordeaux — St-Émilion",d:"Revised about every 10 years (so it can change!). Tiers: Premier Grand Cru Classé A, then B, then Grand Cru Classé, then plain 'Grand Cru' (the broad entry tier). TRAP: here 'Grand Cru' is near the bottom, not the top."},
-  {n:"Bordeaux — Graves / Pessac-Léognan",d:"1959 classification: a single tier 'Cru Classé', awarded for red and/or white."},
+  {n:"Bordeaux: St-Émilion",d:"Revised about every 10 years (so it can change!). Tiers: Premier Grand Cru Classé A, then B, then Grand Cru Classé, then plain 'Grand Cru' (the broad entry tier). TRAP: here 'Grand Cru' is near the bottom, not the top."},
+  {n:"Bordeaux: Graves / Pessac-Léognan",d:"1959 classification: a single tier 'Cru Classé', awarded for red and/or white."},
   {n:"Bordeaux: Cru Bourgeois",d:"A separate Médoc system below the 1855 growths. Three tiers again (Cru Bourgeois, Supérieur, Exceptionnel), revised every 5 years."},
-  {n:"Bordeaux — Pomerol",d:"Has NO official classification at all — Pétrus, Le Pin and the rest are unranked."},
+  {n:"Bordeaux: Pomerol",d:"Has NO official classification at all: Pétrus, Le Pin and the rest are unranked."},
   {n:"Burgundy",d:"Vineyard-based: Grand Cru (≈2%, the named vineyard only) › Premier Cru (village + '1er Cru' + vineyard) › Village (commune name) › Regional (Bourgogne). A Grand Cru label shows ONLY the vineyard name, e.g. 'Chambertin'."},
   {n:"Beaujolais: Crus",d:"10 named Crus (Morgon, Fleurie, Moulin-à-Vent…) › Beaujolais-Villages › Beaujolais. The Cru names do NOT say 'Beaujolais'."},
-  {n:"Champagne — Échelle des Crus",d:"Grand Cru and Premier Cru rank whole VILLAGES (communes), not individual vineyards as in Burgundy."},
-  {n:"Alsace — Grand Cru",d:"51 named single vineyards (lieux-dits). Otherwise Alsace labels by grape variety."}
+  {n:"Champagne: Échelle des Crus",d:"Grand Cru and Premier Cru rank whole VILLAGES (communes), not individual vineyards as in Burgundy."},
+  {n:"Alsace: Grand Cru",d:"51 named single vineyards (lieux-dits). Otherwise Alsace labels by grape variety."}
  ],
  aging:[
   {t:"Champagne dosage (driest → sweetest, g/L)",d:"Brut Nature/Zéro (0–3) › Extra Brut (0–6) › Brut (0–12) › Extra Dry (12–17) › Sec (17–32) › Demi-Sec (32–50) › Doux (50+). TRAP: 'Extra Dry' is SWEETER than 'Brut'."},
@@ -1900,16 +1900,16 @@ var INTRO_CLASS=[
 {name:"Italy",flag:"🇮🇹",
  framework:"EU tiers: DOCG (top) › DOC › IGT › Vino. DOCG and DOC together form 'DOP'. But tier ≠ quality: Super Tuscans are deliberately bottled as IGT. Watch for 'Classico', 'Riserva' and 'Superiore'.",
  pyramid:[
-  {t:"DOCG",d:"Denominazione di Origine Controllata e Garantita — top; government-tasted, with a numbered seal across the capsule."},
+  {t:"DOCG",d:"Denominazione di Origine Controllata e Garantita: top; government-tasted, with a numbered seal across the capsule."},
   {t:"DOC",d:"Denominazione di Origine Controllata: controlled origin with set rules."},
-  {t:"IGT",d:"Indicazione Geografica Tipica — broader; the home of the 'Super Tuscans'."},
+  {t:"IGT",d:"Indicazione Geografica Tipica: broader; the home of the 'Super Tuscans'."},
   {t:"Vino (da Tavola)",d:"Basic table wine."}
  ],
  systems:[
-  {n:"Classico",d:"The historic heartland of a zone (e.g. Chianti Classico, marked by the black rooster / gallo nero seal) — usually the higher-quality core."},
+  {n:"Classico",d:"The historic heartland of a zone (e.g. Chianti Classico, marked by the black rooster / gallo nero seal), usually the higher-quality core."},
   {n:"Chianti Classico tiers",d:"Annata (standard) › Riserva (≥24 months aging) › Gran Selezione (top tier since 2014, ≥30 months, estate fruit)."},
   {n:"Barolo & Barbaresco",d:"Nebbiolo DOCGs. Single-vineyard crus are labeled as MGA (Menzioni Geografiche Aggiuntive). Barolo: ≥38 months (≥18 in wood); Riserva ≥62."},
-  {n:"Brunello di Montalcino",d:"100% Sangiovese; long aging (≈5 years, Riserva 6) — among Italy's most prestigious DOCGs."},
+  {n:"Brunello di Montalcino",d:"100% Sangiovese; long aging (≈5 years, Riserva 6), among Italy's most prestigious DOCGs."},
   {n:"Super Tuscans",d:"Top Bordeaux-style or varietal wines bottled as IGT (e.g. Sassicaia, now its own Bolgheri DOC) to escape rigid DOC blend rules."}
  ],
  aging:[
@@ -1921,26 +1921,26 @@ var INTRO_CLASS=[
   {t:"Annata",d:"Vintage; also the standard (non-Riserva) bottling."},
   {t:"Gran Selezione",d:"The top Chianti Classico tier (above Riserva)."},
   {t:"Vigna / MGA",d:"A single named vineyard."},
-  {t:"Passito",d:"Wine from dried (appassimento) grapes — e.g. Amarone, Recioto."},
+  {t:"Passito",d:"Wine from dried (appassimento) grapes, e.g. Amarone, Recioto."},
   {t:"Metodo Classico",d:"Traditional-method sparkling (e.g. Franciacorta)."},
   {t:"Spumante / Frizzante",d:"Fully sparkling / lightly sparkling."},
   {t:"Imbottigliato all'origine",d:"Estate bottled."},
   {t:"Azienda Agricola / Tenuta / Fattoria / Castello",d:"Types of wine estate."}
  ],
  traps:[
-  "DOCG outranks DOC on paper, but a Super-Tuscan IGT can be pricier and finer than many DOCs — tier ≠ quality.",
+  "DOCG outranks DOC on paper, but a Super-Tuscan IGT can be pricier and finer than many DOCs: tier ≠ quality.",
   "Montepulciano is BOTH a place and a grape: Vino Nobile di Montepulciano = Sangiovese from a Tuscan town; Montepulciano d'Abruzzo = the grape grown in Abruzzo.",
   "The black rooster (Gallo Nero) seal = Chianti Classico.",
   "Gran Selezione is the TOP Chianti Classico tier, above Riserva."
  ]},
 
 {name:"Spain",flag:"🇪🇸",
- framework:"Origin tiers run DOCa/DOQ (top) › DO › Vino de Calidad › Vino de la Tierra (IGP) › Vino, with Vino de Pago as a separate single-estate elite. But the terms that matter MOST on a Spanish label are the aging tiers — and unlike the US, they're legally defined.",
+ framework:"Origin tiers run DOCa/DOQ (top) › DO › Vino de Calidad › Vino de la Tierra (IGP) › Vino, with Vino de Pago as a separate single-estate elite. But the terms that matter MOST on a Spanish label are the aging tiers, and unlike the US, they're legally defined.",
  pyramid:[
   {t:"DOCa / DOQ",d:"Denominación de Origen Calificada (Catalan: DOQ), top tier, held by only Rioja (1991) and Priorat (2009)."},
   {t:"DO",d:"Denominación de Origen: the main quality-wine tier."},
   {t:"Vino de Calidad (VC)",d:"A stepping-stone tier below DO."},
-  {t:"Vino de la Tierra",d:"IGP — regional country wine."},
+  {t:"Vino de la Tierra",d:"IGP: regional country wine."},
   {t:"Vino",d:"Basic table wine."}
  ],
  systems:[
@@ -1950,7 +1950,7 @@ var INTRO_CLASS=[
   {n:"Cava (method, not place)",d:"Traditional-method sparkling, mostly from Penedès. Reformed tiers: Cava de Guarda and Cava de Guarda Superior (Reserva, Gran Reserva, Paraje Calificado)."}
  ],
  aging:[
-  {t:"Crianza",d:"Red ≈24 months total with significant oak — the everyday aged tier."},
+  {t:"Crianza",d:"Red ≈24 months total with significant oak, the everyday aged tier."},
   {t:"Reserva",d:"Red ≈36 months, with ≥1 year in oak."},
   {t:"Gran Reserva",d:"Red ≈60 months: long oak plus bottle age; made only in strong vintages."},
   {t:"Roble",d:"'Oak': brief barrel contact, below Crianza."}
@@ -1980,7 +1980,7 @@ var INTRO_CLASS=[
  systems:[
   {n:"Port: Ruby family (fresh, fruity)",d:"Ruby › Reserve › LBV (Late Bottled Vintage) › Crusted › Vintage. Vintage Port is declared only in great years, ages in bottle, and throws a sediment."},
   {n:"Port: Tawny family (oxidative, wood-aged)",d:"Tawny › Reserve Tawny › Aged Tawny with an indication of age (10 / 20 / 30 / 40 Year) › Colheita (a single-vintage tawny aged in wood)."},
-  {n:"Madeira — by grape/sweetness",d:"Sercial (driest) › Verdelho › Bual › Malmsey/Malvasia (sweetest). Age indications 5/10/15/20+ yrs; Frasqueira/Garrafeira = vintage, very long cask aging."},
+  {n:"Madeira: by grape/sweetness",d:"Sercial (driest) › Verdelho › Bual › Malmsey/Malvasia (sweetest). Age indications 5/10/15/20+ yrs; Frasqueira/Garrafeira = vintage, very long cask aging."},
   {n:"White & Rosé Port",d:"White Port (dry to sweet, served chilled, often with tonic) and Rosé Port."}
  ],
  aging:[
@@ -1988,7 +1988,7 @@ var INTRO_CLASS=[
   {t:"Garrafeira",d:"In still wine, extended aging (often vintage-dated); in Port, a rare cask-then-bottle style."}
  ],
  terms:[
-  {t:"Quinta",d:"Estate/farm — single-quinta Ports come from one estate, often in undeclared years."},
+  {t:"Quinta",d:"Estate/farm: single-quinta Ports come from one estate, often in undeclared years."},
   {t:"Colheita",d:"A single-vintage TAWNY (oxidative, wood-aged). Do not confuse with Vintage Port."},
   {t:"Reserva / Reserva Especial",d:"Indicates extra aging/quality within a style."},
   {t:"Tinto / Branco",d:"Red / white."},
@@ -2007,7 +2007,7 @@ var INTRO_CLASS=[
  pyramid:[
   {t:"Prädikatswein (by ripeness)",d:"Kabinett › Spätlese › Auslese › Beerenauslese (BA) › Eiswein › Trockenbeerenauslese (TBA). Ranked by must weight at harvest, NOT directly by sweetness."},
   {t:"Qualitätswein (QbA)",d:"Quality wine from one region; chaptalization (adding sugar pre-ferment) is allowed."},
-  {t:"Landwein",d:"IGP — regional country wine."},
+  {t:"Landwein",d:"IGP: regional country wine."},
   {t:"Deutscher Wein",d:"Basic table wine."}
  ],
  systems:[
@@ -2028,9 +2028,9 @@ var INTRO_CLASS=[
  ],
  traps:[
   "Grosslage vs Einzellage: a Grosslage bundles MANY vineyards under a deceptively single-site-sounding name; an Einzellage is one true vineyard.",
-  "Grosse Lage (a vineyard CLASSIFICATION) vs Grosses Gewächs (the dry WINE made from it) — site vs wine.",
+  "Grosse Lage (a vineyard CLASSIFICATION) vs Grosses Gewächs (the dry WINE made from it): site vs wine.",
   "German Kabinett = an off-dry Prädikat (ripeness level). Austrian Kabinett = a DRY quality category. Same word, opposite meaning.",
-  "Prädikat measures ripeness (must weight) at harvest, not sweetness directly — a Trocken Spätlese is dry."
+  "Prädikat measures ripeness (must weight) at harvest, not sweetness directly: a Trocken Spätlese is dry."
  ]},
 
 {name:"Austria",flag:"🇦🇹",
@@ -2079,7 +2079,7 @@ var INTRO_CLASS=[
  ],
  terms:[
   {t:"Estate Bottled",d:"Winery grew (or controls) the grapes within the AVA and made the wine on site."},
-  {t:"Produced and bottled by",d:"The winery made ≥75% of the wine — a stronger claim than 'Cellared/Vinted by'."},
+  {t:"Produced and bottled by",d:"The winery made ≥75% of the wine, a stronger claim than 'Cellared/Vinted by'."},
   {t:"Reserve / Old Vine / Barrel Select",d:"UNREGULATED marketing terms in the US."},
   {t:"Meritage",d:"Bordeaux-style blend (trademark)."}
  ],
@@ -2091,11 +2091,11 @@ var INTRO_CLASS=[
  ]},
 
 {name:"Australia",flag:"🇦🇺",
- framework:"Origin is handled by GIs (Geographic Indications) — like AVAs, origin only, no quality tier. The label rules to know are the 85% rule and how blends are ordered. The one prestige 'ranking' (Langton's) is private, not legal.",
+ framework:"Origin is handled by GIs (Geographic Indications): like AVAs, origin only, no quality tier. The label rules to know are the 85% rule and how blends are ordered. The one prestige 'ranking' (Langton's) is private, not legal.",
  pyramid:[
-  {t:"GI — Region",d:"e.g. Barossa Valley, Margaret River — the working unit."},
+  {t:"GI: Region",d:"e.g. Barossa Valley, Margaret River, the working unit."},
   {t:"GI: Zone",d:"A grouping of regions (e.g. Mount Lofty Ranges)."},
-  {t:"GI — State / 'South Eastern Australia'",d:"Broad multi-region blends."}
+  {t:"GI: State / 'South Eastern Australia'",d:"Broad multi-region blends."}
  ],
  systems:[
   {n:"The 85% rule (Label Integrity Program)",d:"A stated variety, region or vintage must each be ≥85% true."},
@@ -2109,7 +2109,7 @@ var INTRO_CLASS=[
   {t:"Show Reserve",d:"Marketing term referencing wine-show success."}
  ],
  traps:[
-  "A blend like 'Shiraz Cabernet' lists grapes by proportion — most-used grape first.",
+  "A blend like 'Shiraz Cabernet' lists grapes by proportion, most-used grape first.",
   "A GI is origin only; there is no legal quality classification.",
   "Langton's Classification is private/commercial, not an official ranking.",
   "'Shiraz' = Syrah."
@@ -2118,7 +2118,7 @@ var INTRO_CLASS=[
 {name:"New Zealand",flag:"🇳🇿",
  framework:"Origin via GIs under the Geographical Indications Act; an 85% rule governs variety, vintage and region. No formal quality tiers: reputation is style- and region-driven (e.g. Marlborough Sauvignon Blanc).",
  pyramid:[
-  {t:"GI — Region",d:"e.g. Marlborough, Central Otago, Hawke's Bay."},
+  {t:"GI: Region",d:"e.g. Marlborough, Central Otago, Hawke's Bay."},
   {t:"GI: broader / New Zealand",d:"Multi-region or national blends."}
  ],
  systems:[
@@ -2126,7 +2126,7 @@ var INTRO_CLASS=[
   {n:"Single Vineyard / Estate",d:"Used to signal quality but only lightly regulated."}
  ],
  terms:[
-  {t:"GI",d:"Geographical Indication — origin only."},
+  {t:"GI",d:"Geographical Indication: origin only."},
   {t:"Single Vineyard",d:"From one named vineyard (lightly regulated)."},
   {t:"Méthode Traditionnelle",d:"Traditional-method sparkling."}
  ],
@@ -2139,7 +2139,7 @@ var INTRO_CLASS=[
 {name:"South Africa",flag:"🇿🇦",
  framework:"The Wine of Origin (WO) scheme certifies origin, vintage and variety, guaranteed by a numbered seal on the bottle. Estate and Single-Vineyard categories add a quality signal; Cap Classique is the sparkling term to know.",
  pyramid:[
-  {t:"Ward",d:"Smallest WO unit — a specific local area."},
+  {t:"Ward",d:"Smallest WO unit, a specific local area."},
   {t:"District",d:"e.g. Stellenbosch, Paarl."},
   {t:"Region",d:"e.g. Coastal Region."},
   {t:"Geographical Unit",d:"Broadest (e.g. Western Cape)."}
@@ -2165,8 +2165,8 @@ var INTRO_CLASS=[
 {name:"Argentina",flag:"🇦🇷",
  framework:"A DOC system exists but is minor (only a couple of zones); most labels work by region (IG) plus variety, and altitude is often highlighted. 'Reserva' is loosely used, not strictly regulated nationally.",
  pyramid:[
-  {t:"DOC",d:"Denominación de Origen Controlada — only a few zones (Luján de Cuyo, San Rafael)."},
-  {t:"IG (Indicación Geográfica)",d:"Geographic indication — provinces/departments (Mendoza, Uco Valley, etc.). The main working unit."},
+  {t:"DOC",d:"Denominación de Origen Controlada: only a few zones (Luján de Cuyo, San Rafael)."},
+  {t:"IG (Indicación Geográfica)",d:"Geographic indication: provinces/departments (Mendoza, Uco Valley, etc.). The main working unit."},
   {t:"Wines without IG",d:"Basic/varietal wines."}
  ],
  systems:[
@@ -2189,14 +2189,14 @@ var INTRO_CLASS=[
 {name:"Chile",flag:"🇨🇱",
  framework:"Origin is set by DO (Denominación de Origen) valleys, plus the cross-cutting climate terms Costa / Entre Cordilleras / Andes. A 75% rule governs stated variety/vintage/origin. 'Reserva' tiers exist in law but are only weakly demanding.",
  pyramid:[
-  {t:"DO — Valley/Sub-region",d:"e.g. Maipo, Colchagua, Casablanca — the working origin unit."},
+  {t:"DO: Valley/Sub-region",d:"e.g. Maipo, Colchagua, Casablanca, the working origin unit."},
   {t:"DO: Region",d:"e.g. Valle Central."},
   {t:"Without DO",d:"Basic wines."}
  ],
  systems:[
   {n:"Costa / Entre Cordilleras / Andes (2011)",d:"Cross-cutting terms for a wine's position: Costa (coastal/cool), Entre Cordilleras (between the ranges), Andes (foothills). They describe CLIMATE, not quality."},
   {n:"The 75% rule",d:"A stated variety, vintage or origin must be ≥75% (raised to 85% for many export markets, including the EU)."},
-  {n:"Reserva tiers (2011)",d:"Reserva, Reserva Especial, Reserva Privada and Gran Reserva exist in law, but with modest requirements (e.g. small alcohol bumps, some oak) — treat them as loose."}
+  {n:"Reserva tiers (2011)",d:"Reserva, Reserva Especial, Reserva Privada and Gran Reserva exist in law, but with modest requirements (e.g. small alcohol bumps, some oak): treat them as loose."}
  ],
  terms:[
   {t:"Viña",d:"Winery/vineyard."},
@@ -2234,10 +2234,10 @@ var INTRO_CLASS_TRAPQ=[
 {cty:"Germany",q:"A German ‘Grosslage’ on a label is:",opts:["A collective name bundling many vineyards","A single, specific vineyard","An estate-bottling term","A sweetness level"],a:0,exp:"Grosslage bundles many sites under a deceptively single-site-sounding name; Einzellage is one vineyard."},
 {cty:"Germany",q:"German ‘Kabinett’ is:",opts:["The lightest Prädikat (a ripeness level)","A dry quality category","A sparkling wine","A vineyard classification"],a:0,exp:"German Kabinett is the lightest Prädikat (ripeness); in AUSTRIA, Kabinett is a DRY category."},
 {cty:"Germany",q:"A ‘Grosses Gewächs (GG)’ is:",opts:["A dry wine from a top (Grosse Lage) vineyard","Only a vineyard classification","A sweet dessert wine","A sparkling Sekt"],a:0,exp:"Grosse Lage = the site; Grosses Gewächs = the dry wine from it."},
-{cty:"Austria",q:"Austrian ‘Kabinett’ differs from German Kabinett because it is:",opts:["A dry quality category","An off-dry Prädikat","A sweet dessert wine","A sparkling style"],a:0,exp:"Austrian Kabinett is a capped, DRY Qualitätswein category — opposite of Germany's off-dry Prädikat."},
+{cty:"Austria",q:"Austrian ‘Kabinett’ differs from German Kabinett because it is:",opts:["A dry quality category","An off-dry Prädikat","A sweet dessert wine","A sparkling style"],a:0,exp:"Austrian Kabinett is a capped, DRY Qualitätswein category, opposite of Germany's off-dry Prädikat."},
 {cty:"Austria",q:"In the Wachau, which tier is the ripest and fullest?",opts:["Smaragd","Federspiel","Steinfeder","Kabinett"],a:0,exp:"Steinfeder (light) < Federspiel (medium) < Smaragd (ripest)."},
 {cty:"Austria",q:"‘Gemischter Satz’, a Vienna specialty, is:",opts:["A co-planted field blend","A single-variety Grüner Veltliner","A sweet wine","A sparkling method"],a:0,exp:"Gemischter Satz = field blend (co-planted, co-harvested), a Wiener DAC."},
-{cty:"United States",q:"On a US label, ‘Reserve’ legally means:",opts:["Nothing — it's unregulated marketing","A minimum of 3 years aging","100% estate-grown fruit","A government quality tier"],a:0,exp:"US ‘Reserve’, ‘Old Vine’ and ‘Barrel Select’ are unregulated — unlike EU equivalents."},
+{cty:"United States",q:"On a US label, ‘Reserve’ legally means:",opts:["Nothing: it's unregulated marketing","A minimum of 3 years aging","100% estate-grown fruit","A government quality tier"],a:0,exp:"US ‘Reserve’, ‘Old Vine’ and ‘Barrel Select’ are unregulated, unlike EU equivalents."},
 {cty:"United States",q:"A US varietal wine must contain at least how much of the named grape (federal rule)?",opts:["75%","85%","95%","100%"],a:0,exp:"Federal minimum is 75% (Oregon raises it to 90% for most grapes)."},
 {cty:"United States",q:"An American Viticultural Area (AVA) guarantees:",opts:["Where the grapes were grown (origin only)","A government-set minimum quality level","The grape variety inside the bottle","A legal maximum vineyard yield"],a:0,exp:"An AVA is origin only: no quality, grape or yield rules."},
 {cty:"Australia",q:"An Australian wine labeled ‘Shiraz Cabernet’ contains:",opts:["More Shiraz than Cabernet","More Cabernet than Shiraz","Exactly equal parts","Only Shiraz"],a:0,exp:"Blends are listed in descending order: the most-used grape comes first."},
@@ -2262,10 +2262,10 @@ var INTRO_WINE=[
   {t:"Fermentation",d:"Yeast converts sugar into alcohol + CO₂ (and heat). Cool and slow for aromatic whites; warmer for reds to aid extraction. Runs dry unless stopped."},
   {t:"Maceration (reds)",d:"Skin contact during/after fermentation extracts colour, tannin and flavour. The floating 'cap' of skins is worked by punch-downs or pump-overs."},
   {t:"Pressing & racking",d:"Free-run and press wine are separated; the wine is drawn off its gross lees (sediment)."},
-  {t:"Malolactic conversion (MLF)",d:"Bacteria turn sharp malic acid into softer lactic acid — standard for reds and many Chardonnays (can add buttery notes); often blocked for crisp aromatic whites."},
+  {t:"Malolactic conversion (MLF)",d:"Bacteria turn sharp malic acid into softer lactic acid: standard for reds and many Chardonnays (can add buttery notes); often blocked for crisp aromatic whites."},
   {t:"Élevage / aging",d:"Maturation in stainless steel, oak, concrete or amphora. Oak adds aroma and slow oxygen; lees aging adds texture. Length varies enormously."},
-  {t:"Fining & filtration",d:"Clarifying and stabilising (e.g. bentonite, egg white) and filtering for clarity — some producers skip this for texture ('unfined / unfiltered')."},
-  {t:"Blending & bottling",d:"Assembling lots, varieties or vintages, final adjustments, then bottling — still wines under inert gas, or with bottle conditioning."}
+  {t:"Fining & filtration",d:"Clarifying and stabilising (e.g. bentonite, egg white) and filtering for clarity: some producers skip this for texture ('unfined / unfiltered')."},
+  {t:"Blending & bottling",d:"Assembling lots, varieties or vintages, final adjustments, then bottling, still wines under inert gas, or with bottle conditioning."}
  ],
  traps:[
   "White is PRESSED before fermentation (juice only); red FERMENTS on the skins and is pressed afterward, the core red/white fork.",
@@ -2286,7 +2286,7 @@ var INTRO_WINE=[
  ],
  traps:[
   "Rosé is usually short skin-contact then press (or saignée): NOT (in quality wine) red + white blended; that blend is a special legal exception in Champagne.",
-  "'Orange' wine is a white made like a red (on the skins) — not a sweet or oxidised style by definition."
+  "'Orange' wine is a white made like a red (on the skins), not a sweet or oxidised style by definition."
  ]},
 
 {name:"Signature Techniques & Where",ic:"📍",tag:"unique steps mapped to regions",
@@ -2303,15 +2303,15 @@ var INTRO_WINE=[
   {n:"Flor (biological aging)",d:"A film of living yeast grows on the wine, shielding it from oxygen and adding tangy, saline, nutty notes.",w:"Jerez: Fino & Manzanilla Sherry"},
   {n:"Oxidative aging",d:"Deliberate air exposure over years → amber colour and nutty, caramel flavours.",w:"Oloroso Sherry, Tawny Port, Madeira"},
   {n:"Estufagem / Canteiro",d:"Madeira is HEATED, quickly in tanks (estufagem) or slowly in warm lofts (canteiro), giving its baked, tangy character.",w:"Madeira (Portugal)"},
-  {n:"Mutage (fortification)",d:"Adding grape spirit to STOP fermentation, leaving natural grape sweetness.",w:"Port; Vins Doux Naturels — Banyuls, Maury, Beaumes-de-Venise"},
+  {n:"Mutage (fortification)",d:"Adding grape spirit to STOP fermentation, leaving natural grape sweetness.",w:"Port; Vins Doux Naturels: Banyuls, Maury, Beaumes-de-Venise"},
   {n:"Sur lie",d:"Aging on the spent yeast (lees) without racking → texture, subtle yeastiness and a slight prickle.",w:"Muscadet (Loire), also white Burgundy"},
   {n:"Bâtonnage (lees stirring)",d:"Stirring the lees back into the wine for a richer, creamier texture.",w:"White Burgundy (barrel-aged Chardonnay)"},
   {n:"Botrytis (noble rot)",d:"Botrytis cinerea shrivels grapes, concentrating sugar and adding honey, apricot and ginger complexity.",w:"Sauternes, Tokaji Aszú, German BA/TBA, Loire (Quarts de Chaume)"},
-  {n:"Eiswein / Icewine",d:"Grapes frozen ON THE VINE are pressed while still frozen; water stays as ice, the juice is intensely sweet.",w:"Germany, Austria — Canada (Icewine)"},
+  {n:"Eiswein / Icewine",d:"Grapes frozen ON THE VINE are pressed while still frozen; water stays as ice, the juice is intensely sweet.",w:"Germany, Austria; Canada (Icewine)"},
   {n:"Co-fermentation",d:"Fermenting a little white grape together with red for aromatics and colour stabilisation.",w:"Côte-Rôtie (Syrah + up to ~20% Viognier)"},
   {n:"Whole-cluster / stem inclusion",d:"Fermenting with the stems for added structure, spice and floral lift.",w:"Burgundy & N. Rhône (Pinot Noir, Syrah)"},
   {n:"Skin-contact in clay (qvevri)",d:"White grapes fermented on skins in buried clay vessels → 'orange' wine, the world's oldest method.",w:"Georgia (qvevri); Friuli (Italy)"},
-  {n:"Vin de paille (straw wine)",d:"Grapes dried on straw mats to concentrate sugar for a sweet wine.",w:"Jura — also N. Rhône (Hermitage)"}
+  {n:"Vin de paille (straw wine)",d:"Grapes dried on straw mats to concentrate sugar for a sweet wine.",w:"Jura, also N. Rhône (Hermitage)"}
  ],
  traps:[
   "Carbonic maceration = Beaujolais (Gamay): whole-bunch, under CO₂, low tannin, bubblegum/banana.",
@@ -2336,11 +2336,11 @@ var INTRO_WINE=[
   {t:"Tank (Charmat) method",d:"Second fermentation in a pressurised tank → Prosecco, Lambrusco; fresh and fruity, no autolysis character."},
   {t:"Ancestral method (pét-nat)",d:"A single fermentation finished in the bottle; bottled before it ends, no disgorgement."},
   {t:"Transfer method",d:"Bottle-fermented, then emptied into a pressurised tank, filtered and re-bottled."},
-  {t:"Carbonation",d:"CO₂ simply injected — the cheapest method, with the coarsest bubbles."}
+  {t:"Carbonation",d:"CO₂ simply injected: the cheapest method, with the coarsest bubbles."}
  ],
  traps:[
   "Traditional method = 2nd fermentation IN THE BOTTLE + lees autolysis (brioche); tank/Charmat method = in a tank (fresh, fruity Prosecco).",
-  "Dosage is the final sugar addition that sets dryness — and remember Extra Dry is sweeter than Brut."
+  "Dosage is the final sugar addition that sets dryness, and remember Extra Dry is sweeter than Brut."
  ]},
 
 {name:"Sweet Wine Methods",ic:"🍯",tag:"where the sugar comes from",
@@ -2378,7 +2378,7 @@ var INTRO_WINE=[
   {t:"Pigeage (punch-down)",d:"Pushing the cap down into the juice by hand or tool, gentle, even extraction."},
   {t:"Remontage (pump-over)",d:"Pumping juice up and over the cap: extraction plus oxygen and temperature control."},
   {t:"Délestage (rack & return)",d:"Draining the wine off the skins, then returning it over the cap: softer tannins, even mixing."},
-  {t:"Cold soak (pre-ferment maceration)",d:"Chilling the must before fermentation to draw colour/aroma without alcohol — classic for Pinot Noir."},
+  {t:"Cold soak (pre-ferment maceration)",d:"Chilling the must before fermentation to draw colour/aroma without alcohol, classic for Pinot Noir."},
   {t:"Extended maceration",d:"Leaving the wine on skins after fermentation so tannins polymerise and soften, common for Cabernet."},
   {t:"Saignée",d:"'Bleeding off' some pink juice early: it makes a rosé AND concentrates the red left behind."}
  ],
@@ -2408,7 +2408,7 @@ var INTRO_WINE=[
    grapes/wines and regions that thrive in it. Same schema as WINE (tech={n,d,w(where)}). */
 var INTRO_SOIL=[
 {name:"What is Terroir?",ic:"🌍",tag:"the sense of place",
- intro:"Terroir is the whole natural environment a vine grows in — soil, climate, topography and aspect — that gives a wine its sense of place. Soil gets the most attention, but climate and slope often matter more for whether grapes even ripen.",
+ intro:"Terroir is the whole natural environment a vine grows in (soil, climate, topography and aspect) that gives a wine its sense of place. Soil gets the most attention, but climate and slope often matter more for whether grapes even ripen.",
  terms:[
   {t:"Soil",d:"Controls drainage, water-holding, heat retention and nutrients. Poorer soils that stress the vine generally make better wine than rich, fertile ones."},
   {t:"Climate (macro)",d:"Cool vs warm region: sets ripeness, acidity and which grapes can ripen there at all."},
@@ -2452,7 +2452,7 @@ var INTRO_SOIL=[
  intro:"Coarse, free-draining, low-fertility rock that warms quickly and stresses the vine. Linked to aromatic, structured reds and some crisp whites.",
  tech:[
   {n:"Gamay",d:"Granite and pink-granite sands give the Cru Beaujolais their structure and perfume.",w:"Cru Beaujolais (Morgon, Fleurie, Moulin-à-Vent)"},
-  {n:"Syrah",d:"Steep granite hillsides give intense, structured, age-worthy Syrah.",w:"Northern Rhône — Hermitage, Côte-Rôtie"},
+  {n:"Syrah",d:"Steep granite hillsides give intense, structured, age-worthy Syrah.",w:"Northern Rhône: Hermitage, Côte-Rôtie"},
   {n:"Touriga Nacional & Encruzado",d:"Granite-based soils give fresh, structured Dão reds and whites.",w:"Dão (Portugal)"}
  ],
  traps:[
@@ -2460,7 +2460,7 @@ var INTRO_SOIL=[
  ]},
 
 {name:"Gravel & Stones",ic:"🟤",tag:"drainage, heat, late-ripeners",
- intro:"Pebbly soils drain superbly and bank daytime heat to radiate at night — ideal for ripening late-ripening varieties like Cabernet Sauvignon and Grenache.",
+ intro:"Pebbly soils drain superbly and bank daytime heat to radiate at night: ideal for ripening late-ripening varieties like Cabernet Sauvignon and Grenache.",
  tech:[
   {n:"Cabernet Sauvignon",d:"Deep gravel banks drain well and hold heat, ripening late Cabernet, the Left Bank's edge.",w:"Médoc & Graves (Left Bank Bordeaux)"},
   {n:"Grenache (GSM)",d:"Large rounded stones ('galets roulés') store the day's heat and radiate it overnight.",w:"Châteauneuf-du-Pape (S. Rhône)"},
@@ -2469,11 +2469,11 @@ var INTRO_SOIL=[
  ],
  traps:[
   "Châteauneuf-du-Pape's famous 'galets roulés' are large rounded stones that store and radiate heat.",
-  "Coonawarra's 'terra rossa' is red soil over limestone — its Cabernet signature."
+  "Coonawarra's 'terra rossa' is red soil over limestone, its Cabernet signature."
  ]},
 
 {name:"Clay & Marl",ic:"🟧",tag:"water-holding, cooler, Merlot",
- intro:"Dense, water-retentive, cooler soils that suit earlier-ripening, thirstier varieties — above all Merlot. Mixed with limestone, clay becomes 'marl'.",
+ intro:"Dense, water-retentive, cooler soils that suit earlier-ripening, thirstier varieties, above all Merlot. Mixed with limestone, clay becomes 'marl'.",
  tech:[
   {n:"Merlot",d:"Cool, water-holding clay suits early-ripening Merlot, the Right Bank's signature.",w:"Pomerol & St-Émilion (Right Bank Bordeaux)"},
   {n:"Merlot (clay over iron)",d:"Pétrus famously sits on a clay plateau with iron-rich 'crasse de fer'.",w:"Pomerol"},
@@ -2486,7 +2486,7 @@ var INTRO_SOIL=[
  ]},
 
 {name:"Volcanic",ic:"🌋",tag:"minerality, distinctive wines",
- intro:"Basalt, tuff, ash and pumice — free-draining, often poor and mineral-rich, and frequently phylloxera-resistant. Home to some of the world's most distinctive wines.",
+ intro:"Basalt, tuff, ash and pumice: free-draining, often poor and mineral-rich, and frequently phylloxera-resistant. Home to some of the world's most distinctive wines.",
  tech:[
   {n:"Nerello Mascalese",d:"Black volcanic soils on Mount Etna give perfumed, mineral, high-altitude reds.",w:"Etna (Sicily)"},
   {n:"Assyrtiko",d:"Volcanic ash and pumice on a hot, windy island give intense, saline, high-acid whites.",w:"Santorini (Greece)"},
@@ -2504,10 +2504,10 @@ var INTRO_SOIL=[
  tech:[
   {n:"Ramisco (ungrafted)",d:"Vines grow own-rooted in deep coastal sand that phylloxera cannot navigate.",w:"Colares (Portugal)"},
   {n:"Old-vine Grenache & Shiraz",d:"Sandy patches preserve ancient, ungrafted, pre-phylloxera vines.",w:"Barossa Valley (Australia)"},
-  {n:"High-yield varieties (alluvial)",d:"Fertile river-deposited sand, silt and gravel boost vigour and yield — better for volume than top quality.",w:"Valley floors worldwide (e.g. parts of Mendoza, Central Valley)"}
+  {n:"High-yield varieties (alluvial)",d:"Fertile river-deposited sand, silt and gravel boost vigour and yield: better for volume than top quality.",w:"Valley floors worldwide (e.g. parts of Mendoza, Central Valley)"}
  ],
  traps:[
-  "Sandy soils resist phylloxera — which is why places like Colares keep ungrafted, own-rooted vines.",
+  "Sandy soils resist phylloxera, which is why places like Colares keep ungrafted, own-rooted vines.",
   "Fertile alluvial valley floors favour quantity; the finest sites are usually poorer hillside soils."
  ]},
 
@@ -2515,7 +2515,7 @@ var INTRO_SOIL=[
  intro:"Soil rarely acts alone. These factors often decide more than soil does: whether grapes ripen at all and whether they stay in balance.",
  terms:[
   {t:"Aspect (sun exposure)",d:"South-facing slopes (Northern Hemisphere) maximise sunlight and ripening, vital in cool regions like the Mosel and Côte d'Or."},
-  {t:"Altitude",d:"Higher sites are cooler with bigger day-night swings that preserve acidity and colour — e.g. Mendoza's Uco Valley, Etna, Salta."},
+  {t:"Altitude",d:"Higher sites are cooler with bigger day-night swings that preserve acidity and colour: e.g. Mendoza's Uco Valley, Etna, Salta."},
   {t:"Diurnal range",d:"Warm days build sugar and flavour; cold nights lock in acidity and aromatics. Continental and high-altitude sites excel here."},
   {t:"Proximity to water",d:"Rivers, lakes and oceans moderate temperature, reflect light and bring cooling fog, e.g. Mosel, Finger Lakes, coastal California."},
   {t:"Rain shadow",d:"Mountains block rain and storms, giving dry, sunny vineyards: the Andes for Mendoza, the Cascades for Washington, the Vosges for Alsace."},
@@ -2523,12 +2523,12 @@ var INTRO_SOIL=[
  ],
  traps:[
   "Northern Hemisphere: the best slopes face SOUTH (toward the sun). Southern Hemisphere: NORTH.",
-  "Alsace is dry because the Vosges cast a rain shadow — the same principle as the Andes over Mendoza."
+  "Alsace is dry because the Vosges cast a rain shadow, the same principle as the Andes over Mendoza."
  ]}
 ];
 
 /* ============ Dessert (Sweet) Wines reference ============
-   Organized by HOW the sweetness is made — the exam framework. Same schema as
+   Organized by HOW the sweetness is made, the exam framework. Same schema as
    WINE/SOIL (tech={n,d,w(where)}, terms={t,d}, traps[]). */
 var INTRO_DESS=[
 {name:"How Sweetness Is Made",ic:"🍯",tag:"the five routes to sweet",
@@ -2541,9 +2541,9 @@ var INTRO_DESS=[
   {t:"Fortification (mutage)",d:"Grape spirit added mid-fermentation halts the yeast, keeping natural sweetness. → Port, Muscat VDN, PX Sherry."}
  ],
  traps:[
-  "The non-negotiable for great sweet wine is ACIDITY — without it sweetness is cloying. Riesling, Chenin, Furmint and Sémillon excel because they keep their acidity.",
+  "The non-negotiable for great sweet wine is ACIDITY: without it sweetness is cloying. Riesling, Chenin, Furmint and Sémillon excel because they keep their acidity.",
   "Sweet ≠ low quality: some of the world's longest-lived, priciest wines are Yquem, Tokaji and Trockenbeerenauslese.",
-  "Exams love asking WHICH method made a wine — concentrating sugar (rot/drying/freezing) is different from stopping fermentation (fortification)."
+  "Exams love asking WHICH method made a wine: concentrating sugar (rot/drying/freezing) is different from stopping fermentation (fortification)."
  ]},
 
 {name:"Noble Rot (Botrytis)",ic:"🍄",tag:"Sauternes · Tokaji · TBA",
@@ -2553,11 +2553,11 @@ var INTRO_DESS=[
   {n:"Tokaji Aszú",d:"Botrytised 'Aszú' berries (mainly Furmint) blended into a base wine; sweetness shown in puttonyos (historically 3–6) or residual sugar. Honeyed, racy, immortal.",w:"Tokaj (Hungary)"},
   {n:"Beerenauslese & Trockenbeerenauslese",d:"Top Prädikat levels: BA from botrytised berries, TBA from shrivelled botrytised berries; intensely sweet, high-acid, usually Riesling.",w:"Germany & Austria"},
   {n:"Sweet Chenin Blanc",d:"Botrytised Chenin: Quarts de Chaume, Bonnezeaux, Coteaux du Layon and moelleux Vouvray.",w:"Anjou & Touraine (Loire)"},
-  {n:"Sélection de Grains Nobles (SGN)",d:"Alsace's botrytis selection (Riesling, Pinot Gris, Gewürztraminer, Muscat) — the sweeter step ABOVE Vendange Tardive.",w:"Alsace (France)"},
+  {n:"Sélection de Grains Nobles (SGN)",d:"Alsace's botrytis selection (Riesling, Pinot Gris, Gewürztraminer, Muscat): the sweeter step ABOVE Vendange Tardive.",w:"Alsace (France)"},
   {n:"Eszencia",d:"The pinnacle of Tokaj: the free-run nectar of Aszú berries, so sugary it barely ferments: very low alcohol, syrupy, near-eternal.",w:"Tokaj (Hungary)"}
  ],
  traps:[
-  "Noble rot (Botrytis cinerea) is GOOD; 'grey rot' on healthy/unripe grapes is a fault — same fungus, different conditions.",
+  "Noble rot (Botrytis cinerea) is GOOD; 'grey rot' on healthy/unripe grapes is a fault, same fungus, different conditions.",
   "Sauternes is SÉMILLON-dominant (not Sauvignon Blanc). Château d'Yquem is the lone Premier Cru Supérieur.",
   "Tokaji sweetness was counted in 'puttonyos'; since 2013 most Aszú is labelled by residual sugar (≈5–6 putt). Eszencia is the rare, barely-alcoholic nectar.",
   "Botrytis adds a distinctive saffron/marmalade note; not every late-harvest sweet wine is botrytised."
@@ -2567,7 +2567,7 @@ var INTRO_DESS=[
  intro:"Healthy grapes are harvested then air-dried (on mats, racks or straw) for weeks to months until they raisin ('appassimento'). This concentrates sugar, acid and flavour before a slow fermentation. No botrytis needed.",
  tech:[
   {n:"Recioto della Valpolicella",d:"Sweet RED from dried Corvina, the sweet sibling of (dry) Amarone, made by stopping fermentation early.",w:"Veneto (Italy)"},
-  {n:"Recioto di Soave",d:"Sweet WHITE from dried Garganega — Soave's dessert version.",w:"Veneto (Italy)"},
+  {n:"Recioto di Soave",d:"Sweet WHITE from dried Garganega, Soave's dessert version.",w:"Veneto (Italy)"},
   {n:"Vin Santo",d:"'Holy wine' from dried Trebbiano/Malvasia, fermented and aged for years in small sealed 'caratelli' in warm lofts: oxidative and nutty; classic with cantucci.",w:"Tuscany (Italy)"},
   {n:"Passito di Pantelleria",d:"Lush sweet wine from sun-dried Zibibbo (Muscat of Alexandria) on a windy volcanic island.",w:"Sicily (Italy)"},
   {n:"Vin de Paille (straw wine)",d:"Grapes dried on straw mats; intensely sweet and rare.",w:"Jura & N. Rhône (France)"},
@@ -2575,19 +2575,19 @@ var INTRO_DESS=[
  ],
  traps:[
   "Recioto = SWEET (fermentation stopped early); Amarone = DRY (fermented out). Both start from the same dried Valpolicella grapes.",
-  "Vin Santo means 'holy wine' — dried-grape AND oxidatively aged in caratelli.",
+  "Vin Santo means 'holy wine': dried-grape AND oxidatively aged in caratelli.",
   "Passito wines use HEALTHY grapes dried after picking: no botrytis (unlike Sauternes/Tokaji)."
  ]},
 
 {name:"Ice Wine (Eiswein)",ic:"❄️",tag:"frozen on the vine",
- intro:"Grapes are left on the vine into winter and harvested and pressed while naturally FROZEN. The water stays behind as ice crystals, so only a tiny amount of intensely sweet, high-acid juice runs off — making ice wine rare, gruelling to make and expensive.",
+ intro:"Grapes are left on the vine into winter and harvested and pressed while naturally FROZEN. The water stays behind as ice crystals, so only a tiny amount of intensely sweet, high-acid juice runs off, making ice wine rare, gruelling to make and expensive.",
  tech:[
   {n:"Eiswein",d:"Riesling (and others) frozen on the vine; a German/Austrian Prädikat-level wine requiring a hard natural frost (around −7°C).",w:"Germany & Austria"},
   {n:"Icewine (VQA)",d:"Canada is the world's LARGEST producer: mainly Vidal and Riesling (also Cabernet Franc); strict VQA rules, naturally frozen.",w:"Canada (Niagara, Okanagan)"}
  ],
  terms:[
   {t:"Why it's so rare",d:"A hard frost must arrive while the grapes are still healthy on the vine; yields are tiny and picking happens at night in freezing cold."},
-  {t:"Cryoextraction",d:"Artificially freezing PICKED grapes in a freezer — a shortcut that is NOT permitted for true Eiswein/Icewine."}
+  {t:"Cryoextraction",d:"Artificially freezing PICKED grapes in a freezer, a shortcut that is NOT permitted for true Eiswein/Icewine."}
  ],
  traps:[
   "Ice wine grapes freeze NATURALLY on the vine. Freezing picked grapes is 'cryoextraction' and disqualifies a wine from being Eiswein/Icewine.",
@@ -2598,7 +2598,7 @@ var INTRO_DESS=[
 {name:"Late Harvest",ic:"☀️",tag:"over-ripened on the vine",
  intro:"The simplest route: leave grapes on the vine past normal ripeness so they over-ripen and partly shrivel, building sugar. Some late-harvest wines also catch botrytis; many don't. Sweetness runs from off-dry to lusciously sweet.",
  tech:[
-  {n:"Vendange Tardive (VT)",d:"Alsace 'late harvest' from Riesling, Pinot Gris, Gewürztraminer or Muscat — concentrated, off-dry to sweet. SGN (botrytis) is the sweeter step above it.",w:"Alsace (France)"},
+  {n:"Vendange Tardive (VT)",d:"Alsace 'late harvest' from Riesling, Pinot Gris, Gewürztraminer or Muscat: concentrated, off-dry to sweet. SGN (botrytis) is the sweeter step above it.",w:"Alsace (France)"},
   {n:"Spätlese & Auslese",d:"German/Austrian Prädikat levels by ripeness; can be made dry OR sweet. Auslese ('select harvest') is riper than Spätlese.",w:"Germany & Austria"},
   {n:"Vin de Constance",d:"Legendary sweet Muscat from late-harvested, raisined grapes, historic, and notably NOT botrytised or fortified.",w:"Constantia (South Africa)"},
   {n:"New World 'Late Harvest'",d:"Riesling, Gewürztraminer, Viognier and others picked late; style varies and the term is largely unregulated.",w:"USA, Australia, etc."}
@@ -2606,16 +2606,16 @@ var INTRO_DESS=[
  traps:[
   "In Alsace, Vendange Tardive (late harvest) sits BELOW Sélection de Grains Nobles (botrytis).",
   "German Prädikat (Kabinett→TBA) is a RIPENESS ladder, not a sweetness guarantee: a Spätlese can be bone-dry (Trocken).",
-  "Vin de Constance is late-harvest/raisined Muscat — famously neither botrytised nor fortified."
+  "Vin de Constance is late-harvest/raisined Muscat, famously neither botrytised nor fortified."
  ]},
 
 {name:"Fortified Sweet Wines",ic:"🥃",tag:"spirit locks in the sugar",
- intro:"Add neutral grape spirit DURING fermentation ('mutage') and the yeast dies before eating all the sugar — leaving a sweet, higher-alcohol wine. Regions differ in when the spirit goes in and how the wine is then aged.",
+ intro:"Add neutral grape spirit DURING fermentation ('mutage') and the yeast dies before eating all the sugar, leaving a sweet, higher-alcohol wine. Regions differ in when the spirit goes in and how the wine is then aged.",
  tech:[
   {n:"Port (sweet styles)",d:"Fortified mid-fermentation. Ruby family (fresh): Ruby, Reserve, LBV, Vintage (bottle-aged, declared years). Tawny family (oxidative): 10/20/30/40-Year and single-vintage Colheita.",w:"Douro (Portugal)"},
   {n:"Madeira (sweet styles)",d:"Heated (estufagem/canteiro) and graded by grape: Bual (rich) and Malmsey/Malvasia (sweetest); Sercial and Verdelho are drier. Nearly immortal once open.",w:"Madeira (Portugal)"},
   {n:"Pedro Ximénez (PX)",d:"Sherry from sun-dried PX grapes: the darkest, sweetest, most viscous Sherry (raisin, fig, molasses). Moscatel is the other naturally sweet Sherry; Cream/Pale Cream are sweetened blends.",w:"Jerez (Spain)"},
-  {n:"Vins Doux Naturels (VDN)",d:"Fortified to retain sweetness: Muscat de Beaumes-de-Venise and Rivesaltes (Muscat); Banyuls and Maury (Grenache — can age oxidatively, 'rancio').",w:"S. France"},
+  {n:"Vins Doux Naturels (VDN)",d:"Fortified to retain sweetness: Muscat de Beaumes-de-Venise and Rivesaltes (Muscat); Banyuls and Maury (Grenache: can age oxidatively, 'rancio').",w:"S. France"},
   {n:"Marsala",d:"Sicilian fortified wine; sweetness secco→semisecco→dolce, aged Fine→Superiore→Vergine.",w:"Sicily (Italy)"},
   {n:"Rutherglen Muscat",d:"Australia's lusciously sweet, barrel-aged fortified Muscat ('sticky'), tiered Rutherglen → Classic → Grand → Rare.",w:"Victoria (Australia)"}
  ],

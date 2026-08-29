@@ -25,7 +25,7 @@ function vaultFade(text, stage) {
       return esc(head) + '<span aria-hidden="true" style="opacity:.35">─</span>';
     }).join(' ') + '”';
   }
-  return '<span style="color:var(--faint)">The line is yours to say now — the page holds only the name.</span>';
+  return '<span style="color:var(--faint)">The line is yours to say now; the page holds only the name.</span>';
 }
 
 FL_ACTS.rehearse = function (el) {

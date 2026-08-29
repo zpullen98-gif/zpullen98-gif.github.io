@@ -36,7 +36,7 @@ FL_VIEWS.life = {
       '<div class="label">The compass</div>' +
       '<div class="card"><p class="pt">You will lose the way</p>' +
       '<p class="px">That is the human condition, and no teacher quoted in this guide was exempt from it. ' +
-      'The great ones were not those who never strayed — they were those who returned to the path faster, ' +
+      'The great ones were not those who never strayed; they were those who returned to the path faster, ' +
       'without theater and without self-punishment. Return at the turn of every week, every month, every quarter, ' +
       'and every year: not as a checklist to be judged by, but as a compass to come back to. ' +
       'Beginning again is not failure. Beginning again is the practice.</p></div>';

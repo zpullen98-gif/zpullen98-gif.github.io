@@ -29,8 +29,8 @@ body { background: var(--plate); margin: 0; }
 header.top { padding: 0; }
 /* GATED ON .plate-live, which hub-plate.js sets only after the artwork is
    actually in the document. Ungated, this hid the masthead and the doors for
-   every reader whose plate never arrived — JavaScript off, a stale or 404'd
-   hub-plate.js, a missing config — and the hub rendered as an empty page
+   every reader whose plate never arrived: JavaScript off, a stale or 404'd
+   hub-plate.js, a missing config, and the hub rendered as an empty page
    with its fallback links clipped to one pixel. The fallbacks are the whole
    point of keeping this markup; they must be visible by default. */
 .plate-live header.top .wrap > :not(.acct):not(.acct-form):not(.acct-note) {

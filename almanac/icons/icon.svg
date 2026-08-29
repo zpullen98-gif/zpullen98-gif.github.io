@@ -107,7 +107,7 @@
     </g>
 
     <!-- 8-point compass star -->
-    <!-- long points (N, E, S, W) — light/dark halves -->
+    <!-- long points (N, E, S, W): light/dark halves -->
     <g>
       <!-- N -->
       <polygon points="0,-300 -38,0 0,0" fill="url(#goldDark)"/>
