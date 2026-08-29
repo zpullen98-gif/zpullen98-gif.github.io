@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# No Sitemap line on purpose. The wings' own sitemap.xml files were dropped in
+# assembly because only a root robots.txt is honoured, and a root sitemap that
+# covers the hub plus the World Table's prerendered pages is marketing work that
+# belongs with the launch, not here. Advertising one that 404s is worse than
+# advertising none.

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.Bx0IplWY.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BbZsb-hd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/9WMmmc52.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.C9KcOn5Z.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.CkaOcVhA.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/D0ckVWAN.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Hi2TnX8w.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/7wEiQzZd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DebzxSed.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C99D3Ad6.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNHJZz-i.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BB1Po_5n.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BQRYU-Cl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/21.DUEdHDmq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HQge6qmG.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/un9qgxrk.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CN18iHxM.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/VyNk_xNi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/q7FuzoC2.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/rcgfH6Am.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="manifest" href="/manifest.webmanifest"/> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 970 recipes across 94 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--131j3h6--><meta name="description" content="Leads with richness that coats and comforts, fresh herbs arguing happily on top."/><!----><title>Dry-Brined Roast Turkey with Real Gravy: The World Table</title>
+		<link href="/table/_app/immutable/assets/0.G4gYEnIL.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/Ornament.D4liLlNF.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeDetailView.DWgnlVC-.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: every dish serves four unless noted</p></div> <dl class="counts svelte-12qhfyh"><div><dt class="svelte-12qhfyh">Recipes</dt><dd class="svelte-12qhfyh">970</dd></div> <div><dt class="svelte-12qhfyh">Chapters</dt><dd class="svelte-12qhfyh">94</dd></div> <div><dt class="svelte-12qhfyh">Lexicon</dt><dd class="svelte-12qhfyh">479</dd></div></dl></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" href="/table/recipes">Library<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service">☀ Day service</button></div></nav> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><article class="shell sheet svelte-131j3h6"><nav class="crumbs svelte-131j3h6" data-print="hide"><a href="/table/recipes" class="svelte-131j3h6">All chapters</a> <span aria-hidden="true">›</span> <a href="/table/chapter/holiday-feast-atlas" class="svelte-131j3h6">Holiday Feast Atlas</a></nav> <header class="head svelte-131j3h6"><p class="eyebrow">Holiday Feast Atlas · Main</p> <h1 class="svelte-131j3h6">Dry-Brined Roast Turkey with Real Gravy</h1> <ul class="stats svelte-131j3h6"><li class="svelte-131j3h6">Advanced</li> <li class="svelte-131j3h6">5 h</li> <li class="svelte-131j3h6">Serves 4</li> <li class="svelte-131j3h6">$$</li> <!--[-1--><!--]--> <!--[-1--><!--]--></ul> <p class="palate svelte-131j3h6"><span class="tags svelte-131j3h6">rich · herb-fresh</span> <span class="sentence svelte-131j3h6">Leads with richness that coats and comforts, fresh herbs arguing happily on top.</span></p></header> <div class="tools svelte-131j3h6" data-print="hide"><div class="group svelte-131j3h6" role="group" aria-label="Scale the recipe"><!--[--><button aria-pressed="false" class="svelte-131j3h6">×½</button><button aria-pressed="true" class="svelte-131j3h6 on">×1</button><button aria-pressed="false" class="svelte-131j3h6">×2</button><button aria-pressed="false" class="svelte-131j3h6">×3</button><!--]--></div> <div class="group svelte-131j3h6" role="group" aria-label="Units"><button aria-pressed="true" class="svelte-131j3h6 on">Metric</button> <button aria-pressed="false" class="svelte-131j3h6">US</button></div> <button class="chip svelte-131j3h6">Cook mode ▸</button> <button class="chip pin svelte-131j3h6" aria-pressed="false">📌 Add to menu</button> <button class="chip svelte-131j3h6">Print</button></div> <div class="cols svelte-131j3h6"><section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Ingredients</h2> <ul class="ingredients svelte-131j3h6"><!--[--><!--[-1--><li class="item svelte-131j3h6"><span>1 turkey, 5–6kg: smaller birds cook truer; two small beat one giant</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>Dry brine: 1 tbsp salt per 2kg + 1 tsp baking powder + herbs, rubbed on THREE DAYS ahead, bird left UNCOVERED in the fridge</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>150g butter, softened with sage and thyme, worked under the breast skin</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>The gravy engine: neck and giblets simmered into stock; the roasting pan's drippings; 40g flour</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>2 onions, carrots and celery under the bird as the rack; the actual rack retired</span> <!--[-1--><!--]--></li><!--]--><!--]--></ul> <!--[0--><h2 class="sec svelte-131j3h6">Equipment</h2> <p class="equip svelte-131j3h6">Parchment</p><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The skills inside</h2> <p class="skills svelte-131j3h6"><!--[--><a href="/table/technique/brining-and-curing" class="svelte-131j3h6">Brining &amp; curing</a><a href="/table/technique/roasting-in-a-hot-oven" class="svelte-131j3h6">Roasting in a hot oven</a><a href="/table/technique/straining-and-passing-through-a-sieve" class="svelte-131j3h6">Straining &amp; passing through a sieve</a><!--]--></p><!--]--> <h2 class="sec svelte-131j3h6">Allergen screen</h2> <p class="equip svelte-131j3h6"><!--[0--><b>Found:</b> gluten · dairy · celery<!--]--></p> <p class="screened svelte-131j3h6">Screened for: gluten, dairy, egg, nuts, peanuts, fish, shellfish, molluscs, soy, sesame, celery, mustard, lupin, alcohol. <b>Not screened:</b> sulphites.</p> <!--[-1--><!--]--></section> <section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Method</h2> <ol class="steps svelte-131j3h6"><!--[--><li class="step svelte-131j3h6">Three days out: dry-brine and refrigerate uncovered: the salt penetrates, the skin dries to parchment, and the wait does what basting pretends to. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Roast day: herb butter under the breast skin; bird on the vegetable bed, legs toward the oven's back (the hot corner), at 220°C for 30 min, then 165°C. <!--[0--><span class="dur svelte-131j3h6">30 min</span><!--]--></li><li class="step svelte-131j3h6">Pull at 65°C in the breast, 74°C in the thigh: carryover finishes it; rest 45 MINUTES uncovered; the rest is not optional, it is half the recipe. <!--[0--><span class="dur svelte-131j3h6">45 min</span><!--]--></li><li class="step svelte-131j3h6">Gravy: pan on the burner, flour into the drippings, giblet stock whisked in, simmered 10 min and strained. Carve off the bone in the kitchen; platter the slices over a ladle of gravy. <!--[0--><span class="dur svelte-131j3h6">10 min</span><!--]--></li><!--]--></ol></section></div> <!--[0--><section class="standard svelte-131j3h6"><h2 class="sec svelte-131j3h6">How it should come out</h2> <!--[-1--><!--]--> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">Skin uniformly deep brown, taut and dry enough to click under a fingernail, unbroken over the breast where the herb butter went under.</li><li class="svelte-131j3h6">The bird came out on two thermometer readings, not a time: 65°C at the deepest part of the breast and 74°C at the thigh joint, the probe kept off the bone.</li><li class="svelte-131j3h6">Carved at a full 45 minutes: a slice weeps at the cut edge and the board stays nearly dry. A flood on the board says the bird was cut early.</li><li class="svelte-131j3h6">Breast slices hold together coming off the knife and read moist white through their whole thickness; at the thigh the meat pulls easily from the bone and the juices there run clear rather than pink.</li><li class="svelte-131j3h6">A slice of breast eaten alone, no gravy, is seasoned to its centre. The gravy is strained, coats a spoon, and carries no fat slick on top and no floury edge underneath.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> The bird is timed rather than probed and the breast rides up to thigh temperature: white meat comes off the knife in dry crumbling slabs, and the gravy ends up doing the work the roast was meant to do.</p></section><!--]--> <aside class="note recipe-note svelte-131j3h6"><p class="eyebrow">From the pass</p> <p class="notebody svelte-131j3h6">Three truths the holiday table deserves: the dry brine beats the wet bucket (seasoned meat, crackling skin, zero cooler logistics); basting is theater that opens the oven and lengthens the wait; and the 45-minute rest is where the juice you fought for decides to stay. Legs to the back exploits the oven's hot zone: dark meat needs the heat the breast fears.</p></aside> <section class="pairing svelte-131j3h6"><div class="orn svelte-1dnahwc" aria-hidden="true" style="font-size:15px"><span class="rule svelte-1dnahwc"></span> <span class="mark svelte-1dnahwc">❧</span> <span class="rule svelte-1dnahwc"></span></div><!----> <h2 class="sec centered svelte-131j3h6">At the Table</h2> <dl class="svelte-131j3h6"><div class="svelte-131j3h6"><dt class="svelte-131j3h6">The Pour</dt><dd class="svelte-131j3h6">Chardonnay (village Burgundy)</dd></div> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Also Right</dt><dd class="svelte-131j3h6">Chenin Blanc</dd></div> <!--[0--><div class="svelte-131j3h6"><dt class="svelte-131j3h6">From the Taps</dt><dd class="svelte-131j3h6">Bière de garde</dd></div><!--]--> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Zero-Proof</dt><dd class="svelte-131j3h6">Verbena iced tea</dd></div></dl> <p class="why svelte-131j3h6">Chicken is wine’s most agreeable partner. Match the SAUCE, not the bird: cream to oak, tomato to Sangiovese’s acid, herbs to Loire whites.</p></section> <section class="notes svelte-131j3h6" data-print="hide"><label for="famnotes" class="sec svelte-131j3h6">Family notes</label> <p class="hint svelte-131j3h6">Saved on this device and kept across visits: export from My Menu to move them.</p> <textarea id="famnotes" rows="4" placeholder="Your adjustments, stains, and marginalia…" class="svelte-131j3h6"></textarea></section> <!--[-1--><!--]--> <section class="films svelte-131j3h6" data-print="hide"><h2 class="sec svelte-131j3h6">Film school</h2> <!--[-1--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Dry-Brined%20Roast%20Turkey%20with%20Real%20Gravy%20recipe" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">This dish, cooked on camera</span> <span class="vsub svelte-131j3h6">Search films of Dry-Brined Roast Turkey with Real Gravy</span></a> <!--[--><a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=brining%20curing%20meat%20technique%20explained" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Technique: Brining &amp; curing</span><span class="vsub svelte-131j3h6">The skill inside this recipe</span></a><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=America%E2%80%99s%20Test%20Kitchen%20Dry-Brined%20Roast%20Turkey%20with%20Real%20Gravy" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Study with America’s Test Kitchen</span> <span class="vsub svelte-131j3h6">the tested American repertoire</span></a></section></article><!--]--><!----></main> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----> <!--[-1--><!--]--><!----> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 970 recipes · 94 chapters · Chef’s Lexicon: 479 terms</div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_t76pa1 = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.Bx0IplWY.js"),
+						import("/table/_app/immutable/entry/app.C9KcOn5Z.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 21],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=23"></script>
+<script src="/shared/oot-profiles.js?v=23"></script>
+<script src="/shared/oot-home.js?v=23"></script>
+<script src="/shared/oot-auth.js?v=23"></script>
+<script src="/shared/oot-gate.js?v=23"></script>
+<script src="/shared/oot-locks.js?v=23"></script>
+<script src="/shared/oot-pass.js?v=23"></script>
+<script src="/shared/oot-log.js?v=23"></script>
+<script src="/shared/oot-bar.js?v=23"></script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+{
+ "title": "The Tao Te Ching",
+ "translation": "James Legge, 1891",
+ "license": "Public domain",
+ "source": "Project Gutenberg",
+ "whole": true,
+ "chapters": [
+  {
+   "n": 1,
+   "blocks": 5
+  },
+  {
+   "n": 2,
+   "blocks": 5
+  },
+  {
+   "n": 3,
+   "blocks": 3
+  },
+  {
+   "n": 4,
+   "blocks": 3
+  },
+  {
+   "n": 5,
+   "blocks": 3
+  },
+  {
+   "n": 6,
+   "blocks": 1
+  },
+  {
+   "n": 7,
+   "blocks": 2
+  },
+  {
+   "n": 8,
+   "blocks": 3
+  },
+  {
+   "n": 9,
+   "blocks": 2
+  },
+  {
+   "n": 10,
+   "blocks": 3
+  },
+  {
+   "n": 11,
+   "blocks": 1
+  },
+  {
+   "n": 12,
+   "blocks": 3
+  },
+  {
+   "n": 13,
+   "blocks": 4
+  },
+  {
+   "n": 14,
+   "blocks": 3
+  },
+  {
+   "n": 15,
+   "blocks": 4
+  },
+  {
+   "n": 16,
+   "blocks": 2
+  },
+  {
+   "n": 17,
+   "blocks": 2
+  },
+  {
+   "n": 18,
+   "blocks": 2
+  },
+  {
+   "n": 19,
+   "blocks": 3
+  },
+  {
+   "n": 20,
+   "blocks": 5
+  },
+  {
+   "n": 21,
+   "blocks": 2
+  },
+  {
+   "n": 22,
+   "blocks": 3
+  },
+  {
+   "n": 23,
+   "blocks": 3
+  },
+  {
+   "n": 24,
+   "blocks": 1
+  },
+  {
+   "n": 25,
+   "blocks": 4
+  },
+  {
+   "n": 26,
+   "blocks": 2
+  },
+  {
+   "n": 27,
+   "blocks": 2
+  },
+  {
+   "n": 28,
+   "blocks": 5
+  },
+  {
+   "n": 29,
+   "blocks": 4
+  },
+  {
+   "n": 30,
+   "blocks": 4
+  },
+  {
+   "n": 31,
+   "blocks": 3
+  },
+  {
+   "n": 32,
+   "blocks": 5
+  },
+  {
+   "n": 33,
+   "blocks": 2
+  },
+  {
+   "n": 34,
+   "blocks": 3
+  },
+  {
+   "n": 35,
+   "blocks": 2
+  },
+  {
+   "n": 36,
+   "blocks": 3
+  },
+  {
+   "n": 37,
+   "blocks": 5
+  },
+  {
+   "n": 38,
+   "blocks": 7
+  },
+  {
+   "n": 39,
+   "blocks": 6
+  },
+  {
+   "n": 40,
+   "blocks": 3
+  },
+  {
+   "n": 41,
+   "blocks": 4
+  },
+  {
+   "n": 42,
+   "blocks": 3
+  },
+  {
+   "n": 43,
+   "blocks": 2
+  },
+  {
+   "n": 44,
+   "blocks": 6
+  },
+  {
+   "n": 45,
+   "blocks": 3
+  },
+  {
+   "n": 46,
+   "blocks": 2
+  },
+  {
+   "n": 47,
+   "blocks": 2
+  },
+  {
+   "n": 48,
+   "blocks": 3
+  },
+  {
+   "n": 49,
+   "blocks": 3
+  },
+  {
+   "n": 50,
+   "blocks": 4
+  },
+  {
+   "n": 51,
+   "blocks": 4
+  },
+  {
+   "n": 52,
+   "blocks": 6
+  },
+  {
+   "n": 53,
+   "blocks": 3
+  },
+  {
+   "n": 54,
+   "blocks": 6
+  },
+  {
+   "n": 55,
+   "blocks": 5
+  },
+  {
+   "n": 56,
+   "blocks": 3
+  },
+  {
+   "n": 57,
+   "blocks": 3
+  },
+  {
+   "n": 58,
+   "blocks": 5
+  },
+  {
+   "n": 59,
+   "blocks": 3
+  },
+  {
+   "n": 60,
+   "blocks": 3
+  },
+  {
+   "n": 61,
+   "blocks": 4
+  },
+  {
+   "n": 62,
+   "blocks": 5
+  },
+  {
+   "n": 63,
+   "blocks": 3
+  },
+  {
+   "n": 64,
+   "blocks": 4
+  },
+  {
+   "n": 65,
+   "blocks": 3
+  },
+  {
+   "n": 66,
+   "blocks": 3
+  },
+  {
+   "n": 67,
+   "blocks": 4
+  },
+  {
+   "n": 68,
+   "blocks": 2
+  },
+  {
+   "n": 69,
+   "blocks": 2
+  },
+  {
+   "n": 70,
+   "blocks": 3
+  },
+  {
+   "n": 71,
+   "blocks": 2
+  },
+  {
+   "n": 72,
+   "blocks": 4
+  },
+  {
+   "n": 73,
+   "blocks": 4
+  },
+  {
+   "n": 74,
+   "blocks": 2
+  },
+  {
+   "n": 75,
+   "blocks": 3
+  },
+  {
+   "n": 76,
+   "blocks": 4
+  },
+  {
+   "n": 77,
+   "blocks": 4
+  },
+  {
+   "n": 78,
+   "blocks": 5
+  },
+  {
+   "n": 79,
+   "blocks": 3
+  },
+  {
+   "n": 80,
+   "blocks": 5
+  },
+  {
+   "n": 81,
+   "blocks": 3
+  }
+ ]
+}

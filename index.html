@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Outside Of Time">
+<title>Outside Of Time: the complete life of the hospitality professional</title>
+<meta name="description" content="Five free wings: The Sommelier's Codex, The Bartender's Ledger, The World Table, First Light and Calendar For Life. The craft, the reset, and the road.">
+<meta name="theme-color" content="#12100e">
+<link rel="canonical" href="https://zpullen98-gif.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Outside Of Time">
+<meta property="og:description" content="The complete life of the hospitality professional — the craft, the reset, and the road.">
+<meta property="og:url" content="https://zpullen98-gif.github.io/">
+<style>
+/* The hub is deliberately thin: no framework, no build step, one stylesheet,
+   system fonts only. Every wing brings its own typography; this page must not
+   compete with any of them. */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  /* One committed look. The wings, the icon and theme-color all agree on this
+     ink, so there is no light variant to switch to, but the UA has to be told,
+     or it paints light scrollbars and form controls over a near-black page. */
+  color-scheme:dark;
+  --ink:#12100e; --ink-2:#1a1714; --ink-3:#241f1a;
+  --line:rgba(198,166,100,.22); --line-2:rgba(198,166,100,.4);
+  --brass:#c6a664; --brass-hi:#e0c48b;
+  --cream:#f0eae0; --dim:rgba(240,234,224,.62);
+  --serif:Georgia,'Iowan Old Style','Times New Roman',serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--ink); color:var(--cream); font-family:var(--sans);
+  line-height:1.55; -webkit-font-smoothing:antialiased;
+  padding:0 0 env(safe-area-inset-bottom);
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+
+/* ---------- masthead ---------- */
+header.top{
+  padding:clamp(48px,12vw,96px) 0 clamp(32px,7vw,56px);
+  text-align:center;
+  border-bottom:1px solid var(--line);
+  background:radial-gradient(120% 90% at 50% 0%, #1d1813 0%, var(--ink) 62%);
+}
+.logotype{
+  font-family:var(--serif); font-weight:400;
+  font-size:clamp(2rem,9vw,3.6rem); line-height:1.05; letter-spacing:.02em;
+  margin:0; color:var(--cream);
+}
+/* "Hospitality" is a kicker under the logotype only, never in the return chip
+   and never in a Stripe product name. It is a sibling of the h1 rather than a
+   child so the heading's accessible name stays "Outside Of Time" instead of
+   running the two words together. */
+.kicker{
+  margin:.55em 0 0;
+  font-size:clamp(.62rem,2.6vw,.75rem);
+  letter-spacing:.42em; text-transform:uppercase; color:var(--brass);
+  text-indent:.42em;
+}
+.tagline{
+  margin:1.4em auto 0; max-width:34ch; color:var(--dim);
+  font-size:clamp(.95rem,3.4vw,1.08rem);
+}
+.acct{margin-top:2.2em;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;align-items:center}
+/* min-width:0 and the break rule stop a long address forcing the flex row wider
+   than the viewport: emails do not contain spaces, so nothing else wraps them. */
+.acct-who{
+  font-size:.86rem; color:var(--dim);
+  min-width:0; max-width:100%; overflow-wrap:anywhere;
+}
+.acct-who b{color:var(--cream);font-weight:600}
+.acct-note{
+  margin:1em auto 0; max-width:42ch; min-height:1.4em;
+  font-size:.82rem; color:var(--brass);
+}
+.acct-form{
+  margin:1.2em auto 0; max-width:420px;
+  display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
+}
+.acct-form[hidden]{display:none}
+.acct-form label{
+  flex:1 0 100%; text-align:left; font-size:.7rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--dim);
+}
+.acct-form input{
+  flex:1 1 220px; min-width:0; min-height:46px; padding:12px 14px;
+  background:var(--ink-2); border:1px solid var(--line-2); border-radius:2px;
+  color:var(--cream); font-family:var(--sans); font-size:.95rem;
+}
+.acct-form input:focus-visible{outline:2px solid var(--brass-hi);outline-offset:2px}
+.tier-badge{
+  display:inline-block; padding:3px 10px; border-radius:999px;
+  border:1px solid var(--line-2); color:var(--brass);
+  font-size:.62rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+}
+
+button,.btn{
+  font-family:var(--sans); font-size:.82rem; font-weight:600;
+  letter-spacing:.12em; text-transform:uppercase;
+  padding:13px 24px; border-radius:2px; cursor:pointer;
+  text-decoration:none; display:inline-flex; align-items:center; justify-content:center;
+  min-height:46px; transition:background .18s ease,border-color .18s ease,color .18s ease;
+}
+.btn-primary{background:var(--brass);color:#191512;border:1px solid var(--brass)}
+.btn-primary:hover{background:var(--brass-hi);border-color:var(--brass-hi)}
+.btn-ghost{background:transparent;color:var(--cream);border:1px solid var(--line-2)}
+.btn-ghost:hover{border-color:var(--brass);color:var(--brass-hi)}
+/* aria-disabled rather than the disabled property: the control stays focusable,
+   so a keyboard or screen-reader user can reach it and be told why it is inert
+   instead of finding a button that silently does not exist. */
+[aria-disabled="true"]{opacity:.62;cursor:not-allowed}
+[aria-disabled="true"]:hover{background:var(--brass);border-color:var(--brass)}
+:focus-visible{outline:2px solid var(--brass-hi);outline-offset:3px}
+
+/* ---------- pillars & doors ---------- */
+/* The doors are built by script, and the browser is allowed to paint before
+   an end-of-body script runs, so without a reservation the pricing section
+   painted high and then jumped a full screen when the pillars landed
+   (Lighthouse measured the jump at CLS 0.417). The reservation holds the
+   space; the built content always exceeds it, so nothing collapses back. */
+#pillars{min-height:100vh}
+section.pillar{padding:clamp(38px,8vw,64px) 0 0}
+.pillar-head{border-top:1px solid var(--line);padding-top:22px;margin-bottom:22px}
+.pillar-name{
+  font-family:var(--serif); font-size:clamp(1.3rem,5vw,1.7rem);
+  margin:0; font-weight:400; color:var(--brass-hi);
+}
+.pillar-line{margin:.35em 0 0;color:var(--dim);font-size:.94rem}
+
+.doors{display:grid;gap:14px;grid-template-columns:1fr;padding:0;margin:0;list-style:none}
+@media(min-width:680px){.doors{grid-template-columns:repeat(2,1fr)}}
+
+/* The card is the <li>; only the wing's name is the link. The ::after overlay
+   keeps the whole card clickable without dragging the description and both
+   tier lines into the link's accessible name. */
+.door{
+  position:relative; display:flex; flex-direction:column; gap:.5em;
+  background:var(--ink-2); border:1px solid var(--line);
+  padding:20px; border-radius:3px;
+  transition:border-color .18s ease,background .18s ease,transform .18s ease;
+}
+.door:hover,.door:focus-within{border-color:var(--brass);background:var(--ink-3);transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){.door,.door:hover{transition:none;transform:none}}
+.door-name{font-family:var(--serif);font-size:1.16rem;font-weight:400;margin:0;color:var(--cream)}
+.door-name a{text-decoration:none}
+.door-name a::after{content:'';position:absolute;inset:0}
+.door-line{color:var(--dim);font-size:.9rem;margin:0}
+.door-tiers{
+  margin-top:auto; padding-top:.9em; border-top:1px solid rgba(198,166,100,.12);
+  font-size:.74rem; letter-spacing:.04em; color:var(--dim);
+  display:flex; flex-wrap:wrap; gap:.35em .7em;
+}
+.tag{
+  display:inline-block; padding:2px 8px; border-radius:999px;
+  border:1px solid var(--line-2); color:var(--brass);
+  text-transform:uppercase; letter-spacing:.1em; font-size:.62rem; font-weight:600;
+}
+.tag.free{border-color:rgba(240,234,224,.3);color:var(--dim)}
+
+.venue-note{margin:2.2em 0 0;text-align:center;color:var(--dim);font-size:.82rem}
+.venue-note button{
+  background:none;border:none;padding:8px;cursor:pointer;font:inherit;color:var(--brass);
+  text-decoration:underline;text-underline-offset:3px;min-height:0;letter-spacing:normal;
+  text-transform:none;
+}
+.venue-note button:hover{color:var(--brass-hi)}
+
+/* ---------- pricing ---------- */
+section.pricing{padding:clamp(52px,10vw,88px) 0 clamp(40px,8vw,64px)}
+.pricing h2{
+  font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,6vw,2rem);
+  margin:0 0 .3em;text-align:center;
+}
+.pricing .sub{text-align:center;color:var(--dim);margin:0 auto 2em;max-width:46ch;font-size:.95rem}
+/* One price means one card. It stays a grid so paintPlans can keep appending
+   into it unchanged, but it never needs a second column. */
+.plans{display:grid;gap:16px;grid-template-columns:1fr;max-width:400px;margin:0 auto}
+.plan{
+  border:1px solid var(--line);background:var(--ink-2);
+  padding:26px 22px;border-radius:3px;text-align:center;position:relative;
+}
+.plan.featured{border-color:var(--brass);background:var(--ink-3)}
+.plan .amt{font-family:var(--serif);font-size:2.3rem;display:block;line-height:1.1}
+.plan .per{color:var(--dim);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+.plan .note{color:var(--dim);font-size:.84rem;margin:.9em 0 1.2em;min-height:2.6em}
+.plan .soon{
+  display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--brass);border-top:1px solid rgba(198,166,100,.18);padding-top:1em;margin:0;
+}
+.plan .buy{display:block;width:100%;box-sizing:border-box;text-align:center;text-decoration:none}
+.plan .sim-note{color:var(--dim);font-size:.72rem;margin:.8em 0 0}
+.offer-note{
+  margin:24px auto 0;max-width:720px;text-align:center;color:var(--dim);
+  font-size:.86rem;border:1px dashed var(--line-2);padding:14px;border-radius:3px;
+}
+.offer-note b{color:var(--brass-hi);font-weight:600}
+.offer-actions{text-align:center;margin:1.4em 0 .6em}
+.offer-actions .btn{min-width:min(100%,20em)}
+.offer-actions .btn[disabled]{opacity:.55;cursor:default}
+
+footer.foot{
+  border-top:1px solid var(--line);padding:28px 0 40px;text-align:center;
+  color:var(--dim);font-size:.82rem;
+}
+/* inline-block + vertical padding so the footer links clear a 44px tap target
+   on a phone; the border sits on an inner span so it still hugs the text */
+footer.foot a{
+  display:inline-block; margin:0 .35em; padding:13px .25em;
+  text-decoration:none; border-bottom:1px solid transparent;
+}
+footer.foot a span{border-bottom:1px solid var(--line-2)}
+footer.foot a:hover{color:var(--brass-hi)}
+/* No stacked opacity here: --dim on --ink is 6.5:1, but multiplying it by .75
+   dropped this paragraph to 4.17:1, under the 4.5:1 minimum for 12px text. */
+.legal{margin-top:1em;font-size:.76rem;max-width:52ch;margin-inline:auto}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/hub-poster.css?v=5">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1 class="logotype">Outside Of Time</h1>
+    <p class="kicker">Hospitality</p>
+    <p class="tagline" id="tagline">Master the timeless art of hospitality</p>
+    <!-- The free edition: no account, no checkout. The sign-in form and the
+         plans link retired with the subscription; see git history to restore. -->
+    <p class="acct-note">Free to install, free to use: built for our own crew, family and friends.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap" id="pillars">
+    <noscript>
+      <p style="padding:2em 0;color:#c6a664">Outside Of Time needs JavaScript to show the doors.
+      The five wings are at <a href="codex/">codex</a>, <a href="ledger/">ledger</a>,
+      <a href="table/">table</a>, <a href="light/">light</a> and <a href="almanac/">almanac</a>.</p>
+    </noscript>
+  </div>
+
+  <section class="pricing wrap" id="free">
+    <h2>Free, all of it</h2>
+    <p class="sub" id="free-sub"></p>
+    <p class="offer-note" id="install-note"></p>
+    <p class="offer-actions"><button type="button" class="btn" id="offline-all" hidden></button></p>
+    <p class="offer-note" id="offline-status" role="status" aria-live="polite" hidden></p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a href="privacy.html"><span>Privacy</span></a><a href="terms.html"><span>Terms</span></a>
+    <p class="legal" id="legal"></p>
+  </div>
+</footer>
+
+<script src="shared/oot-config.js?v=23"></script>
+<script src="shared/oot-profiles.js?v=23"></script>
+<script src="shared/oot-home.js?v=23"></script>
+<script src="shared/oot-auth.js?v=23"></script>
+<script src="shared/oot-gate.js?v=23"></script>
+<script src="shared/oot-pass.js?v=23"></script>
+<script src="shared/oot-log.js?v=23"></script>
+<script>
+/* The hub renders itself from OOT.config so the wing list, the free/paid copy
+   and the prices are written down exactly once. Phases 2 and 3 change behaviour
+   here by changing what OOT.auth and OOT.gate return, not by changing markup. */
+(function () {
+  'use strict';
+
+  /* A missing oot-config.js (a stale ?v= after a deploy is the realistic
+     trigger) used to throw on the first line and leave the page blank: the
+     other shared scripts still create window.OOT, so OOT.config was undefined rather
+     than absent. Fail to something a visitor can still use. */
+  var C = (window.OOT && window.OOT.config) || null;
+  var pillarsEl = document.getElementById('pillars');
+  if (!C) {
+    pillarsEl.innerHTML =
+      '<p style="padding:2em 0;color:#c6a664">The doors are at ' +
+      '<a href="codex/">codex</a>, <a href="ledger/">ledger</a>, <a href="table/">table</a>, ' +
+      '<a href="light/">light</a> and <a href="almanac/">almanac</a>.</p>';
+    return;
+  }
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  if (C.blurb) document.getElementById('tagline').textContent = C.blurb;
+
+  /* ---- venue mode ---- */
+  /* One flag, set once by visiting /?venue on the machine behind the bar: the
+     hub then shows only The Craft, which is the pillar a venue is paying for.
+     The flag narrows the front door, not the product — the wings, pricing and
+     accounts are untouched, and the visible link below clears it. The param
+     is stripped after persisting, same hygiene as every other param here. */
+  /* Venue mode belonged to the subscription: it narrowed the hub to the
+     pillar a venue was paying for. Under the free edition there is nothing
+     to narrow, and a bar tablet carrying the old flag would show three of
+     five doors with its only escape hatch clipped inside #pillars. Heal it
+     on sight and ignore the parameter. */
+  var VENUE_KEY = 'oot-venue';
+  if (C.free) { try { localStorage.removeItem(VENUE_KEY); } catch (e) {} }
+  if (!C.free && /[?&]venue(=|&|$)/.test(location.search)) {
+    try { localStorage.setItem(VENUE_KEY, '1'); } catch (e) {}
+    if (history.replaceState) history.replaceState(null, '', location.pathname + location.hash);
+  }
+  var VENUE = false;
+  if (!C.free) { try { VENUE = localStorage.getItem(VENUE_KEY) === '1'; } catch (e) {} }
+
+  /* ---- pillars and doors ---- */
+  (C.pillars || []).forEach(function (p) {
+    if (VENUE && p.id !== 'craft') return;
+    var wings = (C.wings || []).filter(function (w) { return w.pillar === p.id; });
+    if (!wings.length) return;
+
+    var sec = el('section', 'pillar');
+    sec.dataset.pillar = p.id;   /* diagnostic hook; Venue Mode filters in the render skip above */
+
+    var head = el('div', 'pillar-head');
+    head.appendChild(el('h2', 'pillar-name', p.name));
+    head.appendChild(el('p', 'pillar-line', p.line));
+    sec.appendChild(head);
+
+    var list = el('ul', 'doors');
+    wings.forEach(function (w) {
+      var li = el('li', 'door');
+
+      var h3 = el('h3', 'door-name');
+      var a = el('a', null, w.name);
+      a.href = w.path;
+      h3.appendChild(a);
+      li.appendChild(h3);
+
+      li.appendChild(el('p', 'door-line', w.line));
+
+      var tiers = el('div', 'door-tiers');
+      tiers.appendChild(el('span', 'tag free', 'Free'));
+      tiers.appendChild(el('span', null, w.free));
+      if (w.paid) {
+        tiers.appendChild(el('span', 'tag', 'Paid'));
+        tiers.appendChild(el('span', null, w.paid));
+      }
+      li.appendChild(tiers);
+      list.appendChild(li);
+    });
+    sec.appendChild(list);
+    pillarsEl.appendChild(sec);
+  });
+
+  if (VENUE) {
+    var vn = el('p', 'venue-note');
+    vn.appendChild(document.createTextNode('Venue mode: showing The Craft. '));
+    var showAll = el('button', null, 'Show all three pillars');
+    showAll.type = 'button';
+    showAll.addEventListener('click', function () {
+      try { localStorage.removeItem(VENUE_KEY); } catch (e) {}
+      location.reload();
+    });
+    vn.appendChild(showAll);
+    pillarsEl.appendChild(vn);
+  }
+
+  /* ---- the free edition ---- */
+  /* The pricing paint, the account panel, the magic-link form and the
+     checkout-return flow are retired while Outside Of Time is free for
+     family and friends. OOT.auth and OOT.gate still load (the gate answers
+     'paid' for everyone via OOT.config.free), so the wings behave exactly
+     as a fully entitled venue. Restore the retired logic from git history
+     beside the config flag if the subscription returns. */
+  var freeSub = document.getElementById('free-sub');
+  if (freeSub) {
+    freeSub.textContent =
+      'Every wing, every rank, open in full. No account, no checkout, ' +
+      'nothing to unlock: the whole shelf is yours.';
+  }
+  var installNote = document.getElementById('install-note');
+  if (installNote) {
+    installNote.textContent =
+      'Install it once and all five wings come with it. On a computer, use the ' +
+      'install icon in the address bar; on a phone, Add to Home Screen from the ' +
+      'browser menu. One icon, and every wing inside it.';
+  }
+  /* ---- one install, five wings, all of it offline ----------------------
+     Each wing keeps its own service worker on its own narrow scope, which is
+     what stops this app from trampling the standalone apps that share the
+     github.io origin. The cost of that separation is that a wing only stores
+     itself when somebody opens it. A page may register a worker for any scope
+     at or below the worker script's own directory, and it does not have to be
+     inside that scope itself, so the hub can install all five from here and
+     the whole app goes offline in one deliberate act rather than five
+     accidental ones. */
+  var WINGS = [
+    { name: 'The Sommelier’s Codex', sw: 'codex/sw.js',   scope: 'codex/' },
+    { name: 'The Bartender’s Ledger', sw: 'ledger/sw.js', scope: 'ledger/' },
+    { name: 'The World Table',            sw: 'table/sw.js',   scope: 'table/' },
+    { name: 'First Light',                sw: 'light/sw.js',   scope: 'light/' },
+    { name: 'Calendar For Life',          sw: 'almanac/sw.js', scope: 'almanac/' }
+  ];
+
+  function settled(reg) {
+    /* Resolve when this registration has finished doing whatever it is doing.
+       A worker already active with nothing incoming is done; otherwise wait for
+       the incoming one to reach a terminal state. 'redundant' counts: a worker
+       that failed is finished, and one wing failing must not stall the rest. */
+    return new Promise(function (resolve) {
+      var w = reg.installing || reg.waiting;
+      if (!w) return resolve(!!reg.active);
+      w.addEventListener('statechange', function () {
+        if (w.state === 'activated') resolve(true);
+        else if (w.state === 'redundant') resolve(false);
+      });
+    });
+  }
+
+  var offlineBtn = document.getElementById('offline-all');
+  var offlineMsg = document.getElementById('offline-status');
+  if (offlineBtn && offlineMsg && 'serviceWorker' in navigator) {
+    offlineBtn.hidden = false;
+    offlineBtn.textContent = 'Make every wing available offline';
+    offlineMsg.hidden = false;
+    offlineMsg.textContent =
+      'Optional, and about 50 MB. Do it once on wi-fi and the whole app opens ' +
+      'with no signal at all. Skipping it costs nothing: any wing you open ' +
+      'stores itself as you go.';
+
+    offlineBtn.addEventListener('click', function () {
+      offlineBtn.disabled = true;
+      var done = 0, failed = [];
+      /* One at a time. Five apps precaching at once saturates a phone
+         connection and makes every one of them slower than doing it in turn. */
+      WINGS.reduce(function (chain, wing) {
+        return chain.then(function () {
+          offlineMsg.textContent = 'Storing ' + wing.name +
+            ' (' + (done + 1) + ' of ' + WINGS.length + ')…';
+          return navigator.serviceWorker.register(wing.sw, { scope: wing.scope })
+            .then(settled)
+            .then(function (ok) { if (!ok) failed.push(wing.name); })
+            .catch(function () { failed.push(wing.name); })
+            .then(function () { done++; });
+        });
+      }, Promise.resolve()).then(function () {
+        if (!failed.length) {
+          offlineMsg.textContent = 'All five wings are stored on this device. ' +
+            'Everything works with no connection.';
+          offlineBtn.textContent = 'Stored';
+        } else {
+          offlineMsg.textContent = 'Stored ' + (WINGS.length - failed.length) +
+            ' of ' + WINGS.length + '. Still to do: ' + failed.join(', ') +
+            '. Opening those wings once while online will finish the job.';
+          offlineBtn.textContent = 'Try the rest again';
+          offlineBtn.disabled = false;
+        }
+      });
+    });
+  }
+
+  /* The shell itself. Registered last so a failure here cannot stop the page
+     from rendering, and scoped to the root, which is why sw.js refuses to
+     answer for anything it does not explicitly own. */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () {});
+    });
+  }
+
+  document.getElementById('legal').textContent =
+    (C.name || 'Outside Of Time') + ' — ' + (C.tagline || '') +
+    ' Everything runs on your device and nothing is sent anywhere.';
+})();
+</script>
+<script src="assets/hub-plate.js?v=4"></script>
+</body>
+</html>

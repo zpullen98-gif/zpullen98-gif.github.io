@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.Bx0IplWY.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BbZsb-hd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/9WMmmc52.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.C9KcOn5Z.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.CkaOcVhA.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/D0ckVWAN.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Hi2TnX8w.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/7wEiQzZd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DebzxSed.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C99D3Ad6.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNHJZz-i.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BB1Po_5n.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BQRYU-Cl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/21.DUEdHDmq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HQge6qmG.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/un9qgxrk.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CN18iHxM.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/VyNk_xNi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/q7FuzoC2.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/rcgfH6Am.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="manifest" href="/manifest.webmanifest"/> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 970 recipes across 94 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--131j3h6--><meta name="description" content="Leads with richness that coats and comforts, aromatics blooming from the first bite, fading in warm spice."/><!----><title>Butter Chicken: The World Table</title>
+		<link href="/table/_app/immutable/assets/0.G4gYEnIL.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/Ornament.D4liLlNF.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeDetailView.DWgnlVC-.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: every dish serves four unless noted</p></div> <dl class="counts svelte-12qhfyh"><div><dt class="svelte-12qhfyh">Recipes</dt><dd class="svelte-12qhfyh">970</dd></div> <div><dt class="svelte-12qhfyh">Chapters</dt><dd class="svelte-12qhfyh">94</dd></div> <div><dt class="svelte-12qhfyh">Lexicon</dt><dd class="svelte-12qhfyh">479</dd></div></dl></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" href="/table/recipes">Library<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service">☀ Day service</button></div></nav> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><article class="shell sheet svelte-131j3h6"><nav class="crumbs svelte-131j3h6" data-print="hide"><a href="/table/recipes" class="svelte-131j3h6">All chapters</a> <span aria-hidden="true">›</span> <a href="/table/chapter/indian" class="svelte-131j3h6">Indian</a></nav> <header class="head svelte-131j3h6"><p class="eyebrow">Indian · Main</p> <h1 class="svelte-131j3h6">Butter Chicken</h1> <ul class="stats svelte-131j3h6"><li class="svelte-131j3h6">Intermediate</li> <li class="svelte-131j3h6">60 min</li> <li class="svelte-131j3h6">Serves 4</li> <li class="svelte-131j3h6">$$</li> <!--[-1--><!--]--> <!--[-1--><!--]--></ul> <p class="palate svelte-131j3h6"><span class="tags svelte-131j3h6">rich · aromatic · gently hot · warm-spiced</span> <span class="sentence svelte-131j3h6">Leads with richness that coats and comforts, aromatics blooming from the first bite, fading in warm spice.</span></p></header> <div class="tools svelte-131j3h6" data-print="hide"><div class="group svelte-131j3h6" role="group" aria-label="Scale the recipe"><!--[--><button aria-pressed="false" class="svelte-131j3h6">×½</button><button aria-pressed="true" class="svelte-131j3h6 on">×1</button><button aria-pressed="false" class="svelte-131j3h6">×2</button><button aria-pressed="false" class="svelte-131j3h6">×3</button><!--]--></div> <div class="group svelte-131j3h6" role="group" aria-label="Units"><button aria-pressed="true" class="svelte-131j3h6 on">Metric</button> <button aria-pressed="false" class="svelte-131j3h6">US</button></div> <button class="chip svelte-131j3h6">Cook mode ▸</button> <button class="chip pin svelte-131j3h6" aria-pressed="false">📌 Add to menu</button> <button class="chip svelte-131j3h6">Print</button></div> <div class="cols svelte-131j3h6"><section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Ingredients</h2> <ul class="ingredients svelte-131j3h6"><!--[--><!--[-1--><li class="item svelte-131j3h6"><span>600g chicken thighs, in yogurt + ginger-garlic + chili powder 1h</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>400g tomato purée</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>80g butter, 100ml cream</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>1 tbsp garam masala, 1 tsp each kasuri methi, sugar</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>Ginger, garlic, green chili</span> <!--[-1--><!--]--></li><!--]--><!--]--></ul> <!--[-1--><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The skills inside</h2> <p class="skills svelte-131j3h6"><!--[--><a href="/table/technique/charring-over-open-flame" class="svelte-131j3h6">Charring over open flame</a><a href="/table/technique/the-broiler-heat-from-above" class="svelte-131j3h6">The broiler: heat from above</a><a href="/table/technique/marinating-acid-salt-and-time" class="svelte-131j3h6">Marinating: acid, salt and time</a><a href="/table/technique/mashing-and-pureeing" class="svelte-131j3h6">Mashing &amp; puréeing</a><!--]--></p><!--]--> <h2 class="sec svelte-131j3h6">Allergen screen</h2> <p class="equip svelte-131j3h6"><!--[0--><b>Found:</b> dairy<!--]--></p> <p class="screened svelte-131j3h6">Screened for: gluten, dairy, egg, nuts, peanuts, fish, shellfish, molluscs, soy, sesame, celery, mustard, lupin, alcohol. <b>Not screened:</b> sulphites.</p> <!--[-1--><!--]--></section> <section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Method</h2> <ol class="steps svelte-131j3h6"><!--[--><li class="step svelte-131j3h6">Char the marinated chicken hard under a broiler or in a dry pan; set aside. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Simmer tomatoes with aromatics 20 min; blend silky; strain if you're fancy. <!--[0--><span class="dur svelte-131j3h6">20 min</span><!--]--></li><li class="step svelte-131j3h6">Mount with butter and cream; season with garam masala and crushed kasuri methi. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Fold in chicken and its juices; simmer 5 min. <!--[0--><span class="dur svelte-131j3h6">5 min</span><!--]--></li><!--]--></ol></section></div> <!--[1--><section class="standard judged svelte-131j3h6"><h2 class="sec svelte-131j3h6">How to tell it is going right</h2> <!--[-1--><!--]--> <p class="judgedintro svelte-131j3h6">This dish has no standard of its own yet. It is judged on the techniques it exercises: checked at the pan, while there is still something to be
+				done about it.</p> <!--[--><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/charring-over-open-flame" class="svelte-131j3h6">Charring over open flame</a> <span class="judgedcount svelte-131j3h6">13 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">The surface met the fiercest heat available (flame, a broiler, or bare hot metal) with nothing between them, and it shows as true blistering and blackening rather than gentle, even browning.</li><li class="svelte-131j3h6">The char matches the surface’s fate: where it will be eaten, black sits in patches over deep colour with every face having had its turn, and where the skin is to be peeled away, it may go to an even black, because the char there works on the flesh below and then leaves with the skin.</li><li class="svelte-131j3h6">It smells of smoke and toasted surface with no acrid edge that stings the nose: acrid means it went past, and acrid does not cook out.</li><li class="svelte-131j3h6">Just under the char it is cooked (softened, steaming, collapsed, or puffed, whichever the dish wants) because the flame did the surface and the trapped heat did the rest.</li><li class="svelte-131j3h6">A taste carries the smoke without mouthfuls of ash: the black that flakes away is a seasoning, not a layer.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> It was left on one face too long or held too close, so one side carbonised to ash while the rest stayed raw, and the smell turned acrid, which follows the dish through every later step and cannot be seasoned away.</p></div><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/the-broiler-heat-from-above" class="svelte-131j3h6">The broiler: heat from above</a> <span class="judgedcount svelte-131j3h6">22 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">The element is fully lit and the compartment is hot before anything goes under it. A broiler switched on with the food already in place browns nothing for several minutes and then burns it in one.</li><li class="svelte-131j3h6">The distance was set before the dish went in, not adjusted afterwards with a hot dish in one hand: how close it sits is the only heat control this method has.</li><li class="svelte-131j3h6">Somebody stayed with it for the whole time. The window between pale and bitter is tens of seconds, and nothing under a broiler is ever safe to walk away from.</li><li class="svelte-131j3h6">The surface has coloured evenly right across, having been turned at least once; every grill has a hot corner and none of them say where it is.</li><li class="svelte-131j3h6">What is underneath is no further cooked than when it went in. Top heat is there to finish a surface, and anything that came out hotter all the way through was reheated rather than glazed.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> It was treated as an oven setting: food in, timer set, cook walks away. Radiant heat from above has no gentle phase, so the surface goes from pale to bitter inside a minute while the inside is untouched, and there is no stage in between to catch.</p></div><!--]--></section><!--]--> <aside class="note recipe-note svelte-131j3h6"><p class="eyebrow">From the pass</p> <p class="notebody svelte-131j3h6">Kasuri methi (dried fenugreek leaf, crushed between your palms into the finished sauce) is the flavor people can't name but always miss; without it this is just chicken in tomato cream. The char matters equally: murgh makhani was invented at Delhi's Moti Mahal in the 1950s as a way to revive day-old tandoori chicken in butter and tomato, so the smoky edges aren't garnish, they're the dish's origin story. Balance the tomatoes' acidity with sugar until the sauce stops arguing.</p></aside> <section class="pairing svelte-131j3h6"><div class="orn svelte-1dnahwc" aria-hidden="true" style="font-size:15px"><span class="rule svelte-1dnahwc"></span> <span class="mark svelte-1dnahwc">❦</span> <span class="rule svelte-1dnahwc"></span></div><!----> <h2 class="sec centered svelte-131j3h6">At the Table</h2> <dl class="svelte-131j3h6"><div class="svelte-131j3h6"><dt class="svelte-131j3h6">The Pour</dt><dd class="svelte-131j3h6">Off-dry Riesling (Mosel Kabinett)</dd></div> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Also Right</dt><dd class="svelte-131j3h6">Gewürztraminer or off-dry Chenin</dd></div> <!--[0--><div class="svelte-131j3h6"><dt class="svelte-131j3h6">From the Taps</dt><dd class="svelte-131j3h6">Crisp lager or pilsner</dd></div><!--]--> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Zero-Proof</dt><dd class="svelte-131j3h6">Sweet lassi</dd></div></dl> <p class="why svelte-131j3h6">Sugar, cold, and low alcohol are the fire code: sweetness tames capsaicin while acid resets the palate; tannin would fan the flames.</p></section> <section class="notes svelte-131j3h6" data-print="hide"><label for="famnotes" class="sec svelte-131j3h6">Family notes</label> <p class="hint svelte-131j3h6">Saved on this device and kept across visits: export from My Menu to move them.</p> <textarea id="famnotes" rows="4" placeholder="Your adjustments, stains, and marginalia…" class="svelte-131j3h6"></textarea></section> <!--[-1--><!--]--> <section class="films svelte-131j3h6" data-print="hide"><h2 class="sec svelte-131j3h6">Film school</h2> <!--[-1--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Butter%20Chicken%20recipe" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">This dish, cooked on camera</span> <span class="vsub svelte-131j3h6">Search films of Butter Chicken</span></a> <!--[--><a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=naan%20tandoor%20technique%20home%20oven" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Technique: Tandoor breads</span><span class="vsub svelte-131j3h6">The skill inside this recipe</span></a><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Ranveer%20Brar%20Butter%20Chicken" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Study with Ranveer Brar</span> <span class="vsub svelte-131j3h6">technique and story from a master of Indian kitchens</span></a></section></article><!--]--><!----></main> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----> <!--[-1--><!--]--><!----> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 970 recipes · 94 chapters · Chef’s Lexicon: 479 terms</div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_t76pa1 = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.Bx0IplWY.js"),
+						import("/table/_app/immutable/entry/app.C9KcOn5Z.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 21],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=23"></script>
+<script src="/shared/oot-profiles.js?v=23"></script>
+<script src="/shared/oot-home.js?v=23"></script>
+<script src="/shared/oot-auth.js?v=23"></script>
+<script src="/shared/oot-gate.js?v=23"></script>
+<script src="/shared/oot-locks.js?v=23"></script>
+<script src="/shared/oot-pass.js?v=23"></script>
+<script src="/shared/oot-log.js?v=23"></script>
+<script src="/shared/oot-bar.js?v=23"></script>
+</body>
+</html>

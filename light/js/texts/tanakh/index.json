@@ -1,0 +1,281 @@
+{
+ "title": "The Hebrew Bible",
+ "translation": "The Holy Scriptures: A New Translation (JPS 1917)",
+ "license": "Public domain",
+ "source": "Sefaria",
+ "books": [
+  {
+   "part": "01",
+   "book": "Genesis",
+   "section": "Torah",
+   "chapters": 50,
+   "bytes": 204269
+  },
+  {
+   "part": "02",
+   "book": "Exodus",
+   "section": "Torah",
+   "chapters": 40,
+   "bytes": 173796
+  },
+  {
+   "part": "03",
+   "book": "Leviticus",
+   "section": "Torah",
+   "chapters": 27,
+   "bytes": 128560
+  },
+  {
+   "part": "04",
+   "book": "Numbers",
+   "section": "Torah",
+   "chapters": 36,
+   "bytes": 179382
+  },
+  {
+   "part": "05",
+   "book": "Deuteronomy",
+   "section": "Torah",
+   "chapters": 34,
+   "bytes": 149760
+  },
+  {
+   "part": "06",
+   "book": "Joshua",
+   "section": "Prophets",
+   "chapters": 24,
+   "bytes": 103446
+  },
+  {
+   "part": "07",
+   "book": "Judges",
+   "section": "Prophets",
+   "chapters": 21,
+   "bytes": 101864
+  },
+  {
+   "part": "08",
+   "book": "I Samuel",
+   "section": "Prophets",
+   "chapters": 31,
+   "bytes": 133970
+  },
+  {
+   "part": "09",
+   "book": "II Samuel",
+   "section": "Prophets",
+   "chapters": 24,
+   "bytes": 110338
+  },
+  {
+   "part": "10",
+   "book": "I Kings",
+   "section": "Prophets",
+   "chapters": 22,
+   "bytes": 130844
+  },
+  {
+   "part": "11",
+   "book": "II Kings",
+   "section": "Prophets",
+   "chapters": 25,
+   "bytes": 124604
+  },
+  {
+   "part": "12",
+   "book": "Isaiah",
+   "section": "Prophets",
+   "chapters": 66,
+   "bytes": 197198
+  },
+  {
+   "part": "13",
+   "book": "Jeremiah",
+   "section": "Prophets",
+   "chapters": 52,
+   "bytes": 228202
+  },
+  {
+   "part": "14",
+   "book": "Ezekiel",
+   "section": "Prophets",
+   "chapters": 48,
+   "bytes": 209279
+  },
+  {
+   "part": "15",
+   "book": "Hosea",
+   "section": "Prophets",
+   "chapters": 14,
+   "bytes": 28009
+  },
+  {
+   "part": "16",
+   "book": "Joel",
+   "section": "Prophets",
+   "chapters": 4,
+   "bytes": 10937
+  },
+  {
+   "part": "17",
+   "book": "Amos",
+   "section": "Prophets",
+   "chapters": 9,
+   "bytes": 22093
+  },
+  {
+   "part": "18",
+   "book": "Obadiah",
+   "section": "Prophets",
+   "chapters": 1,
+   "bytes": 3629
+  },
+  {
+   "part": "19",
+   "book": "Jonah",
+   "section": "Prophets",
+   "chapters": 4,
+   "bytes": 7036
+  },
+  {
+   "part": "20",
+   "book": "Micah",
+   "section": "Prophets",
+   "chapters": 7,
+   "bytes": 16861
+  },
+  {
+   "part": "21",
+   "book": "Nahum",
+   "section": "Prophets",
+   "chapters": 3,
+   "bytes": 6969
+  },
+  {
+   "part": "22",
+   "book": "Habakkuk",
+   "section": "Prophets",
+   "chapters": 3,
+   "bytes": 8074
+  },
+  {
+   "part": "23",
+   "book": "Zephaniah",
+   "section": "Prophets",
+   "chapters": 3,
+   "bytes": 8807
+  },
+  {
+   "part": "24",
+   "book": "Haggai",
+   "section": "Prophets",
+   "chapters": 2,
+   "bytes": 6014
+  },
+  {
+   "part": "25",
+   "book": "Zechariah",
+   "section": "Prophets",
+   "chapters": 14,
+   "bytes": 33999
+  },
+  {
+   "part": "26",
+   "book": "Malachi",
+   "section": "Prophets",
+   "chapters": 3,
+   "bytes": 9605
+  },
+  {
+   "part": "27",
+   "book": "Psalms",
+   "section": "Writings",
+   "chapters": 150,
+   "bytes": 235047
+  },
+  {
+   "part": "28",
+   "book": "Proverbs",
+   "section": "Writings",
+   "chapters": 31,
+   "bytes": 83038
+  },
+  {
+   "part": "29",
+   "book": "Job",
+   "section": "Writings",
+   "chapters": 42,
+   "bytes": 98091
+  },
+  {
+   "part": "30",
+   "book": "Song of Songs",
+   "section": "Writings",
+   "chapters": 8,
+   "bytes": 14161
+  },
+  {
+   "part": "31",
+   "book": "Ruth",
+   "section": "Writings",
+   "chapters": 4,
+   "bytes": 13645
+  },
+  {
+   "part": "32",
+   "book": "Lamentations",
+   "section": "Writings",
+   "chapters": 5,
+   "bytes": 18751
+  },
+  {
+   "part": "33",
+   "book": "Ecclesiastes",
+   "section": "Writings",
+   "chapters": 12,
+   "bytes": 29308
+  },
+  {
+   "part": "34",
+   "book": "Esther",
+   "section": "Writings",
+   "chapters": 10,
+   "bytes": 31349
+  },
+  {
+   "part": "35",
+   "book": "Daniel",
+   "section": "Writings",
+   "chapters": 12,
+   "bytes": 63944
+  },
+  {
+   "part": "36",
+   "book": "Ezra",
+   "section": "Writings",
+   "chapters": 10,
+   "bytes": 41287
+  },
+  {
+   "part": "37",
+   "book": "Nehemiah",
+   "section": "Writings",
+   "chapters": 13,
+   "bytes": 58425
+  },
+  {
+   "part": "38",
+   "book": "I Chronicles",
+   "section": "Writings",
+   "chapters": 29,
+   "bytes": 114105
+  },
+  {
+   "part": "39",
+   "book": "II Chronicles",
+   "section": "Writings",
+   "chapters": 36,
+   "bytes": 142511
+  }
+ ]
+}

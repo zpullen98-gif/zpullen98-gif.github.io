@@ -1,0 +1,109 @@
+/* ============ The Concourse, as the plate itself ============
+   The artwork is the page. Five transparent anchors sit over the five painted
+   cards, positioned in PERCENTAGES of the image box, so they stay locked to
+   those cards at every width without a media query or a magic number.
+
+   The rectangles were measured off the image rather than guessed: the card
+   borders are a distinct warm gold on a near-black ground, so a scan for gold
+   pixels found every card edge to the pixel. Eyeballing hit areas is how they
+   end up half a card out on somebody else's screen.
+
+   The image carries its own type, which a screen reader cannot read, so each
+   anchor carries its wing's name as an accessible name, the image carries a
+   description, and a row of real text links sits underneath. That is the price
+   of painted lettering, and it is payable.
+   ============ */
+
+:root {
+  --gild: #c9a86a;
+  --gild-hi: #e6cf9c;
+  --plate: #0b0908;
+  --ash-dim: rgba(217, 210, 196, 0.6);
+  --hair-firm: rgba(201, 168, 106, 0.5);
+}
+
+body { background: var(--plate); margin: 0; }
+
+/* The masthead is painted into the artwork. The DOM one stays for screen
+   readers and search engines, and comes out of the flow. */
+header.top { padding: 0; }
+/* GATED ON .plate-live, which hub-plate.js sets only after the artwork is
+   actually in the document. Ungated, this hid the masthead and the doors for
+   every reader whose plate never arrived — JavaScript off, a stale or 404'd
+   hub-plate.js, a missing config — and the hub rendered as an empty page
+   with its fallback links clipped to one pixel. The fallbacks are the whole
+   point of keeping this markup; they must be visible by default. */
+.plate-live header.top .wrap > :not(.acct):not(.acct-form):not(.acct-note) {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---- the plate ------------------------------------------------------- */
+.plate {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 1024px;      /* the artwork's own width; upscaling would only soften it */
+  margin: 0 auto;
+  line-height: 0;         /* removes the inline-image baseline gap */
+}
+.plate img { display: block; width: 100%; height: auto; }
+
+/* Each hotspot is a real anchor with a real href, so middle-click, right-click
+   and the status bar all behave the way anyone expects. */
+.spot {
+  position: absolute;
+  display: block;
+  border-radius: 22px 22px 8px 8px / 30px 30px 8px 8px;
+  background: rgba(201, 168, 106, 0);
+  outline: 1px solid transparent;
+  transition: box-shadow .22s ease, background-color .22s ease;
+  -webkit-tap-highlight-color: rgba(201, 168, 106, .25);
+}
+.spot:hover, .spot:focus-visible {
+  background: rgba(201, 168, 106, .10);
+  box-shadow: 0 0 0 1px rgba(230, 207, 156, .8), 0 0 26px rgba(201, 168, 106, .35);
+}
+.spot:focus-visible { outline: 2px solid var(--gild-hi); outline-offset: 2px; }
+.spot:active { background: rgba(201, 168, 106, .18); }
+@media (prefers-reduced-motion: reduce) { .spot { transition: none; } }
+
+/* Measured off the 1024x1536 artwork. */
+.spot-table   { left:  5.57%; top: 38.87%; width: 28.32%; height: 30.14%; }
+.spot-ledger  { left: 35.74%; top: 38.87%; width: 27.93%; height: 30.14%; }
+.spot-codex   { left: 65.33%; top: 38.87%; width: 28.22%; height: 30.14%; }
+.spot-light   { left: 15.72%; top: 69.47%; width: 33.20%; height: 25.85%; }
+.spot-almanac { left: 50.78%; top: 69.47%; width: 33.11%; height: 25.85%; }
+
+/* A quiet row of names beneath the plate. The painted labels are pixels; these
+   are text, so they are selectable, searchable and translatable, and they are
+   what a keyboard user tabs through rather than hunting an invisible hotspot. */
+.plate-index {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 4px 8px;
+  max-width: 1024px; margin: 16px auto 0; padding: 0 16px;
+  list-style: none;
+}
+.plate-index a {
+  display: block;
+  font-family: Cinzel, Georgia, serif;
+  font-size: .7rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ash-dim); text-decoration: none;
+  padding: 9px 12px; border: 1px solid transparent; border-radius: 2px;
+}
+.plate-index a:hover, .plate-index a:focus-visible {
+  color: var(--gild-hi); border-color: var(--hair-firm);
+}
+
+.acct { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 24px auto 0; padding: 0 16px; }
+.acct-form, .acct-note { margin-left: auto; margin-right: auto; text-align: center; }
+
+/* The doors list is what the plate replaces. It stays in the DOM as the
+   fallback when the artwork cannot load, and for screen readers. */
+.plate-live #pillars { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+/* the artwork loaded and then failed: show everything again */
+.plate-failed #pillars { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
+.plate-failed header.top .wrap > * { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; }
+.plate-failed .plate { display: none; }
+
+.venue-note { text-align: center; }

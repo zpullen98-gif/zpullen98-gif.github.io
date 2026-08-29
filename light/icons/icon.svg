@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="First Light">
+  <defs>
+    <radialGradient id="d" cx="38%" cy="32%" r="72%">
+      <stop offset="0%" stop-color="#F3E4CE"/>
+      <stop offset="45%" stop-color="#E4DECF"/>
+      <stop offset="100%" stop-color="#DCE0D8"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="55%" stop-color="#E8DCC6" stop-opacity=".28"/>
+      <stop offset="100%" stop-color="#E8DCC6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" fill="#14161A"/>
+  <circle cx="256" cy="256" r="250" fill="url(#halo)"/>
+  <circle cx="256" cy="256" r="154" fill="url(#d)"/>
+</svg>

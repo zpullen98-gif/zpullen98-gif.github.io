@@ -1,0 +1,17 @@
+{
+	"name": "The World Table",
+	"short_name": "World Table",
+	"description": "An interactive culinary field guide — 970 recipes, a 479-term chef's lexicon, pantry matching and a ten-semester path of study.",
+	"start_url": ".",
+	"scope": ".",
+	"display": "standalone",
+	"orientation": "any",
+	"background_color": "#191612",
+	"theme_color": "#191612",
+	"categories": ["food", "education", "lifestyle"],
+	"icons": [
+		{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+		{ "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+		{ "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+	]
+}

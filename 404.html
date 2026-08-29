@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#12100e">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<title>Not found: Outside Of Time</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Outside Of Time">
+<script>
+/* GitHub Pages serves this file for any unknown path on the site. The World
+   Table has one route that is not prerendered (/table/family/<slug>), and cold
+   deep links to it land here before its service worker is installed. Hand
+   those to its SPA shell instead of showing a hub error for a page that does
+   in fact exist. Everything else falls through to the message below.
+
+   Stash the route first. Redirecting to the shell replaces the whole URL, so
+   without this the shell boots at /table/shell.html, finds no route by that
+   name and renders its own not-found page: the redirect would defeat the
+   thing it exists to do. A matching restore snippet in table/shell.html puts
+   the path back before SvelteKit reads location, and .scripts/inject-oot-bar.mjs
+   re-applies it after every rebuild.
+
+   The shell.html guard stops a redirect loop if the shell is ever missing:
+   without it, /table/shell.html 404s straight back into this file. */
+(function () {
+  var p = location.pathname;
+  if (p.indexOf('/table/') !== 0 || p === '/table/shell.html') return;
+  try {
+    sessionStorage.setItem('oot:table-route', p + location.search + location.hash);
+  } catch (e) { /* private mode: the shell still loads, just at its own URL */ }
+  location.replace('/table/shell.html');
+})();
+</script>
+<style>
+:root{color-scheme:dark}
+body{margin:0;background:#12100e;color:#f0eae0;font:16px/1.6 ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:24px}
+h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(1.6rem,7vw,2.4rem);margin:0 0 .3em}
+p{color:rgba(240,234,224,.62);margin:0 0 2em}
+a{color:#c6a664}
+</style>
+</head>
+<body>
+<div>
+<h1>That door isn't here</h1>
+<p>The page you asked for doesn't exist.</p>
+<p><a href="/">Return to Outside Of Time</a></p>
+</div>
+</body>
+</html>

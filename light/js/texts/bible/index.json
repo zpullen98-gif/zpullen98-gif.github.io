@@ -1,0 +1,404 @@
+{
+ "title": "The Bible",
+ "translation": "World English Bible",
+ "license": "Public domain",
+ "source": "getbible.net",
+ "books": [
+  {
+   "part": "01",
+   "book": "Genesis",
+   "chapters": 50,
+   "bytes": 193423
+  },
+  {
+   "part": "02",
+   "book": "Exodus",
+   "chapters": 40,
+   "bytes": 165162
+  },
+  {
+   "part": "03",
+   "book": "Leviticus",
+   "chapters": 27,
+   "bytes": 124355
+  },
+  {
+   "part": "04",
+   "book": "Numbers",
+   "chapters": 36,
+   "bytes": 170813
+  },
+  {
+   "part": "05",
+   "book": "Deuteronomy",
+   "chapters": 34,
+   "bytes": 143129
+  },
+  {
+   "part": "06",
+   "book": "Joshua",
+   "chapters": 24,
+   "bytes": 97157
+  },
+  {
+   "part": "07",
+   "book": "Judges",
+   "chapters": 21,
+   "bytes": 97451
+  },
+  {
+   "part": "08",
+   "book": "Ruth",
+   "chapters": 4,
+   "bytes": 13093
+  },
+  {
+   "part": "09",
+   "book": "1 Samuel",
+   "chapters": 31,
+   "bytes": 127811
+  },
+  {
+   "part": "10",
+   "book": "2 Samuel",
+   "chapters": 24,
+   "bytes": 105485
+  },
+  {
+   "part": "11",
+   "book": "1 Kings",
+   "chapters": 22,
+   "bytes": 124785
+  },
+  {
+   "part": "12",
+   "book": "2 Kings",
+   "chapters": 25,
+   "bytes": 119781
+  },
+  {
+   "part": "13",
+   "book": "1 Chronicles",
+   "chapters": 29,
+   "bytes": 111141
+  },
+  {
+   "part": "14",
+   "book": "2 Chronicles",
+   "chapters": 36,
+   "bytes": 137806
+  },
+  {
+   "part": "15",
+   "book": "Ezra",
+   "chapters": 10,
+   "bytes": 40066
+  },
+  {
+   "part": "16",
+   "book": "Nehemiah",
+   "chapters": 13,
+   "bytes": 56733
+  },
+  {
+   "part": "17",
+   "book": "Esther",
+   "chapters": 10,
+   "bytes": 29900
+  },
+  {
+   "part": "18",
+   "book": "Job",
+   "chapters": 42,
+   "bytes": 94674
+  },
+  {
+   "part": "19",
+   "book": "Psalms",
+   "chapters": 150,
+   "bytes": 220969
+  },
+  {
+   "part": "20",
+   "book": "Proverbs",
+   "chapters": 31,
+   "bytes": 79304
+  },
+  {
+   "part": "21",
+   "book": "Ecclesiastes",
+   "chapters": 12,
+   "bytes": 28433
+  },
+  {
+   "part": "22",
+   "book": "Song of Songs",
+   "chapters": 8,
+   "bytes": 13805
+  },
+  {
+   "part": "23",
+   "book": "Isaiah",
+   "chapters": 66,
+   "bytes": 192092
+  },
+  {
+   "part": "24",
+   "book": "Jeremiah",
+   "chapters": 52,
+   "bytes": 222149
+  },
+  {
+   "part": "25",
+   "book": "Lamentations",
+   "chapters": 5,
+   "bytes": 18195
+  },
+  {
+   "part": "26",
+   "book": "Ezekiel",
+   "chapters": 48,
+   "bytes": 202625
+  },
+  {
+   "part": "27",
+   "book": "Daniel",
+   "chapters": 12,
+   "bytes": 61645
+  },
+  {
+   "part": "28",
+   "book": "Hosea",
+   "chapters": 14,
+   "bytes": 27438
+  },
+  {
+   "part": "29",
+   "book": "Joel",
+   "chapters": 3,
+   "bytes": 10581
+  },
+  {
+   "part": "30",
+   "book": "Amos",
+   "chapters": 9,
+   "bytes": 21858
+  },
+  {
+   "part": "31",
+   "book": "Obadiah",
+   "chapters": 1,
+   "bytes": 3421
+  },
+  {
+   "part": "32",
+   "book": "Jonah",
+   "chapters": 4,
+   "bytes": 6699
+  },
+  {
+   "part": "33",
+   "book": "Micah",
+   "chapters": 7,
+   "bytes": 16021
+  },
+  {
+   "part": "34",
+   "book": "Nahum",
+   "chapters": 3,
+   "bytes": 6687
+  },
+  {
+   "part": "35",
+   "book": "Habakkuk",
+   "chapters": 3,
+   "bytes": 7597
+  },
+  {
+   "part": "36",
+   "book": "Zephaniah",
+   "chapters": 3,
+   "bytes": 8478
+  },
+  {
+   "part": "37",
+   "book": "Haggai",
+   "chapters": 2,
+   "bytes": 5753
+  },
+  {
+   "part": "38",
+   "book": "Zechariah",
+   "chapters": 14,
+   "bytes": 32494
+  },
+  {
+   "part": "39",
+   "book": "Malachi",
+   "chapters": 4,
+   "bytes": 9332
+  },
+  {
+   "part": "40",
+   "book": "Matthew",
+   "chapters": 28,
+   "bytes": 125598
+  },
+  {
+   "part": "41",
+   "book": "Mark",
+   "chapters": 16,
+   "bytes": 78755
+  },
+  {
+   "part": "42",
+   "book": "Luke",
+   "chapters": 24,
+   "bytes": 133341
+  },
+  {
+   "part": "43",
+   "book": "John",
+   "chapters": 21,
+   "bytes": 100908
+  },
+  {
+   "part": "44",
+   "book": "Acts",
+   "chapters": 28,
+   "bytes": 128522
+  },
+  {
+   "part": "45",
+   "book": "Romans",
+   "chapters": 16,
+   "bytes": 51610
+  },
+  {
+   "part": "46",
+   "book": "1 Corinthians",
+   "chapters": 16,
+   "bytes": 50206
+  },
+  {
+   "part": "47",
+   "book": "2 Corinthians",
+   "chapters": 13,
+   "bytes": 32765
+  },
+  {
+   "part": "48",
+   "book": "Galatians",
+   "chapters": 6,
+   "bytes": 16883
+  },
+  {
+   "part": "49",
+   "book": "Ephesians",
+   "chapters": 6,
+   "bytes": 16880
+  },
+  {
+   "part": "50",
+   "book": "Philippians",
+   "chapters": 4,
+   "bytes": 11919
+  },
+  {
+   "part": "51",
+   "book": "Colossians",
+   "chapters": 4,
+   "bytes": 11071
+  },
+  {
+   "part": "52",
+   "book": "1 Thessalonians",
+   "chapters": 5,
+   "bytes": 9969
+  },
+  {
+   "part": "53",
+   "book": "2 Thessalonians",
+   "chapters": 3,
+   "bytes": 5642
+  },
+  {
+   "part": "54",
+   "book": "1 Timothy",
+   "chapters": 6,
+   "bytes": 13108
+  },
+  {
+   "part": "55",
+   "book": "2 Timothy",
+   "chapters": 4,
+   "bytes": 9177
+  },
+  {
+   "part": "56",
+   "book": "Titus",
+   "chapters": 3,
+   "bytes": 5350
+  },
+  {
+   "part": "57",
+   "book": "Philemon",
+   "chapters": 1,
+   "bytes": 2389
+  },
+  {
+   "part": "58",
+   "book": "Hebrews",
+   "chapters": 13,
+   "bytes": 38369
+  },
+  {
+   "part": "59",
+   "book": "James",
+   "chapters": 5,
+   "bytes": 12380
+  },
+  {
+   "part": "60",
+   "book": "1 Peter",
+   "chapters": 5,
+   "bytes": 13605
+  },
+  {
+   "part": "61",
+   "book": "2 Peter",
+   "chapters": 3,
+   "bytes": 8689
+  },
+  {
+   "part": "62",
+   "book": "1 John",
+   "chapters": 5,
+   "bytes": 12903
+  },
+  {
+   "part": "63",
+   "book": "2 John",
+   "chapters": 1,
+   "bytes": 1659
+  },
+  {
+   "part": "64",
+   "book": "3 John",
+   "chapters": 1,
+   "bytes": 1629
+  },
+  {
+   "part": "65",
+   "book": "Jude",
+   "chapters": 1,
+   "bytes": 3619
+  },
+  {
+   "part": "66",
+   "book": "Revelation",
+   "chapters": 22,
+   "bytes": 60710
+  }
+ ]
+}

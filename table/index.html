@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.Bx0IplWY.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BbZsb-hd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/9WMmmc52.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.C9KcOn5Z.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.CkaOcVhA.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/D0ckVWAN.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Hi2TnX8w.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/7wEiQzZd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DebzxSed.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C99D3Ad6.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNHJZz-i.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BB1Po_5n.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BQRYU-Cl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/2.B50S9kIJ.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BqHacHIJ.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="manifest" href="/manifest.webmanifest"/> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 970 recipes across 94 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><title>The World Table: Interactive Culinary Field Guide</title>
+		<link href="/table/_app/immutable/assets/0.G4gYEnIL.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/2.CNOXRh6s.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><h1 class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></h1><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: every dish serves four unless noted</p></div> <dl class="counts svelte-12qhfyh"><div><dt class="svelte-12qhfyh">Recipes</dt><dd class="svelte-12qhfyh">970</dd></div> <div><dt class="svelte-12qhfyh">Chapters</dt><dd class="svelte-12qhfyh">94</dd></div> <div><dt class="svelte-12qhfyh">Lexicon</dt><dd class="svelte-12qhfyh">479</dd></div></dl></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh on" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/recipes">Library<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service">☀ Day service</button></div></nav> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><div class="oot-band-host svelte-ochcol"><section class="oot-sec"><div class="oot-sec-head"><h3>Today</h3><span>One dish, cooked properly, beats ten read about</span></div> <!--[0--><div class="oot-today"><div class="oot-today-main"><div class="oot-today-line">What do you do?</div> <div class="oot-today-sub">This only changes what the app puts first. Nothing is hidden either way, and you can
+						change it whenever you like.</div> <div class="rolepick svelte-ochcol"><button class="oot-chip svelte-ochcol">I run a kitchen<small class="svelte-ochcol">The pass, the costs, what has gone cold</small></button> <button class="oot-chip svelte-ochcol">I'm learning to cook<small class="svelte-ochcol">The ten-semester course, in teaching order</small></button> <button class="oot-chip svelte-ochcol">I work the floor<small class="svelte-ochcol">The menu, the words, what's in the dish</small></button></div></div></div><!--]--> <!--[-1--><!--]--></section> <section class="oot-sec"><div class="oot-sec-head"><h3>Learn</h3><span>Read it first, then cook what you read</span></div> <div class="oot-grid-links svelte-ochcol"><a href="/table/study" class="svelte-ochcol">Path of Study<small class="svelte-ochcol">Ten semesters, 45 dishes in teaching order</small></a> <a href="/table/technique" class="svelte-ochcol">Techniques<small class="svelte-ochcol">103 skills, and the dishes that drill each</small></a> <a href="/table/lexicon" class="svelte-ochcol">Chef's Lexicon<small class="svelte-ochcol">479 terms, with flashcards and a quiz</small></a> <a href="/table/palate" class="svelte-ochcol">The Palate<small class="svelte-ochcol">Taste it, name the fault, pull the gentlest lever</small></a> <a href="/table/family" class="svelte-ochcol">The Family Chapter<small class="svelte-ochcol">Add the dishes your kitchen actually cooks</small></a></div></section> <section class="oot-sec"><div class="oot-sec-head"><h3>Practise</h3><span>Until the menu comes without thinking</span></div> <div class="oot-grid-links svelte-ochcol"><a href="/table/menu/quiz" class="svelte-ochcol">Drill the Menu<small class="svelte-ochcol">Opens at four dishes on My Menu, 4 to go</small></a> <a href="/table/lexicon" class="svelte-ochcol">Lexicon Quiz<small class="svelte-ochcol">Ten questions on the words a cook is expected to know</small></a> <a href="/table/repertoire" class="svelte-ochcol">The Repertoire<small class="svelte-ochcol">What you can cook, and what is slipping</small></a> <a href="/table/pantry" class="svelte-ochcol">Pantry Match<small class="svelte-ochcol">What can you cook from what is in the walk-in</small></a> <a href="/table/menu" class="svelte-ochcol">My Menu<small class="svelte-ochcol">Enter the menu the house actually serves</small></a></div></section> <section class="oot-sec"><div class="oot-sec-head"><h3>Record</h3><span>What you have cooked, and where it lives</span></div> <!--[0--><div class="oot-meter"><div class="oot-meter-top"><span>The course</span><b>0%</b></div> <div class="oot-meter-track"><div class="oot-meter-fill" style="width:0%"></div></div></div><!--]--> <div class="oot-today-sub" style="margin-top:8px"><!--[-1-->0 of 45 on the course · 0 dishes
+				cooked in all · 0 pinned · 0 on the house menu.<!--]--> Everything is kept in this browser; export it from My Menu.</div> <div class="oot-today-sub" style="margin-top:6px"><a href="/table/repertoire">The Repertoire</a>, every dish you have cooked, how long ago, and
+			what is due.</div></section> <section class="oot-sec"><div class="oot-sec-head"><h3>The library</h3><span>When you want a dish rather than a lesson</span></div> <div class="oot-grid-links svelte-ochcol"><a href="/table/recipes" class="svelte-ochcol">All 970 recipes<small class="svelte-ochcol">Every dish in the book, filterable by course, difficulty, diet and season</small></a></div></section></div><!--]--><!----></main> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----> <!--[-1--><!--]--><!----> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 970 recipes · 94 chapters · Chef’s Lexicon: 479 terms</div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_t76pa1 = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.Bx0IplWY.js"),
+						import("/table/_app/immutable/entry/app.C9KcOn5Z.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=23"></script>
+<script src="/shared/oot-profiles.js?v=23"></script>
+<script src="/shared/oot-home.js?v=23"></script>
+<script src="/shared/oot-auth.js?v=23"></script>
+<script src="/shared/oot-gate.js?v=23"></script>
+<script src="/shared/oot-locks.js?v=23"></script>
+<script src="/shared/oot-pass.js?v=23"></script>
+<script src="/shared/oot-log.js?v=23"></script>
+<script src="/shared/oot-bar.js?v=23"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.Bx0IplWY.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BbZsb-hd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/9WMmmc52.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.C9KcOn5Z.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.CkaOcVhA.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/D0ckVWAN.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Hi2TnX8w.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/7wEiQzZd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DebzxSed.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C99D3Ad6.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNHJZz-i.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BB1Po_5n.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BQRYU-Cl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/30.BwBBSu2z.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HQge6qmG.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/D8uF8O9j.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CN18iHxM.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="manifest" href="/manifest.webmanifest"/> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 970 recipes across 94 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--2sxiwf--><!----><title>The water bath: The World Table</title>
+		<link href="/table/_app/immutable/assets/0.G4gYEnIL.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeCard.oUb6B6ly.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/30.Ci4HY-vZ.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: every dish serves four unless noted</p></div> <dl class="counts svelte-12qhfyh"><div><dt class="svelte-12qhfyh">Recipes</dt><dd class="svelte-12qhfyh">970</dd></div> <div><dt class="svelte-12qhfyh">Chapters</dt><dd class="svelte-12qhfyh">94</dd></div> <div><dt class="svelte-12qhfyh">Lexicon</dt><dd class="svelte-12qhfyh">479</dd></div></dl></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/recipes">Library<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service">☀ Day service</button></div></nav> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><div class="shell view"><nav class="crumbs svelte-2sxiwf" data-print="hide"><a href="/table/technique">The Techniques</a> · <span>The water bath</span></nav> <header class="head svelte-2sxiwf"><p class="eyebrow svelte-2sxiwf">Technique</p> <h1 class="svelte-2sxiwf">The water bath</h1> <p class="progress svelte-2sxiwf" aria-live="polite">7
+			dishes across 6
+			chapters · 0 marked cooked</p></header> <article class="sheet"><!--[0--><p class="taught svelte-2sxiwf">On the Path of Study: <!--[--><a href="/table/study">Semester 6: Pastry Fundamentals</a><!--]--></p><!--]--> <!--[-1--><!--]--> <section class="film svelte-2sxiwf" data-print="hide"><!--[1--><a href="https://www.youtube.com/results?search_query=bain%20marie%20water%20bath%20baking%20technique" target="_blank" rel="noopener" class="svelte-2sxiwf"><span class="lbl svelte-2sxiwf">This technique, on camera</span> <span class="sub svelte-2sxiwf">Search films of the water bath</span></a><!--]--></section> <!--[--><h2 class="sec svelte-2sxiwf">Dessert Atlas</h2> <ul class="grid svelte-2sxiwf"><!--[--><li class="slot svelte-2sxiwf"><a class="card svelte-1x0lit8" href="/table/recipe/new-york-cheesecake" data-slug="new-york-cheesecake"><span class="tab svelte-1x0lit8">Dessert Atlas</span> <h3 class="svelte-1x0lit8">New York Cheesecake</h3> <p class="sub svelte-1x0lit8">rich · floral · fiery</p> <div class="badges svelte-1x0lit8"><span class="badge d2 svelte-1x0lit8">Intermediate</span> <span class="badge svelte-1x0lit8">2 h</span> <!--[0--><span class="badge veg svelte-1x0lit8">Vegetarian</span><!--]--> <!--[-1--><!--]--></div></a><!----> <button class="mark svelte-2sxiwf" data-print="hide" aria-pressed="false" aria-label="Mark as cooked, New York Cheesecake">○</button></li><li class="slot svelte-2sxiwf"><a class="card svelte-1x0lit8" href="/table/recipe/tarte-au-citron" data-slug="tarte-au-citron"><span class="tab svelte-1x0lit8">Dessert Atlas</span> <h3 class="svelte-1x0lit8">Tarte au Citron</h3> <p class="sub svelte-1x0lit8">rich · bright · silky</p> <div class="badges svelte-1x0lit8"><span class="badge d3 svelte-1x0lit8">Advanced</span> <span class="badge svelte-1x0lit8">2 h 30 m</span> <!--[0--><span class="badge veg svelte-1x0lit8">Vegetarian</span><!--]--> <!--[-1--><!--]--></div></a><!----> <button class="mark svelte-2sxiwf" data-print="hide" aria-pressed="false" aria-label="Mark as cooked, Tarte au Citron">○</button></li><!--]--></ul><h2 class="sec svelte-2sxiwf">Filipino</h2> <ul class="grid svelte-2sxiwf"><!--[--><li class="slot svelte-2sxiwf"><a class="card svelte-1x0lit8" href="/table/recipe/leche-flan" data-slug="leche-flan"><span class="tab svelte-1x0lit8">Filipino</span> <h3 class="svelte-1x0lit8">Leche Flan</h3> <p class="sub svelte-1x0lit8">sweet-edged · rich · fiery</p> <div class="badges svelte-1x0lit8"><span class="badge d2 svelte-1x0lit8">Intermediate</span> <span class="badge svelte-1x0lit8">1 h 30 m</span> <!--[0--><span class="badge veg svelte-1x0lit8">Vegetarian</span><!--]--> <!--[-1--><!--]--></div></a><!----> <button class="mark svelte-2sxiwf" data-print="hide" aria-pressed="false" aria-label="Mark as cooked, Leche Flan">○</button></li><!--]--></ul><h2 class="sec svelte-2sxiwf">French</h2> <ul class="grid svelte-2sxiwf"><!--[--><li class="slot svelte-2sxiwf"><a class="card svelte-1x0lit8" href="/table/recipe/creme-brulee" data-slug="creme-brulee"><span class="tab svelte-1x0lit8">French</span> <h3 class="svelte-1x0lit8">Crème Brûlée</h3> <p class="sub svelte-1x0lit8">rich · floral · charred</p> <div class="badges svelte-1x0lit8"><span class="badge d2 svelte-1x0lit8">Intermediate</span> <span class="badge svelte-1x0lit8">60 min</span> <!--[0--><span class="badge veg svelte-1x0lit8">Vegetarian</span><!--]--> <!--[-1--><!--]--></div></a><!----> <button class="mark svelte-2sxiwf" data-print="hide" aria-pressed="false" aria-label="Mark as cooked, Crème Brûlée">○</button></li><!--]--></ul><h2 class="sec svelte-2sxiwf">Italian</h2> <ul class="grid svelte-2sxiwf"><!--[--><li class="slot svelte-2sxiwf"><a class="card svelte-1x0lit8" href="/table/recipe/tiramisu" data-slug="tiramisu"><span class="tab svelte-1x0lit8">Italian</span> <h3 class="svelte-1x0lit8">Tiramisu</h3> <p class="sub svelte-1x0lit8">rich</p> <div class="badges svelte-1x0lit8"><span class="badge d2 svelte-1x0lit8">Intermediate</span> <span class="badge svelte-1x0lit8">30 min</span> <!--[0--><span class="badge veg svelte-1x0lit8">Vegetarian</span><!--]--> <!--[-1--><!--]--></div></a><!----> <button class="mark svelte-2sxiwf" data-print="hide" aria-pressed="false" aria-label="Mark as cooked, Tiramisu">○</button></li><!--]--></ul><h2 class="sec svelte-2sxiwf">Malaysian</h2> <ul class="grid svelte-2sxiwf"><!--[--><li class="slot svelte-2sxiwf"><a class="card svelte-1x0lit8" href="/table/recipe/hainanese-chicken-rice" data-slug="hainanese-chicken-rice"><span class="tab svelte-1x0lit8">Malaysian</span> <h3 class="svelte-1x0lit8">Hainanese Chicken Rice</h3> <p class="sub svelte-1x0lit8">aromatic · herb-fresh · floral</p> <div class="badges svelte-1x0lit8"><span class="badge d2 svelte-1x0lit8">Intermediate</span> <span class="badge svelte-1x0lit8">1 h 30 m</span> <!--[-1--><!--]--> <!--[-1--><!--]--></div></a><!----> <button class="mark svelte-2sxiwf" data-print="hide" aria-pressed="false" aria-label="Mark as cooked, Hainanese Chicken Rice">○</button></li><!--]--></ul><h2 class="sec svelte-2sxiwf">The Saucier</h2> <ul class="grid svelte-2sxiwf"><!--[--><li class="slot svelte-2sxiwf"><a class="card svelte-1x0lit8" href="/table/recipe/sauce-hollandaise" data-slug="sauce-hollandaise"><span class="tab svelte-1x0lit8">The Saucier</span> <h3 class="svelte-1x0lit8">Sauce Hollandaise</h3> <p class="sub svelte-1x0lit8">rich · bright · gently hot</p> <div class="badges svelte-1x0lit8"><span class="badge d3 svelte-1x0lit8">Advanced</span> <span class="badge svelte-1x0lit8">25 min</span> <!--[0--><span class="badge veg svelte-1x0lit8">Vegetarian</span><!--]--> <!--[-1--><!--]--></div></a><!----> <button class="mark svelte-2sxiwf" data-print="hide" aria-pressed="false" aria-label="Mark as cooked, Sauce Hollandaise">○</button></li><!--]--></ul><!--]--></article></div><!--]--><!----></main> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----> <!--[-1--><!--]--><!----> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 970 recipes · 94 chapters · Chef’s Lexicon: 479 terms</div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_t76pa1 = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.Bx0IplWY.js"),
+						import("/table/_app/immutable/entry/app.C9KcOn5Z.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 30],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=23"></script>
+<script src="/shared/oot-profiles.js?v=23"></script>
+<script src="/shared/oot-home.js?v=23"></script>
+<script src="/shared/oot-auth.js?v=23"></script>
+<script src="/shared/oot-gate.js?v=23"></script>
+<script src="/shared/oot-locks.js?v=23"></script>
+<script src="/shared/oot-pass.js?v=23"></script>
+<script src="/shared/oot-log.js?v=23"></script>
+<script src="/shared/oot-bar.js?v=23"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.Bx0IplWY.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BbZsb-hd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/9WMmmc52.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.C9KcOn5Z.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.CkaOcVhA.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/D0ckVWAN.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Hi2TnX8w.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/7wEiQzZd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DebzxSed.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C99D3Ad6.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNHJZz-i.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BB1Po_5n.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BQRYU-Cl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/21.DUEdHDmq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HQge6qmG.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/un9qgxrk.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CN18iHxM.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/VyNk_xNi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/q7FuzoC2.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/rcgfH6Am.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="manifest" href="/manifest.webmanifest"/> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 970 recipes across 94 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--131j3h6--><meta name="description" content="Leads with richness that coats and comforts, a silken, spoon-slow texture, leaving a faint perfume."/><!----><title>Nanaimo Bars: The World Table</title>
+		<link href="/table/_app/immutable/assets/0.G4gYEnIL.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/Ornament.D4liLlNF.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeDetailView.DWgnlVC-.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: every dish serves four unless noted</p></div> <dl class="counts svelte-12qhfyh"><div><dt class="svelte-12qhfyh">Recipes</dt><dd class="svelte-12qhfyh">970</dd></div> <div><dt class="svelte-12qhfyh">Chapters</dt><dd class="svelte-12qhfyh">94</dd></div> <div><dt class="svelte-12qhfyh">Lexicon</dt><dd class="svelte-12qhfyh">479</dd></div></dl></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" href="/table/recipes">Library<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service">☀ Day service</button></div></nav> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><article class="shell sheet svelte-131j3h6"><nav class="crumbs svelte-131j3h6" data-print="hide"><a href="/table/recipes" class="svelte-131j3h6">All chapters</a> <span aria-hidden="true">›</span> <a href="/table/chapter/dessert-atlas" class="svelte-131j3h6">Dessert Atlas</a></nav> <header class="head svelte-131j3h6"><p class="eyebrow">Dessert Atlas · Dessert</p> <h1 class="svelte-131j3h6">Nanaimo Bars</h1> <ul class="stats svelte-131j3h6"><li class="svelte-131j3h6">Intermediate</li> <li class="svelte-131j3h6">60 min</li> <li class="svelte-131j3h6">Serves 4</li> <li class="svelte-131j3h6">$$</li> <!--[0--><li class="veg svelte-131j3h6">Vegetarian</li><!--]--> <!--[-1--><!--]--></ul> <p class="palate svelte-131j3h6"><span class="tags svelte-131j3h6">rich · silky · earthy · floral</span> <span class="sentence svelte-131j3h6">Leads with richness that coats and comforts, a silken, spoon-slow texture, leaving a faint perfume.</span></p></header> <div class="tools svelte-131j3h6" data-print="hide"><div class="group svelte-131j3h6" role="group" aria-label="Scale the recipe"><!--[--><button aria-pressed="false" class="svelte-131j3h6">×½</button><button aria-pressed="true" class="svelte-131j3h6 on">×1</button><button aria-pressed="false" class="svelte-131j3h6">×2</button><button aria-pressed="false" class="svelte-131j3h6">×3</button><!--]--></div> <div class="group svelte-131j3h6" role="group" aria-label="Units"><button aria-pressed="true" class="svelte-131j3h6 on">Metric</button> <button aria-pressed="false" class="svelte-131j3h6">US</button></div> <button class="chip svelte-131j3h6">Cook mode ▸</button> <button class="chip pin svelte-131j3h6" aria-pressed="false">📌 Add to menu</button> <button class="chip svelte-131j3h6">Print</button></div> <div class="cols svelte-131j3h6"><section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Ingredients</h2> <ul class="ingredients svelte-131j3h6"><!--[--><!--[-1--><li class="item svelte-131j3h6"><span>Base: 200g graham or digestive crumbs + 80g desiccated coconut + 60g chopped walnuts, bound with 120g melted butter + 50g sugar + 5 tbsp cocoa + 1 beaten egg, cooked 1 min to thicken</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>THE MIDDLE, the whole point: 100g soft butter beaten with 3 tbsp custard powder (Bird's: the yellow tin is canonical), 3 tbsp cream, 250g icing sugar, a pale gold buttercream</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>Top: 150g dark chocolate melted with 2 tbsp butter</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>A 20cm square pan, lined; a fridge; NO OVEN anywhere in this recipe</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>A hot knife for the clean-cut flex</span> <!--[-1--><!--]--></li><!--]--><!--]--></ul> <!--[-1--><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The skills inside</h2> <p class="skills svelte-131j3h6"><!--[--><a href="/table/technique/tempering-a-custard" class="svelte-131j3h6">Tempering a custard</a><a href="/table/technique/scoring" class="svelte-131j3h6">Scoring</a><a href="/table/technique/chilling-to-firm-the-fridge-as-binder" class="svelte-131j3h6">Chilling to firm: the fridge as binder</a><a href="/table/technique/icing-and-frosting" class="svelte-131j3h6">Icing &amp; frosting</a><!--]--></p><!--]--> <h2 class="sec svelte-131j3h6">Allergen screen</h2> <p class="equip svelte-131j3h6"><!--[0--><b>Found:</b> dairy · egg · nuts<!--]--></p> <p class="screened svelte-131j3h6">Screened for: gluten, dairy, egg, nuts, peanuts, fish, shellfish, molluscs, soy, sesame, celery, mustard, lupin, alcohol. <b>Not screened:</b> sulphites.</p> <!--[-1--><!--]--></section> <section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Method</h2> <ol class="steps svelte-131j3h6"><!--[--><li class="step svelte-131j3h6">Cook the crumb base briefly until glossy; press firmly and evenly into the pan; chill 20 min. <!--[0--><span class="dur svelte-131j3h6">20 min</span><!--]--></li><li class="step svelte-131j3h6">Beat the custard buttercream fluffy and spread level: the yellow stripe must be generous and straight; it is the bar's flag. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Pour the chocolate over; tilt to the corners; chill until ALMOST set, then score the top: cutting fully-set chocolate shatters the stripe's clean edge. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Chill firm; cut small squares with a hot wiped knife. They keep a week refrigerated and freeze like champions, which is why Canadian freezers are never without. <!--[-1--><!--]--></li><!--]--></ol></section></div> <!--[1--><section class="standard judged svelte-131j3h6"><h2 class="sec svelte-131j3h6">How to tell it is going right</h2> <!--[-1--><!--]--> <p class="judgedintro svelte-131j3h6">This dish has no standard of its own yet. It is judged on the techniques it exercises: checked at the pan, while there is still something to be
+				done about it.</p> <!--[--><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/icing-and-frosting" class="svelte-131j3h6">Icing &amp; frosting</a> <span class="judgedcount svelte-131j3h6">12 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">The temperatures were chosen, not defaulted: the bake fully cool where the finish is meant to sit on top of it, or both deliberately warm where the method wants the two to fuse, and the proof either way is a finish that stayed where it was put.</li><li class="svelte-131j3h6">Smooth on the tongue: no grit of undissolved sugar and no lumps of anything that was never fully worked in.</li><li class="svelte-131j3h6">The consistency matches the job: it spreads or pours the way the method intends, then holds the edge, swirl, or drip it was given.</li><li class="svelte-131j3h6">The surface underneath is intact: covered rather than scrubbed, with no crumbs dragged through the finish and no torn patches showing.</li><li class="svelte-131j3h6">By serving it has settled into the finish the method wants (matte, glossy, or soft) and a cut comes away clean rather than pulling the top off with it.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> A finish meant to sit on top went on while the bake was still warm. The layer that touched first melted, slid, and soaked in; what is left sets greasy and streaked, and no amount of chilling afterwards puts that finish back.</p></div><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/tempering-a-custard" class="svelte-131j3h6">Tempering a custard</a> <span class="judgedcount svelte-131j3h6">21 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">The hot liquid went into the eggs a little at a time with constant whisking, and only then did everything go back to the pot.</li><li class="svelte-131j3h6">The heat under it stayed gentle throughout and it was never allowed to boil.</li><li class="svelte-131j3h6">Stirred continuously and right into the corners of the pan, where it thickens first and sets unnoticed.</li><li class="svelte-131j3h6">Judged by behaviour: it thickens enough to coat the back of a spoon and hold a clean line when a finger is drawn through it.</li><li class="svelte-131j3h6">Taken off before it looks finished, and strained. Residual heat carries it the rest of the way, and a custard held on the heat until it looks right arrives past right.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> The hot liquid went in too fast, or the pot went back over full heat to save time. The yolks set into threads before they could thicken smoothly, and a scrambled custard does not come back; straining hides a little of it and nothing hides the rest.</p></div><!--]--></section><!--]--> <aside class="note recipe-note svelte-131j3h6"><p class="eyebrow">From the pass</p> <p class="notebody svelte-131j3h6">Named for the city of Nanaimo, BC, and enshrined in a 1950s hospital-fundraiser cookbook: the city later held an official contest to fix the definitive recipe, which Canada treats with constitutional seriousness. The Bird's custard powder middle is the non-negotiable identity (vanilla buttercream is a lookalike, not a Nanaimo), and the no-bake trinity (crumb, custard, chocolate) travels to every potluck between the Pacific and the Atlantic. The score-before-set trick is the difference between bakery bars and cracked ones.</p></aside> <section class="pairing svelte-131j3h6"><div class="orn svelte-1dnahwc" aria-hidden="true" style="font-size:15px"><span class="rule svelte-1dnahwc"></span> <span class="mark svelte-1dnahwc">❦</span> <span class="rule svelte-1dnahwc"></span></div><!----> <h2 class="sec centered svelte-131j3h6">At the Table</h2> <dl class="svelte-131j3h6"><div class="svelte-131j3h6"><dt class="svelte-131j3h6">The Pour</dt><dd class="svelte-131j3h6">Banyuls or Ruby Port</dd></div> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Also Right</dt><dd class="svelte-131j3h6">PX Sherry</dd></div> <!--[0--><div class="svelte-131j3h6"><dt class="svelte-131j3h6">From the Taps</dt><dd class="svelte-131j3h6">Imperial stout</dd></div><!--]--> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Zero-Proof</dt><dd class="svelte-131j3h6">Espresso</dd></div></dl> <p class="why svelte-131j3h6">Chocolate wants fortified sweetness or roast-bitter contrast: the wine must out-sweet the plate, or oppose it entirely.</p></section> <section class="notes svelte-131j3h6" data-print="hide"><label for="famnotes" class="sec svelte-131j3h6">Family notes</label> <p class="hint svelte-131j3h6">Saved on this device and kept across visits: export from My Menu to move them.</p> <textarea id="famnotes" rows="4" placeholder="Your adjustments, stains, and marginalia…" class="svelte-131j3h6"></textarea></section> <!--[-1--><!--]--> <section class="films svelte-131j3h6" data-print="hide"><h2 class="sec svelte-131j3h6">Film school</h2> <!--[-1--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Nanaimo%20Bars%20recipe" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">This dish, cooked on camera</span> <span class="vsub svelte-131j3h6">Search films of Nanaimo Bars</span></a> <!--[--><a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=how%20to%20temper%20eggs%20custard%20technique" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Technique: Tempering a custard</span><span class="vsub svelte-131j3h6">The skill inside this recipe</span></a><a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=scoring%20bread%20dough%20technique" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Technique: Scoring</span><span class="vsub svelte-131j3h6">The skill inside this recipe</span></a><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Claire%20Saffitz%20Nanaimo%20Bars" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Study with Claire Saffitz</span> <span class="vsub svelte-131j3h6">pastry precision with working-baker honesty</span></a></section></article><!--]--><!----></main> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----> <!--[-1--><!--]--><!----> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 970 recipes · 94 chapters · Chef’s Lexicon: 479 terms</div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_t76pa1 = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.Bx0IplWY.js"),
+						import("/table/_app/immutable/entry/app.C9KcOn5Z.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 21],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=23"></script>
+<script src="/shared/oot-profiles.js?v=23"></script>
+<script src="/shared/oot-home.js?v=23"></script>
+<script src="/shared/oot-auth.js?v=23"></script>
+<script src="/shared/oot-gate.js?v=23"></script>
+<script src="/shared/oot-locks.js?v=23"></script>
+<script src="/shared/oot-pass.js?v=23"></script>
+<script src="/shared/oot-log.js?v=23"></script>
+<script src="/shared/oot-bar.js?v=23"></script>
+</body>
+</html>
