@@ -11,7 +11,7 @@ It installs as a single app with one icon, and all five wings live inside it.
 |---|---|
 | **The Sommelier's Codex** | Four examinations, from Régionale to Grand Cru. 4,357 questions, exam simulations, flashcards, deductive tasting and the Terroir Atlas. |
 | **The Bartender's Ledger** | 365 cocktails drilled until they are yours: the families, the Ticket Rail, the prep room and the tools. |
-| **The World Table** | A culinary field guide 1,270 recipes deep, with a 479-term chef's lexicon and a ten-semester path of study. Fermentation, curing, stocks, dumplings, offal and a vegetable-led chapter, plus the world's great cuisines at proper depth. |
+| **The World Table** | A culinary field guide 1,510 recipes deep, with a 479-term chef's lexicon and a ten-semester path of study. Fermentation, curing, stocks, dumplings, offal and a vegetable-led chapter, plus the world's great cuisines at proper depth. |
 | **First Light** | A year of mornings. Reflection, practices, and a wellness track built for people who work nights. |
 | **Calendar For Life** | An illuminated almanac of the festivals worth flying for. |
 

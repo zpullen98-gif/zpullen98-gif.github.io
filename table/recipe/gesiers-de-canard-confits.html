@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.9E4sXNca.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/B6ni02iv.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/9WMmmc52.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.buKhHQEj.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.CJ_ctHFz.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Cchd-66L.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BxzqI_9Q.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/7wEiQzZd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DebzxSed.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C99D3Ad6.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNHJZz-i.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BB1Po_5n.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BQRYU-Cl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/21.Bs_rb94T.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C_A-Gmbh.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Cwl_MKFn.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CN18iHxM.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/VyNk_xNi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/q7FuzoC2.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/rcgfH6Am.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="manifest" href="/manifest.webmanifest"/> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1510 recipes across 148 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--131j3h6--><meta name="description" content="Leads with an earthy, grounding base, toasted, nutty warmth throughout, lifted green at the very end."/><!----><title>Gésiers de Canard Confits: The World Table</title>
+		<link href="/table/_app/immutable/assets/0.G4gYEnIL.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/Ornament.D4liLlNF.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeDetailView.DWgnlVC-.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: every dish serves four unless noted</p></div> <dl class="counts svelte-12qhfyh"><div><dt class="svelte-12qhfyh">Recipes</dt><dd class="svelte-12qhfyh">1510</dd></div> <div><dt class="svelte-12qhfyh">Chapters</dt><dd class="svelte-12qhfyh">148</dd></div> <div><dt class="svelte-12qhfyh">Lexicon</dt><dd class="svelte-12qhfyh">479</dd></div></dl></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" href="/table/recipes">Library<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service">☀ Day service</button></div></nav> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><article class="shell sheet svelte-131j3h6"><nav class="crumbs svelte-131j3h6" data-print="hide"><a href="/table/recipes" class="svelte-131j3h6">All chapters</a> <span aria-hidden="true">›</span> <a href="/table/chapter/the-french-basque-and-gascony" class="svelte-131j3h6">The French Basque &amp; Gascony</a></nav> <header class="head svelte-131j3h6"><p class="eyebrow">The French Basque &amp; Gascony · Starter</p> <h1 class="svelte-131j3h6">Gésiers de Canard Confits</h1> <ul class="stats svelte-131j3h6"><li class="svelte-131j3h6">Intermediate</li> <li class="svelte-131j3h6">30 min</li> <li class="svelte-131j3h6">Serves 4</li> <li class="svelte-131j3h6">$$</li> <!--[-1--><!--]--> <!--[-1--><!--]--></ul> <p class="palate svelte-131j3h6"><span class="tags svelte-131j3h6">earthy · nutty-toasted · aromatic · herb-fresh</span> <span class="sentence svelte-131j3h6">Leads with an earthy, grounding base, toasted, nutty warmth throughout, lifted green at the very end.</span></p></header> <div class="tools svelte-131j3h6" data-print="hide"><div class="group svelte-131j3h6" role="group" aria-label="Scale the recipe"><!--[--><button aria-pressed="false" class="svelte-131j3h6">×½</button><button aria-pressed="true" class="svelte-131j3h6 on">×1</button><button aria-pressed="false" class="svelte-131j3h6">×2</button><button aria-pressed="false" class="svelte-131j3h6">×3</button><!--]--></div> <div class="group svelte-131j3h6" role="group" aria-label="Units"><button aria-pressed="true" class="svelte-131j3h6 on">Metric</button> <button aria-pressed="false" class="svelte-131j3h6">US</button></div> <button class="chip svelte-131j3h6">Cook mode ▸</button> <button class="chip pin svelte-131j3h6" aria-pressed="false">📌 Add to menu</button> <button class="chip svelte-131j3h6">Print</button></div> <div class="cols svelte-131j3h6"><section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Ingredients</h2> <ul class="ingredients svelte-131j3h6"><!--[--><!--[-1--><li class="item svelte-131j3h6"><span>1 kg duck gizzards, silverskin and gristle trimmed away</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>20 g coarse sea salt</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>1 tsp cracked black pepper</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>4 garlic cloves, crushed</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>3 thyme sprigs and 2 bay leaves</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>1 kg duck fat</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>walnut oil and bitter leaves, to serve</span> <!--[-1--><!--]--></li><!--]--><!--]--></ul> <!--[-1--><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The skills inside</h2> <p class="skills svelte-131j3h6"><!--[--><a href="/table/technique/confit" class="svelte-131j3h6">Confit</a><a href="/table/technique/brining-and-curing" class="svelte-131j3h6">Brining &amp; curing</a><a href="/table/technique/resting-meat-and-slicing-against-the-grain" class="svelte-131j3h6">Resting meat &amp; slicing against the grain</a><!--]--></p><!--]--> <h2 class="sec svelte-131j3h6">Allergen screen</h2> <p class="equip svelte-131j3h6"><!--[0--><b>Found:</b> nuts<!--]--></p> <p class="screened svelte-131j3h6">Screened for: gluten, dairy, egg, nuts, peanuts, fish, shellfish, molluscs, soy, sesame, celery, mustard, lupin, alcohol. <b>Not screened:</b> sulphites.</p> <!--[-1--><!--]--></section> <section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Method</h2> <ol class="steps svelte-131j3h6"><!--[--><li class="step svelte-131j3h6">Toss the gizzards with the salt, pepper, garlic and herbs, cover and cure them in the fridge overnight, until they feel firm and faintly tacky. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Rinse the cure off completely and dry the gizzards very well; any water left on them will spit in the fat and shorten their keeping. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Melt the fat, submerge the gizzards and hold the pot at 85C (185F), the surface trembling with only an occasional lazy bubble, for two and a half to three hours, until a skewer slides in with no resistance. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Cool them in their fat, then pack into a jar under at least 2 cm of fat with nothing breaking the surface, and pour off the meat juices that settle to the bottom as jelly. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">To serve, lift out, wipe, and crisp in a dry hot pan for two minutes a side until the edges brown, then slice over leaves dressed with walnut oil. <!--[-1--><!--]--></li><!--]--></ol></section></div> <!--[1--><section class="standard judged svelte-131j3h6"><h2 class="sec svelte-131j3h6">How to tell it is going right</h2> <!--[-1--><!--]--> <p class="judgedintro svelte-131j3h6">This dish has no standard of its own yet. It is judged on the techniques it exercises: checked at the pan, while there is still something to be
+				done about it.</p> <!--[--><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/resting-meat-and-slicing-against-the-grain" class="svelte-131j3h6">Resting meat &amp; slicing against the grain</a> <span class="judgedcount svelte-131j3h6">49 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">It came off the heat BEFORE the target temperature, measured with a probe rather than by time, because carryover keeps driving the inside up after it is out.</li><li class="svelte-131j3h6">The probe went into the coldest likely part rather than the easiest one to reach: the reading that matters is the lowest one, not the first one.</li><li class="svelte-131j3h6">Rested for a time matched to its size, somewhere warm, and not cut into partway through to see how it is doing.</li><li class="svelte-131j3h6">The board is nearly dry when it is finally cut. A spreading pool means it was cut too early, and that liquid should have stayed inside.</li><li class="svelte-131j3h6">The grain was found and the knife went ACROSS it, so the fibres are cut short, and the blade was sharp enough that the slices hold together rather than tearing.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> It was cut straight off the heat, usually because everything else was ready. The muscle is still contracted and the juice still driven to the centre, so it runs out onto the board; the meat is drier than it ever needed to be, and the flavour that left it is sitting in a puddle under the knife.</p></div><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/brining-and-curing" class="svelte-131j3h6">Brining &amp; curing</a> <span class="judgedcount svelte-131j3h6">67 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">Fully committed either way: in a wet brine nothing floats clear of the liquid, and in a dry cure every face carries salt, seams and cavities included.</li><li class="svelte-131j3h6">The time was measured against the weight and the thickness rather than the recipe’s convenience, and it stayed cold for all of it.</li><li class="svelte-131j3h6">The change is visible and can be felt: the flesh is firmer than raw and its colour has deepened or gone more translucent, rather than still being slack and pale.</li><li class="svelte-131j3h6">Rinsed and dried as the recipe asks, and anything meant to crisp afterwards has a surface dry and tacky to the touch before it goes near heat.</li><li class="svelte-131j3h6">Cooked and tasted, it is seasoned right through to the centre rather than merely salty at the surface, and not so salty that the dish cannot be eaten.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> It sat in the brine well past its time because a few extra hours seemed harmless; the surface is over-salted and the texture has gone from firm to spongy and wet, and no cooking takes salt back out.</p></div><!--]--></section><!--]--> <aside class="note recipe-note svelte-131j3h6"><p class="eyebrow">From the pass</p> <p class="notebody svelte-131j3h6">Confit was storage long before it was a texture. Salt pulls out free water and lowers water activity, the long bath at 85C (185F) pasteurises and drives off more, and the fat cap then locks out air. Two rules keep it keeping: no meat may break the surface of the fat, and the juices that settle into jelly at the bottom of the jar are water, not fat, so pour them off before you store. Cold and sealed they hold for months.</p></aside> <section class="pairing svelte-131j3h6"><div class="orn svelte-1dnahwc" aria-hidden="true" style="font-size:15px"><span class="rule svelte-1dnahwc"></span> <span class="mark svelte-1dnahwc">❈</span> <span class="rule svelte-1dnahwc"></span></div><!----> <h2 class="sec centered svelte-131j3h6">At the Table</h2> <dl class="svelte-131j3h6"><div class="svelte-131j3h6"><dt class="svelte-131j3h6">The Pour</dt><dd class="svelte-131j3h6">Pinot Noir (the classic)</dd></div> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Also Right</dt><dd class="svelte-131j3h6">Cru Beaujolais (Morgon)</dd></div> <!--[0--><div class="svelte-131j3h6"><dt class="svelte-131j3h6">From the Taps</dt><dd class="svelte-131j3h6">Belgian dubbel</dd></div><!--]--> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Zero-Proof</dt><dd class="svelte-131j3h6">Black cherry spritz</dd></div></dl> <p class="why svelte-131j3h6">Acid and silk against duck fat: the oldest marriage in Burgundy, with Gamay as its cheerful younger witness.</p></section> <section class="notes svelte-131j3h6" data-print="hide"><label for="famnotes" class="sec svelte-131j3h6">Family notes</label> <p class="hint svelte-131j3h6">Saved on this device and kept across visits: export from My Menu to move them.</p> <textarea id="famnotes" rows="4" placeholder="Your adjustments, stains, and marginalia…" class="svelte-131j3h6"></textarea></section> <!--[-1--><!--]--> <section class="films svelte-131j3h6" data-print="hide"><h2 class="sec svelte-131j3h6">Film school</h2> <!--[-1--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=G%C3%A9siers%20de%20Canard%20Confits%20recipe" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">This dish, cooked on camera</span> <span class="vsub svelte-131j3h6">Search films of Gésiers de Canard Confits</span></a> <!--[--><a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=confit%20technique%20explained" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Technique: Confit</span><span class="vsub svelte-131j3h6">The skill inside this recipe</span></a><a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=brining%20curing%20meat%20technique%20explained" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Technique: Brining &amp; curing</span><span class="vsub svelte-131j3h6">The skill inside this recipe</span></a><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=The%20French%20Basque%20%26%20Gascony%20cooking%20techniques" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">The cuisine, deeper</span> <span class="vsub svelte-131j3h6">Technique films from the The French Basque &amp; Gascony kitchen</span></a></section></article><!--]--><!----></main> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----> <!--[-1--><!--]--><!----> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1510 recipes · 148 chapters · Chef’s Lexicon: 479 terms</div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_nj1ehp = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.9E4sXNca.js"),
+						import("/table/_app/immutable/entry/app.buKhHQEj.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 21],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=23"></script>
+<script src="/shared/oot-profiles.js?v=23"></script>
+<script src="/shared/oot-home.js?v=23"></script>
+<script src="/shared/oot-auth.js?v=23"></script>
+<script src="/shared/oot-gate.js?v=23"></script>
+<script src="/shared/oot-locks.js?v=23"></script>
+<script src="/shared/oot-pass.js?v=23"></script>
+<script src="/shared/oot-log.js?v=23"></script>
+<script src="/shared/oot-bar.js?v=23"></script>
+</body>
+</html>

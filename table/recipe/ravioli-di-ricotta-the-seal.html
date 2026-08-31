@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.9E4sXNca.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/B6ni02iv.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/9WMmmc52.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.buKhHQEj.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.CJ_ctHFz.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Cchd-66L.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BxzqI_9Q.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/7wEiQzZd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DebzxSed.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C99D3Ad6.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNHJZz-i.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BB1Po_5n.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BQRYU-Cl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/21.Bs_rb94T.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C_A-Gmbh.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Cwl_MKFn.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CN18iHxM.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/VyNk_xNi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/q7FuzoC2.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/rcgfH6Am.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="manifest" href="/manifest.webmanifest"/> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1510 recipes across 148 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--131j3h6--><meta name="description" content="Leads with richness that coats and comforts, warm spice humming through the middle."/><!----><title>Ravioli di Ricotta, the Seal: The World Table</title>
+		<link href="/table/_app/immutable/assets/0.G4gYEnIL.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/Ornament.D4liLlNF.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeDetailView.DWgnlVC-.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: every dish serves four unless noted</p></div> <dl class="counts svelte-12qhfyh"><div><dt class="svelte-12qhfyh">Recipes</dt><dd class="svelte-12qhfyh">1510</dd></div> <div><dt class="svelte-12qhfyh">Chapters</dt><dd class="svelte-12qhfyh">148</dd></div> <div><dt class="svelte-12qhfyh">Lexicon</dt><dd class="svelte-12qhfyh">479</dd></div></dl></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" href="/table/recipes">Library<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service">☀ Day service</button></div></nav> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><article class="shell sheet svelte-131j3h6"><nav class="crumbs svelte-131j3h6" data-print="hide"><a href="/table/recipes" class="svelte-131j3h6">All chapters</a> <span aria-hidden="true">›</span> <a href="/table/chapter/pasta-and-fresh-dough" class="svelte-131j3h6">Pasta &amp; Fresh Dough</a></nav> <header class="head svelte-131j3h6"><p class="eyebrow">Pasta &amp; Fresh Dough · Starter</p> <h1 class="svelte-131j3h6">Ravioli di Ricotta, the Seal</h1> <ul class="stats svelte-131j3h6"><li class="svelte-131j3h6">Advanced</li> <li class="svelte-131j3h6">60 min</li> <li class="svelte-131j3h6">Serves 4</li> <li class="svelte-131j3h6">$$</li> <!--[0--><li class="veg svelte-131j3h6">Vegetarian</li><!--]--> <!--[-1--><!--]--></ul> <p class="palate svelte-131j3h6"><span class="tags svelte-131j3h6">rich · warm-spiced</span> <span class="sentence svelte-131j3h6">Leads with richness that coats and comforts, warm spice humming through the middle.</span></p></header> <div class="tools svelte-131j3h6" data-print="hide"><div class="group svelte-131j3h6" role="group" aria-label="Scale the recipe"><!--[--><button aria-pressed="false" class="svelte-131j3h6">×½</button><button aria-pressed="true" class="svelte-131j3h6 on">×1</button><button aria-pressed="false" class="svelte-131j3h6">×2</button><button aria-pressed="false" class="svelte-131j3h6">×3</button><!--]--></div> <div class="group svelte-131j3h6" role="group" aria-label="Units"><button aria-pressed="true" class="svelte-131j3h6 on">Metric</button> <button aria-pressed="false" class="svelte-131j3h6">US</button></div> <button class="chip svelte-131j3h6">Cook mode ▸</button> <button class="chip pin svelte-131j3h6" aria-pressed="false">📌 Add to menu</button> <button class="chip svelte-131j3h6">Print</button></div> <div class="cols svelte-131j3h6"><section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Ingredients</h2> <ul class="ingredients svelte-131j3h6"><!--[--><!--[-1--><li class="item svelte-131j3h6"><span>300 g 00 flour (100%)</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>2 whole eggs and 6 yolks, 218 g total</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>5 g fine sea salt for the dough</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>500 g whole milk ricotta, drained 12 hours in a cloth to about 380 g</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>80 g hard aged grating cheese, finely grated</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>1 egg yolk, 18 g, for the filling</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>2 g fine sea salt for the filling</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>0.2 g grated nutmeg</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>semola rimacinata for the tray</span> <!--[-1--><!--]--></li><!--]--><!--]--></ul> <!--[0--><h2 class="sec svelte-131j3h6">Equipment</h2> <p class="equip svelte-131j3h6">Piping bag · Sheet pan · Grater / zester</p><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The skills inside</h2> <p class="skills svelte-131j3h6"><!--[--><a href="/table/technique/fresh-pasta" class="svelte-131j3h6">Fresh pasta</a><a href="/table/technique/the-bare-simmer-holding-liquid-below-the-boil" class="svelte-131j3h6">The bare simmer: holding liquid below the boil</a><a href="/table/technique/salted-water-and-the-float-test" class="svelte-131j3h6">Salted water &amp; the float test</a><!--]--></p><!--]--> <h2 class="sec svelte-131j3h6">Allergen screen</h2> <p class="equip svelte-131j3h6"><!--[0--><b>Found:</b> gluten · dairy · egg<!--]--></p> <p class="screened svelte-131j3h6">Screened for: gluten, dairy, egg, nuts, peanuts, fish, shellfish, molluscs, soy, sesame, celery, mustard, lupin, alcohol. <b>Not screened:</b> sulphites.</p> <!--[-1--><!--]--></section> <section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Method</h2> <ol class="steps svelte-131j3h6"><!--[--><li class="step svelte-131j3h6">Make and rest the egg dough as for sfoglia, then beat the drained ricotta with the cheese, yolk, salt and nutmeg until it is stiff enough to hold a piped ridge without slumping. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Roll one sheet to 0.8 mm and work fast; a sheet dried past tacky will not weld, and the parcels open in the pot. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Pipe 8 g mounds at 4 cm centres, drape the second sheet over, and press outward from each mound with the sides of both hands, chasing every pocket of air to the edge before the border goes shut. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Cut with a wheel, pinch each border once more between finger and thumb, and set the parcels on semola, never on flour. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Cook at a bare simmer, 90C to 95C (194F to 203F), for 3 minutes; a rolling boil batters the seams open. <!--[0--><span class="dur svelte-131j3h6">3 min</span><!--]--></li><!--]--></ol></section></div> <!--[1--><section class="standard judged svelte-131j3h6"><h2 class="sec svelte-131j3h6">How to tell it is going right</h2> <!--[-1--><!--]--> <p class="judgedintro svelte-131j3h6">This dish has no standard of its own yet. It is judged on the techniques it exercises: checked at the pan, while there is still something to be
+				done about it.</p> <!--[--><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/the-bare-simmer-holding-liquid-below-the-boil" class="svelte-131j3h6">The bare simmer: holding liquid below the boil</a> <span class="judgedcount svelte-131j3h6">125 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">The surface is read rather than assumed: bubbles break slowly in one or two places, or the surface merely shivers, and it does not reach a rolling boil at any point.</li><li class="svelte-131j3h6">It was held there: the pot was watched and the heat adjusted rather than set once and left, and there is no tide mark up the pot wall from a boil-over.</li><li class="svelte-131j3h6">The liquid stayed as clear as it should be: no clouding from agitation, and no fat churned into an emulsion through it.</li><li class="svelte-131j3h6">Whatever is in the liquid is still intact: nothing shredded, broken up, or worried apart by movement.</li><li class="svelte-131j3h6">The level is roughly where the elapsed time should have left it; a large drop is the evidence that it ran hotter than this while nobody was looking.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> It was brought to a boil and then left on the same heat, so it churned for the whole cook: the liquid clouded, the fat emulsified into it, and the solids broke apart into the broth.</p></div><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/salted-water-and-the-float-test" class="svelte-131j3h6">Salted water &amp; the float test</a> <span class="judgedcount svelte-131j3h6">139 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">The water was salted before anything went in, and tasting it confirms it: seasoned on the tongue, with the salt dissolved rather than sitting on the pot floor.</li><li class="svelte-131j3h6">There is enough water, hot enough, that the pot returns to its boil quickly after the food goes in and never stops moving.</li><li class="svelte-131j3h6">Where the dish uses the float as its signal, the signal is obeyed: the pieces rise and they come out then, not several minutes later once something else was finished.</li><li class="svelte-131j3h6">Nothing is stuck to the bottom of the pot or welded to itself, and the water has not thickened into a cloudy sludge.</li><li class="svelte-131j3h6">Drained on a bite rather than on the clock: resistance at the centre, with no chalky raw core.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> The pot was too small and the water unsalted, so it never recovered its boil: the food sat in slack water, went gummy at the surface, and comes out bland in a way that no sauce afterwards can fix.</p></div><!--]--></section><!--]--> <aside class="note recipe-note svelte-131j3h6"><p class="eyebrow">From the pass</p> <p class="notebody svelte-131j3h6">Two things burst a raviolo. Trapped air expands as it heats and splits the weakest seam, and a wet filling steams and does the same. So the ricotta is drained overnight and bound with a yolk that sets near 65C (149F), and the air is chased outward before the border closes. Seal with dry hands on a still tacky sheet: brushed water makes a slippery layer, not a weld.</p></aside> <section class="pairing svelte-131j3h6"><div class="orn svelte-1dnahwc" aria-hidden="true" style="font-size:15px"><span class="rule svelte-1dnahwc"></span> <span class="mark svelte-1dnahwc">✽</span> <span class="rule svelte-1dnahwc"></span></div><!----> <h2 class="sec centered svelte-131j3h6">At the Table</h2> <dl class="svelte-131j3h6"><div class="svelte-131j3h6"><dt class="svelte-131j3h6">The Pour</dt><dd class="svelte-131j3h6">Alpine white (dry Riesling, Grüner)</dd></div> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Also Right</dt><dd class="svelte-131j3h6">Champagne: bubbles scrub richness</dd></div> <!--[0--><div class="svelte-131j3h6"><dt class="svelte-131j3h6">From the Taps</dt><dd class="svelte-131j3h6">Bière de garde</dd></div><!--]--> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Zero-Proof</dt><dd class="svelte-131j3h6">Sparkling apple</dd></div></dl> <p class="why svelte-131j3h6">Melted cheese coats; acid and carbonation scrub: high-cut whites and Champagne keep the fondue from winning.</p></section> <section class="notes svelte-131j3h6" data-print="hide"><label for="famnotes" class="sec svelte-131j3h6">Family notes</label> <p class="hint svelte-131j3h6">Saved on this device and kept across visits: export from My Menu to move them.</p> <textarea id="famnotes" rows="4" placeholder="Your adjustments, stains, and marginalia…" class="svelte-131j3h6"></textarea></section> <!--[-1--><!--]--> <section class="films svelte-131j3h6" data-print="hide"><h2 class="sec svelte-131j3h6">Film school</h2> <!--[-1--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Ravioli%20di%20Ricotta%2C%20the%20Seal%20recipe" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">This dish, cooked on camera</span> <span class="vsub svelte-131j3h6">Search films of Ravioli di Ricotta, the Seal</span></a> <!--[--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Pasta%20%26%20Fresh%20Dough%20cooking%20techniques" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">The cuisine, deeper</span> <span class="vsub svelte-131j3h6">Technique films from the Pasta &amp; Fresh Dough kitchen</span></a></section></article><!--]--><!----></main> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----> <!--[-1--><!--]--><!----> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1510 recipes · 148 chapters · Chef’s Lexicon: 479 terms</div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_nj1ehp = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.9E4sXNca.js"),
+						import("/table/_app/immutable/entry/app.buKhHQEj.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 21],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=23"></script>
+<script src="/shared/oot-profiles.js?v=23"></script>
+<script src="/shared/oot-home.js?v=23"></script>
+<script src="/shared/oot-auth.js?v=23"></script>
+<script src="/shared/oot-gate.js?v=23"></script>
+<script src="/shared/oot-locks.js?v=23"></script>
+<script src="/shared/oot-pass.js?v=23"></script>
+<script src="/shared/oot-log.js?v=23"></script>
+<script src="/shared/oot-bar.js?v=23"></script>
+</body>
+</html>
