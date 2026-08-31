@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.CR1EHUEb.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CNaO5YSy.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/9WMmmc52.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.D98IQ2Yk.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.D50g-fie.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Cfo3M28r.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/LCPmT3Ke.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/7wEiQzZd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DebzxSed.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C99D3Ad6.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNHJZz-i.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BB1Po_5n.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BQRYU-Cl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/21.CCaigSWP.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C9tMI2ka.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DBb_qz5i.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CN18iHxM.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/VyNk_xNi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/q7FuzoC2.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/rcgfH6Am.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="manifest" href="/manifest.webmanifest"/> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1270 recipes across 124 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--131j3h6--><meta name="description" content="Leads with acid holding everything up to the light, warm spice humming through the middle, ending saline and clean."/><!----><title>Musakhan: The World Table</title>
+		<link href="/table/_app/immutable/assets/0.G4gYEnIL.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/Ornament.D4liLlNF.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeDetailView.DWgnlVC-.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: every dish serves four unless noted</p></div> <dl class="counts svelte-12qhfyh"><div><dt class="svelte-12qhfyh">Recipes</dt><dd class="svelte-12qhfyh">1270</dd></div> <div><dt class="svelte-12qhfyh">Chapters</dt><dd class="svelte-12qhfyh">124</dd></div> <div><dt class="svelte-12qhfyh">Lexicon</dt><dd class="svelte-12qhfyh">479</dd></div></dl></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" href="/table/recipes">Library<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service">☀ Day service</button></div></nav> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><article class="shell sheet svelte-131j3h6"><nav class="crumbs svelte-131j3h6" data-print="hide"><a href="/table/recipes" class="svelte-131j3h6">All chapters</a> <span aria-hidden="true">›</span> <a href="/table/chapter/levantine" class="svelte-131j3h6">Levantine</a></nav> <header class="head svelte-131j3h6"><p class="eyebrow">Levantine · Main</p> <h1 class="svelte-131j3h6">Musakhan</h1> <ul class="stats svelte-131j3h6"><li class="svelte-131j3h6">Intermediate</li> <li class="svelte-131j3h6">40 min</li> <li class="svelte-131j3h6">Serves 4</li> <li class="svelte-131j3h6">$$</li> <!--[-1--><!--]--> <!--[-1--><!--]--></ul> <p class="palate svelte-131j3h6"><span class="tags svelte-131j3h6">bright · warm-spiced · sweet-edged · briny</span> <span class="sentence svelte-131j3h6">Leads with acid holding everything up to the light, warm spice humming through the middle, ending saline and clean.</span></p></header> <div class="tools svelte-131j3h6" data-print="hide"><div class="group svelte-131j3h6" role="group" aria-label="Scale the recipe"><!--[--><button aria-pressed="false" class="svelte-131j3h6">×½</button><button aria-pressed="true" class="svelte-131j3h6 on">×1</button><button aria-pressed="false" class="svelte-131j3h6">×2</button><button aria-pressed="false" class="svelte-131j3h6">×3</button><!--]--></div> <div class="group svelte-131j3h6" role="group" aria-label="Units"><button aria-pressed="true" class="svelte-131j3h6 on">Metric</button> <button aria-pressed="false" class="svelte-131j3h6">US</button></div> <button class="chip svelte-131j3h6">Cook mode ▸</button> <button class="chip pin svelte-131j3h6" aria-pressed="false">📌 Add to menu</button> <button class="chip svelte-131j3h6">Print</button></div> <div class="cols svelte-131j3h6"><section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Ingredients</h2> <ul class="ingredients svelte-131j3h6"><!--[--><!--[-1--><li class="item svelte-131j3h6"><span>1 chicken, about 1.6 kg, jointed into six</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>1 kg onions, sliced thin</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>180 ml extra virgin olive oil</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>40 g ground sumac</span> <!--[0--><button class="subbtn svelte-131j3h6" data-print="hide" aria-expanded="false" aria-label="Show the substitution for this ingredient" title="Substitution">⇄</button> <!--[-1--><!--]--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>4 loaves khubz taboon or other thick flatbread</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>80 g pine nuts</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>5 g ground allspice</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>2 g ground cardamom</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>12 g fine salt</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>1 lemon</span> <!--[-1--><!--]--></li><!--]--><!--]--></ul> <!--[-1--><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The skills inside</h2> <p class="skills svelte-131j3h6"><!--[--><a href="/table/technique/roasting-in-a-hot-oven" class="svelte-131j3h6">Roasting in a hot oven</a><a href="/table/technique/sweating-aromatics-soft-never-browned" class="svelte-131j3h6">Sweating aromatics: soft, never browned</a><a href="/table/technique/sauteing-and-the-shallow-fry" class="svelte-131j3h6">Sautéing &amp; the shallow fry</a><!--]--></p><!--]--> <h2 class="sec svelte-131j3h6">Allergen screen</h2> <p class="equip svelte-131j3h6"><!--[0--><b>Found:</b> nuts<!--]--></p> <p class="screened svelte-131j3h6">Screened for: gluten, dairy, egg, nuts, peanuts, fish, shellfish, molluscs, soy, sesame, celery, mustard, lupin, alcohol. <b>Not screened:</b> sulphites.</p> <!--[-1--><!--]--></section> <section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Method</h2> <ol class="steps svelte-131j3h6"><!--[--><li class="step svelte-131j3h6">Rub the chicken with half the sumac, the allspice, cardamom, salt and 60 ml of the oil, and leave it on the side while the oven comes up to 200C (400F). <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Sweat the onions in the remaining oil over low heat with a pinch of salt, covered, until they collapse into a soft pale sludge with no bite left, about 25 minutes; do not let them take colour. <!--[0--><span class="dur svelte-131j3h6">25 min</span><!--]--></li><li class="step svelte-131j3h6">Pull the pan off the heat and stir in the rest of the sumac, so the onions turn purple brown and smell sharp. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Roast the chicken skin side up on a rack for 35 to 40 minutes, until the skin is crisp and the juices at the thigh joint run clear; fry the pine nuts in a little oil to pale gold and lift them out at once. <!--[0--><span class="dur svelte-131j3h6">40 min</span><!--]--></li><li class="step svelte-131j3h6">Spread the sumac onions thickly over the bread, sit the chicken and its roasting juices on top, scatter the pine nuts and squeeze over the lemon. <!--[-1--><!--]--></li><!--]--></ol></section></div> <!--[1--><section class="standard judged svelte-131j3h6"><h2 class="sec svelte-131j3h6">How to tell it is going right</h2> <!--[-1--><!--]--> <p class="judgedintro svelte-131j3h6">This dish has no standard of its own yet. It is judged on the techniques it exercises: checked at the pan, while there is still something to be
+				done about it.</p> <!--[--><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/roasting-in-a-hot-oven" class="svelte-131j3h6">Roasting in a hot oven</a> <span class="judgedcount svelte-131j3h6">32 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">The oven was fully up to heat before anything went in, given time beyond the indicator light rather than judged by it.</li><li class="svelte-131j3h6">Every piece has air around it. Nothing touches its neighbour and nothing is packed to the edge of the tray, because crowded food steams itself in its own moisture and never browns.</li><li class="svelte-131j3h6">Colour is even across the whole tray, the tray having been turned at least once: no pale row at the back and no dark row at the front.</li><li class="svelte-131j3h6">It came out BEFORE the target temperature, not at it. Carryover keeps driving the inside up by several degrees after it leaves the oven, and that rise is part of the cooking rather than an error in it.</li><li class="svelte-131j3h6">The temperature was read at the coldest part rather than the easiest one to reach, and read again after the rest.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> The tray was crowded, or the oven was not truly up to heat. The food releases steam faster than a cool box can carry it away, so it sits pale and slack, and the extra minutes spent chasing colour take the inside well past where it should have stopped.</p></div><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/sauteing-and-the-shallow-fry" class="svelte-131j3h6">Sautéing &amp; the shallow fry</a> <span class="judgedcount svelte-131j3h6">34 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">Everything sits in a single layer with visible space between the pieces: nothing stacked, nothing touching, or the pan is too small for the quantity.</li><li class="svelte-131j3h6">The pieces move freely and keep moving, sliding across the pan rather than sticking and tearing when the pan is worked.</li><li class="svelte-131j3h6">Light even browning arrived at quickly: colour on most faces, not the deep crust of a sear and not grey.</li><li class="svelte-131j3h6">A thin film of fat with the food glossed by it: no pool left in the pan at the end, and nothing greasy on the fingers or the plate.</li><li class="svelte-131j3h6">Cooked through but still firm, having spent only a few minutes in the pan: anything that has gone soft has been in there too long.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> Too much went in at once, the pan cooled, and the food released its water: what was meant to brown in three minutes stews for ten and comes out grey, slack and wet.</p></div><!--]--></section><!--]--> <aside class="note recipe-note svelte-131j3h6"><p class="eyebrow">From the pass</p> <p class="notebody svelte-131j3h6">Sumac is the acid in this dish, not a dusting: 40 g sours a kilo of onions the way a lemon would, and the bread underneath exists to drink the oil and the juice. Stir it in off the heat, because prolonged frying turns its tannins bitter and drives off the fruit. The onions are sweated pale and never browned; caramel sweetness fights the sourness instead of carrying it.</p></aside> <section class="pairing svelte-131j3h6"><div class="orn svelte-1dnahwc" aria-hidden="true" style="font-size:15px"><span class="rule svelte-1dnahwc"></span> <span class="mark svelte-1dnahwc">❦</span> <span class="rule svelte-1dnahwc"></span></div><!----> <h2 class="sec centered svelte-131j3h6">At the Table</h2> <dl class="svelte-131j3h6"><div class="svelte-131j3h6"><dt class="svelte-131j3h6">The Pour</dt><dd class="svelte-131j3h6">Chardonnay (village Burgundy)</dd></div> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Also Right</dt><dd class="svelte-131j3h6">Chianti or Barbera</dd></div> <!--[0--><div class="svelte-131j3h6"><dt class="svelte-131j3h6">From the Taps</dt><dd class="svelte-131j3h6">Bière de garde</dd></div><!--]--> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Zero-Proof</dt><dd class="svelte-131j3h6">Verbena iced tea</dd></div></dl> <p class="why svelte-131j3h6">Chicken is wine’s most agreeable partner. Match the SAUCE, not the bird: cream to oak, tomato to Sangiovese’s acid, herbs to Loire whites.</p></section> <section class="notes svelte-131j3h6" data-print="hide"><label for="famnotes" class="sec svelte-131j3h6">Family notes</label> <p class="hint svelte-131j3h6">Saved on this device and kept across visits: export from My Menu to move them.</p> <textarea id="famnotes" rows="4" placeholder="Your adjustments, stains, and marginalia…" class="svelte-131j3h6"></textarea></section> <!--[-1--><!--]--> <section class="films svelte-131j3h6" data-print="hide"><h2 class="sec svelte-131j3h6">Film school</h2> <!--[-1--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Musakhan%20recipe" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">This dish, cooked on camera</span> <span class="vsub svelte-131j3h6">Search films of Musakhan</span></a> <!--[--><a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=sugar%20stages%20caramel%20technique" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Technique: Sugar stages &amp; caramel</span><span class="vsub svelte-131j3h6">The skill inside this recipe</span></a><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Levantine%20cooking%20techniques" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">The cuisine, deeper</span> <span class="vsub svelte-131j3h6">Technique films from the Levantine kitchen</span></a></section></article><!--]--><!----></main> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----> <!--[-1--><!--]--><!----> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1270 recipes · 124 chapters · Chef’s Lexicon: 479 terms</div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_1uf9olz = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.CR1EHUEb.js"),
+						import("/table/_app/immutable/entry/app.D98IQ2Yk.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 21],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=23"></script>
+<script src="/shared/oot-profiles.js?v=23"></script>
+<script src="/shared/oot-home.js?v=23"></script>
+<script src="/shared/oot-auth.js?v=23"></script>
+<script src="/shared/oot-gate.js?v=23"></script>
+<script src="/shared/oot-locks.js?v=23"></script>
+<script src="/shared/oot-pass.js?v=23"></script>
+<script src="/shared/oot-log.js?v=23"></script>
+<script src="/shared/oot-bar.js?v=23"></script>
+</body>
+</html>

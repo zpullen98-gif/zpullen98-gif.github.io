@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.CR1EHUEb.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CNaO5YSy.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/9WMmmc52.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.D98IQ2Yk.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.D50g-fie.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Cfo3M28r.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/LCPmT3Ke.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/7wEiQzZd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DebzxSed.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C99D3Ad6.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNHJZz-i.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BB1Po_5n.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BQRYU-Cl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/21.CCaigSWP.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C9tMI2ka.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DBb_qz5i.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CN18iHxM.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/VyNk_xNi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/q7FuzoC2.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/rcgfH6Am.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="manifest" href="/manifest.webmanifest"/> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1270 recipes across 124 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--131j3h6--><meta name="description" content="Leads with acid holding everything up to the light, a briny, maritime salinity, on a slow, honest burn."/><!----><title>Chicago Hot Giardiniera: The World Table</title>
+		<link href="/table/_app/immutable/assets/0.G4gYEnIL.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/Ornament.D4liLlNF.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeDetailView.DWgnlVC-.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: every dish serves four unless noted</p></div> <dl class="counts svelte-12qhfyh"><div><dt class="svelte-12qhfyh">Recipes</dt><dd class="svelte-12qhfyh">1270</dd></div> <div><dt class="svelte-12qhfyh">Chapters</dt><dd class="svelte-12qhfyh">124</dd></div> <div><dt class="svelte-12qhfyh">Lexicon</dt><dd class="svelte-12qhfyh">479</dd></div></dl></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" href="/table/recipes">Library<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service">☀ Day service</button></div></nav> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><article class="shell sheet svelte-131j3h6"><nav class="crumbs svelte-131j3h6" data-print="hide"><a href="/table/recipes" class="svelte-131j3h6">All chapters</a> <span aria-hidden="true">›</span> <a href="/table/chapter/pickle-and-condiment-atlas" class="svelte-131j3h6">Pickle &amp; Condiment Atlas</a></nav> <header class="head svelte-131j3h6"><p class="eyebrow">Pickle &amp; Condiment Atlas · Side</p> <h1 class="svelte-131j3h6">Chicago Hot Giardiniera</h1> <ul class="stats svelte-131j3h6"><li class="svelte-131j3h6">Intermediate</li> <li class="svelte-131j3h6">30 min</li> <li class="svelte-131j3h6">Serves 4</li> <li class="svelte-131j3h6">$$</li> <!--[0--><li class="veg svelte-131j3h6">Vegetarian</li><!--]--> <!--[0--><li class="veg svelte-131j3h6">Vegan</li><!--]--></ul> <p class="palate svelte-131j3h6"><span class="tags svelte-131j3h6">bright · briny · aromatic · fiery</span> <span class="sentence svelte-131j3h6">Leads with acid holding everything up to the light, a briny, maritime salinity, on a slow, honest burn.</span></p></header> <div class="tools svelte-131j3h6" data-print="hide"><div class="group svelte-131j3h6" role="group" aria-label="Scale the recipe"><!--[--><button aria-pressed="false" class="svelte-131j3h6">×½</button><button aria-pressed="true" class="svelte-131j3h6 on">×1</button><button aria-pressed="false" class="svelte-131j3h6">×2</button><button aria-pressed="false" class="svelte-131j3h6">×3</button><!--]--></div> <div class="group svelte-131j3h6" role="group" aria-label="Units"><button aria-pressed="true" class="svelte-131j3h6 on">Metric</button> <button aria-pressed="false" class="svelte-131j3h6">US</button></div> <button class="chip svelte-131j3h6">Cook mode ▸</button> <button class="chip pin svelte-131j3h6" aria-pressed="false">📌 Add to menu</button> <button class="chip svelte-131j3h6">Print</button></div> <div class="cols svelte-131j3h6"><section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Ingredients</h2> <ul class="ingredients svelte-131j3h6"><!--[--><!--[-1--><li class="item svelte-131j3h6"><span>200 g celery, 1 cm dice</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>150 g carrot, 1 cm dice</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>150 g cauliflower florets, 1 cm</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>100 g red pepper, 1 cm dice</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>100 g serrano or green chilli, sliced 5 mm</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>60 g green olives, chopped</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>1 litre water</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>60 g fine sea salt</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>100 g white wine vinegar</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>180 g neutral oil</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>120 g olive oil</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>6 g dried oregano</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>8 g garlic, sliced thin</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>3 g chilli flakes</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>2 g celery seed</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>2 g cracked black pepper</span> <!--[-1--><!--]--></li><!--]--><!--]--></ul> <!--[-1--><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The skills inside</h2> <p class="skills svelte-131j3h6"><!--[--><a href="/table/technique/knife-cuts-dice-julienne-bias" class="svelte-131j3h6">Knife cuts: dice, julienne, bias</a><!--]--></p><!--]--> <h2 class="sec svelte-131j3h6">Allergen screen</h2> <p class="equip svelte-131j3h6"><!--[0--><b>Found:</b> celery · alcohol<!--]--></p> <p class="screened svelte-131j3h6">Screened for: gluten, dairy, egg, nuts, peanuts, fish, shellfish, molluscs, soy, sesame, celery, mustard, lupin, alcohol. <b>Not screened:</b> sulphites.</p> <!--[-1--><!--]--></section> <section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Method</h2> <ol class="steps svelte-131j3h6"><!--[--><li class="step svelte-131j3h6">Stir the salt into the water until it dissolves, pour it over the diced vegetables and chilli, and weight them under. Leave 12 hours at room temperature. <!--[0--><span class="dur svelte-131j3h6">600 min</span><!--]--></li><li class="step svelte-131j3h6">Drain and rinse well, then taste one: it should read seasoned, not salty. Spread on a cloth and pat dry. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Toss the vegetables with the vinegar and leave 30 minutes, then drain that off and discard it. <!--[0--><span class="dur svelte-131j3h6">30 min</span><!--]--></li><li class="step svelte-131j3h6">Fold through the olives, oregano, garlic, chilli flakes, celery seed and pepper, pack into jars, and pour over both oils to cover by 1 cm. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Refrigerate 48 hours before serving, and stand the jar out 20 minutes first so the olive oil clears from cloudy to loose. <!--[0--><span class="dur svelte-131j3h6">600 min</span><!--]--></li><!--]--></ol></section></div> <!--[1--><section class="standard judged svelte-131j3h6"><h2 class="sec svelte-131j3h6">How to tell it is going right</h2> <!--[-1--><!--]--> <p class="judgedintro svelte-131j3h6">This dish has no standard of its own yet. It is judged on the technique it exercises: checked at the pan, while there is still something to be
+				done about it.</p> <!--[--><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/knife-cuts-dice-julienne-bias" class="svelte-131j3h6">Knife cuts: dice, julienne, bias</a> <span class="judgedcount svelte-131j3h6">89 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">Take any three pieces from anywhere in the pile: they match closely enough in every dimension that you would have to measure them to argue otherwise.</li><li class="svelte-131j3h6">The cut faces are flat and clean rather than ragged or crushed; leaves and herbs are cut through, not bruised, and the board carries no dark smear where they were.</li><li class="svelte-131j3h6">The stated size is the actual size, held against a rule or a known reference rather than called about right.</li><li class="svelte-131j3h6">Everything in the pile is the shape that was asked for: no wedges, no half pieces, and no offcuts swept in to avoid waste.</li><li class="svelte-131j3h6">They cook evenly, which is the entire point: at the end of cooking nothing is still raw and nothing has collapsed.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> The knife was dull, or the vegetable was never squared off first, so the pieces vary: the small ones are mush by the time the large ones are cooked, and the dish has two textures where it wanted one.</p></div><!--]--></section><!--]--> <aside class="note recipe-note svelte-131j3h6"><p class="eyebrow">From the pass</p> <p class="notebody svelte-131j3h6">Two stages, and skipping the first is what ruins it. Twelve hours in 6 percent brine draws free water out osmotically; pack the vegetables wet instead and that water bleeds into the oil, thins the acid and sours the jar inside a week. The vinegar toss acidifies the surfaces. Garlic under oil is a botulism risk at room temperature, so this lives in the fridge and is eaten within a month.</p></aside> <section class="pairing svelte-131j3h6"><div class="orn svelte-1dnahwc" aria-hidden="true" style="font-size:15px"><span class="rule svelte-1dnahwc"></span> <span class="mark svelte-1dnahwc">❉</span> <span class="rule svelte-1dnahwc"></span></div><!----> <h2 class="sec centered svelte-131j3h6">At the Table</h2> <dl class="svelte-131j3h6"><div class="svelte-131j3h6"><dt class="svelte-131j3h6">The Pour</dt><dd class="svelte-131j3h6">Off-dry Riesling (Mosel Kabinett)</dd></div> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Also Right</dt><dd class="svelte-131j3h6">Gewürztraminer or off-dry Chenin</dd></div> <!--[0--><div class="svelte-131j3h6"><dt class="svelte-131j3h6">From the Taps</dt><dd class="svelte-131j3h6">Crisp lager or pilsner</dd></div><!--]--> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Zero-Proof</dt><dd class="svelte-131j3h6">Agua fresca or iced jasmine tea</dd></div></dl> <p class="why svelte-131j3h6">Sugar, cold, and low alcohol are the fire code: sweetness tames capsaicin while acid resets the palate; tannin would fan the flames.</p></section> <section class="notes svelte-131j3h6" data-print="hide"><label for="famnotes" class="sec svelte-131j3h6">Family notes</label> <p class="hint svelte-131j3h6">Saved on this device and kept across visits: export from My Menu to move them.</p> <textarea id="famnotes" rows="4" placeholder="Your adjustments, stains, and marginalia…" class="svelte-131j3h6"></textarea></section> <!--[-1--><!--]--> <section class="films svelte-131j3h6" data-print="hide"><h2 class="sec svelte-131j3h6">Film school</h2> <!--[-1--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Chicago%20Hot%20Giardiniera%20recipe" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">This dish, cooked on camera</span> <span class="vsub svelte-131j3h6">Search films of Chicago Hot Giardiniera</span></a> <!--[--><a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=brining%20curing%20meat%20technique%20explained" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Technique: Brining &amp; curing</span><span class="vsub svelte-131j3h6">The skill inside this recipe</span></a><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Pickle%20%26%20Condiment%20Atlas%20cooking%20techniques" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">The cuisine, deeper</span> <span class="vsub svelte-131j3h6">Technique films from the Pickle &amp; Condiment Atlas kitchen</span></a></section></article><!--]--><!----></main> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----> <!--[-1--><!--]--><!----> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1270 recipes · 124 chapters · Chef’s Lexicon: 479 terms</div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_1uf9olz = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.CR1EHUEb.js"),
+						import("/table/_app/immutable/entry/app.D98IQ2Yk.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 21],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=23"></script>
+<script src="/shared/oot-profiles.js?v=23"></script>
+<script src="/shared/oot-home.js?v=23"></script>
+<script src="/shared/oot-auth.js?v=23"></script>
+<script src="/shared/oot-gate.js?v=23"></script>
+<script src="/shared/oot-locks.js?v=23"></script>
+<script src="/shared/oot-pass.js?v=23"></script>
+<script src="/shared/oot-log.js?v=23"></script>
+<script src="/shared/oot-bar.js?v=23"></script>
+</body>
+</html>
