@@ -110,8 +110,8 @@
         id: 'table', path: 'table/', pillar: 'craft',
         short: 'World Table', motto: 'Cuisine · Culture · Connection',
         name: 'The World Table',
-        line: 'A culinary field guide, 1,510 recipes deep.',
-        free: 'All 1,510 recipes, the techniques and the Path of Study',
+        line: 'A culinary field guide, 1,710 recipes deep.',
+        free: 'All 1,710 recipes, the techniques and the Path of Study',
         paid: null
       },
       {

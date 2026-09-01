@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.Dm4SSsVe.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/s6aR_YJK.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/9WMmmc52.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.CxG5hgNe.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.BH949yYY.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DbcOkH9E.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BDWXBUeY.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/7wEiQzZd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DebzxSed.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C99D3Ad6.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNHJZz-i.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BB1Po_5n.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BQRYU-Cl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/21.CiAKn2JK.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CX9hxlrp.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/ChlZWmh5.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CN18iHxM.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/VyNk_xNi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/q7FuzoC2.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/rcgfH6Am.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="manifest" href="/manifest.webmanifest"/> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1710 recipes across 168 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--131j3h6--><meta name="description" content="Leads with richness that coats and comforts, a floral thread lifting the aroma, closing toasted and warm."/><!----><title>Prinsesstårta: The World Table</title>
+		<link href="/table/_app/immutable/assets/0.G4gYEnIL.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/Ornament.D4liLlNF.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeDetailView.DWgnlVC-.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: every dish serves four unless noted</p></div> <dl class="counts svelte-12qhfyh"><div><dt class="svelte-12qhfyh">Recipes</dt><dd class="svelte-12qhfyh">1710</dd></div> <div><dt class="svelte-12qhfyh">Chapters</dt><dd class="svelte-12qhfyh">168</dd></div> <div><dt class="svelte-12qhfyh">Lexicon</dt><dd class="svelte-12qhfyh">479</dd></div></dl></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" href="/table/recipes">Library<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service">☀ Day service</button></div></nav> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><article class="shell sheet svelte-131j3h6"><nav class="crumbs svelte-131j3h6" data-print="hide"><a href="/table/recipes" class="svelte-131j3h6">All chapters</a> <span aria-hidden="true">›</span> <a href="/table/chapter/swedish" class="svelte-131j3h6">Swedish</a></nav> <header class="head svelte-131j3h6"><p class="eyebrow">Swedish · Dessert</p> <h1 class="svelte-131j3h6">Prinsesstårta</h1> <ul class="stats svelte-131j3h6"><li class="svelte-131j3h6">Advanced</li> <li class="svelte-131j3h6">75 min</li> <li class="svelte-131j3h6">Serves 4</li> <li class="svelte-131j3h6">$$</li> <!--[0--><li class="veg svelte-131j3h6">Vegetarian</li><!--]--> <!--[-1--><!--]--></ul> <p class="palate svelte-131j3h6"><span class="tags svelte-131j3h6">rich · floral · silky · nutty-toasted</span> <span class="sentence svelte-131j3h6">Leads with richness that coats and comforts, a floral thread lifting the aroma, closing toasted and warm.</span></p></header> <div class="tools svelte-131j3h6" data-print="hide"><div class="group svelte-131j3h6" role="group" aria-label="Scale the recipe"><!--[--><button aria-pressed="false" class="svelte-131j3h6">×½</button><button aria-pressed="true" class="svelte-131j3h6 on">×1</button><button aria-pressed="false" class="svelte-131j3h6">×2</button><button aria-pressed="false" class="svelte-131j3h6">×3</button><!--]--></div> <div class="group svelte-131j3h6" role="group" aria-label="Units"><button aria-pressed="true" class="svelte-131j3h6 on">Metric</button> <button aria-pressed="false" class="svelte-131j3h6">US</button></div> <button class="chip svelte-131j3h6">Cook mode ▸</button> <button class="chip pin svelte-131j3h6" aria-pressed="false">📌 Add to menu</button> <button class="chip svelte-131j3h6">Print</button></div> <div class="cols svelte-131j3h6"><section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Ingredients</h2> <ul class="ingredients svelte-131j3h6"><!--[--><!--[-1--><li class="item svelte-131j3h6"><span>4 eggs</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>150 g caster sugar</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>100 g plain flour</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>50 g potato starch</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>1 tsp baking powder</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>300 ml whole milk</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>3 egg yolks</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>60 g caster sugar for the custard</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>25 g cornflour</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>1 vanilla pod, split</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>600 ml double cream, very cold</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>100 g raspberry jam</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>400 g marzipan, 60 percent almond</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>green food colouring</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>icing sugar, for rolling and dusting</span> <!--[-1--><!--]--></li><!--]--><!--]--></ul> <!--[-1--><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The skills inside</h2> <p class="skills svelte-131j3h6"><!--[--><a href="/table/technique/tempering-a-custard" class="svelte-131j3h6">Tempering a custard</a><!--]--></p><!--]--> <h2 class="sec svelte-131j3h6">Allergen screen</h2> <p class="equip svelte-131j3h6"><!--[0--><b>Found:</b> gluten · dairy · egg · nuts<!--]--></p> <p class="screened svelte-131j3h6">Screened for: gluten, dairy, egg, nuts, peanuts, fish, shellfish, molluscs, soy, sesame, celery, mustard, lupin, alcohol. <b>Not screened:</b> sulphites.</p> <!--[-1--><!--]--></section> <section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Method</h2> <ol class="steps svelte-131j3h6"><!--[--><li class="step svelte-131j3h6">Whisk the eggs and sugar until pale and thick enough that a drizzled figure of eight sits on the surface for three seconds before sinking. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Sift the flour, potato starch and baking powder over in three additions and fold by cutting down and turning, stopping the moment the streaks vanish; bake in a 22 cm tin at 175C (350F) for 30 minutes, until the centre springs back. <!--[0--><span class="dur svelte-131j3h6">30 min</span><!--]--></li><li class="step svelte-131j3h6">Whisk the milk, yolks, custard sugar, cornflour and vanilla over medium heat to a boil and hold it bubbling a full minute, until it thickens and loses any floury taste; spread thin and chill under film. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Split the cooled sponge into three; jam on the first layer, the beaten cold custard on the second, then whip the cream firm and build a tall smooth dome over the top layer, and chill until it is hard. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Roll the coloured marzipan to 3 mm between icing sugared sheets, wide enough to reach the board with 5 cm spare, then drape it from the crown and smooth downward, driving the air out ahead of your palms. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Trim flush at the base, dust with icing sugar and finish with a marzipan rose. <!--[-1--><!--]--></li><!--]--></ol></section></div> <!--[1--><section class="standard judged svelte-131j3h6"><h2 class="sec svelte-131j3h6">How to tell it is going right</h2> <!--[-1--><!--]--> <p class="judgedintro svelte-131j3h6">This dish has no standard of its own yet. It is judged on the technique it exercises: checked at the pan, while there is still something to be
+				done about it.</p> <!--[--><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/tempering-a-custard" class="svelte-131j3h6">Tempering a custard</a> <span class="judgedcount svelte-131j3h6">56 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">The hot liquid went into the eggs a little at a time with constant whisking, and only then did everything go back to the pot.</li><li class="svelte-131j3h6">The heat under it stayed gentle throughout and it was never allowed to boil.</li><li class="svelte-131j3h6">Stirred continuously and right into the corners of the pan, where it thickens first and sets unnoticed.</li><li class="svelte-131j3h6">Judged by behaviour: it thickens enough to coat the back of a spoon and hold a clean line when a finger is drawn through it.</li><li class="svelte-131j3h6">Taken off before it looks finished, and strained. Residual heat carries it the rest of the way, and a custard held on the heat until it looks right arrives past right.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> The hot liquid went in too fast, or the pot went back over full heat to save time. The yolks set into threads before they could thicken smoothly, and a scrambled custard does not come back; straining hides a little of it and nothing hides the rest.</p></div><!--]--></section><!--]--> <aside class="note recipe-note svelte-131j3h6"><p class="eyebrow">From the pass</p> <p class="notebody svelte-131j3h6">Marzipan does not stretch, it flows. A flat top with a square shoulder splits at that corner every time, so the cream is built into a tall dome and chilled hard before draping; on a soft dome the sheet sinks and wrinkles instead. Roll to 3 mm: thinner tears over the crown, thicker eats like sweet putty. The potato starch in the sponge is not optional either, since it keeps the crumb short enough to cut without dragging.</p></aside> <section class="pairing svelte-131j3h6"><div class="orn svelte-1dnahwc" aria-hidden="true" style="font-size:15px"><span class="rule svelte-1dnahwc"></span> <span class="mark svelte-1dnahwc">❧</span> <span class="rule svelte-1dnahwc"></span></div><!----> <h2 class="sec centered svelte-131j3h6">At the Table</h2> <dl class="svelte-131j3h6"><div class="svelte-131j3h6"><dt class="svelte-131j3h6">The Pour</dt><dd class="svelte-131j3h6">Sauternes</dd></div> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Also Right</dt><dd class="svelte-131j3h6">Demi-sec Champagne</dd></div> <!--[0--><div class="svelte-131j3h6"><dt class="svelte-131j3h6">From the Taps</dt><dd class="svelte-131j3h6">Belgian tripel</dd></div><!--]--> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Zero-Proof</dt><dd class="svelte-131j3h6">Jasmine tea</dd></div></dl> <p class="why svelte-131j3h6">The sweetness rule is absolute: the pour must be sweeter than the plate, and acid keeps it from cloying.</p></section> <section class="notes svelte-131j3h6" data-print="hide"><label for="famnotes" class="sec svelte-131j3h6">Family notes</label> <p class="hint svelte-131j3h6">Saved on this device and kept across visits: export from My Menu to move them.</p> <textarea id="famnotes" rows="4" placeholder="Your adjustments, stains, and marginalia…" class="svelte-131j3h6"></textarea></section> <!--[-1--><!--]--> <section class="films svelte-131j3h6" data-print="hide"><h2 class="sec svelte-131j3h6">Film school</h2> <!--[-1--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Prinsesst%C3%A5rta%20recipe" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">This dish, cooked on camera</span> <span class="vsub svelte-131j3h6">Search films of Prinsesstårta</span></a> <!--[--><a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=how%20to%20temper%20eggs%20custard%20technique" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Technique: Tempering a custard</span><span class="vsub svelte-131j3h6">The skill inside this recipe</span></a><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Swedish%20cooking%20techniques" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">The cuisine, deeper</span> <span class="vsub svelte-131j3h6">Technique films from the Swedish kitchen</span></a></section></article><!--]--><!----></main> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----> <!--[-1--><!--]--><!----> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1710 recipes · 168 chapters · Chef’s Lexicon: 479 terms</div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_53d6vm = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.Dm4SSsVe.js"),
+						import("/table/_app/immutable/entry/app.CxG5hgNe.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 21],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=23"></script>
+<script src="/shared/oot-profiles.js?v=23"></script>
+<script src="/shared/oot-home.js?v=23"></script>
+<script src="/shared/oot-auth.js?v=23"></script>
+<script src="/shared/oot-gate.js?v=23"></script>
+<script src="/shared/oot-locks.js?v=23"></script>
+<script src="/shared/oot-pass.js?v=23"></script>
+<script src="/shared/oot-log.js?v=23"></script>
+<script src="/shared/oot-bar.js?v=23"></script>
+</body>
+</html>
