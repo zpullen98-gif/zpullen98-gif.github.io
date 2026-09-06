@@ -9,9 +9,10 @@
    end up half a card out on somebody else's screen.
 
    The image carries its own type, which a screen reader cannot read, so each
-   anchor carries its wing's name as an accessible name, the image carries a
-   description, and a row of real text links sits underneath. That is the price
-   of painted lettering, and it is payable.
+   anchor carries its wing's name as an accessible name and the image carries a
+   description. Nothing is printed outside the frame: the painting is the page,
+   so the focus ring on a hotspot is the only way a keyboard user sees which
+   door they are on, and it is drawn to be seen.
    ============ */
 
 /* Cinzel, bundled (SIL Open Font License, shared/licenses/OFL.txt): the same
@@ -38,7 +39,7 @@ header.top { padding: 0; }
    hub-plate.js, a missing config, and the hub rendered as an empty page
    with its fallback links clipped to one pixel. The fallbacks are the whole
    point of keeping this markup; they must be visible by default. */
-.plate-live header.top .wrap > :not(.acct):not(.acct-form):not(.acct-note) {
+.plate-live header.top .wrap > :not(.acct):not(.acct-form) {
   position: absolute; width: 1px; height: 1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
 }
@@ -48,7 +49,18 @@ header.top { padding: 0; }
   position: relative;
   display: block;
   width: 100%;
-  max-width: 1024px;      /* the artwork's own width; upscaling would only soften it */
+  /* The artwork is 1024x1536, so it is half again as tall as it is wide, and at
+     its own width it stands two laptop screens high: the doors are the painted
+     cards, and every one of them was below the fold. Since the painting IS the
+     page now, cap the WIDTH by the height the viewport actually has, which
+     keeps the whole picture and the glyph under it on one screen. Capping the
+     width rather than the height is what keeps the hotspots honest: they are
+     positioned in percentages of this box, so the box has to stay exactly the
+     shape of the image. 108px is the glyph's own height plus
+     the air above it, measured rather than guessed, and 1024 is still the
+     ceiling because upscaling would only soften it. */
+  max-width: min(1024px, max(320px, calc((100vh - 108px) / 1.5)));
+  max-width: min(1024px, max(320px, calc((100svh - 108px) / 1.5)));
   margin: 0 auto;
   line-height: 0;         /* removes the inline-image baseline gap */
 }
@@ -69,7 +81,12 @@ header.top { padding: 0; }
   background: rgba(201, 168, 106, .10);
   box-shadow: 0 0 0 1px rgba(230, 207, 156, .8), 0 0 26px rgba(201, 168, 106, .35);
 }
-.spot:focus-visible { outline: 2px solid var(--gild-hi); outline-offset: 2px; }
+/* The only signpost a keyboard user gets, since no names are printed outside
+   the frame: a filled card and a ring that reads at arm's length. */
+.spot:focus-visible {
+  outline: 3px solid var(--gild-hi); outline-offset: 3px;
+  background: rgba(201, 168, 106, .16);
+}
 .spot:active { background: rgba(201, 168, 106, .18); }
 @media (prefers-reduced-motion: reduce) { .spot { transition: none; } }
 
@@ -80,28 +97,9 @@ header.top { padding: 0; }
 .spot-light   { left: 15.72%; top: 69.47%; width: 33.20%; height: 25.85%; }
 .spot-almanac { left: 50.78%; top: 69.47%; width: 33.11%; height: 25.85%; }
 
-/* A quiet row of names beneath the plate. The painted labels are pixels; these
-   are text, so they are selectable, searchable and translatable, and they are
-   what a keyboard user tabs through rather than hunting an invisible hotspot. */
-.plate-index {
-  display: flex; flex-wrap: wrap; justify-content: center;
-  gap: 4px 8px;
-  max-width: 1024px; margin: 16px auto 0; padding: 0 16px;
-  list-style: none;
-}
-.plate-index a {
-  display: block;
-  font-family: Cinzel, Georgia, serif;
-  font-size: .7rem; letter-spacing: .16em; text-transform: uppercase;
-  color: var(--ash-dim); text-decoration: none;
-  padding: 9px 12px; border: 1px solid transparent; border-radius: 2px;
-}
-.plate-index a:hover, .plate-index a:focus-visible {
-  color: var(--gild-hi); border-color: var(--hair-firm);
-}
 
 .acct { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 24px auto 0; padding: 0 16px; }
-.acct-form, .acct-note { margin-left: auto; margin-right: auto; text-align: center; }
+.acct-form { margin-left: auto; margin-right: auto; text-align: center; }
 
 /* The doors list is what the plate replaces. It stays in the DOM as the
    fallback when the artwork cannot load. hub-plate.js marks it inert at the

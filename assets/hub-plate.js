@@ -50,7 +50,7 @@
     img.decoding = 'async';
     /* The masthead's words are painted into this image, so they are described
        here for anyone who cannot see it. The five wings are named by the
-       hotspots themselves and by the index below. */
+       hotspots themselves. */
     img.alt = 'Outside Of Time Hospitality. Master the timeless art of hospitality. ' +
       'Five wings, shown as illuminated cards on a set table at dusk.';
     /* If the artwork cannot load, fall back to the real list of doors rather
@@ -81,25 +81,16 @@
     /* Only now may the poster CSS hide the DOM masthead and the door list:
        the artwork it replaces them with is on the page. The list goes inert
        as well as clipped: clipping alone left its five links in the tab order
-       and read every wing a third time to a screen reader, after the hotspot
-       and the index row. */
+       and read every wing a second time to a screen reader, after the
+       hotspots. */
     document.documentElement.classList.add('plate-live');
     pillars.setAttribute('inert', '');
 
-    /* Real text under the artwork: selectable, searchable, and what a keyboard
-       user tabs through instead of hunting an invisible rectangle. */
-    var index = document.createElement('ul');
-    index.className = 'plate-index';
-    wings.forEach(function (w) {
-      if (VENUE && w.pillar !== 'craft') return;
-      var li = document.createElement('li');
-      var a = document.createElement('a');
-      a.href = w.path;
-      a.textContent = w.short || w.name;
-      li.appendChild(a);
-      index.appendChild(li);
-    });
-    plate.parentNode.insertBefore(index, plate.nextSibling);
+    /* There is deliberately no row of names under the artwork. The five doors
+       are the five painted cards and nothing sits outside the frame. The names
+       are still real text to a screen reader, on the hotspots themselves, and a
+       keyboard user sees which card has focus: .spot:focus-visible draws a gold
+       ring on the card, which is why that rule is not decoration. */
   }
 
   /* The hub builds its doors from an end-of-body script; wait for that rather
