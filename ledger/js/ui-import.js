@@ -84,7 +84,7 @@ function importDoorsHTML(){
     body = '<div class="col-sm" style="gap:10px">'
       + '<div class="small dim lh">Select the menu wherever it lives, copy it, and drop it in. This is the '
       + 'one that works on every device with no connection at all.</div>'
-      + '<textarea class="input" id="imp-text" rows="8" placeholder="COCKTAILS&#10;&#10;Garden Gimlet  Gin, elderflower, cucumber, lime   14&#10;Paloma  Tequila, grapefruit, lime, soda   12">'+esc(i.text)+'</textarea>'
+      + '<textarea class="input" id="imp-text" rows="8" placeholder="COCKTAILS&#10;&#10;Garden Gimlet - Gin, elderflower, cucumber, lime   14&#10;Paloma - Tequila, grapefruit, lime, soda   12">'+esc(i.text)+'</textarea>'
       + '<div class="row" style="gap:8px"><button class="btn btn-brass" data-act="imp-read">Read it</button>'
       + (i.text ? '<button class="chip" data-act="imp-clear">Clear</button>' : '')+'</div></div>';
   } else if(i.door === 'hand'){

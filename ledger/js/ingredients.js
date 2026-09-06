@@ -73,6 +73,87 @@ function stockSatisfies(shelf, req) {
 	return false;
 }
 
+/* ---- what a row carries, once inheritance is taken into account ----------
+
+   Three rules, and each one was a bug waiting to happen that a verifier
+   caught before it shipped:
+
+   1. WALK `parent`, NEVER `upChain`. upChain stops at any child that lacks
+      up:true, and eighteen rows do (oldtom, genever, calvados, pisco, wrum,
+      arum, islay, bourbon, rye, scotch and the rest). A lookup built on
+      upChain returns nothing for every one of them.
+
+   2. AN AUTHORED ZERO IS A VALUE. Written as `row.abv || inherited` it is
+      silently discarded, and the zero-proof rows exist precisely to say
+      zero. hasOwnProperty, every time.
+
+   3. AN EITHER/OR TAKES THE MAX OF ITS MEMBERS. A ref with `anyOf` has no
+      id at all, so an id-keyed lookup returns nothing for eleven
+      volume-bearing lines including the Old Fashioned and the Dirty Martini,
+      and the ledger reads them as containing no alcohol. Max rather than
+      first or mean, because understating how much was poured is the
+      dangerous direction and this number is responsible-service teaching. */
+function rowValue(id, field) {
+	var seen = {}, cur = id, hops = 0;
+	while (cur && hops++ < 50 && !seen[cur]) {
+		seen[cur] = 1;
+		var row = ING[cur];
+		if (!row) return undefined;
+		if (Object.prototype.hasOwnProperty.call(row, field)) return row[field];
+		cur = row.parent;
+	}
+	return undefined;
+}
+
+/* The strength of one REF, which may be an id, an either/or, or a fragment
+   the vocabulary could not read. An unreadable fragment returns undefined
+   rather than 0, so a caller can tell 'no alcohol' apart from 'no idea'. */
+/* The strength of a ROW, with the one default that is safe to assume: a juice,
+   a syrup, a mixer, a garnish and a larder item are zero, and authoring
+   ninety-one zeros by hand would be ninety-one chances to typo one.
+
+   The default is deliberately NOT extended to the alcoholic kinds. There,
+   absent means nobody authored it, which is a bug the gate must be able to
+   see, and defaulting it to zero would hide exactly the failure this whole
+   field exists to prevent. */
+var NONBOOZE_KINDS = ['juice', 'syrup', 'mixer', 'dairy', 'produce', 'pantry'];
+function rowAbv(id) {
+	var v = rowValue(id, 'abv');
+	if (v !== undefined) return v;
+	var row = ING[id];
+	if (row && NONBOOZE_KINDS.indexOf(row.kind) >= 0) return 0;
+	return undefined;
+}
+
+function refAbv(ref) {
+	if (!ref) return undefined;
+	if (ref.anyOf && ref.anyOf.length) {
+		var best;
+		for (var i = 0; i < ref.anyOf.length; i++) {
+			var v = rowAbv(ref.anyOf[i]);
+			if (v === undefined) continue;
+			if (best === undefined || v > best) best = v;
+		}
+		return best;
+	}
+	return ref.id ? rowAbv(ref.id) : undefined;
+}
+
+/* And the balance role of one ref. Same walk; an either/or takes its FIRST
+   readable member, because the alternatives in this bank are always the same
+   role (bourbon or rye is two spirits, never a spirit or a syrup). */
+function refBal(ref) {
+	if (!ref) return undefined;
+	if (ref.anyOf && ref.anyOf.length) {
+		for (var i = 0; i < ref.anyOf.length; i++) {
+			var v = rowValue(ref.anyOf[i], 'bal');
+			if (v !== undefined) return v;
+		}
+		return undefined;
+	}
+	return ref.id ? rowValue(ref.id, 'bal') : undefined;
+}
+
 /* ---- normalising a fragment --------------------------------------------- */
 
 var ING_FRACTION = '(?:\\d+\\s+\\d+\\/\\d+|\\d+\\/\\d+|\\d+(?:\\.\\d+)?|[\\u00BC-\\u00BE\\u2150-\\u215E])';
@@ -81,6 +162,8 @@ var ING_UNIT = '(?:oz|ml|cl|dash(?:es)?|drops?|barspoons?|bar spoons?|bsp|tsp|tb
 	'sticks?|shots?|cans?|bottles?|pints?|handfuls?|scoops?|glass(?:es)?|splash(?:es)?|heaping tbsp)';
 var ING_QTY_RE = new RegExp('^\\s*(' + ING_FRACTION + ')?\\s*(' + ING_UNIT + ')?\\s+', 'i');
 var ING_BARE_UNIT_RE = new RegExp('^\\s*(' + ING_UNIT + ')\\s+', 'i');
+/* The same shape with the unit REQUIRED, for every pass after the first. */
+var ING_QTY_UNIT_RE = new RegExp('^\\s*(' + ING_FRACTION + ')\\s*(' + ING_UNIT + ')\\s+', 'i');
 var ING_ADJ_RE = new RegExp('^(?:' + ADJECTIVES.join('|').replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')\\s+', 'i');
 var ING_TAIL_RE = new RegExp(',?\\s*(?:' + TAILS.join('|').replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')\\s*$', 'i');
 
@@ -103,7 +186,18 @@ function normaliseFrag(s) {
 	var out = String(s == null ? '' : s).toLowerCase();
 	out = out.replace(/\s+/g, ' ').trim();
 	var prev;
-	do { prev = out; out = out.replace(ING_QTY_RE, '').replace(ING_BARE_UNIT_RE, ''); } while (out !== prev);
+	/* THE FIRST PASS MAY STRIP A BARE NUMBER; NO LATER PASS MAY.
+
+	   This ran to fixpoint with ING_QTY_RE, whose number and unit are BOTH
+	   optional, so a bare number followed by a space was eaten again and again:
+	   '1.5 oz 151 demerara rum' lost '1.5 oz ', then lost '151 ', resolved to
+	   arum, and the ledger read a 75.5% pour as a 40% one across the Zombie,
+	   the Jet Pilot, Cobra's Fang, the 151 Swizzle and three shots. A number
+	   that survives the first pass is part of the NAME: 151 rum, Licor 43.
+
+	   So the quantity comes off once, and the loop after it requires a unit. */
+	out = out.replace(ING_QTY_RE, '').replace(ING_BARE_UNIT_RE, '');
+	do { prev = out; out = out.replace(ING_QTY_UNIT_RE, '').replace(ING_BARE_UNIT_RE, ''); } while (out !== prev);
 	do { prev = out; out = out.replace(ING_TAIL_RE, ''); } while (out !== prev);
 	do { prev = out; out = out.replace(ING_ADJ_RE, ''); } while (out !== prev);
 	out = out.replace(/^of\s+/, '').replace(/[.,;:]+$/, '').trim();

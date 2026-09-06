@@ -109,12 +109,24 @@ function saveBarRecord(f, editingId){
   if(!rec) return 'A drink needs a name and at least one line of spec.';
   progress.bar = progress.bar || [];
   const i = editingId ? progress.bar.findIndex(x => x.id === editingId) : -1;
+  /* An edit whose record has gone is not an add. Falling through to push()
+     RESURRECTED a drink the bartender had already deleted, keeping its old
+     id and losing the practice record the delete confirm promised to take
+     with it. The form is open on something that no longer exists, and the
+     honest answer is to say so rather than to invent it back. */
+  if(editingId && i < 0){
+    return 'That drink was removed while this form was open, so there is nothing to save it back onto.';
+  }
   if(i >= 0){
     /* a rename must carry its review history to the new key or the drink comes
        back unseen and the old key becomes an immortal orphan */
     const oldKey = 'My Bar · ' + progress.bar[i].name, newKey = 'My Bar · ' + name;
-    if(oldKey !== newKey && progress.cards && progress.cards[oldKey] && !progress.cards[newKey]){
-      progress.cards[newKey] = progress.cards[oldKey];
+    /* Both keys can hold a card here too, if a rename collides with a name
+       that was used before. Same rule as the import: merge, never strand. */
+    if(oldKey !== newKey && progress.cards && progress.cards[oldKey]){
+      progress.cards[newKey] = (typeof bestCard === 'function')
+        ? bestCard(progress.cards[newKey], progress.cards[oldKey])
+        : (progress.cards[newKey] || progress.cards[oldKey]);
       delete progress.cards[oldKey];
     }
     progress.bar[i] = rec;
@@ -266,17 +278,51 @@ function menuPaneHTML(b, pane){
     }
     const c = kin.match;
     const diffs = [];
+    const unknown = [];
+
+    /* INGREDIENTS: identity only, which is all reqsOf can answer. */
     const mine = reqsOf(b).map(reqKey), theirs = reqsOf(c).map(reqKey);
     const extra = reqsOf(b).filter(r => theirs.indexOf(reqKey(r)) < 0);
     const absent = reqsOf(c).filter(r => mine.indexOf(reqKey(r)) < 0);
     if(extra.length) diffs.push('Yours adds ' + extra.map(reqLabel).join(', ').toLowerCase() + '.');
     if(absent.length) diffs.push('The canon has ' + absent.map(reqLabel).join(', ').toLowerCase() + ' and yours does not.');
-    if(b.method && c.method && b.method.toLowerCase() !== c.method.toLowerCase()){
-      diffs.push('Method: yours is ' + b.method.toLowerCase() + ', the canon is ' + c.method.toLowerCase() + '.');
+
+    /* PROPORTIONS, which is where two drinks with the same ingredients stop
+       being the same drink. This was missing entirely, so a Margarita at
+       3 : 1/4 : 1 1/2 read as identical to the book's 2 : 1 : 1. */
+    const mineM = measureReport(b), theirsM = measureReport(c);
+    if(mineM.kind === 'all' && theirsM.kind !== 'none'){
+      const ba = balanceOf(b), bb = balanceOf(c);
+      const moved = [['strong','spirit'],['sour','sour'],['sweet','sweet'],['modifier','wine or bitter'],['long','long']]
+        .filter(function(p){ return Math.abs(ba[p[0]] - bb[p[0]]) >= 0.25; });
+      if(moved.length){
+        diffs.push('Proportions: ' + moved.map(function(p){
+          return p[1] + ' ' + ozNice(ba[p[0]]) + ' against the canon\u2019s ' + ozNice(bb[p[0]]);
+        }).join(', ') + ' oz.');
+      }
+    } else if(mineM.kind !== 'all'){
+      /* THE CASE THAT PRODUCED THE FALSE CLAIM. A menu prints no measures, so
+         an imported drink has none, and silence about proportions was being
+         read as agreement about them. Say what could not be compared. */
+      unknown.push('Proportions could not be compared: yours carries '
+        + (mineM.measured ? 'measures on only ' + mineM.measured + ' of ' + mineM.total + ' lines' : 'no measures')
+        + ', and the canon is a set of ratios.');
     }
-    if(b.glass && c.glass && b.glass.toLowerCase() !== c.glass.toLowerCase()){
-      diffs.push('Glass: yours is ' + b.glass.toLowerCase() + ', the canon is ' + c.glass.toLowerCase() + '.');
-    }
+
+    /* METHOD and GLASS. A blank is NOT a match: the importer leaves both empty
+       on purpose because a menu prints neither, and the old guards read that
+       silence as sameness. */
+    /* The wing stores an empty glass as an empty string and lets ticketHTML
+       draw the dash; the standalone stores the dash itself. Testing for both
+       costs nothing and keeps the two files diffable. The escape is written
+       out because the published dash baseline counts the character. */
+    const said = function(v){ return v && v !== '\u2014' ? String(v) : ''; };
+    [['method','Method'],['glass','Glass'],['garnish','Garnish']].forEach(function(p){
+      const m = said(b[p[0]]), t = said(c[p[0]]);
+      if(!t) return;
+      if(!m) unknown.push(p[1] + ': yours does not say. The canon is ' + t.toLowerCase() + '.');
+      else if(m.toLowerCase() !== t.toLowerCase()) diffs.push(p[1] + ': yours is ' + m.toLowerCase() + ', the canon is ' + t.toLowerCase() + '.');
+    });
     return '<div class="col-sm" style="gap:12px">'
       + '<div class="small dim lh">' + (exact
           ? 'The canon carries a drink by this name. Yours is the house spec and it wins at your bar: this pane is here so you know what a guest who has drunk one elsewhere is expecting.'
@@ -290,7 +336,17 @@ function menuPaneHTML(b, pane){
       + (diffs.length
           ? '<div><div class="eyebrow mb1">What is different</div><div class="col-sm" style="gap:4px">'
             + diffs.map(d => '<div class="small lh">'+esc(d)+'</div>').join('')+'</div></div>'
-          : '<div class="small lh">Nothing meaningful differs. Yours is the canon spec.</div>')
+          : '')
+      /* What could NOT be compared, kept apart from what differs. Saying
+         nothing here is what let the pane claim two specs agreed when it had
+         only checked their ingredient names. */
+      + (unknown.length
+          ? '<div><div class="eyebrow mb1">What could not be compared</div><div class="col-sm" style="gap:4px">'
+            + unknown.map(function(u){ return '<div class="small dim lh">'+esc(u)+'</div>'; }).join('')+'</div></div>'
+          : '')
+      + ((!diffs.length && !unknown.length)
+          ? '<div class="small lh">Everything this pane can compare matches: the ingredients, the proportions, the method and the glass. Yours is the canon spec.</div>'
+          : '')
       + '</div>';
   }
   if(pane === 'cost'){
@@ -430,7 +486,15 @@ function menuStockHTML(){
         + (next.length ? '<div><div class="eyebrow mb1">Best next bottle</div>'
             + '<div class="small dim lh mb2">Each of these unlocks the listed drinks on its own.</div>'
             + '<div class="col-sm">'+nextRows+'</div></div>' : '')
-        + (close.length ? '<div class="tiny dim">'+close.length+' more are a single ingredient away.</div>' : '')
+        /* A '?' requirement is an ingredient the ledger could not name, and
+           bestNextBottles already refuses to suggest one. Counting it here as
+           'a single ingredient away' promises a drink that no bottle unlocks. */
+        + (function(){
+            const real = close.filter(function(x){ return String(reqKey(x.miss)).charAt(0) !== '?'; });
+            if(!real.length) return '';
+            return '<div class="tiny dim">' + real.length
+              + (real.length === 1 ? ' more is' : ' more are') + ' a single ingredient away.</div>';
+          })()
         + '</div>' : '')
     + menuDrillHTML(pool);
 }

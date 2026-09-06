@@ -175,27 +175,65 @@ function ticketHTML(c, hideName){
 }
 const idxOf = (name) => COCKTAILS.findIndex(c => c.name === name);
 
-/* ---------------- BALANCE ENGINE (the sweet-sour correction) ---------------- */
+/* ---------------- BALANCE ENGINE (the DeGroff correction) ---------------- */
+/* WHAT ROLE DOES THIS LINE PLAY IN THE BALANCE?
+
+   A regex cascade stood here, and it failed in the direction that costs money:
+   its last line was `return 'strong'`, so ANY line no pattern matched was
+   priced as a base spirit. Measured on the shipped bank, ten were, and none is
+   a spirit: "2 oz white peach purée" (Bellini), "5 oz cold water" (Pastis),
+   "1/2 oz olive brine" (Dirty Martini), "2 oz boiling water" (Blue Blazer),
+   "4 oz cold coffee", three fruit purées and a shrub. Pour Cost billed every
+   one of them at the bottle rate.
+
+   The vocabulary carries `bal` per row now, inherited down the parent chain,
+   so the answer comes from the ingredient rather than from the order of twenty
+   patterns.
+
+   TWO THINGS THE VOCABULARY CANNOT DECIDE, and both stay here:
+
+   1. BITTERS ARE VOLUME-DEPENDENT. A dash of Angostura is aromatic and is left
+      out of the balance; the Trinidad Sour pours 1.5 oz of it and that is the
+      base. No field on a row can know which, so the volume test comes FIRST
+      and the vocabulary answers everything else.
+
+   2. THE FALLBACK stays 'strong'. Check 1 in tools/check-ingredients.mjs
+      asserts that no shipped spec line is unresolvable, so it is unreachable
+      for the canon; it exists for menu imports, where a bartender can type
+      anything. Overcharging an unknown line is the safe direction on a cost
+      sheet, and that sheet already refuses outright when measures are missing. */
 function classifyLine(l){
   const s = l.toLowerCase();
-  /* aromatics are dashes and rinses, but a measured pour of bitters is a base
+  /* aromatics are dashes and rinses, and a MEASURED pour of bitters is a base
      spirit (the Trinidad Sour is 1.5 oz of Angostura), so check volume first */
-  if(/bitters|rinse|drops|flower water|dash/.test(s) && lineOz(l) === 0) return 'aromatic';
-  /* non-spirit bulk: mixers, beer, dairy and juices that lengthen rather than sour */
-  if(/champagne|prosecco|sparkling|\bsoda\b|tonic|ginger beer|ginger ale|\bcola\b|hot coffee|hot water|tomato|clamato|\bmilk\b|half-and-half|lager|\bstout\b|\bbeer\b|apple juice|lemonade|coconut water|grape juice|orange juice/.test(s)) return 'long';
-  if(/egg|whipped cream/.test(s)) return 'texture';
-  if(/vermouth|lillet|cocchi|dubonnet|punt e mes|\bsherry\b|\bport\b|campari|aperol|\bamaro\b|averna|montenegro|nonino|cynar|fernet|suze|amer picon|aperitivo/.test(s)) return 'modifier';
-  /* sweet: syrups AND the liqueur shelf. These patterns mirror the SHELF table
-     below: when you add one there, add it here or the two disagree. */
-  if(/simple|sugar|honey|orgeat|agave|syrup|cura|cointreau|liqueur|midori|maraschino|chartreuse|cacao|dictine|violette|mûre|falernum|grenadine|cordial|coconut|amaretto|triple sec|grand marnier|drambuie|crème de|creme de|cassis|schnapps|st-?germain|cherry heering|galliano|frangelico|limoncello|advocaat|chambord|midori|kahl|baileys|irish cream|sambuca|licor 43|velvet falernum|allspice dram|pimm/.test(s)) return 'sweet';
-  if(/\bcream\b/.test(s)) return 'texture';
-  if(/juice|lemon|lime|grapefruit|cranberry|pineapple|espresso/.test(s)) return 'sour';
-  /* non-alcoholic bulk that is neither mixer, sour nor sweet: water, purées,
-     shrubs, brines, cold coffee and tea. Falling through to 'strong' had
-     Pour Cost billing a Bellini's peach purée and a Pastis's five ounces of
-     water at the spirit rate. balanceOf drops this bucket entirely. An
-     infused spirit ("tea-infused gin") is still the spirit. */
-  if(!/infus/.test(s) && /\bwater\b|pur[eé]e|shrub|brine|coffee|\btea\b|juice|syrup|nectar|\bice\b/.test(s)) return 'na';
+  const oz = lineOz(l);
+  if(/bitters|rinse|drops|flower water|dash/.test(s) && oz === 0) return 'aromatic';
+  try {
+    const refs = specRefs(l).filter(function(r){ return r.role === 'ingredient'; });
+    /* PREFER A NON-AROMATIC ROLE. A line can name two things, and a garnish is
+       not what the line is FOR: '2 oz orange + pineapple juice' resolves orange
+       (the fruit, aromatic) before pineapple (long), and reading the first ref
+       blindly made it aromatic, then the volume rule below made it a base
+       spirit. The juice is the ingredient; the fruit is how it is written. */
+    var firstAromatic;
+    for(var i = 0; i < refs.length; i++){
+      var v = refBal(refs[i]);
+      if(v === undefined) continue;
+      if(v === 'aromatic'){ if(firstAromatic === undefined) firstAromatic = refs[i]; continue; }
+      return v;
+    }
+    if(firstAromatic !== undefined){
+      /* AND THE VOLUME RULE, the other half of the bitters problem. The
+         vocabulary calls Angostura aromatic, which is right for two dashes and
+         wrong for the Trinidad Sour, whose base is 1.5 oz of it. Anything
+         POURED BY THE OUNCE is in the drink rather than on it. Scoped to the
+         bitters shelf: a muddled orange slice on a line that happens to carry a
+         volume is still a garnish. */
+      var row = ING[firstAromatic.id] || {};
+      if(oz > 0 && row.kind === 'bitters') return 'strong';
+      return 'aromatic';
+    }
+  } catch(e){}
   return 'strong';
 }
 function lineOz(l){
@@ -214,6 +252,107 @@ function lineOz(l){
     }
   }
   return t;
+}
+/* WHAT CAN THIS SPEC BE MEASURED FOR, and what must not be claimed about it.
+
+   Three answers, and the middle one is the whole reason this exists:
+
+     'all'   every ingredient line carries ounces. Measure away.
+     'some'  SOME do. This is the trap: estimateABV and balanceOf divide by
+             the measured volume only, so the unmeasured lines vanish and the
+             number that comes out is confident and wrong. A gin drink whose
+             only ounce sits on the lime reported 0.0% ABV and told the
+             bartender they could serve two.
+     'none'  nothing carries ounces.
+
+   And it never says where the drink came from. The old copy told a Somaek
+   ('1 part soju') and a hand-typed metric spec that they 'came off a menu',
+   which it could not know and which was false for three shipped canon
+   cocktails. It reports what it can see: how many lines carry a measure, and
+   whether the others carry a different unit or no quantity at all.
+
+   A line with no ingredient in it (an instruction, a garnish note) is not
+   counted against the drink: specRefs already knows which those are. */
+function ANY_QTY_RE(){ return /(?:\d|\u00BC|\u00BD|\u00BE|\bhalf\b|\bquarter\b)/i; }
+
+/* Does this line carry alcohol? The same predicate check 9 uses on the
+   zero-proof bank: an alcoholic kind without an authored abv of 0. An
+   either/or counts as alcoholic only when every member is, since any one of
+   them can be what gets poured. */
+var BOOZY_KINDS = ['spirit', 'liqueur', 'fortified', 'wine', 'beer'];
+function refCarriesAlcohol(id){
+  var row = ING[id];
+  if(!row) return false;
+  if(row.abv === 0) return false;
+  return BOOZY_KINDS.indexOf(row.kind) >= 0;
+}
+function lineCarriesAlcohol(l){
+  try {
+    return specRefs(l).some(function(r){
+      if(r.role !== 'ingredient') return false;
+      var ids = r.anyOf || (r.id ? [r.id] : []);
+      return ids.length > 0 && ids.every(refCarriesAlcohol);
+    });
+  } catch(e){ return false; }
+}
+
+function measureReport(c){
+  const spec = (c && c.spec) || [];
+  const rows = [];
+  spec.forEach(function(l){
+    var isIngredient = true;
+    try { isIngredient = specRefs(l).some(function(r){ return r.role === 'ingredient'; }); } catch(e){}
+    if(!isIngredient) return;
+    /* A rinse, a float, a dash: classifyLine calls these aromatic or texture,
+       and balanceOf and estimateABV BOTH already skip them. An absinthe rinse
+       carrying no ounces is not a gap in the Sazerac, it is how a Sazerac is
+       written, and refusing to state its strength over one would be noise.
+       Same exclusion, same reason, so the three cannot disagree. */
+    var role = classifyLine(l);
+    var skippable = role === 'aromatic' || role === 'texture';
+    rows.push({ line: l, oz: lineOz(l), hasQty: ANY_QTY_RE().test(l),
+                booze: !skippable && lineCarriesAlcohol(l) });
+  });
+  const total = rows.length;
+  const measured = rows.filter(function(r){ return r.oz > 0; }).length;
+  /* THE ONE THAT MATTERS: an unmeasured line carrying alcohol. A dash of
+     bitters or an orange twist with no ounces is not a gap; a gin with no
+     ounces is the drink disappearing out of its own strength estimate. */
+  const missingBooze = rows.filter(function(r){ return !r.oz && r.booze; }).map(function(r){ return r.line; });
+  return {
+    total: total, measured: measured,
+    kind: !total ? 'none' : measured === total ? 'all' : measured ? 'some' : 'none',
+    missingBooze: missingBooze,
+    otherUnits: rows.some(function(r){ return !r.oz && r.hasQty; }),
+  };
+}
+
+/* The sentence a tool prints when it refuses, or null when there is nothing to
+   refuse. Derived, so it is not a field on any record and needs no clause in
+   the import merge.
+
+   It never says where the drink came from. The copy it replaces told a Somaek
+   written in parts, and a hand-typed metric spec, that they 'came off a menu',
+   which it could not know and which was false for three shipped canon
+   cocktails. It reports only what it can see. */
+function unmeasuredReason(c){
+  const m = measureReport(c);
+  if(!m.total) return 'This drink has no spec yet.';
+  if(m.missingBooze.length){
+    return m.measured
+      ? 'The alcohol on this spec carries no measure this sheet can read (' + m.missingBooze.join('; ')
+        + '), and it works in ounces. Strength and cost are both worked out from the ounces, so anything '
+        + 'printed here would leave that spirit out and look certain about it.'
+      : 'No line on this spec carries a measure, so there is nothing to work strength or cost from.';
+  }
+  if(m.kind === 'none'){
+    return m.otherUnits
+      ? 'This spec is written in units this sheet does not read: it works in ounces. Yield, strength '
+        + 'and cost are all volume questions, so they cannot be answered from it.'
+      : 'This spec carries no measures at all. Put ounces on the lines and this sheet can read it; '
+        + 'until then the honest answer is that nobody knows.';
+  }
+  return null;
 }
 function ozNice(x){
   const n = Math.round(x*4)/4;
@@ -391,7 +530,14 @@ const SHELF_PRESETS = [
   ['Classic well', WELL_PRESET],
   ['Craft cocktail bar', WELL_PRESET.concat(['arum','scotch','cognac','mezcal','irish','aperol','cynar','fernet','mara','chart','bene','abs','pey','elder','orgeat','honey','gfj','pine','cran','egg','cream','oj','sherry','champ','lillet','nonino','cassis','apricot','falernum','allspice','maple','agave','oprum'])],
   ['Tiki station', ['wrum','arum','oprum','teq','falernum','allspice','orgeat','ol','mara','abs','ango','lime','lemon','gfj','pine','oj','simple','honey','gren','coco','mint','cinn']],
-  ['Zero-proof station', ['lemon','lime','gfj','oj','pine','cran','simple','honey','ginger','mint','soda','tonic','gb','ga','cola','tomato','coco','espresso','brewedcoffee','cream','milk','agave','maple']],
+  /* The zero-proof station stocks the zero-proof BOTTLES too. Without them the
+     preset could not make a Root Beer Float or a Mulled Cider, which is the
+     other half of the bug that had those drinks requiring a lager and hard
+     cider: the rows were wrong AND the station that exists to pour them did
+     not carry them. */
+  ['Zero-proof station', ['lemon','lime','gfj','oj','pine','cran','simple','honey','ginger','mint','soda','tonic','gb','ga','cola','tomato','coco','espresso','brewedcoffee','cream','milk','agave','maple',
+    'naaperitivo','nabitters','naspirit','navermouth',
+    'rootbeer','applecider','nasparkling','naredwine','nalager','naelder','nacoffeeliq','gentiansyrup','narum']],
 ];
 /* A requirement the ledger could not read is shown as what it is, rather
    than as a bare id nobody can act on. */
@@ -464,6 +610,25 @@ function liveShelf(shelf){
   const out = progress.eightySix || [];
   return out.length ? shelf.filter(function(k){ return out.indexOf(k) < 0; }) : shelf;
 }
+/* Is tonight's 86 list from tonight? A claim about right now goes stale, and
+   a list stamped more than eighteen hours ago belongs to a shift that has
+   ended: carrying it forward takes drinks off the board for a bartender who
+   never 86'd anything. Eighteen rather than twenty-four because a bar that
+   closes at three and opens at eleven is the ordinary case.
+
+   HERE rather than in the boot sequence, because the boot was the only place
+   that applied it and a RESTORE therefore brought a dead shift's list back to
+   life until the next reload. One function, two call sites, no drift. */
+function expireStaleEightySix(){
+  if(!Array.isArray(progress.eightySix)) progress.eightySix = [];
+  if(progress.eightySix.length && Date.now() - (progress.eightySixAt || 0) > 18*3600*1000){
+    progress.eightySix = [];
+    progress.eightySixAt = null;
+    return true;
+  }
+  return false;
+}
+
 /* Un-stocking a bottle must drop it from the 86 list. They are separate
    fields on purpose, and separate fields drift: a bottle the bar no longer
    carries at all cannot also be 86'd tonight, and leaving it there would
@@ -473,7 +638,12 @@ function dropDeadEightySix(){
   const out = progress.eightySix;
   if(!out || !out.length) return;
   const kept = out.filter(function(k){ return state.tools.shelf.indexOf(k) >= 0; });
-  if(kept.length !== out.length){ progress.eightySix = kept; progress.eightySixAt = Date.now(); }
+  /* The stamp is NOT touched. It is the sole input to the eighteen hour
+     expiry, and re-stamping it here meant that pruning one dead entry gave
+     every surviving 86 another full eighteen hours: un-stock one bottle a
+     day and the list never expires at all. A prune is not a claim about
+     when the shift started. */
+  if(kept.length !== out.length) progress.eightySix = kept;
 }
 
 /* A requirement is either an id or an array of alternatives, and both shapes
@@ -537,8 +707,14 @@ function nearestKin(d, pool){
    it. Re-running the match against the shelf minus one bottle is the only
    version of this that is true, and it is simpler than what it replaced. */
 function eightySixReport(key, pool){
-  const ready = pool.filter(function(d){ return missingFor(d).length===0; });
-  const without = (state.tools.shelf||[]).filter(function(x){ return x !== key; });
+  /* liveShelf, not the raw stock list. Both sides of this were blind to what
+     is ALREADY 86'd tonight, so the drill offered a Closest Survivor that was
+     itself off the board and its 'N drinks still pour without it' counted
+     drinks nobody could pour. A training exercise that contradicts the screen
+     above it teaches the bartender to distrust both. */
+  const live = liveShelf();
+  const ready = pool.filter(function(d){ return missingFor(d, live).length===0; });
+  const without = live.filter(function(x){ return x !== key; });
   const lost = [], survivors = [];
   ready.forEach(function(d){ (missingFor(d, without).length ? lost : survivors).push(d); });
   return {
