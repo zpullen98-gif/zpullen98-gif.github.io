@@ -13,7 +13,7 @@
 var FIRST_PATH = [
   { id: 'families', t: 'The eight templates',            go: 'families',   mins: 10 },
   { id: 'build',    t: 'Reading a spec off a ticket',    go: 'library',    mins: 8 },
-  { id: 'ourbar',   t: 'What we actually pour',          go: 'mybar',      mins: 15 },
+  { id: 'ourbar',   t: 'What we actually pour',          go: 'menu',       mins: 15 },
   { id: 'method',   t: 'Shake, stir, build, and why',    go: 'notes',      mins: 8, open: 'Technique: The Mechanics' },
   { id: 'service',  t: 'Beer, wine and the legal floor', go: 'service',    mins: 12 },
   { id: 'first',    t: 'Your first ten cards',           go: 'flashcards', mins: 8, deal: 'first-ten' }

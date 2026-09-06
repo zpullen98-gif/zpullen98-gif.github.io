@@ -47,8 +47,8 @@ function renderHome(){
       ['quiz','Quiz Rounds','Families, blind tickets, bar knowledge, real-service scenarios, and the dealer\'s-choice call.'],
       ['practice','Practice & Tasting','Nine hands-on drills, the Ticket Rail, the Hold-the-Round memory test, the free-pour bench, tasting scorecards, and twelve guided flights.'],
       ['riffs','Riff Builder','Improvise on the templates: the difference between knowing 50 drinks and 500.'],
-      ['mybar','My Bar','The list you actually pour. Enter your house specs and they drill alongside the canon.'],
-      ['tools','Bar Tools','Batching, shelf inventory with the 86 drill, strength estimates, pour costing with the bottle book, the spill log, open-bottle dating, unit conversion, and your backups.']
+      ['menu','Menu','The list you actually pour, what the bar stocks tonight, and what you can still put up when something runs out.'],
+      ['tools','Bar Tools','Batching, strength estimates, pour costing with the bottle book, the spill log, open-bottle dating, unit conversion, and your backups.']
     ]]
   ];
   const tileGrid = (rows) => '<div class="card-grid">'
@@ -233,9 +233,27 @@ function renderLibrary(){
 
 /* ---------------- FLASHCARDS ---------------- */
 /* ---- unified deck: cocktails + shots + zero-proof all drillable ---- */
+/* THIS ARRAY IS A SET OF PRIMARY KEYS, not a set of labels.
+
+   cardKey() returns src + ' · ' + name, so the string 'My Bar' is baked
+   into every SRS record, every rail entry and every mastery row a bartender
+   has ever earned, and into every backup file ever exported. It is also a
+   filter value in six engines. Renaming it would either strand every existing
+   record or make the orphan sweep in dataImport blind to keys arriving from an
+   older backup, and both failures are silent.
+
+   So the tab is called Menu and the key is still 'My Bar'. srcLabel() is the
+   join between them: route it through every site that PRINTS a source, and
+   leave the literal at every site that COMPARES one. If you are about to grep
+   for 'My Bar' and change what you find, that is the distinction to make on
+   each hit.
+
+   The label lives here rather than in the view because five files print it. */
 const DECK_SOURCES = ['Cocktails','My Bar','Shots','Zero Proof'];
-/* 'My Bar' earns its chips only once something is on the list: an empty
-   source is zero-noise everywhere it would appear */
+const SRC_LABEL = { 'My Bar': 'Menu' };
+function srcLabel(s){ return SRC_LABEL[s] || s; }
+/* the venue's own list earns its chips only once something is on it: an empty
+   source is zero noise everywhere it would appear */
 function deckSources(){ return DECK_SOURCES.filter(s => s !== 'My Bar' || (progress.bar||[]).length); }
 function allDrinks(){
   if(allDrinks._c) return allDrinks._c;
@@ -385,7 +403,7 @@ function prepCard(){
        a miss, which then went into the scheduler as a lapse. */
     const fields = ['glass','garnish','method']
       .filter(f => c[f] && c[f] !== '-' && !(f==='glass' && c.src==='Shots'));
-    /* A My Bar drink saved as name+spec only has nothing to ask here; a
+    /* A menu drink saved as name+spec only has nothing to ask here; a
        zero-question card would render an instant 'Not clean.' and record
        nothing. Skip it: the deck end check above is the recursion floor. */
     if(!fields.length){ fc.idx++; return prepCard(); }
@@ -444,7 +462,7 @@ function renderFlashcards(){
   if(fc.stage==='setup'){
     const srcChips = ['All'].concat(deckSources()).map(function(s){
       const n = allDrinks().filter(function(d){ return s==='All' || d.src===s; }).length;
-      return '<button class="chip'+(fc.src===s?' on':'')+'" aria-pressed="'+(fc.src===s?'true':'false')+'" data-act="fc-src" data-s="'+esc(s)+'">'+(s==='All'?'Everything':esc(s))+' <span class="font-tix">'+n+'</span></button>';
+      return '<button class="chip'+(fc.src===s?' on':'')+'" aria-pressed="'+(fc.src===s?'true':'false')+'" data-act="fc-src" data-s="'+esc(s)+'">'+(s==='All'?'Everything':esc(srcLabel(s)))+' <span class="font-tix">'+n+'</span></button>';
     }).join(' ');
     const isCocktail = fc.src==='Cocktails' || fc.src==='All';
     const tierSel = isCocktail ? '<select class="input" id="fc-tier" aria-label="Filter by tier" style="max-width:380px">'+tierOptions(fc.tier)+'</select>' : '';
@@ -478,7 +496,7 @@ function renderFlashcards(){
       + '<div class="col-sm">'+modeBtns+'</div>'
       + '</div>'
       + '<div class="row center"><button class="btn btn-ghost" data-act="fc-board">Mastery board →</button></div>'
-      + '<div class="tiny dim lh" style="padding:0 4px">Every drink in the ledger is drillable: all '+COCKTAILS.length+' cocktails, '+SHOTS.length+' shots, '+((progress.bar||[]).length ? NA_DRINKS.length+' zero-proof drinks, and your '+progress.bar.length+' My Bar drink'+(progress.bar.length===1?'':'s') : 'and '+NA_DRINKS.length+' zero-proof drinks')+', '+allDrinks().length+' cards in total. Path to mastery: run <span class="brass2">Name → Spec</span> until clean, prove it in <span class="brass2">Assemble the Ticket</span>, then keep <span class="brass2">Trouble cards</span> + <span class="brass2">Weakest first</span> in rotation. Three honest wins with a winning record masters a card.</div>'
+      + '<div class="tiny dim lh" style="padding:0 4px">Every drink in the ledger is drillable: all '+COCKTAILS.length+' cocktails, '+SHOTS.length+' shots, '+((progress.bar||[]).length ? NA_DRINKS.length+' zero-proof drinks, and your '+progress.bar.length+' menu drink'+(progress.bar.length===1?'':'s') : 'and '+NA_DRINKS.length+' zero-proof drinks')+', '+allDrinks().length+' cards in total. Path to mastery: run <span class="brass2">Name \u2192 Spec</span> until clean, prove it in <span class="brass2">Assemble the Ticket</span>, then keep <span class="brass2">Trouble cards</span> + <span class="brass2">Weakest first</span> in rotation. Three honest wins with a winning record masters a card.</div>'
       + '</div>';
   }
 
@@ -489,7 +507,7 @@ function renderFlashcards(){
       .filter(function(o){ return fc.boardSrc==='All' || o.d.src===fc.boardSrc; })
       .sort(function(a,b){ return a.d.name.localeCompare(b.d.name); });
     const srcChips = ['All'].concat(deckSources()).map(function(s){
-      return '<button class="chip'+(fc.boardSrc===s?' on':'')+'" aria-pressed="'+(fc.boardSrc===s?'true':'false')+'" data-act="fc-board-src" data-s="'+esc(s)+'">'+(s==='All'?'All':esc(s))+'</button>';
+      return '<button class="chip'+(fc.boardSrc===s?' on':'')+'" aria-pressed="'+(fc.boardSrc===s?'true':'false')+'" data-act="fc-board-src" data-s="'+esc(s)+'">'+(s==='All'?'All':esc(srcLabel(s)))+'</button>';
     }).join(' ');
     const rows = shown.map(function(o){
       const key = cardKey(o.d);
@@ -649,7 +667,7 @@ function renderFlashcards(){
 /* ---- quiz rounds: mixed, or a single domain drilled deliberately ---- */
 const QUIZ_MODES = [
   ['mixed','Mixed round','Families, blind tickets and bar knowledge, the shape of a shift.'],
-  ['mybar','My bar','Your own menu: name, glass and spec, straight off your list.'],
+  ['mybar','Menu','Your own list: name, glass and spec, straight off the menu.'],
   ['service','Service & law','Guests, pacing, refusal, the register and the legal floor.'],
   ['beerwine','Beer & wine','Draught, bottle, varietal and glassware, the high-volume half.'],
   ['craft','Spirits & craft','Technique, production, ingredients and the balance behind the specs.'],
@@ -867,7 +885,7 @@ function renderQuiz(){
     const hist = (progress.quizzes||[]).slice(-5).reverse()
       .map(h => '<div class="hist-row"><span>'+esc(h.date)+(h.mode&&h.mode!=='mixed'?' · '+esc(h.mode):'')+'</span><span class="font-tix brass2">'+h.score+'/'+(h.total||10)+'</span></div>').join('');
     const chips = QUIZ_MODES.map(([k,l]) => {
-      if(k==='mybar' && barN < 4) return '<button class="chip" disabled title="Add four drinks to My Bar and this round opens">'+esc(l)+' <span class="font-tix">'+barN+'/4</span></button>';
+      if(k==='mybar' && barN < 4) return '<button class="chip" disabled title="Add four drinks to your menu and this round opens">'+esc(l)+' <span class="font-tix">'+barN+'/4</span></button>';
       return '<button class="chip'+(mode===k?' on':'')+'" aria-pressed="'+(mode===k?'true':'false')+'" data-act="quiz-mode" data-m="'+k+'">'+esc(l)+'</button>';
     }).join(' ');
     const blurb = (QUIZ_MODES.find(([k]) => k===mode) || QUIZ_MODES[0])[2];

@@ -1,6 +1,6 @@
 /* ---------------- RENDER & EVENTS ---------------- */
 const prTicks = {};  /* one stopwatch interval per drill id */
-const TABS = [['home','Ledger'],['mybar','My Bar'],['families','Families'],['library','Library'],['shots','Shots'],['na','Zero Proof'],['service','Behind the Stick'],['prep','Prep'],['producers','Producers'],['notes','Notes'],['flashcards','Flashcards'],['quiz','Quiz'],['practice','Practice'],['riffs','Riffs'],['tools','Tools']];
+const TABS = [['home','Ledger'],['menu','Menu'],['families','Families'],['library','Library'],['shots','Shots'],['na','Zero Proof'],['service','Behind the Stick'],['prep','Prep'],['producers','Producers'],['notes','Notes'],['flashcards','Flashcards'],['quiz','Quiz'],['practice','Practice'],['riffs','Riffs'],['tools','Tools']];
 /* Announce something to assistive tech. The region is outside #view so it
    survives the innerHTML swap below. */
 function say(msg){
@@ -32,10 +32,16 @@ function render(){
   renderNav();
   syncRoute();
   const view = document.getElementById('view');
-  view.innerHTML = ({home:renderHome, mybar:renderMyBar, families:renderFamilies, library:renderLibrary,
+  /* The fallback is not defensive padding: an unmapped tab was a hard
+     TypeError that blanked the whole app, and a stale hash from an older
+     build is enough to cause one. Landing on Home is a recoverable state; a
+     white screen is not. */
+  const views = {home:renderHome, menu:renderMenu, families:renderFamilies, library:renderLibrary,
     shots:renderShots, na:renderNA, service:renderService, producers:renderProducers, prep:renderPrep,
     flashcards:renderFlashcards, quiz:renderQuiz, riffs:renderRiffs,
-    practice:renderPractice, tools:renderTools, notes:renderNotes})[state.tab]();
+    practice:renderPractice, tools:renderTools, notes:renderNotes};
+  if(!views[state.tab]) state.tab = 'home';
+  view.innerHTML = views[state.tab]();
   if(sig){
     let back = null;
     try{ back = document.querySelector(sig); }catch(e){}
@@ -217,8 +223,9 @@ document.addEventListener('keydown', e => {
     }
     return;
   }
-  /* one key per cluster, however many there are: a fixed [1-4] outlived the
-     fourth cluster and threw on the key it no longer had */
+  /* one key per cluster, however many there are. A fixed [1-4] is one
+     cluster-deletion away from destructuring undefined, and the throw would
+     be on a keypress nobody would think to report. */
   if(/^[1-9]$/.test(e.key) && NAV_CLUSTERS[Number(e.key)-1]){
     state.tab = clusterLanding(NAV_CLUSTERS[Number(e.key)-1][0]);
     state.sheet = null;
@@ -232,9 +239,9 @@ document.getElementById('view').addEventListener('click', e => {
   const act = el.dataset.act;
   const _tn = document.getElementById('tst-notes'); if(_tn) state.tast.notes = _tn.value;
   const _tl = document.getElementById('tst-label'); if(_tl) state.tast.label = _tl.value;
-  /* same rule for the My Bar form: render() destroys the inputs, so any act
+  /* same rule for the Menu tab form: render() destroys the inputs, so any act
      that repaints mid-edit must read them back into state first */
-  if(state.mybar && state.mybar.form) captureBarForm();
+  if(state.menu && state.menu.form) captureBarForm();
   const fc = state.fc, z = state.quiz;
   if(act==='go'){ state.tab = el.dataset.tab;
     /* optional deep links, so "Quiz your list" opens the quiz ON the list
@@ -625,21 +632,36 @@ document.getElementById('view').addEventListener('click', e => {
   else if(act==='data-share'){ dataShare(); return; }
   else if(act==='data-copy'){ dataCopy(); return; }
   else if(act==='data-persist'){ requestPersistence(); return; }
-  else if(act==='shelf-src'){ state.tools.shelfSrc = el.dataset.s; }
-  else if(act==='shelf-mode'){ state.tools.eightySix = el.dataset.m==='86' ? '' : null; }
-  else if(act==='shelf-86'){ state.tools.eightySix = state.tools.eightySix===el.dataset.k ? '' : el.dataset.k; }
+  /* stock-*, not shelf-*: the markup moved files, so every call site was
+     touched anyway, and renaming was free at that instant and never free
+     again. 'Shelf' was the home bartender's word. */
+  else if(act==='stock-src'){ state.menu.src = el.dataset.s; }
+  else if(act==='stock-drill'){ state.menu.drill = el.dataset.m==='on' ? '' : null; }
+  else if(act==='stock-drill-pick'){ state.menu.drill = state.menu.drill===el.dataset.k ? '' : el.dataset.k; }
+  else if(act==='stock-86'){
+    const k = el.dataset.k, out = progress.eightySix || (progress.eightySix = []);
+    const p = out.indexOf(k); if(p>=0) out.splice(p,1); else out.push(k);
+    progress.eightySixAt = Date.now(); saveProgress(); }
+  else if(act==='stock-86-add'){
+    const k = el.dataset.k, out = progress.eightySix || (progress.eightySix = []);
+    if(out.indexOf(k) < 0) out.push(k);
+    progress.eightySixAt = Date.now(); state.menu.drill = null; saveProgress();
+    say(shelfLabel(k)+" is off the board for tonight."); }
+  else if(act==='stock-86-clear'){
+    progress.eightySix = []; progress.eightySixAt = Date.now(); saveProgress();
+    say('Everything is back on.'); }
   else if(act==='conv-unit'){ state.tools.convFrom = el.dataset.u; }
   else if(act==='dil-pct'){ state.tools.dilPct = Number(el.dataset.v); }
   else if(act==='tool-dilute'){ state.tools.dilute = !state.tools.dilute; }
-  else if(act==='tool-preset'){
+  else if(act==='stock-preset'){
     const p = SHELF_PRESETS[Number(el.dataset.i)] || SHELF_PRESETS[0];
     state.tools.shelf = p[1].slice();
-    progress.shelf = state.tools.shelf.slice(); saveProgress(); }
-  else if(act==='tool-clear'){ state.tools.shelf = []; progress.shelf = []; saveProgress(); }
-  else if(act==='shelf-toggle'){
+    progress.shelf = state.tools.shelf.slice(); dropDeadEightySix(); saveProgress(); }
+  else if(act==='stock-clear'){ state.tools.shelf = []; progress.shelf = []; dropDeadEightySix(); saveProgress(); }
+  else if(act==='stock-toggle'){
     const k = el.dataset.k; const s = state.tools.shelf;
     const p = s.indexOf(k); if(p>=0) s.splice(p,1); else s.push(k);
-    progress.shelf = s.slice(); saveProgress(); }
+    progress.shelf = s.slice(); dropDeadEightySix(); saveProgress(); }
   else if(act==='tool-open'){
     const i = Number(el.dataset.i);
     state.lib = { q:'', fam:'All', tier:'All', open:i };
@@ -692,53 +714,44 @@ document.getElementById('view').addEventListener('click', e => {
   else if(act==='vid-len'){
     if(!progress.vidPrefs) progress.vidPrefs = {};
     progress.vidPrefs.longform = el.dataset.v==='long'; saveProgress(); }
-  else if(act==='mybar-new'){ state.mybar.form = blankBarForm(); state.mybar.editing = null; }
-  else if(act==='mybar-cancel'){ state.mybar.form = null; state.mybar.editing = null; }
-  else if(act==='mybar-edit'){
+  else if(act==='menu-view'){ state.menu.view = el.dataset.v; state.menu.err = null;
+    if(el.dataset.v==='add' && !state.menu.form) state.menu.form = blankBarForm(); }
+  else if(act==='menu-pane'){ state.menu.pane = el.dataset.p; }
+  else if(act==='menu-new'){ state.menu.form = blankBarForm(); state.menu.editing = null; state.menu.err = null; }
+  else if(act==='menu-cancel'){ state.menu.form = null; state.menu.editing = null; state.menu.err = null;
+    if(state.menu.view==='add') state.menu.view = 'menu'; }
+  else if(act==='menu-edit'){
     const b = (progress.bar||[]).find(x => x.id===el.dataset.id);
-    if(b){ state.mybar.form = { name:b.name, spec:b.spec.slice(), method:b.method||'', glass:b.glass||'', garnish:b.garnish||'', note:b.note||'', family:b.family||'Other', spirit:b.spirit||'Other', price:b.price||'' };
-      state.mybar.editing = b.id; } }
-  else if(act==='mybar-del'){
+    if(b){ state.menu.form = { name:b.name, spec:b.spec.slice(), method:b.method||'', glass:b.glass||'', garnish:b.garnish||'', note:b.note||'', family:b.family||'Other', spirit:b.spirit||'Other', price:b.price||'' };
+      state.menu.editing = b.id; state.menu.err = null; state.menu.view = 'add'; } }
+  else if(act==='menu-del'){
     const b = (progress.bar||[]).find(x => x.id===el.dataset.id);
-    if(b && confirm('Remove "'+b.name+'" from My Bar? Its practice record goes with it.')){
+    if(b && confirm('Remove "'+b.name+'" from your menu? Its practice record goes with it.')){
       progress.bar = progress.bar.filter(x => x.id!==b.id);
       /* the confirm promises the record goes too: keep the promise, or the
          orphaned key haunts the weakest list, the due counter and every
          backup as a phantom that can never be reviewed */
       delete progress.cards['My Bar · '+b.name];
-      if(state.mybar.open===b.id) state.mybar.open = null;
-      barChanged(); saveProgress(); say('Removed from My Bar.');
+      if(state.menu.open===b.id) state.menu.open = null;
+      barChanged(); saveProgress(); say('Taken off the menu.');
     } }
-  else if(act==='mybar-add-line'){ state.mybar.form.spec.push(''); }
-  else if(act==='mybar-del-line'){
-    state.mybar.form.spec.splice(Number(el.dataset.i), 1);
-    if(!state.mybar.form.spec.length) state.mybar.form.spec.push(''); }
-  else if(act==='mybar-open'){ state.mybar.open = state.mybar.open===el.dataset.id ? null : el.dataset.id; }
-  else if(act==='mybar-save'){
-    const f = state.mybar.form;
-    const spec = f.spec.map(s => s.trim()).filter(Boolean);
-    const clash = (progress.bar||[]).find(x =>
-      x.name.toLowerCase() === f.name.trim().toLowerCase() && x.id !== state.mybar.editing);
-    if(!f.name.trim() || !spec.length){ say('A drink needs a name and at least one spec line.'); }
-    /* the name IS the identity everywhere downstream: the SRS key, the rail
-       lookup, the search slug, the import merge, so two drinks cannot share
-       one, or they share one practice record and one rail answer too */
-    else if(clash){ say('"'+clash.name+'" is already on the list. Rename one of them.'); }
+  else if(act==='menu-add-line'){ state.menu.form.spec.push(''); }
+  else if(act==='menu-del-line'){
+    state.menu.form.spec.splice(Number(el.dataset.i), 1);
+    if(!state.menu.form.spec.length) state.menu.form.spec.push(''); }
+  else if(act==='menu-open'){
+    const same = state.menu.open===el.dataset.id;
+    state.menu.open = same ? null : el.dataset.id;
+    /* a fresh drink opens on its build, not on whichever pane the last one
+       was left showing: the pane is a place inside ONE drink */
+    if(!same) state.menu.pane = 'build'; }
+  else if(act==='menu-save'){
+    const out = saveBarRecord(state.menu.form, state.menu.editing);
+    if(typeof out === 'string'){ state.menu.err = out; say(out); }
     else {
-      const rec = { id: state.mybar.editing || mintBarId(), name:f.name.trim(), spec:spec,
-        method:f.method.trim(), glass:f.glass.trim(), garnish:f.garnish.trim(),
-        note:f.note.trim(), family:f.family, spirit:f.spirit, price:f.price.trim(), ts:Date.now() };
-      if(!progress.bar) progress.bar = [];
-      const i = progress.bar.findIndex(x => x.id===rec.id);
-      /* a rename must carry the practice record to the new key, not abandon
-         it: the SRS keys by name, the drink's history is the drink's */
-      if(i >= 0 && progress.bar[i].name !== rec.name){
-        const old = 'My Bar · '+progress.bar[i].name;
-        if(progress.cards[old]){ progress.cards['My Bar · '+rec.name] = progress.cards[old]; delete progress.cards[old]; }
-      }
-      if(i < 0) progress.bar.push(rec); else progress.bar[i] = rec;
-      state.mybar.form = null; state.mybar.editing = null; state.mybar.open = rec.id;
-      barChanged(); saveProgress(); say('Saved to My Bar.');
+      state.menu.form = null; state.menu.editing = null; state.menu.err = null;
+      state.menu.open = out.id; state.menu.pane = 'build'; state.menu.view = 'menu';
+      say('Saved to the menu.');
     } }
   else if(act==='note-open'){ state.noteOpen = state.noteOpen===el.dataset.t ? null : el.dataset.t; state.noteJump = true; }
   else if(act==='svc-dom'){ state.svc.dom = el.dataset.d; state.svc.rowOpen = null; state.svc.refOpen = null; }
@@ -750,7 +763,7 @@ document.getElementById('view').addEventListener('click', e => {
 
 /* THE CAPTURE RULE, systematised. render() rebuilds the whole view, so any
    text sitting in a live input dies with the DOM unless it is read back into
-   state first; captureBarForm learned this for My Bar, and then four new
+   state first; captureBarForm learned this for the menu form, and then four new
    forms shipped without it: tapping a reason chip wiped the spill you had
    just described, and picking a pour target ate the ounces you had measured.
    Called before EVERY render from the click handler; the views render these
@@ -803,6 +816,16 @@ function captureLiveInputs(){
     if(migrated.join('|') !== progress.shelf.join('|')){ progress.shelf = migrated; saveProgress(); }
     state.tools.shelf = progress.shelf.slice();
   }
+  /* 86 is a claim about tonight, and a claim about tonight goes stale. A list
+     stamped more than eighteen hours ago belongs to a shift that has ended,
+     and carrying it forward would take drinks off the board for a bartender
+     who never 86'd anything. Eighteen rather than twenty-four because a bar
+     that closes at three and opens at eleven is the ordinary case. */
+  if(!Array.isArray(progress.eightySix)) progress.eightySix = [];
+  if(progress.eightySix.length && Date.now() - (progress.eightySixAt||0) > 18*3600*1000){
+    progress.eightySix = []; progress.eightySixAt = null; saveProgress();
+  }
+  dropDeadEightySix();
   srsMigrate(progress.cards);
   applyRoute();
   render();

@@ -67,7 +67,7 @@ const store = {
 
 /* ---- family standards ----------------------------------------------------
    The marks live on FAMILIES (data-core) and render identically everywhere a
-   drink is judged: the families view, the library detail, and My Bar. One
+   drink is judged: the families view, the library detail, and the Menu tab. One
    renderer so the three cannot drift. `label` names WHOSE standard is being
    read: a house drink is judged AS a Sour, and saying so is the teaching. */
 function familyMarksHTML(famName, label){
@@ -133,14 +133,21 @@ const state = {
        pool:[], sel:[], checked:false, lastOk:null, clozeIdx:0, opts:[], picked:null, boardOpen:null },
   quiz:{ stage:'setup', mode:'mixed', round:null, idx:0, picked:null, score:0, missedQ:[] },
   riff:{ frame:null, deal:null, revealed:false },
-  tools:{ view:'batch', drink:3, serv:8, dilute:false, shelf:[], shelfSrc:'Cocktails', eightySix:null,
+  tools:{ view:'batch', drink:3, serv:8, dilute:false, shelf:[],
           convVal:1, convFrom:'oz', bottlePrice:30, bottleMl:750, targetPour:20, dilPct:25 },
   prep:{ cat:'Syrups', open:null, listOpen:null, safeOpen:null },
   svc:{ dom:'beer', rowOpen:null, refOpen:null },
   prod:{ cat:'All', open:null, primerOpen:null },
   practice:{ view:'drills', flightOpen:null, methodOpen:null, noteOpen:null, subjects:{}, timers:{}, rail:null },
   tast:{ cat:'Whiskey', label:'', appearance:null, nose:[], palate:{}, finish:null, notes:'' },
-  mybar:{ form:null, editing:null, open:null },
+  /* The Menu tab. `view` is which of the three sub-views is showing;
+     `pane` is which chip is open inside an expanded drink; `src` is what
+     the stock report is measured against and defaults to the venue's own
+     list, because that is the question a bartender on shift is asking.
+     `drill` is the 86 exercise's transient pick, which is NOT tonight's
+     86 list: that lives in progress.eightySix, because it is a fact about
+     the bar rather than a training choice. */
+  menu:{ view:'menu', form:null, editing:null, open:null, pane:null, src:'My Bar', drill:null, err:null },
   na:{ view:'list', cat:'All', open:null, pOpen:null, tOpen:null, sOpen:null, drill:false, order:[], idx:0, revealed:false },
   shots:{ view:'board', cat:'All', open:null, svc:null, drill:false, order:[], idx:0, revealed:false,
           rDrink:0, rCount:6, lay:null },
@@ -374,9 +381,12 @@ function strengthBand(abvServed){
 const SHELF = INGREDIENTS.filter(function(x){ return x.shelf; })
                          .map(function(x){ return [x.id, x.label, null]; });
 const WELL_PRESET = ['gin','vodka','wrum','bourbon','rye','teq','sv','dv','campari','ol','ango','ob','lemon','lime','simple','soda','tonic','gb','mint'];
+/* Presets a working bar recognises. The 'Starter home bar' that stood
+   second in this list is gone: the Menu tab is for a professional at
+   their workplace, and a preset named for a home is the whole home
+   bartending framing in five words. */
 const SHELF_PRESETS = [
   ['Classic well', WELL_PRESET],
-  ['Starter home bar', ['gin','bourbon','wrum','teq','sv','ol','ango','lemon','lime','simple','soda','tonic','mint']],
   ['Craft cocktail bar', WELL_PRESET.concat(['arum','scotch','cognac','mezcal','irish','aperol','cynar','fernet','mara','chart','bene','abs','pey','elder','orgeat','honey','gfj','pine','cran','egg','cream','oj','sherry','champ','lillet','nonino','cassis','apricot','falernum','allspice','maple','agave','oprum'])],
   ['Tiki station', ['wrum','arum','oprum','teq','falernum','allspice','orgeat','ol','mara','abs','ango','lime','lemon','gfj','pine','oj','simple','honey','gren','coco','mint','cinn']],
   ['Zero-proof station', ['lemon','lime','gfj','oj','pine','cran','simple','honey','ginger','mint','soda','tonic','gb','ga','cola','tomato','coco','espresso','brewedcoffee','cream','milk','agave','maple']],
@@ -435,54 +445,110 @@ function missingFor(c, shelf){
     return Array.isArray(r) ? !r.some(have) : !have(r);
   });
 }
-/* 86 drill: one stocked ingredient dies. What dies with it, and what covers?
-   Substitute = same family and same base spirit, still pourable on this shelf. */
+/* ---- WHAT IS OUT TONIGHT ------------------------------------------------
+   86 is a different sentence from missing, and the difference matters on a
+   Friday. Missing means the bar never carried it. 86 means it was there at
+   six and it is gone at ten, and the drink comes off the board until the
+   delivery. So they are separate fields and they read differently on screen.
+
+   The implementation is deliberately one function rather than two matchers:
+   take the 86'd bottles off the shelf and ask missingFor the same question.
+   That makes the either-or case correct for free, and it is the case that
+   catches people out: a drink calling for bourbon or rye is not 86'd when the
+   rye dies, only when the live shelf answers neither. A second matcher would
+   have had to rediscover that, and would have got it wrong. */
+function liveShelf(shelf){
+  shelf = shelf || state.tools.shelf;
+  const out = progress.eightySix || [];
+  return out.length ? shelf.filter(function(k){ return out.indexOf(k) < 0; }) : shelf;
+}
+/* Un-stocking a bottle must drop it from the 86 list. They are separate
+   fields on purpose, and separate fields drift: a bottle the bar no longer
+   carries at all cannot also be 86'd tonight, and leaving it there would
+   print '86: no rye' next to a drink that was never makeable. Called from
+   every act that changes the stock list. */
+function dropDeadEightySix(){
+  const out = progress.eightySix;
+  if(!out || !out.length) return;
+  const kept = out.filter(function(k){ return state.tools.shelf.indexOf(k) >= 0; });
+  if(kept.length !== out.length){ progress.eightySix = kept; progress.eightySixAt = Date.now(); }
+}
+
+/* A requirement is either an id or an array of alternatives, and both shapes
+   need one stable key to compare by and one readable label to print. */
+function reqKey(r){ return Array.isArray(r) ? r.join('|') : r; }
+function reqLabel(r){
+  return Array.isArray(r) ? r.map(shelfLabel).join(' or ') : shelfLabel(r);
+}
+/* What a drink is short of because a bottle died tonight, rather than because
+   the bar never stocked it. Subtracting what was already missing is what keeps
+   the two sentences apart: a drink the bar cannot make anyway is not 86'd. */
+function outFor(c){
+  if(!(progress.eightySix || []).length) return [];
+  const before = missingFor(c).map(reqKey);
+  return missingFor(c, liveShelf()).filter(function(r){ return before.indexOf(reqKey(r)) < 0; });
+}
+
+/* Nearest relative in a pool: most shared ingredients, with family and base as
+   bonuses. Extracted from eightySixReport so the Menu tab's canon comparison
+   scores kinship on the same scale the 86 drill does. Two scales would drift,
+   and the one the user saw second would look wrong.
+
+   Sentinels are dropped: two drinks sharing 'the ledger cannot read this' do
+   not share an ingredient and must not score as though they did. */
+function kinFlat(d){
+  return reqsOf(d).map(function(r){ return Array.isArray(r) ? r[0] : r; })
+                  .filter(function(x){ return String(x).charAt(0) !== '?'; });
+}
+function kinFamily(d){ return d.family || d.group || ''; }
+function nearestKin(d, pool){
+  const mine = kinFlat(d);
+  let best = null, bestScore = 1;
+  pool.forEach(function(s){
+    if(s === d || s.name === d.name) return;
+    let score = kinFlat(s).filter(function(x){ return mine.indexOf(x) >= 0; }).length;
+    if(kinFamily(s) && kinFamily(s) === kinFamily(d)) score += 2;
+    if(s.spirit && s.spirit === d.spirit) score += 1;
+    if(score > bestScore){ bestScore = score; best = s; }
+  });
+  /* say what actually matched: copy that asserts 'same family, same base' on
+     every row is false about a third of the time, and a reader who checks once
+     stops trusting the rest of the pane. */
+  let why = null;
+  if(best){
+    const bits = [];
+    if(kinFamily(best) && kinFamily(best) === kinFamily(d)) bits.push('same family');
+    if(best.spirit && best.spirit === d.spirit) bits.push('same base');
+    const shared = kinFlat(best).filter(function(x){ return mine.indexOf(x) >= 0; }).length;
+    if(!bits.length && shared) bits.push(shared + ' shared ingredient' + (shared===1?'':'s'));
+    why = bits.join(', ') || null;
+  }
+  return { match: best, why: why, score: best ? bestScore : 0 };
+}
+/* 86 drill: one stocked ingredient dies, and the trainee has to say what died
+   with it before reading the answer. A training exercise, so it takes the
+   bottle as an argument rather than reading tonight's 86 list.
+
+   It asks the real question rather than 'does this drink list the bottle'.
+   Under the vocabulary a drink asking for gin may have been satisfied by the
+   Old Tom, so losing the Old Tom loses the drink even though it never named
+   it. Re-running the match against the shelf minus one bottle is the only
+   version of this that is true, and it is simpler than what it replaced. */
 function eightySixReport(key, pool){
-  /* allDrinks() entries carry `group` where COCKTAILS carries `family` */
-  const famOf = (d) => d.family || d.group || '';
-  /* Sentinels are dropped: two drinks sharing 'the ledger cannot read this'
-     is not a shared ingredient and must not score as one. */
-  const flat = (d) => reqsOf(d).map(r => Array.isArray(r) ? r[0] : r)
-                               .filter(x => String(x).charAt(0) !== '?');
-  const ready = pool.filter(d => missingFor(d).length===0);
-  /* Ask the real question rather than 'does this drink list the bottle'.
-     Under the vocabulary a drink asking for gin may have been satisfied by
-     the Old Tom, so losing the Old Tom loses the drink even though it never
-     named it. Re-running the match against the shelf minus one bottle is the
-     only version of this that is true, and it is simpler than what it
-     replaces. */
-  const without = (state.tools.shelf||[]).filter(x => x !== key);
+  const ready = pool.filter(function(d){ return missingFor(d).length===0; });
+  const without = (state.tools.shelf||[]).filter(function(x){ return x !== key; });
   const lost = [], survivors = [];
-  ready.forEach(d => (missingFor(d, without).length ? lost : survivors).push(d));
+  ready.forEach(function(d){ (missingFor(d, without).length ? lost : survivors).push(d); });
   return {
     stillReady: survivors.length,
     lostCount: lost.length,          /* the true figure: `lost` below is capped for display */
-    lost: lost.slice(0, 14).map(d => {
-      /* closest survivor = most shared ingredients, with family and base as bonuses */
-      const mine = flat(d);
-      let best = null, bestScore = 1;
-      survivors.forEach(s => {
-        let score = flat(s).filter(x => mine.indexOf(x) >= 0).length;
-        if(famOf(s) && famOf(s) === famOf(d)) score += 2;
-        if(s.spirit && s.spirit === d.spirit) score += 1;
-        if(score > bestScore){ bestScore = score; best = s; }
-      });
-      /* say what actually matched: the old copy asserted "same family, same base"
-         on every row, which was false about a third of the time */
-      let why = null;
-      if(best){
-        const bits = [];
-        if(famOf(best) && famOf(best) === famOf(d)) bits.push('same family');
-        if(best.spirit && best.spirit === d.spirit) bits.push('same base');
-        const shared = flat(best).filter(x => mine.indexOf(x) >= 0).length;
-        if(!bits.length && shared) bits.push(shared + ' shared ingredient' + (shared===1?'':'s'));
-        why = bits.join(', ') || null;
-      }
-      return { name:d.name, family:famOf(d)||'-', spirit:d.spirit||'-', sub: best ? best.name : null, why:why };
+    lost: lost.slice(0, 14).map(function(d){
+      const kin = nearestKin(d, survivors);
+      return { name:d.name, family:kinFamily(d)||'Other', spirit:d.spirit||'Other',
+               sub: kin.match ? kin.match.name : null, why: kin.why };
     }),
   };
 }
-
 /* Which single unstocked ingredient would unlock the most new drinks? */
 function bestNextBottles(pool){
   const tally = {};

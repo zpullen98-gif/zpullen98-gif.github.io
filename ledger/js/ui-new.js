@@ -10,7 +10,9 @@
 const NAV_CLUSTERS = [
   ['ledger', 'Home', ['home']],
   ['reference', 'Learn', ['families','library','prep','producers','na','shots','service','notes']],
-  ['study', 'Practise', ['flashcards','quiz','practice','riffs','mybar','tools']],
+  /* Menu sits beside Practice: it is where a bartender goes to work on
+     their own list rather than to read about drinks. */
+  ['study', 'Practise', ['flashcards','quiz','practice','menu','riffs','tools']],
 ];
 const TAB_LABEL = {};
 const TAB_CLUSTER = {};
@@ -79,7 +81,7 @@ function renderNav(){
 function slugify(s){ return String(s).toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
 
 const ROUTE_SOURCES = {
-  mybar:     { arr: () => progress.bar || [], name: x => x.name },
+  menu:      { arr: () => progress.bar || [], name: x => x.name },
   library:   { arr: () => COCKTAILS,  name: x => x.name },
   shots:     { arr: () => SHOTS,      name: x => x.name },
   na:        { arr: () => NA_DRINKS,  name: x => x.name },
@@ -94,10 +96,17 @@ function findBySlug(tab, slug){
   return src.arr().findIndex(x => slugify(src.name(x)) === slug);
 }
 
+/* Tabs that have been renamed since a link was shared. A bookmarked
+   #/mybar/<slug> must still open the drink and heal itself to the new form:
+   without this it fails silently and syncRoute immediately rewrites the hash,
+   erasing the evidence that the link ever pointed anywhere. Two lines, and it
+   costs nothing to leave here forever. */
+const TAB_WAS = { mybar: 'menu' };
+
 function applyRoute(){
   const parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
   if(!parts.length) return false;
-  const tab = parts[0], slug = parts[1];
+  const tab = TAB_WAS[parts[0]] || parts[0], slug = parts[1];
   if(!TABS.some(([k]) => k===tab)) return false;
   state.tab = tab;
   const i = slug !== undefined ? findBySlug(tab, slug) : -1;
@@ -109,7 +118,8 @@ function applyRoute(){
     else if(tab==='producers') Object.assign(state.prod, { cat:'All', open:i });
     else if(tab==='notes'){  state.noteOpen = STUDY[i].title; state.noteJump = true; }
     else if(tab==='service') Object.assign(state.svc, { dom: SERVICE_STUDY[i].key, rowOpen:null, refOpen:null });
-    else if(tab==='mybar')   state.mybar.open = (progress.bar||[])[i] ? progress.bar[i].id : null;
+    else if(tab==='menu'){ state.menu.open = (progress.bar||[])[i] ? progress.bar[i].id : null;
+                           state.menu.view = 'menu'; state.menu.pane = 'build'; }
   } else {
     /* slugless or unresolved slug: clear the tab's open item so syncRoute
        doesn't resurrect a previously-open drink into the shared URL */
@@ -135,8 +145,8 @@ function currentRoute(){
   else if(t==='producers' && state.prod.open!=null && PRODUCERS[state.prod.open]) slug = slugify(PRODUCERS[state.prod.open].name);
   else if(t==='notes' && state.noteOpen) slug = state.noteOpen === '__glossary' ? 'glossary' : state.noteOpen === '__plates' ? 'plates' : slugify(state.noteOpen);
   else if(t==='service' && state.svc.dom) slug = slugify(state.svc.dom);
-  else if(t==='mybar' && state.mybar.open){
-    const b = (progress.bar||[]).find(x => x.id === state.mybar.open);
+  else if(t==='menu' && state.menu.open && state.menu.view === 'menu'){
+    const b = (progress.bar||[]).find(x => x.id === state.menu.open);
     if(b) slug = slugify(b.name);
   }
   return '#/' + t + (slug ? '/' + slug : '');
@@ -153,8 +163,11 @@ function buildSearchIndex(){
   const ix = [];
   COCKTAILS.forEach(c => ix.push({ t:c.name, s:c.family+' · '+c.spirit+' · Tier '+c.tier,
     body:(c.spec.join(' ')+' '+c.method+' '+c.garnish).toLowerCase(), h:'#/library/'+slugify(c.name) }));
-  (progress.bar||[]).forEach(b => ix.push({ t:b.name, s:'My Bar · '+(b.family||''),
-    body:((b.spec||[]).join(' ')+' '+(b.method||'')+' '+(b.note||'')).toLowerCase(), h:'#/mybar/'+slugify(b.name) }));
+  /* NOT the card key, though it is byte-identical to one: this is the
+     subtitle under a search result. Grep for the string and you find both;
+     changing this one is harmless and changing the other is not. */
+  (progress.bar||[]).forEach(b => ix.push({ t:b.name, s:srcLabel('My Bar')+' · '+(b.family||''),
+    body:((b.spec||[]).join(' ')+' '+(b.method||'')+' '+(b.note||'')).toLowerCase(), h:'#/menu/'+slugify(b.name) }));
   SHOTS.forEach(s => ix.push({ t:s.name, s:'Shot · '+s.cat,
     body:(s.spec||[]).join(' ').toLowerCase(), h:'#/shots/'+slugify(s.name) }));
   NA_DRINKS.forEach(d => ix.push({ t:d.name, s:'Zero proof · '+d.cat,
@@ -426,7 +439,7 @@ function sessionDeckParts(){
     const sa = progress.cards[cardKey(a)], sb = progress.cards[cardKey(b)];
     return (sa.due - sb.due) || (weakScore(cardKey(b)) - weakScore(cardKey(a)));
   }).slice(0, 20);
-  /* the venue's own list outranks the canon: a fresh My Bar card is the drink
+  /* the venue's own list outranks the canon: a fresh menu card is the drink
      someone will actually order tonight, so it deals first. After that, new
      cards come from the lowest tier that still has unseen cocktails, so the
      canon is learned in order; shots/NA join once cocktails run dry */
@@ -566,7 +579,7 @@ function dataToolHTML(){
   return '<div class="col">'
     + '<div class="panel p5 col" style="gap:12px">'
     + '<div class="eyebrow">Back up the ledger</div>'
-    + '<div class="small dim lh">Everything you\'ve earned (mastery records, quiz history, tasting notes, practice logs, your shelf) lives in this browser and goes nowhere else. Export a copy now and then; paper burns and browsers forget.</div>'
+    + '<div class="small dim lh">Everything you\'ve earned (mastery records, quiz history, tasting notes, practice logs, your menu and what the bar stocks) lives in this browser and goes nowhere else. Export a copy now and then; paper burns and browsers forget.</div>'
     + '<div class="tiny font-tix dim">'+progressSummaryHTML()+'</div>'
     + '<div class="row" style="gap:8px"><button class="btn btn-brass" data-act="data-export">Export my records</button>'
     + (canShareBackup() ? '<button class="btn btn-ghost" data-act="data-share">Share the backup…</button>' : '')
@@ -744,7 +757,7 @@ function dataImport(file){
         progress.shelf = [...new Set([...(progress.shelf || []), ...migrateShelf(p.shelf)])];
       }
       /* the additive-only rule in person: every store the merge does not name
-         is silently dropped, so My Bar gets an explicit clause: union by id
+         is silently dropped, so the venue's own list gets an explicit clause: union by id
          (name as the fallback for hand-edited files), newer edit wins */
       /* pours: union by timestamp; two devices' pours are disjoint
          observations, and the additive-only rule says every new store gets a
@@ -824,11 +837,26 @@ function dataImport(file){
           }
         }
       }
+      /* NEWEST WINS WHOLE, and deliberately not a union like the shelf above.
+         The shelf is an accumulation: two devices' owned bottles should own
+         both sets. The 86 list is a claim about right now, and unioning two
+         devices would take a bottle off the board that the other bar has
+         already replaced, silently shrinking the menu with no way to see why.
+         An empty newer list is a real answer (everything came back on), so
+         the test is the stamp, never the length.
+
+         Which sub-view of the Menu tab you were last looking at is NOT stored
+         at all, so it has nothing to merge: it lives in state, and a fresh
+         open should land on the menu rather than wherever last night ended. */
+      if(Array.isArray(p.eightySix) && (p.eightySixAt || 0) > (progress.eightySixAt || 0)){
+        progress.eightySix = p.eightySix.slice();
+        progress.eightySixAt = p.eightySixAt || Date.now();
+      }
       if(Array.isArray(p.bar)){
         progress.bar = progress.bar || [];
         p.bar.forEach(b => {
           if(!b || !b.name) return;
-          /* case-insensitive, matching mybar-save's own uniqueness rule, and
+          /* case-insensitive, matching saveBarRecord's own uniqueness rule, and
              when the kept record's name differs in case, its card record rides
              along to the new key instead of stranding */
           const i = progress.bar.findIndex(x => (b.id && x.id === b.id) || x.name.toLowerCase() === b.name.toLowerCase());
@@ -866,7 +894,14 @@ function dataImport(file){
     Object.keys(progress.cards || {}).forEach(k => {
       if(k.indexOf('My Bar · ') === 0 && !barNames.has(k)) delete progress.cards[k];
     });
-    state.tools.shelf = Array.isArray(progress.shelf) ? progress.shelf.slice() : [];
+    /* migrateShelf here as well as in the merge branch above, because a whole
+       REPLACE assigns the backup's raw shelf straight onto progress and would
+       otherwise land pre-vocabulary ids that satisfy nothing. Idempotent, so
+       running it on an already-migrated list costs a comparison. */
+    progress.shelf = Array.isArray(progress.shelf) ? migrateShelf(progress.shelf) : [];
+    state.tools.shelf = progress.shelf.slice();
+    if(!Array.isArray(progress.eightySix)) progress.eightySix = [];
+    dropDeadEightySix();
     barChanged();
     saveProgress();
     render();
@@ -962,7 +997,7 @@ function dashboardHTML(){
       { v:seen, c:'var(--oxblood)', t:'In progress' },
       { v:unseen, c:'#274f43', t:'Unseen' },
     ], 92, String(m), 'of '+pool.length)
-    + '<div class="tiny dim mt1">'+esc(src)+'</div></div>';
+    + '<div class="tiny dim mt1">'+esc(srcLabel(src))+'</div></div>';
   }).join('');
 
   /* replays only re-ask what you already missed, so they would read as a

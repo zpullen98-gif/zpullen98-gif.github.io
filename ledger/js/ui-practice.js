@@ -212,7 +212,7 @@ const HOLD_MODS = [
 function holdDeal(band){
   const deck = railDeal();
   const drinks = deck.map(railResolve).filter(Boolean);
-  /* decoys: two same-family donors per dealt drink; a My Bar deal draws its
+  /* decoys: two same-family donors per dealt drink; a deal from the menu draws its
      decoys from the rest of the house list */
   const dealt = new Set(drinks.map(c => c.name));
   const decoys = [];
@@ -868,21 +868,25 @@ function toolSrcRowHTML(){
   const bar = progress.bar || [];
   const srcChips = bar.length
     ? '<button class="chip'+(t.costSrc!=='bar'?' on':'')+'" data-act="cost-src" data-s="canon" aria-pressed="'+(t.costSrc!=='bar')+'">The canon</button> '
-      + '<button class="chip'+(t.costSrc==='bar'?' on':'')+'" data-act="cost-src" data-s="bar" aria-pressed="'+(t.costSrc==='bar')+'">My Bar</button>'
+      + '<button class="chip'+(t.costSrc==='bar'?' on':'')+'" data-act="cost-src" data-s="bar" aria-pressed="'+(t.costSrc==='bar')+'">'+esc(srcLabel('My Bar'))+'</button>'
     : '';
   const sel = (t.costSrc==='bar' && bar.length)
-    ? '<select class="input" id="bar-drink" aria-label="Drink from My Bar" style="flex:2;min-width:170px">'
+    ? '<select class="input" id="bar-drink" aria-label="Drink from your menu" style="flex:2;min-width:170px">'
       + bar.map(function(x,i){ return '<option value="'+i+'"'+((t.barDrink||0)===i?' selected':'')+'>'+esc(x.name)+'</option>'; }).join('')
       + '</select>'
     : null;
   return { srcChips: srcChips, barSel: sel };
 }
-function costTicketHTML(){
+/* @param only optional. Given a drink, cost that one; given nothing, cost
+   whatever the Tools panel has selected, which is every existing call. The
+   Menu tab needs a sheet for one named drink and must not have to move the
+   Tools panel's selection to get it. Same shape as missingFor(c, shelf). */
+function costTicketHTML(only){
   const t = state.tools;
   const bar = progress.bar || [];
-  const useBar = t.costSrc === 'bar' && bar.length;
-  const b = useBar ? bar[Math.min(t.barDrink || 0, bar.length - 1)] : null;
-  const c = useBar ? b : COCKTAILS[t.drink];
+  const useBar = only ? true : (t.costSrc === 'bar' && bar.length);
+  const b = only || (useBar ? bar[Math.min(t.barDrink || 0, bar.length - 1)] : null);
+  const c = only || (useBar ? b : COCKTAILS[t.drink]);
   const bottle = Number(t.bottlePrice)||0;
   const bottleMl = Number(t.bottleMl)||750;
   const target = Number(t.targetPour)||20;
@@ -918,7 +922,7 @@ function costTicketHTML(){
     ? '<div class="tix-rule"></div>'
       + '<div><span class="tix-label">Your menu price </span>$'+menuPrice.toFixed(2)+'</div>'
       + '<div><span class="tix-label">Actual pour cost </span>'+actualPct.toFixed(1)+'%, '+verdict+'</div>'
-    : (useBar ? '<div class="tix-rule"></div><div class="tix-note">Give this drink a price in My Bar and the sheet scores your ACTUAL pour cost against the band.</div>' : '');
+    : (useBar ? '<div class="tix-rule"></div><div class="tix-note">Give this drink a price on the Menu tab and the sheet scores your ACTUAL pour cost against the band.</div>' : '');
   return '<div class="ticket"><div class="ticket-inner">'
     + '<div class="tc"><div class="tix-label">Costing</div><div class="tix-name">'+esc(c.name.toUpperCase())+'</div></div>'
     + '<div class="tix-rule"></div>'
@@ -939,7 +943,7 @@ function costHTML(){
   const t = state.tools;
   const bar = progress.bar || [];
   /* The sheet costs YOUR list, not only the canon: the whole point of a pour
-     cost is the price on your own menu, and only My Bar drinks carry one. */
+     cost is the price on your own menu, and only your own drinks carry one. */
   const useBar = t.costSrc === 'bar' && bar.length;
   const b = useBar ? bar[Math.min(t.barDrink || 0, bar.length - 1)] : null;
   const c = useBar ? b : COCKTAILS[t.drink];
@@ -1022,7 +1026,7 @@ const SHELF_GROUPS = [
 ];
 function renderTools(){
   const t = state.tools;
-  const nav = [['batch','Batching'],['shelf','My Shelf'],['dates','Open Bottles'],['strength','Strength'],['cost','Pour Cost'],['spills','Spill Log'],['convert','Convert'],['data','My Data']]
+  const nav = [['batch','Batching'],['dates','Open Bottles'],['strength','Strength'],['cost','Pour Cost'],['spills','Spill Log'],['convert','Convert'],['data','My Data']]
     .map(function(o){ return '<button class="tab-btn'+(t.view===o[0]?' active':'')+'"'+(t.view===o[0]?' aria-current="true"':'')+' data-act="tool-view" data-v="'+o[0]+'">'+o[1]+'</button>'; }).join('');
   const wrap = function(inner){ return '<div class="col"><nav class="tabs" aria-label="Tool views" style="margin-bottom:4px">'+nav+'</nav>'+inner+'</div>'; };
   const drinkSel = function(id){
@@ -1038,7 +1042,7 @@ function renderTools(){
     const bar = progress.bar || [];
     const srcChips = bar.length
       ? '<button class="chip'+(t.costSrc!=='bar'?' on':'')+'" aria-pressed="'+(t.costSrc!=='bar'?'true':'false')+'" data-act="cost-src" data-s="canon">The canon</button> '
-        + '<button class="chip'+(t.costSrc==='bar'?' on':'')+'" aria-pressed="'+(t.costSrc==='bar'?'true':'false')+'" data-act="cost-src" data-s="bar">My Bar</button>'
+        + '<button class="chip'+(t.costSrc==='bar'?' on':'')+'" aria-pressed="'+(t.costSrc==='bar'?'true':'false')+'" data-act="cost-src" data-s="bar">'+esc(srcLabel('My Bar'))+'</button>'
       : '';
     const barSel = (t.costSrc==='bar' && bar.length)
       ? '<select class="input" id="bar-drink" style="flex:2;min-width:170px">'
@@ -1052,101 +1056,13 @@ function renderTools(){
     return wrap('<div class="row" style="gap:10px;flex-wrap:wrap">'+sr.srcChips+(sr.barSel||drinkSel('tool-drink'))+'</div>'+strengthHTML());
   }
 
-  if(t.view==='shelf'){
-
-    const chipFor = function(s){
-      const on = t.shelf.indexOf(s[0])>=0;
-      return '<button class="chip'+(on?' on':'')+'" aria-pressed="'+(on?'true':'false')+'" data-act="shelf-toggle" data-k="'+s[0]+'">'+esc(s[1])+'</button>';
-    };
-    const shelfChips = SHELF_GROUPS.map(function(g){
-      const rows = SHELF.filter(function(s){ return (ING[s[0]]||{}).kind === g[0]; });
-      if(!rows.length) return '';
-      const nOn = rows.filter(function(s){ return t.shelf.indexOf(s[0])>=0; }).length;
-      return '<div class="col-sm" style="gap:6px">'
-        + '<div class="row between"><span class="eyebrow">'+esc(g[1])+'</span>'
-        + '<span class="tiny dim push">'+nOn+' of '+rows.length+'</span></div>'
-        + '<div class="row" style="gap:6px">'+rows.map(chipFor).join(' ')+'</div></div>';
-    }).join('');
-    const presets = SHELF_PRESETS.map(function(p,i){
-      return '<button class="btn btn-ghost tiny" data-act="tool-preset" data-i="'+i+'">'+esc(p[0])+'</button>';
-    }).join(' ');
-    const srcChips = ['Cocktails','Shots','Zero Proof'].map(function(s){
-      return '<button class="chip'+(t.shelfSrc===s?' on':'')+'" aria-pressed="'+(t.shelfSrc===s?'true':'false')+'" data-act="shelf-src" data-s="'+esc(s)+'">'+esc(s)+'</button>';
-    }).join(' ');
-    const pool = allDrinks().filter(function(d){ return d.src===t.shelfSrc; });
-    let ready=[], close=[];
-    if(t.shelf.length){
-      pool.forEach(function(d){
-        const miss = missingFor(d);
-        if(miss.length===0) ready.push(d);
-        else if(miss.length===1) close.push({d:d, miss:miss[0]});
-      });
-      ready.sort(function(a,b){ return a.name.localeCompare(b.name); });
-      close.sort(function(a,b){ return a.d.name.localeCompare(b.d.name); });
-    }
-    const readyChips = ready.map(function(d){
-      return '<span class="chip brass">'+esc(d.name)+'</span>';
-    }).join(' ');
-    const next = t.shelf.length ? bestNextBottles(pool) : [];
-    const nextRows = next.map(function(n){
-      return '<div class="panel p3 col-sm" style="gap:4px"><div class="row between">'
-        + '<span class="bold small">'+esc(shelfLabel(n.id))+'</span>'
-        + '<span class="font-tix brass2">+'+n.n+' drinks</span></div>'
-        + '<div class="tiny dim">'+esc(n.drinks.join(', '))+(n.n>n.drinks.length?', …':'')+'</div>'
-        + '<button class="chip" data-act="shelf-toggle" data-k="'+n.id+'">Add to shelf</button></div>';
-    }).join('');
-    /* 86 mode: the same engine, pointed at triage instead of shopping */
-    const dead = t.eightySix ? eightySixReport(t.eightySix, pool) : null;
-    /* '' means "86 mode, nothing picked yet": truthiness would read that as OFF
-       and render Stocking as active while the 86 panel is on screen */
-    const in86 = t.eightySix !== null && t.eightySix !== undefined;
-    const modeChips = '<button class="chip'+(in86?'':' on')+'" data-act="shelf-mode" data-m="stock">Stocking</button> '
-      + '<button class="chip'+(in86?' on':'')+'" aria-pressed="'+(in86?'true':'false')+'" data-act="shelf-mode" data-m="86">86 drill</button>';
-    if(in86){
-      const owned = t.shelf.map(function(k){
-        return '<button class="chip'+(t.eightySix===k?' on':'')+'" aria-pressed="'+(t.eightySix===k?'true':'false')+'" data-act="shelf-86" data-k="'+k+'">'+esc(shelfLabel(k))+'</button>';
-      }).join(' ');
-      return wrap('<div class="panel p5 col" style="gap:14px">'
-        + '<div class="row between"><div class="eyebrow">86 drill</div><div class="row" style="gap:6px">'+modeChips+'</div></div>'
-        + '<div class="small dim lh">The guest is standing there and the bottle is empty. Tap what just died and the ledger shows you what died with it, and the closest thing you can still pour. Answer out loud before you read the substitutes.</div>'
-        + (t.shelf.length ? '<div class="row" style="gap:6px">'+owned+'</div>'
-            : '<div class="row"><button class="btn btn-ghost tiny" data-act="shelf-mode" data-m="stock">Stock a shelf first →</button></div>')
-        + '</div>'
-        + (dead ? '<div class="panel p5 col" style="gap:12px">'
-            + '<div class="eyebrow">'+esc(shelfLabel(t.eightySix))+' is 86\'d</div>'
-            + '<div class="small lh">'+(dead.lostCount
-                ? '<span class="brass2 bold">'+dead.lostCount+' drink'+(dead.lostCount===1?'':'s')+' just died.</span>'
-                  + (dead.lostCount > dead.lost.length ? ' <span class="tiny dim">Showing the first '+dead.lost.length+'.</span>' : '')
-                : '<span class="brass2 bold">Nothing on your shelf depended on it.</span>')+'</div>'
-            + (dead.lost.length ? '<div class="col-sm">'+dead.lost.map(function(x){
-                return '<div class="panel p3 col-sm" style="gap:4px"><div class="row between">'
-                  + '<span class="bold small">'+esc(x.name)+'</span>'
-                  + '<span class="tiny dim">'+esc(x.family)+' · '+esc(x.spirit)+'</span></div>'
-                  + '<div class="tiny dim">'+(x.sub
-                    ? 'Closest survivor: <span class="brass2">'+esc(x.sub)+'</span>'
-                      + (x.why ? ': '+esc(x.why)+'.' : '.')
-                    : 'Nothing close on this shelf. Take it to the riff builder and improvise.')+'</div></div>';
-              }).join('')+'</div>' : '')
-            + '<div class="tiny dim lh">'+dead.stillReady+' drinks still pour without it.</div>'
-            + '</div>' : ''));
-    }
-    return wrap('<div class="panel p5 col" style="gap:14px">'
-      + '<div class="row between"><div class="eyebrow">What can my shelf make?</div><div class="row" style="gap:6px">'+modeChips+'</div></div>'
-      + '<div class="small dim lh">Tap what you own. The ledger shows everything you can pour right now, and, more usefully, which single bottle would unlock the most new drinks. Your shelf saves between sessions.</div>'
-      + '<div class="row" style="gap:6px">'+presets+'<button class="chip" data-act="tool-clear">Clear</button>'
-      + '<span class="tiny dim push">'+t.shelf.length+' items</span></div>'
-      + '<div class="row" style="gap:6px">'+shelfChips+'</div></div>'
-      + (t.shelf.length ? '<div class="panel p5 col" style="gap:12px">'
-          + '<div class="row">'+srcChips+'</div>'
-          + '<div><div class="eyebrow mb1">Ready to pour: '+ready.length+' of '+pool.length+'</div>'
-          + '<div class="row" style="gap:6px">'+(readyChips||'<span class="tiny dim">nothing yet, keep stocking</span>')+'</div></div>'
-          + (next.length ? '<div><div class="eyebrow mb1">Best next bottle</div>'
-              + '<div class="small dim lh mb2">Each of these unlocks the listed drinks on its own.</div>'
-              + '<div class="col-sm">'+nextRows+'</div></div>' : '')
-          + (close.length ? '<div class="tiny dim">'+close.length+' more are a single ingredient away.</div>' : '')
-          + '</div>' : ''));
-  }
-
+  /* The shelf panel that stood here is now the Menu tab's Stock view, in
+     js/ui-menu.js. It was written as a home bartender's toy ('Starter home
+     bar' was one of its presets) and it is a professional's stock list now,
+     so it belongs beside the menu it is measured against rather than in a
+     drawer of calculators. The engine did not move: SHELF, missingFor,
+     bestNextBottles and eightySixReport are all still in engine.js, and
+     state.tools.shelf is still where the stock lives. */
   /* the same source toggle the cost sheet earned: a working bartender
      batches their own list, not just the canon */
   const bsr = toolSrcRowHTML();
