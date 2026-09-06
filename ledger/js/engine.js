@@ -147,7 +147,9 @@ const state = {
      `drill` is the 86 exercise's transient pick, which is NOT tonight's
      86 list: that lives in progress.eightySix, because it is a fact about
      the bar rather than a training choice. */
-  menu:{ view:'menu', form:null, editing:null, open:null, pane:null, src:'My Bar', drill:null, err:null },
+  menu:{ view:'menu', form:null, editing:null, open:null, pane:null, src:'My Bar', drill:null, err:null,
+         /* the importer's own state, built on first use in renderImport */
+         imp:null },
   na:{ view:'list', cat:'All', open:null, pOpen:null, tOpen:null, sOpen:null, drill:false, order:[], idx:0, revealed:false },
   shots:{ view:'board', cat:'All', open:null, svc:null, drill:false, order:[], idx:0, revealed:false,
           rDrink:0, rCount:6, lay:null },

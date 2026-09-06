@@ -484,17 +484,20 @@ function renderMenu(){
   let inner;
   if(v === 'stock') inner = menuStockHTML();
   else if(v === 'add'){
-    const form = state.menu.form ? myBarFormHTML() : '';
-    inner = '<div class="panel p5 col" style="gap:10px">'
-      + '<div class="eyebrow">Add drinks</div>'
-      + '<div class="small dim lh" style="max-width:540px">Enter the menu drink by drink and the ledger drills it '
-      + 'like the canon: your specs in the flashcards, your names on the blind tickets, one of yours on the rail.</div>'
-      + '<div class="tiny dim lh" style="max-width:540px">It lives in this browser and rides the Tools → My Data '
-      + 'backup, like everything else you have earned. Nothing leaves the device.</div>'
-      + (state.menu.form ? '' : '<div class="row" style="gap:8px"><button class="btn btn-brass" data-act="menu-new">Add a drink</button></div>')
+    /* the four doors, the review step and the form, all drawn by renderImport,
+       so that an expanded review row and a from-scratch add can never both be
+       on screen at once: two forms means two sets of live inputs with the same
+       ids, and captureBarForm would read whichever the DOM found first. */
+    const drilling = bar.length && !state.menu.form && !(state.menu.imp && state.menu.imp.drafts);
+    inner = '<div class="panel p5 col" style="gap:8px">'
+      + '<div class="small dim lh" style="max-width:560px">However it arrives, what you get is a draft: '
+      + 'every row shows the line it came from, nothing is saved until you say so, and no measure, method or '
+      + 'glass is ever invented to fill a blank the menu left empty.</div>'
+      + '<div class="tiny dim lh" style="max-width:560px">It lives in this browser and rides the Tools '
+      + '\u2192 My Data backup, like everything else you have earned. Nothing leaves the device.</div>'
       + '</div>'
-      + form
-      + (bar.length && !state.menu.form
+      + renderImport()
+      + (drilling
           ? '<div class="panel p5 col" style="gap:10px"><div class="eyebrow">Drill what is on it</div>'
             + '<div class="row" style="gap:8px;flex-wrap:wrap">'
             + '<button class="btn btn-ghost" data-act="go" data-tab="flashcards" data-src="My Bar">Drill the cards</button>'

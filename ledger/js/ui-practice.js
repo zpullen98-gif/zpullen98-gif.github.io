@@ -568,7 +568,12 @@ function batchOutHTML(){
      tool already refuses those specs in words, and a batch sheet that
      prints a confident zero-yield is worse than one that says why not. */
   if(!(perDrink > 0)){
-    return '<div class="tix-note">This spec is written in parts or counts rather than ounces, so yield and bottle math cannot be computed: scale the lines by eye, keeping the ratios.</div>';
+    /* Two different reasons, and the wrong one is worse than none: a canon
+       spec written in parts is a deliberate ratio, while a menu import has no
+       measures because a menu prints none. unmeasuredReason knows which. */
+    const why = (typeof unmeasuredReason === 'function') ? unmeasuredReason(c) : null;
+    return '<div class="tix-note">' + (why ? esc(why) + ' Meanwhile, scale the lines by eye and keep the ratios.'
+      : 'This spec is written in parts or counts rather than ounces, so yield and bottle math cannot be computed. Scale the lines by eye, keeping the ratios.') + '</div>';
   }
   const totalOz = perDrink * f;
   const water = t.dilute ? totalOz * 0.25 : 0;
@@ -897,12 +902,18 @@ function costTicketHTML(only){
      of printing MENU PRICE $0 with a straight face. */
   const bal = balanceOf(c);
   const spiritOz = bal.strong + bal.modifier;
+  const unmeasured = (typeof unmeasuredReason === 'function') ? unmeasuredReason(c) : null;
   if(spiritOz === 0){
     return '<div class="ticket"><div class="ticket-inner">'
       + '<div class="tc"><div class="tix-label">Costing</div><div class="tix-name">'+esc(c.name.toUpperCase())+'</div></div>'
       + '<div class="tix-rule"></div>'
-      + '<div class="tix-note">'+esc(c.name)+' has no spirit or fortified line this sheet can price by the ounce: '
-      + 'beer, bubbles, and juice are bought by the unit. Cost it from the bottle or the keg, not from this sheet.</div>'
+      /* Two reasons a drink cannot be priced by the ounce, and they need
+         different sentences: a Mimosa genuinely has no ounce-priced base,
+         while an imported drink has no ounces at all. */
+      + '<div class="tix-note">' + (unmeasured
+          ? esc(unmeasured)
+          : esc(c.name) + ' has no spirit or fortified line this sheet can price by the ounce: beer, bubbles, '
+            + 'and juice are bought by the unit. Cost it from the bottle or the keg, not from this sheet.') + '</div>'
       + '</div></div>';
   }
   const costPerOz = bottleMl>0 ? bottle / (bottleMl/29.5735) : 0;
@@ -986,7 +997,10 @@ function strengthHTML(){
     return '<button class="chip'+(dil===d?' on':'')+'" aria-pressed="'+(dil===d?'true':'false')+'" data-act="dil-pct" data-v="'+d+'">'+(d===0?'neat':d+'%')+'</button>';
   }).join(' ');
   let body;
-  if(!e){ body = '<div class="small dim">This spec is written in parts or counts rather than ounces, so it cannot be estimated.</div>'; }
+  if(!e){
+    const why = (typeof unmeasuredReason === 'function') ? unmeasuredReason(c) : null;
+    body = '<div class="small dim">' + esc(why || 'This spec is written in parts or counts rather than ounces, so it cannot be estimated.') + '</div>';
+  }
   else {
     const band = strengthBand(e.abvServed).line;
     body = '<div class="ticket"><div class="ticket-inner">'

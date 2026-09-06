@@ -107,6 +107,8 @@ function render(){
       render();
     });
   });
+  const photo = document.getElementById('imp-photo');
+  if(photo) photo.addEventListener('change', e => { if(e.target.files[0]) importPhoto(e.target.files[0]); });
   const impF = document.getElementById('data-import-file');
   if(impF){
     impF.addEventListener('change', e => { if(e.target.files[0]) dataImport(e.target.files[0]); });
@@ -242,6 +244,10 @@ document.getElementById('view').addEventListener('click', e => {
   /* same rule for the Menu tab form: render() destroys the inputs, so any act
      that repaints mid-edit must read them back into state first */
   if(state.menu && state.menu.form) captureBarForm();
+  /* and the importer's two boxes, HERE as well as in captureLiveInputs: the
+     Read button is an act, so it has to see what was just pasted, and
+     captureLiveInputs runs after every act rather than before this one. */
+  if(typeof captureImport === 'function') captureImport();
   const fc = state.fc, z = state.quiz;
   if(act==='go'){ state.tab = el.dataset.tab;
     /* optional deep links, so "Quiz your list" opens the quiz ON the list
@@ -714,6 +720,35 @@ document.getElementById('view').addEventListener('click', e => {
   else if(act==='vid-len'){
     if(!progress.vidPrefs) progress.vidPrefs = {};
     progress.vidPrefs.longform = el.dataset.v==='long'; saveProgress(); }
+  else if(act==='imp-door'){ state.menu.imp.door = el.dataset.d; state.menu.imp.err = ''; state.menu.imp.openUrl = null;
+    if(el.dataset.d === 'hand'){ state.menu.form = blankBarForm(); state.menu.editing = null; state.menu.imp.open = null; } }
+  else if(act==='imp-read'){ importFromText(state.menu.imp.text); }
+  else if(act==='imp-link'){ importLink(state.menu.imp.url); return; }
+  else if(act==='imp-clear'){ state.menu.imp = blankImport(); state.menu.form = null; }
+  else if(act==='imp-open'){
+    const k = Number(el.dataset.k), d = state.menu.imp.drafts[k];
+    if(d){ state.menu.imp.open = k; state.menu.editing = null; state.menu.err = null;
+      /* a COPY, so abandoning the row leaves the draft as it was read */
+      state.menu.form = { name:d.rec.name, spec:d.rec.spec.length ? d.rec.spec.slice() : ['',''],
+        method:d.rec.method, glass:d.rec.glass, garnish:d.rec.garnish, note:d.rec.note,
+        family:d.rec.family, spirit:d.rec.spirit, price:d.rec.price }; } }
+  else if(act==='imp-canon'){
+    const offer = menuCanonMeasures(state.menu.form);
+    /* the book's lines replace the menu's, because the book's carry measures
+       and the menu's do not; the name, price and note stay the bar's own */
+    if(offer){ state.menu.form.spec = offer.spec.slice(); say('The book\u2019s measures are in. Change what your bar actually pours.'); } }
+  else if(act==='imp-file'){ importFileRow(Number(el.dataset.k)); }
+  else if(act==='imp-drop'){
+    state.menu.imp.drafts.splice(Number(el.dataset.k), 1);
+    state.menu.imp.dropped++; state.menu.imp.open = null; state.menu.form = null; }
+  else if(act==='imp-file-sure'){
+    /* only the rows that read cleanly and are not already on the list. Every
+       other row still has to be looked at, which is the point of the screen. */
+    for(let k = state.menu.imp.drafts.length - 1; k >= 0; k--){
+      const d = state.menu.imp.drafts[k];
+      if(d.confidence === 'high' && !d.existing) importFileRow(k, true);
+    }
+    say(state.menu.imp.filed + ' added to your menu.'); }
   else if(act==='menu-view'){ state.menu.view = el.dataset.v; state.menu.err = null;
     if(el.dataset.v==='add' && !state.menu.form) state.menu.form = blankBarForm(); }
   else if(act==='menu-pane'){ state.menu.pane = el.dataset.p; }
@@ -748,6 +783,15 @@ document.getElementById('view').addEventListener('click', e => {
   else if(act==='menu-save'){
     const out = saveBarRecord(state.menu.form, state.menu.editing);
     if(typeof out === 'string'){ state.menu.err = out; say(out); }
+    else if(state.menu.imp && state.menu.imp.open !== null){
+      /* filed from the review list: drop the row and stay where the rest of
+         the list is, rather than throwing the person out to the menu with
+         twenty rows still unread */
+      state.menu.imp.drafts.splice(state.menu.imp.open, 1);
+      state.menu.imp.filed++; state.menu.imp.open = null;
+      state.menu.form = null; state.menu.editing = null; state.menu.err = null;
+      say('Added to the menu.');
+    }
     else {
       state.menu.form = null; state.menu.editing = null; state.menu.err = null;
       state.menu.open = out.id; state.menu.pane = 'build'; state.menu.view = 'menu';
@@ -783,6 +827,9 @@ function captureLiveInputs(){
   /* every drill result field, by prefix: on the Ticket Rail an intervening
      act (revealing the order) is REQUIRED between typing and logging, so the
      render in between ate the seconds every single time */
+  /* the paste box and the address box: two ids, and the only two this whole
+     feature adds, because the review list holds no inputs at all */
+  if(typeof captureImport === 'function') captureImport();
   document.querySelectorAll('input[id^="pr-in-"]').forEach(el2 => {
     (state.practice.drillIn = state.practice.drillIn || {})[el2.id.slice(6)] = el2.value;
   });
