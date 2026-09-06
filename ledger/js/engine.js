@@ -2,15 +2,47 @@
 const shuffle = (arr) => { const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const sample = (arr,n) => shuffle(arr).slice(0,n);
 const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-/* Storage goes through OOT.profiles so each person on a shared bar tablet keeps
+/* Storage is one record per device again; see KEY() below. The line that used
+   to stand here said storage goes through OOT.profiles so each person on a
+   shared bar tablet keeps
    their own record. A function rather than a const because the answer changes
    when somebody else taps their name. With no profile chosen it returns the
    original key unchanged, so a bar that never names anyone loses nothing. */
 const KEY_BASE = 'bartenders-ledger-v1';
-function KEY(){
-  try { return (window.OOT && OOT.profiles) ? OOT.profiles.key(KEY_BASE) : KEY_BASE; }
-  catch(e){ return KEY_BASE; }
+
+/* ONE record on this device, which is what the Ledger had before names and
+   what it has again. The naming of a person came out of this wing on the
+   owner's call: it belongs to a manager mode that does not exist yet, and a
+   control that asks a bartender who they are before it will keep their work is
+   a toll gate when there is nothing on the other side of it.
+
+   The key is bare again rather than profile-namespaced. adoptNamedRecord()
+   below is why that costs nobody their work. */
+function KEY(){ return KEY_BASE; }
+
+/* A record written while this wing DID namespace by profile sits at
+   'bartenders-ledger-v1::<id>' and nothing would read it any more. When there
+   is exactly one of those and no bare record, it IS this device's ledger, so
+   move it across. Two or more and the honest thing is to touch none of them:
+   merging two people's drills invents a history neither of them has, and the
+   records stay where they are for the manager mode that will read them.
+
+   localStorage only, deliberately: the profile layer writes there, so that is
+   the only place a namespaced record can be. */
+function adoptNamedRecord(){
+  try {
+    if (localStorage.getItem(KEY_BASE) !== null) return;
+    const named = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.indexOf(KEY_BASE + '::') === 0) named.push(k);
+    }
+    if (named.length !== 1) return;
+    const v = localStorage.getItem(named[0]);
+    if (v) localStorage.setItem(KEY_BASE, v);
+  } catch(e){}
 }
+adoptNamedRecord();
 const mem = {};
 const store = {
   async get(k){
@@ -82,7 +114,11 @@ function bottleMovePct(b){
   return ((h[0].price - prev.price) / prev.price) * 100;
 }
 
-let progress = { cards:{}, quizzes:[] };
+/* `path` is the first-week induction, which used to be kept on the profile.
+   With no profile to keep it on it lives here, with the rest of this
+   bartender's work, which is where it always belonged: the checklist is about
+   the Ledger, not about a person. Shape: { stepId: whenItWasTicked }. */
+let progress = { cards:{}, quizzes:[], path:{} };
 const saveProgress = () => store.set(KEY(), JSON.stringify(progress));
 
 const state = {

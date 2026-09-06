@@ -1,14 +1,23 @@
 /* ============ The Ledger's half of the shared layer ============
-   Two small jobs, kept out of the wing's own files so the wing stays readable
-   and so this can be deleted in one piece if the shared layer ever goes away.
+   Kept out of the wing's own files so the wing stays readable and so this can
+   be deleted in one piece if the shared layer ever goes away.
 
-   1. The profile chips on the home screen need a click handler. #view is
+   NOBODY IS NAMED IN THIS WING. The profile row and the manager strip came out
+   on the owner's call: they belong to a manager mode that has not been built,
+   and asking a bartender who they are before the app will keep their work is a
+   toll gate with nothing behind it. The Ledger keeps one record per device
+   again, exactly as it did before names, and the first-week induction ticks
+   into that record rather than onto a person.
+
+   1. The first week: one click handler for the induction steps. #view is
       replaced wholesale on every render(), so the listener goes on a container
-      that survives, and the shared bindWho reloads the page on a switch.
+      that survives.
 
-   2. Studying here has to feed the streak that all three wings share, so a
-      bartender who drilled specs tonight is not told tomorrow that they missed
-      a day because they happened to open the Codex instead.
+   2. What this bar is weakest at, published for The Pass. A wing figure, never
+      a person's, read from the device's one ledger.
+
+   3. The cross-wing streak, wired but dormant: with no profile to mark it does
+      nothing, and it is the seam that lights up when manager mode arrives.
 
    Loaded last, after the wing's own scripts, so every global it wraps exists.
    ============ */
@@ -18,13 +27,13 @@
 
   if (!window.OOT || !OOT.profiles) return;
 
-  /* ---- 1. the profile switcher ---------------------------------------
-     .wrap survives every render; #view does not. bindWho is idempotent and
-     guards itself, so calling it once here is enough for the life of the page. */
+  /* ---- 1. the first week ----------------------------------------------
+     There is no profile switcher here any more, and no manager strip to bind:
+     naming a person came out of this wing and goes back in with the manager
+     mode it belongs to. .wrap survives every render; #view does not, so the
+     one listener still goes here. */
   function bind() {
     var host = document.querySelector('.wrap') || document.body;
-    if (OOT.home && OOT.home.bindWho) OOT.home.bindWho(host, function () { render(); });
-    if (OOT.pass && OOT.pass.bind) OOT.pass.bind(host, function () {});
 
     /* A first-path step marks itself done and opens the tab it points at.
        Marking on the way IN rather than on the way out is deliberate: there is
@@ -35,7 +44,14 @@
       if (!b || typeof FIRST_PATH === 'undefined') return;
       var id = b.getAttribute('data-oot-step');
       var step = FIRST_PATH.filter(function (s) { return s.id === id; })[0];
-      OOT.profiles.markPathStep('ledger', id);
+      /* Ticked in this device's own ledger rather than on a person. */
+      if (typeof progress !== 'undefined') {
+        progress.path = progress.path || {};
+        if (!progress.path[id]) {
+          progress.path[id] = Date.now();
+          if (typeof saveProgress === 'function') saveProgress();
+        }
+      }
       if (step && typeof state !== 'undefined') {
         if (step.go) state.tab = step.go;
         /* the optional deep links: a step lands on the thing its title
@@ -59,7 +75,11 @@
     bind();
   }
 
-  /* ---- 2. the shared streak -------------------------------------------
+  /* ---- 2. the shared streak (dormant) ---------------------------------
+     Nobody can be named in this wing now, so markStudied has no profile to
+     mark and does nothing. It is left wired rather than deleted because the
+     day manager mode arrives this is the seam that lights up, and a streak
+     that silently stopped counting is worse than one that never started.
      recordSessionComplete is the Ledger's own once-a-night writer and already
      handles its own streak. This adds the cross-wing one beside it rather than
      replacing it: the Ledger's `hands` streak means something this file has no
@@ -94,12 +114,13 @@
       var famOf = {};
       COCKTAILS.forEach(function (c) { famOf[c.name] = c.family; });
 
+      /* One record, because this wing keeps one. publishGaps takes a WING and
+         a ranking, never a person, so the figure it wants is what this bar is
+         weakest at, which is exactly what the device's own ledger says. */
       var agg = {};
-      OOT.profiles.list().forEach(function (p) {
-        var key = p.legacy ? 'bartenders-ledger-v1' : 'bartenders-ledger-v1::' + p.id;
-        var d;
-        try { d = JSON.parse(localStorage.getItem(key) || 'null'); } catch (e) { return; }
-        if (!d || !d.cards) return;
+      var d = null;
+      try { d = JSON.parse(localStorage.getItem('bartenders-ledger-v1') || 'null'); } catch (e) { d = null; }
+      if (d && d.cards) {
         Object.keys(d.cards).forEach(function (name) {
           var fam = famOf[name];
           if (!fam) return;                      /* shots, zero proof, My Bar */
@@ -108,7 +129,7 @@
           agg[fam].right += (s.r || 0);
           agg[fam].answered += (s.r || 0) + (s.w || 0);
         });
-      });
+      }
 
       var gaps = Object.keys(agg).map(function (k) {
         var a = agg[k];

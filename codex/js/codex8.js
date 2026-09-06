@@ -345,12 +345,24 @@ function planView(){
   v.querySelectorAll('[data-go2]').forEach(function(b){ b.onclick=p.acts[+b.dataset.go2].go2; });
   return v;
 }
+/* THE EXAM DATE IS NOT ASKED FOR ON THE HOME PAGE. It used to sit second,
+   under the rank pins: "Set your Village exam date: the Codex will build the
+   plan". For somebody sitting a Court examination that is a good question. For
+   somebody teaching themselves wine, which is who this is for, it asks them to
+   name a deadline before they have answered a single question, and a plan
+   counted in days until an exam is the opposite of working at your own pace.
+
+   planPanel() itself is left whole and unreferenced from here on purpose: the
+   countdown, the plan and the date field are all still built, and restoring
+   them is re-adding the four lines below rather than rewriting the feature.
+
 var _v7DecorateHome4=decorateHome;
 decorateHome=function(){
   _v7DecorateHome4();
   var strip=document.querySelector('.courtstrip');
   if(strip&&strip.parentNode)strip.parentNode.insertBefore(planPanel(),strip.nextSibling);
 };
+*/
 
 /* ═══════════ Part III: the oral gauntlet, spoken ═══════════
    The Master theory examination is conducted aloud. Typing rehearses the wrong

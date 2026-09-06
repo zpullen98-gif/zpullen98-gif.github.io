@@ -209,16 +209,13 @@ var _v6DecorateHome=decorateHome;
 decorateHome=function(){
   _v6DecorateHome();
   var L=LEVELS[activeLevel];
-  var hero=document.querySelector('.hero');
-  if(hero)hero.parentNode.insertBefore(courtStrip(),hero);
-  /* per-level hero copy: 3rd stat cell = mock length, fmtnote = level note */
-  var stats=document.querySelectorAll('.hero .stat');
-  if(stats[2]){ stats[2].querySelector('b').textContent=L.mock.oral?'50′':L.mock.n;
-    stats[2].querySelector('span').textContent=L.mock.oral?'Oral gauntlet':'Mock length'; }
-  var note=document.querySelector('.hero .fmtnote');
-  if(note)note.textContent=L.note;
-  var lead=document.querySelector('.hero .lead');
-  if(lead)lead.textContent=QUESTIONS.length+' questions across '+Object.keys(cats()).length+' sections · '+L.label.toLowerCase();
+  /* The four rank pins are the ONLY control that changes rank, so they stay.
+     They no longer open the page: codex14 moves them down into Examination,
+     where choosing which paper you are working towards actually belongs. The
+     hero they used to sit above is gone, along with the per-level copy that
+     was written into it. */
+  var modes=document.querySelector('.modes');
+  if(modes&&modes.parentNode)modes.parentNode.insertBefore(courtStrip(),modes);
   /* mock tile copy */
   var mock=document.getElementById('m-mock');
   if(mock){

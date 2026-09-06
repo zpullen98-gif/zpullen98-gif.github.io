@@ -247,6 +247,9 @@ function todayReadingLines(doy) {
    question at first run should not be re-offered the answer every morning, and
    the Library now stands in the top nav where anyone who changes their mind can
    see it without being told. */
+/* Kept, and still read by the goal ladder and by search: those are the two
+   places outside Prayer where scripture can still appear, and the preference is
+   what decides it. Nothing on the morning page consults it any more. */
 function todayCanonOn() { return FL.prefs.canonLines === 'on'; }
 
 /* --- the guided morning --- */
@@ -276,17 +279,11 @@ function todayGuided(m, d, e, doy, p) {
       } },
   ];
 
-  /* The reading is a step ONLY for a reader who asked for it. It used to be the
-     fifth step either way, showing a pointer to the Library to someone who had
-     just declined the Library, spending a step of their morning on an offer
-     they had already answered. Four steps for them is the point: the scripture
-     lives behind its own tab and is entered deliberately, never walked into. */
-  if (todayCanonOn()) {
-    steps.push({ label: 'The reading', body: function () {
-      return '<p class="px" style="color:var(--faint);margin-bottom:12px">Today across the five canons. ' +
-          'Open one, or none: the year keeps either way.</p>' + todayReadingLines(doy);
-    } });
-  }
+  /* There is no reading step, for anybody, on any setting. The scripture lives
+     in Prayer and is entered on purpose. It was a step for a reader who had
+     asked for it, which was already a long way from where this began, and the
+     morning is now four steps for everyone: voice, practice, reflection, and
+     what you write. A person who wants the day's readings goes and gets them. */
 
   if (todayStep >= steps.length) {
     var streak = flStreak();
@@ -419,11 +416,8 @@ function todayPage(m, d, e, doy, p) {
     '<div class="label">Reflection</div>' +
     '<p class="refl">' + esc(REFLECTIONS[doy % REFLECTIONS.length]) + '</p>' +
     '<div style="margin-top:14px">' + jField(jRef('day', flToday()), 'Answer it, or don’t. A sentence counts.', flToday(), 4) + '</div>' +
-    /* Nothing at all when the reader has not opted in, not even a labelled
-       section pointing at the Library. See the note on the guided step. */
-    (todayCanonOn()
-      ? '<div class="label">Today in the five canons</div><div class="card">' + todayReadingLines(doy) + '</div>'
-      : '') +
+    /* "Today in the five canons" stood here. Nothing does now: the morning page
+       carries no scripture on any setting, and Prayer is a tab you open. */
     todayIntentPanel() +
     todaySortPanel() +
     '<div style="text-align:center;margin-top:26px">' +

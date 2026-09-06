@@ -138,154 +138,15 @@
     padding-right: env(safe-area-inset-right);
     overscroll-behavior-y: none;
   }
-  /* respect the top notch on the cover and the sticky top-rail */
-  #cover { padding-top: calc(2rem + env(safe-area-inset-top)); }
+  /* respect the top notch behind the sticky top-rail */
   .top-rail { padding-top: calc(1.2rem + env(safe-area-inset-top)); }
   /* respect home-indicator at the bottom */
 
-  /* ====== CANDLELIT STONE CHAMBER + WOOD TABLE ====== */
-  body.on-cover {
-    background:
-      radial-gradient(ellipse 80% 50% at 50% 26%, rgba(255, 185, 95, 0.22) 0%, transparent 65%),
-      radial-gradient(ellipse 28% 55% at 6% 56%,  rgba(255, 165, 75, 0.20) 0%, transparent 75%),
-      radial-gradient(ellipse 28% 55% at 94% 56%, rgba(255, 165, 75, 0.20) 0%, transparent 75%),
-      linear-gradient(180deg, #1d1814 0%, #2a221a 30%, #2c2218 55%, #1a140e 88%, #0a0806 100%) !important;
-    background-attachment: fixed !important;
-  }
-  body:not(.on-cover) {
-    background: radial-gradient(ellipse at top, #1c1208 0%, #0a0604 60%), #0a0604 !important;
-  }
-
-
-  /* ====== TOME on the table ====== */
-  body.on-cover #cover {
-    min-height: 0;
-    position: relative;
-    width: min(640px, 88vw);
-    max-width: 92vw;
-    height: min(900px, 82vh);
-    margin: clamp(2vh, 4vh, 6vh) auto 0;
-    z-index: 3;
-    /* anchor content at top of tome so CALENDAR is never clipped above */
-    justify-content: flex-start;
-    padding-top: clamp(1.8rem, 4vh, 3rem);
-    padding-bottom: clamp(1.2rem, 3vh, 2.2rem);
-    overflow: hidden;
-    box-shadow:
-      inset 0 0 0 4px rgba(40, 22, 10, 0.6),
-      inset 0 0 0 6px rgba(184, 137, 58, 0.25),
-      inset 0 0 80px rgba(0, 0, 0, 0.28),
-      0 16px 28px -6px rgba(0, 0, 0, 0.75),
-      0 48px 70px -12px rgba(0, 0, 0, 0.65),
-      0 80px 120px -20px rgba(0, 0, 0, 0.55),
-      24px 0 60px -20px rgba(255, 170, 80, 0.18),
-      -24px 0 60px -20px rgba(255, 170, 80, 0.18);
-  }
-
-  @media (max-width: 640px) {
-    body.on-cover #cover { height: min(820px, 86vh); }
-  }
-
-  /* ====== IMAGE-BASED COVER ======
-     A single rendered cover image. Click the map in the image to enter the
-     almanac. These rules override every leftover tome/chamber rule above so
-     the page reads as just an illustration + an invisible hit area.
-  */
-  body { background: #08060a !important; }
+  /* One background, because there is only one state now. This keeps
+     !important because the base body rule further down was written for the
+     chamber the cover sat in and would otherwise repaint the almanac. */
+  body { background: radial-gradient(ellipse at top, #1c1208 0%, #0a0604 60%), #0a0604 !important; }
   body::before { display: none !important; content: none !important; }
-
-  #cover {
-    min-height: 100vh;
-    height: 100vh;
-    width: 100%;
-    margin: 0;
-    padding: 0 !important;
-    background: #08060a !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border: none !important;
-    box-shadow: none !important;
-    position: relative;
-  }
-  #cover::before, #cover::after { display: none !important; content: none !important; }
-
-  .cover-frame {
-    position: relative;
-    display: block;
-    /* preserve the image's 1122:1402 aspect ratio while fitting viewport */
-    height: 100vh;
-    width: auto;
-    max-height: 100vh;
-    max-width: 100vw;
-    aspect-ratio: 1122 / 1402;
-  }
-  .cover-image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    user-select: none;
-    -webkit-user-drag: none;
-    pointer-events: none;
-    opacity: 0;
-    animation: fadeIn 1.2s ease 0.1s forwards;
-  }
-
-  /* Click target sitting over the rolled parchment map in the image */
-  .map-hit {
-    position: absolute;
-    left: 17%;
-    top: 74%;
-    width: 58%;
-    height: 24%;
-    padding: 0;
-    margin: 0;
-    background: transparent;
-    border: 0;
-    outline: none;
-    cursor: pointer;
-    border-radius: 14px;
-    transition: background 0.35s ease, box-shadow 0.35s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    animation: fadeIn 1.4s ease 0.6s forwards;
-  }
-  .map-hit:hover,
-  .map-hit:focus-visible {
-    background: radial-gradient(ellipse at center, rgba(255, 200, 110, 0.28) 0%, rgba(255, 180, 80, 0.10) 50%, transparent 75%);
-    box-shadow: inset 0 0 60px rgba(255, 180, 80, 0.45);
-  }
-  .map-hit:active {
-    transform: scale(0.985);
-  }
-  .map-hit-hint {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    letter-spacing: 0.32em;
-    font-size: clamp(0.75rem, 1.3vw, 1rem);
-    text-transform: uppercase;
-    color: rgba(40, 14, 6, 0);
-    text-shadow:
-      0 1px 0 rgba(255, 235, 180, 0.7),
-      0 0 12px rgba(255, 180, 80, 0.6);
-    pointer-events: none;
-    transition: color 0.3s ease;
-    white-space: nowrap;
-  }
-  .map-hit:hover .map-hit-hint,
-  .map-hit:focus-visible .map-hit-hint {
-    color: rgba(40, 14, 6, 0.92);
-  }
-
-  /* Mobile / narrow viewports: keep the image filling the viewport */
-  @media (max-width: 720px) {
-    .cover-frame { height: auto; width: 100vw; max-width: 100vw; }
-    .cover-image { object-fit: cover; }
-  }
   #almanac { padding-bottom: calc(6rem + env(safe-area-inset-bottom)); }
   /* prevent iOS tap-highlight grey flash on buttons */
   button, .voyage-card, .chart-card, .flag-chip { -webkit-tap-highlight-color: transparent; }
@@ -317,110 +178,6 @@
   /* ---------- TYPOGRAPHY ---------- */
   .display    { font-family: 'Cinzel Decorative', 'Cinzel', serif; font-weight: 900; letter-spacing: 0.04em; }
   .script     { font-family: 'Pinyon Script', cursive; }
-
-  /* ============================================================
-     COVER illuminated cover page
-     ============================================================ */
-  #cover {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-    padding: 2rem 2rem 3rem;
-    color: var(--parchment);
-  }
-
-  /* vignette */
-  #cover::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.55) 100%);
-  }
-
-  .compass-rose {
-    /* keep Set Sail above the fold: shrink the compass on short viewports
-       rather than letting the page run off the screen */
-    width: auto;
-    aspect-ratio: 240 / 351;
-    height: min(351px, 38vh);
-    margin: 0.3rem auto 0.5rem;
-    opacity: 0;
-    animation: fadeIn 2s ease 1.4s forwards;
-    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.7)) drop-shadow(0 0 22px rgba(184,137,58,0.3));
-  }
-
-  /* short viewports: tighten cover spacing so Set Sail stays visible */
-  @media (max-height: 820px) {
-    #cover { padding: 1.4rem 2rem 1.8rem; }
-    .compass-rose { height: min(280px, 32vh); margin: 0.2rem auto 0.4rem; }
-  }
-  @media (max-height: 640px) {
-    .compass-rose { height: min(220px, 28vh); }
-  }
-
-  /* ============================================================
-     GRIMOIRE TOME leather face, filigree, corners, clasps,
-     glowing runes, embossed gold title, sigil cartouche, iron CTA.
-     These rules override the parchment-style cover styles above.
-     ============================================================ */
-
-  /* Body background is set by body.on-cover / body:not(.on-cover) below */
-
-  /* Tome face full viewport with a small margin to suggest the book floats */
-  #cover {
-    min-height: 100vh;
-    margin: 0;
-    padding: clamp(2.2rem, 5vh, 4rem) clamp(2rem, 5vw, 4.5rem);
-    /* single solid lighter-leather tone */
-    background: #8a5a32;
-    background-color: #8a5a32;
-    border: 1px solid #1a0a04;
-    box-shadow:
-      /* binding bevel inset to suggest raised edges */
-      inset 0 0 0 4px rgba(20, 10, 4, 0.85),
-      inset 0 0 0 6px rgba(120, 80, 40, 0.18),
-      inset 0 0 80px rgba(0, 0, 0, 0.55),
-      /* outer shadow to lift the tome off the void */
-      0 30px 80px rgba(0, 0, 0, 0.75),
-      0 0 120px rgba(184, 137, 58, 0.06);
-  }
-  /* Leather grain + crack texture overlay */
-  #cover::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    background-image:
-      /* fine leather grain only  |  cracks removed for the cleaner solid look */
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='grain'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.10 0 0 0 0 0.05 0 0 0 0.40 0'/></filter><rect width='100%23' height='100%23' filter='url(%23grain)'/></svg>");
-    background-size: 220px 220px;
-    mix-blend-mode: multiply;
-    opacity: 0.50;
-  }
-  /* Re-purpose ::after for an inner radial vignette and bevel highlight */
-  #cover::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    background:
-      /* subtle inner bevel highlight along the top edge */
-      linear-gradient(180deg, rgba(255, 220, 160, 0.06) 0%, transparent 6%),
-      /* inner radial vignette */
-      radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.28) 100%);
-  }
-
-  /* Override responsive tweaks for the new tome */
-  @media (max-height: 820px) {
-    #cover { padding: clamp(1.4rem, 4vh, 2.4rem) clamp(1.6rem, 4vw, 3rem); }
-  }
 
   /* ============================================================
      ALMANAC main interface
@@ -459,10 +216,6 @@
     flex-shrink: 0;
   }
   .top-rail .brand:hover { opacity: 0.85; }
-  .top-rail .brand-mark {
-    width: 32px; height: 32px;
-    color: var(--gold);
-  }
   .top-rail .brand-text {
     font-family: 'Cinzel Decorative', serif;
     font-weight: 700;
@@ -1582,11 +1335,22 @@
     .page-nav-btn .page-nav-title { font-size: 1.3rem; }
   }
 
+  /* The open door. The three chips rest in one gold, so the one the reader is
+     standing in is filled rather than merely outlined. */
+  .today-chip.is-active,
+  .myvoy-chip.is-active,
+  .pilgrim-chip.is-active {
+    background: linear-gradient(180deg, rgba(184, 137, 58, 0.92), rgba(138, 102, 40, 0.95));
+    border-color: rgba(240, 214, 140, 0.95);
+    color: var(--ink);
+    box-shadow: 0 0 0 2px rgba(232, 201, 106, 0.28), inset 0 1px 0 rgba(247, 236, 208, 0.45);
+  }
+
   /* Today chip in flag rail (jump to today's voyage) */
   .today-chip {
-    background: linear-gradient(180deg, rgba(24, 52, 50, 0.85), rgba(16, 38, 36, 0.92));
-    border: 1.5px solid rgba(84, 168, 158, 0.55);
-    color: #9adcd2;
+    background: linear-gradient(180deg, rgba(58, 43, 20, 0.85), rgba(38, 27, 12, 0.92));
+    border: 1.5px solid rgba(184, 137, 58, 0.6);
+    color: #dcbb7d;
     padding: 0.5rem 1.15rem;
     font-family: 'Cinzel', serif;
     font-weight: 500;
@@ -1601,9 +1365,9 @@
     box-shadow: inset 0 1px 0 rgba(84, 168, 158, 0.18), 0 1px 6px rgba(0, 0, 0, 0.35);
   }
   .today-chip:hover {
-    border-color: #b8e8e0;
+    border-color: #edd08c;
     color: var(--parchment);
-    box-shadow: 0 0 0 2px rgba(84, 168, 158, 0.25), 0 4px 14px rgba(84, 168, 158, 0.3), inset 0 1px 0 rgba(84, 168, 158, 0.3);
+    box-shadow: 0 0 0 2px rgba(184, 137, 58, 0.25), 0 4px 14px rgba(184, 137, 58, 0.3), inset 0 1px 0 rgba(212, 179, 102, 0.3);
     transform: translateY(-1px);
   }
 
@@ -1673,8 +1437,8 @@
     html, body { background: #f5ead0 !important; color: #1a1410 !important; }
 
     /* Hide every chrome layer */
-    .top-rail, .flag-rail, .cover, #cover, #charts-home, #chart-view, #results-view,
-    #pilgrimages, .pilgrim-intro, .pilgrim-results-view, .pilgrim-view, #living-pages, #other-worlds, #days-of-yore, #proving-grounds, .page-nav-btn,
+    .top-rail, .flag-rail, #charts-home, #chart-view, #results-view,
+    #pilgrimages, .pilgrim-intro, .pilgrim-results-view, .pilgrim-view, .page-nav-btn,
     .back-link, .scroll-close, .scroll-bookmark, .scroll-print, .scroll-share, .scroll-ribbon-hint,
     .scroll-corner {
       display: none !important;
@@ -1795,9 +1559,9 @@
 
   /* My Voyages chip in flag rail (saved bookmarks) */
   .myvoy-chip {
-    background: linear-gradient(180deg, rgba(56, 30, 52, 0.85), rgba(40, 20, 38, 0.92));
-    border: 1.5px solid rgba(196, 110, 170, 0.55);
-    color: #e0b0d2;
+    background: linear-gradient(180deg, rgba(58, 43, 20, 0.85), rgba(38, 27, 12, 0.92));
+    border: 1.5px solid rgba(184, 137, 58, 0.6);
+    color: #dcbb7d;
     padding: 0.5rem 1.15rem;
     font-family: 'Cinzel', serif;
     font-weight: 500;
@@ -1812,9 +1576,9 @@
     box-shadow: inset 0 1px 0 rgba(196, 110, 170, 0.18), 0 1px 6px rgba(0, 0, 0, 0.35);
   }
   .myvoy-chip:hover {
-    border-color: #ecc8de;
+    border-color: #edd08c;
     color: var(--parchment);
-    box-shadow: 0 0 0 2px rgba(196, 110, 170, 0.25), 0 4px 14px rgba(196, 110, 170, 0.3), inset 0 1px 0 rgba(196, 110, 170, 0.3);
+    box-shadow: 0 0 0 2px rgba(184, 137, 58, 0.25), 0 4px 14px rgba(184, 137, 58, 0.3), inset 0 1px 0 rgba(212, 179, 102, 0.3);
     transform: translateY(-1px);
   }
   .myvoy-chip .myvoy-count {
@@ -1822,7 +1586,7 @@
     min-width: 1.4em;
     padding: 0 0.4em;
     border-radius: 999px;
-    background: rgba(196, 110, 170, 0.18);
+    background: rgba(184, 137, 58, 0.22);
     color: var(--parchment);
     font-size: 0.66rem;
     line-height: 1.4;
@@ -2665,9 +2429,9 @@
 
   /* Pilgrimages chip in flag rail (Book the Second nav) */
   .pilgrim-chip {
-    background: linear-gradient(180deg, rgba(44, 48, 56, 0.85), rgba(30, 33, 40, 0.92));
-    border: 1.5px solid rgba(198, 205, 216, 0.55);
-    color: #d5dbe4;
+    background: linear-gradient(180deg, rgba(58, 43, 20, 0.85), rgba(38, 27, 12, 0.92));
+    border: 1.5px solid rgba(184, 137, 58, 0.6);
+    color: #dcbb7d;
     padding: 0.5rem 1.15rem;
     font-family: 'Cinzel', serif;
     font-weight: 500;
@@ -2682,253 +2446,11 @@
     box-shadow: inset 0 1px 0 rgba(198, 205, 216, 0.18), 0 1px 6px rgba(0, 0, 0, 0.35);
   }
   .pilgrim-chip:hover {
-    border-color: #eef1f5;
+    border-color: #edd08c;
     color: var(--parchment);
-    box-shadow: 0 0 0 2px rgba(198, 205, 216, 0.25), 0 4px 14px rgba(198, 205, 216, 0.3), inset 0 1px 0 rgba(198, 205, 216, 0.3);
+    box-shadow: 0 0 0 2px rgba(184, 137, 58, 0.25), 0 4px 14px rgba(184, 137, 58, 0.3), inset 0 1px 0 rgba(212, 179, 102, 0.3);
     transform: translateY(-1px);
   }
-
-  /* ============================================================
-     THE LIVING PAGES  chip + section + card grid
-     ============================================================ */
-  .living-chip {
-    background: linear-gradient(180deg, rgba(60, 30, 28, 0.85), rgba(45, 20, 18, 0.92));
-    border: 1.5px solid rgba(184, 70, 60, 0.55);
-    color: #d8a896;
-    padding: 0.5rem 1.15rem;
-    font-family: 'Cinzel', serif;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    font-size: 0.72rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    text-transform: uppercase;
-    box-shadow: inset 0 1px 0 rgba(184, 70, 60, 0.18), 0 1px 6px rgba(0, 0, 0, 0.35);
-  }
-  .living-chip:hover {
-    border-color: #d8a896;
-    color: var(--parchment);
-    box-shadow: 0 0 0 2px rgba(184, 70, 60, 0.25), 0 4px 14px rgba(184, 70, 60, 0.3), inset 0 1px 0 rgba(184, 70, 60, 0.3);
-    transform: translateY(-1px);
-  }
-
-  #living-pages { display: none; }
-  #living-pages.is-open { display: block; animation: fadeIn 0.6s; }
-
-  #living-home { padding: 0 2rem 3rem; max-width: 1200px; margin: 0 auto; }
-  #living-results-view { padding: 3rem 2rem 5rem; max-width: 1200px; margin: 0 auto; }
-
-  .living-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.4rem;
-    margin-top: 2.4rem;
-  }
-
-  .living-page-card {
-    background: linear-gradient(180deg, rgba(244, 232, 200, 0.06), rgba(244, 232, 200, 0.02));
-    border: 1px solid rgba(218, 165, 32, 0.35);
-    padding: 1.3rem 1.4rem 1.2rem;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-  }
-  .living-page-card:hover {
-    border-color: var(--gold);
-    background: linear-gradient(180deg, rgba(244, 232, 200, 0.10), rgba(244, 232, 200, 0.04));
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(218, 165, 32, 0.18);
-  }
-  .lp-eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--gold);
-    opacity: 0.85;
-  }
-  .lp-name {
-    font-family: 'Cinzel', serif;
-    font-size: 1.05rem;
-    line-height: 1.3;
-    color: var(--parchment);
-    letter-spacing: 0.02em;
-  }
-  .lp-meta {
-    font-family: 'IM Fell English', serif;
-    font-size: 0.92rem;
-    color: var(--parchment-2);
-    font-style: italic;
-  }
-  .lp-port { opacity: 0.92; }
-  .lp-date {
-    font-family: 'IM Fell English', serif;
-    font-size: 0.82rem;
-    color: var(--gold-light);
-    letter-spacing: 0.04em;
-  }
-  .lp-flags { display: flex; gap: 0.3rem; margin-top: 0.2rem; }
-  .lp-flag-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--gold-deep); opacity: 0.7;
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
-  }
-
-  /* ============================================================
-     THE OTHER WORLDS  chip + section + card grid (violet tinting)
-     ============================================================ */
-  .ow-chip {
-    background: linear-gradient(180deg, rgba(50, 35, 70, 0.85), rgba(36, 24, 52, 0.92));
-    border: 1.5px solid rgba(150, 110, 200, 0.55);
-    color: #c8b4e8;
-    padding: 0.5rem 1.15rem;
-    font-family: 'Cinzel', serif;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    font-size: 0.72rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    text-transform: uppercase;
-    box-shadow: inset 0 1px 0 rgba(150, 110, 200, 0.2), 0 1px 6px rgba(0, 0, 0, 0.35);
-  }
-  .ow-chip:hover {
-    border-color: #d8c8f0;
-    color: var(--parchment);
-    box-shadow: 0 0 0 2px rgba(150, 110, 200, 0.25), 0 4px 14px rgba(150, 110, 200, 0.3), inset 0 1px 0 rgba(150, 110, 200, 0.32);
-    transform: translateY(-1px);
-  }
-
-  #other-worlds { display: none; }
-  #other-worlds.is-open { display: block; animation: fadeIn 0.6s; }
-
-  #ow-home { padding: 0 2rem 3rem; max-width: 1200px; margin: 0 auto; }
-  #ow-results-view { padding: 3rem 2rem 5rem; max-width: 1200px; margin: 0 auto; }
-
-  .ow-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.4rem;
-    margin-top: 2.4rem;
-  }
-
-  .ow-page-card {
-    background: linear-gradient(180deg, rgba(244, 232, 200, 0.06), rgba(244, 232, 200, 0.02));
-    border: 1px solid rgba(218, 165, 32, 0.35);
-    padding: 1.3rem 1.4rem 1.2rem;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-  }
-  .ow-page-card:hover {
-    border-color: var(--gold);
-    background: linear-gradient(180deg, rgba(244, 232, 200, 0.10), rgba(244, 232, 200, 0.04));
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(218, 165, 32, 0.18);
-  }
-
-  /* ============================================================
-     THE DAYS OF YORE  chip + section + card grid (heraldic green)
-     ============================================================ */
-  .dy-chip {
-    background: linear-gradient(180deg, rgba(32, 52, 34, 0.85), rgba(22, 38, 24, 0.92));
-    border: 1.5px solid rgba(110, 160, 90, 0.55);
-    color: #b2cfa0;
-    padding: 0.5rem 1.15rem;
-    font-family: 'Cinzel', serif;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    font-size: 0.72rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    text-transform: uppercase;
-    box-shadow: inset 0 1px 0 rgba(110, 160, 90, 0.2), 0 1px 6px rgba(0, 0, 0, 0.35);
-  }
-  .dy-chip:hover {
-    border-color: #c8e0b8;
-    color: var(--parchment);
-    box-shadow: 0 0 0 2px rgba(110, 160, 90, 0.25), 0 4px 14px rgba(110, 160, 90, 0.3), inset 0 1px 0 rgba(110, 160, 90, 0.32);
-    transform: translateY(-1px);
-  }
-
-  #days-of-yore { display: none; }
-  #days-of-yore.is-open { display: block; animation: fadeIn 0.6s; }
-
-  #dy-home { padding: 0 2rem 3rem; max-width: 1200px; margin: 0 auto; }
-  #dy-results-view { padding: 3rem 2rem 5rem; max-width: 1200px; margin: 0 auto; }
-
-  .dy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.4rem;
-    margin-top: 2.4rem;
-  }
-
-  .dy-page-card:hover {
-    border-color: #8fb478;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(110, 160, 90, 0.22);
-  }
-  .dy-eyebrow { color: #a8c896; }
-
-  /* ============================================================
-     THE PROVING GROUNDS  chip + section + card grid (iron blue)
-     ============================================================ */
-  .pg-chip {
-    background: linear-gradient(180deg, rgba(30, 44, 62, 0.85), rgba(20, 32, 48, 0.92));
-    border: 1.5px solid rgba(100, 140, 180, 0.55);
-    color: #a8c4de;
-    padding: 0.5rem 1.15rem;
-    font-family: 'Cinzel', serif;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    font-size: 0.72rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    text-transform: uppercase;
-    box-shadow: inset 0 1px 0 rgba(100, 140, 180, 0.2), 0 1px 6px rgba(0, 0, 0, 0.35);
-  }
-  .pg-chip:hover {
-    border-color: #c8dcf0;
-    color: var(--parchment);
-    box-shadow: 0 0 0 2px rgba(100, 140, 180, 0.25), 0 4px 14px rgba(100, 140, 180, 0.3), inset 0 1px 0 rgba(100, 140, 180, 0.32);
-    transform: translateY(-1px);
-  }
-
-  #proving-grounds { display: none; }
-  #proving-grounds.is-open { display: block; animation: fadeIn 0.6s; }
-
-  #pg-home { padding: 0 2rem 3rem; max-width: 1200px; margin: 0 auto; }
-  #pg-results-view { padding: 3rem 2rem 5rem; max-width: 1200px; margin: 0 auto; }
-
-  .pg-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.4rem;
-    margin-top: 2.4rem;
-  }
-
-  .pg-page-card:hover {
-    border-color: #7fa0c0;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(100, 140, 180, 0.22);
-  }
-  .pg-eyebrow { color: #9cbcd8; }
 
   /* THE BEARINGS section inside voyage scroll modal */
   .bearings-list {
@@ -2973,37 +2495,19 @@
 <body>
 
 <!-- ============================================================
-     COVER PAGE
+     THE COVER IS RETIRED. Nobody should have to click through a door to
+     reach the calendar they came for, so the almanac opens on the twelve
+     charts. images/cover.jpg is still on disk and still shipped.
      ============================================================ -->
-<!-- ====== COVER  |  click the map to open the calendar ====== -->
-<main id="cover" aria-label="Calendar For Life cover">
-  <h1 class="sr-only">Calendar For Life</h1>
-  <div class="cover-frame">
-    <img class="cover-image" src="./images/cover.jpg"
-         alt="Calendar for Life  |  Charts & Bearings For The Years Ahead. A tropical pirate's lookout with a galleon, treasure chest, spyglass, gold coins, and an old map on a wooden deck.">
-    <button class="map-hit" id="enter-btn" aria-label="Open the map and enter the almanac">
-      <span class="map-hit-hint">Set Sail</span>
-    </button>
-  </div>
-</main>
 
 <!-- ============================================================
      ALMANAC INTERFACE
      ============================================================ -->
-<main id="almanac" aria-label="Calendar For Life almanac">
+<main id="almanac" class="is-open" aria-label="Calendar For Life almanac">
 
   <header class="top-rail">
     <div class="top-rail-inner">
       <div class="brand" id="brand">
-        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
-          <circle cx="20" cy="20" r="18"/>
-          <circle cx="20" cy="20" r="13" stroke-width="0.6" opacity="0.55"/>
-          <path d="M20 2 L20 6 M20 34 L20 38 M2 20 L6 20 M34 20 L38 20" stroke-width="1.2"/>
-          <path d="M7.3 7.3 L9.8 9.8 M30.2 7.3 L32.7 9.8 M7.3 32.7 L9.8 30.2 M30.2 32.7 L32.7 30.2" stroke-width="0.8" opacity="0.7"/>
-          <polygon points="20,5 16.8,20 23.2,20" fill="currentColor" stroke="none"/>
-          <polygon points="20,35 16.8,20 23.2,20" fill="currentColor" stroke="none" opacity="0.25"/>
-          <circle cx="20" cy="20" r="1.6" fill="currentColor" stroke="none"/>
-        </svg>
         <h1 class="brand-text">Calendar For Life</h1>
       </div>
 
@@ -3083,15 +2587,6 @@
   <header class="top-rail">
     <div class="top-rail-inner">
       <div class="brand" id="brand-pilgrim">
-        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
-          <circle cx="20" cy="20" r="18"/>
-          <circle cx="20" cy="20" r="13" stroke-width="0.6" opacity="0.55"/>
-          <path d="M20 2 L20 6 M20 34 L20 38 M2 20 L6 20 M34 20 L38 20" stroke-width="1.2"/>
-          <path d="M7.3 7.3 L9.8 9.8 M30.2 7.3 L32.7 9.8 M7.3 32.7 L9.8 30.2 M30.2 32.7 L32.7 30.2" stroke-width="0.8" opacity="0.7"/>
-          <polygon points="20,5 16.8,20 23.2,20" fill="currentColor" stroke="none"/>
-          <polygon points="20,35 16.8,20 23.2,20" fill="currentColor" stroke="none" opacity="0.25"/>
-          <circle cx="20" cy="20" r="1.6" fill="currentColor" stroke="none"/>
-        </svg>
         <h1 class="brand-text">Pilgrimages Of Humanity</h1>
       </div>
       <div class="search-wrap">
@@ -3139,222 +2634,6 @@
     <div class="back-link" id="back-from-pilgrim-results">Back to the Twenty-Nine Trails</div>
     <div class="results-banner" id="pilgrim-results-banner" aria-live="polite"></div>
     <div class="voyages-list filter-results" id="pilgrim-results-list"></div>
-  </div>
-
-</main>
-<!-- ============================================================
-     THE LIVING PAGES  Reenactments and living-history voyages
-     ============================================================ -->
-<main id="living-pages" style="display:none" aria-label="The Living Pages">
-
-  <header class="top-rail">
-    <div class="top-rail-inner">
-      <div class="brand" id="brand-living">
-        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
-          <circle cx="20" cy="20" r="18"/>
-          <circle cx="20" cy="20" r="13" stroke-width="0.6" opacity="0.55"/>
-          <path d="M20 2 L20 6 M20 34 L20 38 M2 20 L6 20 M34 20 L38 20" stroke-width="1.2"/>
-          <path d="M7.3 7.3 L9.8 9.8 M30.2 7.3 L32.7 9.8 M7.3 32.7 L9.8 30.2 M30.2 32.7 L32.7 30.2" stroke-width="0.8" opacity="0.7"/>
-          <polygon points="20,5 16.8,20 23.2,20" fill="currentColor" stroke="none"/>
-          <polygon points="20,35 16.8,20 23.2,20" fill="currentColor" stroke="none" opacity="0.25"/>
-          <circle cx="20" cy="20" r="1.6" fill="currentColor" stroke="none"/>
-        </svg>
-        <h1 class="brand-text">The Living Pages</h1>
-      </div>
-      <div class="search-wrap">
-        <input type="text" class="search-input" id="living-search" aria-label="Search The Living Pages by reenactment, port, or date" placeholder="Search reenactments, ports, dates...">
-      </div>
-    </div>
-  </header>
-
-  <div id="living-home">
-    <div class="pilgrim-intro">
-      <div class="pilgrim-eyebrow">A Side-Chamber of Calendar For Life</div>
-      <h2 class="pilgrim-title">The Living Pages</h2>
-      <div class="pilgrim-sub">Reenactments, Encampments &amp; Living-History Voyages</div>
-      <p class="pilgrim-credo">The pages of history brought back to life: battles refought on the original ground, Viking markets pitched in the old fjords, medieval encampments rebuilt by the people who keep the craft alive. <strong>Thirty-two voyages from the longships to Waterloo to Washington&rsquo;s crossing.</strong></p>
-    </div>
-
-    <div class="living-grid" id="living-grid">
-      <!-- populated by JS -->
-    </div>
-
-    <div class="page-nav">
-      <button class="page-nav-btn page-nav-back" id="back-from-living" type="button">
-        <span class="page-nav-arrow">&larr;</span>
-        <span class="page-nav-label">Book the First</span>
-        <span class="page-nav-title">Calendar For Life</span>
-        <span class="page-nav-sub">The Twelve Charts &amp; 365 Voyages</span>
-      </button>
-    </div>
-  </div>
-
-  <div id="living-results-view" style="display:none">
-    <div class="back-link" id="back-from-living-results">Back to The Living Pages</div>
-    <div class="results-banner" id="living-results-banner" aria-live="polite"></div>
-    <div class="voyages-list filter-results" id="living-results-list"></div>
-  </div>
-
-</main>
-<!-- ============================================================
-     THE OTHER WORLDS  conventions, cosplay, imagined universes
-     ============================================================ -->
-<main id="other-worlds" style="display:none" aria-label="The Other Worlds">
-
-  <header class="top-rail">
-    <div class="top-rail-inner">
-      <div class="brand" id="brand-other-worlds">
-        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
-          <circle cx="20" cy="20" r="18"/>
-          <circle cx="20" cy="20" r="13" stroke-width="0.6" opacity="0.55"/>
-          <path d="M20 2 L20 6 M20 34 L20 38 M2 20 L6 20 M34 20 L38 20" stroke-width="1.2"/>
-          <path d="M7.3 7.3 L9.8 9.8 M30.2 7.3 L32.7 9.8 M7.3 32.7 L9.8 30.2 M30.2 32.7 L32.7 30.2" stroke-width="0.8" opacity="0.7"/>
-          <polygon points="20,5 16.8,20 23.2,20" fill="currentColor" stroke="none"/>
-          <polygon points="20,35 16.8,20 23.2,20" fill="currentColor" stroke="none" opacity="0.25"/>
-          <circle cx="20" cy="20" r="1.6" fill="currentColor" stroke="none"/>
-        </svg>
-        <h1 class="brand-text">The Other Worlds</h1>
-      </div>
-      <div class="search-wrap">
-        <input type="text" class="search-input" id="ow-search" aria-label="Search The Other Worlds by convention, city, or fandom" placeholder="Search conventions, cities, fandoms...">
-      </div>
-    </div>
-  </header>
-
-  <div id="ow-home">
-    <div class="pilgrim-intro">
-      <div class="pilgrim-eyebrow">A Side-Chamber of Calendar For Life</div>
-      <h2 class="pilgrim-title">The Other Worlds</h2>
-      <div class="pilgrim-sub">Conventions, Cosplay &amp; the Imagined Universes</div>
-      <p class="pilgrim-credo">The gatherings where the imagined worlds of comics, games, anime and the great speculative fiction step out of the page and walk down the convention hall: the costumes that take a year to build, the show floors where new games are first played, the Hall H queues of the planet&rsquo;s biggest fandoms. Sailing beside them, gathered in from the Twelve Charts, ride the calendar voyages that fly the flags of game and fandom. <strong>From San Diego&rsquo;s Comic-Con to Tokyo&rsquo;s Game Show to Lucca&rsquo;s medieval-walled comics weekend.</strong></p>
-    </div>
-
-    <div class="ow-grid" id="ow-grid">
-      <!-- populated by JS -->
-    </div>
-
-    <div class="page-nav">
-      <button class="page-nav-btn page-nav-back" id="back-from-other-worlds" type="button">
-        <span class="page-nav-arrow">&larr;</span>
-        <span class="page-nav-label">Book the First</span>
-        <span class="page-nav-title">Calendar For Life</span>
-        <span class="page-nav-sub">The Twelve Charts &amp; 365 Voyages</span>
-      </button>
-    </div>
-  </div>
-
-  <div id="ow-results-view" style="display:none">
-    <div class="back-link" id="back-from-ow-results">Back to The Other Worlds</div>
-    <div class="results-banner" id="ow-results-banner" aria-live="polite"></div>
-    <div class="voyages-list filter-results" id="ow-results-list"></div>
-  </div>
-
-</main>
-<!-- ============================================================
-     THE DAYS OF YORE  pirates, vikings, castles, faire grounds
-     ============================================================ -->
-<main id="days-of-yore" style="display:none" aria-label="The Days of Yore">
-
-  <header class="top-rail">
-    <div class="top-rail-inner">
-      <div class="brand" id="brand-days-of-yore">
-        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
-          <circle cx="20" cy="20" r="18"/>
-          <circle cx="20" cy="20" r="13" stroke-width="0.6" opacity="0.55"/>
-          <path d="M20 2 L20 6 M20 34 L20 38 M2 20 L6 20 M34 20 L38 20" stroke-width="1.2"/>
-          <path d="M7.3 7.3 L9.8 9.8 M30.2 7.3 L32.7 9.8 M7.3 32.7 L9.8 30.2 M30.2 32.7 L32.7 30.2" stroke-width="0.8" opacity="0.7"/>
-          <polygon points="20,5 16.8,20 23.2,20" fill="currentColor" stroke="none"/>
-          <polygon points="20,35 16.8,20 23.2,20" fill="currentColor" stroke="none" opacity="0.25"/>
-          <circle cx="20" cy="20" r="1.6" fill="currentColor" stroke="none"/>
-        </svg>
-        <h1 class="brand-text">The Days of Yore</h1>
-      </div>
-      <div class="search-wrap">
-        <input type="text" class="search-input" id="dy-search" aria-label="Search The Days of Yore by pirate, viking, castle, or faire" placeholder="Search pirates, vikings, castles, faires...">
-      </div>
-    </div>
-  </header>
-
-  <div id="dy-home">
-    <div class="pilgrim-intro">
-      <div class="pilgrim-eyebrow">A Side-Chamber of Calendar For Life</div>
-      <h2 class="pilgrim-title">The Days of Yore</h2>
-      <div class="pilgrim-sub">Pirates, Vikings, Castles &amp; the Faire Grounds</div>
-      <p class="pilgrim-credo">Sixty gatherings where the banners of the old world still fly: pirate invasions and shanty ports, viking markets and burning longships, castle tournaments and medieval fayres, and the renaissance faires where the sixteenth century pitches its tents every weekend. <strong>From Up Helly Aa&rsquo;s flaming galley to the Palio&rsquo;s thundering piazza to the Texas Renaissance Festival&rsquo;s autumn court.</strong></p>
-    </div>
-
-    <div class="dy-grid" id="dy-grid">
-      <!-- populated by JS -->
-    </div>
-
-    <div class="page-nav">
-      <button class="page-nav-btn page-nav-back" id="back-from-days-of-yore" type="button">
-        <span class="page-nav-arrow">&larr;</span>
-        <span class="page-nav-label">Book the First</span>
-        <span class="page-nav-title">Calendar For Life</span>
-        <span class="page-nav-sub">The Twelve Charts &amp; 365 Voyages</span>
-      </button>
-    </div>
-  </div>
-
-  <div id="dy-results-view" style="display:none">
-    <div class="back-link" id="back-from-dy-results">Back to The Days of Yore</div>
-    <div class="results-banner" id="dy-results-banner" aria-live="polite"></div>
-    <div class="voyages-list filter-results" id="dy-results-list"></div>
-  </div>
-
-</main>
-<!-- ============================================================
-     THE PROVING GROUNDS  the sporting voyages of the calendar
-     ============================================================ -->
-<main id="proving-grounds" style="display:none" aria-label="The Proving Grounds">
-
-  <header class="top-rail">
-    <div class="top-rail-inner">
-      <div class="brand" id="brand-proving-grounds">
-        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
-          <circle cx="20" cy="20" r="18"/>
-          <circle cx="20" cy="20" r="13" stroke-width="0.6" opacity="0.55"/>
-          <path d="M20 2 L20 6 M20 34 L20 38 M2 20 L6 20 M34 20 L38 20" stroke-width="1.2"/>
-          <path d="M7.3 7.3 L9.8 9.8 M30.2 7.3 L32.7 9.8 M7.3 32.7 L9.8 30.2 M30.2 32.7 L32.7 30.2" stroke-width="0.8" opacity="0.7"/>
-          <polygon points="20,5 16.8,20 23.2,20" fill="currentColor" stroke="none"/>
-          <polygon points="20,35 16.8,20 23.2,20" fill="currentColor" stroke="none" opacity="0.25"/>
-          <circle cx="20" cy="20" r="1.6" fill="currentColor" stroke="none"/>
-        </svg>
-        <h1 class="brand-text">The Proving Grounds</h1>
-      </div>
-      <div class="search-wrap">
-        <input type="text" class="search-input" id="pg-search" aria-label="Search The Proving Grounds by race, arena, or contest" placeholder="Search races, arenas, contests...">
-      </div>
-    </div>
-  </header>
-
-  <div id="pg-home">
-    <div class="pilgrim-intro">
-      <div class="pilgrim-eyebrow">A Side-Chamber of Calendar For Life</div>
-      <h2 class="pilgrim-title">The Proving Grounds</h2>
-      <div class="pilgrim-sub">Races, Regattas &amp; the Contests of the Body</div>
-      <p class="pilgrim-credo">The voyages where the body is the vessel: marathons run across deserts and up mountainsides, regattas and derbies, wrestling fields soaked in olive oil, waves the size of cathedrals and walls of granite climbed on faith. Gathered in from the Twelve Charts, these are the gatherings where a crowd assembles to watch the human animal find its limit and step past it. <strong>From Wimbledon&rsquo;s lawns to the Mongol Derby&rsquo;s thousand-kilometer steppe to the big-wave winters of Nazar&eacute;.</strong></p>
-    </div>
-
-    <div class="pg-grid" id="pg-grid">
-      <!-- populated by JS -->
-    </div>
-
-    <div class="page-nav">
-      <button class="page-nav-btn page-nav-back" id="back-from-proving-grounds" type="button">
-        <span class="page-nav-arrow">&larr;</span>
-        <span class="page-nav-label">Book the First</span>
-        <span class="page-nav-title">Calendar For Life</span>
-        <span class="page-nav-sub">The Twelve Charts &amp; 365 Voyages</span>
-      </button>
-    </div>
-  </div>
-
-  <div id="pg-results-view" style="display:none">
-    <div class="back-link" id="back-from-pg-results">Back to The Proving Grounds</div>
-    <div class="results-banner" id="pg-results-banner" aria-live="polite"></div>
-    <div class="voyages-list filter-results" id="pg-results-list"></div>
   </div>
 
 </main>
@@ -3644,7 +2923,7 @@
   // entry into the LP-keyed form when its month+n now points to a Living Page.
   // These three IIFEs run at top level in the single app script, so ANYTHING
   // they throw aborts the rest of the file: nothing renders, no listeners bind,
-  // and Set Sail is never wired. localStorage throws outright when site data is
+  // and the reader gets a blank page. localStorage throws outright when site data is
   // blocked (Safari private mode, a hardened profile, an enterprise policy) and
   // setItem throws on a full quota, so the flag read and the flag write are
   // routed through these two helpers. The migration bodies below already swallow
@@ -3828,13 +3107,12 @@
   const MONTHS = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
   const ROMAN  = ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
 
-  // PIRATE, VIKING, and CASTLE retired from the filter rail when their voyages
-  // moved into The Days of Yore; the flags remain on the data for card dots.
-  // The filter-chip roster is retired: every former banner-flag now lives as
-  // its own tab (The Other Worlds, The Proving Grounds) or needs no filter at
-  // all. Entry data keeps its CULTURE/ART/FOOD/GAME/FANDOM/SPORT flags for
-  // card glyphs and sub-Book dots. The rail renders no filter chips while
-  // this list is empty; the filtering machinery below stays dormant.
+  // The filter-chip roster is empty and has been for a while. Every gathering
+  // now sits in the month it happens in, which is the way a reader looks for
+  // one, so a rail of banner filters had nothing left to do. Entry data keeps
+  // its CULTURE/ART/FOOD/GAME/FANDOM/SPORT/PIRATE/VIKING/CASTLE flags for the
+  // card glyphs. The rail renders no filter chips while this list is empty;
+  // the filtering machinery below stays dormant but works if it is refilled.
   const FLAGS = [];
   const flagLabel   = k => { const f = FLAGS.find(x => x.key === k); return f ? f.label : k; };
   const flagMatches = (v, k) => {
@@ -5472,6 +4750,7 @@
     state.activeMonth = null;
     $$('.flag-chip').forEach(c => c.classList.remove('active'));
 
+    railSetActive('myvoyages');
     navResults('myvoyages');
     chartsHome.style.display = 'none';
     chartView.classList.remove('is-open');
@@ -5689,6 +4968,7 @@
     state.activeMonth = null;
     $$('.flag-chip').forEach(c => c.classList.remove('active'));
 
+    railSetActive('today');
     navResults('today');
     chartsHome.style.display = 'none';
     chartView.classList.remove('is-open');
@@ -5734,8 +5014,6 @@
   const $ = (s, c=document) => c.querySelector(s);
   const $$ = (s, c=document) => Array.from(c.querySelectorAll(s));
 
-  const cover         = $('#cover');
-  const almanac       = $('#almanac');
   const chartsHome    = $('#charts-home');
   const chartsGrid    = $('#charts-grid');
   const chartView     = $('#chart-view');
@@ -5748,21 +5026,6 @@
   const searchInput   = $('#search-input');
   const scrollOverlay = $('#scroll-overlay');
   const scrollContent = $('#scroll-content');
-
-  // ============ COVER → ALMANAC ============
-  // Title page (cover) shows on load. Click Set Sail to fade the cover and reveal
-  // the Calendar. After entry the cover is hidden permanently for the session.
-  $('#enter-btn').addEventListener('click', () => {
-    document.body.classList.remove('on-cover');
-    cover.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-    cover.style.opacity = '0';
-    cover.style.transform = 'translateY(-20px)';
-    setTimeout(() => {
-      cover.style.display = 'none';
-      almanac.classList.add('is-open');
-      window.scrollTo(0, 0);
-    }, 700);
-  });
 
   // ============ CALENDAR FOR LIFE VOYAGES (lead capture) ============
   // The Ship's Manifest gate, charter inquiries, and the outbox that
@@ -6316,6 +5579,17 @@
   refreshAgencyBlock();
 
   // ============ RENDER FLAG RAIL ============
+  // Which of the three doors is open. Nothing is lit while the twelve months,
+  // a single month or a search result is on screen: none of those is a door.
+  function railSetActive(kind) {
+    const t = document.getElementById('goto-today');
+    if (t) t.classList.toggle('is-active', kind === 'today');
+    const m = document.getElementById('goto-myvoyages');
+    if (m) m.classList.toggle('is-active', kind === 'myvoyages');
+    const p = document.getElementById('goto-pilgrimages');
+    if (p) p.classList.toggle('is-active', kind === 'pilgrimages');
+  }
+
   function renderFlagRail() {
     const todayChip = `
       <button class="today-chip" id="goto-today" type="button" aria-label="Open today's voyage">
@@ -6328,32 +5602,18 @@
         <span class="myvoy-count is-zero">0</span>
       </button>
     `;
+    // Pilgrimages Of Humanity answers to no calendar, so it is the one Book
+    // that still needs a door. The Living Pages, the Other Worlds and the
+    // Days of Yore are dated, so their gatherings live in the months now and
+    // their chips came off with their tabs. The Proving Grounds was only ever
+    // a saved filter over the SPORT flag, and the FLAGS roster above is empty,
+    // so its 37 sporting voyages are reached through their months or by search.
     const pilgrimChip = `
       <button class="pilgrim-chip" id="goto-pilgrimages" type="button" aria-label="Open Pilgrimages Of Humanity">
         <span class="pilgrim-chip-label">Pilgrimages Of Humanity</span>
       </button>
     `;
-    const livingChip = `
-      <button class="living-chip" id="goto-living-pages" type="button" aria-label="Open The Living Pages">
-        <span class="living-chip-label">The Living Pages</span>
-      </button>
-    `;
-    const owChip = `
-      <button class="ow-chip" id="goto-other-worlds" type="button" aria-label="Open The Other Worlds">
-        <span class="ow-chip-label">The Other Worlds</span>
-      </button>
-    `;
-    const dyChip = `
-      <button class="dy-chip" id="goto-days-of-yore" type="button" aria-label="Open The Days of Yore">
-        <span class="dy-chip-label">The Days of Yore</span>
-      </button>
-    `;
-    const pgChip = `
-      <button class="pg-chip" id="goto-proving-grounds" type="button" aria-label="Open The Proving Grounds">
-        <span class="pg-chip-label">The Proving Grounds</span>
-      </button>
-    `;
-    flagRail.innerHTML = todayChip + myVoyChip + pilgrimChip + livingChip + owChip + dyChip + pgChip + FLAGS.map(f => `
+    flagRail.innerHTML = todayChip + myVoyChip + pilgrimChip + FLAGS.map(f => `
       <div class="flag-chip" data-flag="${f.key}" style="--flag-bg: ${f.color}">
         <span class="dot"></span>${f.label}
       </div>
@@ -6382,21 +5642,6 @@
     const pChip = $('#goto-pilgrimages');
     if (pChip) pChip.addEventListener('click', showPilgrimages);
 
-    // The Living Pages chip
-    const lChip = $('#goto-living-pages');
-    if (lChip) lChip.addEventListener('click', showLivingPages);
-
-    // The Other Worlds chip
-    const oChip = $('#goto-other-worlds');
-    if (oChip) oChip.addEventListener('click', showOtherWorlds);
-
-    // The Days of Yore chip
-    const dChip = $('#goto-days-of-yore');
-    if (dChip) dChip.addEventListener('click', showDaysOfYore);
-
-    // The Proving Grounds chip
-    const gChip = $('#goto-proving-grounds');
-    if (gChip) gChip.addEventListener('click', showProvingGrounds);
   }
 
   // ============ TODAY MASTHEAD ============
@@ -6451,9 +5696,32 @@
     if (moreBtn) moreBtn.addEventListener('click', showToday);
   }
 
+  // A month holds everything dated inside it: the calendar voyages and the
+  // gatherings of the three dated Books. Those Books always carried a month;
+  // until the tabs came off, a month was simply the one place you could not
+  // reach them from. Sub-Book entries keep legacy month/n pairs that collide
+  // with refilled calendar slots, so the cards they render carry their own
+  // lpKey/owKey/dyKey and nothing here resolves an entry by month and number.
+  function monthEntries(month) {
+    const all = VOYAGES.filter(v => v.month === month)
+      .concat(LIVING_PAGES.filter(v => v.month === month))
+      .concat(OTHER_WORLDS.filter(v => v.month === month))
+      .concat(DAYS_OF_YORE.filter(v => v.month === month));
+    // Date order within the month. A date the parser cannot read has no start
+    // to sort on, so those entries fall back to their own numbering rather
+    // than scattering through the list.
+    all.sort((a, b) => {
+      const da = parseVoyageDate(a), db = parseVoyageDate(b);
+      const ta = da && da.start ? da.start.getTime() : 0;
+      const tb = db && db.start ? db.start.getTime() : 0;
+      return (ta - tb) || ((a.n || 0) - (b.n || 0));
+    });
+    return all;
+  }
+
   // ============ RENDER CHARTS HOME ============
   function renderCharts() {
-    const counts = MONTHS.map(m => VOYAGES.filter(v => v.month === m).length);
+    const counts = MONTHS.map(m => monthEntries(m).length);
     chartsGrid.innerHTML = MONTHS.map((m, i) => {
       const q = MONTH_QUOTES[m];
       const quoteBlock = q
@@ -6469,9 +5737,6 @@
             <div class="month-name">${m}</div>
             <div class="month-divider"><div class="line"></div><div class="line"></div></div>
             ${quoteBlock}
-            <div class="voyage-count">
-              <strong>${counts[i]}</strong> voyages charted
-            </div>
           </div>
           <div class="seal">${ROMAN[i]}</div>
         </div>
@@ -6495,6 +5760,7 @@
         if (navClose('results')) return;
         resultsView.style.display = 'none';
         chartsHome.style.display = '';
+        railSetActive(null);
       }
       return;
     }
@@ -6559,7 +5825,7 @@
   function openChart(month) {
     state.activeMonth = month;
     const idx = MONTHS.indexOf(month);
-    const monthVoyages = VOYAGES.filter(v => v.month === month);
+    const monthVoyages = monthEntries(month);
     const flagged = state.activeFlag
       ? monthVoyages.filter(v => flagMatches(v, state.activeFlag))
       : monthVoyages;
@@ -6569,13 +5835,15 @@
       <div class="month-display">${month}</div>
       <div class="divider"><div class="line"></div><div class="line"></div></div>
       <div class="month-sub">
-        ${flagged.length} voyage${flagged.length === 1 ? '' : 's'} charted${state.activeFlag ? ` under the <em>${flagLabel(state.activeFlag)}</em> flag` : ''} &middot; charted for ${REF_YEAR}
+        ${state.activeFlag
+          ? `${flagged.length} under the <em>${flagLabel(state.activeFlag)}</em> flag &middot; charted for ${REF_YEAR}`
+          : `Charted for ${REF_YEAR}`}
       </div>
     `;
 
     voyagesList.innerHTML = flagged.map(v => voyageCardHtml(v)).join('') || `
       <div class="empty-state" style="grid-column:1/-1">
-        No voyages this month under the <em>${flagLabel(state.activeFlag)}</em> flag.
+        No gatherings this month under the <em>${flagLabel(state.activeFlag)}</em> flag.
       </div>`;
     attachCardListeners(voyagesList);
 
@@ -6591,9 +5859,15 @@
   function voyageCardHtml(v, showMonth=false) {
     const flagsHtml = v.flags.map(f => `<span class="flag-glyph flag-${escapeHtml(f)}">${escapeHtml(f)}</span>`).join('');
     const idx = MONTHS.indexOf(v.month);
+    // Inside a month the Books sit beside the calendar voyages, and their
+    // legacy numbers collide with the calendar's, so a Living Page is named
+    // by its Book rather than by a voyage number that belongs to somebody else.
     const metaLeft = showMonth
       ? `${escapeHtml(v.month)} &middot; ${ROMAN[idx]}`
-      : `VOYAGE ${escapeHtml(String(v.n))}`;
+      : (v.lpKey ? 'THE LIVING PAGES'
+        : v.owKey ? 'THE OTHER WORLDS'
+        : v.dyKey ? 'THE DAYS OF YORE'
+        : `VOYAGE ${escapeHtml(String(v.n))}`);
     const quoteHtml = v.quote ? `
         <div class="voyage-quote">
           <span class="quote-text">${escapeHtml(v.quote)}</span>
@@ -6936,10 +6210,6 @@
       case 'today': showToday(); return true;
       case 'myvoyages': showMyVoyages(); return true;
       case 'pilgrimages': showPilgrimages(); return true;
-      case 'living': showLivingPages(); return true;
-      case 'otherworlds': showOtherWorlds(); return true;
-      case 'daysofyore': showDaysOfYore(); return true;
-      case 'provinggrounds': showProvingGrounds(); return true;
       case 'search': return false;
       case 'chart':
         if (MONTHS.indexOf(arg) < 0) return false;
@@ -6963,6 +6233,7 @@
   function closeChartNow() {
     chartView.classList.remove('is-open');
     chartsHome.style.display = '';
+    railSetActive(null);
     state.activeMonth = null;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -6973,6 +6244,7 @@
     $$('.flag-chip').forEach(c => c.classList.remove('active'));
     resultsView.style.display = 'none';
     chartsHome.style.display = '';
+    railSetActive(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   $('#back-from-chart').addEventListener('click', () => {
@@ -6988,10 +6260,7 @@
     state.activeMonth = null;
     searchInput.value = '';
     $$('.flag-chip').forEach(c => c.classList.remove('active'));
-    resultsView.style.display = 'none';
-    chartView.classList.remove('is-open');
-    chartsHome.style.display = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    showAlmanacNow();
   });
 
   // ============ SEARCH ============
@@ -7025,47 +6294,7 @@
   const pilgrimSection   = document.getElementById('pilgrimages');
   const pilgrimSearch    = document.getElementById('pilgrim-search');
 
-  // The Living Pages section
-  const livingSection       = document.getElementById('living-pages');
-  const livingHome          = document.getElementById('living-home');
-  const livingGrid          = document.getElementById('living-grid');
-  const livingResults       = document.getElementById('living-results-view');
-  const livingResultsList   = document.getElementById('living-results-list');
-  const livingResultsBanner = document.getElementById('living-results-banner');
-  const livingSearch        = document.getElementById('living-search');
-
-  // The Other Worlds section
-  const owSection       = document.getElementById('other-worlds');
-  const owHome          = document.getElementById('ow-home');
-  const owGrid          = document.getElementById('ow-grid');
-  const owResults       = document.getElementById('ow-results-view');
-  const owResultsList   = document.getElementById('ow-results-list');
-  const owResultsBanner = document.getElementById('ow-results-banner');
-  const owSearch        = document.getElementById('ow-search');
-
-  // The Days of Yore section
-  const dySection       = document.getElementById('days-of-yore');
-  const dyHome          = document.getElementById('dy-home');
-  const dyGrid          = document.getElementById('dy-grid');
-  const dyResults       = document.getElementById('dy-results-view');
-  const dyResultsList   = document.getElementById('dy-results-list');
-  const dyResultsBanner = document.getElementById('dy-results-banner');
-  const dySearch        = document.getElementById('dy-search');
-
-  // The Proving Grounds section
-  const pgSection       = document.getElementById('proving-grounds');
-  const pgHome          = document.getElementById('pg-home');
-  const pgGrid          = document.getElementById('pg-grid');
-  const pgResults       = document.getElementById('pg-results-view');
-  const pgResultsList   = document.getElementById('pg-results-list');
-  const pgResultsBanner = document.getElementById('pg-results-banner');
-  const pgSearch        = document.getElementById('pg-search');
-
   const pilgrimState = { activeRoman: null, search: '' };
-  const livingState  = { search: '' };
-  const owState      = { search: '' };
-  const dyState      = { search: '' };
-  const pgState      = { search: '' };
 
   function renderPilgrimages() {
     pilgrimGrid.innerHTML = PILGRIMAGES.map(p => pilgrimCardHtml(p)).join('');
@@ -7235,29 +6464,14 @@
     focusIntoScroll();
   }
 
-  // ============ NAVIGATION between Almanac, Pilgrimages, and The Living Pages ============
+  // ============ NAVIGATION between the Almanac and the Pilgrimages ============
   function hideAllTopSections() {
     pilgrimSection.style.display = 'none';
     pilgrimSection.classList.remove('is-open');
-    if (livingSection) {
-      livingSection.style.display = 'none';
-      livingSection.classList.remove('is-open');
-    }
-    if (owSection) {
-      owSection.style.display = 'none';
-      owSection.classList.remove('is-open');
-    }
-    if (dySection) {
-      dySection.style.display = 'none';
-      dySection.classList.remove('is-open');
-    }
-    if (pgSection) {
-      pgSection.style.display = 'none';
-      pgSection.classList.remove('is-open');
-    }
     almanacSection.style.display = 'none';
   }
   function showPilgrimages() {
+    railSetActive('pilgrimages');
     navSection('pilgrimages');
     hideAllTopSections();
     pilgrimSection.style.display = '';
@@ -7270,57 +6484,15 @@
     if (pilgrimSearch) pilgrimSearch.value = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  function showLivingPages() {
-    navSection('living');
-    hideAllTopSections();
-    livingSection.style.display = '';
-    livingSection.classList.add('is-open');
-    livingHome.style.display = '';
-    livingResults.style.display = 'none';
-    livingState.search = '';
-    if (livingSearch) livingSearch.value = '';
-    renderLivingPages();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  function showOtherWorlds() {
-    navSection('otherworlds');
-    hideAllTopSections();
-    owSection.style.display = '';
-    owSection.classList.add('is-open');
-    owHome.style.display = '';
-    owResults.style.display = 'none';
-    owState.search = '';
-    if (owSearch) owSearch.value = '';
-    renderOtherWorlds();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  function showDaysOfYore() {
-    navSection('daysofyore');
-    hideAllTopSections();
-    dySection.style.display = '';
-    dySection.classList.add('is-open');
-    dyHome.style.display = '';
-    dyResults.style.display = 'none';
-    dyState.search = '';
-    if (dySearch) dySearch.value = '';
-    renderDaysOfYore();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  function showProvingGrounds() {
-    navSection('provinggrounds');
-    hideAllTopSections();
-    pgSection.style.display = '';
-    pgSection.classList.add('is-open');
-    pgHome.style.display = '';
-    pgResults.style.display = 'none';
-    pgState.search = '';
-    if (pgSearch) pgSearch.value = '';
-    renderProvingGrounds();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+  // The whole answer to "put me back at the start": the twelve months, with
+  // Pilgrimages closed behind you and no door lit.
   function showAlmanacNow() {
     hideAllTopSections();
     almanacSection.style.display = '';
+    resultsView.style.display = 'none';
+    chartView.classList.remove('is-open');
+    chartsHome.style.display = '';
+    railSetActive(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   function showAlmanac() {
@@ -7328,7 +6500,7 @@
     showAlmanacNow();
   }
 
-  // (#goto-pilgrimages and #goto-living-pages bind inside renderFlagRail)
+  // (#goto-pilgrimages binds inside renderFlagRail)
   $('#back-to-almanac').addEventListener('click', showAlmanac);
   function closePilgrimageNow() {
     pilgrimView.classList.remove('is-open');
@@ -7352,425 +6524,6 @@
     pilgrimState.search = '';
     pilgrimResults.style.display = 'none';
     pilgrimHome.style.display = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // ============ THE LIVING PAGES (render + search + back) ============
-  const ROMAN_BY_MONTH = {
-    JANUARY: 'I', FEBRUARY: 'II', MARCH: 'III', APRIL: 'IV', MAY: 'V', JUNE: 'VI',
-    JULY: 'VII', AUGUST: 'VIII', SEPTEMBER: 'IX', OCTOBER: 'X', NOVEMBER: 'XI', DECEMBER: 'XII'
-  };
-  function renderLivingPages() {
-    if (!livingGrid) return;
-    // Sort by original month order, then by original n so cards read chronologically
-    const sorted = LIVING_PAGES.slice().sort((a, b) => {
-      const ma = MONTHS.indexOf(a.origMonth || a.month);
-      const mb = MONTHS.indexOf(b.origMonth || b.month);
-      if (ma !== mb) return ma - mb;
-      const pa = parseVoyageDate(a), pb = parseVoyageDate(b);
-      if (pa && pb) return pa.start - pb.start;
-      return (a.origN || a.n) - (b.origN || b.n);
-    });
-    livingGrid.innerHTML = sorted.map(v => {
-      const displayMonth = v.origMonth || v.month;
-      const eyebrow = (displayMonth.charAt(0) + displayMonth.slice(1).toLowerCase()) + ' ' + (ROMAN_BY_MONTH[displayMonth] || '');
-      const flags = (v.flags || []).map(f => '<span class="lp-flag-dot lp-flag-' + escapeHtml(f.toLowerCase()) + '"></span>').join('');
-      return '<div class="living-page-card" data-lpkey="' + escapeHtml(v.lpKey || '') + '">' +
-        '<div class="lp-eyebrow">' + escapeHtml(eyebrow) + '</div>' +
-        '<div class="lp-name">' + escapeHtml(v.name) + '</div>' +
-        '<div class="lp-meta"><span class="lp-port">' + escapeHtml(v.port || '') + '</span></div>' +
-        '<div class="lp-date">' + escapeHtml(v.date || '') + '</div>' +
-        '<div class="lp-flags">' + flags + '</div>' +
-        '</div>';
-    }).join('');
-
-    livingGrid.querySelectorAll('.living-page-card').forEach(card => {
-      keyify(card);
-      card.addEventListener('click', () => {
-        const v = findLivingPageByLpKey(card.dataset.lpkey);
-        if (v) openVoyage(v);
-      });
-    });
-  }
-
-  function applyLivingSearch() {
-    const q = livingState.search.trim().toLowerCase();
-    if (!q) {
-      if (livingResults.style.display === 'block') {
-        livingResults.style.display = 'none';
-        livingHome.style.display = '';
-      }
-      return;
-    }
-    const hits = LIVING_PAGES.filter(v =>
-      (v.name && v.name.toLowerCase().includes(q)) ||
-      (v.port && v.port.toLowerCase().includes(q)) ||
-      (v.date && v.date.toLowerCase().includes(q)) ||
-      (v.desc && v.desc.toLowerCase().includes(q)) ||
-      (v.berth && v.berth.toLowerCase().includes(q)) ||
-      (v.galley && v.galley.toLowerCase().includes(q)) ||
-      (v.quote && v.quote.toLowerCase().includes(q)) ||
-      (v.author && v.author.toLowerCase().includes(q))
-    );
-    livingHome.style.display = 'none';
-    livingResults.style.display = 'block';
-    livingResultsBanner.innerHTML = '<strong>' + hits.length + '</strong> living page' + (hits.length === 1 ? '' : 's') + ' match &ldquo;<em>' + escapeHtml(q) + '</em>&rdquo;';
-    if (hits.length === 0) {
-      livingResultsList.innerHTML = '<div class="no-results">No matching living pages on file.</div>';
-      return;
-    }
-    livingResultsList.innerHTML = hits.map(v =>
-      '<div class="voyage-row" data-lpkey="' + escapeHtml(v.lpKey || '') + '">' +
-        '<div class="vr-name">' + escapeHtml(v.name) + '</div>' +
-        '<div class="vr-meta">' + escapeHtml(v.port || '') + ' &middot; ' + escapeHtml(v.date || '') + '</div>' +
-      '</div>'
-    ).join('');
-    livingResultsList.querySelectorAll('.voyage-row').forEach(row => {
-      keyify(row);
-      row.addEventListener('click', () => {
-        const v = findLivingPageByLpKey(row.dataset.lpkey);
-        if (v) openVoyage(v);
-      });
-    });
-  }
-
-  if (livingSearch) {
-    livingSearch.addEventListener('input', () => {
-      livingState.search = livingSearch.value;
-      applyLivingSearch();
-    });
-  }
-  const brandLiving = document.getElementById('brand-living');
-  if (brandLiving) brandLiving.addEventListener('click', () => {
-    if (livingSearch) livingSearch.value = '';
-    livingState.search = '';
-    livingResults.style.display = 'none';
-    livingHome.style.display = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-  const backFromLiving = document.getElementById('back-from-living');
-  if (backFromLiving) backFromLiving.addEventListener('click', showAlmanac);
-  const backFromLivingResults = document.getElementById('back-from-living-results');
-  if (backFromLivingResults) backFromLivingResults.addEventListener('click', () => {
-    if (livingSearch) livingSearch.value = '';
-    livingState.search = '';
-    livingResults.style.display = 'none';
-    livingHome.style.display = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // ============ THE OTHER WORLDS (render + search + back) ============
-  // The Other Worlds gathers its own entries plus the calendar voyages that
-  // fly the GAME or FANDOM flag. Cross-listed voyages remain calendar entries
-  // (bookmark type voyage, MONTH-N bearings and quote); this view only
-  // surfaces them under the same roof, marked "of the Calendar".
-  function owPool() {
-    const crossListed = VOYAGES.filter(v =>
-      (v.flags || []).some(f => f === 'GAME' || f === 'FANDOM'));
-    return OTHER_WORLDS.concat(crossListed);
-  }
-
-  let owSorted = [];
-  function renderOtherWorlds() {
-    if (!owGrid) return;
-    owSorted = owPool().sort((a, b) => {
-      const ma = MONTHS.indexOf(a.origMonth || a.month);
-      const mb = MONTHS.indexOf(b.origMonth || b.month);
-      if (ma !== mb) return ma - mb;
-      const pa = parseVoyageDate(a), pb = parseVoyageDate(b);
-      if (pa && pb) return pa.start - pb.start;
-      return (a.origN || a.n) - (b.origN || b.n);
-    });
-    owGrid.innerHTML = owSorted.map((v, i) => {
-      const displayMonth = v.origMonth || v.month;
-      const eyebrow = (displayMonth.charAt(0) + displayMonth.slice(1).toLowerCase()) + ' ' + (ROMAN_BY_MONTH[displayMonth] || '') + (v.owKey ? '' : ' · of the Calendar');
-      const flags = (v.flags || []).map(f => '<span class="lp-flag-dot lp-flag-' + escapeHtml(f.toLowerCase()) + '"></span>').join('');
-      return '<div class="living-page-card ow-page-card" data-idx="' + i + '">' +
-        '<div class="lp-eyebrow">' + escapeHtml(eyebrow) + '</div>' +
-        '<div class="lp-name">' + escapeHtml(v.name) + '</div>' +
-        '<div class="lp-meta"><span class="lp-port">' + escapeHtml(v.port || '') + '</span></div>' +
-        '<div class="lp-date">' + escapeHtml(v.date || '') + '</div>' +
-        '<div class="lp-flags">' + flags + '</div>' +
-        '</div>';
-    }).join('');
-
-    owGrid.querySelectorAll('.ow-page-card').forEach(card => {
-      keyify(card);
-      card.addEventListener('click', () => {
-        const v = owSorted[Number(card.dataset.idx)];
-        if (v) openVoyage(v);
-      });
-    });
-  }
-
-  function applyOwSearch() {
-    const q = owState.search.trim().toLowerCase();
-    if (!q) {
-      if (owResults.style.display === 'block') {
-        owResults.style.display = 'none';
-        owHome.style.display = '';
-      }
-      return;
-    }
-    const hits = owPool().filter(v =>
-      (v.name && v.name.toLowerCase().includes(q)) ||
-      (v.port && v.port.toLowerCase().includes(q)) ||
-      (v.date && v.date.toLowerCase().includes(q)) ||
-      (v.desc && v.desc.toLowerCase().includes(q)) ||
-      (v.berth && v.berth.toLowerCase().includes(q)) ||
-      (v.galley && v.galley.toLowerCase().includes(q)) ||
-      (v.quote && v.quote.toLowerCase().includes(q)) ||
-      (v.author && v.author.toLowerCase().includes(q))
-    );
-    owHome.style.display = 'none';
-    owResults.style.display = 'block';
-    owResultsBanner.innerHTML = '<strong>' + hits.length + '</strong> gathering' + (hits.length === 1 ? ' matches' : 's match') + ' &ldquo;<em>' + escapeHtml(q) + '</em>&rdquo;';
-    if (hits.length === 0) {
-      owResultsList.innerHTML = '<div class="no-results">No matching gatherings in the Other Worlds.</div>';
-      return;
-    }
-    owResultsList.innerHTML = hits.map((v, i) =>
-      '<div class="voyage-row" data-idx="' + i + '">' +
-        '<div class="vr-name">' + escapeHtml(v.name) + '</div>' +
-        '<div class="vr-meta">' + escapeHtml(v.port || '') + ' &middot; ' + escapeHtml(v.date || '') + '</div>' +
-      '</div>'
-    ).join('');
-    owResultsList.querySelectorAll('.voyage-row').forEach(row => {
-      keyify(row);
-      row.addEventListener('click', () => {
-        const v = hits[Number(row.dataset.idx)];
-        if (v) openVoyage(v);
-      });
-    });
-  }
-
-  if (owSearch) {
-    owSearch.addEventListener('input', () => {
-      owState.search = owSearch.value;
-      applyOwSearch();
-    });
-  }
-  const brandOw = document.getElementById('brand-other-worlds');
-  if (brandOw) brandOw.addEventListener('click', () => {
-    if (owSearch) owSearch.value = '';
-    owState.search = '';
-    owResults.style.display = 'none';
-    owHome.style.display = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-  const backFromOw = document.getElementById('back-from-other-worlds');
-  if (backFromOw) backFromOw.addEventListener('click', showAlmanac);
-  const backFromOwResults = document.getElementById('back-from-ow-results');
-  if (backFromOwResults) backFromOwResults.addEventListener('click', () => {
-    if (owSearch) owSearch.value = '';
-    owState.search = '';
-    owResults.style.display = 'none';
-    owHome.style.display = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // ============ THE DAYS OF YORE (render + search + back) ============
-  function renderDaysOfYore() {
-    if (!dyGrid) return;
-    const sorted = DAYS_OF_YORE.slice().sort((a, b) => {
-      const ma = MONTHS.indexOf(a.origMonth || a.month);
-      const mb = MONTHS.indexOf(b.origMonth || b.month);
-      if (ma !== mb) return ma - mb;
-      const pa = parseVoyageDate(a), pb = parseVoyageDate(b);
-      if (pa && pb) return pa.start - pb.start;
-      return (a.origN || a.n) - (b.origN || b.n);
-    });
-    dyGrid.innerHTML = sorted.map(v => {
-      const displayMonth = v.origMonth || v.month;
-      const eyebrow = (displayMonth.charAt(0) + displayMonth.slice(1).toLowerCase()) + ' ' + (ROMAN_BY_MONTH[displayMonth] || '');
-      const flags = (v.flags || []).map(f => '<span class="lp-flag-dot lp-flag-' + escapeHtml(f.toLowerCase()) + '"></span>').join('');
-      return '<div class="living-page-card dy-page-card" data-dykey="' + escapeHtml(v.dyKey || '') + '">' +
-        '<div class="lp-eyebrow dy-eyebrow">' + escapeHtml(eyebrow) + '</div>' +
-        '<div class="lp-name">' + escapeHtml(v.name) + '</div>' +
-        '<div class="lp-meta"><span class="lp-port">' + escapeHtml(v.port || '') + '</span></div>' +
-        '<div class="lp-date">' + escapeHtml(v.date || '') + '</div>' +
-        '<div class="lp-flags">' + flags + '</div>' +
-        '</div>';
-    }).join('');
-
-    dyGrid.querySelectorAll('.dy-page-card').forEach(card => {
-      keyify(card);
-      card.addEventListener('click', () => {
-        const v = findDayOfYoreByDyKey(card.dataset.dykey);
-        if (v) openVoyage(v);
-      });
-    });
-  }
-
-  function applyDySearch() {
-    const q = dyState.search.trim().toLowerCase();
-    if (!q) {
-      if (dyResults.style.display === 'block') {
-        dyResults.style.display = 'none';
-        dyHome.style.display = '';
-      }
-      return;
-    }
-    const hits = DAYS_OF_YORE.filter(v =>
-      (v.name && v.name.toLowerCase().includes(q)) ||
-      (v.port && v.port.toLowerCase().includes(q)) ||
-      (v.date && v.date.toLowerCase().includes(q)) ||
-      (v.desc && v.desc.toLowerCase().includes(q)) ||
-      (v.berth && v.berth.toLowerCase().includes(q)) ||
-      (v.galley && v.galley.toLowerCase().includes(q)) ||
-      (v.quote && v.quote.toLowerCase().includes(q)) ||
-      (v.author && v.author.toLowerCase().includes(q))
-    );
-    dyHome.style.display = 'none';
-    dyResults.style.display = 'block';
-    dyResultsBanner.innerHTML = '<strong>' + hits.length + '</strong> ' + (hits.length === 1 ? 'day' : 'days') + ' of yore match &ldquo;<em>' + escapeHtml(q) + '</em>&rdquo;';
-    if (hits.length === 0) {
-      dyResultsList.innerHTML = '<div class="no-results">No matching days of yore on file.</div>';
-      return;
-    }
-    dyResultsList.innerHTML = hits.map(v =>
-      '<div class="voyage-row" data-dykey="' + escapeHtml(v.dyKey || '') + '">' +
-        '<div class="vr-name">' + escapeHtml(v.name) + '</div>' +
-        '<div class="vr-meta">' + escapeHtml(v.port || '') + ' &middot; ' + escapeHtml(v.date || '') + '</div>' +
-      '</div>'
-    ).join('');
-    dyResultsList.querySelectorAll('.voyage-row').forEach(row => {
-      keyify(row);
-      row.addEventListener('click', () => {
-        const v = findDayOfYoreByDyKey(row.dataset.dykey);
-        if (v) openVoyage(v);
-      });
-    });
-  }
-
-  if (dySearch) {
-    dySearch.addEventListener('input', () => {
-      dyState.search = dySearch.value;
-      applyDySearch();
-    });
-  }
-  const brandDy = document.getElementById('brand-days-of-yore');
-  if (brandDy) brandDy.addEventListener('click', () => {
-    if (dySearch) dySearch.value = '';
-    dyState.search = '';
-    dyResults.style.display = 'none';
-    dyHome.style.display = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-  const backFromDy = document.getElementById('back-from-days-of-yore');
-  if (backFromDy) backFromDy.addEventListener('click', showAlmanac);
-  const backFromDyResults = document.getElementById('back-from-dy-results');
-  if (backFromDyResults) backFromDyResults.addEventListener('click', () => {
-    if (dySearch) dySearch.value = '';
-    dyState.search = '';
-    dyResults.style.display = 'none';
-    dyHome.style.display = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // ============ THE PROVING GROUNDS (render + search + back) ============
-  // The sporting voyages of the calendar, cross-listed by SPORT flag.
-  // Entries remain calendar voyages (bookmark type voyage, MONTH-N bearings
-  // and quote); this view only gathers them under one roof.
-  function pgPool() {
-    return VOYAGES.filter(v => (v.flags || []).includes('SPORT'));
-  }
-
-  let pgSorted = [];
-  function renderProvingGrounds() {
-    if (!pgGrid) return;
-    pgSorted = pgPool().sort((a, b) => {
-      const ma = MONTHS.indexOf(a.month);
-      const mb = MONTHS.indexOf(b.month);
-      if (ma !== mb) return ma - mb;
-      const pa = parseVoyageDate(a), pb = parseVoyageDate(b);
-      if (pa && pb) return pa.start - pb.start;
-      return a.n - b.n;
-    });
-    pgGrid.innerHTML = pgSorted.map((v, i) => {
-      const eyebrow = (v.month.charAt(0) + v.month.slice(1).toLowerCase()) + ' ' + (ROMAN_BY_MONTH[v.month] || '');
-      const flags = (v.flags || []).map(f => '<span class="lp-flag-dot lp-flag-' + escapeHtml(f.toLowerCase()) + '"></span>').join('');
-      return '<div class="living-page-card pg-page-card" data-idx="' + i + '">' +
-        '<div class="lp-eyebrow pg-eyebrow">' + escapeHtml(eyebrow) + '</div>' +
-        '<div class="lp-name">' + escapeHtml(v.name) + '</div>' +
-        '<div class="lp-meta"><span class="lp-port">' + escapeHtml(v.port || '') + '</span></div>' +
-        '<div class="lp-date">' + escapeHtml(v.date || '') + '</div>' +
-        '<div class="lp-flags">' + flags + '</div>' +
-        '</div>';
-    }).join('');
-
-    pgGrid.querySelectorAll('.pg-page-card').forEach(card => {
-      keyify(card);
-      card.addEventListener('click', () => {
-        const v = pgSorted[Number(card.dataset.idx)];
-        if (v) openVoyage(v);
-      });
-    });
-  }
-
-  function applyPgSearch() {
-    const q = pgState.search.trim().toLowerCase();
-    if (!q) {
-      if (pgResults.style.display === 'block') {
-        pgResults.style.display = 'none';
-        pgHome.style.display = '';
-      }
-      return;
-    }
-    const hits = pgPool().filter(v =>
-      (v.name && v.name.toLowerCase().includes(q)) ||
-      (v.port && v.port.toLowerCase().includes(q)) ||
-      (v.date && v.date.toLowerCase().includes(q)) ||
-      (v.desc && v.desc.toLowerCase().includes(q)) ||
-      (v.berth && v.berth.toLowerCase().includes(q)) ||
-      (v.galley && v.galley.toLowerCase().includes(q)) ||
-      (v.quote && v.quote.toLowerCase().includes(q)) ||
-      (v.author && v.author.toLowerCase().includes(q))
-    );
-    pgHome.style.display = 'none';
-    pgResults.style.display = 'block';
-    pgResultsBanner.innerHTML = '<strong>' + hits.length + '</strong> contest' + (hits.length === 1 ? ' matches' : 's match') + ' &ldquo;<em>' + escapeHtml(q) + '</em>&rdquo;';
-    if (hits.length === 0) {
-      pgResultsList.innerHTML = '<div class="no-results">No matching contests on the grounds.</div>';
-      return;
-    }
-    pgResultsList.innerHTML = hits.map((v, i) =>
-      '<div class="voyage-row" data-idx="' + i + '">' +
-        '<div class="vr-name">' + escapeHtml(v.name) + '</div>' +
-        '<div class="vr-meta">' + escapeHtml(v.port || '') + ' &middot; ' + escapeHtml(v.date || '') + '</div>' +
-      '</div>'
-    ).join('');
-    pgResultsList.querySelectorAll('.voyage-row').forEach(row => {
-      keyify(row);
-      row.addEventListener('click', () => {
-        const v = hits[Number(row.dataset.idx)];
-        if (v) openVoyage(v);
-      });
-    });
-  }
-
-  if (pgSearch) {
-    pgSearch.addEventListener('input', () => {
-      pgState.search = pgSearch.value;
-      applyPgSearch();
-    });
-  }
-  const brandPg = document.getElementById('brand-proving-grounds');
-  if (brandPg) brandPg.addEventListener('click', () => {
-    if (pgSearch) pgSearch.value = '';
-    pgState.search = '';
-    pgResults.style.display = 'none';
-    pgHome.style.display = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-  const backFromPg = document.getElementById('back-from-proving-grounds');
-  if (backFromPg) backFromPg.addEventListener('click', showAlmanac);
-  const backFromPgResults = document.getElementById('back-from-pg-results');
-  if (backFromPgResults) backFromPgResults.addEventListener('click', () => {
-    if (pgSearch) pgSearch.value = '';
-    pgState.search = '';
-    pgResults.style.display = 'none';
-    pgHome.style.display = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
@@ -7832,17 +6585,16 @@
     });
   }
 
-  // The six brand blocks are styled with cursor:pointer, carry a hover state and a
+  // Both brand blocks are styled with cursor:pointer, carry a hover state and a
   // click handler, and on the almanac view the brand is the ONLY control that clears
   // search, flag and month in one action. They were plain divs: no role, no tabindex,
   // no key handling, so a keyboard reader could not reach the app's own home button.
   // keyify() already exists and is used at a dozen other call sites.
-  ['brand', 'brand-pilgrim', 'brand-living', 'brand-other-worlds',
-   'brand-days-of-yore', 'brand-proving-grounds'].forEach(id => {
+  ['brand', 'brand-pilgrim'].forEach(id => {
     const el = document.getElementById(id);
     if (el && !el.getAttribute('role')) keyify(el);
   });
-  // The eight "Back to ..." controls were the same kind of div: a keyboard
+  // The four "Back to ..." controls were the same kind of div: a keyboard
   // reader could see them and not reach them.
   document.querySelectorAll('.back-link').forEach(el => {
     if (!el.getAttribute('role')) keyify(el);
@@ -7873,39 +6625,33 @@
   // ============ INIT ============
   renderFlagRail();
   renderCharts();
-  renderTodayMasthead();
+  // The Today masthead no longer opens the page. Today is a door in the rail
+  // now, so a second copy of it above the twelve months both duplicates that
+  // door and pushes January below the fold, which is the opposite of opening
+  // on the year. renderTodayMasthead is left standing and #today-masthead
+  // stays hidden: one call puts it back.
   renderPilgrimages();
 
-  /* The manifest offers two OS-level shortcuts and nothing had ever read them,
-     so both opened the plain cover. The handlers already exist; the cover has
-     to come down first, which is what the Set Sail button does. */
+  /* The installed app offers a Next Voyage shortcut that arrives as ?next=1.
+     There is no cover to bring down any more, so the whole of that handler is
+     the one line that opens Today. ?almanac=1 named the charts, which is now
+     simply where the app opens, so it needs no handler at all. */
   try {
-    var qs = new URLSearchParams(location.search);
-    var wantsNext = qs.get('next') === '1';
-    var wantsCharts = qs.get('almanac') === '1';
-    if (wantsNext || wantsCharts) {
-      var enter = document.getElementById('enter-btn');
-      if (enter) enter.click();
-      setTimeout(function () {
-        if (wantsNext && typeof showToday === 'function') showToday();
-      }, 760);
+    if (new URLSearchParams(location.search).get('next') === '1') {
+      showToday();
       history.replaceState(null, '', location.pathname + location.hash);
     }
   } catch (e) {}
 
-  /* A hash names an entry, a chart, a trail, a Book or a view. Bring the cover
-     down and open it after the same 760ms the Set Sail button takes. The
-     current history entry becomes the home state first, so the first back
-     gesture returns to the charts rather than leaving the wing. */
+  /* A hash names an entry, a chart, a trail or a view, and opens it straight
+     away: there is no cover left to wait 760ms for. The current history entry
+     becomes the home state first, so the first back gesture returns to the
+     charts rather than leaving the wing. */
   (function openLinkedEntry() {
     const initialHash = location.hash;
     if (!initialHash || initialHash.length < 2) return;
     try { history.replaceState({ cfl: 0 }, '', location.pathname + location.search); } catch (e) {}
-    const enter = document.getElementById('enter-btn');
-    const coverEl = document.getElementById('cover');
-    // Set Sail fades the cover synchronously; do not click it twice.
-    if (enter && coverEl && coverEl.style.opacity !== '0') enter.click();
-    setTimeout(function () { try { openFromHash(initialHash); } catch (e) {} }, 760);
+    try { openFromHash(initialHash); } catch (e) {}
   })();
 
   /* Who is holding the tablet: the shared profiles row, below the search,

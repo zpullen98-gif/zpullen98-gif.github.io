@@ -313,20 +313,20 @@ function topbar(){
 
 function homeView(){
   const c=cats(); const nCat=Object.keys(c).length; const nQ=QUESTIONS.length;
+  /* THE FRONT DOOR IS NOT AN EXAMINATION HALL. What stood here was a square
+     announcing "Prove your knowledge as the guilds did: from memory, without
+     prompt", the size of the bank, the length of a mock and the mark needed to
+     pass. Every one of those is true and every one of them is a wall to a
+     person who came to learn something about wine tonight: a total is only
+     encouraging once it is nearly met, and on day one it is the distance left
+     to run. This is a study guide somebody keeps at their own pace, so the
+     first thing on it is the one round the Codex asks of a person today, and
+     the counts live where somebody goes looking for them.
+
+     The motto and the non-affiliation line survive, at the foot: the first is
+     the only ornament the wing has ever had, and the second is a statement the
+     product is required to make and is not free to drop. */
   const v=el(`<div>
-    <div class="hero">
-      <h2>Prove your knowledge as the guilds did: <em>from memory, without prompt</em>.</h2>
-      <div class="lead">${nQ} questions across ${nCat} sections · short-answer + multiple choice + BOS math</div>
-      <div class="statrow">
-        <div class="stat"><b>${nQ}</b><span>Questions</span></div>
-        <div class="stat"><b>${nCat}</b><span>Sections</span></div>
-        <div class="stat"><b>45</b><span>Mock length</span></div>
-        <div class="stat"><b>60%</b><span>To pass</span></div>
-      </div>
-      <div class="fmtnote">The Certified theory section runs 45 questions in ~38 minutes: multiple choice and <b>short answer</b> (you must produce the answer, not pick it). This trainer mirrors that mix and grades typed answers with fuzzy matching, with a self-grade override when you know you were right.</div>
-      <div class="motto">In Vino Veritas</div>
-      <div class="nonaffil">An independent study tool. Not affiliated with, endorsed by, or connected to the Court of Master Sommeliers.</div>
-    </div>
     <div class="modes">
       <button class="mode" id="m-mock"><div class="band"></div><h3>Mock Exam</h3><p>45 random questions, 38-minute clock, 60% to pass. Mixed format, just like exam day.</p></button>
       <button class="mode" id="m-drill"><div class="band"></div><h3>Drill by Section</h3><p>Target one region or topic at a time: Burgundy, Fortified, BOS math, and more.</p></button>
@@ -334,6 +334,10 @@ function homeView(){
       <button class="mode" id="m-terroir"><div class="band"></div><h3>Terroir Atlas</h3><p>Climate, soil, and defining features of every major region. Study first, then drill the matching section.</p></button>
       <button class="mode" id="m-flash"><div class="band"></div><h3>Grape Flashcards</h3><p>The examinable tasting list: structure, aroma markers, and blind-tasting giveaways for every grape you may be poured.</p></button>
       <button class="mode" id="m-prod"><div class="band"></div><h3>Producer Codex</h3><p>The icon houses of every country: signature bottlings and their tasting profiles. Then drill the matching section.</p></button>
+    </div>
+    <div class="colophon">
+      <div class="motto">In Vino Veritas</div>
+      <div class="nonaffil">An independent study tool. Not affiliated with, endorsed by, or connected to the Court of Master Sommeliers.</div>
     </div>
   </div>`);
   v.querySelector('#m-mock').onclick=startMock;

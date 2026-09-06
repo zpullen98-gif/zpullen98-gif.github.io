@@ -228,6 +228,34 @@ function organiseHome() {
 
   host.insertBefore(frag, anchor);
 
+  /* The daily round opens the page and the rank pins come down to Examination.
+     Both used to be the other way about: four pins reading "Untouched" and a
+     square about sitting an examination stood between a person and the one
+     thing the Codex asks of them today. Choosing which paper you are working
+     towards is a real choice and it keeps a real control, but it belongs beside
+     the mock exams rather than in front of the door. Moved rather than rebuilt,
+     so codex7 still owns what a pin says and does. */
+  var pins = host.querySelector('.courtstrip');
+  if (pins) {
+    var exam = null;
+    Array.prototype.forEach.call(host.querySelectorAll('.oot-sec'), function (s) {
+      var h = s.querySelector('.oot-sec-head h3');
+      if (h && h.textContent.trim() === 'Examination') exam = s;
+    });
+    if (exam) {
+      var head = exam.querySelector('.oot-sec-head');
+      exam.insertBefore(pins, head ? head.nextSibling : exam.firstChild);
+    } else {
+      pins.parentNode.removeChild(pins);
+    }
+  }
+
+  /* The motto and the notice sit under everything, which is where a colophon
+     goes. core.js already renders them last inside the home view; this only
+     moves them past the empty grid the tiles were lifted out of. */
+  var colo = host.querySelector('.colophon');
+  if (colo) host.appendChild(colo);
+
   /* The Today button is a shortcut to the tile it summarises, so there is one
      implementation of the daily review rather than two that can drift. */
   var go = host.querySelector('[data-oot-today]');

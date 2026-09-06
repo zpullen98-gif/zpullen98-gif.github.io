@@ -66,6 +66,11 @@ anywhere else, which is the other half of the same promise.</p>
   <li><b>Google Fonts</b>: Calendar For Life loads its typefaces from Google, which sees the
       standard request data. The hub and every other wing ship their own fonts
       (<a href="shared/licenses/OFL.txt">licence</a>), so no font request leaves your device.</li>
+  <li><b>jsDelivr</b>: the World Table can read a menu off a photograph. A browser that cannot
+      do that on its own downloads the text reader from jsDelivr the first time you use it,
+      about 4 MB, and jsDelivr sees that download. <b>The photograph itself is never uploaded.</b>
+      It is read on your device, by the reader, once the reader is there. Nothing else in the app
+      fetches anything from jsDelivr, and if you never read a photo it is never contacted.</li>
 </ul>
 <p>That is the whole list. No analytics service, no advertising network, no tracking pixels, no
 social buttons.</p>

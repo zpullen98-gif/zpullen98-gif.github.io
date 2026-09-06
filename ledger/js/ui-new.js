@@ -607,7 +607,10 @@ function backupPayload(){
   /* whose file this is: a manager collecting staff backups on one day was
      getting identically named, indistinguishable files */
   try{
-    const who = (window.OOT && OOT.profiles && OOT.profiles.current) ? OOT.profiles.current() : null;
+    /* No name on a backup any more: nobody is asked for one. When manager mode
+       arrives and records move between devices again, this is where the name
+       goes back on, beside the export it belongs to. */
+    const who = null;
     if(who && who.name) payload.profile = { name: String(who.name) };
   }catch(e){}
   return payload;
@@ -696,7 +699,7 @@ function dataImport(file){
     /* name the record the merge lands in: on a shared device a backup for
        Devon merged into Maria's record is the one mistake a backup cannot undo */
     const target = (() => {
-      try{ const cur = window.OOT && OOT.profiles && OOT.profiles.current(); return cur && cur.name ? cur.name + '\'s record' : 'the unnamed record'; }
+      try{ return 'this ledger'; }
       catch(e){ return 'the unnamed record'; }
     })();
     const merge = confirm('Backup' + who + ': ' + theirs + ' card records.\n\nMerge this backup into ' + target + ' on this device?\n\nOK = merge (keeps the better of each).\nCancel = choose Replace instead.');

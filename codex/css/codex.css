@@ -211,8 +211,15 @@ h1,h2,h3{font-family:'Cinzel',Georgia,serif}
 .hero h2{font-family:'Cinzel',serif;font-weight:600;letter-spacing:.4px}
 .hero h2 em{font-style:normal;color:var(--gold-soft)}
 .hero h2::first-letter{font-family:'Cinzel Decorative',serif;font-size:1.28em;color:var(--gold)}
+/* The colophon: the motto and the notice the wing is required to carry, under
+   everything rather than in front of it. A rule of its own so the pair has air
+   above it and is read as a signature rather than as another band. */
+.colophon{margin-top:34px;padding-top:22px;border-top:1px solid var(--line)}
 .motto{font-variant:small-caps;letter-spacing:5px;font-size:13px;color:var(--gold);text-align:center;margin-top:14px}
 .nonaffil{font-size:11px;color:rgba(236,223,192,.55);text-align:center;margin-top:10px;letter-spacing:.4px}
+/* The rank pins sit inside Examination now, so they need the space the hero
+   used to give them. */
+.oot-sec > .courtstrip{margin:2px 0 14px}
 .stat b{font-family:'Cinzel',serif}
 .lead{font-style:italic;color:var(--gold-soft)}
 

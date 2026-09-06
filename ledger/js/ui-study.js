@@ -56,18 +56,20 @@ function renderHome(){
       + '<div class="bold brass2">'+t+'</div><div class="small dim mt1 lh">'+d+'</div></button>').join('')
     + '</div>';
   const OH = (window.OOT && OOT.home) || null;
-  const OP = (window.OOT && OOT.profiles) || null;
   const band = (name, blurb, inner) => OH ? OH.section(name, blurb, inner)
     : '<div class="panel p5"><div class="eyebrow mb2">'+name+'</div>'+inner+'</div>';
-  const whoBar = OH ? OH.who() : '';
-  /* The Pass, only on a device somebody has marked as the manager's. */
-  const passStrip = (window.OOT && OOT.pass) ? OOT.pass.strip() : '';
+  /* No name row and no manager strip. Both are the same unbuilt feature: The
+     Pass counts named people, and there is no way to name one here any more.
+     Leaving the strip would have printed "ask each person to tap Studying,
+     then add their name" over a control this wing no longer has. */
   /* The induction sits at the top of Learn until it is finished, then it stops
      taking up room. */
   const firstPath = (function(){
-    if(!OH || !OP || typeof FIRST_PATH === 'undefined') return '';
+    /* OP is no longer part of this: the checklist ticks against this device's
+       own record, so it works for whoever is standing at the bar. */
+    if(!OH || typeof FIRST_PATH === 'undefined') return '';
     const done = {};
-    FIRST_PATH.forEach(function(st){ if(OP.pathDone('ledger', st.id)) done[st.id] = 1; });
+    FIRST_PATH.forEach(function(st){ if(progress.path && progress.path[st.id]) done[st.id] = 1; });
     const rows = OH.firstPath(FIRST_PATH.map(function(st){
       return { id: st.id, t: st.t, mins: st.mins, act: 'data-oot-step="'+st.id+'"' };
     }), done);
@@ -80,8 +82,6 @@ function renderHome(){
   const fresh = !studied && !quizzes.length && !tastings && !drillLogs;
   if(fresh){
     return '<div class="col">'
-      + passStrip
-      + whoBar
       + band('Today', 'The whole routine, about ten minutes', sessionPanelHTML())
       + '<div class="panel p5 col" style="gap:12px">'
       + '<div class="eyebrow">Start here</div>'
@@ -110,8 +110,6 @@ function renderHome(){
       + '</div>';
   }
   return '<div class="col">'
-    + passStrip
-    + whoBar
     + band('Today', 'The whole routine, about ten minutes', sessionPanelHTML())
     + TILE_BANDS.map(function(b){ return band(b[0], b[1],
         (b[0]==='Learn' ? firstPath : '') + tileGrid(b[2])); }).join('')

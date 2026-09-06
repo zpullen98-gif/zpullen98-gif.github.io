@@ -84,7 +84,7 @@ var flRendered = false;   // true once the first navigate() has painted a view
      Today          the daily loop: one tap, no sub-row
      The Practice   the work: the body, the Vault's rehearsal room, the ladder
      The Book       the reading: the 366 and the sky
-     The Library    the scripture: seven traditions, the reading plans, the threads
+     Prayer         the scripture: seven traditions, the reading plans, the threads
      The Desk       the instruments: writing, finding, the record, the workings
 
    The top row names the five; a second row appears only when the active
@@ -105,7 +105,7 @@ var NAV_CLUSTERS = [
   ['today',    'Today',        ['today']],
   ['practice', 'The Practice', ['body', 'vault', 'life']],
   ['book',     'The Book',     ['year', 'astro']],
-  ['canon',    'The Library',  ['library']],
+  ['canon',    'Prayer',       ['library']],
   ['desk',     'The Desk',     ['journal', 'search', 'stats', 'settings']]
 ];
 /* hidden views borrow a cluster so the reader stays oriented. The reading plans
