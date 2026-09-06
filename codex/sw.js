@@ -1,6 +1,6 @@
 /* The Sommelier's Codex: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-codex-v79';
+const CACHE = 'oot-codex-v80';
 
 const ASSETS = [
   './',

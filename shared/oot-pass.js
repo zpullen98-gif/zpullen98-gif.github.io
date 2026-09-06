@@ -280,6 +280,8 @@
   /* ---- the strip ------------------------------------------------------
      Three numbers a manager reads in two seconds, and one honest caveat. */
   function strip() {
+    /* No edit needed for the personal edition: isManagerDevice() answers
+       false for every device now, so this already returns nothing. */
     if (!OOT.profiles || !OOT.profiles.isManagerDevice()) return '';
     var rows = roster();
     var active = rows.filter(function (r) { return r.lastSeen && Date.now() - r.lastSeen < 7 * DAY; }).length;
@@ -305,6 +307,8 @@
      figure genuinely cannot be produced, the panel says so rather than
      rendering a plausible zero. */
   function view(opts) {
+    /* The Pass reads a roster. There is not one while the app is personal. */
+    if (OOT.profiles && OOT.profiles.personal && OOT.profiles.personal()) return '';
     opts = opts || {};
     var rows = roster();
     var H = OOT.home;
@@ -422,6 +426,10 @@
      Not a hidden gesture and not on by default: a bartender should never
      stumble into a screen listing their colleagues' scores. */
   function settings() {
+    /* The important one. This renders the Turn on the manager view chip on
+       the Codex Record band and on the Pass page, and that chip is the only
+       way a device ever became a manager device. */
+    if (OOT.profiles && OOT.profiles.personal && OOT.profiles.personal()) return '';
     var on = OOT.profiles && OOT.profiles.isManagerDevice();
     return '<div class="oot-who" style="margin-top:14px">' +
       '<span class="oot-who-label">This device</span>' +

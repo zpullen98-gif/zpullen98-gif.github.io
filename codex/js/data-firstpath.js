@@ -7,7 +7,7 @@
    table, then ten questions to prove it took.
 
    It is deliberately short. An induction nobody finishes teaches nothing, and
-   the point of finishing is that a manager can see it happened.
+   the point of finishing is that you have seen every room in here once.
 
    Every title names what the step actually opens. `go` names the tile the
    step sends a person to, which is how this stays in step with the app: a

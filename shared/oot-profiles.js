@@ -1,13 +1,26 @@
-/* ============ Outside Of Time: who is studying ============
-   A venue buys one subscription and its staff share one sign-in. That was a
-   deliberate decision and it stays: no seats, no invites, no roster on a server.
-   But it leaves the product unable to tell two people apart, and a manager
-   paying $49.99 a month is buying proof that training happened.
+/* ============ Outside Of Time: one record per device ============
+   THIS IS THE PERSONAL EDITION. Nothing asks who is studying, nothing offers
+   to send a record, and every wing keeps ONE record on the device it is on.
+   The owner asked for that in one sentence: a personal app, at their own pace
+   and progression.
 
-   This closes that gap without a backend. A device keeps a short list of names.
-   Whoever is about to study taps theirs, and every wing's storage key is
-   namespaced to them from that moment on. Maria's streak is Maria's; Devon's
-   due cards are Devon's; the manager view can add them up.
+   Everything the roster ever knew is still here, in this file and on the
+   device. PERSONAL below is the whole of the change: it makes four functions
+   answer personally and leaves the rest of the file exactly as it was, so the
+   manager mode the owner wants back in about a year is one flag away rather
+   than an archaeology exercise. The restore checklist is at the foot of this
+   comment. Nothing is deleted, here or on anybody's device.
+
+   THE FILE ITSELF MUST NOT BE DELETED, whatever else happens. Four wing
+   service workers precache shared/oot-profiles.js by name, and cache.addAll
+   rejects atomically on a single 404, so removing it would fail the install
+   handler and take the whole offline app down for every wing.
+
+   What it used to be, and will be again: a venue buys one subscription and
+   its staff share one sign-in, so the product could not tell two people
+   apart. A device kept a short list of names, whoever was about to study
+   tapped theirs, and every wing's storage key was namespaced to them from
+   that moment on.
 
    WHAT THIS IS NOT. It is not authentication and it does not pretend to be.
    Anyone can tap any name, exactly as anyone can pick up anyone else's notebook.
@@ -31,7 +44,43 @@
   var OOT = (window.OOT = window.OOT || {});
   if (OOT.profiles) return;                      // idempotent, like the rest of shared/
 
+  /* THE ONE FLAG. True is the personal edition. Setting it false restores the
+     roster whole: key() namespaces again for every wing including the almanac
+     and the World Table, current() and list() answer again, isManagerDevice()
+     alone brings back the Pass strip, the Open The Pass link, the Pass panels
+     and the World Table's manager block, and the streak and the induction go
+     back onto the profile.
+
+     THE REST OF THE RESTORE, in the order it has to happen:
+       1. PERSONAL = false here.
+       2. shared/oot-home.js who() and bindWho(): delete the personal branch at
+          the top of each. The row, the chips, the plus chip, Send my record
+          and its note are all still underneath, byte for byte.
+       3. shared/oot-pass.js: delete the two early returns in view() and
+          settings().
+       4. pass/index.html paint(): delete the personal branch.
+       5. light/js/store.js flProfileKey and light/index.html's pre-paint
+          block: both old bodies are kept verbatim in their own comments.
+          almanac manifestOwnedByCurrent goes back to requiring an id.
+       6. WorldTable src/lib/persistence/db.ts: KEY() reads OOT again (the old
+          body is in its comment) and denameSession is gated off. Rebuild the
+          wing and re-inject.
+
+     THE ONE THING THAT DOES NOT REVERSE ITSELF: work done while personal
+     landed on the plain keys and on oot-streak-v1. When PERSONAL goes false,
+     the FIRST profile created on that device must be an adopt(), never an
+     add(), so it inherits those plain keys. oot-home.js already does that
+     when hasHistory() is true; do not replace it with add(). And a manager's
+     numbers will show a hole for however long the personal edition ran,
+     because the profile's own streak and lastSeen stopped moving. */
+  var PERSONAL = true;
+
   var KEY = 'oot-profiles-v1';
+  var STREAK_KEY = 'oot-streak-v1';    /* the device's own pace, see markStudied */
+  var PERSONAL_FLAG = 'oot-personal-v1';
+  /* A parked record carries one colon and never two, so the scan below can
+     never mistake it for a person. */
+  var PARK_PREFIX = 'kept:';
   var LEGACY_NAME = 'The bar';   // what pre-profile progress becomes, see adopt()
 
   /* ---- storage, defensively ------------------------------------------
@@ -78,6 +127,7 @@
   var pinned = null;   /* set when another tab switched and a reload is in flight */
 
   function current() {
+    if (PERSONAL) return null;
     /* while a cross-tab reload is in flight, keep answering with the identity
        this document has been writing under all along */
     var id = pinned || data.current;
@@ -131,6 +181,8 @@
   }
 
   function touch() {
+    /* lastSeen is a roster field. With no roster there is nobody it describes. */
+    if (PERSONAL) return;
     var p = current();
     if (!p) return;
     var now = Date.now();
@@ -150,6 +202,9 @@
        profile        keeps reading the old keys, so months of study are not
                       orphaned the moment somebody types their name */
   function key(base) {
+    /* The plain key, which is what every wing was written against before
+       names existed and what they are all written against again. */
+    if (PERSONAL) return base;
     var p = current();
     if (!p || p.legacy) return base;
     return base + '::' + p.id;
@@ -178,7 +233,11 @@
   /* ---- manager mode --------------------------------------------------
      A property of the DEVICE, not of a person: the tablet in the office is the
      manager's, the one on the pass is not. */
-  function isManagerDevice() { return !!data.manager; }
+  /* Still stored, so a device that opted in stays opted in for the day the
+     roster comes back; answered false meanwhile, which is what silences the
+     Pass strip, the Pass panels and the World Table's manager block without
+     one line changing in any of them. */
+  function isManagerDevice() { return PERSONAL ? false : !!data.manager; }
   function setManagerDevice(on) {
     data.manager = !!on;
     write(data);
@@ -295,10 +354,18 @@
     var p;
     if (existing && opts.replace) { p = existing; replaced = true; }
     else p = add(existing ? name + ' (imported)' : name);
-    var suffix = p.legacy ? '' : '::' + p.id;
+    /* On a personal device the plain key IS the record, so that is where a
+       restored file goes. Whatever it displaces is parked first, under a
+       prefix carrying one colon and never two, so the owner scan below can
+       never read a parked record as a person. */
+    var suffix = PERSONAL ? '' : (p.legacy ? '' : '::' + p.id);
     var n = 0;
     try {
       Object.keys(v.keys).forEach(function (base) {
+        if (PERSONAL) {
+          var had = localStorage.getItem(base);
+          if (had !== null) localStorage.setItem(PARK_PREFIX + base + ':' + Date.now(), had);
+        }
         localStorage.setItem(base + suffix, v.keys[base]);
         n++;
       });
@@ -363,7 +430,38 @@
      Opening an app is not studying, and neither is browsing a page. The Pass
      reads p.lastDay against dayKey(0) for "studied today", and streak() reads
      the same fields, so this is the only writer of both. */
+  /* THE DEVICE'S OWN PACE. The owner asked for a personal app "at their own
+     pace and progression", and the streak is the only thing in the product
+     that is the progression, so it had to survive losing the profile that
+     used to carry it. It gets its own small key rather than a slot inside
+     the roster blob, so a device that never had a name never grows one.
+     Seeded once from the single profile's run by the adoption below, so
+     nobody's streak breaks on the day this ships. */
+  function readStreak() {
+    try {
+      var raw = localStorage.getItem(STREAK_KEY);
+      if (!raw) return { v: 1, streak: 0, lastDay: null, days: 0 };
+      var d = JSON.parse(raw);
+      if (!d || typeof d !== 'object') return { v: 1, streak: 0, lastDay: null, days: 0 };
+      return { v: 1, streak: d.streak || 0, lastDay: d.lastDay || null, days: d.days || 0 };
+    } catch (e) { return { v: 1, streak: 0, lastDay: null, days: 0 }; }
+  }
+  function writeStreak(d) {
+    try { localStorage.setItem(STREAK_KEY, JSON.stringify(d)); } catch (e) {}
+  }
+
   function markStudied() {
+    if (PERSONAL) {
+      var d = readStreak();
+      var t = dayKey(0);
+      if (d.lastDay === t) return d.streak || 1;
+      d.streak = (d.lastDay === dayKey(-1)) ? (d.streak || 0) + 1 : 1;
+      d.lastDay = t;
+      d.days = (d.days || 0) + 1;
+      writeStreak(d);
+      fire();
+      return d.streak;
+    }
     var p = current();
     if (!p) return 0;
     var today = dayKey(0);
@@ -377,6 +475,11 @@
   }
 
   function streak() {
+    if (PERSONAL) {
+      var d = readStreak();
+      if (!d.lastDay) return 0;
+      return (d.lastDay === dayKey(0) || d.lastDay === dayKey(-1)) ? (d.streak || 0) : 0;
+    }
     var p = current();
     if (!p || !p.lastDay) return 0;
     /* A streak survives yesterday and dies the day after. */
@@ -384,6 +487,7 @@
   }
 
   function studiedToday() {
+    if (PERSONAL) return readStreak().lastDay === dayKey(0);
     var p = current();
     return !!(p && p.lastDay === dayKey(0));
   }
@@ -395,12 +499,18 @@
      and the roster is the only thing it can already see.
 
      Keyed wing -> stepId -> true. Small enough to sit beside the name. */
+  /* With no profile there is nothing here to answer for. Each wing keeps its
+     own induction ticks in its own record now, which is where the Ledger has
+     kept them since names came out of it. The explicit-id form still works,
+     because that is what a manager view reads. */
   function pathDone(wing, stepId, id) {
+    if (PERSONAL && !id) return false;
     var p = id ? find(id) : current();
     return !!(p && p.path && p.path[wing] && p.path[wing][stepId]);
   }
 
   function markPathStep(wing, stepId) {
+    if (PERSONAL) return false;
     var p = current();
     if (!p || !wing || !stepId) return false;
     p.path = p.path || {};
@@ -413,13 +523,184 @@
   }
 
   function pathProgress(wing, id) {
+    if (PERSONAL && !id) return 0;
     var p = id ? find(id) : current();
     var done = (p && p.path && p.path[wing]) ? Object.keys(p.path[wing]).length : 0;
     return done;
   }
 
+  /* ---- the one-time move onto the plain keys -------------------------
+
+     A record written while this device DID namespace sits at
+     "<base>::<id>" and nothing reads it any more. Where the answer is not
+     in doubt it is moved across; where it is, nothing is touched and the
+     recovery card below offers it.
+
+     THE UNIT IS THE PERSON, ACROSS ALL WINGS, not the key and not the wing.
+     Deciding per key would file one person's bookmarks and another's
+     journals as one record on a device where each used one wing. Deciding
+     per wing would make the device two people, which is the property this
+     whole change exists to remove.
+
+     A LEGACY PROFILE STOPS EVERYTHING. The first name ever typed on a
+     device is marked legacy and keeps reading the PLAIN keys, so on a
+     device with a legacy profile the plain keys are already somebody's
+     months of work. Writing over them is the one mistake that cannot be
+     undone. This is also why most devices need no migration at all: with
+     nobody named, or one name, nothing was ever namespaced.
+
+     COPY, NEVER MOVE. Every "<base>::<id>" record stays exactly where it
+     is, for the recovery card, for a manager mode in a year, and because a
+     migration that deletes has to be right the first time. */
+
+  /* mint() is "p-" + 6 base36 + 4 base36, so an owner id is p- and exactly
+     ten of [0-9a-z]. Checking it matters: First Light has been known to
+     write "<base>::<id>-corrupt" beside a record it could not parse, and a
+     loose split would read that as a second person and refuse a device that
+     has only one. */
+  function validOwnerId(id) { return /^p-[0-9a-z]{10}$/.test(id); }
+
+  function namedRecords() {
+    var byId = {};
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (!k || k.indexOf(PARK_PREFIX) === 0) continue;
+        var cut = k.indexOf('::');
+        if (cut <= 0) continue;
+        var base = k.slice(0, cut);
+        var id = k.slice(cut + 2);
+        if (!BASES[base] || !validOwnerId(id)) continue;
+        (byId[id] = byId[id] || []).push({ base: base, key: k });
+      }
+    } catch (e) {}
+    return byId;
+  }
+
+  function hasLegacyProfile() {
+    try {
+      for (var i = 0; i < data.list.length; i++) if (data.list[i].legacy) return true;
+    } catch (e) {}
+    return false;
+  }
+
+  /* Copies a person's records onto whichever plain keys are free. Answers
+     false if a write failed, so the caller can hold the whole person rather
+     than leave them half moved. */
+  function copyInto(list) {
+    var cfl = false, ok = true;
+    for (var i = 0; i < list.length; i++) {
+      try {
+        if (localStorage.getItem(list[i].base) !== null) continue;   /* never overwrite */
+        var v = localStorage.getItem(list[i].key);
+        if (v === null) continue;
+        localStorage.setItem(list[i].base, v);
+        if (list[i].base.indexOf('cfl-') === 0) cfl = true;
+      } catch (e) { ok = false; }
+    }
+    return { ok: ok, cfl: cfl };
+  }
+
+  /* The almanac stamps three flags when it has rewritten its journal keys
+     for the Books that folded into the months. A blob that arrives on the
+     plain key never had that rewrite, so the flags come off and the wing
+     does it again; the almanac says in its own comment that it is
+     idempotent. */
+  function clearCflFlags() {
+    var f = ['cfl-lp-migration-v1', 'cfl-ow-migration-v1', 'cfl-dy-migration-v1'];
+    for (var i = 0; i < f.length; i++) { try { localStorage.removeItem(f[i]); } catch (e) {} }
+  }
+
+  /* Nobody's run should break on the day this ships. With exactly one name
+     on the device its streak is unambiguously this device's. With two,
+     nobody can say whose pace it was, and inventing an answer is worse than
+     starting again. */
+  function seedStreak() {
+    try {
+      if (localStorage.getItem(STREAK_KEY) !== null) return;
+      if (data.list.length !== 1) return;
+      var p = data.list[0];
+      if (!p || !p.lastDay) return;
+      writeStreak({ v: 1, streak: p.streak || 0, lastDay: p.lastDay, days: p.days || 0 });
+    } catch (e) {}
+  }
+
+  function personalise() {
+    if (!PERSONAL) return;
+    try { if (localStorage.getItem(PERSONAL_FLAG)) return; } catch (e) { return; }
+    var byId = namedRecords();
+    var owners = Object.keys(byId);
+    var verdict = 'adopted';
+    if (owners.length === 1 && !hasLegacyProfile()) {
+      var moved = copyInto(byId[owners[0]]);
+      if (moved.cfl) clearCflFlags();
+      if (!moved.ok) verdict = 'held';
+    } else if (owners.length) {
+      verdict = 'held';
+    }
+    seedStreak();
+    try { localStorage.setItem(PERSONAL_FLAG, verdict); } catch (e) {}
+  }
+  personalise();
+
+  /* What is still on this device under a name, for the recovery card. It is
+     empty on every device that never had two names, which is why the card
+     appears on almost none of them. */
+  function dormant() {
+    if (!PERSONAL) return [];
+    var byId = namedRecords();
+    return Object.keys(byId).map(function (id) {
+      var p = find(id);
+      var wings = [];
+      byId[id].forEach(function (r) {
+        var w = BASES[r.base] && BASES[r.base].wing;
+        if (w && wings.indexOf(w) < 0) wings.push(w);
+      });
+      return { id: id, name: (p && p.name) || 'A name no longer on the roster',
+               wings: wings, bases: byId[id].slice() };
+    });
+  }
+
+  /* The World Table has to ask this because list() answers empty. */
+  function dormantLegacy() { return hasLegacyProfile(); }
+
+  /* Move one held person onto the plain keys, parking whatever is displaced
+     rather than losing it. Refuses the base if the park will not write. */
+  function adoptDormant(id) {
+    var byId = namedRecords();
+    var list = byId[id];
+    if (!list || !list.length) return false;
+    var stamp = Date.now(), moved = 0, cfl = false;
+    for (var i = 0; i < list.length; i++) {
+      try {
+        var v = localStorage.getItem(list[i].key);
+        if (v === null) continue;
+        var had = localStorage.getItem(list[i].base);
+        if (had !== null) localStorage.setItem(PARK_PREFIX + list[i].base + ':' + stamp, had);
+        localStorage.setItem(list[i].base, v);
+        if (list[i].base.indexOf('cfl-') === 0) cfl = true;
+        moved++;
+      } catch (e) {}
+    }
+    if (cfl) clearCflFlags();
+    try { localStorage.setItem(PERSONAL_FLAG, 'adopted'); } catch (e) {}
+    return moved > 0;
+  }
+
+  /* Answering the card with "keep what is here" settles it for good without
+     touching a byte of anybody's record. */
+  function settlePersonal() {
+    try { localStorage.setItem(PERSONAL_FLAG, 'adopted'); } catch (e) {}
+    return true;
+  }
+
   OOT.profiles = {
-    list: function () { return data.list.slice(); },
+    personal: function () { return PERSONAL; },
+    dormant: dormant,
+    dormantLegacy: dormantLegacy,
+    adoptDormant: adoptDormant,
+    settlePersonal: settlePersonal,
+    list: function () { return PERSONAL ? [] : data.list.slice(); },
     pathDone: pathDone,
     markPathStep: markPathStep,
     pathProgress: pathProgress,
@@ -472,6 +753,9 @@
      resolve the new key. Pinning keeps every save in flight addressed to the
      record it was written for. */
   window.addEventListener('storage', function (e) {
+    /* Nobody can switch while this is personal, so a roster write in another
+       tab describes nothing this document is reading. */
+    if (PERSONAL) return;
     if (e.key !== KEY) return;
     var fresh = read();
     if (!fresh) return;

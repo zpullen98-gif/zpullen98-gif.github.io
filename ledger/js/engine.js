@@ -31,6 +31,10 @@ function KEY(){ return KEY_BASE; }
    the only place a namespaced record can be. */
 function adoptNamedRecord(){
   try {
+    /* The shared layer runs the same decision across every wing at once and
+       writes what it decided. Where it refused, because two people own
+       records on this device, this must not quietly overrule it. */
+    if (localStorage.getItem('oot-personal-v1') === 'held') return;
     if (localStorage.getItem(KEY_BASE) !== null) return;
     const named = [];
     for (let i = 0; i < localStorage.length; i++) {

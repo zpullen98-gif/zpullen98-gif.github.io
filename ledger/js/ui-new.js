@@ -566,7 +566,7 @@ function dataToolHTML(){
   return '<div class="col">'
     + '<div class="panel p5 col" style="gap:12px">'
     + '<div class="eyebrow">Back up the ledger</div>'
-    + '<div class="small dim lh">Everything you\'ve earned (mastery records, quiz history, tasting notes, practice logs, your shelf) lives in this browser. When you are signed in, your round scores are shared with your venue. Export a copy now and then; paper burns and browsers forget.</div>'
+    + '<div class="small dim lh">Everything you\'ve earned (mastery records, quiz history, tasting notes, practice logs, your shelf) lives in this browser and goes nowhere else. Export a copy now and then; paper burns and browsers forget.</div>'
     + '<div class="tiny font-tix dim">'+progressSummaryHTML()+'</div>'
     + '<div class="row" style="gap:8px"><button class="btn btn-brass" data-act="data-export">Export my records</button>'
     + (canShareBackup() ? '<button class="btn btn-ghost" data-act="data-share">Share the backup…</button>' : '')

@@ -144,14 +144,14 @@ function mergeStats(inc){
 /* An import writes into whoever is current on this device. Name them before
    the merge, because a file pulled onto the wrong record cannot be pulled
    back out again. Cancel leaves the store untouched. */
+/* One record on this device, so there is no longer a name to put in the
+   question. */
 function syncConfirm(what){
-  let who='the unnamed record';
-  try{ const p=(window.OOT&&OOT.profiles)?OOT.profiles.current():null; if(p&&p.name)who=p.name+'\u2019s record'; }catch(e){}
-  return confirm('Merge '+what+' into '+who+' on this device?');
+  return confirm('Merge '+what+' into this device\u2019s record?');
 }
 function syncView(){
   const answered=Object.values(ST.q).reduce(function(a,r){return a+r.c+r.w;},0);
-  const v=el('<div><div class="viewhead"><h2>Progress Transfer</h2><div class="sub">Your full study record lives in this browser; when you are signed in, round scores are shared with your venue. Export it to move between phone and laptop, or to keep a backup before clearing browsing data.</div></div>'
+  const v=el('<div><div class="viewhead"><h2>Progress Transfer</h2><div class="sub">Your full study record lives in this browser and goes nowhere else. Export it to move between phone and laptop, or to keep a backup before clearing browsing data.</div></div>'
    +'<div class="statrow" style="margin:14px 0">'
    +'<div class="stat"><b>'+answered+'</b><span>Answers logged</span></div>'
    +'<div class="stat"><b>'+Object.keys(ST.srs).length+'</b><span>In rotation</span></div>'

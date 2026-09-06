@@ -1,5 +1,5 @@
 /* ============ Codex II: adaptive engine, dashboard, encyclopedia ============ */
-/* Storage keys go through OOT.profiles so each person on a shared device keeps
+/* Storage keys go through OOT.profiles, which answers with the plain key: one
    their own record. With no profile chosen, key() returns 'codexStats'
    unchanged, which is why a venue that never names anyone loses nothing. */
 function stKey(){try{return (window.OOT&&OOT.profiles)?OOT.profiles.key('codexStats'):'codexStats'}catch(e){return 'codexStats'}}

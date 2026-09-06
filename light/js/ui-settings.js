@@ -267,7 +267,7 @@ FL_VIEWS.settings = {
         '<div class="astrorow"><span class="k">Kept voices</span> ' + totalKept + '</div>' +
         '<div class="astrorow"><span class="k">Goals checked</span> ' + totalChecks + '</div>' +
         '<p class="px" style="margin:14px 0 10px;color:var(--faint)">Your words never leave this device; if you are signed in, a count of mornings and your streak is recorded. ' +
-        'Anyone who taps your name on this device can read this room, so use your own phone for what is yours alone. ' +
+        'Anyone who opens this app on this device can read this room, so use your own phone for what is yours alone. ' +
         'Export before you change phones, clear your browser, or do anything you might regret.</p>' +
         '<button class="btn" data-act="exportRecord">Export</button> ' +
         '<button class="keep" data-act="importRecord">Import a backup</button> ' +

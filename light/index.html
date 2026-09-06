@@ -24,18 +24,18 @@
    milliseconds it takes to get there. A clock guess is wrong at the margins and
    right about the thing that matters: whether it is dark outside. */
 try {
-  /* One record per person. This is flProfileKey() from store.js, repeated here
-     because nothing else has loaded yet: without it the second name on a shared
-     device was painted the first person's palette for the opening frames. */
+  /* One record on this device. This block runs before any script has loaded,
+     so no shared layer can reach it: the key has to be written out here. It
+     used to read the roster and namespace itself, which is kept below as the
+     way back, and which must go back in step with store.js flProfileKey or
+     First Light paints one person's palette over another's record.
+
+       var flProf = JSON.parse(localStorage.getItem(ROSTER) || null);
+       if (flProf && flProf.current && Array.isArray(flProf.list)) {
+         find the entry whose id === flProf.current;
+         if it is not legacy, flKey = flKey + the suffix;
+       }  */
   var flKey = 'firstlight-v1';
-  try {
-    var flProf = JSON.parse(localStorage.getItem('oot-profiles-v1') || 'null');
-    if (flProf && flProf.current && Array.isArray(flProf.list)) {
-      var flP = null;
-      for (var flI = 0; flI < flProf.list.length; flI++) if (flProf.list[flI].id === flProf.current) flP = flProf.list[flI];
-      if (flP && !flP.legacy) flKey = flKey + '::' + flP.id;
-    }
-  } catch (e2) {}
   var flRec = JSON.parse(localStorage.getItem(flKey) || '{}');
   var flPref = (flRec.prefs && flRec.prefs.theme) || 'auto';
   var flH = new Date().getHours();
@@ -69,9 +69,9 @@ try {
 <div id="toast" role="alert" aria-live="assertive"></div>
 
 <!-- ═══ data (globals, no logic, no dependencies) ═══ -->
-<script src="../shared/oot-config.js?v=24"></script>
-<script src="../shared/oot-profiles.js?v=24"></script>
-<script src="../shared/oot-home.js?v=24"></script>
+<script src="../shared/oot-config.js?v=25"></script>
+<script src="../shared/oot-profiles.js?v=25"></script>
+<script src="../shared/oot-home.js?v=25"></script>
 <script src="js/data-year.js?v=28"></script>
 <script src="js/data-year-makers.js?v=3"></script>
 <script src="js/data-practice.js?v=27"></script>
@@ -79,23 +79,23 @@ try {
 <script src="js/data-life.js?v=27"></script>
 <script src="js/data-body.js?v=29"></script>
 <script src="js/data-astro.js?v=25"></script>
-<script src="js/data-canon.js?v=24"></script>
-<script src="js/data-library.js?v=24"></script>
+<script src="js/data-canon.js?v=25"></script>
+<script src="js/data-library.js?v=25"></script>
 <script src="js/data-traditions.js?v=25"></script>
 <script src="js/data-threads.js?v=25"></script>
 
 <!-- ═══ core (order is load-bearing: registry → store → plan → sun → canon) ═══ -->
-<script src="js/registry.js?v=24"></script>
+<script src="js/registry.js?v=25"></script>
 <script src="js/store.js?v=29"></script>
 <script src="js/tracks.js?v=1"></script>
 <script src="js/plan.js?v=26"></script>
 <script src="js/sun.js?v=26"></script>
 <script src="js/text-store.js?v=27"></script>
-<script src="js/reading.js?v=24"></script>
+<script src="js/reading.js?v=25"></script>
 <script src="js/journal.js?v=27"></script>
 <script src="js/search.js?v=27"></script>
 <script src="js/astro-chart.js?v=25"></script>
-<script src="js/astro-wheel.js?v=24"></script>
+<script src="js/astro-wheel.js?v=25"></script>
 <script src="js/practice.js?v=28"></script>
 
 <!-- ═══ views ═══ -->
@@ -117,12 +117,12 @@ try {
 <!-- ═══ boot last ═══ -->
 <script src="js/app.js?v=30"></script>
 <script src="js/oot-light.js?v=2"></script>
-<script src="../shared/oot-auth.js?v=24"></script>
-<script src="../shared/oot-gate.js?v=24"></script>
-<script src="../shared/oot-locks.js?v=24"></script>
-<script src="../shared/oot-pass.js?v=24"></script>
-<script src="../shared/oot-log.js?v=24"></script>
-<script src="../shared/oot-bar.js?v=24"></script>
+<script src="../shared/oot-auth.js?v=25"></script>
+<script src="../shared/oot-gate.js?v=25"></script>
+<script src="../shared/oot-locks.js?v=25"></script>
+<script src="../shared/oot-pass.js?v=25"></script>
+<script src="../shared/oot-log.js?v=25"></script>
+<script src="../shared/oot-bar.js?v=25"></script>
 
 </body>
 </html>

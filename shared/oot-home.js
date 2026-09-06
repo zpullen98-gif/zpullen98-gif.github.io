@@ -145,6 +145,36 @@
       '<div class="oot-path">' + rows + '</div>';
   }
 
+  /* ---- a record this device is still holding --------------------------
+
+     Only ever rendered on a device that had two or more names on it when
+     the app went personal. The migration refuses to guess between them,
+     because merging two people's study histories invents a history neither
+     of them has, so it holds them and this offers them back by name.
+
+     Nothing was deleted to get here and nothing is deleted by answering:
+     taking a record COPIES it onto this device's own, parking whatever it
+     displaces, and keeping what is here simply settles the question. Either
+     way the card is gone for good afterwards, which is why it can afford to
+     be this plain. */
+  function heldCard() {
+    if (!OOT.profiles.dormant) return '';
+    var held = [];
+    try { held = OOT.profiles.dormant(); } catch (e) { return ''; }
+    if (!held.length) return '';
+    var chips = held.map(function (h) {
+      var w = h.wings.length ? ' (' + h.wings.join(', ') + ')' : '';
+      return '<button class="oot-chip" data-oot-recover="' + esc(h.id) + '">' +
+        esc(h.name) + esc(w) + '</button>';
+    }).join('');
+    return '<span class="oot-who-label">Kept on this device</span>' + chips +
+      '<button class="oot-chip" data-oot-recover="">Keep what is here</button>' +
+      '<span class="oot-today-sub oot-who-note" style="flex:1 1 100%;margin:0">' +
+      'This app keeps one record per device now. There is more than one on ' +
+      'this one, so it has not chosen for you. Nothing is deleted either way.' +
+      '</span>';
+  }
+
   /* ---- who is studying ------------------------------------------------
      Deliberately plain and always visible when a roster exists. Hiding it
      behind a menu is how two people end up sharing one record.
@@ -155,6 +185,18 @@
   function who(opts) {
     if (!OOT.profiles) return '';
     opts = opts || {};
+
+    /* THE PERSONAL EDITION. Nothing here asks for a name and nothing offers
+       to send. Everything below this branch is the roster row, left whole:
+       deleting these four lines is step 2 of the restore checklist in
+       shared/oot-profiles.js. */
+    if (OOT.profiles.personal && OOT.profiles.personal()) {
+      var pace = (opts.streak !== false) ? streak() : '';
+      var card = heldCard();
+      if (!pace && !card) return '';
+      return '<div class="oot-who">' + card + pace + '</div>';
+    }
+
     var list = OOT.profiles.list();
     var cur = OOT.profiles.current();
 
@@ -347,6 +389,25 @@
   function bindWho(root, rerender) {
     if (!root || root.__ootWhoBound) return;
     root.__ootWhoBound = true;
+
+    /* Personal: the only control the row can carry is the held card, and
+       answering it reloads for the same reason switching always did. Every
+       wing freezes its storage key at load, so the page has to be re-run
+       rather than re-rendered. Deleting this branch is step 2 of the
+       restore checklist in shared/oot-profiles.js. */
+    if (OOT.profiles && OOT.profiles.personal && OOT.profiles.personal()) {
+      root.addEventListener('click', function (e) {
+        var b = e.target.closest && e.target.closest('[data-oot-recover]');
+        if (!b) return;
+        var id = b.getAttribute('data-oot-recover');
+        try {
+          if (id) OOT.profiles.adoptDormant(id);
+          else OOT.profiles.settlePersonal();
+        } catch (err) {}
+        try { window.location.reload(); } catch (err) {}
+      });
+      return;
+    }
 
     function finish(switched) {
       if (switched) { window.location.reload(); return; }

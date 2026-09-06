@@ -23,6 +23,11 @@
 var FL_KEY_BASE = 'firstlight-v1';
 function flProfileKey(base) {
   try {
+    /* The plain key, always. The fallback under this used to parse the
+       roster itself, which meant that on an offline load with a stale shell
+       First Light could still be namespacing while every other wing read
+       plainly, and two people's mornings would land in one blob. A fallback
+       that can disagree with the shared layer is worse than none. */
     if (window.OOT && OOT.profiles && typeof OOT.profiles.key === 'function') {
       return OOT.profiles.key(base);
     }

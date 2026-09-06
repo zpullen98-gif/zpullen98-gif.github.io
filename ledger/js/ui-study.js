@@ -74,7 +74,7 @@ function renderHome(){
       return { id: st.id, t: st.t, mins: st.mins, act: 'data-oot-step="'+st.id+'"' };
     }), done);
     return rows ? '<div class="oot-today-sub" style="margin:0 0 8px">Your first week. '
-      + 'Finish it and the bar manager can see you are ready.</div>' + rows : '';
+      + 'Finish it and you have been over the ground a new bartender is expected to know.</div>' + rows : '';
   })();
   /* First run: a stats panel of zeros, eight 0% bars and three empty donuts is
      a terrible first impression. Until there's anything to report, say what the
@@ -91,7 +91,7 @@ function renderHome(){
       + '<div class="small dim lh" style="max-width:520px"><span class="brass2">Pour tonight’s session</span> above is the whole routine: '
       + 'a handful of cards in canon order, a ten-question round, then a drill you do with your hands. '
       + 'Ten minutes. Come back tomorrow and it deals what you’re about to forget.</div>'
-      + '<div class="tiny dim lh" style="max-width:520px">Your records live in this browser. When you are signed in, your round scores are shared with your venue. '
+      + '<div class="tiny dim lh" style="max-width:520px">Your records live in this browser and go nowhere else. '
       + 'Back it up now and then from Tools → My Data.</div>'
       + '</div>'
       + '<div class="panel p4 col-sm">'

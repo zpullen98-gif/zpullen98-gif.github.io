@@ -135,7 +135,9 @@ function organiseHome() {
     OOT.pass.bind(host, function () { S.view = 'oot-pass'; render(); });
   }
 
-  /* Who is studying, above everything else. Putting this behind a menu is how
+  /* This used to be the who-is-studying row. It is empty now: the app keeps
+     one record per device. What follows is left in place because it is how
+     the row comes back. Putting it behind a menu is how
      two people end up writing into one record. */
   if (H && P) {
     var who = document.createElement('div');
@@ -165,21 +167,22 @@ function organiseHome() {
     /* The induction sits at the top of Learn until it is finished, then it
        stops taking up room: a course completed three months ago is not what
        anyone came back for. */
-    if (name === 'Learn' && H && P && typeof FIRST_PATH !== 'undefined') {
+    /* The ticks live in the Codex's own record now, beside everything else
+       it remembers, which is where the Ledger has kept its induction since
+       names came out of that wing. ST.path rides codexStats, so it is
+       carried by the migration, by the Codex's own export and by a record
+       file for free. P is no longer required for any of it. */
+    if (name === 'Learn' && H && typeof FIRST_PATH !== 'undefined') {
       var done = {};
-      FIRST_PATH.forEach(function (s) { if (P.pathDone('codex', s.id)) done[s.id] = 1; });
+      ST.path = ST.path || {};
+      FIRST_PATH.forEach(function (s) { if (ST.path[s.id]) done[s.id] = 1; });
       var path = H.firstPath(FIRST_PATH.map(function (s) {
         return { id: s.id, t: s.t, mins: s.mins, act: 'data-oot-step="' + s.id + '"' };
       }), done);
       if (path) {
-        /* markPathStep records nothing without a current profile; say so
-           where the count is, rather than let seven steps tick nothing */
-        if (!P.current()) {
-          path = path.replace('<div class="oot-path">',
-            '<div class="oot-today-sub" style="margin:0 0 8px">Add your name first so this is kept.</div><div class="oot-path">');
-        }
         extra = '<div class="oot-today-sub" style="margin:0 0 8px">Your first week. ' +
-          'Finish it and your manager can see you are ready for the floor.</div>' + path;
+          'Finish it and you have been over the ground a new hire is expected ' +
+          'to know.</div>' + path;
       }
     }
 
@@ -270,12 +273,13 @@ function organiseHome() {
      Marking on the way in rather than on the way out is deliberate: there is no
      honest signal for "read a chapter properly", and a checklist that never
      ticks is worse than one that is generous. */
-  if (P && typeof FIRST_PATH !== 'undefined') {
+  if (typeof FIRST_PATH !== 'undefined') {
     Array.prototype.forEach.call(host.querySelectorAll('[data-oot-step]'), function (b) {
       b.onclick = function () {
         var id = b.getAttribute('data-oot-step');
         var step = FIRST_PATH.filter(function (s) { return s.id === id; })[0];
-        P.markPathStep('codex', id);
+        ST.path = ST.path || {};
+        if (!ST.path[id]) { ST.path[id] = Date.now(); stSave(); }
         /* a fresh device starts the induction on the Régionale paper, not the
            Village default a new hire was never meant to sit first */
         if (ootFreshDevice() && activeLevel !== 'intro' && typeof LEVELS !== 'undefined' && LEVELS.intro) applyLevel('intro', true);

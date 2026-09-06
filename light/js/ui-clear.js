@@ -19,7 +19,7 @@ const CLEAR_SECTIONS = [
    "A place to think, with the door shut. Nothing here diagnoses you, labels you, or asks you to sign anything. " +
    "The trade runs on drink, pouring it is the craft this whole suite teaches, and that is exactly why the honest " +
    "question is harder here than anywhere else, and worth better tools than a hangover and a vow. " +
-   "It is not in the menu, not in your stats, not in search. Anyone who taps your name on this device can read this room, " +
+   "It is not in the menu, not in your stats, not in search. Anyone who opens this app on this device can read this room, " +
    "so use your own phone for this one."],
   ["The honest ledger",
    "The shift drink works: that is the problem with it. It lands on an empty tank, after adrenaline, at the exact " +
