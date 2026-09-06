@@ -359,80 +359,101 @@ function strengthBand(abvServed){
 }
 
 /* ---------------- SHELF KEYWORDS (inventory mode) ---------------- */
-const SHELF = [
-  ['gin','Gin',/\bgin\b/i],['vodka','Vodka',/vodka/i],['wrum','White rum',/white rum/i],['arum','Aged/dark rum',/(?<!151 )(?<!overproof )(aged|dark|gold|añejo|demerara|jamaican|barbados|blackstrap|puerto rican)[\w' ]{0,12}\brum\b/i],['crum','Coconut rum',/coconut rum/i],
-  ['bourbon','Bourbon',/bourbon/i],['rye','Rye',/\brye\b/i],['scotch','Scotch',/\bscotch\b/i],['irish','Irish whiskey',/irish whiskey/i],
-  ['teq','Tequila',/tequila/i],['cognac','Cognac',/cognac/i],['pisco','Pisco',/pisco/i],['cachaca','Cachaça',/cacha/i],
-  ['sherry','Sherry',/sherry/i],['champ','Sparkling wine',/champagne|prosecco|cava|sparkling wine|sparkling lemonade/i],
-  ['sv','Sweet vermouth',/sweet vermouth|punt e mes/i],['dv','Dry vermouth',/dry vermouth|blanc vermouth/i],['lillet','Lillet blanc',/lillet/i],
-  ['campari','Campari',/campari/i],['aperol','Aperol',/aperol/i],['nonino','Amaro Nonino',/nonino/i],['fernet','Fernet',/fernet/i],
-  ['ol','Orange liqueur',/orange liqueur|cointreau|cura|grand marnier|triple sec/i],['mara','Maraschino',/maraschino/i],['chart','Green Chartreuse',/chartreuse/i],
-  ['bene','Bénédictine',/dictine/i],['viol','Crème de violette',/violette/i],['cacao','Crème de cacao',/cacao|chocolate liqueur/i],
-  ['mure','Crème de mûre',/mûre/i],['coffee','Coffee liqueur',/coffee liqueur/i],['abs','Absinthe/pastis',/absinthe|pastis|anisette/i],
-  ['ango','Angostura',/angostura/i],['pey',"Peychaud's",/peychaud/i],['ob','Orange bitters',/orange bitters/i],
-  ['lemon','Lemons',/lemon/i],['lime','Limes',/lime/i],['gfj','Grapefruit',/grapefruit/i],['oj','Orange juice',/orange juice/i],
-  ['pine','Pineapple juice',/pineapple/i],['cran','Cranberry juice',/cranberry/i],['tomato','Tomato juice',/tomato|clamato/i],
-  ['simple','Simple/sugar',/simple|sugar/i],['honey','Honey',/honey/i],['orgeat','Orgeat',/orgeat/i],
-  ['rasp','Raspberry syrup',/raspberry/i],['gren','Grenadine',/grenadine/i],
-  ['mint','Fresh mint',/\bmint\b/i],['egg','Eggs',/\begg\b/i],['cream','Cream',/(?<!coconut )(?<!irish )(?<!ice )(?<!amarula )\bcream\b/i],['coco','Coconut cream',/coconut(?! rum)/i],
-  ['soda','Soda water',/\bsoda\b/i],['tonic','Tonic',/tonic/i],['gb','Ginger beer',/ginger beer/i],
-  /* 'ginger' itself: the Zero-proof station preset referenced this id and no
-     row defined it: the preset silently stocked one item fewer than it
-     claimed. The lookahead leaves beer and ale their own rows. */
-  ['ginger','Fresh ginger / ginger syrup',/\bginger\b(?! beer| ale)/i],
-  ['espresso','Espresso',/espresso/i],['hotcoffee','Hot coffee',/hot coffee/i],
-  ['mezcal','Mezcal',/mezcal/i],['cynar','Cynar',/cynar/i],['averna','Averna',/averna/i],['suze','Suze/gentian',/suze|gentian/i],
-  ['drambuie','Drambuie',/drambuie/i],['amaretto','Amaretto',/amaretto|noyaux/i],['icream','Irish cream',/irish cream/i],
-  ['menthe','Crème de menthe',/menthe|branca menta/i],['galliano','Galliano',/galliano/i],['apricot','Apricot liqueur',/apricot/i],
-  ['peach','Peach liqueur/brandy',/peach/i],['l43','Licor 43',/licor 43/i],['pimms',"Pimm's No. 1",/pimm/i],
-  ['passion','Passion fruit',/passion fruit/i],['banana','Banana liqueur',/banana/i],['elder','St-Germain',/st-germain|elderflower/i],
-  ['calvados','Calvados/applejack',/calvados|applejack|apple brandy/i],['allspice','Allspice dram',/allspice|pimento dram/i],
-  ['falernum','Falernum',/falernum/i],['heering','Cherry liqueur',/cherry heering|cherry liqueur|blackberry liqueur/i],
-  ['advocaat','Advocaat',/advocaat/i],['cassis','Crème de cassis',/cassis/i],['frangelico','Frangelico',/frangelico/i],
-  ['grappa','Grappa/Sambuca',/grappa|sambuca/i],['limoncello','Limoncello',/limoncello/i],['port','Port',/\bport\b/i],
-  ['beer','Lager/stout',/\blager\b|\bstout\b|\bbeer\b/i],['redwine','Red wine',/red wine/i],
-  ['whitewine','White wine',/white wine|dry white|pipe\u00f1o/i],['cider','Hard cider',/\bcider\b/i],
-  ['soju','Soju',/soju/i],['shochu','Shochu',/shochu/i],['oprum','Overproof rum',/151|overproof/i],
-  ['cola','Cola',/\bcola\b/i],['maple','Maple syrup',/maple/i],['agave','Agave nectar',/agave/i],
-  ['condmilk','Condensed milk',/condensed|evaporated milk/i],['dubonnet','Dubonnet',/dubonnet/i],
-  ['picon','Amer Picon/amaro',/amer picon/i],['vanilla','Vanilla',/vanilla/i],['cinn','Cinnamon syrup',/cinnamon syrup/i],
-  ['grapes','Grapes',/grapes/i],['basil','Fresh basil',/basil/i],['cuke','Cucumber',/cucumber/i],
-  ['straw','Strawberries',/strawberr/i],['milk','Milk',/whole milk|hot milk|\d oz milk/i],
-  ['icecream','Ice cream/sorbet',/ice cream|sorbet/i],['ga','Ginger ale',/ginger ale/i],
-];
+/* ---- WHAT A BAR STOCKS -------------------------------------------------
+   104 hand-written regexes stood here, and their failure was invisible: a
+   line no pattern matched became a need the matcher could not see, and a
+   need it could not see was a need that did not exist. A drink whose spirit
+   was unreadable read as MAKEABLE. Measured before the change: 169 of 817
+   spec lines matched nothing, and the Zero-proof station offered a Whiskey
+   Highball.
+
+   The vocabulary in js/data-ingredients.js replaced them. SHELF is derived
+   from it now and is only the chip list: the third slot held the pattern,
+   nothing reads it any more, and it stays null so the shape is unchanged
+   and the absence is loud rather than silently undefined. */
+const SHELF = INGREDIENTS.filter(function(x){ return x.shelf; })
+                         .map(function(x){ return [x.id, x.label, null]; });
 const WELL_PRESET = ['gin','vodka','wrum','bourbon','rye','teq','sv','dv','campari','ol','ango','ob','lemon','lime','simple','soda','tonic','gb','mint'];
 const SHELF_PRESETS = [
   ['Classic well', WELL_PRESET],
   ['Starter home bar', ['gin','bourbon','wrum','teq','sv','ol','ango','lemon','lime','simple','soda','tonic','mint']],
   ['Craft cocktail bar', WELL_PRESET.concat(['arum','scotch','cognac','mezcal','irish','aperol','cynar','fernet','mara','chart','bene','abs','pey','elder','orgeat','honey','gfj','pine','cran','egg','cream','oj','sherry','champ','lillet','nonino','cassis','apricot','falernum','allspice','maple','agave','oprum'])],
   ['Tiki station', ['wrum','arum','oprum','teq','falernum','allspice','orgeat','ol','mara','abs','ango','lime','lemon','gfj','pine','oj','simple','honey','gren','coco','mint','cinn']],
-  ['Zero-proof station', ['lemon','lime','gfj','oj','pine','cran','simple','honey','ginger','mint','soda','tonic','gb','ga','cola','tomato','coco','espresso','hotcoffee','cream','milk','agave','maple']],
+  ['Zero-proof station', ['lemon','lime','gfj','oj','pine','cran','simple','honey','ginger','mint','soda','tonic','gb','ga','cola','tomato','coco','espresso','brewedcoffee','cream','milk','agave','maple']],
 ];
-function shelfLabel(id){ const e = SHELF.find(s => s[0]===id); return e ? e[1] : id; }
+/* A requirement the ledger could not read is shown as what it is, rather
+   than as a bare id nobody can act on. */
+function shelfLabel(id){
+  if(typeof id === 'string' && id.charAt(0)==='?') return 'Unrecognised: ' + id.slice(1);
+  return (ING[id] && ING[id].label) || id;
+}
+/* What a drink needs, per line and per ingredient.
+
+   It used to join every spec line into one blob and test 104 patterns
+   against it, which made three separate mistakes at once: an "optional"
+   anywhere dropped the WHOLE line, so "1/2 oz lime (optional)" removed
+   lime even when another line needed it; a compound line was never split;
+   and an unreadable line was silent.
+
+   THE SENTINEL IS THE POINT. An ingredient the vocabulary cannot read
+   becomes '?' + the text, which is on nobody's shelf and therefore makes
+   the drink unmakeable. Failing closed is the whole inversion: the ledger
+   would rather say it does not know than say yes.
+
+   The memo is non-enumerable because a My Bar record is JSON.stringify-ed
+   into localStorage by saveProgress, and a memo baked into a saved record
+   would outlive the vocabulary that produced it. */
 function reqsOf(c){
   if(c._reqs) return c._reqs;
-  const txt = (c.spec||[]).filter(l => !/optional/i.test(l)).join(' ');
-  let ids = SHELF.filter(([id,label,re]) => re.test(txt)).map(s => s[0]);
-  if(/bourbon or rye/i.test(txt)){
-    ids = ids.filter(i => i!=='bourbon' && i!=='rye');
-    ids.push(['bourbon','rye']);
-  }
-  c._reqs = ids; return ids;
+  const seen = {}, out = [];
+  (c.spec||[]).forEach(function(line){
+    specRefs(line).forEach(function(r){
+      if(r.role !== 'ingredient' || r.optional) return;
+      if(r.anyOf){
+        const ids = r.anyOf.filter(function(x){ return !ING[x] || ING[x].stock !== false; });
+        if(!ids.length) return;
+        const k = 'any:' + ids.slice().sort().join('|');
+        if(!seen[k]){ seen[k] = 1; out.push(ids); }
+        return;
+      }
+      if(!r.id){ const k = '?' + r.text; if(!seen[k]){ seen[k] = 1; out.push(k); } return; }
+      if(ING[r.id] && ING[r.id].stock === false) return;
+      if(!seen[r.id]){ seen[r.id] = 1; out.push(r.id); }
+    });
+  });
+  try { Object.defineProperty(c, '_reqs', { value: out, enumerable: false, configurable: true }); }
+  catch(e){ c._reqs = out; }
+  return out;
 }
-function missingFor(c){
-  const shelf = state.tools.shelf;
-  return reqsOf(c).filter(r => Array.isArray(r) ? !r.some(x => shelf.indexOf(x)>=0) : shelf.indexOf(r)<0);
+/* @param shelf optional. Defaults to what is stocked, so every existing
+   one-argument call site is unchanged; eightySixReport passes a shelf with
+   one bottle removed, which is the only honest way to ask what dies. */
+function missingFor(c, shelf){
+  shelf = shelf || state.tools.shelf;
+  const have = function(id){ return stockSatisfies(shelf, id); };
+  return reqsOf(c).filter(function(r){
+    return Array.isArray(r) ? !r.some(have) : !have(r);
+  });
 }
 /* 86 drill: one stocked ingredient dies. What dies with it, and what covers?
    Substitute = same family and same base spirit, still pourable on this shelf. */
 function eightySixReport(key, pool){
   /* allDrinks() entries carry `group` where COCKTAILS carries `family` */
   const famOf = (d) => d.family || d.group || '';
-  const flat = (d) => reqsOf(d).map(r => Array.isArray(r) ? r[0] : r);
-  const needsIt = (d) => reqsOf(d).some(r => Array.isArray(r) ? r.indexOf(key)>=0 : r===key);
+  /* Sentinels are dropped: two drinks sharing 'the ledger cannot read this'
+     is not a shared ingredient and must not score as one. */
+  const flat = (d) => reqsOf(d).map(r => Array.isArray(r) ? r[0] : r)
+                               .filter(x => String(x).charAt(0) !== '?');
   const ready = pool.filter(d => missingFor(d).length===0);
+  /* Ask the real question rather than 'does this drink list the bottle'.
+     Under the vocabulary a drink asking for gin may have been satisfied by
+     the Old Tom, so losing the Old Tom loses the drink even though it never
+     named it. Re-running the match against the shelf minus one bottle is the
+     only version of this that is true, and it is simpler than what it
+     replaces. */
+  const without = (state.tools.shelf||[]).filter(x => x !== key);
   const lost = [], survivors = [];
-  ready.forEach(d => (needsIt(d) ? lost : survivors).push(d));
+  ready.forEach(d => (missingFor(d, without).length ? lost : survivors).push(d));
   return {
     stillReady: survivors.length,
     lostCount: lost.length,          /* the true figure: `lost` below is capped for display */
@@ -464,13 +485,19 @@ function eightySixReport(key, pool){
 
 /* Which single unstocked ingredient would unlock the most new drinks? */
 function bestNextBottles(pool){
-  const shelf = state.tools.shelf;
   const tally = {};
   pool.forEach(function(c){
     const miss = missingFor(c);
     if(miss.length!==1) return;
     const m = miss[0];
-    const key = Array.isArray(m) ? m[0] : m;
+    /* For an either/or, name the most GENERIC member: the answer to 'what
+       should I buy' is orange liqueur, not Cointreau. Shortest is-a chain
+       wins, because a child always carries its parents behind it. */
+    let key = Array.isArray(m)
+      ? m.slice().sort(function(a,b){ return isaChain(a).length - isaChain(b).length; })[0]
+      : m;
+    /* You cannot buy a bottle of something the ledger could not read. */
+    if(String(key).charAt(0) === '?') return;
     if(!tally[key]) tally[key] = { id:key, n:0, drinks:[] };
     tally[key].n++;
     if(tally[key].drinks.length<6) tally[key].drinks.push(c.name);

@@ -738,7 +738,10 @@ function dataImport(file){
          shelf and dropped the backup's entirely: merging two devices' owned
          bottles should own both sets. Ids, so the union is exact. */
       if(Array.isArray(p.shelf)){
-        progress.shelf = [...new Set([...(progress.shelf || []), ...p.shelf])];
+        /* The backup may predate the vocabulary, so its ids are migrated on
+           the way in. Forgetting this is the same bug as forgetting the boot
+           call, only harder to notice: it only shows on a restore. */
+        progress.shelf = [...new Set([...(progress.shelf || []), ...migrateShelf(p.shelf)])];
       }
       /* the additive-only rule in person: every store the merge does not name
          is silently dropped, so My Bar gets an explicit clause: union by id

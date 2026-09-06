@@ -1003,6 +1003,23 @@ function strengthHTML(){
     + '</div>';
 }
 
+/* The stock chips, grouped. The vocabulary took the chip list from 104 to 193
+   and one flat row of 193 is a wall nobody reads. A bar counts its stock by
+   category anyway, and the order below is the order behind a bar: what you
+   pour first, then what you modify with, then what you lengthen and sweeten
+   with, then the cold table.
+
+   At file scope rather than inside renderTools so the gate can read it. Every
+   chip must fall in exactly one group, because a chip whose kind is named
+   here nowhere does not render and nothing says so: it is the same silent
+   failure the vocabulary replaced, wearing different clothes.
+   tools/check-ingredients.mjs asserts it. */
+const SHELF_GROUPS = [
+  ['spirit','Spirits'],['liqueur','Liqueurs'],['bitters','Bitters'],
+  ['fortified','Vermouth & fortified'],['wine','Wine'],['beer','Beer & cider'],
+  ['juice','Juice & citrus'],['syrup','Syrups & sweet'],['mixer','Mixers'],
+  ['dairy','Dairy & egg'],['produce','Produce'],['pantry','Larder']
+];
 function renderTools(){
   const t = state.tools;
   const nav = [['batch','Batching'],['shelf','My Shelf'],['dates','Open Bottles'],['strength','Strength'],['cost','Pour Cost'],['spills','Spill Log'],['convert','Convert'],['data','My Data']]
@@ -1036,9 +1053,20 @@ function renderTools(){
   }
 
   if(t.view==='shelf'){
-    const shelfChips = SHELF.map(function(s){
-      return '<button class="chip'+(t.shelf.indexOf(s[0])>=0?' on':'')+'" aria-pressed="'+(t.shelf.indexOf(s[0])>=0?'true':'false')+'" data-act="shelf-toggle" data-k="'+s[0]+'">'+esc(s[1])+'</button>';
-    }).join(' ');
+
+    const chipFor = function(s){
+      const on = t.shelf.indexOf(s[0])>=0;
+      return '<button class="chip'+(on?' on':'')+'" aria-pressed="'+(on?'true':'false')+'" data-act="shelf-toggle" data-k="'+s[0]+'">'+esc(s[1])+'</button>';
+    };
+    const shelfChips = SHELF_GROUPS.map(function(g){
+      const rows = SHELF.filter(function(s){ return (ING[s[0]]||{}).kind === g[0]; });
+      if(!rows.length) return '';
+      const nOn = rows.filter(function(s){ return t.shelf.indexOf(s[0])>=0; }).length;
+      return '<div class="col-sm" style="gap:6px">'
+        + '<div class="row between"><span class="eyebrow">'+esc(g[1])+'</span>'
+        + '<span class="tiny dim push">'+nOn+' of '+rows.length+'</span></div>'
+        + '<div class="row" style="gap:6px">'+rows.map(chipFor).join(' ')+'</div></div>';
+    }).join('');
     const presets = SHELF_PRESETS.map(function(p,i){
       return '<button class="btn btn-ghost tiny" data-act="tool-preset" data-i="'+i+'">'+esc(p[0])+'</button>';
     }).join(' ');

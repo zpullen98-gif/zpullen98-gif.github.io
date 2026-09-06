@@ -793,7 +793,16 @@ function captureLiveInputs(){
      placeholder, or a store edited by hand, is read here before anything
      deals it. Unreadable records are dropped; they had no name or no spec. */
   progress.bar = normalizeBarRecords(progress.bar).bar;
-  if(Array.isArray(progress.shelf)) state.tools.shelf = progress.shelf.slice();
+  /* A shelf stored before the vocabulary may hold ids that have since split,
+     and twelve of them did. migrateShelf is idempotent and never subtractive:
+     an id it does not know is kept, because an unknown id satisfies nothing
+     and costs nothing, whereas dropping it destroys a list somebody built by
+     hand. */
+  if(Array.isArray(progress.shelf)){
+    const migrated = migrateShelf(progress.shelf);
+    if(migrated.join('|') !== progress.shelf.join('|')){ progress.shelf = migrated; saveProgress(); }
+    state.tools.shelf = progress.shelf.slice();
+  }
   srsMigrate(progress.cards);
   applyRoute();
   render();
