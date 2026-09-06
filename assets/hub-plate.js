@@ -20,6 +20,16 @@
     almanac: 'spot-almanac'
   };
 
+  /* The order the cards are PAINTED in, left to right and then down: the top
+     row is table, ledger, codex and the bottom row is light, almanac. The
+     doors used to be built by walking OOT.config.wings, which runs codex,
+     ledger, table, so tabbing across the top row went right to left and a
+     screen reader read the three cards backwards. Same content, two orders,
+     which is exactly what WCAG 1.3.2 and 2.4.3 are about. The config still
+     supplies every name, path and motto; it just no longer decides the
+     reading order of a picture it cannot see. */
+  var PAINTED = ['table', 'ledger', 'codex', 'light', 'almanac'];
+
   function build() {
     if (document.querySelector('.plate')) return;
     var main = document.querySelector('main');
@@ -64,9 +74,12 @@
     pic.appendChild(img);
     plate.appendChild(pic);
 
-    wings.forEach(function (w) {
-      var cls = SPOTS[w.id];
-      if (!cls) return;
+    PAINTED.forEach(function (id) {
+      var cls = SPOTS[id];
+      var w = null;
+      for (var i = 0; i < wings.length; i++) { if (wings[i].id === id) { w = wings[i]; break; } }
+      /* A wing the config does not carry is skipped, exactly as before. */
+      if (!cls || !w) return;
       var a = document.createElement('a');
       a.className = 'spot ' + cls;
       a.href = w.path;
