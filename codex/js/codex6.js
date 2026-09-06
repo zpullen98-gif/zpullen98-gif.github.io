@@ -226,8 +226,8 @@ function serviceView(){
     html+='<div class="secgroup">'+rite.t+' <span class="ritecount">'+done+'/'+rite.steps.length+'</span></div>';
     rite.steps.forEach(function(st,si){
       const on=S.svc[ri]&&S.svc[ri][si];
-      html+='<div class="rite'+(on?' done':'')+'" data-r="'+ri+'" data-s="'+si+'">'
-        +'<div class="ritebox">'+(on?'✓':(si+1))+'</div>'
+      html+='<div class="rite'+(on?' done':'')+'" role="button" tabindex="0" aria-pressed="'+(on?'true':'false')+'" data-r="'+ri+'" data-s="'+si+'">'
+        +'<div class="ritebox" aria-hidden="true">'+(on?'✓':(si+1))+'</div>'
         +'<div><div class="ritet">'+st[0]+'</div><div class="ritew">'+st[1]+'</div></div></div>';
     });
   });
@@ -240,10 +240,13 @@ function serviceView(){
       S.svc[r]=S.svc[r]||[];
       const on=S.svc[r][s]=!S.svc[r][s];
       row.classList.toggle('done',on);
+      row.setAttribute('aria-pressed',on?'true':'false');
       row.querySelector('.ritebox').textContent=on?'✓':(s+1);
       const counts=v.querySelectorAll('.ritecount');
       if(counts[r])counts[r].textContent=(S.svc[r]||[]).filter(Boolean).length+'/'+SERVICE[r].steps.length;
     };
+    /* a step is a control: Enter or Space ticks it as a tap does */
+    row.onkeydown=function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); row.click(); } };
   });
   v.querySelector('#svc-reset').onclick=function(){S.svc={};render();};
   return v;

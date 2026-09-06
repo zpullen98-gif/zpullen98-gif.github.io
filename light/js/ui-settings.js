@@ -24,6 +24,19 @@ FL_ACTS.setWeekAnchor = function (el) {
   toast('The practice week now starts on your rest day.');
 };
 
+FL_ACTS.setTrack = function (el) {
+  var t = flTrackById(el.value);
+  /* Refuse a track that is not finished rather than stranding the reader on a day
+     with no quotation: dayEntry() treats a missing day as a loud data bug. The
+     select only offers complete tracks, so this is a guard against a stale value,
+     not against the UI. */
+  if (!t || !flTrackComplete(t)) { render(); return; }
+  FL.prefs.track = t.id;
+  flSave(true);
+  render();
+  toast('Now reading ' + t.label + '. Your kept voices are held per track, so the ones you saved are still where you left them.');
+};
+
 FL_ACTS.setCanonLines = function (el) {
   FL.prefs.canonLines = el.value === 'on' ? 'on' : 'off';
   flSave(true);
@@ -57,16 +70,52 @@ FL_ACTS.clearLocation = function () {
   toast('Back to estimating from your time zone.');
 };
 
-FL_ACTS.exportRecord = function () {
-  var blob = new Blob([flExport()], { type: 'application/json' });
+function flDownloadRecord(json, name) {
+  var blob = new Blob([json], { type: 'application/json' });
   var url = URL.createObjectURL(blob);
   var a = document.createElement('a');
-  a.href = url; a.download = flExportFilename();
+  a.href = url; a.download = name;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   /* Revoke late: Safari has been known to cancel the download if the URL dies
      before it has finished reading the blob. */
   setTimeout(function () { URL.revokeObjectURL(url); }, 30000);
   announce('Record exported.');
+}
+
+/* An installed iPhone app does not reliably honour a[download] on a blob URL,
+   and this is the only way a year of writing leaves the device. When the app is
+   running installed and the share sheet can take a file, the sheet goes first;
+   a dismissed sheet is not an error, and anything else falls through to the
+   download. "Copy the record" beside it is the path of last resort. */
+function flInstalled() {
+  try {
+    return navigator.standalone === true ||
+      (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+  } catch (e) { return false; }
+}
+
+FL_ACTS.exportRecord = function () {
+  var json = flExport(), name = flExportFilename();
+  try {
+    if (flInstalled() && navigator.share && navigator.canShare && typeof File === 'function') {
+      var file = new File([json], name, { type: 'application/json' });
+      if (navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: name })
+          .then(function () { announce('Record shared.'); })
+          .catch(function (err) { if (!err || err.name !== 'AbortError') flDownloadRecord(json, name); });
+        return;
+      }
+    }
+  } catch (e) {}
+  flDownloadRecord(json, name);
+};
+
+FL_ACTS.copyRecord = function () {
+  var json = flExport();
+  var done = function () { toast('The record is on the clipboard. Paste it into a note or a message you can open on your next phone, and import it there.', 9000); };
+  var fail = function () { toast('The clipboard could not be reached. Export instead.'); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(json).then(done, fail);
+  else fail();
 };
 
 FL_ACTS.importRecord = function () {
@@ -99,6 +148,10 @@ FL_ACTS.importChosen = function (el) {
 
 /* Which months have been through the citation audit.
 
+   THE AUDIT IS OF THE PHILOSOPHERS TRACK, and the line says so, because a second
+   366 now exists. A reader standing on another track must not read "January ·
+   February · March" as a statement about the corpus in front of them.
+
    Deliberately an explicit list, not derived from the data. The obvious derivation,
    "a month is audited when its entries carry work references", is wrong and
    flattering: February onward already arrived from the artifact with references like
@@ -107,7 +160,7 @@ FL_ACTS.importChosen = function (el) {
    one verified are different things, and this app should not blur them.
 
    Update this when a month is finished, alongside SOURCES.md. */
-var AUDITED_MONTHS = [1, 2];
+var AUDITED_MONTHS = [1, 2, 3];
 var AUDIT_PARTIAL = {};   // month -> "23 of 31", while a month is mid-audit
 
 function auditedMonths() {
@@ -115,7 +168,45 @@ function auditedMonths() {
   var out = AUDITED_MONTHS.map(function (m) {
     return MONTHS[m - 1][0] + (AUDIT_PARTIAL[m] ? ' (' + AUDIT_PARTIAL[m] + ')' : '');
   });
-  return out.join(' · ') + ' (of twelve)';
+  return out.join(' · ') + ', of twelve, on the Philosophers track';
+}
+
+/* The track picker.
+
+   Only finished tracks are offered, flTracksOffered() filters on all 366 days
+   being present, but an unfinished one is NAMED with its day count rather than
+   hidden, because a reader who can see the shelf being built is better served than
+   one who cannot tell whether it exists. When only one track is finished there is
+   nothing to choose, so the card explains rather than showing a select with a
+   single option in it. */
+function trackCard() {
+  var offered = flTracksOffered();
+  var active = flActiveTrack();
+  var coming = FL_TRACKS.filter(function (t) { return !flTrackComplete(t); });
+
+  var pending = coming.map(function (t) {
+    return '<p class="vidnote" style="margin-top:10px">' + esc(t.label) + ' is being written, ' +
+      flTrackDays(t) + ' of 366 days so far. It is offered here once the year is complete.</p>';
+  }).join('');
+
+  if (offered.length < 2) {
+    return '<div class="card">' +
+      '<p class="px">You are reading <strong>' + esc(active.label) + '</strong>. ' + esc(active.blurb) + '</p>' +
+      pending + '</div>';
+  }
+
+  var opts = offered.map(function (t) {
+    return '<option value="' + esc(t.id) + '"' + (t.id === active.id ? ' selected' : '') + '>' +
+      esc(t.label) + '</option>';
+  }).join('');
+
+  return '<div class="card">' +
+    '<p class="px" style="margin-bottom:10px">Two years of voices, one per day, on the same twelve monthly ' +
+    'themes, so switching lands you on the same subject rather than the same sentence. What you keep is ' +
+    'held separately for each, and nothing you saved is lost by moving between them.</p>' +
+    '<select class="sel" data-change="setTrack" aria-label="Which year you are reading">' + opts + '</select>' +
+    '<p class="vidnote" style="margin-top:10px">' + esc(active.blurb) + '</p>' +
+    pending + '</div>';
 }
 
 FL_VIEWS.settings = {
@@ -165,7 +256,7 @@ FL_VIEWS.settings = {
       '<div class="label">Where you are</div>' +
       '<div class="card">' + located +
         '<p class="vidnote" style="margin-top:10px">Used only on this device, only to compute the hour of the sun. ' +
-        'It is never sent anywhere, to anyone.</p>' +
+        'It never leaves this device; if you are signed in, only a count of mornings and your streak is recorded.</p>' +
       '</div>' +
 
       '<div class="label">Your record</div>' +
@@ -175,10 +266,12 @@ FL_VIEWS.settings = {
         '<div class="astrorow"><span class="k">Longest streak</span> ' + flLongestStreak() + '</div>' +
         '<div class="astrorow"><span class="k">Kept voices</span> ' + totalKept + '</div>' +
         '<div class="astrorow"><span class="k">Goals checked</span> ' + totalChecks + '</div>' +
-        '<p class="px" style="margin:14px 0 10px;color:var(--faint)">Your writing and your record live on this device and are never sent anywhere. ' +
+        '<p class="px" style="margin:14px 0 10px;color:var(--faint)">Your words never leave this device; if you are signed in, a count of mornings and your streak is recorded. ' +
+        'Anyone who taps your name on this device can read this room, so use your own phone for what is yours alone. ' +
         'Export before you change phones, clear your browser, or do anything you might regret.</p>' +
         '<button class="btn" data-act="exportRecord">Export</button> ' +
-        '<button class="keep" data-act="importRecord">Import a backup</button>' +
+        '<button class="keep" data-act="importRecord">Import a backup</button> ' +
+        '<button class="keep" data-act="copyRecord">Copy the record</button>' +
         '<input type="file" id="fl-import" accept="application/json,.json" class="sr-only" data-change="importChosen">' +
         '<p class="vidnote" style="margin-top:10px">Importing merges: it adds what is missing and never deletes what is here.</p>' +
       '</div>' +
@@ -205,13 +298,17 @@ FL_VIEWS.settings = {
       '<div class="label">The Library on your morning page</div>' +
       '<div class="card">' +
         '<p class="px" style="margin-bottom:10px">First Light includes a religious Library: scripture and ' +
-        'reading plans across seven traditions. It stays behind its own door either way; this only decides ' +
-        'whether today’s readings appear on your morning page and in search.</p>' +
+        'reading plans across seven traditions. It has its own tab either way, and says nothing on your ' +
+        'morning page unless you ask it to; this only decides whether today’s readings join the morning ' +
+        'and your searches.</p>' +
         '<select class="sel" data-change="setCanonLines" aria-label="Readings on the morning page">' +
           '<option value="off"' + (FL.prefs.canonLines === 'on' ? '' : ' selected') + '>Keep them behind their own door</option>' +
           '<option value="on"' + (FL.prefs.canonLines === 'on' ? ' selected' : '') + '>Show today’s readings</option>' +
         '</select>' +
       '</div>' +
+
+      '<div class="label">Which year you are reading</div>' +
+      trackCard() +
 
       '<div class="label">Where the words come from</div>' +
       '<div class="card">' +
@@ -221,6 +318,9 @@ FL_VIEWS.settings = {
         'wrong byline, but the byline should not be wrong.</p>' +
         '<div class="astrorow" style="margin-top:12px"><span class="k">Audited so far</span> ' +
           esc(auditedMonths()) + '</div>' +
+        (flActiveTrack().id === 'makers'
+          ? '<p class="vidnote" style="margin-top:10px">Every line in The Makers was verified against its source before it entered the year.</p>'
+          : '') +
         '<p class="vidnote" style="margin-top:10px">The full record of what was checked and what ' +
         'changed is in SOURCES.md in the repository.</p>' +
       '</div>' +
@@ -236,6 +336,6 @@ FL_VIEWS.settings = {
       '<p class="px" style="margin-top:26px;text-align:center;color:var(--faint)">' +
         '<a class="readmini" href="#/clear">For anyone thinking about their drinking: a room of its own.</a></p>' +
 
-      '<p class="mintro" style="margin-top:16px">First Light keeps nothing about you anywhere but this device.</p>';
+      '<p class="mintro" style="margin-top:16px">Your words never leave this device; if you are signed in, a count of mornings and your streak is recorded.</p>';
   }
 };

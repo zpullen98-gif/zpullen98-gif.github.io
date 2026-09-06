@@ -37,8 +37,11 @@
   padding-bottom: 7px;
   border-bottom: 1px solid var(--oot-line, currentColor);
 }
-.oot-sec-head h2,
-.oot-sec-head h3 {
+/* :is(h2, h3): each wing's own band heading was h1 -> h3 with no h2 between
+   them, a heading-order skip. WorldTable's HomeBands.svelte now renders h2;
+   :is() keeps this selector working for whichever level a wing uses without
+   this shared file needing to know or coordinate across the three of them. */
+.oot-sec-head :is(h2, h3) {
   margin: 0;
   font-size: .78rem;
   letter-spacing: .2em;
@@ -203,6 +206,28 @@
 }
 .oot-chip:focus-visible,
 .oot-path-row:focus-visible { outline: 2px solid var(--oot-accent, currentColor); outline-offset: 2px; }
+/* The inline fallback for a webview with no prompt(): see bindWho in oot-home.js. */
+.oot-who-form {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.oot-who-form p { margin: 0; flex: 1 1 100%; font-size: .85rem; }
+.oot-who-form input {
+  font: inherit;
+  font-size: .85rem;
+  padding: 5px 9px;
+  border: 1px solid var(--oot-line, currentColor);
+  background: none;
+  color: var(--oot-ink, currentColor);
+  border-radius: 2px;
+  min-width: 0;
+  flex: 1 1 160px;
+}
+.oot-who-form input:focus-visible { outline: 2px solid var(--oot-accent, currentColor); outline-offset: 2px; }
 
 /* ---- the pass: the manager strip ------------------------------------ */
 .oot-pass {

@@ -61,14 +61,15 @@ function flSearch(query) {
 
   /* --- the almanac --- */
   var track = FL.prefs.track || 'philosophers';
-  Object.keys(Q).forEach(function (m) {
-    Q[m].forEach(function (e) {
+  var TQ = trackQ();
+  Object.keys(TQ).forEach(function (m) {
+    TQ[m].forEach(function (e) {
       if (sHit(e[1], q) || sHit(e[2], q) || sHit(e[3], q)) {
-        push('The Year', MONTHS[m - 1][0] + ' ' + e[0], e[2] + ' · ' + e[3], e[1], '#/year');
+        push('The Year', trackMonths()[m - 1][0] + ' ' + e[0], e[2] + ' · ' + e[3], e[1], '#/year');
       }
     });
   });
-  MONTHS.forEach(function (mo, i) {
+  trackMonths().forEach(function (mo, i) {
     if (sHit(mo[1], q) || sHit(mo[2], q)) push('The Year', mo[0], mo[1], mo[2], '#/year');
   });
 

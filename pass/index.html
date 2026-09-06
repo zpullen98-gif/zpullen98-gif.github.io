@@ -7,10 +7,11 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="Outside Of Time">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="description" content="Who on this device is training, how far they have got, and where the team is weakest.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#12100e">
-<link rel="stylesheet" href="../shared/oot-home.css?v=23">
+<link rel="stylesheet" href="../shared/oot-home.css?v=24">
 <style>
 /* ============ The Pass ============
    One page for the whole product rather than one per wing. It reads what every
@@ -54,6 +55,20 @@ tbody td{border-bottom:1px solid var(--line)}
 .empty{border:1px solid var(--line);padding:20px;color:var(--dim)}
 footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);
        color:var(--dim);font-size:.82rem;max-width:60ch}
+footer nav{margin-top:10px;font-size:.82rem}
+footer nav a{text-decoration:none;color:var(--dim)}
+footer nav a:hover{color:var(--brass-hi)}
+/* Receive a record: open to anyone with the file, not only a manager device,
+   because a bartender may take a colleague's record onto their own phone. */
+.receive{margin-top:34px;padding-top:22px;border-top:1px solid var(--line)}
+.receive h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:1.35rem;margin:0 0 6px}
+.receive p{color:var(--dim);margin:0 0 14px;max-width:60ch;font-size:.92rem}
+.receive .pick{display:inline-block;font-size:.8rem;padding:7px 13px;border:1px solid var(--brass);
+               color:var(--brass);border-radius:2px;cursor:pointer;min-height:40px;line-height:24px}
+.receive .pick:focus-within{outline:2px solid var(--brass);outline-offset:2px}
+.receive input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;clip:rect(0 0 0 0)}
+.receive .status{margin:12px 0 0;color:var(--cream);font-size:.92rem;min-height:1.6em}
+.receive .status.bad{color:var(--brass-hi)}
 </style>
 </head>
 <body>
@@ -63,13 +78,25 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);
   <p class="lede">Everyone who has put their name to a record on this device, what
   they have covered, and where the team is thinnest.</p>
   <div id="pass"></div>
+  <section class="receive" id="receive" aria-labelledby="receive-h">
+    <h2 id="receive-h">Receive a record</h2>
+    <p>A person who studies on their own phone taps <b>Send my record</b> beside their
+    name on any app's home screen and sends you the file. Open it here and their name
+    joins this device with the Codex, Ledger, First Light and Calendar records the
+    file carries. The World Table's kitchen record travels by its own export on the
+    Table's My Menu page. A record for a name already on this device replaces that
+    name's records only after you say so.</p>
+    <label class="pick" for="receive-file">Receive a record
+      <input type="file" id="receive-file" accept=".json,application/json"></label>
+    <p class="status" id="receive-status" aria-live="polite"></p>
+  </section>
   <footer id="foot"></footer>
 </div>
 
-<script src="../shared/oot-config.js?v=23"></script>
-<script src="../shared/oot-profiles.js?v=23"></script>
-<script src="../shared/oot-home.js?v=23"></script>
-<script src="../shared/oot-pass.js?v=23"></script>
+<script src="../shared/oot-config.js?v=24"></script>
+<script src="../shared/oot-profiles.js?v=24"></script>
+<script src="../shared/oot-home.js?v=24"></script>
+<script src="../shared/oot-pass.js?v=24"></script>
 <script>
 (function () {
   var el = document.getElementById('pass');
@@ -78,6 +105,16 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);
     if (!window.OOT || !OOT.pass) {
       el.innerHTML = '<div class="empty">The shared scripts did not load, so there is ' +
         'nothing to read. Open a wing first.</div>';
+      return;
+    }
+    /* Manager mode is a switch a person has to find on purpose, and until it
+       is on, this page shows the switch and not the room: a bartender who
+       types the address on the floor's tablet must not meet the roster. */
+    if (OOT.profiles && !OOT.profiles.isManagerDevice()) {
+      el.innerHTML = '<div class="empty">The Pass lists everyone who studies on this ' +
+        'device, so it opens only when the manager view has been turned on for ' +
+        'this device. Receive a record, below, works on any device.</div>' + OOT.pass.settings();
+      OOT.pass.bind(el, function () {});
       return;
     }
     /* Every wing that ships an induction declares its length here. A wing with
@@ -93,11 +130,82 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);
 
   paint();
 
+  /* ---- Receive a record -------------------------------------------------
+     Reads the file the "Send my record" chip produced (oot-home.js
+     sendRecord), or a bare exportProfile() blob, checks it through
+     OOT.profiles.validateRecord, and imports it as a NEW named profile. A
+     name already on the device is replaced only after a confirm; a refusal
+     is the default. Works on any device, manager or not: the roster above
+     stays gated, this does not. */
+  var input = document.getElementById('receive-file');
+  var status = document.getElementById('receive-status');
+
+  function say(text, bad) {
+    status.textContent = text;
+    status.className = 'status' + (bad ? ' bad' : '');
+  }
+
+  function readText(file) {
+    if (file.text) return file.text();
+    return new Promise(function (resolve, reject) {
+      var r = new FileReader();
+      r.onload = function () { resolve(String(r.result)); };
+      r.onerror = function () { reject(r.error); };
+      r.readAsText(file);
+    });
+  }
+
+  function receive(text) {
+    if (!window.OOT || !OOT.profiles || !OOT.profiles.validateRecord) {
+      say('The shared scripts did not load, so the record cannot be read here.', true);
+      return;
+    }
+    var v = OOT.profiles.validateRecord(text);
+    if (!v.ok) {
+      say('Not taken in: ' + v.reason + '.' + (v.name ? ' The file names ' + v.name + '.' : ''), true);
+      return;
+    }
+    var carried = v.wings.join(', ');
+    var taken = OOT.profiles.list().some(function (p) { return p.name === v.name; });
+    var replace = false;
+    if (taken) {
+      var q = v.name + ' is already on this device. Replace the ' + carried +
+        ' records under that name with the ones in this file? Records the file ' +
+        'does not carry are left as they are.';
+      var ok;
+      try { ok = window.confirm(q); } catch (e) { ok = false; }
+      if (!ok) {
+        say('Not taken in: ' + v.name + ' is already on this device and the records were not replaced.', true);
+        return;
+      }
+      replace = true;
+    }
+    var r = OOT.profiles.importProfile(v.record, { replace: replace });
+    if (!r) { say('Not taken in: the record could not be written on this device.', true); return; }
+    say((r.replaced ? 'Replaced ' : 'Received ') + r.profile.name + ' with ' + carried +
+      (r.skipped.length ? '. Left aside: ' + r.skipped.join(', ') : '') + '.');
+    paint();
+  }
+
+  if (input) {
+    input.addEventListener('change', function () {
+      var file = input.files && input.files[0];
+      if (!file) return;
+      say('Reading ' + file.name + '.');
+      readText(file).then(receive, function () {
+        say('That file could not be read.', true);
+      });
+      input.value = '';
+    });
+  }
+
   var foot = document.getElementById('foot');
   foot.innerHTML = 'Section rankings are worked out by each app while it is open ' +
     'and left here, so they are a snapshot rather than a live figure. Progress ' +
     'itself is kept in this browser and never sent anywhere, which is why this ' +
-    'page can only show this device and whatever has been imported into it.';
+    'page can only show this device and whatever has been received into it.' +
+    '<nav aria-label="Legal"><a href="../privacy.html">Privacy</a> &middot; ' +
+    '<a href="../terms.html">Terms</a></nav>';
 })();
 </script>
 </body>

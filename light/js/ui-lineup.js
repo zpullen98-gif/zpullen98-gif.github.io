@@ -9,8 +9,17 @@
    streak, no journal, no names, and app.js skips flMarkDay when the app
    boots straight into it, so a dedicated line-up screen accrues no record
    at all. What the crew shares is content, and because doyOf() is a fixed
-   table, every venue in the program reads the same voice on the same date.
+   table and the view is pinned to the Philosophers whatever track this device
+   prefers, every venue in the program reads the same voice on the same date.
    A team ritual made entirely of words, never of people-data. */
+
+/* Always the Philosophers: the track preference is personal to whoever last
+   used this device, and a venue screen must not follow it. */
+function lineupEntry(m, d) {
+  var arr = flTrackById(FL_TRACK_DEFAULT).q()[m] || [];
+  for (var i = 0; i < arr.length; i++) if (arr[i][0] === d) return { q: arr[i][1], s: arr[i][2], t: arr[i][3] };
+  return dayEntry(m, d);
+}
 
 FL_VIEWS.lineup = {
   label: 'The Line-Up',
@@ -19,7 +28,7 @@ FL_VIEWS.lineup = {
   render: function () {
     var now = new Date();   // the venue's clock, deliberately not the shift clock
     var m = now.getMonth() + 1, d = now.getDate();
-    var e = dayEntry(m, d);
+    var e = lineupEntry(m, d);
     var on = (typeof pacer !== 'undefined' && pacer.on);
 
     return '<div class="kick">' + esc(now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })) + ' · before doors</div>' +
@@ -35,7 +44,8 @@ FL_VIEWS.lineup = {
         '<p class="px" style="color:var(--faint)"><strong>Running a one-minute line-up:</strong> read the voice ' +
         'aloud once: anyone can be the reader. Start the breath and let it run five or six rounds. Say the floor ' +
         'plan. Done. This screen keeps no record of anything and needs no login: it is a page of words, ' +
-        'shared because everyone in the program sees the same voice on the same date. Staff who want the full ' +
+        'shared because everyone in the program sees the same voice on the same date; it always reads the Philosophers, ' +
+        'whichever year this device is set to. Staff who want the full ' +
         'practice open First Light on their own phones: what they do there is theirs alone.</p>' +
       '</div>';
   }

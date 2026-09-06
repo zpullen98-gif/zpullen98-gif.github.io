@@ -32,7 +32,7 @@ const FLOOR_CARDS = [
   { t: "The line",
     sit: "The regular, the one who tips well, says the thing about your body again, with the smile that dares you to mind.",
     thought: "I need this table. Let it go.",
-    turn: "Steadiness is not tolerance, and this book does not teach you to absorb it. The comment is his; the consequence is also his. What is yours is the line, and drawing it (out loud, to him, or to a manager, tonight) is not the failure of your composure. It IS your composure. A tip is not a licence, and the discipline of assent governs your judgment of an event, never your right to end it.",
+    turn: "Steadiness is not tolerance, and this book does not teach you to absorb it. The comment is his; the consequence is also his. What is yours is the line, and drawing it, out loud, to him, or to a manager, tonight, is not the failure of your composure. It IS your composure. A tip is not a licence, and the discipline of assent governs your judgment of an event, never your right to end it.",
     carry: "What are the exact words of my line, so I do not have to write them mid-sentence?" },
   { t: "The eight percent",
     sit: "Flawless service. Great table, laughing, thanked you by name. The tip is eight percent.",
@@ -52,7 +52,7 @@ const FLOOR_CARDS = [
   { t: "The review",
     sit: "Two in the morning, and a stranger has posted three paragraphs with your name in the second one.",
     thought: "Everyone will read this.",
-    turn: "A keyboard at 2am is not a jurisdiction you serve in. If there is one true sentence buried in it, take that sentence like a free correction and leave the rest with its author. Marcus took notes from his critics and then went back to work. The review cannot pour a drink or turn a table. You can.",
+    turn: "A keyboard at 2am is not a jurisdiction you serve in. If there is one true sentence buried in it, take that sentence like a free correction and leave the rest with its author, Marcus took notes from his critics and then went back to work. The review cannot pour a drink or turn a table. You can.",
     carry: "Is there one useful sentence in it, and can I take just that one, the way I would take it from a chef?" },
   { t: "The rush that will not end",
     sit: "You are four deep at the well, the printer will not stop, and there is no horizon on it.",
@@ -62,7 +62,7 @@ const FLOOR_CARDS = [
   { t: "The determined unhappy",
     sit: "They arrived disappointed. The food will not fix it, the comp will not fix it, and you can feel yourself trying harder for less.",
     thought: "I can turn this table around.",
-    turn: "Some guests bring the ending written, and the harder you perform for the unpersuadable, the more of your shift they own. Serve them the meal they refuse to enjoy (completely, correctly, kindly) and let the outcome remain theirs. The other nineteen tables get the part of you this one was eating.",
+    turn: "Some guests bring the ending written, and the harder you perform for the unpersuadable, the more of your shift they own. Serve them the meal they refuse to enjoy, completely, correctly, kindly, and let the outcome remain theirs. The other nineteen tables get the part of you this one was eating.",
     carry: "Am I still serving this table, or auditioning for it?" }
 ];
 

@@ -102,6 +102,7 @@ function startCellarDrill(){
   });
   if(!qs.length){ if(typeof toast==='function')toast('The list needs grapes, regions or producers before it can ask about them.'); return; }
   stopTimer(); S.mode='drill'; S.section='Our List';
+  S._again=startCellarDrill;   /* the results screen's Redrill rebuilds from the list */
   S.pool=shuffle(qs).slice(0,15); S.idx=0; S.correct=0; S.results=[]; resetQ(); S.view='quiz'; render();
 }
 

@@ -19,7 +19,7 @@ Font Name are those of its release, viewable on the family's page at
 | The World Table (`table/_app/immutable/assets/`) | Cormorant Garamond, EB Garamond |
 | First Light (`light/fonts/`) | Cormorant Garamond, Karla |
 | Calendar For Life | none bundled; loads Cinzel, Cinzel Decorative, IM Fell English, IM Fell English SC, Pinyon Script and UnifrakturMaguntia from Google Fonts at runtime |
-| The hub | none; system font stacks only |
+| The hub (`assets/fonts/`) | Cinzel, two Latin subsets (`cinzel-normal-400-900-latin.woff2` and `-latin-ext.woff2`), the same release the Codex bundles, declared in `assets/hub-poster.css`; everything else is system font stacks |
 
 The World Table's font files carry build-hashed names and are regenerated
 by every rebuild, which is why their notice lives here rather than beside

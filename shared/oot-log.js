@@ -22,7 +22,19 @@
   'use strict';
   var OOT = w.OOT = w.OOT || {};
   var cfg = (OOT.config && OOT.config.supabase) || {};
-  var CONFIGURED = !!(cfg.url && cfg.anonKey);
+
+  /* The same test oot-auth.js makes (its PROJECT_REF, lines 35 to 43): the
+     project ref has to parse out of the URL, or the URL cannot reach a
+     project. oot-auth answers a URL it cannot parse by staying in mock, and
+     this file must agree with it exactly: testing only that the two strings
+     were non-empty would leave auth in mock while every result POSTed live
+     to a URL that never resolves, which is the one split the two files can
+     never have. */
+  var PROJECT_REF = null;
+  try {
+    if (cfg.url) PROJECT_REF = new URL(cfg.url).hostname.split('.')[0];
+  } catch (e) { /* malformed url: mock, the same as oot-auth */ }
+  var CONFIGURED = !!(cfg.url && cfg.anonKey && PROJECT_REF);
 
   var WINGS = ['codex', 'ledger', 'table', 'light', 'almanac'];
   var MOCK_RESULTS_KEY = 'oot-mock-results';
@@ -82,8 +94,28 @@
         if (!kind || kind.length > KIND_MAX) return Promise.resolve(false);
         if (!OOT.auth || !OOT.auth.isSignedIn()) return Promise.resolve(false);
 
+        /* who: the current profile's name, on every row. A venue shares one
+           sign-in, so user_id says which venue and nothing more; the name is
+           the per-person proof of training the venue is buying, the one
+           thing the founder's weekly read of `results` has to be able to
+           say. It is also the only personal field a payload ever carries,
+           so privacy.html must name it on flip day (the docs package records
+           that). Null when nobody has put a name to the record, and read at
+           call time because the profile can change between rounds. */
+        var who = null;
+        try {
+          var prof = (OOT.profiles && typeof OOT.profiles.current === 'function')
+            ? OOT.profiles.current() : null;
+          who = (prof && prof.name) ? String(prof.name) : null;
+        } catch (e) {}
+        var row = {};
+        if (payload && typeof payload === 'object') {
+          Object.keys(payload).forEach(function (k) { row[k] = payload[k]; });
+        }
+        row.who = who;
+
         var body = '{}';
-        try { body = JSON.stringify(payload || {}) || '{}'; } catch (e) {}
+        try { body = JSON.stringify(row) || '{}'; } catch (e) {}
         if (body.length > PAYLOAD_MAX) return Promise.resolve(false);
 
         var sig = wing + '|' + kind + '|' + body;
@@ -273,35 +305,34 @@
      what anyone wrote. The journal's write path is deliberately not touched. */
 
   function hookLight() {
+    /* The guided morning is logged by CONTRACT, the pattern the World Table
+       uses below. The step count lives in an array literal local to
+       todayGuided() and now depends on the reader's own settings (four steps,
+       five with the readings on), so counting steps from outside logged the
+       kept morning for nobody with the readings off. ui-today.js dispatches
+       fl:morning-kept on window when the kept state first renders for the
+       day, detail { day, streak }, and this listener is the other half. A
+       build that loses the dispatch stops logging rather than breaking
+       anything. The per-day latch keeps "Walk it again" and a later repaint
+       from counting one morning twice: one per day is the honest count, same
+       rule as the practice hook below. */
+    var morningLoggedFor = null;
+    w.addEventListener('fl:morning-kept', function (e) {
+      var d = (e && e.detail) || {};
+      var today = (typeof w.flToday === 'function') ? w.flToday()
+                : (d.day != null ? String(d.day) : null);
+      if (today === null || morningLoggedFor === today) return;
+      morningLoggedFor = today;
+      OOT.log.result('light', 'morning', {
+        day: (typeof d.day === 'number') ? d.day
+           : ((w.FL && w.FL.days) ? w.FL.days.length : null),
+        streak: (typeof d.streak === 'number') ? d.streak
+              : ((typeof w.flStreak === 'function') ? w.flStreak() : null)
+      });
+    });
+
     var A = w.FL_ACTS;
     if (!A) return;
-
-    /* The guided morning's Finish button pushes todayStep past the last step.
-       The step count lives in an array literal local to todayGuided(), so the
-       terminal value is not readable from here; 5 is that array's length and
-       changes with it. The edge test keeps a later re-render from re-firing,
-       and the per-day latch keeps "Walk it again" from counting the same
-       morning twice: one per day is the honest count, same rule as the
-       practice hook below. */
-    var LAST_STEP = 5;
-    var morningLoggedFor = null;
-    if (typeof A.todayStep === 'function') {
-      var todayStep = A.todayStep;
-      A.todayStep = function () {
-        var before = typeof w.todayStep === 'number' ? w.todayStep : null;
-        var out = todayStep.apply(this, arguments);
-        var today = (typeof w.flToday === 'function') ? w.flToday() : null;
-        if (before !== null && before < LAST_STEP && w.todayStep >= LAST_STEP &&
-            morningLoggedFor !== today) {
-          morningLoggedFor = today;
-          OOT.log.result('light', 'morning', {
-            day: (w.FL && w.FL.days) ? w.FL.days.length : null,
-            streak: (typeof w.flStreak === 'function') ? w.flStreak() : null
-          });
-        }
-        return out;
-      };
-    }
 
     /* practiceDone is a toggle; only the ON edge is a completion, and one per
        day is the honest count however many times it is flipped. */

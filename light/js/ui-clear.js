@@ -17,9 +17,10 @@
 const CLEAR_SECTIONS = [
   ["What this room is",
    "A place to think, with the door shut. Nothing here diagnoses you, labels you, or asks you to sign anything. " +
-   "The trade runs on drink (pouring it is the craft this whole suite teaches) and that is exactly why the honest " +
+   "The trade runs on drink, pouring it is the craft this whole suite teaches, and that is exactly why the honest " +
    "question is harder here than anywhere else, and worth better tools than a hangover and a vow. " +
-   "Nobody sees this room. It is not in the menu, not in your stats, not in search. The only person it reports to is you."],
+   "It is not in the menu, not in your stats, not in search. Anyone who taps your name on this device can read this room, " +
+   "so use your own phone for this one."],
   ["The honest ledger",
    "The shift drink works: that is the problem with it. It lands on an empty tank, after adrenaline, at the exact " +
    "hour the body is defenseless, which makes it the most efficient drink of the week. Efficiency builds tolerance; " +
@@ -34,15 +35,15 @@ const CLEAR_SECTIONS = [
    "with, which is also your situation, exactly."],
   ["The pour question",
    "One question, asked after the night, never before it: did tonight's drink pour itself, or did you pour it? " +
-   "A drink you poured (chose, wanted, enjoyed) needs no defending. A drink that poured itself, that arrived by " +
+   "A drink you poured, chose, wanted, enjoyed, needs no defending. A drink that poured itself, that arrived by " +
    "autopilot, because close-out ends that way, because everyone was having one, is information. Not guilt; " +
    "information. Noticing the difference is the entire practice, and nobody gets it right every night."],
   ["If it is bigger than this room",
-   "A room in an app knows its size. If the question has stopped feeling like a question (if the counting scares " +
-   "you, or the skipping fails more than it works) then the next conversation should be with someone whose craft " +
+   "A room in an app knows its size. If the question has stopped feeling like a question, if the counting scares " +
+   "you, or the skipping fails more than it works, then the next conversation should be with someone whose craft " +
    "this is: a doctor, a meeting, the coworker who has been sober for years and never made it weird. Asking is a " +
    "trade skill. You ask the chef where the allergens are; you ask the old hand how they got out clean. " +
-   "It is the same ask."]
+   "It is the same ask. In the US, SAMHSA's helpline is 1-800-662-4357, free and confidential, any hour."]
 ];
 
 function clearCounts() {

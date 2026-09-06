@@ -9,6 +9,7 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="Outside Of Time">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <script>
 /* GitHub Pages serves this file for any unknown path on the site. The World
    Table has one route that is not prerendered (/table/family/<slug>), and cold
@@ -28,6 +29,43 @@
 (function () {
   var p = location.pathname;
   if (p.indexOf('/table/') !== 0 || p === '/table/shell.html') return;
+
+  /* Twenty-two recipe addresses changed on 1 September 2026, when the World
+     Table started transliterating the letters Unicode cannot take apart:
+     Smørrebrød had been /recipe/sm-rrebr-d and is /recipe/smorrebrod. Every
+     link shared before that day carries the old spelling and lands here.
+     Send it straight to the prerendered page that exists, rather than to
+     the shell, which would only render its own not-found for it. */
+  var RENAMED = {
+    'bleskiver': 'aebleskiver',
+    'bondepige-med-sl-r': 'bondepige-med-slor',
+    'c-lb-r': 'cilbir',
+    'dr-mmekage-fra-brovst': 'drommekage-fra-brovst',
+    'dyrl-gens-natmad': 'dyrlaegens-natmad',
+    'f-st-kl-baklava': 'fistikli-baklava',
+    'fl-skesteg-med-spr-d-sv-r': 'flaeskesteg-med-sprod-svaer',
+    'go-abki-w-sosie-pomidorowym': 'golabki-w-sosie-pomidorowym',
+    'imam-bay-ld': 'imam-bayildi',
+    'k-ymal-pide': 'kiymali-pide',
+    'kayseri-mant-s': 'kayseri-mantisi',
+    'mant': 'manti',
+    'mercimek-corbas': 'mercimek-corbasi',
+    'pinnekj-tt': 'pinnekjott',
+    'po-gesek': 'polgesek',
+    'r-mmegr-t': 'rommegrot',
+    'risalamande-med-kirseb-rsauce': 'risalamande-med-kirsebaersauce',
+    'rugbr-d': 'rugbrod',
+    'rugbrau': 'rugbraud',
+    'rullep-lse': 'rullepolse',
+    'sm-rrebr-d': 'smorrebrod',
+    'stegt-fl-sk-med-persillesovs': 'stegt-flaesk-med-persillesovs'
+  };
+  var m = /^\/table\/recipe\/([^\/]+?)(?:\.html)?\/?$/.exec(p);
+  if (m && Object.prototype.hasOwnProperty.call(RENAMED, m[1])) {
+    location.replace('/table/recipe/' + RENAMED[m[1]] + location.search + location.hash);
+    return;
+  }
+
   try {
     sessionStorage.setItem('oot:table-route', p + location.search + location.hash);
   } catch (e) { /* private mode: the shell still loads, just at its own URL */ }

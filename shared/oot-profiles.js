@@ -189,17 +189,83 @@
   /* ---- moving a record between devices --------------------------------
      Every wing already has its own export/import with its own merge rules. This
      does not replace them; it wraps a named person's slice of localStorage so a
-     staff member can hand a manager one blob rather than three. */
+     staff member can hand a manager one blob rather than three.
+
+     THE BASES A RECORD MAY CARRY. Import writes only these, because a record
+     is a file somebody was sent and localStorage is where this device keeps
+     its credential ('sb-<ref>-auth-token') and its entitlement ('oot-*'). A
+     key outside the list is skipped and reported, never written. Each value
+     has to be a string the wing will accept on load: JSON for every store
+     that is one, and a short level id for the Codex's codexLevel, which the
+     Codex checks against its own LEVELS table before it applies it.
+
+     The World Table's kitchen record is not here on purpose: it lives in
+     IndexedDB and travels by the Table's own export on its My Menu page. Only
+     its summary for The Pass (contract B) rides along. */
+  var BASES = {
+    'codexStats':             { wing: 'Codex' },
+    'codexLevel':             { wing: 'Codex', token: true },
+    'bartenders-ledger-v1':   { wing: 'Ledger' },
+    'firstlight-v1':          { wing: 'First Light' },
+    'cfl-bookmarks-v1':       { wing: 'Calendar' },
+    'cfl-journals-v1':        { wing: 'Calendar' },
+    'cfl-fnb-v1':             { wing: 'Calendar' },
+    'cfl-manifest-v1':        { wing: 'Calendar' },
+    'world-table-summary-v1': { wing: 'World Table' }
+  };
+
+  function validValue(base, v) {
+    if (typeof v !== 'string') return false;
+    if (BASES[base].token) return /^[a-z0-9_-]{1,32}$/i.test(v);
+    try { JSON.parse(v); return true; } catch (e) { return false; }
+  }
+
+  /* Looks a record over without writing anything. Answers what the Pass needs
+     to show before it asks the manager to confirm: the name, which wings the
+     file carries, which keys it will ignore, and why it is refused if it is.
+     Accepts the bare exportProfile() shape and the wrapped one that the
+     "Send my record" chip produces (see oot-home.js sendRecord). */
+  function validateRecord(blob) {
+    if (typeof blob === 'string') { try { blob = JSON.parse(blob); } catch (e) { return { ok: false, reason: 'not JSON' }; } }
+    if (!blob || typeof blob !== 'object') return { ok: false, reason: 'not a record' };
+    var rec = (blob.record && typeof blob.record === 'object') ? blob.record : blob;
+    if (rec.kind !== 'profile' || !rec.keys || typeof rec.keys !== 'object' || Array.isArray(rec.keys)) {
+      return { ok: false, reason: 'not an Outside Of Time record' };
+    }
+    var name = clean((rec.profile && rec.profile.name) || (blob.profile && blob.profile.name));
+    if (!name) return { ok: false, reason: 'the record carries no name' };
+    var keys = {}, wings = [], skipped = [], bad = [];
+    Object.keys(rec.keys).forEach(function (base) {
+      if (!Object.prototype.hasOwnProperty.call(BASES, base)) { skipped.push(base); return; }
+      if (!validValue(base, rec.keys[base])) { bad.push(base); return; }
+      keys[base] = rec.keys[base];
+      if (wings.indexOf(BASES[base].wing) === -1) wings.push(BASES[base].wing);
+    });
+    if (bad.length) return { ok: false, reason: 'damaged entry for ' + bad.join(', '), name: name };
+    if (!Object.keys(keys).length) return { ok: false, reason: 'the record carries nothing this product reads', name: name, skipped: skipped };
+    return { ok: true, name: name, record: rec, keys: keys, wings: wings, skipped: skipped };
+  }
+
   function exportProfile(id) {
     var p = find(id) || current();
     if (!p) return null;
     var out = { app: 'outside-of-time', kind: 'profile', v: 1, exported: Date.now(),
-                profile: { name: p.name, created: p.created, lastSeen: p.lastSeen }, keys: {} };
+                profile: { name: p.name, created: p.created, lastSeen: p.lastSeen,
+                           streak: p.streak || 0, lastDay: p.lastDay || null, days: p.days || 0,
+                           path: p.path || {} },
+                keys: {} };
     var suffix = p.legacy ? null : '::' + p.id;
     try {
       for (var i = 0; i < localStorage.length; i++) {
         var k = localStorage.key(i);
         if (!k || k === KEY) continue;
+        /* The shared layer's own keys are never part of a person's record:
+           'sb-<ref>-auth-token' carries the venue's refresh token, and
+           'oot-entitlement-v1', 'oot-mock-*' and 'oot-gaps-v1' are device
+           state. A legacy profile matches every unsuffixed key, so without
+           this the blob a staff member hands over WhatsApp would carry the
+           venue's live credential. */
+        if (k.indexOf('oot-') === 0 || k.indexOf('sb-') === 0) continue;
         if (suffix ? k.slice(-suffix.length) === suffix : k.indexOf('::') === -1) {
           out.keys[suffix ? k.slice(0, -suffix.length) : k] = localStorage.getItem(k);
         }
@@ -208,26 +274,56 @@
     return out;
   }
 
-  /* Import is deliberately additive and non-destructive: it creates a NEW
-     profile rather than overwriting an existing one, because a manager
-     importing four staff records must never be able to flatten their own. */
-  function importProfile(blob) {
-    if (!blob || blob.kind !== 'profile' || !blob.keys) return null;
-    var name = clean(blob.profile && blob.profile.name) || 'Imported';
-    var taken = data.list.some(function (p) { return p.name === name; });
-    var p = add(taken ? name + ' (imported)' : name);
+  /* Import is deliberately additive and non-destructive by default: it creates
+     a NEW profile rather than overwriting an existing one, because a manager
+     importing four staff records must never be able to flatten their own.
+     The one way to overwrite is opts.replace, and the Pass only passes it
+     after the manager has confirmed by name (see pass/index.html).
+
+     Only allowlisted bases are written, only with values the wing will
+     accept, and never an oot- or sb- key: see BASES and validateRecord. A
+     record with a damaged entry is refused whole rather than half-applied. */
+  function importProfile(blob, opts) {
+    opts = opts || {};
+    var v = validateRecord(blob);
+    if (!v.ok) return null;
+    var rec = v.record;
+    var name = v.name;
+    var existing = null;
+    for (var i = 0; i < data.list.length; i++) if (data.list[i].name === name) { existing = data.list[i]; break; }
+    var replaced = false;
+    var p;
+    if (existing && opts.replace) { p = existing; replaced = true; }
+    else p = add(existing ? name + ' (imported)' : name);
+    var suffix = p.legacy ? '' : '::' + p.id;
     var n = 0;
     try {
-      Object.keys(blob.keys).forEach(function (base) {
-        localStorage.setItem(base + '::' + p.id, blob.keys[base]);
+      Object.keys(v.keys).forEach(function (base) {
+        localStorage.setItem(base + suffix, v.keys[base]);
         n++;
       });
     } catch (e) {}
-    if (blob.profile && blob.profile.created) p.created = blob.profile.created;
-    if (blob.profile && blob.profile.lastSeen) p.lastSeen = blob.profile.lastSeen;
+    var prof = rec.profile || {};
+    if (!replaced && typeof prof.created === 'number') p.created = prof.created;
+    if (typeof prof.lastSeen === 'number' && (!replaced || prof.lastSeen > (p.lastSeen || 0))) p.lastSeen = prof.lastSeen;
+    /* The shared streak and the first path live on the profile, so they
+       travel in the record's profile block rather than in a wing key. */
+    if (typeof prof.streak === 'number' && typeof prof.lastDay === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(prof.lastDay)) {
+      if (!replaced || !p.lastDay || prof.lastDay >= p.lastDay) { p.streak = prof.streak; p.lastDay = prof.lastDay; }
+    }
+    if (typeof prof.days === 'number' && (!replaced || prof.days > (p.days || 0))) p.days = prof.days;
+    if (prof.path && typeof prof.path === 'object' && !Array.isArray(prof.path)) {
+      p.path = p.path || {};
+      Object.keys(prof.path).forEach(function (wing) {
+        var steps = prof.path[wing];
+        if (!steps || typeof steps !== 'object') return;
+        p.path[wing] = p.path[wing] || {};
+        Object.keys(steps).forEach(function (s) { if (steps[s]) p.path[wing][s] = steps[s]; });
+      });
+    }
     write(data);
     fire();
-    return { profile: p, restored: n };
+    return { profile: p, restored: n, replaced: replaced, wings: v.wings, skipped: v.skipped };
   }
 
   /* ---- the shared streak ---------------------------------------------
@@ -248,6 +344,25 @@
     return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
   }
 
+  /* THE ONE DEFINITION OF "STUDIED" IN THE PRODUCT (contract A).
+     A person studied today when they COMPLETED something, and each wing calls
+     this at exactly that moment and nowhere else:
+
+       Codex        an answered question (codex14.js wraps statRecord)
+       Ledger       a graded card or a finished session (oot-ledger.js wraps
+                    recordCard and recordSessionComplete)
+       World Table  a finished round of the lexicon quiz, the menu quiz, the
+                    firing drill or the service drill, and a dish marked
+                    cooked (session.markCooked)
+       First Light  a kept morning: the completed guided morning, which fires
+                    fl:morning-kept once a day (oot-light.js listens for that
+                    event and deliberately never wraps flMarkDay, which the
+                    wing calls the moment Today opens)
+       Calendar     never. The almanac is read and written, not studied.
+
+     Opening an app is not studying, and neither is browsing a page. The Pass
+     reads p.lastDay against dayKey(0) for "studied today", and streak() reads
+     the same fields, so this is the only writer of both. */
   function markStudied() {
     var p = current();
     if (!p) return 0;
@@ -321,9 +436,20 @@
     setManagerDevice: setManagerDevice,
     exportProfile: exportProfile,
     importProfile: importProfile,
+    validateRecord: validateRecord,
+    /* The bases a record may carry, keyed to the wing they belong to, so a
+       reader can name the wings a file holds without a second list. */
+    recordBases: function () {
+      var o = {};
+      Object.keys(BASES).forEach(function (b) { o[b] = BASES[b].wing; });
+      return o;
+    },
     markStudied: markStudied,
     streak: streak,
     studiedToday: studiedToday,
+    /* The one definition of "a day" in the product: LOCAL, offset in days.
+       oot-pass.js reads it so the manager's numbers agree with the chip. */
+    dayKey: dayKey,
     onChange: function (fn) {
       if (typeof fn !== 'function') return function () {};
       listeners.push(fn);

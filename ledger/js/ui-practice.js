@@ -391,7 +391,7 @@ function renderPractice(){
   const p = state.practice;
   const nav = [['drills','Drills'],['rail','Ticket Rail'],['hold','Hold the Round'],['pour','Free Pour'],['tasting','Tasting Room'],['flights','Flights'],['method','How to Taste']]
     .map(([k,l]) => '<button class="tab-btn'+(p.view===k?' active':'')+'" data-act="pr-view" data-v="'+k+'">'+l+'</button>').join('');
-  const wrap = (inner) => '<div class="col"><nav class="tabs" style="margin-bottom:4px">'+nav+'</nav>'+inner+'</div>';
+  const wrap = (inner) => '<div class="col"><nav class="tabs" aria-label="Practice views" style="margin-bottom:4px">'+nav+'</nav>'+inner+'</div>';
 
   if(p.view==='rail') return wrap(railHTML());
   if(p.view==='hold') return wrap(holdHTML());
@@ -605,14 +605,20 @@ function batchOutHTML(){
 }
 /* ---- ABV / dilution estimator ---- */
 const ABV_TABLE = [
-  /* zero row FIRST: ginger beer was matching /gin/, sparkling lemonade was
-     matching /sparkling/: a Mule read as 4.3 standard drinks, and this table
-     is the number behind the responsible-service teaching */
-  [/ginger beer|ginger ale|ginger syrup|honey-ginger|lemonade/i, 0],
+  /* zero row FIRST: ginger beer was matching /gin/, sparkling lemonade and
+     sparkling mineral water were matching /sparkling|wine/: a Mule read as
+     4.3 standard drinks and a Ranch Water as 2.1, and this table is the
+     number behind the responsible-service teaching. Every water, soda and
+     tonic lives here; tools/check-abv.mjs fails if one scores above 0. */
+  [/ginger beer|ginger ale|ginger syrup|honey-ginger|lemonade|sparkling (?:mineral )?water|mineral water|soda water|seltzer|club soda|tonic/i, 0],
   [/irish cream|baileys|amarula|rumchata/i, 0.17],
   [/overproof|151|cask.strength/i, 0.62],[/absinthe/i,0.62],[/chartreuse/i,0.52],
+  /* rows the class check (tools/check-abv.mjs) found missing: every one of
+     these scored 0, so a Ti' Punch read as a serve-two aperitivo */
+  [/rhum|agricole/i,0.50],[/pastis|\banis(?:e|ette)?\b/i,0.45],[/pimm/i,0.25],[/galliano/i,0.42],
+  [/punt e mes/i,0.16],[/branca menta/i,0.28],[/limoncello/i,0.28],[/chambord/i,0.165],[/m[uû]re/i,0.20],
   [/fernet/i,0.39],[/rye|bourbon|whisk|scotch|irish/i,0.45],[/\bgin\b/i,0.44],
-  [/vodka|tequila|mezcal|rum|cacha|pisco|cognac|brandy|calvados|applejack|soju|shochu/i,0.40],
+  [/vodka|tequila|mezcal|rum|cacha|pisco|cognac|brandy|calvados|applejack|soju|shochu|singani|grappa|aquavit|spirit of (?:your )?choice/i,0.40],
   [/cointreau|curaçao|curacao|triple sec|grand marnier|maraschino|dictine|falernum|allspice/i,0.35],
   [/amaro|averna|nonino|montenegro|suze|licor 43|drambuie|amaretto|frangelico|sambuca|schnapps|liqueur|cassis|violette|menthe|cacao|heering|elder|st-germain/i,0.25],
   [/campari/i,0.24],[/aperol|cynar/i,0.13],[/vermouth|lillet|cocchi|dubonnet|sherry|port|advocaat/i,0.17],
@@ -1001,7 +1007,7 @@ function renderTools(){
   const t = state.tools;
   const nav = [['batch','Batching'],['shelf','My Shelf'],['dates','Open Bottles'],['strength','Strength'],['cost','Pour Cost'],['spills','Spill Log'],['convert','Convert'],['data','My Data']]
     .map(function(o){ return '<button class="tab-btn'+(t.view===o[0]?' active':'')+'"'+(t.view===o[0]?' aria-current="true"':'')+' data-act="tool-view" data-v="'+o[0]+'">'+o[1]+'</button>'; }).join('');
-  const wrap = function(inner){ return '<div class="col"><nav class="tabs" style="margin-bottom:4px">'+nav+'</nav>'+inner+'</div>'; };
+  const wrap = function(inner){ return '<div class="col"><nav class="tabs" aria-label="Tool views" style="margin-bottom:4px">'+nav+'</nav>'+inner+'</div>'; };
   const drinkSel = function(id){
     const opts = COCKTAILS.map(function(c,i){ return '<option value="'+i+'"'+(t.drink===i?' selected':'')+'>'+esc(c.name)+'</option>'; }).join('');
     return '<select class="input" id="'+id+'" style="flex:2;min-width:170px">'+opts+'</select>';
@@ -1122,7 +1128,7 @@ function renderTools(){
     + '<div class="small dim lh">Scale any spec to a bottle, a pitcher, or a party. For stirred drinks bottled ahead, add the 25% water: it replaces the dilution the ice would have given.</div>'
     + '<div class="row" style="gap:10px;flex-wrap:wrap">' + bsr.srcChips
     + (bsr.barSel || '<select class="input" id="tool-drink" aria-label="Drink to batch" style="flex:2;min-width:170px">'+opts+'</select>')
-    + '<input class="input" type="number" min="1" max="500" id="tool-serv" value="'+t.serv+'" style="flex:1;min-width:80px" title="servings">'
+    + '<input class="input" type="number" min="1" max="200" id="tool-serv" value="'+t.serv+'" style="flex:1;min-width:80px" aria-label="Servings" title="servings">'
     + '<button class="chip'+(t.dilute?' on':'')+'" aria-pressed="'+(t.dilute?'true':'false')+'" data-act="tool-dilute">+25% water</button></div>'
     + '<div id="batch-out" style="display:flex;justify-content:center">'+batchOutHTML()+'</div>'
     + '<div class="row"><a class="btn btn-ghost tiny" href="'+ytSearch('how to batch cocktails pre dilution bottled'+scopeSuffix())+'" target="_blank" rel="noopener noreferrer">▶ Watch batching explained</a></div>'

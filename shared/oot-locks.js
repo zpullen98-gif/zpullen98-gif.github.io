@@ -32,13 +32,13 @@
     /* TWO key kinds, like the Ledger's: a level id from LEVEL_ORDER, or the
        'cellardrill' surface key for the Our List study surfaces.
 
-       Ranks I AND II are free, by owner decision (17 Aug 2026): the Page and
-       Squire banks were imported from established material whose rights chain
-       is unconfirmed, and nothing with an unconfirmed provenance belongs
-       behind a paywall. The paid tier is the Knight and Ruler banks: 1,007
-       questions written for this product, plus the drills generated from the
-       venue's own wine list (entering and READING the list is own-data and
-       stays free; the generated study surfaces are the product). */
+       The first two examinations, Régionale ('intro') and Village
+       ('certified'), are free by owner decision (17 Aug 2026): 3,061 questions
+       and every study chapter that goes with them. The paid tier is the
+       Premier Cru and Grand Cru banks, 1,296 questions, plus the drills
+       generated from the venue's own wine list (entering and READING the list
+       is own-data and stays free; the generated study surfaces are the
+       product). */
     codex: function (key) {
       if (key === 'cellardrill') return false;
       return key === 'intro' || key === 'certified';
@@ -52,6 +52,13 @@
 
     /* key is location.pathname with /table stripped */
     table: function (key) {
+      /* The 27 service-track modules (/service/srv-*) print 186 of the
+         lexicon's 479 definitions in clear, and their markup deliberately
+         carries none of the classes the tier mask blurs, so the route is the
+         only gate they have. Stated as a rule rather than left to the default
+         so a future "free by prefix" change cannot open them by accident.
+         /service itself, the hub page, stays free below. */
+      if (key.indexOf('/service/srv-') === 0) return false;
       if (TABLE_FREE_ROUTES.indexOf(key) > -1) return true;
       if (key.indexOf('/recipe/') === 0) return TABLE_FREE_RECIPES.indexOf(key.slice(8)) > -1;
       if (key.indexOf('/chapter/') === 0) return true;   /* browsing the shelf is free */
@@ -120,7 +127,27 @@
                               writes nothing. Its own page states that it is free
                               reference content; this is that claim made true. */
                            '/recipes', '/learn', '/practise', '/service',
-                           '/repertoire', '/safety'];
+                           '/repertoire', '/safety',
+                           /* Added 5 Sep 2026. Own data first, on the rule above
+                              that a visitor's own work is never gated:
+                              /menu/costing is the venue's typed prices, yields
+                              and covers; /menu/preps and /menu/prep-board are
+                              its own prep record and the plan built from it;
+                              /menu/waste is its own waste log, venue-wide and
+                              nameless by construction; /coverage reads only the
+                              session records on this device. /practise/firing
+                              drills the cook's own pinned menu through the same
+                              back-timing the worksheet uses (no authored
+                              questions), and /practise/calibrate is a tasting
+                              bench whose score goes to the cook's own log.
+                              /technique is the skills index, a list of links
+                              and counts like /learn: the pitch for the
+                              technique pages, which stay paid under /technique/.
+                              /menu/quiz and /service/drill stay paid: they are
+                              drills over the guide's own content. */
+                           '/coverage', '/menu/costing', '/menu/prep-board',
+                           '/menu/preps', '/menu/waste', '/practise/firing',
+                           '/practise/calibrate', '/technique'];
 
   /* Semester 1, "Knife & Fire Foundations", from study.json. Five recipes and
      four lexicon terms. Hardcoded because the wing ships as a built bundle with
@@ -133,13 +160,27 @@
                           'sweat-vs-saute-vs-sear', 'deglaze-and-fond'];
 
   /* Free is the complement of what the brief actually sells: the Library, the
-     journal, the practices and the chart (with the sky, the hall and the
-     threads, which are the same content by another door). Everything else stays
-     open, so `year` is free: it is how the app is navigated, not a feature.
+     practices and the chart (with the sky, the hall and the threads, which are
+     the same content by another door). Everything else stays open, so `year`
+     is free: it is how the app is navigated, not a feature.
 
      Settings and the vault are free at every tier on principle: a lapsed
-     subscriber must always be able to get their own writing out. */
-  var LIGHT_FREE_VIEWS = ['today', 'year', 'life', 'stats', 'vault', 'settings'];
+     subscriber must always be able to get their own writing out.
+
+     POLICY (5 Sep 2026), applied because the product's own written rule is
+     that your own data is never gated: the journal is the reader's own
+     writing, and the free Today page writes into it; clear (Clear Mornings)
+     holds notes that render in that room and nowhere else; search searches
+     the journal. lineup (The Line-Up) keeps no record and its own copy
+     promises no login, so it is free as written. reset (The Walk-In) is a
+     ninety-second refuge reached from the free Today page mid-shift, and a
+     paywall over a refuge is not a paywall. floor (The Floor Book) is
+     authored content and stays paid, titled below.
+
+     A view that is not listed here is PAID the day it ships: a new room gets
+     a line here, or an entry in LIGHT_TITLE and LIGHT_LABEL, before it lands. */
+  var LIGHT_FREE_VIEWS = ['today', 'year', 'life', 'stats', 'vault', 'settings',
+                          'journal', 'search', 'clear', 'lineup', 'reset'];
 
   /* ======================================================================== */
 
@@ -199,8 +240,8 @@
         var L = w.LEVELS[lvl] || {};
         OOT.gate.paywall({
           what: (L.name || L.label || 'That rank') + ' is part of the subscription',
-          detail: 'Ranks I and II stay free forever: 3,061 questions and every study chapter ' +
-                  'that goes with them.'
+          detail: 'Régionale and Village stay free forever: 3,061 questions and every study ' +
+                  'chapter that goes with them.'
         });
         return;                       /* activeLevel unchanged; the pin stays clickable */
       }
@@ -324,20 +365,63 @@
 
     /* The spec itself. Four call sites including the print sheet and the quiz
        ticket, so wrapping this closes the routes a tab check would miss. */
+    /* A canon drink outside the free tiers. My Bar records carry no tier:
+       they are the venue's own list and never match. */
+    function lockedDrink(c) {
+      return !paid() && c && typeof c.tier === 'number' && !OOT.gate.allow('ledger', c.tier);
+    }
+    function lockedTicket(c, hideName) {
+      return '<div class="oot-locked-ticket">' +
+             '<p><b>' + (hideName ? 'This one' : esc(c.name)) + '</b></p>' +
+             '<p>Tier ' + c.tier + '. Specs from Tier 3 on are part of the ' +
+             'subscription; Tiers 1 and 2 stay free, all 33 of them.</p></div>';
+    }
+
     if (typeof w.ticketHTML === 'function') {
       var ticketHTML = w.ticketHTML;
       /* hideName is the blind-tasting mode: the quiz calls ticketHTML(c, true)
          to print a spec with the drink's name withheld, which is the whole
          question. Honour it, or the locked card gives away every answer. */
       w.ticketHTML = function (c, hideName) {
-        if (!paid() && c && typeof c.tier === 'number' && !OOT.gate.allow('ledger', c.tier)) {
-          return '<div class="oot-locked-ticket">' +
-                 '<p><b>' + (hideName ? 'This one' : esc(c.name)) + '</b></p>' +
-                 '<p>Tier ' + c.tier + '. Specs from Tier 3 on are part of the ' +
-                 'subscription; Tiers 1 and 2 stay free, all 33 of them.</p></div>';
-        }
+        if (lockedDrink(c)) return lockedTicket(c, hideName);
         return ticketHTML.apply(this, arguments);
       };
+    }
+
+    /* The Tools tab is free (see LEDGER_FREE_TABS), and three of its sheets
+       take "a drink" from the whole canon through toolDrink(): the batch sheet
+       prints every spec line scaled by the servings, which at 1 is the spec
+       itself, so a free visitor could read all 332 paid specs one batch at a
+       time through a tab the boundary says is free. Strength and Pour Cost
+       print totals only, but they are the same select over the same 365, so
+       the rule is applied to all three: a paid drink renders the locked card
+       in place of the sheet. The wing's targeted repaints (app.js) call these
+       by bare name, which resolves to the global we replace here. */
+    if (typeof w.toolDrink === 'function') {
+      ['batchOutHTML', 'costTicketHTML'].forEach(function (name) {
+        if (typeof w[name] !== 'function') return;
+        var orig = w[name];
+        w[name] = function () {
+          var c = null;
+          try { c = w.toolDrink(); } catch (e) {}
+          if (lockedDrink(c)) return lockedTicket(c);
+          return orig.apply(this, arguments);
+        };
+      });
+      if (typeof w.strengthHTML === 'function') {
+        var strengthHTML = w.strengthHTML;
+        w.strengthHTML = function () {
+          var c = null;
+          try { c = w.toolDrink(); } catch (e) {}
+          if (lockedDrink(c)) {
+            /* The panel and its heading are the wing's; only the estimate
+               is withheld. */
+            return '<div class="panel p5 col" style="gap:14px">' +
+                   '<h2 class="eyebrow">Strength &amp; dilution</h2>' + lockedTicket(c) + '</div>';
+          }
+          return strengthHTML.apply(this, arguments);
+        };
+      }
     }
 
     /* Tonight's Session must be taken as a pair: the deck builder AND the
@@ -418,7 +502,6 @@
 
   var LEDGER_LABEL = {
     practice: 'The drills and the Ticket Rail are part of the subscription',
-    tools:    'The tools are part of the subscription',
     flashcards: 'The full flashcard deck is part of the subscription',
     quiz:     'The full quiz is part of the subscription'
   };
@@ -523,7 +606,8 @@
 
   function TABLE_LABEL(r) {
     if (r.indexOf('/recipe/') === 0) return 'This recipe is part of the subscription';
-    if (r.indexOf('/technique') === 0) return 'The techniques are part of the subscription';
+    if (r.indexOf('/technique/') === 0) return 'The techniques are part of the subscription';
+    if (r.indexOf('/service/') === 0) return 'The service track is part of the subscription';
     return 'This is part of the subscription';
   }
 
@@ -550,8 +634,8 @@
            route still has something legible behind the dialog. */
         OOT.gate.paywall({
           what: LIGHT_LABEL[id] || 'This is part of the subscription',
-          detail: "Today's voice, the year and the goal ladder stay free forever, and " +
-                  'Settings and the Vault stay open at every tier.'
+          detail: "Today's voice, the year, the goal ladder and your journal stay free " +
+                  'forever, and Settings and the Vault stay open at every tier.'
         });
         return '<section class="oot-locked-view"><h2>' + esc(LIGHT_TITLE[id] || 'Locked') +
                '</h2><p>Part of the Outside Of Time subscription. ' +
@@ -586,15 +670,27 @@
     });
   }
 
+  /* Every gated view has a title and a label; journal, search, clear, lineup
+     and reset keep theirs so a future change to the free list above never
+     lands a room under a heading that just says Locked. */
   var LIGHT_TITLE = { library: 'The Library', journal: 'The Journal', body: 'The Practices',
-                      chart: 'The Chart', astro: 'The Sky', hall: 'The Study Hall',
-                      threads: 'The Threads', search: 'Search' };
+                      chart: 'The Chart', astro: 'The Sky', hall: 'The Year’s Readings',
+                      threads: 'The Threads', search: 'Search',
+                      reset: 'The Walk-In', floor: 'The Floor Book',
+                      clear: 'Clear Mornings', lineup: 'The Line-Up' };
   var LIGHT_LABEL = {
     library: 'The Library is part of the subscription',
     journal: 'The Journal is part of the subscription',
     body: 'The practices are part of the subscription',
     chart: 'The chart is part of the subscription',
-    astro: 'The sky readings are part of the subscription'
+    astro: 'The sky readings are part of the subscription',
+    hall: 'The year’s readings are part of the subscription',
+    threads: 'The threads are part of the subscription',
+    search: 'Search is part of the subscription',
+    reset: 'The Walk-In is part of the subscription',
+    floor: 'The Floor Book is part of the subscription',
+    clear: 'Clear Mornings is part of the subscription',
+    lineup: 'The Line-Up is part of the subscription'
   };
 
   /* -------------------------------------------------------------- boot --- */

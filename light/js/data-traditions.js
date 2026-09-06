@@ -138,7 +138,7 @@ var FL_TRADITIONS = [
 
   opening: [
     'Buddhism begins with a diagnosis rather than a doctrine. A man of the warrior class left his household, tried the severest asceticism available for six years, found it did not work, ate a meal, sat down under a tree, and afterwards described what he had understood as four true things about suffering: that it exists, that it has a cause, that the cause can cease, and that there is a path.',
-    'The Dhammapada is the most read text of the Pali canon and the best door into it: 423 verses of practical instruction, sharp and concrete, on anger, heedlessness, craving, and the discipline of one’s own mind. It is a small part of an enormous library (the Tripiṭaka, "three baskets", of monastic rule, discourse, and analysis) but almost everything essential is in it somewhere.',
+    'The Dhammapada is the most read text of the Pali canon and the best door into it: 423 verses of practical instruction, sharp and concrete, on anger, heedlessness, craving, and the discipline of one’s own mind. It is a small part of an enormous library, the Tripiṭaka, "three baskets", of monastic rule, discourse, and analysis, but almost everything essential is in it somewhere.',
     'Notice what the tradition does not require. There is no creator god at its centre, no soul in the sense the West means, and the Buddha is not a saviour but a physician who leaves you the prescription. The Kalama Sutta explicitly tells hearers not to accept a teaching on authority, on scripture, or on logic alone, but to test whether it leads to harm.'
   ],
 
@@ -194,7 +194,7 @@ var FL_TRADITIONS = [
 
   opening: [
     'Confucius spent his life trying to get a government job and failing. He wanted to demonstrate that a state run on moral example rather than force would outperform its neighbours, could not persuade any ruler to let him try, and died believing he had accomplished nothing. His students wrote down what he said, and two and a half thousand years later it is the operating system of a fifth of humanity.',
-    'The Analects is not a treatise. It is fragments (a question from a student, a remark on a walk, a comment on someone’s conduct) with no argument connecting them and no system on offer. Read straight through it can feel like eavesdropping. Read slowly, one saying at a time, a coherent picture emerges: that character is built by practice rather than declared, that ritual and courtesy are the forms through which decency becomes reliable, and that how you treat your family is the training ground for how you will treat everyone.',
+    'The Analects is not a treatise. It is fragments, a question from a student, a remark on a walk, a comment on someone’s conduct, with no argument connecting them and no system on offer. Read straight through it can feel like eavesdropping. Read slowly, one saying at a time, a coherent picture emerges: that character is built by practice rather than declared, that ritual and courtesy are the forms through which decency becomes reliable, and that how you treat your family is the training ground for how you will treat everyone.',
     'Whether it is a religion at all is genuinely disputed, including inside China. It has no creator god and says almost nothing about an afterlife: asked about serving the spirits, Confucius replied that if you cannot yet serve people, how can you serve spirits. But it has scripture, sages, ritual, and a doctrine of Heaven, and it has shaped more lives than most things that are certainly religions.'
   ],
 
@@ -306,7 +306,7 @@ var FL_TRADITIONS = [
 
   opening: [
     'Christianity is the claim that the God who made everything became a particular person, in a particular occupied province, was executed by the state, and rose. Everything else in it is commentary on that.',
-    'Its scripture is two libraries bound together. The Old Testament is the Hebrew Bible, received whole and read as pointing forward. The New is twenty-seven documents written within a lifetime or two of the events: four accounts of Jesus, a history of the movement’s first decades, letters (most of them occasional, addressed to specific quarrels in specific towns) and one apocalypse. It was written in the common Greek of the eastern Mediterranean, not a sacred language, which was itself a statement.',
+    'Its scripture is two libraries bound together. The Old Testament is the Hebrew Bible, received whole and read as pointing forward. The New is twenty-seven documents written within a lifetime or two of the events: four accounts of Jesus, a history of the movement’s first decades, letters, most of them occasional, addressed to specific quarrels in specific towns, and one apocalypse. It was written in the common Greek of the eastern Mediterranean, not a sacred language, which was itself a statement.',
     'The centre of gravity is the Sermon on the Mount and the parables, where the teaching is at its most demanding and least manageable: love your enemies, forgive without counting, the last will be first. Two thousand years of institutions have not domesticated those passages, and the tradition’s recurring reformers have almost always been people who went back and read them again.'
   ],
 
@@ -331,7 +331,7 @@ var FL_TRADITIONS = [
 
   branches: [
     ['Catholic', 'The largest, centred on Rome, with sacraments and apostolic succession as the connective tissue.'],
-    ['Orthodox', 'The Eastern churches (Greek, Russian, and others) with an ancient liturgy and a theology of transformation.'],
+    ['Orthodox', 'The Eastern churches, Greek, Russian, and others, with an ancient liturgy and a theology of transformation.'],
     ['Protestant', 'The Reformation traditions, holding scripture as final authority and grace as unmediated.'],
     ['Pentecostal', 'The newest and fastest-growing, centred on direct experience of the Spirit.']
   ],
@@ -371,7 +371,7 @@ var FL_TRADITIONS = [
     ['Raḥma', 'Mercy. The divine attribute named at the head of all but one surah, twice, in two different intensities.'],
     ['Islām', 'Submission: the same root as salām, peace. The peace is understood to follow from the submission.'],
     ['Ummah', 'The community of believers, cutting across tribe, nation and race by design.'],
-    ['Ṣalāh', 'The five daily prayers (dawn, midday, afternoon, sunset, night), which set the shape of the day.'],
+    ['Ṣalāh', 'The five daily prayers, dawn, midday, afternoon, sunset, night, which set the shape of the day.'],
     ['Zakāt', 'The obligatory annual share of accumulated wealth, normally a fortieth. A due, not a donation.'],
     ['Jihād', 'Struggle. Primarily the inner struggle against one’s own worse self; the martial sense is secondary and hedged with conditions.'],
     ['Sharīʿa', 'Literally the path to water. The whole way of life derived from Qur’an and sunna, interpreted through several schools.']
@@ -394,7 +394,7 @@ var FL_TRADITIONS = [
 
   practices: [
     ['The five prayers', 'At fixed times from dawn to night, facing Mecca, preceded by washing.'],
-    ['Ramadan', 'A lunar month of fasting from first light to sunset (no food, no drink) and of night prayer.'],
+    ['Ramadan', 'A lunar month of fasting from first light to sunset, no food, no drink, and of night prayer.'],
     ['Zakat', 'The annual share of wealth to those entitled to it.'],
     ['Hajj', 'The pilgrimage to Mecca, once in a lifetime for those able.'],
     ['Dhikr', 'Remembrance: repetition of the names of God, often on a strand of beads.']

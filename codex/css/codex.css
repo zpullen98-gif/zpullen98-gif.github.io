@@ -278,8 +278,11 @@ h1,h2,h3{font-family:'Cinzel',Georgia,serif}
 .opt.sel .key{font-size:17px}
 .opt.sel.picked{border-color:var(--gold);box-shadow:inset 0 0 0 1px rgba(201,162,39,.35)}
 .hall{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:12px}
-.medal{border:1px solid rgba(201,162,39,.18);padding:14px 10px;text-align:center;opacity:.42;background:rgba(0,0,0,.18)}
-.medal.on{opacity:1;border-color:var(--gold);box-shadow:inset 0 0 0 3px var(--bg2),inset 0 0 0 4px rgba(201,162,39,.25),0 4px 16px rgba(0,0,0,.4)}
+/* An unclaimed plate is dimmed by its border and its ink, never by opacity:
+   at 42% the description fell to about 2.5:1 against the plate, unreadable in
+   daylight. Parchment-2 on the plate clears 4.5:1 with room to spare. */
+.medal{border:1px dashed rgba(201,162,39,.35);padding:14px 10px;text-align:center;color:var(--parch2);background:rgba(0,0,0,.18)}
+.medal.on{color:var(--parch);border-style:solid;border-color:var(--gold);box-shadow:inset 0 0 0 3px var(--bg2),inset 0 0 0 4px rgba(201,162,39,.25),0 4px 16px rgba(0,0,0,.4)}
 .medal .mname{font-family:'Cinzel',serif;font-size:14px;font-weight:600;letter-spacing:.5px;margin-top:5px}
 .medal .mdesc{font-size:12.5px;opacity:.8;margin-top:3px;font-style:italic}
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;transition:.35s;
@@ -310,6 +313,11 @@ h1,h2,h3{font-family:'Cinzel',Georgia,serif}
 .vidrow:hover{background:rgba(201,162,39,.06)}
 .vtitle{font-weight:600;font-size:15.5px}
 .vwhy{font-size:14px;font-style:italic;opacity:.85;margin-top:1px}
+/* The chosen film, named. A row that pins one earns a slightly brighter left
+   edge so the eye can find the pinned rows while scrolling a long topic. */
+.vfilm{font-size:13px;margin-top:4px;opacity:.92}
+.vchan{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.2px;font-size:12px;color:var(--gold);margin-left:6px}
+.vidrow.pinned{border-left:2px solid rgba(201,162,39,.42);padding-left:8px}
 .watchlink{display:block;margin:10px 0 2px;background:none;border:1px solid var(--line);color:var(--gold-soft);
   font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.5px;font-size:14px;padding:7px 12px;cursor:pointer}
 .watchlink:hover{border-color:var(--gold);color:var(--gold-hi)}
@@ -456,6 +464,9 @@ input[type=date].sainput{font-family:'EB Garamond',Georgia,serif;color:var(--ink
 /* ------- Codex VIII: actionable dashboard + error reports ------- */
 .dashrow.actionable{cursor:pointer;transition:.12s}
 .dashrow.actionable:hover{background:rgba(201,162,39,.08)}
+/* keyboard doors: the rite steps and the dash rows are controls now */
+.dashrow.actionable:focus-visible,.rite:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.verdict:focus{outline:0}
 .dashprimer{background:none;border:none;color:var(--gold-soft);font-size:15px;cursor:pointer;padding:0 2px;line-height:1}
 .dashprimer:hover{color:var(--gold-hi)}
 .dashtag.actionable{cursor:pointer}

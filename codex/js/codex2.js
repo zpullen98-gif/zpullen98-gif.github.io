@@ -7,10 +7,20 @@ var ST=(function(){try{return JSON.parse(localStorage.getItem(stKey()))||{}}catc
 ST.q=ST.q||{}; ST.days=ST.days||{}; ST.best=ST.best||{}; ST.flags=ST.flags||[];
 function stSave(){try{localStorage.setItem(stKey(),JSON.stringify(ST))}catch(e){}}
 function qKey(q){return missKey(q);}
+/* A day is a LOCAL day. toISOString stamped tomorrow's date for anyone west of
+   Greenwich studying in the evening, so the streak and the 'answered today'
+   count reset at seven or eight in the evening on exactly the nights people
+   study. The profile layer (shared/oot-profiles.js dayKey) already counts
+   local days; the Codex's own keys must agree with it. Same YYYY-MM-DD shape,
+   so every stored key still reads. */
+function localDay(d){
+  const m=d.getMonth()+1, day=d.getDate();
+  return d.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(day<10?'0':'')+day;
+}
 function statRecord(q,ok){
   const r=ST.q[qKey(q)]=ST.q[qKey(q)]||{c:0,w:0,s:0};
   if(ok){r.c++;r.s++;}else{r.w++;r.s=0;}
-  const d=new Date().toISOString().slice(0,10);
+  const d=localDay(new Date());
   ST.days[d]=(ST.days[d]||0)+1; stSave();
 }
 function statOverride(q,toRight){
@@ -21,9 +31,9 @@ function statOverride(q,toRight){
 }
 function dayStreak(){
   let n=0; const one=864e5; let t=new Date();
-  for(;;){const k=t.toISOString().slice(0,10);
+  for(;;){const k=localDay(t);
     if(ST.days[k]){n++;t=new Date(t.getTime()-one);}
-    else{ if(n===0 && k===new Date().toISOString().slice(0,10)){t=new Date(t.getTime()-one);continue;} break;}
+    else{ if(n===0 && k===localDay(new Date())){t=new Date(t.getTime()-one);continue;} break;}
   } return n;
 }
 function catStats(){
@@ -72,22 +82,27 @@ next=function(){
   }
   _origNext();
 };
-/* ---- lightning per-question countdown ---- */
+/* ---- lightning per-question countdown ----
+   Wall time, like core's startTimer: a phone that sleeps on a question does
+   not get its thirty seconds back. */
 function lightArm(){
   if(S.qT){clearInterval(S.qT);S.qT=null;}
   if(S.view!=='quiz'||S.mode!=='lightning'||S.answered)return;
-  S.qRemain=30;
+  S.qRemain=30; S.qEndAt=Date.now()+30000;
   const bar=document.querySelector('.quizbar');
   if(bar&&!document.getElementById('qtimer')){
     bar.appendChild(el('<span class="timer" id="qtimer">0:30</span>'));
   }
-  S.qT=setInterval(function(){
-    S.qRemain--;
-    const t=document.getElementById('qtimer');
-    if(t){t.textContent=fmtTime(Math.max(0,S.qRemain));if(S.qRemain<=10)t.classList.add('low');}
-    if(S.qRemain<=0){clearInterval(S.qT);S.qT=null;skip();}
-  },1000);
+  S.qT=setInterval(lightTick,1000);
 }
+function lightTick(){
+  if(!S.qT)return;
+  S.qRemain=Math.max(0,Math.round((S.qEndAt-Date.now())/1000));
+  const t=document.getElementById('qtimer');
+  if(t){t.textContent=fmtTime(S.qRemain);if(S.qRemain<=10)t.classList.add('low');}
+  if(S.qRemain<=0){clearInterval(S.qT);S.qT=null;skip();}
+}
+document.addEventListener('visibilitychange',function(){ if(!document.hidden)lightTick(); });
 /* ---- render wrapper: new views + home/quiz decoration ---- */
 var _origRender=render;
 render=function(){
@@ -124,7 +139,7 @@ function decorateQuiz(){
 function decorateHome(){
   const answered=Object.values(ST.q).reduce((a,r)=>a+r.c+r.w,0);
   const correct=Object.values(ST.q).reduce((a,r)=>a+r.c,0);
-  const today=ST.days[new Date().toISOString().slice(0,10)]||0;
+  const today=ST.days[localDay(new Date())]||0;
   const hero=document.querySelector('.hero');
   if(hero&&answered){
     hero.appendChild(el('<div class="studyline">'+dayStreak()+'-day streak \u00b7 '+today+' answered today \u00b7 lifetime '+Math.round(100*correct/Math.max(1,answered))+'% on '+answered+' answers</div>'));

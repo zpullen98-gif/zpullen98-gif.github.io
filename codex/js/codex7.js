@@ -28,7 +28,7 @@ var LEVELS={
  certified:{key:'certified',label:"The Village Examination",short:'Village',
   bank:CERT_QUESTIONS,grapes:CERT_GRAPES,primers:CERT_PRIMERS,groups:CERT_GROUPS,
   mock:{n:45,secs:38*60},pass:0.6,
-  note:'Narrowing to a village means naming what you are given: forty-five questions in thirty-eight minutes, mixing multiple choice, matching and short answer: you must produce the answer, not pick it. The Codex mirrors that mix and grades typed answers by fuzzy match, with a self-grade override for when you know you were right.'}
+  note:'Narrowing to a village means naming what you are given: forty-five questions in thirty-eight minutes, mixing multiple choice and short answer: you must produce the answer, not pick it. The Codex mirrors that mix and grades typed answers by fuzzy match, with a self-grade override for when you know you were right.'}
 };
 if(typeof ADV_QUESTIONS!=='undefined')LEVELS.advanced={key:'advanced',label:"The Premier Cru Examination",short:'Premier Cru',
  bank:ADV_QUESTIONS,grapes:CERT_GRAPES.concat(typeof GRAPES_PLUS!=='undefined'?GRAPES_PLUS:[]),
@@ -68,7 +68,7 @@ function applyLevel(lvl,skipRender){
   S.mode=null;S.pool=[];S.idx=0;S.correct=0;S.results=[];S.answered=false;S.picked=null;
   S.saText='';S.saGraded=null;S.section=null;S.remain=MOCK_SECS;S.suddenDead=false;S._simN=null;
   S._mtKey=null;S._mtOrder=null;S._mtSel=null;S._selKey=null;S._selSet=null;
-  S.primerKey=null;S.vidFocus=null;S.fc=null;S.tt=null;S.cmp=null;S._oral=false;
+  S.primerKey=null;S.vidFocus=null;S.fc=null;S.tt=null;S.cmp=null;S._oral=false;S._again=null;
   MISS=[]; document.onkeydown=null;
   S.view='home';
   if(!skipRender)render();
@@ -112,11 +112,18 @@ simView=function(){
   return v;
 };
 
-/* ---- the Oral Gauntlet (Grand Cru mock): rapid short-answer, self-graded ---- */
+/* ---- the Oral Gauntlet (Grand Cru mock): rapid short-answer, self-graded ----
+   Drawn through stratMock's per-category quotas over the true short answers,
+   so the simulation copy ('draws proportionally from each section') is as true
+   here as at the written ranks. stratMock reads the QUESTIONS and MOCK_N
+   globals, so they are lent to it and restored. */
 function startGauntlet(n){
-  var pool=shuffle(QUESTIONS.filter(function(q){return q.sa&&!q.mt&&!q.sel;}));
-  n=n||LEVELS[activeLevel].mock.n;
-  pool=pool.slice(0,n);
+  var all=QUESTIONS, sa=all.filter(function(q){return q.sa&&!q.mt&&!q.sel;});
+  n=Math.min(n||LEVELS[activeLevel].mock.n,sa.length);
+  if(!sa.length)return;
+  var pool;
+  QUESTIONS=sa; MOCK_N=n;
+  try{ pool=stratMock(); } finally{ QUESTIONS=all; }
   if(!pool.length)return;
   S.mode='mock'; S._oral=true; S.pool=pool;
   MOCK_N=pool.length; MOCK_SECS=LEVELS[activeLevel].mock.secs;
@@ -226,6 +233,8 @@ decorateHome=function(){
     if(agg.n)sl.textContent=dayStreak()+'-day streak · lifetime '+Math.round(100*agg.c/Math.max(1,agg.n))+'% on '+agg.n+' '+L.short+' answers';
     else sl.remove();
   }
+  /* honours are a Village pursuit (achCheck below): the tile leaves the other ranks */
+  if(activeLevel!=='certified'){ var hallT=document.getElementById('t-hall'); if(hallT)hallT.remove(); }
   /* flagged tile counts only this level's bookmarks */
   var flag=document.getElementById('t-flag');
   if(flag){
@@ -531,6 +540,7 @@ function startClassQuiz(cty){
   if(!cty&&qs.length>60)qs=qs.slice(0,60);
   if(!qs.length)return;
   stopTimer(); S.mode='drill'; S.section='Classifications Quiz'+(cty?' · '+cty:'');
+  S._again=function(){startClassQuiz(cty);};   /* the results screen's Redrill rebuilds, not refilters */
   S.pool=qs; S.idx=0; S.correct=0; S.results=[]; resetQ(); S.view='quiz'; render();
 }
 

@@ -94,7 +94,7 @@ var SEQUENCES = [
       ['Choose one small thing', 30, 'One only, and small: a smooth service, decent tips, a calm room. Not health, not the people you love: the drill is for the shift, and one item is the whole discipline.'],
       ['Rehearse losing it', 60, 'Picture it plainly gone: the room slams, the tips are thin, the calm breaks. Now rehearse your first response: the breath, the sentence, the next task. They will be rude; it will get loud; none of it will be aimed at you.'],
       ['The return', 45, 'It has not happened. The shift is still whole and in front of you, and you have already met its worst hour once. Notice what you have tonight that the rehearsal just threatened.'],
-      ['Close', 15, 'One full breath. Done. Do not reopen it. The rehearsal works because it ends.']
+      ['Close', 15, 'One full breath. Done, do not reopen it. The rehearsal works because it ends.']
     ] },
   { id: 'sit', name: 'Sitting', mins: 20,
     note: 'Not a posture routine. The seat, the breath, and twenty minutes.',

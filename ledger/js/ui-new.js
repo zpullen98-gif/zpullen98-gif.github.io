@@ -2,7 +2,9 @@
 
 /* The nav uses the same three words as the home screen bands and as the other
    two wings: a bartender who learns one Outside Of Time app can read all of
-   them. Tools folded into Practise rather than standing alone, because a
+   them. The band word is Practise, the verb, the house grammar shared with the
+   Codex and the Table; the sub-tab "Practice & Tasting" is the noun and stays
+   spelt that way. Tools folded into Practise rather than standing alone, because a
    one-tab cluster is a tab wearing a hat, and My Bar moved beside the drills it
    feeds instead of hiding under a cluster of its own. */
 const NAV_CLUSTERS = [
@@ -16,12 +18,29 @@ NAV_CLUSTERS.forEach(([ck,,tabs]) => tabs.forEach(t => TAB_CLUSTER[t] = ck));
 
 function clusterOf(tab){ return TAB_CLUSTER[tab] || 'ledger'; }
 
+/* A tab the gate would bounce to the paywall. Fails open: no gate, no lock.
+   Used to MARK locked tabs and tiles (the locks file's own rule is mark, do
+   not hide) and to keep a cluster tap from landing on one. */
+function tabLocked(tab){
+  try{ return !!(window.OOT && OOT.gate && !OOT.gate.allow('ledger', tab)); }
+  catch(e){ return false; }
+}
+/* Where a cluster tap lands: the sub-tab last visited, else the first, and
+   for a free visitor the first one the gate allows, so the Practise cluster
+   is never a paywall with its free My Bar and Tools hidden behind it. */
+function clusterLanding(ck){
+  const tabs = NAV_CLUSTERS.find(([k]) => k===ck)[2];
+  const want = (state.lastSub && state.lastSub[ck]) || tabs[0];
+  if(!tabLocked(want)) return want;
+  return tabs.find(t => !tabLocked(t)) || want;
+}
+
 const NAV_ICONS = {
   ledger:'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4z"/><path d="M5 4a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h14"/><path d="M9 9h6M9 12.5h6"/></svg>',
   study:'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="13" height="15" rx="1.5"/><path d="M8 3h13v15"/><path d="M6.5 11h6M6.5 14.5h6"/></svg>',
   reference:'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 3 L17 3 L15 9 C14.5 10.6 13 11.4 13 13 L13 19 L11 19 L11 13 C11 11.4 9.5 10.6 9 9 Z"/><path d="M9 21h6M12 19v2M8.2 6h7.6"/></svg>',
   toolkit:'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3h6l-1 8a3.5 3.5 0 0 1-4 0z"/><path d="M10 4.5 L8 16.5 a4 2 0 0 0 8 0 L14 4.5"/><path d="M9.5 19.5h5"/></svg>',
-  search:'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6"/><path d="m15.5 15.5 5 5"/></svg>',
+  search:'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15.5 15.5 5 5"/></svg>',
 };
 
 function renderNav(){
@@ -32,10 +51,10 @@ function renderNav(){
   const subTabs = NAV_CLUSTERS.find(([ck]) => ck===activeCluster)[2];
   const subRow = subTabs.length > 1
     ? '<div class="subtabs">'+subTabs.map(k =>
-        '<button class="tab-btn'+(state.tab===k?' active':'')+'"'+(state.tab===k?' aria-current="page"':'')+' data-tab="'+k+'">'+TAB_LABEL[k]+'</button>').join('')+'</div>'
+        '<button class="tab-btn'+(state.tab===k?' active':'')+(tabLocked(k)?' oot-locked':'')+'"'+(state.tab===k?' aria-current="page"':'')+(tabLocked(k)?' aria-disabled="true"':'')+' data-tab="'+k+'">'+TAB_LABEL[k]+'</button>').join('')+'</div>'
     : '';
   document.getElementById('tabs').innerHTML =
-    '<div class="clusters">'+clusterRow+'<button class="cl-btn cl-search" data-search="1" title="Search ( / )">'+NAV_ICONS.search+'</button></div>'+subRow;
+    '<div class="clusters">'+clusterRow+'<button class="cl-btn cl-search" data-search="1" aria-label="Search" title="Search ( / )">'+NAV_ICONS.search+'</button></div>'+subRow;
 
   const b = document.getElementById('bnav');
   if(b) b.innerHTML = NAV_CLUSTERS.map(([ck,label]) =>
@@ -49,7 +68,7 @@ function renderNav(){
       const tabs = NAV_CLUSTERS.find(([ck]) => ck===state.sheet)[2];
       sh.innerHTML = '<div class="sheet-back" data-sheet-close="1"></div><div class="sheet-panel" role="dialog" aria-modal="true" aria-label="More sections">'
         + '<div class="eyebrow tc mb2">'+NAV_CLUSTERS.find(([ck])=>ck===state.sheet)[1]+'</div>'
-        + tabs.map(k => '<button class="sheet-btn'+(state.tab===k?' active':'')+'"'+(state.tab===k?' aria-current="page"':'')+' data-tab="'+k+'">'+TAB_LABEL[k]+'</button>').join('')
+        + tabs.map(k => '<button class="sheet-btn'+(state.tab===k?' active':'')+(tabLocked(k)?' oot-locked':'')+'"'+(state.tab===k?' aria-current="page"':'')+(tabLocked(k)?' aria-disabled="true"':'')+' data-tab="'+k+'">'+TAB_LABEL[k]+'</button>').join('')
         + '</div>';
       sh.classList.add('open');
     } else { sh.innerHTML=''; sh.classList.remove('open'); }
@@ -88,7 +107,7 @@ function applyRoute(){
     else if(tab==='na')      Object.assign(state.na, { view:'list', cat:'All', open:i, drill:false });
     else if(tab==='prep')    Object.assign(state.prep, { cat: PREPS[i].cat, open:i });
     else if(tab==='producers') Object.assign(state.prod, { cat:'All', open:i });
-    else if(tab==='notes')   state.noteOpen = STUDY[i].title;
+    else if(tab==='notes'){  state.noteOpen = STUDY[i].title; state.noteJump = true; }
     else if(tab==='service') Object.assign(state.svc, { dom: SERVICE_STUDY[i].key, rowOpen:null, refOpen:null });
     else if(tab==='mybar')   state.mybar.open = (progress.bar||[])[i] ? progress.bar[i].id : null;
   } else {
@@ -99,6 +118,9 @@ function applyRoute(){
     else if(tab==='na')      Object.assign(state.na, { open:null, drill:false });
     else if(tab==='prep')    state.prep.open = null;
     else if(tab==='producers') state.prod.open = null;
+    /* the two accordions that are not STUDY entries: a search hit for a
+       glossary term used to open Notes with the target collapsed at the bottom */
+    else if(tab==='notes' && (slug==='glossary' || slug==='plates')){ state.noteOpen = '__'+slug; state.noteJump = true; }
   }
   return true;
 }
@@ -111,7 +133,7 @@ function currentRoute(){
   else if(t==='na' && state.na.open!=null && NA_DRINKS[state.na.open]) slug = slugify(NA_DRINKS[state.na.open].name);
   else if(t==='prep' && state.prep.open!=null && PREPS[state.prep.open]) slug = slugify(PREPS[state.prep.open].name);
   else if(t==='producers' && state.prod.open!=null && PRODUCERS[state.prod.open]) slug = slugify(PRODUCERS[state.prod.open].name);
-  else if(t==='notes' && state.noteOpen && state.noteOpen !== '__glossary' && state.noteOpen !== '__plates') slug = slugify(state.noteOpen);
+  else if(t==='notes' && state.noteOpen) slug = state.noteOpen === '__glossary' ? 'glossary' : state.noteOpen === '__plates' ? 'plates' : slugify(state.noteOpen);
   else if(t==='service' && state.svc.dom) slug = slugify(state.svc.dom);
   else if(t==='mybar' && state.mybar.open){
     const b = (progress.bar||[]).find(x => x.id === state.mybar.open);
@@ -143,9 +165,9 @@ function buildSearchIndex(){
     body:(p.cat+' '+(p.bar||'')).toLowerCase(), h:'#/producers/'+slugify(p.name) }));
   STUDY.forEach(n => ix.push({ t:n.title, s:'Study note', body:'', h:'#/notes/'+slugify(n.title) }));
   if(typeof GLOSSARY !== 'undefined') GLOSSARY.forEach(g =>
-    ix.push({ t:g.term, s:'Glossary', body:g.def.toLowerCase(), h:'#/notes' }));
+    ix.push({ t:g.term, s:'Glossary', body:g.def.toLowerCase(), h:'#/notes/glossary' }));
   PLATES.forEach(p => ix.push({ t:p.title.replace(/^Plate [IVX]+ · /,''), s:'Technique plate',
-    body:p.caption.toLowerCase(), h:'#/notes' }));
+    body:p.caption.toLowerCase(), h:'#/notes/plates' }));
   if(typeof SERVICE_REF !== 'undefined') SERVICE_REF.forEach(x =>
     ix.push({ t:x.name, s:x.cat, body:(x.note+' '+x.facts.map(f=>f.join(' ')).join(' ')).toLowerCase(),
       h:'#/service/'+slugify(x.dom) }));
@@ -267,9 +289,13 @@ function renderService(){
       }).join('')
     : '';
   return '<div class="col">'
-    + '<nav class="tabs" style="margin-bottom:4px">'+chips+'</nav>'
+    + '<nav class="tabs" aria-label="Service domains" style="margin-bottom:4px">'+chips+'</nav>'
     + '<div class="panel p4"><div class="eyebrow mb1">'+esc(sec.title)+'</div>'
-    + '<div class="small dim lh">The half of the job that isn’t a cocktail. Most bartenders pour more of this than they ever shake, and it is where a trail shift is actually won or lost.</div></div>'
+    + '<div class="small dim lh">The half of the job that isn’t a cocktail. Most bartenders pour more of this than they ever shake, and it is where a trail shift is actually won or lost.</div>'
+    + '<div class="tiny dim lh mt1">Written for US service: statutes vary by state, and nothing here is legal advice.</div></div>'
+    + (sec.key === 'law'
+        ? '<div class="tiny dim lh" style="padding:0 4px">These rows describe US law as it generally stands. The statute, the BAC limit and the certification that count are your state\'s, and this is training, not legal advice.</div>'
+        : '')
     + '<div class="col-sm">'+rows+'</div>'
     + refHTML
     + '</div>';
@@ -318,7 +344,7 @@ function platesHTML(){
   const body = isOpen
     ? '<div class="accordion-body"><div class="plate-grid">'+PLATES.map(plateFigure).join('')+'</div></div>' : '';
   return '<div class="panel" style="padding:0 16px">'
-    + '<button class="accordion-btn'+(isOpen?' open':'')+'" aria-expanded="'+(isOpen?'true':'false')+'" data-act="note-open" data-t="__plates">'
+    + '<button class="accordion-btn'+(isOpen?' open':'')+'" aria-expanded="'+(isOpen?'true':'false')+'" data-act="note-open" data-t="__plates" data-open="'+noteOpenMark(isOpen)+'">'
     + '<span>Technique Plates <span class="tiny dim">· '+PLATES.length+' figures</span></span>'
     + '<span style="color:var(--brass)">'+(isOpen?'−':'+')+'</span></button>'+body+'</div>';
 }
@@ -540,9 +566,12 @@ function dataToolHTML(){
   return '<div class="col">'
     + '<div class="panel p5 col" style="gap:12px">'
     + '<div class="eyebrow">Back up the ledger</div>'
-    + '<div class="small dim lh">Everything you\'ve earned (mastery records, quiz history, tasting notes, practice logs, your shelf) lives in this browser and goes nowhere else. Export a copy now and then; paper burns and browsers forget.</div>'
+    + '<div class="small dim lh">Everything you\'ve earned (mastery records, quiz history, tasting notes, practice logs, your shelf) lives in this browser. When you are signed in, your round scores are shared with your venue. Export a copy now and then; paper burns and browsers forget.</div>'
     + '<div class="tiny font-tix dim">'+progressSummaryHTML()+'</div>'
-    + '<div class="row"><button class="btn btn-brass" data-act="data-export">Export my records</button></div>'
+    + '<div class="row" style="gap:8px"><button class="btn btn-brass" data-act="data-export">Export my records</button>'
+    + (canShareBackup() ? '<button class="btn btn-ghost" data-act="data-share">Share the backup…</button>' : '')
+    + '<button class="chip" data-act="data-copy">Copy backup to clipboard</button></div>'
+    + '<div class="tiny dim" id="data-export-status" aria-live="polite"></div>'
     + '</div>'
     + '<div class="panel p5 col" style="gap:12px">'
     + '<div class="eyebrow">Restore from a backup</div>'
@@ -569,31 +598,78 @@ function storageWarningHTML(){
     + 'Export a backup NOW (Tools \u2192 My Data), then check free space and site permissions.</div></div>';
 }
 
-function dataExport(){
+function backupPayload(){
   const payload = {
     app: 'bartenders-ledger', version: 1,
     exported: new Date().toISOString(),
     progress: progress,
   };
+  /* whose file this is: a manager collecting staff backups on one day was
+     getting identically named, indistinguishable files */
+  try{
+    const who = (window.OOT && OOT.profiles && OOT.profiles.current) ? OOT.profiles.current() : null;
+    if(who && who.name) payload.profile = { name: String(who.name) };
+  }catch(e){}
+  return payload;
+}
+function backupFilename(payload){
+  const d = new Date();
+  const who = (payload.profile && payload.profile.name) ? '-' + slugify(payload.profile.name) : '';
+  return 'bartenders-ledger-backup' + who + '-' + d.getFullYear() + '-'
+    + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0') + '.json';
+}
+function exportStatus(msg){
+  const el = document.getElementById('data-export-status');
+  if(el) el.textContent = msg;
+  if(typeof say === 'function') say(msg);
+}
+function dataExport(){
+  const payload = backupPayload();
   const blob = new Blob([JSON.stringify(payload, null, 1)], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  const d = new Date();
-  a.download = 'bartenders-ledger-backup-' + d.getFullYear() + '-'
-    + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0') + '.json';
+  a.download = backupFilename(payload);
   document.body.appendChild(a);
   a.click();
   setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+/* The phone path. An installed app's share sheet saves to Files, mails the
+   backup or drops it in the venue's chat, where an <a download> can open a
+   blank sheet instead. Offered only where the browser says it can share a
+   File; the download stays as the desktop path, and the clipboard is the
+   fallback that works everywhere. */
+function canShareBackup(){
+  try{
+    if(!navigator.canShare || typeof File !== 'function') return false;
+    return navigator.canShare({ files: [new File(['{}'], 'probe.json', { type: 'application/json' })] });
+  }catch(e){ return false; }
+}
+function dataShare(){
+  const payload = backupPayload();
+  const file = new File([JSON.stringify(payload, null, 1)], backupFilename(payload), { type: 'application/json' });
+  navigator.share({ files: [file], title: 'Bartender\'s Ledger backup' })
+    .then(() => exportStatus('Shared.'))
+    .catch(e => { if(!e || e.name !== 'AbortError') dataExport(); });
+}
+function dataCopy(){
+  const text = JSON.stringify(backupPayload());
+  const done = () => exportStatus('Copied. Paste it into a note or a message and keep it somewhere safe.');
+  const fail = () => exportStatus('The browser would not hand over the clipboard. Use Export instead.');
+  try{
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fail);
+    else fail();
+  }catch(e){ fail(); }
 }
 
 function dataImport(file){
   const status = msg => { const el = document.getElementById('data-import-status'); if(el) el.textContent = msg; };
   const reader = new FileReader();
   reader.onload = () => {
-    let p;
+    let p, who = '', barSkipped = 0;
     try{
       const parsed = JSON.parse(reader.result);
       p = parsed && parsed.app === 'bartenders-ledger' ? parsed.progress : parsed;
+      if(parsed && parsed.profile && parsed.profile.name) who = ' for ' + String(parsed.profile.name);
       if(!p || typeof p !== 'object' || typeof p.cards !== 'object') throw new Error('bad shape');
       /* sanitize EVERY store before either path touches it: the oldest merge
          clauses call .forEach on these, and a hand-edited or truncated backup
@@ -612,9 +688,18 @@ function dataImport(file){
       if(p.practice) Object.keys(p.practice).forEach(k => {
         if(!Array.isArray(p.practice[k])) delete p.practice[k];
       });
+      /* every bar record to one shape before the merge reads a single field:
+         the standalone app's dash placeholder, a numeric name, a string spec */
+      if(p.bar){ const nb = normalizeBarRecords(p.bar); p.bar = nb.bar; barSkipped = nb.skipped; }
     }catch(e){ status('That file isn\'t a ledger backup.'); return; }
     const theirs = Object.keys(p.cards || {}).length;
-    const merge = confirm('Backup found: ' + theirs + ' card records.\n\nOK = MERGE into your current records (keeps the better of each).\nCancel = choose Replace instead.');
+    /* name the record the merge lands in: on a shared device a backup for
+       Devon merged into Maria's record is the one mistake a backup cannot undo */
+    const target = (() => {
+      try{ const cur = window.OOT && OOT.profiles && OOT.profiles.current(); return cur && cur.name ? cur.name + '\'s record' : 'the unnamed record'; }
+      catch(e){ return 'the unnamed record'; }
+    })();
+    const merge = confirm('Backup' + who + ': ' + theirs + ' card records.\n\nMerge this backup into ' + target + ' on this device?\n\nOK = merge (keeps the better of each).\nCancel = choose Replace instead.');
     const byTs = (a,b) => (a.ts || 0) - (b.ts || 0);
     if(merge){
       Object.entries(p.cards || {}).forEach(([k, s]) => {
@@ -780,7 +865,8 @@ function dataImport(file){
     saveProgress();
     render();
     const el = document.getElementById('data-import-status');
-    if(el) el.textContent = merge ? 'Merged. The ledger remembers.' : 'Restored from backup.';
+    if(el) el.textContent = (merge ? 'Merged. The ledger remembers.' : 'Restored from backup.')
+      + (barSkipped ? ' ' + barSkipped + ' My Bar record' + (barSkipped===1 ? '' : 's') + ' could not be read and ' + (barSkipped===1 ? 'was' : 'were') + ' skipped.' : '');
   };
   reader.onerror = () => status('Could not read that file.');
   reader.readAsText(file);

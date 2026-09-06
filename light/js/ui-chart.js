@@ -7,8 +7,8 @@
    and override it, rather than being handed a confident wrong wheel.
 
    Birth details are personal data. They live in FL.prefs.birth under the one
-   localStorage key, are covered by the export, and are sent nowhere: the
-   result logger records scores, never these. */
+   localStorage key, are covered by the export, and are sent nowhere, there is
+   nowhere to send them. */
 
 var chartResult = null, chartError = null, chartBusy = false;
 
@@ -188,7 +188,7 @@ FL_VIEWS.chart = {
 
     return '<a class="keep" style="margin-bottom:20px" href="#/astro">← Astrology</a>' +
       '<div class="kick">Computed on this device</div><h1>Your chart</h1>' +
-      '<p class="note">Real positions for the ten bodies, the Ascendant and Midheaven, the house cusps and the aspects: worked out here. Your birth details never leave this device.</p>' +
+      '<p class="note">Real positions for the ten bodies, the Ascendant and Midheaven, the house cusps and the aspects, worked out here and kept here; if you are signed in, only a count of mornings and your streak is recorded.</p>' +
       form + body;
   },
 

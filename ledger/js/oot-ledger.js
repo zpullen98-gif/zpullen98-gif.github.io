@@ -36,7 +36,20 @@
       var id = b.getAttribute('data-oot-step');
       var step = FIRST_PATH.filter(function (s) { return s.id === id; })[0];
       OOT.profiles.markPathStep('ledger', id);
-      if (step && step.go && typeof state !== 'undefined') { state.tab = step.go; }
+      if (step && typeof state !== 'undefined') {
+        if (step.go) state.tab = step.go;
+        /* the optional deep links: a step lands on the thing its title
+           promises, not at the tab door. "Shake, stir, build" opens the
+           technique note; "Your first ten cards" deals those ten cards. */
+        if (step.open) { state.noteOpen = step.open; state.noteJump = true; }
+        if (step.deal === 'first-ten' && typeof allDrinks === 'function' && typeof prepCard === 'function') {
+          var deck = allDrinks().filter(function (d) { return d.src === 'Cocktails' && d.tier === 1; }).slice(0, 10);
+          if (deck.length) {
+            Object.assign(state.fc, { stage: 'run', mode: 'name2spec', deck: deck, idx: 0, right: 0, wrong: 0, missed: [] });
+            prepCard();
+          }
+        }
+      }
       render();
     });
   }

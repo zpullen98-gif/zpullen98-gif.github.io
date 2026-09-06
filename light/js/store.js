@@ -57,7 +57,7 @@ var FL = {
   prefs: {}          // theme, track, house system, coordinates, and so on
 };
 
-/* === date keys ===
+/* --- date keys ---
    Always local, never UTC. `toISOString()` is the obvious way to build these and
    it is wrong: east of Greenwich it rolls the date over before local midnight, so
    a 9pm entry lands on tomorrow and breaks the streak walk. */

@@ -52,7 +52,7 @@ function renderHome(){
     ]]
   ];
   const tileGrid = (rows) => '<div class="card-grid">'
-    + rows.map(([k,t,d]) => '<button class="panel click p4" data-act="go" data-tab="'+k+'">'
+    + rows.map(([k,t,d]) => '<button class="panel click p4'+(tabLocked(k)?' oot-locked':'')+'" data-act="go" data-tab="'+k+'"'+(tabLocked(k)?' aria-disabled="true"':'')+'>'
       + '<div class="bold brass2">'+t+'</div><div class="small dim mt1 lh">'+d+'</div></button>').join('')
     + '</div>';
   const OH = (window.OOT && OOT.home) || null;
@@ -91,7 +91,7 @@ function renderHome(){
       + '<div class="small dim lh" style="max-width:520px"><span class="brass2">Pour tonight’s session</span> above is the whole routine: '
       + 'a handful of cards in canon order, a ten-question round, then a drill you do with your hands. '
       + 'Ten minutes. Come back tomorrow and it deals what you’re about to forget.</div>'
-      + '<div class="tiny dim lh" style="max-width:520px">Your records live in this browser and go nowhere else. '
+      + '<div class="tiny dim lh" style="max-width:520px">Your records live in this browser. When you are signed in, your round scores are shared with your venue. '
       + 'Back it up now and then from Tools → My Data.</div>'
       + '</div>'
       + '<div class="panel p4 col-sm">'
@@ -118,7 +118,7 @@ function renderHome(){
     + '<section class="oot-sec"><div class="oot-sec-head"><h3>Record</h3><span>What you have done, and where it lives</span></div>'
     + '<div class="panel p5"><div class="eyebrow mb2">Your standing at the bar</div>'
     + '<div class="stat-grid">'
-    + '<div><div class="stat-num">'+mastered+'<span class="small dim">/'+totalCards+'</span></div><div class="tiny dim mt1">specs mastered</div></div>'
+    + '<div><div class="stat-num">'+mastered+'<span class="small dim">/'+totalCards+'</span></div><div class="tiny dim mt1">mastered, including self-graded cards</div></div>'
     + '<div><div class="stat-num">'+studied+'</div><div class="tiny dim mt1">cards drilled</div></div>'
     + '<div><div class="stat-num"'+(overdue?' style="color:var(--oxblood-text)"':'')+'>'+overdue+'</div><div class="tiny dim mt1">reviews overdue</div></div>'
     + '</div>'
@@ -675,11 +675,16 @@ function dealerAxes(c){
   const lean = /liqueur|aperitivo|amaro|sparkling/i.test(c.spirit || '') ? null
     : Math.abs(bal.sweet - bal.sour) >= 0.25
     ? (bal.sweet > bal.sour ? 'sweet' : 'dry') : null;
-  return { spirit: c.spirit, band: strengthBand(e.abvServed).key, lean: lean, fam: c.family, abv: e.abvServed };
+  return { spirit: c.spirit, band: strengthBand(e.abvServed).key, lean: lean, fam: c.family, abv: e.abvServed, alcOz: e.alcOz };
 }
 let DEALER_POOL = null;
+/* A drink with no computed alcohol (Lava Flow's colada base carries no
+   volume, the zero-proof shelf) has no strength to ask for, and a drink whose
+   spirit is "Any" (Clarified Milk Punch) would prompt "Something with any".
+   Neither is dealt. tools/check-abv.mjs asserts this over the live canon. */
 function dealerPool(){
-  if(!DEALER_POOL) DEALER_POOL = COCKTAILS.map(c => ({ c: c, ax: dealerAxes(c) })).filter(x => x.ax);
+  if(!DEALER_POOL) DEALER_POOL = COCKTAILS.map(c => ({ c: c, ax: dealerAxes(c) }))
+    .filter(x => x.ax && x.ax.alcOz > 0 && x.c.spirit !== 'Any');
   return DEALER_POOL;
 }
 const DEALER_BAND_PHRASE = {
@@ -959,18 +964,26 @@ function glossaryHTML(){
   const body = isOpen ? '<div class="accordion-body"><div class="gloss-grid">' + GLOSSARY.map(g =>
     '<div><div class="small bold brass2">'+esc(g.term)+'</div><div class="small dim lh">'+esc(g.def)+'</div></div>').join('') + '</div></div>' : '';
   return '<div class="panel" style="padding:0 16px">'
-    + '<button class="accordion-btn'+(isOpen?' open':'')+'" aria-expanded="'+(isOpen?'true':'false')+'" data-act="note-open" data-t="__glossary">'
+    + '<button class="accordion-btn'+(isOpen?' open':'')+'" aria-expanded="'+(isOpen?'true':'false')+'" data-act="note-open" data-t="__glossary" data-open="'+noteOpenMark(isOpen)+'">'
     + '<span>Glossary of the Craft <span class="tiny dim">· '+GLOSSARY.length+' terms</span></span><span style="color:var(--brass)">'+(isOpen?'−':'+')+'</span></button>'+body+'</div>';
 }
+/* data-open="1" is what render() scrolls into sight. Only the accordion the
+   reader JUST opened (a search hit, a deep link, a tap) earns it: the
+   default-open first note must not drag every plain visit down the page. */
+function noteOpenMark(isOpen){ return (isOpen && state.noteJump) ? '1' : '0'; }
 function renderNotes(){
-  return '<div class="col-sm">' + videoSettingsHTML() + STUDY.map(sec => {
+  /* the notes first and the video settings last: a reader arriving from the
+     induction or a search hit should meet the note, not a settings panel */
+  const html = '<div class="col-sm">' + STUDY.map(sec => {
     const isOpen = state.noteOpen === sec.title;
     const body = isOpen ? '<div class="accordion-body">' + sec.rows.map(([h,p]) =>
       '<div><div class="small bold brass2">'+esc(h)+'</div><div class="small dim lh">'+esc(p)+'</div></div>').join('') + '</div>' : '';
     return '<div class="panel" style="padding:0 16px">'
-      + '<button class="accordion-btn'+(isOpen?' open':'')+'" aria-expanded="'+(isOpen?'true':'false')+'" data-act="note-open" data-t="'+esc(sec.title)+'">'
+      + '<button class="accordion-btn'+(isOpen?' open':'')+'" aria-expanded="'+(isOpen?'true':'false')+'" data-act="note-open" data-t="'+esc(sec.title)+'" data-open="'+noteOpenMark(isOpen)+'">'
       + '<span>'+esc(sec.title)+'</span><span style="color:var(--brass)">'+(isOpen?'−':'+')+'</span></button>'+body+'</div>';
-  }).join('') + platesHTML() + glossaryHTML() + '</div>';
+  }).join('') + platesHTML() + glossaryHTML() + videoSettingsHTML() + '</div>';
+  state.noteJump = false;
+  return html;
 }
 
 function renderRiffs(){

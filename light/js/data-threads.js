@@ -36,7 +36,7 @@ var FL_THREADS = [
 { id: 'suffering',
   title: 'What suffering is for',
   question: 'Is pain meaningful, or only real?',
-  intro: 'Here the traditions genuinely part. Every one of them acknowledges that living hurts. What they say next (whether the hurt is instructive, illusory, deserved, redemptive, or simply the price of being attached to a world that moves) differs so much that the answers cannot all be true.',
+  intro: 'Here the traditions genuinely part. Every one of them acknowledges that living hurts. What they say next, whether the hurt is instructive, illusory, deserved, redemptive, or simply the price of being attached to a world that moves, differs so much that the answers cannot all be true.',
   voices: [
     { t: 'buddhist', text: 'There is no fire like passion, no grip like hatred, no net like delusion, no river like craving.', cite: 'Dhammapada 251' },
     { t: 'jewish', text: 'Though he slay me, yet will I trust in him.', cite: 'Job 13:15' },
@@ -46,7 +46,7 @@ var FL_THREADS = [
     { t: 'taoist', text: 'Under heaven nothing is more soft and yielding than water. Yet for attacking the solid and strong, nothing is better.', cite: 'Tao Te Ching 78' },
     { t: 'confucian', text: 'The gem cannot be polished without friction, nor a person perfected without trials.', cite: 'Chinese proverb, in the Confucian tradition' }
   ],
-  close: 'Job is the honest one, and the reason his book is in the canon at all. Three friends arrive to explain his suffering with the standard theology (you must have deserved it) and the book\'s verdict is that they are wrong and have spoken falsely about God. No explanation is ever given to Job. He is shown the wild ass and the storehouses of snow, and that is the answer. Any tradition that claims to have solved this should be read against that book.'
+  close: 'Job is the honest one, and the reason his book is in the canon at all. Three friends arrive to explain his suffering with the standard theology, you must have deserved it, and the book\'s verdict is that they are wrong and have spoken falsely about God. No explanation is ever given to Job. He is shown the wild ass and the storehouses of snow, and that is the answer. Any tradition that claims to have solved this should be read against that book.'
 },
 
 { id: 'death',

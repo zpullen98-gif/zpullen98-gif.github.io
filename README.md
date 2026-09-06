@@ -11,8 +11,8 @@ It installs as a single app with one icon, and all five wings live inside it.
 |---|---|
 | **The Sommelier's Codex** | Four examinations, from Régionale to Grand Cru. 4,357 questions, exam simulations, flashcards, deductive tasting and the Terroir Atlas. |
 | **The Bartender's Ledger** | 365 cocktails drilled until they are yours: the families, the Ticket Rail, the prep room and the tools. |
-| **The World Table** | A culinary field guide 1,710 recipes deep, with a 479-term chef's lexicon and a ten-semester path of study. Fermentation, curing, stocks, dumplings, offal and a vegetable-led chapter, plus the world's great cuisines at proper depth. |
-| **First Light** | A year of mornings. Reflection, practices, and a wellness track built for people who work nights. |
+| **The World Table** | A culinary field guide 1,844 recipes deep, with a 479-term chef's lexicon and a ten-semester path of study. Fermentation, curing, stocks, dumplings, offal and a vegetable-led chapter, plus the world's great cuisines at proper depth. |
+| **First Light** | Two years of mornings, one a day: the Philosophers, and the Makers who built something and said something usable about the building. Every line checked against its source. Reflection, breath, practices, and a wellness track built for people who work nights. |
 | **Calendar For Life** | An illuminated almanac of the festivals worth flying for. |
 
 ## Installing it
@@ -37,8 +37,9 @@ a recipe gets Outside Of Time Hospitality, not a World Table that happens to be 
 
 Opening a wing stores that wing as you read it, so the app fills in offline as it gets
 used. To get everything at once there is a button on the home page, under *Free, all of
-it*: **Make every wing available offline**. It is about 50 MB and is worth doing on wi-fi
-before a trip.
+it*: **Make every wing available offline**. It is about 20 MB and is worth doing on wi-fi
+before a trip. Two things stay online-only: First Light's library books are fetched the first
+time you open each one, and the practice films need YouTube.
 
 ## Your work stays yours
 

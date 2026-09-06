@@ -118,9 +118,10 @@ function ticketHTML(c, hideName){
     + '<div class="tc"><div class="tix-label">The Bartender\'s Ledger · Drink Ticket</div>'
     + '<div class="tix-name">'+(hideName ? '- ? -' : esc(c.name.toUpperCase()))+'</div></div>'
     + '<div class="tix-rule"></div>' + specLines + '<div class="tix-rule"></div>'
-    + '<div><span class="tix-label">Method </span>'+esc(c.method)+'</div>'
-    + '<div><span class="tix-label">Glass </span>'+esc(c.glass)+'</div>'
-    + '<div><span class="tix-label">Garnish </span>'+esc(c.garnish)+'</div>'
+    /* an empty field prints the dash HERE, so no record has to carry one */
+    + '<div><span class="tix-label">Method </span>'+esc(c.method || '-')+'</div>'
+    + '<div><span class="tix-label">Glass </span>'+esc(c.glass || '-')+'</div>'
+    + '<div><span class="tix-label">Garnish </span>'+esc(c.garnish || '-')+'</div>'
     + bal + note + '</div></div>';
 }
 const idxOf = (name) => COCKTAILS.findIndex(c => c.name === name);
@@ -140,6 +141,12 @@ function classifyLine(l){
   if(/simple|sugar|honey|orgeat|agave|syrup|cura|cointreau|liqueur|midori|maraschino|chartreuse|cacao|dictine|violette|mûre|falernum|grenadine|cordial|coconut|amaretto|triple sec|grand marnier|drambuie|crème de|creme de|cassis|schnapps|st-?germain|cherry heering|galliano|frangelico|limoncello|advocaat|chambord|midori|kahl|baileys|irish cream|sambuca|licor 43|velvet falernum|allspice dram|pimm/.test(s)) return 'sweet';
   if(/\bcream\b/.test(s)) return 'texture';
   if(/juice|lemon|lime|grapefruit|cranberry|pineapple|espresso/.test(s)) return 'sour';
+  /* non-alcoholic bulk that is neither mixer, sour nor sweet: water, purées,
+     shrubs, brines, cold coffee and tea. Falling through to 'strong' had
+     Pour Cost billing a Bellini's peach purée and a Pastis's five ounces of
+     water at the spirit rate. balanceOf drops this bucket entirely. An
+     infused spirit ("tea-infused gin") is still the spirit. */
+  if(!/infus/.test(s) && /\bwater\b|pur[eé]e|shrub|brine|coffee|\btea\b|juice|syrup|nectar|\bice\b/.test(s)) return 'na';
   return 'strong';
 }
 function lineOz(l){
@@ -186,7 +193,7 @@ function balanceOf(c){
   c.spec.forEach(l => {
     specUnits(l).forEach(u => {
       const k = classifyLine(u.text);
-      if(k === 'aromatic' || k === 'texture') return;
+      if(k === 'aromatic' || k === 'texture' || k === 'na') return;
       b[k] += u.oz;
       lines.push({ k:k, oz:u.oz });
     });

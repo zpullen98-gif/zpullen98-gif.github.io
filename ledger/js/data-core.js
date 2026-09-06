@@ -99,7 +99,7 @@ const COCKTAILS = [
   { name:"Paper Plane", tier:2, family:"Sour", spirit:"Whiskey",
     spec:["3/4 oz bourbon","3/4 oz Aperol","3/4 oz Amaro Nonino","3/4 oz lemon juice"],
     method:"Shake, double strain up", glass:"Coupe", garnish:"None (or paper plane clip)",
-    note:"New York, 2008. The equal-parts modern sour, and the easiest of them to remember." },
+    note:"New York, 2007. The equal-parts modern sour, and the easiest of them to remember." },
   { name:"Last Word", tier:2, family:"Sour", spirit:"Gin",
     spec:["3/4 oz gin","3/4 oz green Chartreuse","3/4 oz maraschino","3/4 oz lime juice"],
     method:"Shake, double strain up", glass:"Coupe", garnish:"Brandied cherry (optional)",

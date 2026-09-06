@@ -3,7 +3,7 @@
    BY HEART: Epictetus's instruction was to keep the doctrines procheiron,
    'ready to hand', which means memorized, not bookmarked. Each kept voice can
    be rehearsed through fading stages: whole, every third word gone, first
-   letters only, then just the source. Familiarity is a BAND, not a score (
+   letters only, then just the source. Familiarity is a BAND, not a score -
    new, turning over, by heart, and it only ever moves because the reader
    says so. Nothing is tested, timed, or tallied. */
 
@@ -46,7 +46,7 @@ FL_ACTS.rxBand = function (el) {
   if (band > 0) FL.byheart[vaultRx.key] = band;
   else delete FL.byheart[vaultRx.key];
   flSave();
-  announce(band === 2 ? 'By heart. It goes with you now.' : band === 1 ? 'Turning over. It is getting closer.' : 'Marked new again.');
+  announce(band === 2 ? 'By heart. It goes with you now.' : band === 1 ? 'Turning over, it is getting closer.' : 'Marked new again.');
   vaultRx = null;
   render();
 };
@@ -64,7 +64,7 @@ FL_VIEWS.vault = {
   label: 'Vault',
   title: 'The Vault',
   render: function () {
-    var prefix = (FL.prefs.track || 'philosophers') + ':';
+    var prefix = flActiveTrack().id + ':';
     var keys = Object.keys(FL.kept).filter(function (k) { return k.indexOf(prefix) === 0; });
 
     /* Keys arrive in insertion order, which is the order they were kept. Sorting by

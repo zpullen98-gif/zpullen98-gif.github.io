@@ -124,8 +124,8 @@ function jFlush() {
   /* DOM first, pending map second: the order is load-bearing. A same-ref
      field back in the DOM can only hold a STALE re-rendered copy (any input
      on a newer element replaces the map entry with that element), so the map
-     entry is always at least as fresh and must win. The old order (clear
-     clear the timers, then sweep the DOM, destroyed the only copy of anything
+     entry is always at least as fresh and must win. The old order, clear
+     the timers, then sweep the DOM, destroyed the only copy of anything
      typed within 600ms of a navigation: the exact loss this file exists to
      prevent. */
   var wrote = false;

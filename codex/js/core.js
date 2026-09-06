@@ -146,8 +146,11 @@ function matchSA(q, ans){
     // input is a whole-word core of the accept phrase (must cover most of it)
     const aw=a.split(' ').length, nw=na.split(' ').length;
     if(a.length>=5 && !negatedAgainst(a,na) && aw>=Math.max(1,Math.ceil(nw*0.6)) && new RegExp('(^| )'+escRe(a)+'( |$)').test(na)) return true;
-    // letter-bearing substring fallback (handles run-together like "dyquem")
-    if(na.length>=5 && !negatedAgainst(a,na) && /[a-z]/.test(na) && (a.includes(na) || (na.includes(a)&&a.length>=5&&aw>=Math.max(1,Math.ceil(nw*0.6))))) return true;
+    // letter-bearing substring fallback (handles run-together like "dyquem").
+    // The input inside the accept phrase must begin at a word boundary of it:
+    // a bare suffix ('climate' for mesoclimate, 'right' for 'stood upright')
+    // is the generic word, not the answer.
+    if(na.length>=5 && !negatedAgainst(a,na) && /[a-z]/.test(na) && (a.includes(na) || (new RegExp('(^| )'+escRe(a)).test(na)&&a.length>=5&&aw>=Math.max(1,Math.ceil(nw*0.6))))) return true;
     // every keyword of a conjunction accept, in any order (see saConjHit)
     if(!negatedAgainst(a,na) && saConjHit(a,na)) return true;
   }
@@ -195,22 +198,31 @@ function startEndless(){
   resetQ(); S.view='quiz'; render();
 }
 function startDrill(cat){
-  S.mode='drill'; S.section=cat;
-  S.pool=shuffle(QUESTIONS.filter(q=>q.cat===cat));
+  const pool=QUESTIONS.filter(q=>q.cat===cat);
+  if(!pool.length){ if(typeof toast==='function')toast('No questions for '+cat+' at this rank.'); return; }
+  S.mode='drill'; S.section=cat; S._again=null;
+  S.pool=shuffle(pool);
   S.idx=0; S.correct=0; S.results=[]; stopTimer();
   resetQ(); S.view='quiz'; render();
 }
 function resetQ(){ S.answered=false; S.picked=null; S.saText=''; S.saGraded=null; }
 
+/* The clock is wall time, not a count of ticks. A phone that sleeps between
+   questions suspends the interval; the sitting must not pause with it, so
+   every tick and every return to the tab recompute from S.endAt. */
 function startTimer(){
   stopTimer();
-  S.timer=setInterval(()=>{
-    S.remain--;
-    if(S.remain<=0){ stopTimer(); finish(); return; }
-    const el=document.getElementById('timer');
-    if(el){ el.textContent=fmtTime(S.remain); el.classList.toggle('low',S.remain<=120); }
-  },1000);
+  S.endAt=Date.now()+S.remain*1000;
+  S.timer=setInterval(timerTick,1000);
 }
+function timerTick(){
+  if(!S.timer)return;
+  S.remain=Math.max(0,Math.round((S.endAt-Date.now())/1000));
+  if(S.remain<=0){ stopTimer(); finish(); return; }
+  const el=document.getElementById('timer');
+  if(el){ el.textContent=fmtTime(S.remain); el.classList.toggle('low',S.remain<=120); }
+}
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden)timerTick(); });
 function stopTimer(){ if(S.timer){clearInterval(S.timer);S.timer=null;} }
 function fmtTime(s){ const m=Math.floor(s/60),ss=s%60; return m+':'+(ss<10?'0':'')+ss; }
 
@@ -252,6 +264,17 @@ function skip(){
 }
 function finish(){ stopTimer(); S.view='results'; render(); }
 function home(){ stopTimer(); S.view='home'; S.mode=null; render(); }
+/* A live sitting is not thrown away by one mis-tap on Return. Answers already
+   given make it a sitting; the confirm names what leaving does, and S.abandoned
+   lets the history layer (codex4) record it. */
+function liveSitting(){ return (S.mode==='mock'||S.mode==='sim')&&S.view==='quiz'&&S.results.length>0&&S.idx<S.pool.length; }
+function leaveSitting(){
+  if(!liveSitting())return true;
+  if(!confirm('Leave this sitting? It will be recorded as abandoned.'))return false;
+  S.abandoned=true;
+  return true;
+}
+window.addEventListener('beforeunload',e=>{ if(liveSitting()){ e.preventDefault(); e.returnValue=''; } });
 
 /* ---------- views ---------- */
 function el(html){ const d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
@@ -284,7 +307,7 @@ function topbar(){
       <h1>The Sommelier’s Codex</h1>
     </div>
   </div>`);
-  if(showHome){ const b=el('<button class="homebtn">Return</button>'); b.onclick=home; t.appendChild(b);}    
+  if(showHome){ const b=el('<button class="homebtn">Return</button>'); b.onclick=()=>{ if(leaveSitting())home(); }; t.appendChild(b);}
   return t;
 }
 
@@ -300,7 +323,7 @@ function homeView(){
         <div class="stat"><b>45</b><span>Mock length</span></div>
         <div class="stat"><b>60%</b><span>To pass</span></div>
       </div>
-      <div class="fmtnote">The Certified theory section runs 45 questions in ~38 minutes: multiple choice, matching, and <b>short answer</b> (you must produce the answer, not pick it). This trainer mirrors that mix and grades typed answers with fuzzy matching, with a self-grade override when you know you were right.</div>
+      <div class="fmtnote">The Certified theory section runs 45 questions in ~38 minutes: multiple choice and <b>short answer</b> (you must produce the answer, not pick it). This trainer mirrors that mix and grades typed answers with fuzzy matching, with a self-grade override when you know you were right.</div>
       <div class="motto">In Vino Veritas</div>
       <div class="nonaffil">An independent study tool. Not affiliated with, endorsed by, or connected to the Court of Master Sommeliers.</div>
     </div>
@@ -404,14 +427,14 @@ function saCard(q){
   </div>`);
   if(!S.answered){
     const row=el(`<div class="sarow">
-      <input id="sa" class="sainput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type your answer…">
+      <input id="sa" class="sainput" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Your answer" placeholder="Type your answer…">
       <button class="btn" id="sasub">Submit</button>
     </div>`);
     c.appendChild(row);
     setTimeout(()=>{const i=document.getElementById('sa'); if(i){i.focus(); i.onkeydown=e=>{if(e.key==='Enter')submitSA();};}},30);
     row.querySelector('#sasub').onclick=submitSA;
   } else {
-    c.appendChild(el(`<div class="sarow"><div class="sainput" style="opacity:.85">${S.saText||'(blank)'}</div></div>`));
+    c.appendChild(el(`<div class="sarow"><div class="sainput" style="opacity:.85">${escT(S.saText||'(blank)')}</div></div>`));
     c.appendChild(revealBlock(q, S.saGraded, true));
   }
   return c;
@@ -439,8 +462,21 @@ function revealBlock(q, ok, isSA){
   row.querySelector('#nextbtn').onclick=next;
   const eb=row.querySelector('#endbtn'); if(eb) eb.onclick=finish;
   wrap.appendChild(row);
-  setTimeout(()=>{ document.onkeydown=e=>{ if(e.key==='Enter' && S.answered){e.preventDefault();next();} }; },30);
+  setTimeout(()=>{
+    document.onkeydown=e=>{ if(e.key==='Enter' && S.answered && !keyOnControl(e)){e.preventDefault();next();} };
+    /* the option just pressed is disabled now, so focus would fall to the page
+       top; carry it to the verdict, and the Tab order runs on from there */
+    const vd=document.querySelector('.reveal .verdict');
+    if(vd){ vd.setAttribute('tabindex','-1'); try{ vd.focus({preventScroll:true}); }catch(e){} }
+  },30);
   return wrap;
+}
+/* Enter and Space on a focused button or link must activate it, not advance
+   the quiz: the hotkey handlers stand aside for any control. */
+function keyOnControl(e){
+  const t=e&&e.target; if(!t||!t.tagName)return false;
+  const tag=t.tagName.toLowerCase();
+  return tag==='button'||tag==='a'||tag==='input'||tag==='select'||tag==='textarea'||(t.getAttribute&&t.getAttribute('role')==='button');
 }
 
 function resultsView(){
@@ -460,7 +496,7 @@ function resultsView(){
     <div class="miss">
       <div class="mq">${r.q.q}</div>
       <div class="ma">${ansOf(r.q)}</div>
-      <div class="mu">Your answer: ${r.user}</div>
+      <div class="mu">Your answer: ${r.q.sa&&!r.q.mt&&!r.q.sel?escT(r.user):r.user}</div>
       <div class="mexp">${r.q.exp}</div>
     </div>`).join('') : '<div class="miss" style="text-align:center">Clean sweep. No misses.</div>';
 
@@ -480,7 +516,9 @@ function resultsView(){
       <button class="btn ghost" id="tohome">Home</button>
     </div>
   </div>`);
-  v.querySelector('#again').onclick=()=>{ if(S.mode==='mock')startMock(); else if(S.mode==='drill')startDrill(S.section); else startEndless(); };
+  /* A drill built at runtime (Our List, the Classifications quiz) has no
+     category in the bank to refilter; the layer that built it leaves S._again. */
+  v.querySelector('#again').onclick=()=>{ if(S.mode==='mock')startMock(); else if(S.mode==='drill'){ if(typeof S._again==='function')S._again(); else startDrill(S.section); } else startEndless(); };
   v.querySelector('#tohome').onclick=home;
   return v;
 }

@@ -5,7 +5,7 @@
    clients refresh on next load.
    ============================================================ */
 
-const CACHE_VERSION = 'oot-cfl-v90';
+const CACHE_VERSION = 'oot-cfl-v94';
 const APP_CACHE     = `${CACHE_VERSION}-app`;
 const FONT_CACHE    = `${CACHE_VERSION}-fonts`;
 
@@ -17,8 +17,8 @@ const APP_SHELL = [
   '../shared/oot-auth.js',
   '../shared/oot-gate.js',
   '../shared/oot-locks.js',
+  '../shared/oot-pass.js',
   '../shared/oot-bar.js',
-  './index.html',
   '../manifest.webmanifest',
   './offline.html',
   './privacy.html',

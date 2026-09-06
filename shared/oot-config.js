@@ -11,16 +11,21 @@
   var OOT = w.OOT = w.OOT || {};
 
   OOT.config = {
-    /* "Hospitality" is not here. It appears once, as static markup in the hub's
-       masthead, and nowhere else: not in the return chip, not in a Stripe
-       product name. Keeping it out of config is what stops it spreading. */
+    /* The full name, with "Hospitality". The hub's masthead, the manifest, the
+       terms and privacy pages and the alt text all render it from here. The
+       return chip (oot-bar.js), the Pass page, 404 and pricing say the short
+       form 'Outside Of Time' as their own static markup; whether the two should
+       be one string is a brand decision, not made here. */
     name: 'Outside Of Time Hospitality',
     tagline: 'The craft, the reset, and the road.',
     blurb: 'Master the timeless art of hospitality',
 
-    /* Listed in AUDIT.md as one of the places the domain literal lives, so it
-       has to move when the domain does. Also the value to put in Supabase's
-       redirect allowlist. */
+    /* Read by no script in shared/ or the wings: it feeds no link. Kept as the
+       value to put in Supabase's redirect allowlist and as one of the places
+       AUDIT.md's grep finds the literal. The site is served today from
+       https://zpullen98-gif.github.io, which the hub's canonical and og:url
+       name as static markup in index.html; the almanac's own meta still says
+       this domain. Changing domains is the hand edit the header describes. */
     domain: 'outsideoftime.app',
 
     /* Supabase. Empty is meaningful: with no url/anonKey, oot-auth and oot-gate
@@ -87,8 +92,33 @@
       { id: 'road',  name: 'The Road',  line: 'Where the work can take you.' }
     ],
 
-    /* `free` and `paid` are copy for the hub's door cards. The actual gating
-       lands in Phase 3 (oot-gate.js); nothing here enforces anything yet. */
+    /* `free` and `paid` are copy for the hub's door cards, nothing more: the
+       tier is decided in oot-gate.js and the boundaries live in oot-locks.js.
+       The hub renders `free` under a Free chip on every card and adds a Paid
+       chip only when `paid` is set, so `paid: null` is the free edition's
+       shape and every `free` line below describes the whole wing.
+
+       ON FLIP DAY (free: false) BOTH LINES CHANGE, or the front door promises
+       under a Free chip exactly what the paywall then refuses. What the locks
+       in oot-locks.js actually gate, and so what the lines must say:
+
+         codex   free: Régionale and Village, 3,061 questions, compendium,
+                       your own list
+                 paid: Premier Cru and Grand Cru, 1,296 questions, drilling
+                       your own list
+         ledger  free: Tiers 1 and 2, 33 cocktails, families, library,
+                       reference, tools, My Bar
+                 paid: 332 specs from Tier 3 on, the drills, Ticket Rail,
+                       flashcards, quiz
+         table   free: Semester 1, a preview of the Lexicon, browsing the
+                       shelf, your menu, family notes, prep and costing sheets
+                 paid: the other 1,839 recipes, the techniques, semesters 2
+                       to 10, the rest of the Lexicon, the service track
+         light   free: Today's voice, the year, the goal ladder, journal,
+                       Clear Mornings, the Line-Up, the Walk-In, Vault
+                 paid: the Library, the practices, the chart, the sky, the
+                       year's readings, the threads, the Floor Book
+         almanac free as it is; it registers no boundary and never gates. */
     wings: [
       {
         id: 'codex', path: 'codex/', pillar: 'craft',
@@ -110,16 +140,16 @@
         id: 'table', path: 'table/', pillar: 'craft',
         short: 'World Table', motto: 'Cuisine · Culture · Connection',
         name: 'The World Table',
-        line: 'A culinary field guide, 1,710 recipes deep.',
-        free: 'All 1,710 recipes, the techniques and the Path of Study',
+        line: 'A culinary field guide, 1,844 recipes deep.',
+        free: 'All 1,844 recipes, the techniques and the Path of Study',
         paid: null
       },
       {
         id: 'light', path: 'light/', pillar: 'reset',
         short: 'First Light', motto: 'Mind · Body · Ritual · Purpose',
         name: 'First Light',
-        line: 'A year of mornings, one at a time.',
-        free: 'The whole year: Library, journal, practices and chart',
+        line: 'Two years of mornings, one at a time.',
+        free: 'Two years on two tracks, the Library, journal, practices and chart',
         paid: null
       },
       {

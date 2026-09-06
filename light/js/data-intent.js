@@ -34,9 +34,9 @@ const DEBRIEF_QUESTIONS = [
 ];
 
 const LOCAL_THEMES = {
-  "The Slow Season": { theme: "Weather, Not Verdict", themeNote: "January rooms and Tuesday rooms are the trade\u2019s winters; they measure the calendar, not you. Nobody farms without fallow months. Spend this one on the skills the rush never leaves time for, and let the take be the weather it is. (This app will never ask what you earn. That is on purpose.)" },
+  "The Slow Season": { theme: "Weather, Not Verdict", themeNote: "January rooms and Tuesday rooms are the trade\u2019s winters \u2014 they measure the calendar, not you. Nobody farms without fallow months. Spend this one on the skills the rush never leaves time for, and let the take be the weather it is. (This app will never ask what you earn. That is on purpose.)" },
   Recovery: { theme: "The Day After", themeNote: "Last night was long and it cost something. Today asks nothing heroic: water, food, light, and the anchor hours of sleep. Repair is a practice, not a pause in one." },
-  Courage: { theme: "The Narrow Gate", themeNote: "Courage is not the absence of fear but the decision that something matters more, after Ambrose Redmoon" },
+  Courage: { theme: "The Narrow Gate", themeNote: "Courage is not the absence of fear but the decision that something matters more., after Ambrose Redmoon" },
   Stillness: { theme: "The Unmoved Center", themeNote: "Beneath every storm the depth of the sea is quiet. Begin there." },
   Discipline: { theme: "The Daily Oar", themeNote: "No single stroke crosses the water. Today asks only for today's stroke." },
   Gratitude: { theme: "What Is Given", themeNote: "Count nothing owed to you, and everything becomes a gift." },

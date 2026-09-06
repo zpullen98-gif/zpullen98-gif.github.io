@@ -4,7 +4,7 @@
    SURAH_AYAHS, JUZ_START, DHP_CH and RV_MANDALAS, and builds the 366-day plans
    plus HALL_YEARS from them.
 
-   === THE DAY-OF-YEAR RULE ===
+   --- THE DAY-OF-YEAR RULE ---
    The artifact computed the day of the year two different ways. `doyOf()` used a
    fixed table with February pinned at 29; `renderToday()` used the real calendar.
    In a common year these disagree by one from March onward, so the rotating
@@ -63,7 +63,7 @@ function bookUnits(books) {
 function rangeLabel(day) {
   var a = day[0], b = day[day.length - 1];
   if (a[0] === b[0]) return a[0] + ' ' + (a[1] === b[1] ? a[1] : a[1] + '–' + b[1]);
-  return a[0] + ' ' + a[1] + ' to ' + b[0] + ' ' + b[1];
+  return a[0] + ' ' + a[1] + ', ' + b[0] + ' ' + b[1];
 }
 
 var PLAN_BIBLE_UNITS = chunkPlan(bookUnits(BIBLE_BOOKS), 366);
@@ -152,7 +152,7 @@ var PLAN_VEDA_UNITS = (function () {
 var PLAN_VEDA = PLAN_VEDA_UNITS.map(function (day) {
   var a = day[0], b = day[day.length - 1];
   if (a[0] === b[0]) return 'Rig Veda, Mandala ' + a[0] + ', Hymn' + (a[1] === b[1] ? ' ' + a[1] : 's ' + a[1] + '–' + b[1]);
-  return 'Rig Veda, Mandala ' + a[0] + ' Hymn ' + a[1] + ' to Mandala ' + b[0] + ' Hymn ' + b[1];
+  return 'Rig Veda, Mandala ' + a[0] + ' Hymn ' + a[1] + ', Mandala ' + b[0] + ' Hymn ' + b[1];
 });
 
 /* --- the five canons ---

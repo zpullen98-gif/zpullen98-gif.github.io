@@ -171,7 +171,7 @@ function disputesView(){
         +' <span class="lvltag">'+lab+'</span></div>'
         +(x.q?'<div class="ma">Model answer: '+ansOf(x.q)+'</div>'
              +'<div class="disputea">Accepted: '+saAcceptList(x.q).join(' · ')+'</div>':'')
-        +(x.g.t?'<div class="mu">You wrote: '+x.g.t+'</div>':'')
+        +(x.g.t?'<div class="mu">You wrote: '+escT(x.g.t)+'</div>':'')
         +'<div class="mexp">Overruled '+x.g.r+'×'+(x.g.w?' · marked yourself wrong '+x.g.w+'×':'')+'</div></div>';
     });
   }
@@ -358,7 +358,9 @@ decorateHome=function(){
    catch. In voice mode the Codex reads the prompt, you answer to the room, and
    you grade yourself, which is what the examiners' table amounts to. */
 
-if(ST.oralVoice===undefined)ST.oralVoice=true;
+/* Quiet by default: the Gauntlet is a private rehearsal, and a phone at the
+   bar must not read the first prompt aloud before the toggle has been seen. */
+if(ST.oralVoice===undefined)ST.oralVoice=false;
 function speechOK(){ return typeof window!=='undefined'&&!!window.speechSynthesis; }
 function speakStop(){ try{ if(speechOK())window.speechSynthesis.cancel(); }catch(e){} }
 function speak(text){
@@ -479,7 +481,7 @@ function reportQuestion(q,note){
   var b=ST.bad[k]=ST.bad[k]||{n:0,q:q.q.slice(0,120)};
   b.n++; if(note)b.note=String(note).slice(0,300);
   stSave();
-  toast('Reported. It will appear in your Content Report.');
+  toast('Saved to your Content Report on the Dashboard. It leaves this device only inside your progress export.');
 }
 function badReports(){
   var out=[];
@@ -494,8 +496,8 @@ revealBlock=function(q,ok,isSA){
   var wrap=_v7RevealBlock3(q,ok,isSA);
   if(wrap.querySelector('.reportbox'))return wrap;
   var box=el('<div class="reportbox"><button class="reporttoggle">Report an error in this question</button>'
-    +'<div class="reportbody" hidden><textarea class="noteinput reportinput" rows="2" placeholder="What is wrong: the answer, the accepted phrasings, a fact?"></textarea>'
-    +'<div class="planrow"><button class="btn small ghost rsend">Send report</button></div></div></div>');
+    +'<div class="reportbody" hidden><textarea class="noteinput reportinput" rows="2" aria-label="Your report on this question" placeholder="What is wrong: the answer, the accepted phrasings, a fact?"></textarea>'
+    +'<div class="planrow"><button class="btn small ghost rsend">Save to my Content Report</button></div></div></div>');
   var body=box.querySelector('.reportbody'), ta=box.querySelector('textarea');
   box.querySelector('.reporttoggle').onclick=function(){ body.hidden=!body.hidden; if(!body.hidden)ta.focus(); };
   box.querySelector('.rsend').onclick=function(){ reportQuestion(q,ta.value); body.hidden=true; ta.value=''; };
@@ -515,6 +517,9 @@ dashView=function(){
     row.classList.add('actionable');
     row.title='Drill '+cat;
     row.onclick=function(e){ if(e.target.classList.contains('dashprimer'))return; startDrill(cat); };
+    /* a row is a door, so it is a control: reachable by Tab, opened by Enter or Space */
+    row.setAttribute('role','button'); row.tabIndex=0; row.setAttribute('aria-label','Drill '+cat);
+    row.onkeydown=function(e){ if(e.target!==row)return; if(e.key==='Enter'||e.key===' '){ e.preventDefault(); startDrill(cat); } };
     if(haveP[cat]){
       var p=el('<button class="dashprimer" title="Read the '+cat+' chapter">Chapter</button>');
       p.onclick=function(e){ e.stopPropagation(); S.primerKey=cat; S.view='primer'; render(); };
@@ -544,9 +549,9 @@ disputesView=function(){
     var html='<div class="secgroup">Reported errors ('+rows.length+')</div>';
     rows.forEach(function(x){
       var lab=LEVELS[x.lvl]?LEVELS[x.lvl].short:x.lvl;
-      html+='<div class="dispute"><div class="mq">'+(x.q?x.q.q:x.b.q)+' <span class="lvltag">'+lab+'</span></div>'
+      html+='<div class="dispute"><div class="mq">'+(x.q?x.q.q:escT(x.b.q||'(question no longer in the bank)'))+' <span class="lvltag">'+lab+'</span></div>'
         +(x.q?'<div class="ma">Codex answer: '+ansOf(x.q)+'</div>':'')
-        +(x.b.note?'<div class="mu">Your report: '+x.b.note+'</div>':'')
+        +(x.b.note?'<div class="mu">Your report: '+escT(x.b.note)+'</div>':'')
         +'<div class="mexp">Flagged '+x.b.n+'×</div></div>';
     });
     var block=el('<div>'+html+'</div>');
@@ -561,27 +566,37 @@ var _v7MergeStats=mergeStats;
 mergeStats=function(inc){
   var err=_v7MergeStats(inc);
   if(err)return err;
+  /* coerced on the way in like codex4's stores: an import is a file (see mergeStats there) */
   var B=(inc&&inc.stats)||{};
-  Object.keys(B.grader||{}).forEach(function(k){
+  Object.keys(mergeObj(B.grader)?B.grader:{}).forEach(function(k){
     var a=ST.grader[k], b=B.grader[k];
-    if(!a)ST.grader[k]={r:b.r||0,w:b.w||0,t:b.t};
-    else{ a.r=(a.r||0)+(b.r||0); a.w=(a.w||0)+(b.w||0); if(b.t&&!a.t)a.t=b.t; }
+    if(!mergeObj(b))return;
+    var t=mergeStr(b.t,120);
+    if(!a){ ST.grader[k]={r:mergeNum(b.r),w:mergeNum(b.w)}; if(t)ST.grader[k].t=t; }
+    else{ a.r=mergeNum(a.r)+mergeNum(b.r); a.w=mergeNum(a.w)+mergeNum(b.w); if(t&&!a.t)a.t=t; }
   });
-  Object.keys(B.bad||{}).forEach(function(k){
+  Object.keys(mergeObj(B.bad)?B.bad:{}).forEach(function(k){
     var a=ST.bad[k], b=B.bad[k];
-    if(!a)ST.bad[k]={n:b.n||0,q:b.q,note:b.note};
-    else{ a.n=(a.n||0)+(b.n||0); if(b.note&&!a.note)a.note=b.note; }
+    if(!mergeObj(b))return;
+    var note=mergeStr(b.note,300);
+    if(!a){ ST.bad[k]={n:mergeNum(b.n),q:mergeStr(b.q,120)}; if(note)ST.bad[k].note=note; }
+    else{ a.n=mergeNum(a.n)+mergeNum(b.n); if(note&&!a.note)a.note=note; }
   });
-  Object.keys(B.exam||{}).forEach(function(k){ if(!ST.exam[k])ST.exam[k]=B.exam[k]; });
-  Object.keys(B.paceDays||{}).forEach(function(lv){
-    var a=ST.paceDays[lv]=ST.paceDays[lv]||{}, b=B.paceDays[lv]||{};
-    Object.keys(b).forEach(function(d){ a[d]=Math.max(a[d]||0,b[d]); });
+  Object.keys(mergeObj(B.exam)?B.exam:{}).forEach(function(k){
+    var d=B.exam[k];
+    if(!ST.exam[k]&&typeof d==='string'&&DAY_RE.test(d))ST.exam[k]=d;
   });
-  Object.keys(B.court||{}).forEach(function(k){
-    var a=ST.court[k]||{}, b=B.court[k]||{};
-    ST.court[k]={best:Math.max(a.best||0,b.best||0),passed:!!(a.passed||b.passed)};
+  Object.keys(mergeObj(B.paceDays)?B.paceDays:{}).forEach(function(lv){
+    var b=B.paceDays[lv];
+    if(!mergeObj(b))return;
+    var a=ST.paceDays[lv]=ST.paceDays[lv]||{};
+    Object.keys(b).forEach(function(d){ if(!DAY_RE.test(d))return; a[d]=Math.max(a[d]||0,mergeNum(b[d])); });
   });
-  if(B.tast){ ST.tast.n=(ST.tast.n||0)+(B.tast.n||0); ST.tast.c=(ST.tast.c||0)+(B.tast.c||0); }
+  Object.keys(mergeObj(B.court)?B.court:{}).forEach(function(k){
+    var a=ST.court[k]||{}, b=mergeObj(B.court[k])?B.court[k]:{};
+    ST.court[k]={best:Math.max(mergeNum(a.best),mergeNum(b.best)),passed:!!(a.passed||b.passed)};
+  });
+  if(mergeObj(B.tast)){ ST.tast.n=(ST.tast.n||0)+mergeNum(B.tast.n); ST.tast.c=(ST.tast.c||0)+mergeNum(B.tast.c); }
   stSave();
   return null;
 };

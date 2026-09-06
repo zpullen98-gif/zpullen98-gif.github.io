@@ -86,6 +86,10 @@ function render(){
   const ts = document.getElementById('tool-serv');
   if(ts) ts.addEventListener('input', e => {
     state.tools.serv = Math.max(1, Math.min(200, Number(e.target.value)||1));
+    /* the field shows the number the sheet used: typing 300 printed a
+       sheet for 200 under a field still reading 300 */
+    const typed = Number(e.target.value);
+    if(e.target.value !== '' && Number.isFinite(typed) && typed !== state.tools.serv) e.target.value = String(state.tools.serv);
     const out = document.getElementById('batch-out');
     if(out) out.innerHTML = batchOutHTML();
   });
@@ -114,6 +118,16 @@ function render(){
 }
 
 /* ---------------- NAV EVENTS (clusters, bottom nav, sheet, search) ---------------- */
+/* The mobile sheet is an aria-modal dialog: it takes the keyboard when it
+   opens and hands it back to the cluster button that opened it when it
+   closes, the way openSearch and closeSearch already do. */
+function closeSheet(){
+  const ck = state.sheet;
+  state.sheet = null;
+  render();
+  const b = ck ? document.querySelector('#bnav [data-cluster="'+ck+'"]') : null;
+  if(b && b.focus) b.focus();
+}
 function navClick(e){
   const sc = e.target.closest('[data-search]');
   if(sc){ openSearch(); return; }
@@ -123,9 +137,14 @@ function navClick(e){
     const tabs = NAV_CLUSTERS.find(([k]) => k===ck)[2];
     if(tabs.length === 1){ state.tab = tabs[0]; state.sheet = null; }
     else if(window.matchMedia('(max-width: 639px)').matches){
-      state.sheet = state.sheet===ck ? null : ck;
+      if(state.sheet === ck){ closeSheet(); return; }
+      state.sheet = ck;
+      render();
+      const first = document.querySelector('#sheet .sheet-btn');
+      if(first && first.focus) first.focus();
+      return;
     } else {
-      state.tab = (state.lastSub && state.lastSub[ck]) || tabs[0];
+      state.tab = clusterLanding(ck);
       state.sheet = null;
     }
     render(); return;
@@ -142,7 +161,7 @@ function navClick(e){
 document.getElementById('tabs').addEventListener('click', navClick);
 document.getElementById('bnav').addEventListener('click', navClick);
 document.getElementById('sheet').addEventListener('click', e => {
-  if(e.target.closest('[data-sheet-close]')){ state.sheet = null; render(); return; }
+  if(e.target.closest('[data-sheet-close]')){ closeSheet(); return; }
   navClick(e);
 });
 document.getElementById('search-ol').addEventListener('click', e => {
@@ -170,7 +189,7 @@ document.addEventListener('keydown', e => {
   }
   if(typing) return;
   if(e.key === '/'){ openSearch(); e.preventDefault(); return; }
-  if(e.key === 'Escape' && state.sheet){ state.sheet = null; render(); return; }
+  if(e.key === 'Escape' && state.sheet){ closeSheet(); return; }
   const click = sel => { const b = document.querySelector(sel); if(b){ b.click(); e.preventDefault(); return true; } return false; };
   if(state.tab==='flashcards' && state.fc.stage==='run'){
     if(e.key === ' ') {
@@ -198,9 +217,10 @@ document.addEventListener('keydown', e => {
     }
     return;
   }
-  if(/^[1-4]$/.test(e.key)){
-    const [ck,,tabs] = NAV_CLUSTERS[Number(e.key)-1];
-    state.tab = (state.lastSub && state.lastSub[ck]) || tabs[0];
+  /* one key per cluster, however many there are: a fixed [1-4] outlived the
+     fourth cluster and threw on the key it no longer had */
+  if(/^[1-9]$/.test(e.key) && NAV_CLUSTERS[Number(e.key)-1]){
+    state.tab = clusterLanding(NAV_CLUSTERS[Number(e.key)-1][0]);
     state.sheet = null;
     render();
   }
@@ -562,13 +582,13 @@ document.getElementById('view').addEventListener('click', e => {
       return;
     }
     t[id] = Date.now();
-    el.textContent = '0.0: Stop';
+    el.textContent = '0.0 · Stop';
     el.classList.add('running');
     if(prTicks[id]) clearInterval(prTicks[id]);
     prTicks[id] = setInterval(() => {
       const btn = document.getElementById('pr-timer-'+id);
       if(!btn || !state.practice.timers[id]){ clearInterval(prTicks[id]); delete prTicks[id]; return; }
-      btn.textContent = ((Date.now()-state.practice.timers[id])/1000).toFixed(1) + ': Stop';
+      btn.textContent = ((Date.now()-state.practice.timers[id])/1000).toFixed(1) + ' · Stop';
     }, 100);
     return; }
   else if(act==='pr-log'){
@@ -602,6 +622,8 @@ document.getElementById('view').addEventListener('click', e => {
     } }
   else if(act==='tool-view'){ state.tools.view = el.dataset.v; }
   else if(act==='data-export'){ dataExport(); return; }
+  else if(act==='data-share'){ dataShare(); return; }
+  else if(act==='data-copy'){ dataCopy(); return; }
   else if(act==='data-persist'){ requestPersistence(); return; }
   else if(act==='shelf-src'){ state.tools.shelfSrc = el.dataset.s; }
   else if(act==='shelf-mode'){ state.tools.eightySix = el.dataset.m==='86' ? '' : null; }
@@ -674,7 +696,7 @@ document.getElementById('view').addEventListener('click', e => {
   else if(act==='mybar-cancel'){ state.mybar.form = null; state.mybar.editing = null; }
   else if(act==='mybar-edit'){
     const b = (progress.bar||[]).find(x => x.id===el.dataset.id);
-    if(b){ state.mybar.form = { name:b.name, spec:b.spec.slice(), method:b.method||'', glass:b.glass===''?'':b.glass, garnish:b.garnish===''?'':b.garnish, note:b.note||'', family:b.family||'Other', spirit:b.spirit||'Other', price:b.price||'' };
+    if(b){ state.mybar.form = { name:b.name, spec:b.spec.slice(), method:b.method||'', glass:b.glass||'', garnish:b.garnish||'', note:b.note||'', family:b.family||'Other', spirit:b.spirit||'Other', price:b.price||'' };
       state.mybar.editing = b.id; } }
   else if(act==='mybar-del'){
     const b = (progress.bar||[]).find(x => x.id===el.dataset.id);
@@ -704,7 +726,7 @@ document.getElementById('view').addEventListener('click', e => {
     else if(clash){ say('"'+clash.name+'" is already on the list. Rename one of them.'); }
     else {
       const rec = { id: state.mybar.editing || mintBarId(), name:f.name.trim(), spec:spec,
-        method:f.method.trim(), glass:f.glass.trim()||'-', garnish:f.garnish.trim()||'-',
+        method:f.method.trim(), glass:f.glass.trim(), garnish:f.garnish.trim(),
         note:f.note.trim(), family:f.family, spirit:f.spirit, price:f.price.trim(), ts:Date.now() };
       if(!progress.bar) progress.bar = [];
       const i = progress.bar.findIndex(x => x.id===rec.id);
@@ -718,7 +740,7 @@ document.getElementById('view').addEventListener('click', e => {
       state.mybar.form = null; state.mybar.editing = null; state.mybar.open = rec.id;
       barChanged(); saveProgress(); say('Saved to My Bar.');
     } }
-  else if(act==='note-open'){ state.noteOpen = state.noteOpen===el.dataset.t ? null : el.dataset.t; }
+  else if(act==='note-open'){ state.noteOpen = state.noteOpen===el.dataset.t ? null : el.dataset.t; state.noteJump = true; }
   else if(act==='svc-dom'){ state.svc.dom = el.dataset.d; state.svc.rowOpen = null; state.svc.refOpen = null; }
   else if(act==='svc-row'){ const i=Number(el.dataset.i); state.svc.rowOpen = state.svc.rowOpen===i ? null : i; }
   else if(act==='svc-ref'){ const n=el.dataset.n; state.svc.refOpen = state.svc.refOpen===n ? null : n; }
@@ -767,7 +789,10 @@ function captureLiveInputs(){
   if(!progress.practice) progress.practice = {};
   if(!progress.tastings) progress.tastings = [];
   if(!progress.vidPrefs) progress.vidPrefs = { channel:'auto', longform:false };
-  if(!progress.bar) progress.bar = [];
+  /* the same shape pass the import runs: a record saved with the older dash
+     placeholder, or a store edited by hand, is read here before anything
+     deals it. Unreadable records are dropped; they had no name or no spec. */
+  progress.bar = normalizeBarRecords(progress.bar).bar;
   if(Array.isArray(progress.shelf)) state.tools.shelf = progress.shelf.slice();
   srsMigrate(progress.cards);
   applyRoute();
@@ -827,7 +852,7 @@ function showUpdateToast(worker, reg){
   const t = document.createElement('button');
   t.id = 'sw-toast';
   t.className = 'sw-toast';
-  t.innerHTML = '<span class="font-display">A new edition is pressed</span><span class="tiny dim"> : tap to refresh</span>';
+  t.innerHTML = '<span class="font-display">A new edition is pressed</span><span class="tiny dim"> · tap to refresh</span>';
   /* resolve the target at CLICK time: if a second deploy landed while the
      toast sat there, the captured worker is already redundant and a message
      to it does nothing: reg.waiting is always the live one */

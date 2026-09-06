@@ -190,7 +190,7 @@ FL_VIEWS.hall = {
             'Missing a morning costs you nothing: the day you are on is the day you have reached, not the date.</p>' +
             '<button class="keep" data-act="canonFollowCalendar" data-canon="' + canonId + '">Follow the calendar instead</button>'
           : '<p class="px" style="margin-top:12px">Following the calendar, so everyone reading this canon today is on the same passage. ' +
-            'The older discipline. But it means starting mid-book, and there is no way back to the beginning.</p>' +
+            'The older discipline, but it means starting mid-book, and there is no way back to the beginning.</p>' +
             '<button class="keep" data-act="canonStartToday" data-canon="' + canonId + '">Begin at day one today</button>') +
       '</div>';
 

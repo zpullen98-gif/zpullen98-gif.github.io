@@ -107,7 +107,8 @@ nav.tabs{ display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
     min-height:calc(60px + env(safe-area-inset-bottom)); }
   .bnav-btn{ flex:1; display:flex; flex-direction:column; align-items:center; gap:3px;
     background:transparent; border:none; color:var(--cream-dim); cursor:pointer;
-    font-family:inherit; font-size:0.58rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:600;
+    /* 0.58rem was 9px uppercase for the only navigation a phone has */
+    font-family:inherit; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:600;
     padding:6px 2px; min-height:48px; }
   .bnav-btn.active{ color:var(--brass-2); }
   #sheet.open{ display:block; position:fixed; inset:0; z-index:55; }
@@ -226,6 +227,8 @@ button.chip.on{ background:var(--brass); color:var(--ink); border-color:var(--br
 .hist-row:last-child{ border-bottom:none; }
 
 footer.foot{ text-align:center; margin-top:40px; font-size:0.72rem; color:var(--cream-dim); }
+footer.foot a{ color:var(--cream-dim); text-decoration:underline; text-underline-offset:2px; }
+footer.foot a:hover{ color:var(--brass-2); }
 
 .sw-toast{ position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
   background:var(--brass); color:var(--ink); border:1px solid var(--brass-2); border-radius:4px;

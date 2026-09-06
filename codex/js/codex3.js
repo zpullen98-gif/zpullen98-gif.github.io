@@ -1,7 +1,8 @@
 /* ============ Codex III: spaced repetition, new formats, hall of fame ============ */
 ST.srs=ST.srs||{}; ST.ach=ST.ach||[]; ST.sess=ST.sess||0;
-function today(){return new Date().toISOString().slice(0,10);}
-function addDays(n){return new Date(Date.now()+n*864e5).toISOString().slice(0,10);}
+/* Local days (localDay in codex2): keys stay YYYY-MM-DD, so existing records read unchanged. */
+function today(){return localDay(new Date());}
+function addDays(n){const d=new Date(); d.setDate(d.getDate()+n); return localDay(d);}
 /* ---- SM-2 lite ---- */
 function srsRecord(q,ok){
   const k=qKey(q); const r=ST.srs[k]=ST.srs[k]||{ef:2.5,iv:0,n:0,due:today()};
@@ -113,7 +114,7 @@ function toast(msg){
 function hallView(){
   const s=achSnap();
   const got=ST.ach.length;
-  let html='<div><div class="viewhead"><h2>Hall of Fame</h2><div class="sub">'+got+' of '+ACHIEVEMENTS.length+' honors claimed \u00b7 earned through study, not luck.</div></div><div class="hall">';
+  let html='<div><div class="viewhead"><h2>Hall of Fame</h2><div class="sub">'+got+' of '+ACHIEVEMENTS.length+' honors claimed \u00b7 earned through study, not luck \u00b7 awarded on the Village paper.</div></div><div class="hall">';
   ACHIEVEMENTS.forEach(function(a){
     const on=ST.ach.indexOf(a.id)>=0;
     html+='<div class="medal'+(on?' on':'')+'"><div class="mname">'+a.n+'</div><div class="mdesc">'+a.d+'</div></div>';

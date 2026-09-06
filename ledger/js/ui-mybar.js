@@ -15,6 +15,37 @@ function mintBarId(){
   return s;
 }
 
+/* One shape for a bar record, wherever it came from: the form, a backup from
+   this app, a backup from the standalone Bartender's Ledger (whose empty
+   glass and garnish were a long dash), or a hand-edited file. Empty is '',
+   and ticketHTML draws the dash at display time; a record with no usable
+   name or spec is dropped and counted, so an import can say so instead of
+   throwing halfway through a merge. Runs on every import and at boot. */
+function barText(v){
+  if(v === undefined || v === null) return '';
+  const s = String(v).trim();
+  return /^(?:-|\u2013|\u2014)$/.test(s) ? '' : s;
+}
+function normalizeBarRecord(b){
+  if(!b || typeof b !== 'object' || Array.isArray(b)) return null;
+  const name = barText(b.name);
+  const raw = Array.isArray(b.spec) ? b.spec : (typeof b.spec === 'string' ? b.spec.split(/\r?\n/) : []);
+  const spec = raw.map(barText).filter(Boolean);
+  if(!name || !spec.length) return null;
+  return { id: barText(b.id) || mintBarId(), name:name, spec:spec,
+    method: barText(b.method), glass: barText(b.glass), garnish: barText(b.garnish), note: barText(b.note),
+    family: barText(b.family) || 'Other', spirit: barText(b.spirit) || 'Other',
+    price: barText(b.price), ts: Number(b.ts) || 0 };
+}
+function normalizeBarRecords(list){
+  const out = { bar:[], skipped:0 };
+  (Array.isArray(list) ? list : []).forEach(b => {
+    const r = normalizeBarRecord(b);
+    if(r) out.bar.push(r); else out.skipped++;
+  });
+  return out;
+}
+
 function blankBarForm(){
   return { name:'', spec:['',''], method:'', glass:'', garnish:'', note:'', family:'Other', spirit:'Other', price:'' };
 }
@@ -55,9 +86,12 @@ function qMyBarTicket(b){
     explain: b.name+': '+(b.method||'as specced').toLowerCase()+(b.glass && b.glass!=='none' ? ', '+b.glass.toLowerCase() : '')+'. '+(b.note||'') };
 }
 function qMyBarGlass(b){
-  const wrong = sample([...new Set(COCKTAILS.map(x => x.glass))].filter(g => g !== b.glass), 3);
+  /* graded through the glass CATEGORY, exactly as qGlass does: raw prose
+     offered "Coupe" against "Coupe or Nick & Nora" with one marked wrong */
+  const mine = svcGlassKey(b.glass);
+  const wrong = sample([...new Set(COCKTAILS.map(x => svcGlassKey(x.glass)))].filter(g => g !== mine), 3);
   return { prompt:'Which glass does your '+b.name+' go in?',
-    options: shuffle([b.glass, ...wrong]), answer:b.glass,
+    options: shuffle([mine, ...wrong]), answer:mine,
     explain: b.name+': '+b.glass+'. '+(b.garnish && b.garnish!=='-' ? 'Garnish: '+b.garnish+'.' : '') };
 }
 function qMyBarSpecLine(b){

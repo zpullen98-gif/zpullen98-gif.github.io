@@ -14,6 +14,11 @@
    of painted lettering, and it is payable.
    ============ */
 
+/* Cinzel, bundled (SIL Open Font License, shared/licenses/OFL.txt): the same
+   two files the Codex ships, so no font request leaves the device. */
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:400 900;font-display:swap;src:url('fonts/cinzel-normal-400-900-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:400 900;font-display:swap;src:url('fonts/cinzel-normal-400-900-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
 :root {
   --gild: #c9a86a;
   --gild-hi: #e6cf9c;
@@ -99,8 +104,12 @@ header.top { padding: 0; }
 .acct-form, .acct-note { margin-left: auto; margin-right: auto; text-align: center; }
 
 /* The doors list is what the plate replaces. It stays in the DOM as the
-   fallback when the artwork cannot load, and for screen readers. */
-.plate-live #pillars { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+   fallback when the artwork cannot load. hub-plate.js marks it inert at the
+   same moment it adds .plate-live, so it is out of the tab order and the
+   accessibility tree: the hotspots and the index row already name every
+   wing. min-height:0 overrides the CLS reservation in index.html, without
+   which the clipped box stayed a viewport tall and scrolled past the footer. */
+.plate-live #pillars { position: absolute; width: 1px; height: 1px; min-height: 0; overflow: hidden; clip: rect(0 0 0 0); }
 /* the artwork loaded and then failed: show everything again */
 .plate-failed #pillars { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
 .plate-failed header.top .wrap > * { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; }

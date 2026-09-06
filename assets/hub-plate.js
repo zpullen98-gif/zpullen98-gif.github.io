@@ -58,6 +58,7 @@
     img.addEventListener('error', function () {
       document.documentElement.classList.add('plate-failed');
       document.documentElement.classList.remove('plate-live');
+      pillars.removeAttribute('inert');
     });
     pic.appendChild(src);
     pic.appendChild(img);
@@ -77,11 +78,13 @@
 
     main.insertBefore(plate, main.firstChild);
 
-    /* only now may the poster CSS hide the DOM masthead and the door list:
-
-       the artwork it replaces them with is on the page */
-
+    /* Only now may the poster CSS hide the DOM masthead and the door list:
+       the artwork it replaces them with is on the page. The list goes inert
+       as well as clipped: clipping alone left its five links in the tab order
+       and read every wing a third time to a screen reader, after the hotspot
+       and the index row. */
     document.documentElement.classList.add('plate-live');
+    pillars.setAttribute('inert', '');
 
     /* Real text under the artwork: selectable, searchable, and what a keyboard
        user tabs through instead of hunting an invisible rectangle. */

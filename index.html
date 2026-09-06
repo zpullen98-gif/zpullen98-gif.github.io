@@ -10,22 +10,32 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Outside Of Time">
 <title>Outside Of Time Hospitality: the complete life of the hospitality professional</title>
-<meta name="description" content="Five free wings: The Sommelier's Codex, The Bartender's Ledger, The World Table, First Light and Calendar For Life. The craft, the reset, and the road.">
-<meta name="theme-color" content="#12100e">
+<meta name="description" content="Enter your wine list, your bar menu and your kitchen's menu once; every wing drills them beside the canon, offline, on the devices behind the bar, and the manager sees who did the work. Five free wings: The Sommelier's Codex, The Bartender's Ledger, The World Table, First Light and Calendar For Life.">
+<meta name="theme-color" content="#0b0908">
 <link rel="canonical" href="https://zpullen98-gif.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Outside Of Time Hospitality">
-<meta property="og:description" content="The complete life of the hospitality professional: the craft, the reset, and the road.">
+<meta property="og:description" content="Enter your wine list, your bar menu and your kitchen's menu once; every wing drills them beside the canon, offline, on the devices behind the bar, and the manager sees who did the work.">
 <meta property="og:url" content="https://zpullen98-gif.github.io/">
+<meta property="og:image" content="https://zpullen98-gif.github.io/assets/hub-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Outside Of Time Hospitality: a set table at dusk, wine, a candle and a city beyond the window.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zpullen98-gif.github.io/assets/hub-card.jpg">
 <style>
 /* The hub is deliberately thin: no framework, no build step, one stylesheet,
-   system fonts only. Every wing brings its own typography; this page must not
-   compete with any of them. */
+   system fonts here and one bundled face (Cinzel, under assets/fonts, OFL) for
+   the index row beneath the plate. Nothing is fetched from another origin.
+   Every wing brings its own typography; this page must not compete with any
+   of them. */
 *,*::before,*::after{box-sizing:border-box}
 :root{
-  /* One committed look. The wings, the icon and theme-color all agree on this
-     ink, so there is no light variant to switch to, but the UA has to be told,
-     or it paints light scrollbars and form controls over a near-black page. */
+  /* One committed look. The wings and the icon agree on this ink (theme-color
+     and the manifest follow the plate's own black, one shade under it), so
+     there is no light variant to switch to, but the UA has to be told, or it
+     paints light scrollbars and form controls over a near-black page. */
   color-scheme:dark;
   --ink:#12100e; --ink-2:#1a1714; --ink-3:#241f1a;
   --line:rgba(198,166,100,.22); --line-2:rgba(198,166,100,.4);
@@ -86,6 +96,9 @@ header.top{
   display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
 }
 .acct-form[hidden]{display:none}
+/* .btn's inline-flex would otherwise beat the hidden attribute and paint an
+   empty brass box in a browser with no service worker. */
+#offline-all[hidden]{display:none}
 .acct-form label{
   flex:1 0 100%; text-align:left; font-size:.7rem; letter-spacing:.14em;
   text-transform:uppercase; color:var(--dim);
@@ -173,6 +186,16 @@ section.pillar{padding:clamp(38px,8vw,64px) 0 0}
 }
 .venue-note button:hover{color:var(--brass-hi)}
 
+/* ---------- the premise ---------- */
+/* The one sentence that says what the product is. Static markup, so it is
+   on the page whether or not the plate script runs: under the index row
+   when the artwork is live, under the doors when it is not. */
+.premise{
+  margin:clamp(28px,6vw,44px) auto 0; max-width:58ch; padding:0 20px;
+  text-align:center; font-family:var(--serif); color:var(--cream);
+  font-size:clamp(1rem,3.4vw,1.15rem); line-height:1.6;
+}
+
 /* ---------- pricing ---------- */
 section.pricing{padding:clamp(52px,10vw,88px) 0 clamp(40px,8vw,64px)}
 .pricing h2{
@@ -180,6 +203,7 @@ section.pricing{padding:clamp(52px,10vw,88px) 0 clamp(40px,8vw,64px)}
   margin:0 0 .3em;text-align:center;
 }
 .pricing .sub{text-align:center;color:var(--dim);margin:0 auto 2em;max-width:46ch;font-size:.95rem}
+.pricing .share-note{margin:1.2em auto 0;font-size:.86rem}
 /* One price means one card. It stays a grid so paintPlans can keep appending
    into it unchanged, but it never needs a second column. */
 .plans{display:grid;gap:16px;grid-template-columns:1fr;max-width:400px;margin:0 auto}
@@ -222,10 +246,7 @@ footer.foot a:hover{color:var(--brass-hi)}
    dropped this paragraph to 4.17:1, under the 4.5:1 minimum for 12px text. */
 .legal{margin-top:1em;font-size:.76rem;max-width:52ch;margin-inline:auto}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="assets/hub-poster.css?v=5">
+<link rel="stylesheet" href="assets/hub-poster.css?v=6">
 </head>
 <body>
 
@@ -249,29 +270,32 @@ footer.foot a:hover{color:var(--brass-hi)}
     </noscript>
   </div>
 
+  <p class="premise" id="premise">Enter your wine list, your bar menu and your kitchen's menu once; every wing drills them beside the canon, offline, on the devices behind the bar, and the manager sees who did the work.</p>
+
   <section class="pricing wrap" id="free">
     <h2>Free, all of it</h2>
     <p class="sub" id="free-sub"></p>
     <p class="offer-note" id="install-note"></p>
-    <p class="offer-actions"><button type="button" class="btn" id="offline-all" hidden></button></p>
+    <p class="sub share-note">Two people sharing a device? Add your name on any wing.</p>
+    <p class="offer-actions"><button type="button" class="btn btn-primary" id="offline-all" hidden></button></p>
     <p class="offer-note" id="offline-status" role="status" aria-live="polite" hidden></p>
   </section>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <a href="privacy.html"><span>Privacy</span></a><a href="terms.html"><span>Terms</span></a>
+    <a href="privacy.html"><span>Privacy</span></a><a href="terms.html"><span>Terms</span></a><a href="pass/"><span>For managers: The Pass</span></a>
     <p class="legal" id="legal"></p>
   </div>
 </footer>
 
-<script src="shared/oot-config.js?v=23"></script>
-<script src="shared/oot-profiles.js?v=23"></script>
-<script src="shared/oot-home.js?v=23"></script>
-<script src="shared/oot-auth.js?v=23"></script>
-<script src="shared/oot-gate.js?v=23"></script>
-<script src="shared/oot-pass.js?v=23"></script>
-<script src="shared/oot-log.js?v=23"></script>
+<script src="shared/oot-config.js?v=24"></script>
+<script src="shared/oot-profiles.js?v=24"></script>
+<script src="shared/oot-home.js?v=24"></script>
+<script src="shared/oot-auth.js?v=24"></script>
+<script src="shared/oot-gate.js?v=24"></script>
+<script src="shared/oot-pass.js?v=24"></script>
+<script src="shared/oot-log.js?v=24"></script>
 <script>
 /* The hub renders itself from OOT.config so the wing list, the free/paid copy
    and the prices are written down exactly once. Phases 2 and 3 change behaviour
@@ -393,7 +417,9 @@ footer.foot a:hover{color:var(--brass-hi)}
     installNote.textContent =
       'Install it once and all five wings come with it. On a computer, use the ' +
       'install icon in the address bar; on a phone, Add to Home Screen from the ' +
-      'browser menu. One icon, and every wing inside it.';
+      'browser menu. On an iPhone, open this link in Safari first: the browser ' +
+      'inside Messages or Instagram cannot install it. One icon, and every wing ' +
+      'inside it.';
   }
   /* ---- one install, five wings, all of it offline ----------------------
      Each wing keeps its own service worker on its own narrow scope, which is
@@ -413,16 +439,26 @@ footer.foot a:hover{color:var(--brass-hi)}
   ];
 
   function settled(reg) {
-    /* Resolve when this registration has finished doing whatever it is doing.
-       A worker already active with nothing incoming is done; otherwise wait for
-       the incoming one to reach a terminal state. 'redundant' counts: a worker
-       that failed is finished, and one wing failing must not stall the rest. */
+    /* Resolve when this registration has finished storing its wing. A worker
+       already active with nothing incoming is done. One that has reached
+       'installed' has finished precaching, which is all this button is for: it
+       may then sit in 'waiting' for as long as another tab of that wing is
+       open, and the vanilla workers only skip that wait on a message, so
+       holding out for 'activated' could hang the whole chain. 'redundant'
+       counts as finished too: a worker that failed is finished, and one wing
+       failing must not stall the rest. A worker that reaches none of those
+       states inside a minute is reported as still to do rather than holding
+       the button for ever. */
+    var DONE = { installed: true, activated: true, redundant: false };
     return new Promise(function (resolve) {
       var w = reg.installing || reg.waiting;
       if (!w) return resolve(!!reg.active);
+      if (w.state in DONE) return resolve(DONE[w.state]);
+      var timer = setTimeout(function () { resolve(false); }, 60000);
       w.addEventListener('statechange', function () {
-        if (w.state === 'activated') resolve(true);
-        else if (w.state === 'redundant') resolve(false);
+        if (!(w.state in DONE)) return;
+        clearTimeout(timer);
+        resolve(DONE[w.state]);
       });
     });
   }
@@ -434,12 +470,13 @@ footer.foot a:hover{color:var(--brass-hi)}
     offlineBtn.textContent = 'Make every wing available offline';
     offlineMsg.hidden = false;
     offlineMsg.textContent =
-      'Optional, and about 50 MB. Do it once on wi-fi and the whole app opens ' +
+      'Optional, and about 20 MB. Do it once on wi-fi and the whole app opens ' +
       'with no signal at all. Skipping it costs nothing: any wing you open ' +
       'stores itself as you go.';
 
     offlineBtn.addEventListener('click', function () {
-      offlineBtn.disabled = true;
+      if (offlineBtn.getAttribute('aria-disabled') === 'true') return;
+      offlineBtn.setAttribute('aria-disabled', 'true');
       var done = 0, failed = [];
       /* One at a time. Five apps precaching at once saturates a phone
          connection and makes every one of them slower than doing it in turn. */
@@ -455,15 +492,16 @@ footer.foot a:hover{color:var(--brass-hi)}
         });
       }, Promise.resolve()).then(function () {
         if (!failed.length) {
-          offlineMsg.textContent = 'All five wings are stored on this device. ' +
-            'Everything works with no connection.';
+          offlineMsg.textContent = 'All five wings are stored on this device and ' +
+            'open with no connection. First Light’s library texts and any ' +
+            'practice films still need a connection the first time you open them.';
           offlineBtn.textContent = 'Stored';
         } else {
           offlineMsg.textContent = 'Stored ' + (WINGS.length - failed.length) +
             ' of ' + WINGS.length + '. Still to do: ' + failed.join(', ') +
             '. Opening those wings once while online will finish the job.';
           offlineBtn.textContent = 'Try the rest again';
-          offlineBtn.disabled = false;
+          offlineBtn.removeAttribute('aria-disabled');
         }
       });
     });
@@ -483,6 +521,6 @@ footer.foot a:hover{color:var(--brass-hi)}
     ' Everything runs on your device and nothing is sent anywhere.';
 })();
 </script>
-<script src="assets/hub-plate.js?v=4"></script>
+<script src="assets/hub-plate.js?v=5"></script>
 </body>
 </html>

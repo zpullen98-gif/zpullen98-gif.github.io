@@ -668,7 +668,7 @@ Object.assign(LORE, {
   "Princeton":
     "Gin and port in layers with orange bitters, the 1890s collegiate series' strangest member, drinking like a sunset in reverse. The port float is the diploma.",
   "Saratoga":
-    "An 1862 track-season special: cognac and rye splitting the base of a Manhattan-shaped drink, the sporting compromise of a town that bet on everything.",
+    "An 1887 track-season special: cognac and rye splitting the base of a Manhattan-shaped drink, the sporting compromise of a town that bet on everything.",
   "Gin Daisy":
     "The daisy template (spirit, citrus, grenadine or cordial, soda splash) in its gin original, served over crushed ice with fruit. The Margarita is this drink's Spanish translation.",
   "Knickerbocker":

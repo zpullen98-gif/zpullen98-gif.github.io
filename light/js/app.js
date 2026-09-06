@@ -13,8 +13,8 @@
 /* FL_VIEWS and FL_ACTS are declared in registry.js, which loads before the views. */
 
 /* --- escaping ---
-   Every view builds HTML by string concatenation, so anything the reader typed (
-   a journal entry, a city name) must pass through here. The artifact never
+   Every view builds HTML by string concatenation, so anything the reader typed -
+   a journal entry, a city name, must pass through here. The artifact never
    interpolated user input, so it got away without one; this app has a journal. */
 function esc(s) {
   return String(s == null ? '' : s)
@@ -56,6 +56,10 @@ window.addEventListener('fl:storage', function (e) {
 /* --- routing ---
    "#/hall/bible" -> {view:'hall', arg:'bible'} */
 function parseHash() {
+  /* "#view" is the skip link's fragment, not a route. A hash with no slash
+     leaves the page where it is; treating it as a route sent every keyboard
+     reader from the Library back to Today. */
+  if (location.hash && location.hash.charAt(1) !== '/') return flRoute;
   var h = (location.hash || '').replace(/^#\/?/, '');
   var parts = h.split('/').filter(Boolean);
   var view = parts[0] || 'today';
@@ -71,30 +75,43 @@ function go(view, arg) {
 }
 
 var flRoute = { view: 'today', arg: null };
+var flRendered = false;   // true once the first navigate() has painted a view
 
-/* Four clusters, because eleven equal items is not a menu; it is a list, and
+/* Five clusters, because eleven equal items is not a menu, it is a list, and
    on a 375px screen it wrapped to three ragged rows with the Vault orphaned on
    its own line. The clusters follow what a reader is actually doing:
 
      Today          the daily loop: one tap, no sub-row
      The Practice   the work: the body, the Vault's rehearsal room, the ladder
-     The Book       the reading: the 366, the Library's one door, the sky
+     The Book       the reading: the 366 and the sky
+     The Library    the scripture: seven traditions, the reading plans, the threads
      The Desk       the instruments: writing, finding, the record, the workings
 
-   The top row names the four; a second row appears only when the active
+   The top row names the five; a second row appears only when the active
    cluster holds more than one room. Each cluster remembers the room you were
    last in for the session, so 'The Book' goes back to the chapter you left.
    Hidden rooms light their home cluster for orientation, except Clear
    Mornings, which deliberately lights nothing: no trace is part of that
-   room's contract. */
+   room's contract.
+
+   THE LIBRARY IS ITS OWN CLUSTER ON PURPOSE. It used to sit inside 'The Book'
+   between the secular 366 and the sky, which made scripture look like one more
+   chapter of the same book rather than a room the reader chooses to enter. It
+   is now a door of its own, standing beside the others and entered only by
+   someone who meant to. Nothing here is hidden and nothing is pushed: the
+   religious material is one tap away for a reader who wants it and appears
+   nowhere in the morning for a reader who does not. */
 var NAV_CLUSTERS = [
   ['today',    'Today',        ['today']],
   ['practice', 'The Practice', ['body', 'vault', 'life']],
-  ['book',     'The Book',     ['year', 'library', 'astro']],
+  ['book',     'The Book',     ['year', 'astro']],
+  ['canon',    'The Library',  ['library']],
   ['desk',     'The Desk',     ['journal', 'search', 'stats', 'settings']]
 ];
-/* hidden views borrow a cluster so the reader stays oriented */
-var NAV_HOMES = { hall: 'book', threads: 'book', chart: 'book', reset: 'practice', floor: 'practice' };
+/* hidden views borrow a cluster so the reader stays oriented. The reading plans
+   and the threads are religious rooms reached from the Library, so they light
+   the Library rather than the Book they used to sit under. */
+var NAV_HOMES = { hall: 'canon', threads: 'canon', chart: 'book', reset: 'practice', floor: 'practice' };
 var flLastSub = {};   // cluster id -> last visited view, session-only
 
 function navClusterOf(view) {
@@ -148,7 +165,7 @@ document.addEventListener('keydown', function (e) {
   var t = e.target;
   if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;
   if (e.key === '/') { location.hash = '#/search'; e.preventDefault(); return; }
-  if (/^[1-4]$/.test(e.key)) {
+  if (/^[1-5]$/.test(e.key)) {
     var c = NAV_CLUSTERS[Number(e.key) - 1];
     location.hash = '#/' + (flLastSub[c[0]] || c[2][0]);
     e.preventDefault();
@@ -161,8 +178,8 @@ document.addEventListener('keydown', function (e) {
 function flOnboardHTML() {
   return '<div class="kick">First Light</div>' +
     '<h1>Two minutes, most mornings</h1>' +
-    '<p class="note">Nothing leaves this phone. No account, no manager, no feed: what you write ' +
-    'stays in this browser, and exports to a file you own.</p>' +
+    '<p class="note">Your words never leave this device; if you are signed in, a count of mornings and your streak is recorded. ' +
+    'No manager, no feed: what you write stays in this browser, and exports to a file you own.</p>' +
     '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
     '<div class="pacer-label" id="pacer-label">Ready</div>' +
     '<div class="ds" id="pacer-count"></div>' +
@@ -172,8 +189,8 @@ function flOnboardHTML() {
     '<div class="label" style="margin-top:26px">One choice before you begin</div>' +
     '<div class="card">' +
       '<p class="px" style="margin-bottom:12px">First Light includes a religious Library: scripture and ' +
-      'reading plans across seven traditions. It stays behind its own door either way. ' +
-      'Show today’s readings on your morning page?</p>' +
+      'reading plans across seven traditions. It has its own tab either way, so you can go in whenever you ' +
+      'like and it will never come to you. Show today’s readings on your morning page?</p>' +
       '<div class="drawrow">' +
         '<button class="btn" data-act="onboardChoice" data-v="on">Show the readings</button>' +
         '<button class="keep" data-act="onboardChoice" data-v="off">Keep them in the Library</button>' +
@@ -230,9 +247,12 @@ function render() {
 
 function navigate() {
   var next = parseHash();
+  /* the skip link: carry focus to the main column and change nothing else */
+  if (next === flRoute && flRendered) { var col = document.getElementById('view'); if (col) col.focus(); return; }
   var viewChanged = next.view !== flRoute.view;
   flRoute = next;
   render();
+  flRendered = true;
   if (viewChanged) {
     window.scrollTo(0, 0);
     /* Move focus to the new content. Without this a keyboard or screen-reader user
@@ -345,7 +365,7 @@ function offerUpdate() {
   if (flToastTimer) clearTimeout(flToastTimer);
 }
 
-/* === boot === */
+/* --- boot --- */
 (function boot() {
   flBoot();
   sunApply();

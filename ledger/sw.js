@@ -1,6 +1,6 @@
 /* The Bartender's Ledger: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-ledger-v46';
+const CACHE = 'oot-ledger-v50';
 
 const ASSETS = [
   './',
@@ -15,7 +15,6 @@ const ASSETS = [
   '../shared/oot-log.js',
   '../shared/oot-bar.js',
   './index.html',
-  '../manifest.webmanifest',
   './css/ledger.css',
   './css/print.css',
   './js/data-core.js',
@@ -37,11 +36,9 @@ const ASSETS = [
   './fonts/courier-prime-400.woff2',
   './fonts/courier-prime-700.woff2',
   './fonts/libre-franklin-var.woff2',
-  './icons/icon.svg',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './icons/icon-maskable-512.png',
-  './icons/apple-touch-icon.png'
+  /* only the icon index.html links: the root manifest and its PNGs belong to
+     the shell worker, and the fetch handler below never serves a root path */
+  './icons/icon.svg'
 ];
 
 self.addEventListener('install', e => {

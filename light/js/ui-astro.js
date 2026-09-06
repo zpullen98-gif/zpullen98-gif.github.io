@@ -157,7 +157,8 @@ FL_VIEWS.astro = {
         '<p class="pt">The whole thing, properly computed</p>' +
         '<p class="px">Birth date, time and place give the real positions of all ten bodies, ' +
         'the Ascendant and Midheaven, the twelve house cusps and every aspect: worked out on ' +
-        'this device from an ephemeris, not looked up in a table. Your birth details are never sent anywhere.</p>' +
+        'this device from an ephemeris, not looked up in a table. The birth details never leave this device; ' +
+        'if you are signed in, only a count of mornings and your streak is recorded.</p>' +
         '<a class="keep" href="#/chart">Draw my chart</a>' +
       '</div>' +
 
@@ -185,11 +186,11 @@ FL_VIEWS.astro = {
 
       '<div class="label">The twelve signs</div>' +
       list(SIGNS, function (x) {
-        return signCard(x, x.from[1] + ' ' + MON3[x.from[0]] + ' to ' + x.to[1] + ' ' + MON3[x.to[0]]);
+        return signCard(x, x.from[1] + ' ' + MON3[x.from[0]] + ', ' + x.to[1] + ' ' + MON3[x.to[0]]);
       }) +
 
       '<div class="label">The planets</div>' +
-      '<p class="px" style="color:var(--faint);margin-bottom:12px">Classical astrology used the seven visible bodies. The three outer planets were added after their discovery (Uranus 1781, Neptune 1846, Pluto 1930) and many traditional practitioners still work with the original seven.</p>' +
+      '<p class="px" style="color:var(--faint);margin-bottom:12px">Classical astrology used the seven visible bodies. The three outer planets were added after their discovery, Uranus 1781, Neptune 1846, Pluto 1930, and many traditional practitioners still work with the original seven.</p>' +
       list(A_PLANETS, function (p) {
         return '<div class="limb"><div><div class="gt">' + esc(p[0]) + ': ' + esc(p[1]) + '</div>' +
           '<div class="gp">' + esc(p[2]) + '</div><div class="gp" style="color:var(--accent)">Moves ' + esc(p[3]) + '</div></div></div>';

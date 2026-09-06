@@ -15,12 +15,14 @@
  * narrower scope, and a narrower scope always wins, so /ledger/ is served by
  * ledger/sw.js and never by this file.
  */
-const CACHE = 'oot-shell-v6';
+const CACHE = 'oot-shell-v10';
 
-/* The versioned query strings are deliberate. Every page asks for
-   shared/oot-config.js?v=23, and the cache is matched with ignoreSearch, so a
-   version bump misses the cache and refetches instead of serving last month's
-   config. See the note on ignoreSearch in the fetch handler. */
+/* Every page asks for shared/oot-config.js?v=23 and the cache is matched with
+   ignoreSearch, so the precached copy answers whatever stamp the page wears:
+   a ?v= bump on its own does NOT refetch anything here. What keeps the shell
+   current is the fetch handler below, which revalidates every hit in the
+   background, and this CACHE name, which moves in the same commit as any
+   shared edit and drops the whole set. See the note in the fetch handler. */
 const ASSETS = [
   './',
   './index.html',
@@ -38,7 +40,10 @@ const ASSETS = [
   './assets/hub-poster.css',
   './assets/hub-plate.js',
   './assets/hub-plate.webp',
-  './assets/hub-plate.jpg',
+  /* the jpg is the <picture> fallback for a browser without webp; it is
+     stored at runtime by such a browser rather than downloaded by every one */
+  './assets/fonts/cinzel-normal-400-900-latin.woff2',
+  './assets/fonts/cinzel-normal-400-900-latin-ext.woff2',
   './shared/oot-home.css',
   './shared/oot-config.js',
   './shared/oot-profiles.js',
@@ -98,28 +103,60 @@ self.addEventListener('fetch', (e) => {
   const url = new URL(req.url);
   if (!owns(url)) return;          /* not ours: behave as if no worker existed */
 
-  e.respondWith(
-    /* ignoreSearch is what makes the ?v=N stamps free: the precached entries
-       carry no query string and this matches them anyway. The cost is that a
-       bumped version is served from cache until the worker itself updates,
-       which is why CACHE is bumped in the same commit as any ?v= bump. */
-    caches.open(CACHE).then((c) => c.match(req, { ignoreSearch: true })).then((hit) =>
-      hit || fetch(req).then((res) => {
-        /* Keep the shell current in the background. Opaque and error responses
-           are not worth storing. */
-        if (res && res.ok && res.type === 'basic') {
-          const copy = res.clone();
-          caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {});
-        }
-        return res;
-      }).catch(() =>
-        /* Only a navigation falls back to the hub. Returning HTML for a failed
-           script or image would poison the page with a document where code was
-           expected. */
-        req.mode === 'navigate'
-          ? caches.open(CACHE).then((c) => c.match('./index.html'))
-          : undefined
+  /* Two strategies, chosen by what is asked for, so a stale shell heals itself
+     instead of waiting for somebody to remember this file.
+
+     The HTML documents go network first. A page is what names every ?v= stamp,
+     so a fresh copy of it is what pulls everything else forward: with a
+     connection a visitor always gets the current hub, and the cache answers
+     only when the network cannot.
+
+     Everything else (shared/, assets/, icons/, the manifest) is served
+     stale-while-revalidate: the cached copy answers at once and the network
+     copy replaces it for next time, so a script or stylesheet is never more
+     than one load behind and the page never waits on it.
+
+     ignoreSearch is what makes the ?v=N stamps free: the precached entries
+     carry no query string and this matches them anyway. Refetched copies are
+     stored under the bare path for the same reason, so one file is one entry
+     however many stamps it has worn. */
+  const isDoc = req.mode === 'navigate' ||
+    url.pathname.endsWith('/') || url.pathname.endsWith('.html');
+
+  const store = (res) => {
+    /* Opaque and error responses are not worth storing. */
+    if (res && res.ok && res.type === 'basic') {
+      const copy = res.clone();
+      caches.open(CACHE).then((c) => c.put(url.pathname, copy)).catch(() => {});
+    }
+    return res;
+  };
+  const cached = () => caches.open(CACHE).then((c) => c.match(req, { ignoreSearch: true }));
+
+  if (isDoc) {
+    e.respondWith(
+      fetch(req).then(store).catch(() =>
+        cached().then((hit) =>
+          /* Only a navigation falls back to the hub. Returning HTML for a failed
+             script or image would poison the page with a document where code was
+             expected. */
+          hit || (req.mode === 'navigate'
+            ? caches.open(CACHE).then((c) => c.match('./index.html'))
+            : undefined)
+        )
       )
-    )
+    );
+    return;
+  }
+
+  e.respondWith(
+    cached().then((hit) => {
+      const fresh = fetch(req).then(store).catch(() => undefined);
+      /* Keep the worker alive until the background copy is stored; without
+         this the browser may stop it the moment the cached hit is returned,
+         and the revalidation never lands. */
+      e.waitUntil(fresh);
+      return hit || fresh;
+    })
   );
 });

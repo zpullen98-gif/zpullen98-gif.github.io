@@ -1,7 +1,7 @@
 /* First Light: The Body.
 
    Phase 1 ports the teaching, the eight limbs, and the video library. The practice
-   engine (breath pacer, timers, written sequences that run without a network)
+   engine, breath pacer, timers, written sequences that run without a network -
    arrives in Phase 4. What is fixed here is the offline behaviour: the artifact
    left every video card reading "Loading title…" forever when the fetch failed,
    which on a plane is six identical lies stacked down the page. */
@@ -130,7 +130,10 @@ FL_VIEWS.body = {
         '<div class="gt">' + esc(l[0]) + '</div><div class="gp">' + esc(l[1]) + '</div></div></div>';
     }).join('');
 
-    var vids = BODY_VIDEOS.map(function (v, i) {
+    /* One card builder for both groups. The index is the DOM id the live title
+       fetch writes into, so it has to be unique across the two lists, not per
+       list: the trade group is offset past the end of the first. */
+    function vidCard(v, i) {
       var startNote = v.start
         ? '<div class="vidnote" style="color:var(--accent)">Starts at ' +
           Math.floor(v.start / 60) + ':' + String(v.start % 60).padStart(2, '0') + '</div>'
@@ -143,9 +146,15 @@ FL_VIEWS.body = {
         '</div>' +
         '<div class="vidmeta">' +
           '<div class="vidframe-label">' + esc(v.frame) + '</div>' +
-          '<div class="vidtitle" id="vt-' + i + '">…</div>' +
+          '<div class="vidtitle" id="vt-' + i + '">' +
+            (v.title ? esc(v.title) + (v.author ? '  ·  ' + esc(v.author) : '') : '…') + '</div>' +
           '<div class="vidnote">' + esc(v.note) + '</div>' + startNote +
         '</div></div>';
+    }
+
+    var vids = BODY_VIDEOS.map(vidCard).join('');
+    var tradeVids = TRADE_VIDEOS.map(function (v, i) {
+      return vidCard(v, i + BODY_VIDEOS.length);
     }).join('');
 
     /* --- the practice engine --- */
@@ -177,7 +186,7 @@ FL_VIEWS.body = {
           '<div class="ds">Step ' + (seq.step + 1) + ' of ' + s.steps.length + '</div>' +
           '<p class="pt" style="margin-top:6px">' + esc(st[0]) + '</p>' +
           '<p class="px">' + esc(st[2]) + '</p>' +
-          '<div class="seqtime" id="seq-time">--</div>' +
+          '<div class="seqtime" id="seq-time">-</div>' +
           '<div class="seqtrack"><div class="seqbar" id="seq-bar"></div></div>' +
           '<button class="keep" data-act="seqStop">Stop</button>' +
         '</div>';
@@ -203,17 +212,24 @@ FL_VIEWS.body = {
       '<p class="px" style="color:var(--faint);margin-bottom:16px">Patañjali’s <em>Yoga Sūtras</em> set out eight limbs, <em>ashtanga</em>, of which the postures are only the third. The sequence matters: ethics first, then the body, then the breath, then the mind.</p>' +
       limbs +
       '<div class="label">The practices</div>' +
-      '<p class="px" style="color:var(--faint);margin-bottom:16px">Tap any practice to open it. Titles are drawn live from YouTube; the videos belong to their creators.</p>' +
+      '<p class="px" style="color:var(--faint);margin-bottom:16px">Tap any practice to open it. The videos belong to their creators; the titles were checked against YouTube and are refreshed when there is a connection.</p>' +
       vids +
+      '<div class="label">For the body this trade builds</div>' +
+      '<p class="px" style="color:var(--faint);margin-bottom:16px">The sequences above are the three minute version of this ground, and they run with no connection at all. These are the long version, taught by people who teach it for a living: the sole and the fascia, the calf pump, the hinge that saves a back on a keg, and the wind down for a night that ends at sunrise.</p>' +
+      tradeVids +
       '<p class="mintro" style="margin-top:30px">Move within your own limits. Pain is information, not weakness, and none of this is medical advice.</p>';
   },
 
   after: function () {
-    BODY_VIDEOS.forEach(function (v, i) {
+    BODY_VIDEOS.concat(TRADE_VIDEOS).forEach(function (v, i) {
       fetchYouTubeTitle(v.id).then(function (info) {
         var el = document.getElementById('vt-' + i);
-        if (el) el.textContent = info.title + (info.author ? '  ·  ' + info.author : '');
+        /* the baked title is already on the card; repaint only a changed one */
+        if (el && info.title && (info.title !== v.title || info.author !== (v.author || ''))) {
+          el.textContent = info.title + (info.author ? '  ·  ' + info.author : '');
+        }
       }).catch(function () {
+        if (v.title) return;   /* a baked title says nothing about the network */
         var el = document.getElementById('vt-' + i);
         /* An honest offline state, not a permanent "Loading…". The framing line
            below the title still says what the practice is for, so the card remains

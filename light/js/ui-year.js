@@ -9,12 +9,12 @@ FL_VIEWS.year = {
   title: 'The Year',
   render: function () {
     var ym = yearMonth || (flShiftedNow().getMonth() + 1);
-    var chips = MONTHS.map(function (mo, i) {
+    var chips = trackMonths().map(function (mo, i) {
       return '<button class="mchip' + ((i + 1) === ym ? ' on' : '') + '" data-act="pickMonth" data-m="' + (i + 1) + '"' +
              ' aria-pressed="' + ((i + 1) === ym) + '">' + esc(mo[0].slice(0, 3)) + '</button>';
     }).join('');
 
-    var rows = Q[ym].map(function (e) {
+    var rows = trackQ()[ym].map(function (e) {
       return '<div class="dayrow"><div class="dn">' + e[0] + '</div><div>' +
         '<p class="dq">“' + esc(e[1]) + '”</p>' +
         '<span class="ds">' + esc(e[2]) + ' · ' + esc(e[3]) + '</span> ' +
@@ -28,7 +28,7 @@ FL_VIEWS.year = {
       '<h1>A Year of Mornings</h1>' +
       '<p class="note">Three hundred sixty-six voices: one for every day of the year, including the leap day. Choose a month.</p>' +
       '<div class="months">' + chips + '</div>' +
-      '<p class="mintro">' + esc(MONTHS[ym - 1][1] + ': ' + MONTHS[ym - 1][2]) + '</p>' +
+      '<p class="mintro">' + esc(trackMonths()[ym - 1][1] + ', ' + trackMonths()[ym - 1][2]) + '</p>' +
       '<div>' + rows + '</div>';
   }
 };

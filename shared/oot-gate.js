@@ -160,10 +160,12 @@
 
   /* The founder's signed-in identity holds the whole subscription, in every
      mode. The email in config is public knowledge; the INBOX is the
-     credential, exactly as it is for every other account: the magic link (or
-     the mock sign-in, which is honoured only locally anyway) must be completed
-     as this address. Client-side, like the rest of the gate, and accepted for
-     the same reason the soft paywall is. */
+     credential, exactly as it is for every other account: the magic link must
+     be completed as this address. In mock mode (no Supabase keys) any device
+     can type the address into the mock sign-in and read as the founder; that
+     is the mock's nature, not a fence, and only the oot-mock-tier override
+     above is scoped to localhost. Client-side, like the rest of the gate, and
+     accepted for the same reason the soft paywall is. */
   function isFounder(user) {
     var f = OOT.config && OOT.config.founder;
     return !!(f && user && user.email &&
@@ -312,6 +314,11 @@
     var C = (OOT.config || {});
     var P = C.price || {};
     var root = SITE_ROOT;
+    /* The hub's money section is id="free" in the free edition and id="pricing"
+       when there is something to buy (restored from commit 163b7551 on flip
+       day). Point at whichever the flag says exists; checkPricingAnchor()
+       below says so in the console if the flip forgot the section. */
+    var anchor = C.free ? '#free' : '#pricing';
 
     lastFocus = document.activeElement;
     onCloseCb = typeof opts.onClose === 'function' ? opts.onClose : null;
@@ -321,7 +328,7 @@
     host.setAttribute('style', 'all:initial;position:fixed !important;inset:0 !important;z-index:2147483000 !important');
 
     var wings = (C.wings || []).map(function (w) {
-      return '<li>' + esc(w.name) + ' &mdash; ' + esc(w.paid || w.free || '') + '</li>';
+      return '<li>' + esc(w.name) + ' · ' + esc(w.paid || w.free || '') + '</li>';
     }).join('');
 
     var sr = host.attachShadow ? host.attachShadow({ mode: 'open' }) : host;
@@ -335,7 +342,7 @@
              see that the price covers four more. */
           '<div class="bundle"><h3>One subscription, five wings</h3><ul>' + wings + '</ul></div>' +
           '<div class="plans">' +
-            '<a class="plan go" href="' + root + '#pricing"><span>Your venue</span><b>$' + money(P.monthly || 49.99) + '/month</b></a>' +
+            '<a class="plan go" href="' + root + anchor + '"><span>Your venue</span><b>$' + money(P.monthly || 49.99) + '/month</b></a>' +
           '</div>' +
           '<p class="free"><button type="button" id="oot-pw-x">Keep exploring what is free</button></p>' +
         '</div>' +
@@ -363,6 +370,25 @@
   /* A tier change while the overlay is up means the answer changed underneath
      it. Buying access should clear it without a reload. */
   listeners.push(function (t) { if (t === 'paid') closePaywall(); });
+
+  /* The paywall's button sends a visitor to root + '#pricing' once the free
+     flag is off. Only the hub can check that the section exists, and this file
+     runs there too, so the check runs on the hub and nowhere else: a warning in
+     a wing's console about the hub's markup would be noise nobody reads. */
+  function checkPricingAnchor() {
+    try {
+      if (!OOT.config || OOT.config.free) return;
+      var here = w.location.origin + w.location.pathname;
+      if (here !== SITE_ROOT && here !== SITE_ROOT + 'index.html') return;
+      if (!document.getElementById('pricing') && w.console && w.console.warn) {
+        w.console.warn('Outside Of Time: OOT.config.free is false but the hub has no #pricing ' +
+                       'section, so every paywall button lands on a page with nothing to buy. ' +
+                       'Restore the pricing section (see HANDOFF.md).');
+      }
+    } catch (e) {}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', checkPricingAnchor);
+  else checkPricingAnchor();
 
   OOT.gate = {
     /* Synchronous. Safe to call during a wing's first render. */

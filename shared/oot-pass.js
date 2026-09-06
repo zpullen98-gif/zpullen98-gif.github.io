@@ -31,6 +31,20 @@
 
   var DAY = 86400000;
 
+  /* A day is a LOCAL day, the same one oot-profiles stamps p.lastDay with.
+     toISOString here read tomorrow's date from 8pm Eastern, so the strip said
+     nobody had studied on exactly the nights a closing crew opens it, while
+     the chip beside it counted the streak. One definition, borrowed from
+     oot-profiles; the fallback is the same arithmetic for a page that loaded
+     this file without it. */
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  function localDay(offset) {
+    if (OOT.profiles && typeof OOT.profiles.dayKey === 'function') return OOT.profiles.dayKey(offset);
+    var d = new Date();
+    if (offset) d.setDate(d.getDate() + offset);
+    return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
+  }
+
   /* Where the site root is, discovered from this script's own src the way
      oot-bar.js does it, so The Pass is reachable from a wing at any depth and
      from the World Table's root-absolute paths alike. */
@@ -61,10 +75,15 @@
   }
 
   /* ---- the wing readers ----------------------------------------------
-     One per wing. Each takes that wing's parsed blob and returns a small,
-     uniform summary. A wing whose data is absent returns null and simply does
-     not appear in that person's row, which is the correct rendering of "this
-     person has not opened the Ledger". */
+     One per wing. Each takes that wing's parsed blob and returns a small
+     summary carrying at least { answered, due }, which the roster sums, plus
+     whatever its own line() needs. A wing whose data is absent returns null
+     and simply does not appear in that person's row, which is the correct
+     rendering of "this person has not opened the Ledger".
+
+     line(s) is the sentence the per-wing panel prints; pct(s) is the meter
+     beside it, and a reader with no honest denominator leaves pct out, so
+     the row renders without a bar rather than with an invented one. */
   var READERS = {
     codex: {
       label: 'Codex',
@@ -76,7 +95,9 @@
         ids.forEach(function (k) { right += (d.q[k].c || 0); wrong += (d.q[k].w || 0); });
         var answered = right + wrong;
         if (!answered) return null;
-        var due = 0, now = new Date().toISOString().slice(0, 10);
+        /* The Codex writes srs.due as a LOCAL YYYY-MM-DD (codex3.js addDays,
+           since 5 Sep 2026), so the comparison is against the local day too. */
+        var due = 0, now = localDay(0);
         if (d.srs) {
           Object.keys(d.srs).forEach(function (k) {
             if (d.srs[k] && d.srs[k].due && d.srs[k].due <= now) due++;
@@ -85,7 +106,12 @@
         return { seen: ids.length, answered: answered,
                  accuracy: Math.round(right / answered * 100), due: due,
                  days: d.days ? Object.keys(d.days).length : 0 };
-      }
+      },
+      /* The meter is raw accuracy over every answer ever given, so the
+         line says 'right', not readiness: a person can be right 90% of the
+         time across 20 questions and nowhere near ready for the exam. */
+      line: function (s) { return 'Codex: ' + s.seen + ' met, ' + s.accuracy + '% right'; },
+      pct: function (s) { return s.accuracy; }
     },
     ledger: {
       label: 'Ledger',
@@ -107,7 +133,62 @@
                  accuracy: Math.round(right / answered * 100), due: due,
                  mastered: mastered,
                  quizzes: (d.quizzes || []).length };
-      }
+      },
+      /* 'mastered' counts flashcards the person graded themselves as well
+         as quiz answers the wing marked, and the line says so: a manager
+         reading it as an examined figure would trust it more than it earns. */
+      line: function (s) {
+        return 'Ledger: ' + s.seen + ' met, ' + s.accuracy + '% right, ' +
+               s.mastered + ' mastered (self-graded cards included)';
+      },
+      pct: function (s) { return s.accuracy; }
+    },
+    light: {
+      label: 'First Light',
+      base: 'firstlight-v1',
+      /* { days: ['YYYY-MM-DD', ...], kept: {...}, journal: {...}, ... }
+         Only `days` is read: the mornings observed, as LOCAL date strings
+         (light/js/store.js). Never the journal, never a word of text; The
+         Pass counts mornings and nothing else. 'This week' is the last seven
+         local days including today (the strip's 'active this week' counts a
+         rolling seven days by the clock, which is the right measure for a
+         timestamp but not for a day). A morning is not an answer, so
+         answered stays 0. Only a YYYY-MM-DD string is a morning. */
+      read: function (d) {
+        if (!d || !Array.isArray(d.days) || !d.days.length) return null;
+        var week = {};
+        for (var i = 0; i < 7; i++) week[localDay(-i)] = 1;
+        var seen = {}, all = 0, thisWeek = 0;
+        d.days.forEach(function (k) {
+          if (typeof k !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(k) || seen[k]) return;
+          seen[k] = 1; all++;
+          if (week[k]) thisWeek++;
+        });
+        if (!all) return null;
+        return { answered: 0, due: 0, week: thisWeek, all: all };
+      },
+      line: function (s) { return 'Mornings: ' + s.week + ' this week · ' + s.all + ' in all'; }
+    },
+    table: {
+      label: 'World Table',
+      base: 'world-table-summary-v1',
+      /* { dishesCooked: n, roundsAnswered: n, lastDay: 'YYYY-MM-DD' }
+         The Table's full record (sessions, cooked log, drills) lives in
+         IndexedDB, which a cross-wing page cannot read cheaply and should not
+         learn the schema of. This localStorage key is the Table's OWN export
+         of that record, rewritten on every session save, so The Pass reads
+         the summary the wing chose to publish and nothing underneath it.
+         lastDay is a LOCAL day. A round is an answer, so roundsAnswered
+         joins the roster's Answered column; nothing here is ever owed. */
+      read: function (d) {
+        if (!d || typeof d !== 'object') return null;
+        var cooked = Math.max(0, Math.floor(+d.dishesCooked || 0));
+        var rounds = Math.max(0, Math.floor(+d.roundsAnswered || 0));
+        if (!cooked && !rounds) return null;
+        return { answered: rounds, due: 0, cooked: cooked, rounds: rounds,
+                 lastDay: (typeof d.lastDay === 'string') ? d.lastDay : null };
+      },
+      line: function (s) { return 'Dishes cooked: ' + s.cooked + ' · rounds: ' + s.rounds; }
     }
   };
 
@@ -147,8 +228,8 @@
       /* The streak on the profile is the shared one, but it is only "live" if
          it was touched today or yesterday; an old number would read as current
          activity when it is the opposite. */
-      var today = new Date().toISOString().slice(0, 10);
-      var y = new Date(Date.now() - DAY).toISOString().slice(0, 10);
+      var today = localDay(0);
+      var y = localDay(-1);
       row.streak = (p.lastDay === today || p.lastDay === y) ? (p.streak || 0) : 0;
       row.studiedToday = p.lastDay === today;
       row.days = p.days || 0;
@@ -170,11 +251,27 @@
     }).sort(function (a, b) { return (b.lastSeen || 0) - (a.lastSeen || 0); });
   }
 
+  /* The local day a stamp fell on, in the same YYYY-MM-DD shape as
+     localDay(), so the two compare as strings. */
+  function dayOf(ts) {
+    var d = new Date(ts);
+    return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
+  }
+
+  /* 'today' means the same LOCAL calendar day, nothing looser. Counting
+     elapsed hours said 'today' for a stamp from 11pm last night when read at
+     1am, while the streak beside it, which goes by oot-profiles.dayKey, had
+     already turned over; the two must agree on what a day is. Days are
+     counted between local midnights for the same reason. */
   function ago(ts) {
     if (!ts) return 'never';
-    var d = Math.floor((Date.now() - ts) / DAY);
-    if (d <= 0) return 'today';
-    if (d === 1) return 'yesterday';
+    var day = dayOf(ts);
+    if (day === localDay(0)) return 'today';
+    if (day === localDay(-1)) return 'yesterday';
+    var then = new Date(ts); then.setHours(0, 0, 0, 0);
+    var now = new Date(); now.setHours(0, 0, 0, 0);
+    var d = Math.round((now - then) / DAY);
+    if (d < 1) return 'today';   /* a stamp ahead of the clock: the clock moved */
     if (d < 7) return d + ' days ago';
     if (d < 14) return 'last week';
     return Math.floor(d / 7) + ' weeks ago';
@@ -239,9 +336,9 @@
     rows.forEach(function (r) {
       out += '<tr><td style="text-align:left">' + esc(r.name) + '</td>' +
         '<td>' + ago(r.lastSeen) + '</td>' +
-        '<td>' + (r.streak || '&mdash;') + '</td>' +
+        '<td>' + (r.streak || '·') + '</td>' +
         '<td>' + r.answered + '</td>' +
-        '<td>' + (r.due || '&mdash;') + '</td></tr>';
+        '<td>' + (r.due || '·') + '</td></tr>';
     });
     out += '</tbody></table></div>';
 
@@ -255,10 +352,17 @@
       out += '<div style="margin:12px 0">' +
         '<div class="oot-today-line" style="font-size:.95rem">' + esc(r.name) + '</div>';
       wings.forEach(function (w) {
-        var s = r.wings[w];
-        var label = READERS[w].label + ': ' + s.seen + ' met, ' + s.accuracy + '% right';
-        if (w === 'ledger' && s.mastered != null) label += ', ' + s.mastered + ' mastered';
-        out += (H ? H.readiness(label, s.accuracy) : '<div>' + esc(label) + '</div>');
+        var R = READERS[w], s = r.wings[w];
+        var label = R.line(s);
+        var pct = (typeof R.pct === 'function') ? R.pct(s) : null;
+        if (pct != null) {
+          out += (H ? H.readiness(label, pct) : '<div>' + esc(label) + '</div>');
+        } else {
+          /* The same row as readiness() draws, minus the bar: a count of
+             mornings or dishes has no percentage to be honest about. */
+          out += '<div class="oot-meter"><div class="oot-meter-top"><span>' + esc(label) +
+                 '</span></div></div>';
+        }
       });
       out += '</div>';
     });

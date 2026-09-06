@@ -1,1 +1,0 @@
-var e={q:``,chapter:null,course:null,difficulty:null,quick:!1,vegetarian:!1,season:!1},t={1:`Easy`,2:`Intermediate`,3:`Advanced`};export{e as n,t};

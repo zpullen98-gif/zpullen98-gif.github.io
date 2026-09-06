@@ -46,15 +46,52 @@ function ootCodexReadiness() {
     if (typeof LEVELS === 'undefined' || typeof activeLevel === 'undefined') return null;
     var lv = LEVELS[activeLevel];
     if (!lv || !lv.bank || !lv.bank.length) return null;
-    var bank = lv.bank, seen = 0, acc = 0;
+    /* ONE definition of readiness, the Dashboard's (codex2/codex7 dashView):
+       accuracy over every answer at this rank, weighted by coverage, with
+       full weight at 60% of the bank faced. The home figure and the Dashboard
+       figure are the same number, or the exam plan has two masters. */
+    var bank = lv.bank, seen = 0, c = 0, w = 0;
     for (var i = 0; i < bank.length; i++) {
       var r = ST && ST.q && ST.q[qKey(bank[i])];
-      if (r && (r.c + r.w) > 0) { seen++; acc += r.c / (r.c + r.w); }
+      if (r && (r.c + r.w) > 0) { seen++; c += r.c; w += r.w; }
     }
-    var pct = seen ? Math.round((seen / bank.length) * (acc / seen) * 100) : 0;
+    var acc = (c + w) ? Math.round(100 * c / (c + w)) : 0;
+    var pct = Math.round(acc * Math.min(1, seen / (0.6 * bank.length)));
     return { label: lv.short, pct: pct, seen: seen, total: bank.length };
   } catch (e) { return null; }
 }
+
+/* A device nobody has studied on and nobody has chosen a rank on. The
+   induction is for a new hire, and a new hire's paper is the Régionale. */
+function ootFreshDevice() {
+  try {
+    var k = (window.OOT && OOT.profiles) ? OOT.profiles.key('codexLevel') : 'codexLevel';
+    if (localStorage.getItem(k)) return false;
+  } catch (e) {}
+  return !(ST && ST.q && Object.keys(ST.q).length);
+}
+
+/* Ten multiple-choice questions from the Régionale bank, counted and ended:
+   a first round, not a bottomless drill. */
+function startFirstTen() {
+  if (activeLevel !== 'intro' && typeof LEVELS !== 'undefined' && LEVELS.intro) applyLevel('intro', true);
+  var pool = shuffle(QUESTIONS.filter(function (q) { return !q.sa && !q.mt && !q.sel && q.opts; })).slice(0, 10);
+  if (!pool.length) { render(); return; }
+  stopTimer(); S.mode = 'drill'; S.section = 'Your first ten'; S._again = startFirstTen;
+  S.pool = pool; S.idx = 0; S.correct = 0; S.results = []; resetQ(); S.view = 'quiz'; render();
+}
+
+/* Steps that open a place, not a tile. The tile in data-firstpath.js stays as
+   the fallback so a renamed view still leaves the step alive. */
+var PATH_OPEN = {
+  label: function () {
+    if (activeLevel === 'intro' && typeof INTRO_CLASS !== 'undefined') { S.cmp = { sec: 'class', idx: null, reg: null }; S.view = 'compendium'; }
+    else { S.primerKey = 'Classifications & Labels'; S.view = 'primer'; }
+    render();
+  },
+  faults: function () { S.vidFocus = 'Service Technique'; S.view = 'videos'; render(); },
+  first: startFirstTen
+};
 
 /* The Daily Review tile already computes its own count. Read it back rather
    than recomputing, so the summary and the tile can never disagree on screen. */
@@ -135,6 +172,12 @@ function organiseHome() {
         return { id: s.id, t: s.t, mins: s.mins, act: 'data-oot-step="' + s.id + '"' };
       }), done);
       if (path) {
+        /* markPathStep records nothing without a current profile; say so
+           where the count is, rather than let seven steps tick nothing */
+        if (!P.current()) {
+          path = path.replace('<div class="oot-path">',
+            '<div class="oot-today-sub" style="margin:0 0 8px">Add your name first so this is kept.</div><div class="oot-path">');
+        }
         extra = '<div class="oot-today-sub" style="margin:0 0 8px">Your first week. ' +
           'Finish it and your manager can see you are ready for the floor.</div>' + path;
       }
@@ -145,8 +188,9 @@ function organiseHome() {
       if (r) {
         extra = H.readiness('Ready for ' + r.label, r.pct) +
           '<div class="oot-today-sub" style="margin:6px 0 12px">' +
-          r.seen + ' of ' + r.total + ' questions met. Readiness counts how much of ' +
-          'the bank you have seen, weighted by how well you answer it.</div>';
+          r.seen + ' of ' + r.total + ' questions met. Coverage-weighted accuracy, the same ' +
+          'Readiness figure as the Dashboard: your accuracy at this rank, at full weight ' +
+          'once you have faced 60% of the bank.</div>';
       }
       if (OOT.pass) extra += OOT.pass.settings();
       /* Publish this wing's section ranking for The Pass, which has no question
@@ -204,6 +248,10 @@ function organiseHome() {
         var id = b.getAttribute('data-oot-step');
         var step = FIRST_PATH.filter(function (s) { return s.id === id; })[0];
         P.markPathStep('codex', id);
+        /* a fresh device starts the induction on the Régionale paper, not the
+           Village default a new hire was never meant to sit first */
+        if (ootFreshDevice() && activeLevel !== 'intro' && typeof LEVELS !== 'undefined' && LEVELS.intro) applyLevel('intro', true);
+        if (PATH_OPEN[id]) { PATH_OPEN[id](); return; }
         var t = step && document.getElementById(step.go);
         if (t) t.click(); else render();
       };
@@ -278,6 +326,17 @@ function ootCodexGaps() {
   } catch (e) { return []; }
 }
 
+/* ---- the foot line ----------------------------------------------------
+   Every wing and The Pass carry the same pair, pointing at the root pages.
+   The Codex never had a foot line of its own, so it is added here at the end
+   of the home screen rather than patched into a copied file. */
+function ootCodexFoot() {
+  var f = document.createElement('footer');
+  f.className = 'oot-foot';
+  f.innerHTML = '<a href="../privacy.html">Privacy</a> \u00b7 <a href="../terms.html">Terms</a>';
+  return f;
+}
+
 var _v14Render = render;
 render = function () {
   if (S.view === 'oot-pass' && window.OOT && OOT.pass) {
@@ -300,7 +359,14 @@ render = function () {
       return;
     }
   }
-  return _v14Render.apply(this, arguments);
+  var out = _v14Render.apply(this, arguments);
+  try {
+    if (S.view === 'home') {
+      var appEl = document.getElementById('app');
+      if (appEl && !appEl.querySelector('.oot-foot')) appEl.appendChild(ootCodexFoot());
+    }
+  } catch (e) {}
+  return out;
 };
 
 /* Answering anything counts as having studied today, in any wing. The streak
@@ -327,6 +393,9 @@ render = function () {
 
 (function () {
   var css = document.createElement('style');
-  css.textContent = '.oot-sec-grid{margin-top:0!important}';
+  css.textContent = '.oot-sec-grid{margin-top:0!important}' +
+    '.oot-foot{text-align:center;margin:40px 0 12px;font-size:12px;color:var(--gold-soft,#c9b27a);letter-spacing:.4px}' +
+    '.oot-foot a{color:inherit;text-decoration:underline;text-underline-offset:2px}' +
+    '.oot-foot a:hover{color:var(--gold,#e2c777)}';
   document.head.appendChild(css);
 })();
