@@ -1,24 +1,27 @@
 /* ============ Certified level: 36 study chapters ============
-   PROVENANCE IS UNRECORDED, and this header exists to say so rather than to
-   claim anything. Every other content set in the Codex has a statement
-   somewhere: the Rank I bank and its 39 chapters carried "Imported from
-   cms-intro-*.html" in their own headers, HANDOFF.md records the Advanced and
-   Master banks and their 72 chapters as authored by an AI assistant inside this
-   project, and OutsideOfTime/COMPLIANCE.md gives each a row and a risk score.
-   These 36 chapters appear in none of it: no header, no archive mapping, no
-   authorship statement, and they were not part of the rewrite.
+   PROVENANCE, recorded 6 September 2026 on the owner's statement.
 
-   What can be said from the file itself, and it points one way: the chapters
-   recorded as IMPORTED use the shape {g, id, t, body} and carry HTML bodies,
-   while these use {cat, lead, exam, facts, traps}, the same native format as
-   the Advanced and Master chapters that are recorded as authored here. That is
-   evidence of in-project authorship, not proof of it.
+   These 36 chapters were AUTHORED IN THIS PROJECT, with an AI assistant,
+   over several hours of work. The owner states it directly: "we literally
+   spent hours creating those rank 2 question chapters". That is the same
+   origin, and the same working method, as the Advanced and Master chapters
+   recorded in HANDOFF.md.
 
-   They ship in the FREE tier, which the B2B pivot made the top of a commercial
-   funnel, so this is worth resolving before the product is sold. The resolution
-   is the one COMPLIANCE.md already used for the World Table: an owner statement
-   of origin, recorded in the register and repeated here. Until that exists,
-   treat this file as unverified.
+   This closes the one open compliance question in the product. Every other
+   content set already had a statement somewhere: the Rank I bank and its 39
+   chapters carry "Imported from cms-intro-*.html" in their own headers, and
+   OutsideOfTime/COMPLIANCE.md gives each set a row and a risk score. These 36
+   had none, and they ship in the FREE tier, which the B2B pivot made the top
+   of a commercial funnel.
+
+   The file's own internal evidence agreed with the statement before it was
+   given, which is worth keeping as corroboration rather than deleting: the
+   chapters recorded as IMPORTED use the shape {g, id, t, body} and carry HTML
+   bodies, while these use {cat, lead, exam, facts, traps}, the native format
+   of the chapters recorded as authored here.
+
+   COMPLIANCE.md carried these at risk 60 pending exactly this answer. That
+   row should now be updated to match.
    ============ */
 var PRIMERS=[
 

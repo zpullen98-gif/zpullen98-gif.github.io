@@ -231,7 +231,10 @@ function encyView(){
     function rows(DB,label){
       let h='';
       try{
-        DB.forEach(function(c){ (c.rows||[]).forEach(function(r){
+        /* TERROIR keys its entries `regions`, PRODUCERS keys them `rows`, and
+           this loop only ever read `rows`. The Terroir Atlas has therefore
+           never been searchable, in a view whose own subtitle promises it. */
+        DB.forEach(function(c){ (c.rows||c.regions||[]).forEach(function(r){
           if(JSON.stringify(r).toLowerCase().indexOf(t)>=0)
             h+='<div class="refrow">'+Object.values(r).map(function(x,i){return '<div class="'+(i===0?'refr':'refnote')+'">'+x+'</div>';}).join('')+'</div>';
         });});
