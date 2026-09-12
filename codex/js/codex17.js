@@ -169,3 +169,61 @@ function v17Repair(inc, beforeTast, beforeGrader, beforeBad) {
    made the same call for the wine list and wrote down why. Nothing is
    registered here on purpose, and the merge clauses above are what the
    registration would otherwise have guaranteed. */
+
+/* ═══════════ two dead ends behind the producer drill ═══════════
+
+   codex16 builds its questions at click time, which is what keeps them out of
+   the banks. Two pieces of machinery further down assume the opposite: that
+   every question a person answers can be found again in QUESTIONS.
+
+   THE ROTATION THAT NOTHING CAN COME OUT OF. codex3 hooks statRecord to call
+   srsRecord for every answered question, so each producer call wrote an
+   ST.srs record keyed pr-<id>-<facet>. dueList() builds its pool by filtering
+   QUESTIONS, which never holds a runtime question, so not one of those records
+   could ever be served. They sat in the store, and the Progress Transfer
+   screen counted them as "In rotation", which made the figure a student reads
+   to decide what to study tonight climb by four every time they opened a
+   producer. keyOwned already decided that a producer call is study and not a
+   rank's bank; this is the same decision applied to the same keys.
+
+   THE BOOKMARK THAT DOES NOTHING. codex2 offers Bookmark on every question and
+   stores qKey(q) in ST.flags, and the Bookmarks tile drills them by looking
+   them up in the bank. A bookmarked producer question is therefore saved and
+   then never found: the tile's count goes up and the drill it opens is short
+   by exactly that many. Better to not offer it than to offer it broken, so the
+   button is removed for a producer question and left alone everywhere else. */
+function v17IsRuntimeKey(k) {
+  var bare = String(k).indexOf('|') > -1 ? String(k).slice(String(k).indexOf('|') + 1) : String(k);
+  return bare.indexOf('pr-') === 0;
+}
+
+var _v17SrsRecord = (typeof srsRecord === 'function') ? srsRecord : null;
+if (_v17SrsRecord) {
+  srsRecord = function (q, ok) {
+    try { if (q && v17IsRuntimeKey(qKey(q))) return; } catch (e) { }
+    return _v17SrsRecord(q, ok);
+  };
+}
+
+/* Anything already written by the versions that shipped before this file is
+   swept once, so a record that has been drilling producers does not carry a
+   permanently inflated "In rotation" figure. */
+(function () {
+  if (!ST || !ST.srs) return;
+  var gone = 0;
+  Object.keys(ST.srs).forEach(function (k) {
+    if (v17IsRuntimeKey(k)) { delete ST.srs[k]; gone++; }
+  });
+  if (gone) { try { stSave(); } catch (e) { } }
+})();
+
+var _v17DecorateQuiz = decorateQuiz;
+decorateQuiz = function () {
+  _v17DecorateQuiz();
+  try {
+    var q = S.pool && S.pool[S.idx];
+    if (!q || !v17IsRuntimeKey(qKey(q))) return;
+    var b = document.querySelector('#card .qmeta .flagbtn');
+    if (b && b.parentNode) b.parentNode.removeChild(b);
+  } catch (e) { /* a missing bookmark button is not worth breaking a quiz over */ }
+};

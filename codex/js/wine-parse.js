@@ -116,13 +116,24 @@ var parseWineText;
 	);
 
 	/**
-	 * A bare number with no currency anywhere. Three digits at most when it is a
-	 * whole number: that rule is what keeps 'Pinot Noir 2019' a drink name rather
-	 * than a two-thousand-pound bottle, and it keeps stray four-digit OCR noise out
-	 * of the price column. A number carrying decimals is plainly a price and may be
-	 * longer.
+	 * A bare number with no currency anywhere.
+	 *
+	 * THE ONE PLACE THIS FILE DIVERGES FROM THE LEDGER AND WORLD TABLE COPIES,
+	 * and it is here because a wine list prints numbers a food menu never does.
+	 * The original capped a bare whole number at three digits, and its comment
+	 * explained that the cap is what keeps 'Pinot Noir 2019' a dish name rather
+	 * than a two-thousand-pound bottle. On a food menu that costs nothing. On a
+	 * wine list it loses the top of the list: a bottle at 1250 or 4200 was not a
+	 * price, so the number stayed inside the wine's name, or, when the line
+	 * followed a priced one, the whole line was absorbed as the previous
+	 * bottle's tasting note and that bottle left the import without a word.
+	 *
+	 * So the thing the cap was really protecting is named directly: four and
+	 * five figure numbers are prices UNLESS they read 19xx or 20xx, which is a
+	 * vintage. A thousands separator is read as one, because a list printing
+	 * 1,250 means 1,250. A number carrying decimals is plainly a price.
 	 */
-	const PRICED_BARE = /^(?:\d{1,3}|\d{1,5}[.,]\d{1,2})$/;
+	const PRICED_BARE = /^(?:\d{1,3}|\d{1,5}[.,]\d{1,2}|\d{1,3}[.,]\d{3}|(?!(?:19|20)\d{2}$)\d{4,5})$/;
 
 	/** Market price in the forms menus actually print, kept exactly as printed. */
 	const MARKET_PRICE = /^(?:m\.?p\.?|m\/p|mkt|p\.?o\.?a\.?)$/i;

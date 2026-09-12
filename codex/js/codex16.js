@@ -66,6 +66,14 @@ function prodSlugBare(s) {
   return prodSlug(String(s || '').replace(/\s*\([^)]*\)\s*$/, ''));
 }
 
+/* The same fold, but keeping the word gaps, so containment can be tested on
+   whole words rather than on raw substrings. */
+function prodWords(s) {
+  var t = String(s || '');
+  try { t = t.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); } catch (e) { }
+  return ' ' + t.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim() + ' ';
+}
+
 /* WHERE A ROW THE CORPUS HAS NOT REACHED IS FILED.
    Not under its old country name. The old names and the corpus names describe
    the same places in different words ("Germany & Austria" against "Germany,
@@ -104,11 +112,17 @@ function prodCorpus() {
      slug of the name. Fourteen of the seventy-five appear nowhere else in the
      app, and a rewrite that loses them is a rewrite that lost content. */
   if (typeof PRODUCERS !== 'undefined' && PRODUCERS && PRODUCERS.forEach) {
-    var byName = {};
-    out.forEach(function (r) { byName[prodSlug(r.p)] = 1; byName[prodSlugBare(r.p)] = 1; });
+    var byName = {}, corpusWords = [];
+    out.forEach(function (r) {
+      byName[prodSlug(r.p)] = 1; byName[prodSlugBare(r.p)] = 1;
+      corpusWords.push(prodWords(r.p));
+    });
     PRODUCERS.forEach(function (c) {
       (c.rows || []).forEach(function (row) {
         if (byName[prodSlug(row.p)] || byName[prodSlugBare(row.p)]) return;
+        /* the short name inside the full one, on whole words */
+        var w = prodWords(row.p);
+        if (w.length > 3 && corpusWords.some(function (cw) { return cw.indexOf(w) >= 0; })) return;
         push(prodFromLegacy(row, c.country));
       });
     });
@@ -153,10 +167,14 @@ function prodProfileView(rec, back) {
   if (rec.founded) facts.push(['Founded', rec.founded]);
   if (rec.holdings) facts.push(['Holdings', rec.holdings]);
   if (rec.style) facts.push(['House style', rec.style]);
-  if (maker) facts.push(['Made by', maker.p]);
+  /* rendered as a button below, because every other relation in this layer
+     is one and this was the only dead end. */
+  if (maker) facts.push(['Made by', maker.p, maker.id]);
   if (facts.length) {
     html += '<div class="secgroup">The estate</div>'
       + facts.map(function (f) {
+        if (f[2]) return '<button class="secbtn" data-goto="' + escT(f[2]) + '">'
+          + '<span>' + escT(f[0]) + ': ' + escT(f[1]) + '</span><span class="n">Open</span></button>';
         return '<div class="sysitem"><b>' + escT(f[0]) + '</b><span>' + escT(f[1]) + '</span></div>';
       }).join('');
   }
@@ -184,6 +202,15 @@ function prodProfileView(rec, back) {
     + '<button class="btn ghost" id="pr-back">' + escT(back) + '</button></div></div>';
 
   var v = el(html);
+  v.querySelectorAll('[data-goto]').forEach(function (b) {
+    b.onclick = function () {
+      var target = prodById(b.dataset.goto);
+      if (!target) return;
+      var groups = prodGroups(), ci = S._prod.c;
+      groups.forEach(function (g, i) { if (g.rows.indexOf(target) >= 0) ci = i; });
+      S._prod = { c: ci, id: target.id }; render(); window.scrollTo(0, 0);
+    };
+  });
   v.querySelector('#pr-quiz').onclick = function () { startProducerDrill({ id: rec.id }); };
   v.querySelector('#pr-back').onclick = function () { S._prod.id = null; render(); };
   return v;
@@ -228,7 +255,9 @@ function prodListView() {
 
   var block = function (label, rows) {
     if (!rows.length) return '';
-    return '<div class="secgroup">' + label + '</div>' + rows.map(function (r) {
+    /* no label, no heading: a country with no icon wines was printing a bare
+       empty .secgroup above its estates. */
+    return (label ? '<div class="secgroup">' + label + '</div>' : '') + rows.map(function (r) {
       return '<button class="secbtn" data-id="' + escT(r.id) + '"><span>' + escT(r.p)
         + '</span><span class="n">' + escT(r.sub || r.r || '') + '</span></button>';
     }).join('');
@@ -268,7 +297,11 @@ function prodDrillPool(scope) {
   var all = prodCorpus();
   var pick = all.filter(function (r) {
     if (scope.id) return r.id === scope.id;
-    if (scope.country) return r.country === scope.country;
+    /* on the GROUP, which is what the country page lists by. A legacy row
+       keeps its old country string and is filed under PROD_UNPROFILED, so
+       matching r.country returned nothing for that page and its Drill button
+       did nothing at all. */
+    if (scope.country) return (r.group || r.country) === scope.country;
     return true;
   });
   if (!pick.length) return [];
@@ -328,9 +361,37 @@ function prodDrillPool(scope) {
        region, and the profile already says they await a full write-up. */
     var named = !rec.legacy && w0 && w0.n && soleMaker(w0.n);
 
+    /* A BOTTLING THAT IS NOT JUST THE ESTATE'S OWN NAME.
+       On 122 records the first wine is named after the house, so "who makes
+       Chateau Ausone" answered "Chateau Ausone" and "which wine is Chateau
+       Ausone known for" offered its own name as the correct option. Thirty
+       eight per cent of the Bordeaux drill was a tautology. Facets 2 and 4
+       ask about this instead, and where an estate has nothing but its own
+       name to offer they are not asked at all: a question with no content is
+       worse than one fewer question. Facet 3 is unaffected, because "what is
+       Chateau Angelus made from" is a real question either way. */
+    var wDistinct = null;
+    if (!rec.legacy) {
+      (rec.wines || []).some(function (w) {
+        if (w && w.n && fold(w.n) !== fold(rec.p) && soleMaker(w.n)) { wDistinct = w; return true; }
+        return false;
+      });
+    }
+
     /* 1. the place */
     if (rec.r) {
-      var rd = near(rec, function (r) { return r.r; }).filter(function (x) { return fold(x) !== fold(rec.r); });
+      /* A DISTRACTOR THAT IS ALSO TRUE IS NOT A DISTRACTOR.
+         The corpus records some places at two granularities: an estate whose
+         r is "Rioja Alavesa" sits beside one whose r is "Rioja", and offering
+         both puts two correct answers on the screen. Exact-match filtering
+         missed it. Containment either way is the test, because the broader
+         name and the narrower name are both right for the narrower estate. */
+      var ansR = fold(rec.r);
+      var rd = near(rec, function (r) { return r.r; }).filter(function (x) {
+        var f = fold(x);
+        if (!f || f === ansR) return false;
+        return f.indexOf(ansR) < 0 && ansR.indexOf(f) < 0;
+      });
       var ro = uniqOpts(rec.r, rd);
       if (ro.length === 4) {
         var p1 = shuffle([0, 1, 2, 3]);
@@ -345,10 +406,10 @@ function prodDrillPool(scope) {
 
     /* 2. the maker, from the bottling. Short answer, because on the floor
           nobody offers you four names to choose between. */
-    if (named && !prodIsWine(rec)) {
+    if (wDistinct && !prodIsWine(rec)) {
       qs.push({
         id: 'pr-' + rec.id + '-mk', cat: 'Producers & Icons', sa: 1,
-        q: 'Who makes ' + escT(w0.n) + '?',
+        q: 'Who makes ' + escT(wDistinct.n) + '?',
         accept: [rec.p], ans: name,
         exp: name + (rec.r ? ', ' + escT(rec.r) : '') + '.'
       });
@@ -365,7 +426,8 @@ function prodDrillPool(scope) {
         var p3 = shuffle([0, 1, 2, 3]);
         qs.push({
           id: 'pr-' + rec.id + '-gr', cat: 'Producers & Icons',
-          q: 'What is ' + escT(w0.n) + ' made from?',
+          q: (fold(w0.n) === fold(rec.p) ? 'What is ' + escT(w0.n) + ' made from?'
+            : 'What is ' + name + "'s " + escT(w0.n) + ' made from?'),
           opts: p3.map(function (i) { return escT(go[i]); }), a: p3.indexOf(0),
           exp: escT(w0.n) + ': ' + escT(w0.grape) + (w0.note ? '. ' + escT(w0.note) : '.')
         });
@@ -373,7 +435,7 @@ function prodDrillPool(scope) {
     }
 
     /* 4. the signature bottling, from the estate */
-    if (named && !prodIsWine(rec)) {
+    if (wDistinct && !prodIsWine(rec)) {
       var wd = all.filter(function (r) { return r.id !== rec.id; })
         .map(function (r) { return (r.wines || [])[0]; }).filter(Boolean)
         .map(function (w) { return w.n; });
@@ -382,8 +444,8 @@ function prodDrillPool(scope) {
          difference of case alone would put the right answer in twice. */
       var mine = {};
       (rec.wines || []).forEach(function (w) { mine[fold(w.n)] = 1; });
-      var wo = uniqOpts(w0.n, uniqBy(shuffle(wd)).filter(function (x) {
-        return !mine[fold(x)] && fold(x) !== fold(w0.n);
+      var wo = uniqOpts(wDistinct.n, uniqBy(shuffle(wd)).filter(function (x) {
+        return !mine[fold(x)] && fold(x) !== fold(wDistinct.n);
       }));
       if (wo.length === 4) {
         var p4 = shuffle([0, 1, 2, 3]);
@@ -413,6 +475,11 @@ function startProducerDrill(scope) {
   S.section = 'Producers' + (scope.id ? ' · ' + (prodById(scope.id) || {}).p
     : scope.country ? ' · ' + scope.country : '');
   S.pool = qs; S.idx = 0; S.correct = 0; S.results = []; resetQ();
+  /* Again has to rebuild this drill, not look S.section up as a bank
+     category. Without it core.js fell back to startDrill('Producers, Spain
+     and Portugal'), which matches nothing, or re-ran a stale S._again from
+     an earlier runtime drill. codex7 and codex12 both set this; this did not. */
+  S._again = function () { startProducerDrill(scope); };
   S.view = 'quiz'; render();
 }
 
@@ -443,10 +510,33 @@ function codexFold(s) {
 function codexFind(term) {
   var t = codexFold(String(term || '').trim());
   if (t.length < 2) return null;
-  var hit = function (o) { return codexFold(JSON.stringify(o)).indexOf(t) >= 0; };
+  /* SEARCH THE VALUES, NOT THE SERIALISED OBJECT. JSON.stringify carries the
+     KEYS too, so every record contains the literal words id, p, country, sub,
+     founded, holdings, style, why, wines, traps, grape and note, and a reader
+     searching for "style" or "note" or "grape" got all 665 back. The same
+     went for a bottle: producer, name, vintage, region, grapes, glass, bottle.
+     The haystack is cached on the record, because this runs on every
+     keystroke over the whole corpus. */
+  var hit = function (o, cacheKey) {
+    var blob = o && o[cacheKey];
+    if (typeof blob !== 'string') {
+      var vals = [];
+      (function walk(v) {
+        if (v == null) return;
+        if (typeof v === 'string') { vals.push(v); return; }
+        if (typeof v === 'number') { vals.push(String(v)); return; }
+        if (Array.isArray(v)) { v.forEach(walk); return; }
+        if (typeof v === 'object') { Object.keys(v).forEach(function (k) { walk(v[k]); }); }
+      })(o);
+      blob = codexFold(vals.join(' '));
+      try { Object.defineProperty(o, cacheKey, { value: blob, enumerable: false, writable: true }); }
+      catch (e) { /* a frozen record simply rebuilds its haystack each time */ }
+    }
+    return blob.indexOf(t) >= 0;
+  };
   return {
-    producers: prodCorpus().filter(hit).slice(0, 40),
-    bottles: (ST.cellar || []).filter(hit).slice(0, 20),
+    producers: prodCorpus().filter(function (r) { return hit(r, '_v16blob'); }).slice(0, 40),
+    bottles: (ST.cellar || []).filter(function (b) { return hit(b, '_v16blob'); }).slice(0, 20),
     t: t
   };
 }
@@ -541,11 +631,37 @@ function wineLoadRow() {
 function wineFinish() {
   var w = S._wimp || {};
   var n = w.added || 0;
+  /* carried past the clear so the cellar view can show it once */
+  var left = (w.skipped || []).slice();
+  var unseen = w.rows ? Math.max(0, w.rows.length - (w.i || 0)) : 0;
   S._wimp = null; S._cellarForm = null; S._cellarEdit = null;
+  S._wimpReport = (left.length || unseen || n) ? { added: n, skipped: left, unseen: unseen } : null;
   S.view = 'cellar'; render();
   if (typeof toast === 'function') {
     toast(n ? n + ' bottle' + (n === 1 ? '' : 's') + ' added to the list.' : 'Nothing added.');
   }
+}
+
+/* What the run did, including what it could not do. Shown once, on the list
+   itself, and dismissed by hand rather than by a timer: a person who has just
+   pasted forty bottles is reading the list, not watching for a toast. */
+function wineReportHtml() {
+  var r = S._wimpReport;
+  if (!r) return '';
+  var bits = [];
+  bits.push('<div class="wimp-count">The import</div>');
+  bits.push('<div class="wimp-note" style="font-style:normal;opacity:.85">'
+    + (r.added ? r.added + ' bottle' + (r.added === 1 ? '' : 's') + ' added.' : 'Nothing was added.')
+    + (r.unseen ? ' ' + r.unseen + ' more were read but never reached: the run was stopped.' : '')
+    + '</div>');
+  if (r.skipped.length) {
+    bits.push('<div class="wimp-note">Lines the reader could not use:</div>');
+    bits.push(r.skipped.map(function (x) {
+      return '<div class="wimp-raw">' + escT(String(x)) + '</div>';
+    }).join(''));
+  }
+  bits.push('<div class="sarow"><button class="btn small ghost" id="wi-dismiss">Done</button></div>');
+  return '<div class="wimp-band">' + bits.join('') + '</div>';
 }
 
 /* The banner that sits above the form while an import is running: which bottle
@@ -581,6 +697,16 @@ cellarView = function () {
   var v = _v16CellarView();
   var w = S._wimp;
 
+  /* What the last run managed, shown once. */
+  if (!w && S._wimpReport) {
+    var rep = el('<div>' + wineReportHtml() + '</div>');
+    if (rep.firstElementChild) {
+      v.insertBefore(rep.firstElementChild, v.firstChild);
+      var dis = v.querySelector('#wi-dismiss');
+      if (dis) dis.onclick = function () { S._wimpReport = null; render(); };
+    }
+  }
+
   /* The door onto the paste screen, beside "Add a bottle". */
   var add = v.querySelector('#cl-add');
   if (add && !w) {
@@ -604,6 +730,16 @@ cellarView = function () {
      unchanged: it validates, writes ST.cellar, calls stSave and re-renders.
      Only once it has done all of that is the next row loaded, because it
      clears S._cellarForm on its way out and would wipe a row set up early. */
+  /* The list's own Edit and Remove are suppressed for the length of the run.
+     They re-render with S._cellarForm pointing at a saved bottle while the
+     banner goes on counting, and the draft under review is lost with no sign
+     that anything happened. The list is still there when the run ends. */
+  v.querySelectorAll('[data-cl-edit],[data-cl-del]').forEach(function (b) {
+    b.disabled = true;
+    b.title = 'Finish or stop the import first';
+    b.onclick = null;
+  });
+
   var save = v.querySelector('#cl-save');
   if (save) {
     var orig = save.onclick;
@@ -728,7 +864,7 @@ decorateHome = function () {
 var _v16ApplyLevel = applyLevel;
 applyLevel = function (lvl, skipRender) {
   S._prod = { c: null, id: null };
-  S._wimp = null;
+  S._wimp = null; S._wimpReport = null;
   return _v16ApplyLevel(lvl, skipRender);
 };
 
@@ -758,8 +894,10 @@ applyLevel = function (lvl, skipRender) {
     '.codexfind .seclist{margin-top:8px}',
     /* .seclist is an auto-fill grid, so a heading dropped into it takes a
        cell and sits BESIDE the first two results instead of above them. */
-    '.codexfind .seclist .secgroup{grid-column:1/-1;margin:10px 0 0}',
-    '.codexfind .seclist .secgroup:first-child{margin-top:0}',
+    /* Every heading dropped into a .seclist, not just the search's: the list
+       view put "Estates" in a single grid cell beside the first two names. */
+    '.seclist > .secgroup{grid-column:1/-1;margin:10px 0 0}',
+    '.seclist > .secgroup:first-child{margin-top:0}',
     '.codexfind .sub{grid-column:1/-1}',
     '@media(prefers-reduced-motion:reduce){.codexdoor{transition:none}',
     '  .codexdoor:hover{transform:none}}'

@@ -151,6 +151,20 @@ function wineRowFrom(dish, corpus) {
   var rec = wineMatchProducer(v.rest, corpus);
   var producer = '', name = v.rest;
 
+  /* AN ICON RECORD NAMES A WINE, NOT A HOUSE. 103 corpus records exist so a
+     candidate can look up Sassicaia or Grange without knowing the estate, and
+     head-matching found them first: the wine's name went into Producer and the
+     Wine field was left empty. The maker is in the record's `by`, which is
+     what the profile page prints as "Made by". Both fields are filled from it
+     and the producer is declared in fromCodex, because unlike the wine name it
+     was NOT on the line and a person has to confirm it. */
+  var iconOf = null;
+  if (rec && String(rec.id).indexOf('w-') === 0 && rec.by) {
+    var maker = null;
+    (corpus || []).some(function (x) { if (x && x.id === rec.by) { maker = x; return true; } return false; });
+    if (maker) { iconOf = rec; rec = maker; }
+  }
+
   if (rec) {
     /* Take the corpus's spelling of the name, which is the one the Court uses,
        and leave whatever the list printed after it as the wine.
@@ -179,6 +193,10 @@ function wineRowFrom(dish, corpus) {
        does not understand. Keep the line whole as the wine rather than throwing
        away the half of it that was never matched. */
     name = found ? words.slice(take).join(' ').trim() : v.rest;
+    /* The line named the WINE, so the wine is what it named and the estate
+       came from the corpus. The walk above matched nothing, because the maker's
+       name is not on the line at all. */
+    if (iconOf) { name = iconOf.p; }
   }
 
   var price = winePlacePrice(dish.price, dish.section);
@@ -193,8 +211,10 @@ function wineRowFrom(dish, corpus) {
        wearing a region's label and would then be DRILLED as the answer to
        "where does our Château Margaux come from?". `r` is a place on all 665
        records and none is empty. */
+    if (iconOf) fromCodex.push('producer');
     if (rec.r) { region = rec.r; fromCodex.push('region'); }
-    var g = ((rec.wines || [])[0] || {}).grape || '';
+    var g = ((iconOf || rec).wines || [])[0];
+    g = (g && g.grape) || '';
     if (g) { grapes = g; fromCodex.push('grapes'); }
   }
 
