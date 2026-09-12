@@ -775,6 +775,20 @@ function dataImport(file){
       /* pours: union by timestamp; two devices' pours are disjoint
          observations, and the additive-only rule says every new store gets a
          named clause HERE or the next import silently drops it. */
+      /* the first week: a set of steps, each stamped when it was finished.
+         Written by oot-ledger.js and named nowhere here, so every import
+         dropped it, in a branch whose own comment says twice that a store the
+         merge does not name is silently lost. Union, and the EARLIER stamp
+         wins: a step was finished the first time it was finished. */
+      if(p.path && typeof p.path === 'object' && !Array.isArray(p.path)){
+        progress.path = progress.path || {};
+        Object.keys(p.path).forEach(function(k){
+          if(!/^[a-z0-9_-]{1,40}$/.test(k)) return;
+          const t = Number(p.path[k]);
+          if(!isFinite(t) || t <= 0) return;
+          progress.path[k] = progress.path[k] ? Math.min(progress.path[k], t) : t;
+        });
+      }
       if(Array.isArray(p.pours)){
         progress.pours = progress.pours || [];
         const seen = new Set(progress.pours.map(x => x.ts));
