@@ -51,18 +51,20 @@
 
     var pic = document.createElement('picture');
     var src = document.createElement('source');
-    src.srcset = 'assets/hub-plate.webp';
+    /* stamped so a browser's own cache cannot serve the previous artwork; the
+       worker matches with ignoreSearch, so the precached bare path still answers */
+    src.srcset = 'assets/hub-plate.webp?v=2';
     src.type = 'image/webp';
     var img = document.createElement('img');
-    img.src = 'assets/hub-plate.jpg';
+    img.src = 'assets/hub-plate.jpg?v=2';
     img.width = 1024;
     img.height = 1536;
     img.decoding = 'async';
     /* The masthead's words are painted into this image, so they are described
        here for anyone who cannot see it. The five wings are named by the
        hotspots themselves. */
-    img.alt = 'Outside Of Time Hospitality. Master the timeless art of hospitality. ' +
-      'Five wings, shown as illuminated cards on a set table at dusk.';
+    img.alt = 'Outside Of Time Hospitality. Five wings, shown as illuminated cards ' +
+      'below a set table on a terrace above the sea at sunset.';
     /* If the artwork cannot load, fall back to the real list of doors rather
        than to a page of invisible links over nothing. */
     img.addEventListener('error', function () {

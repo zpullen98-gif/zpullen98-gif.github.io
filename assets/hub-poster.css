@@ -280,11 +280,17 @@ header.top { padding: 0; }
 @media (prefers-reduced-motion: reduce) { .spot { transition: none; } }
 
 /* Measured off the 1024x1536 artwork. */
-.spot-table   { left:  5.57%; top: 38.87%; width: 28.32%; height: 30.14%; }
-.spot-ledger  { left: 35.74%; top: 38.87%; width: 27.93%; height: 30.14%; }
-.spot-codex   { left: 65.33%; top: 38.87%; width: 28.22%; height: 30.14%; }
-.spot-light   { left: 15.72%; top: 69.47%; width: 33.20%; height: 25.85%; }
-.spot-almanac { left: 50.78%; top: 69.47%; width: 33.11%; height: 25.85%; }
+/* Measured off the artwork, not estimated: the card borders are gold, so
+   counting gold pixels down each column and across each row finds the four
+   edges of every card exactly. The boxes were then drawn back over the
+   picture and looked at before shipping, because a hotspot is invisible and
+   a wrong one does not look wrong, it just opens the wrong wing. Re-measure
+   whenever the plate is redrawn: every number here belongs to one image. */
+.spot-table   { left:  4.69%; top: 40.17%; width: 28.51%; height: 30.40%; }
+.spot-ledger  { left: 35.64%; top: 40.17%; width: 28.42%; height: 30.40%; }
+.spot-codex   { left: 66.41%; top: 40.17%; width: 28.61%; height: 30.40%; }
+.spot-light   { left: 14.94%; top: 71.90%; width: 33.60%; height: 21.60%; }
+.spot-almanac { left: 51.27%; top: 71.90%; width: 32.91%; height: 21.60%; }
 
 
 .acct { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 24px auto 0; padding: 0 16px; }
