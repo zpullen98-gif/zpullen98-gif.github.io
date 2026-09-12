@@ -97,6 +97,22 @@ function prodFromLegacy(row, country) {
   };
 }
 
+/* THE SAME ESTATE, INITIALLED.
+   Three old rows abbreviate what the corpus spells out: "Domaine J.L. Chave"
+   for Domaine Jean-Louis Chave, "J.J. Prüm" for Joh. Jos. Prüm, "Klaus Peter
+   Keller" for Weingut Keller. Neither slug nor whole-word containment can see
+   that "j l" is "jean louis", so each was kept as a stub, printed under
+   "Awaiting a full profile" beside its own full profile, and the tile counted
+   668 names for 665. An explicit table, because a rule loose enough to match
+   initials would start merging estates that are genuinely different. Keyed on
+   the old row's slug, valued with the corpus id it duplicates; the row is
+   dropped only when that id is actually present. */
+var PROD_LEGACY_ALIASES = {
+  'domaine-j-l-chave': 'p-chave',
+  'j-j-prum': 'p-jj-prum',
+  'klaus-peter-keller': 'p-keller'
+};
+
 var _prodCorpus = null;
 function prodCorpus() {
   if (_prodCorpus) return _prodCorpus;
@@ -120,6 +136,8 @@ function prodCorpus() {
     PRODUCERS.forEach(function (c) {
       (c.rows || []).forEach(function (row) {
         if (byName[prodSlug(row.p)] || byName[prodSlugBare(row.p)]) return;
+        var alias = PROD_LEGACY_ALIASES[prodSlug(row.p)];
+        if (alias && seen[alias]) return;
         /* the short name inside the full one, on whole words */
         var w = prodWords(row.p);
         if (w.length > 3 && corpusWords.some(function (cw) { return cw.indexOf(w) >= 0; })) return;
@@ -180,11 +198,30 @@ function prodProfileView(rec, back) {
   }
 
   if (rec.wines && rec.wines.length) {
+    /* A BOTTLING WITH A PROFILE OF ITS OWN OPENS IT. Eighty-eight of the
+       bottlings named on estate pages are also icon records (Sassicaia under
+       Tenuta San Guido, La Tache under Romanee-Conti), and "Made by" already
+       runs the other way. The match is ownership AND name: the icon's `by`
+       must be this estate, so Meerlust's Rubicon never opens Inglenook's. */
+    var fn = function (s) { return codexFold(s).trim(); };
+    var own = prodIsWine(rec) ? [] : prodCorpus().filter(function (r) { return prodIsWine(r) && r.by === rec.id; });
+    var iconFor = function (n) {
+      var f = fn(n);
+      for (var i = 0; i < own.length; i++) {
+        var r = own[i], first = (r.wines || [])[0];
+        if (fn(r.p) === f || (first && fn(first.n) === f)) return r;
+      }
+      return null;
+    };
     html += '<div class="secgroup">' + (prodIsWine(rec) ? 'The wine' : 'The bottlings') + '</div>'
       + rec.wines.map(function (w) {
-        return '<div class="techitem"><b>' + escT(w.n) + '</b>'
-          + (w.note ? '<div class="tech-d">' + escT(w.note) + '</div>' : '')
-          + (w.grape ? '<span class="where-chip">' + escT(w.grape) + '</span>' : '') + '</div>';
+        var icon = iconFor(w.n);
+        var inner = '<b>' + escT(w.n) + '</b>'
+          + (w.note ? '<span class="tech-d">' + escT(w.note) + '</span>' : '')
+          + (w.grape ? '<span class="where-chip">' + escT(w.grape) + '</span>' : '');
+        if (icon) return '<button class="techitem techlink" data-goto="' + escT(icon.id) + '">'
+          + inner + '<span class="tech-open">Open</span></button>';
+        return '<div class="techitem">' + inner + '</div>';
       }).join('');
   }
 
@@ -334,13 +371,15 @@ function prodDrillPool(scope) {
      silently suppressed the question for a hundred and forty wines. An icon
      record's estate is whatever its `by` names; a record with no `by` answers
      for itself. */
-  var nameOwners = {};
+  var nameOwners = {}, nameGrapes = {};
   all.forEach(function (r) {
     var estate = r.by || r.id;
     (r.wines || []).forEach(function (w) {
       var f = fold(w.n); if (!f) return;
       var set = nameOwners[f] = nameOwners[f] || {};
       set[estate] = 1;
+      /* every grape line the corpus states for a wine of this name */
+      if (w.grape) (nameGrapes[f] = nameGrapes[f] || {})[fold(w.grape)] = 1;
     });
   });
   var soleMaker = function (n) {
@@ -415,21 +454,48 @@ function prodDrillPool(scope) {
       });
     }
 
-    /* 3. what is in it */
+    /* 3. what is in it.
+       THE ESTATE IS IN THE STEM, as it is in the other three facets. Three
+       Chateauneuf-du-Pape Rouges sit in one country group, each with a
+       different and correct grape line, and "What is Chateauneuf-du-Pape
+       Rouge made from?" keyed to Rayas's "Grenache" was, read at the level
+       the stem invited, the opposite of what a candidate is taught. The
+       estate is the record itself, or for an icon record the estate its
+       `by` names: an icon's own p already carries the house ("Krug Clos du
+       Mesnil"), so prefixing that would print the house twice. The
+       explanation carries the same subject, or it re-states the estate-less
+       claim after the answer. */
     if (w0 && w0.grape) {
+      var owner = prodIsWine(rec) ? (rec.by ? prodById(rec.by) : null) : rec;
+      /* the house is already the first word of the bottling ("Chateau Montus
+         Cuvee Prestige", "Dow's Vintage Port"): prefixing it would print the
+         house twice, and for a house ending in 's, double the possessive */
+      var ownerLast = owner ? fold(owner.p).split(' ').pop() : '';
+      var ownerLeads = owner && (fold(w0.n) === fold(owner.p)
+        || fold(w0.n).indexOf(fold(owner.p) + ' ') === 0
+        /* "W. and J. Graham's" makes "Graham's Vintage Port": the possessive
+           last word is the house as the label prints it */
+        || (/'s$/.test(ownerLast) && fold(w0.n).indexOf(ownerLast + ' ') === 0));
+      var subject = (owner && !ownerLeads)
+        ? escT(owner.p) + "'s " + escT(w0.n)
+        : escT(prodIsWine(rec) ? rec.p : w0.n);
+      /* A RIVAL CLAIM IS NOT A DISTRACTOR. Where another record states its
+         own grape line for a wine of this name, that line is true of the
+         name on screen and must not be offered as a wrong answer. The
+         record's own line is in the same set, so it is excluded too. */
+      var rival = nameGrapes[fold(w0.n)] || {};
       var gpool = all.reduce(function (acc, r) {
         return acc.concat((r.wines || []).map(function (w) { return w.grape; }));
       }, []).filter(Boolean);
-      var gd = uniqBy(shuffle(gpool)).filter(function (x) { return fold(x) !== fold(w0.grape); });
+      var gd = uniqBy(shuffle(gpool)).filter(function (x) { return !rival[fold(x)] && fold(x) !== fold(w0.grape); });
       var go = uniqOpts(w0.grape, gd);
       if (go.length === 4) {
         var p3 = shuffle([0, 1, 2, 3]);
         qs.push({
           id: 'pr-' + rec.id + '-gr', cat: 'Producers & Icons',
-          q: (fold(w0.n) === fold(rec.p) ? 'What is ' + escT(w0.n) + ' made from?'
-            : 'What is ' + name + "'s " + escT(w0.n) + ' made from?'),
+          q: 'What is ' + subject + ' made from?',
           opts: p3.map(function (i) { return escT(go[i]); }), a: p3.indexOf(0),
-          exp: escT(w0.n) + ': ' + escT(w0.grape) + (w0.note ? '. ' + escT(w0.note) : '.')
+          exp: subject + ': ' + escT(w0.grape) + (w0.note ? '. ' + escT(w0.note) : '.')
         });
       }
     }
@@ -534,9 +600,14 @@ function codexFind(term) {
     }
     return blob.indexOf(t) >= 0;
   };
+  var producers = prodCorpus().filter(function (r) { return hit(r, '_v16blob'); });
+  var bottles = (ST.cellar || []).filter(function (b) { return hit(b, '_v16blob'); });
+  /* THE LIST IS CUT, THE COUNT IS NOT. Forty rows is enough to scroll on a
+     phone, but a heading that printed the cut length told a reader searching
+     "chateau" there were forty when there were a hundred and ten. */
   return {
-    producers: prodCorpus().filter(function (r) { return hit(r, '_v16blob'); }).slice(0, 40),
-    bottles: (ST.cellar || []).filter(function (b) { return hit(b, '_v16blob'); }).slice(0, 20),
+    producers: producers.slice(0, 40), nProducers: producers.length,
+    bottles: bottles.slice(0, 20), nBottles: bottles.length,
     t: t
   };
 }
@@ -544,15 +615,19 @@ function codexFind(term) {
 function codexFindHtml(res) {
   if (!res) return '';
   var html = '';
+  var count = function (shown, total) {
+    total = total || shown;
+    return shown < total ? total + ', the first ' + shown + ' shown' : String(total);
+  };
   if (res.producers.length) {
-    html += '<div class="secgroup">Producers and wines (' + res.producers.length + ')</div>';
+    html += '<div class="secgroup">Producers and wines (' + count(res.producers.length, res.nProducers) + ')</div>';
     res.producers.forEach(function (r) {
       html += '<button class="secbtn" data-find-p="' + escT(r.id) + '"><span>' + escT(r.p)
         + '</span><span class="n">' + escT(r.r || r.country || '') + '</span></button>';
     });
   }
   if (res.bottles.length) {
-    html += '<div class="secgroup">On our list (' + res.bottles.length + ')</div>';
+    html += '<div class="secgroup">On our list (' + count(res.bottles.length, res.nBottles) + ')</div>';
     res.bottles.forEach(function (b) {
       html += '<button class="secbtn" data-find-b="1"><span>' + escT(bottleLabel(b))
         + '</span><span class="n">' + escT(b.glass || b.bottle || '') + '</span></button>';
@@ -842,8 +917,11 @@ function buildDoors() {
       b.onclick = function () {
         var rec = prodById(b.dataset.findP);
         if (!rec) return;
+        /* by membership, not by country string: a row filed under a group
+           heading that is not its own country string fell through to 0 and
+           its back button read "Back to France, Bordeaux and the South West". */
         var groups = prodGroups(), ci = 0;
-        groups.forEach(function (g, i) { if (g.country === rec.country) ci = i; });
+        groups.forEach(function (g, i) { if (g.rows.indexOf(rec) >= 0) ci = i; });
         S._prod = { c: ci, id: rec.id }; S.view = 'producers'; render();
       };
     });
@@ -890,6 +968,14 @@ applyLevel = function (lvl, skipRender) {
     '.wimp-raw{font-size:.86rem;opacity:.78;white-space:pre-wrap;word-break:break-word;',
     '  padding:6px 8px;border-left:2px solid var(--line);margin-bottom:8px}',
     '.wimp-note{font-size:.82rem;line-height:1.5;opacity:.68;font-style:italic;margin-bottom:8px}',
+    '.techitem .tech-d{display:block}',
+    /* a bottling that opens its own profile: the same row, as a button */
+    '.techitem.techlink{display:block;width:100%;min-height:44px;text-align:left;cursor:pointer;',
+    '  font:inherit;color:inherit;background:none;border:0;border-radius:0;',
+    '  border-bottom:1px solid rgba(201,162,39,.13);position:relative;padding-right:56px}',
+    '.techitem.techlink:hover{background:rgba(200,151,63,.10)}',
+    '.techitem.techlink .tech-open{position:absolute;right:6px;top:10px;',
+    '  font-family:\'Cinzel\',serif;color:var(--gold);font-size:14px}',
     '.codexfind .sainput{width:100%}',
     '.codexfind .seclist{margin-top:8px}',
     /* .seclist is an auto-fill grid, so a heading dropped into it takes a

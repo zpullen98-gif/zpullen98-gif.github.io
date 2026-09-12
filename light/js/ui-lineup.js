@@ -34,9 +34,11 @@ FL_VIEWS.lineup = {
     return '<div class="kick">' + esc(now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })) + ' · before doors</div>' +
       '<div class="q" style="margin-top:18px"><p class="qt" style="font-size:1.5em;line-height:1.45">“' + esc(e.q) + '”</p>' +
       '<span class="qs">' + esc(e.s) + '</span><span class="qtr">' + esc(e.t) + '</span></div>' +
-      '<div class="pacer-disc" id="pacer-disc" aria-hidden="true" style="margin-top:26px"></div>' +
-      '<div class="pacer-label" id="pacer-label">' + (on ? '' : 'Ready') + '</div>' +
-      '<div class="ds" id="pacer-count"></div>' +
+      '<div class="pacerbox" style="margin-top:26px">' +
+        '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
+        '<div class="pacer-label" id="pacer-label">' + (on ? '' : 'Ready') + '</div>' +
+        '<div class="ds" id="pacer-count"></div>' +
+      '</div>' +
       '<div style="text-align:center;margin-top:12px">' +
         '<button class="btn" data-act="lineupBreath">' + (on ? 'Enough, doors' : 'One minute, together') + '</button></div>' +
       '<p class="mintro" style="margin-top:24px">Steady hands pour steady nights. Go be good to somebody.</p>' +

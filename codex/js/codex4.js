@@ -185,7 +185,7 @@ function syncView(){
   };
   v.querySelector('#imp').onclick=function(){
     let data=null;
-    try{data=JSON.parse(v.querySelector('#inbox').value);}catch(e){msg.textContent='That is not valid progress data.';return;}
+    try{data=JSON.parse(v.querySelector('#inbox').value);}catch(e){msg.textContent='That is not valid progress data. Copy the whole code again, from the first brace to the last.';return;}
     if(!syncConfirm('this code'))return;
     const err=mergeStats(data);
     msg.textContent=err||'Merged. Your record is now combined.';
@@ -196,7 +196,7 @@ function syncView(){
     const r=new FileReader();
     r.onload=function(){
       let data=null;
-      try{data=JSON.parse(r.result);}catch(err){msg.textContent='That file is not valid progress data.';return;}
+      try{data=JSON.parse(r.result);}catch(err){msg.textContent='That file is not valid progress data. Choose a file that Download progress file made; one that was edited or cut short will not open.';return;}
       if(!syncConfirm('this file')){e.target.value='';return;}
       const err2=mergeStats(data);
       msg.textContent=err2||'Merged from file. Your record is now combined.';

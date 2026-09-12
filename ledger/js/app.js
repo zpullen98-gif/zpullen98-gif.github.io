@@ -949,17 +949,27 @@ if('serviceWorker' in navigator){
 
 function showUpdateToast(worker, reg){
   if(document.getElementById('sw-toast')) return;
-  const t = document.createElement('button');
+  const t = document.createElement('div');
   t.id = 'sw-toast';
   t.className = 'sw-toast';
-  t.innerHTML = '<span class="font-display">A new edition is pressed</span><span class="tiny dim"> · tap to refresh</span>';
+  t.setAttribute('role', 'status');
+  /* Two controls, each a full 44px target: take the new edition now, or put
+     the notice away. With no way to dismiss it, the toast sat across the
+     bottom sheet's rows and the cluster bar until the reader gave in and
+     refreshed. Dismissed, it stays away for this visit; the next load offers
+     the edition again. */
+  t.innerHTML =
+    '<button type="button" class="sw-toast-go"><span class="font-display">A new edition is pressed</span>' +
+    '<span class="tiny dim"> · tap to refresh</span></button>' +
+    '<button type="button" class="sw-toast-no">Not now</button>';
   /* resolve the target at CLICK time: if a second deploy landed while the
      toast sat there, the captured worker is already redundant and a message
      to it does nothing: reg.waiting is always the live one */
-  t.addEventListener('click', () => {
+  t.querySelector('.sw-toast-go').addEventListener('click', () => {
     swWantReload = true;
     const w = (reg && reg.waiting) || worker;
     try{ w.postMessage('SKIP_WAITING'); }catch(e){}
   });
+  t.querySelector('.sw-toast-no').addEventListener('click', () => { t.remove(); });
   document.body.appendChild(t);
 }

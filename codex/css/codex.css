@@ -24,6 +24,13 @@
   --claret-deep:#4a1220;
   --green:#3c6045;
   --red:#9c2f2f;
+  /* --red is a fill and border colour: as type on the dark page it reads 2.7:1.
+     Red text on the dark ground uses --red-text (7.4:1 on --bg). */
+  --red-text:#e08585;
+  /* The edge of a text field on the parchment card. 4.7:1 against the field
+     fill and 3.3:1 against the darker end of the card, so the box can be seen
+     before it is focused. */
+  --field-line:#7f6d5b;
   --line:rgba(201,162,39,.30);
 
   /* The shared home components in shared/oot-home.css carry no colour of
@@ -55,6 +62,16 @@ button{font-family:inherit;cursor:pointer;border:none}
 .homebtn{position:absolute;right:0;top:50%;transform:translateY(-50%);
   background:transparent;color:var(--gold-soft);border:1px solid var(--line);padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;transition:.15s}
 .homebtn:hover{background:rgba(200,151,63,.12)}
+/* Under 600px the suite's return chip rests top-left, x 10 to 54, y 10 to 54,
+   and the title was centred at y 33 with Return standing across its right
+   end (the title is 312px wide in a 343px column, so a side indent cannot
+   work). The chip's row becomes the topbar's first row: Return sits on it at
+   the right, and the title takes the row below at the column's full width.
+   The standalone Codex has no chip and stacks the two without the lane. */
+@media(max-width:599px){
+  .topbar{flex-direction:column;padding-top:52px}
+  .homebtn{top:4px;transform:none}
+}
 
 /* ------- home ------- */
 .hero{text-align:center;padding:14px 8px 26px}
@@ -86,8 +103,15 @@ button{font-family:inherit;cursor:pointer;border:none}
 /* ------- quiz ------- */
 .quizbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;font-size:13px;color:var(--gold-soft)}
 .timer{font-family:'Fraunces',serif;font-size:20px;color:var(--gold);font-variant-numeric:tabular-nums}
-.timer.low{color:var(--red);animation:pulse 1s infinite}
+/* The last two minutes. The pulse runs three times when the state arrives and
+   then holds still; under reduced motion it never runs and the state is
+   carried by an underline instead. */
+.timer.low{color:var(--red-text);animation:pulse 1s 3}
 @keyframes pulse{50%{opacity:.55}}
+@media (prefers-reduced-motion:reduce){
+  .timer.low{animation:none;text-decoration:underline}
+  *{transition:none!important;animation:none!important}
+}
 .progress{height:4px;background:rgba(242,232,213,.12);border-radius:2px;margin-bottom:18px;overflow:hidden}
 .progress i{display:block;height:100%;background:linear-gradient(90deg,var(--claret),var(--gold));transition:width .25s}
 
@@ -106,7 +130,7 @@ button{font-family:inherit;cursor:pointer;border:none}
 .opt.dim{opacity:.55}
 
 .sarow{display:flex;gap:10px;flex-wrap:wrap}
-.sainput{flex:1;min-width:200px;font-family:'Fraunces',Georgia,serif;font-size:18px;padding:12px 14px;border:1.5px solid rgba(42,28,20,.35);border-radius:10px;background:rgba(255,255,255,.75);color:var(--ink)}
+.sainput{flex:1;min-width:200px;font-family:'Fraunces',Georgia,serif;font-size:18px;padding:12px 14px;border:1.5px solid var(--field-line);border-radius:10px;background:rgba(255,255,255,.75);color:var(--ink)}
 .sainput:focus{outline:2px solid var(--claret);border-color:var(--claret)}
 .btn{background:var(--claret);color:var(--parch);border-radius:10px;padding:12px 22px;font-size:14px;font-weight:700;letter-spacing:.4px;transition:.15s}
 .btn:hover{background:var(--claret-deep)}
@@ -162,9 +186,12 @@ button{font-family:inherit;cursor:pointer;border:none}
 .fctools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px;align-items:center}
 .fcprog{font-size:12px;color:var(--gold-soft);margin:4px 0 12px;letter-spacing:.4px}
 .fcstage{perspective:1400px;min-height:430px}
-.fcard{position:relative;width:100%;height:430px;transform-style:preserve-3d;transition:transform .45s ease;cursor:pointer}
+/* The two faces share one grid cell, so the card stands as tall as the taller
+   face and nothing scrolls inside it: the back used to be a fixed box that
+   clipped its last row on a phone. */
+.fcard{position:relative;display:grid;width:100%;min-height:430px;transform-style:preserve-3d;transition:transform .45s ease;cursor:pointer}
 .fcard.flip{transform:rotateY(180deg)}
-.fface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:linear-gradient(165deg,var(--parch) 0%,var(--parch2) 100%);color:var(--ink);border-radius:16px;padding:26px 22px;box-shadow:0 10px 30px rgba(0,0,0,.5);overflow-y:auto}
+.fface{position:relative;grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:linear-gradient(165deg,var(--parch) 0%,var(--parch2) 100%);color:var(--ink);border-radius:16px;padding:26px 22px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
 .fback{transform:rotateY(180deg)}
 .ffront{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px}
 .fcname{font-family:'Fraunces',Georgia,serif;font-size:34px;font-weight:700;color:var(--claret)}
@@ -180,8 +207,13 @@ button{font-family:inherit;cursor:pointer;border:none}
 .frow.tellrow{background:rgba(200,151,63,.14);border:1px solid rgba(200,151,63,.4);border-radius:8px;padding:8px 10px;margin:2px 0 11px}
 .ffront .frow{width:100%;text-align:left}
 .fcbtns{display:flex;justify-content:center;gap:12px;margin-top:16px}
-.key2{opacity:.6;font-size:11px;border:1px solid currentColor;border-radius:4px;padding:0 5px;margin-left:6px}
-@media(max-width:560px){.fcard,.fcstage{height:470px;min-height:470px}.fcname{font-size:28px}}
+/* The key hint recedes by colour, never by opacity: at .6 it fell to 3.7:1 on
+   claret and 3.1:1 on gold. Parchment-2 on claret reads 6.7:1; the gold and
+   ghost hosts keep their own ink. */
+.key2{font-size:11px;border:1px solid currentColor;border-radius:4px;padding:0 5px;margin-left:6px}
+.btn .key2{color:var(--parch2)}
+.btn.gold .key2,.btn.ghost .key2{color:inherit}
+@media(max-width:560px){.fcard,.fcstage{min-height:470px}.fcname{font-size:28px}}
 
 @media(max-width:560px){
   .card{padding:18px 15px}
@@ -256,7 +288,7 @@ h1,h2,h3{font-family:'Cinzel',Georgia,serif}
 .studyline{font-variant:small-caps;letter-spacing:2px;font-size:13px;color:var(--gold-soft);text-align:center;margin-top:10px}
 .flagbtn{margin-left:auto;background:none;border:none;color:var(--gold-soft);font-size:19px;cursor:pointer;padding:0 2px;line-height:1}
 .flagbtn.on{color:var(--gold);text-shadow:0 0 10px rgba(201,162,39,.5)}
-.dashrow{display:grid;grid-template-columns:minmax(120px,1.3fr) 2fr 46px 64px;gap:10px;align-items:center;padding:7px 4px;border-bottom:1px solid rgba(201,162,39,.13)}
+.dashrow{display:grid;grid-template-columns:minmax(120px,1.3fr) 2fr 46px 64px;gap:10px;align-items:center;min-height:44px;padding:7px 4px;border-bottom:1px solid rgba(201,162,39,.13)}
 .dashcat{font-size:14px}
 .dashbar{height:10px;border:1px solid var(--line);background:rgba(0,0,0,.35)}
 .dashbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-soft))}
@@ -302,7 +334,7 @@ h1,h2,h3{font-family:'Cinzel',Georgia,serif}
 /* ------- Codex IV: notes, sync, trend ------- */
 .notebox{margin:12px 0 4px;border-top:1px solid rgba(201,162,39,.18);padding-top:10px}
 .notetoggle{background:none;border:none;color:var(--gold-soft);font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.5px;font-size:14px;cursor:pointer;padding:0}
-.noteinput{width:100%;font-family:'EB Garamond',Georgia,serif;font-size:15px;padding:8px 10px;margin-top:7px;background:rgba(255,252,240,.9);color:var(--ink);border:1px solid var(--line);resize:vertical}
+.noteinput{width:100%;font-family:'EB Garamond',Georgia,serif;font-size:15px;padding:8px 10px;margin-top:7px;background:rgba(255,252,240,.9);color:var(--ink);border:1px solid var(--field-line);resize:vertical}
 .notesaved{font-size:12.5px;color:var(--gold-soft);font-variant:small-caps;letter-spacing:1.5px;margin-top:4px;min-height:15px}
 .encynote{font-size:14px;color:var(--gold-soft);margin-top:3px}
 .trend{width:100%;height:150px;margin-top:8px;overflow:visible}
@@ -312,7 +344,7 @@ h1,h2,h3{font-family:'Cinzel',Georgia,serif}
 .trend .tdot.ok{fill:var(--gold-hi)}
 .trendfoot{font-size:13.5px;font-style:italic;opacity:.85;margin-top:4px}
 .trendfoot .up{color:var(--gold-hi);font-style:normal}
-.trendfoot .down{color:var(--red);font-style:normal}
+.trendfoot .down{color:var(--red-text);font-style:normal}
 
 
 /* ------- Codex V: video scriptorium ------- */
@@ -474,8 +506,12 @@ input[type=date].sainput{font-family:'EB Garamond',Georgia,serif;color:var(--ink
 /* keyboard doors: the rite steps and the dash rows are controls now */
 .dashrow.actionable:focus-visible,.rite:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
 .verdict:focus{outline:0}
-.dashprimer{background:none;border:none;color:var(--gold-soft);font-size:15px;cursor:pointer;padding:0 2px;line-height:1}
+/* The Chapter door sits inside the row that starts a drill, so it needs a box
+   of its own: 25px tall here, 44px on a phone. The negative margin keeps the
+   word aligned with the section name above it. */
+.dashprimer{background:none;border:none;color:var(--gold-soft);font-size:15px;cursor:pointer;padding:5px 8px;margin-left:-8px;line-height:1}
 .dashprimer:hover{color:var(--gold-hi)}
+@media(max-width:640px){.dashprimer{display:inline-flex;align-items:center;min-height:44px;padding:12px 8px}}
 .dashtag.actionable{cursor:pointer}
 .dashtag.actionable:hover{border-color:var(--gold);color:var(--gold-hi)}
 .reportbox{margin:10px 0 2px}
@@ -504,6 +540,13 @@ input[type=date].sainput{font-family:'EB Garamond',Georgia,serif;color:var(--ink
   cursor:pointer;padding:2px 9px;line-height:1.5;transition:.12s}
 .flagbtn:hover{border-color:var(--claret);color:var(--claret)}
 .flagbtn.on{background:var(--claret);border-color:var(--claret);color:var(--parch);text-shadow:none}
+/* The touch floor: on a phone Return and Bookmark stand 44px tall. Return is
+   the only exit from a timed sitting and Bookmark is how a question reaches
+   the review list; at 33px and 23px both were the things a thumb missed. */
+@media(max-width:599px){
+  .homebtn{padding:12px 16px;min-height:44px}
+  .flagbtn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 14px;font-size:12.5px}
+}
 
 /* honours: a plate of type, claimed or not */
 .medal{padding:13px 12px;text-align:left}
@@ -530,7 +573,7 @@ input[type=date].sainput{font-family:'EB Garamond',Georgia,serif;color:var(--ink
 .card .watchlink{border-color:rgba(123,30,46,.45)}
 .card .watchlink:hover{border-color:var(--claret);color:var(--claret-deep);background:rgba(123,30,46,.06)}
 .card .notesaved{color:var(--ink-soft)}
-.card .noteinput,.card .reportbody textarea{color:var(--ink);border-color:rgba(42,28,20,.3)}
+.card .noteinput,.card .reportbody textarea{color:var(--ink);border-color:var(--field-line)}
 .reporttoggle{color:var(--ink-soft)}
 
 /* ghost buttons live mostly on the dark page; the card gets its own variant */

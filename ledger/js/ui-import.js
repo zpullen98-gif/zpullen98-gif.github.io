@@ -13,11 +13,11 @@
 
    NO INPUTS IN THE REVIEW LIST. render() rebuilds #view on every click, so a
    table of thirty editable rows cannot survive being looked at: the first tap
-   anywhere would eat every other row's typing. Collapsed rows are read-only
+   anywhere would eat every other row’s typing. Collapsed rows are read-only
    text with buttons; an expanded row is the SAME form the Menu tab already
    uses, one at a time. The consequence is the whole reason for the shape: at
-   most one row's worth of live inputs exists at any moment, and they are the
-   form's existing ids, which captureBarForm already reads. Zero new capture
+   most one row’s worth of live inputs exists at any moment, and they are the
+   form’s existing ids, which captureBarForm already reads. Zero new capture
    ids for the review.
 
    The only two new live inputs in this entire feature are the paste box and
@@ -105,7 +105,7 @@ function importDoorsHTML(){
       + '<div class="small dim lh">Paste the menu page’s address. This app has no server of its own, so it '
       + 'can only read a page whose own site allows it, and most do not. That is the ordinary ending here '
       + 'rather than a fault, and there is always a way through underneath.</div>'
-      + '<input class="input" id="imp-url" placeholder="https://" value="'+esc(i.url)+'">'
+      + '<input class="input" id="imp-url" aria-label="Menu page address" placeholder="https://" value="'+esc(i.url)+'">'
       + '<div class="row" style="gap:8px"><button class="btn btn-brass" data-act="imp-link">Try it</button></div>'
       + (i.busy ? '<div class="small">'+esc(i.busy)+'</div>' : '')
       + '<div class="tiny dim lh">Your bar’s address goes nowhere: it is fetched from this browser or not at '
@@ -174,8 +174,8 @@ function importReviewHTML(){
   return head + '<div class="col-sm" style="gap:8px">'+rows+'</div>';
 }
 
-/* An expanded row IS the Menu tab's own form. One at a time, so the live
-   inputs on screen are always exactly one row's, and always the ids
+/* An expanded row IS the Menu tab’s own form. One at a time, so the live
+   inputs on screen are always exactly one row’s, and always the ids
    captureBarForm already knows. */
 function importOpenRowHTML(d, k){
   const offer = (typeof menuCanonMeasures === 'function') ? menuCanonMeasures(state.menu.form || d.rec) : null;
@@ -232,7 +232,7 @@ function importPhoto(file){
    Neither serves its page to another origin and both are behind a login wall,
    so trying is twelve seconds of spinner ending in the same sentence. Refusing
    up front is a statement of fact rather than a shortcut, and it is HERE rather
-   than in js/menu-read.js so that file keeps diffing against the World Table's
+   than in js/menu-read.js so that file keeps diffing against the World Table’s
    copy: which hostnames are worth trying is a decision about this screen. */
 var IMP_NEVER = /(?:^|\.)(?:instagram\.com|facebook\.com|fb\.com|threads\.net)$/i;
 

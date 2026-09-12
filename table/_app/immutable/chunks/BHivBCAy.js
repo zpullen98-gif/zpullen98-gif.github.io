@@ -1,0 +1,1 @@
+function e(e){return e.endsWith(`.html`)?(e.endsWith(`/index.html`)?e.slice(0,-11):e.slice(0,-5))||`/`:e}export{e as t};

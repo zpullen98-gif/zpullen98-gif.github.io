@@ -307,7 +307,9 @@ function topbar(){
       <h1>The Sommelier’s Codex</h1>
     </div>
   </div>`);
-  if(showHome){ const b=el('<button class="homebtn">Return</button>'); b.onclick=()=>{ if(leaveSitting())home(); }; t.appendChild(b);}
+  /* "Home", the same word the foot of the results screen uses for the same
+     destination; "Return" belonged to the suite chip that leaves the wing. */
+  if(showHome){ const b=el('<button class="homebtn">Home</button>'); b.onclick=()=>{ if(leaveSitting())home(); }; t.appendChild(b);}
   return t;
 }
 

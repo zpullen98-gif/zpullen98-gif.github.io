@@ -6,7 +6,7 @@
    out at ten past eleven. This tab is those two questions and nothing else.
 
    It replaces two things that were built years apart and never connected: the
-   My Bar tab, which held the venue's list but could not match it against
+   My Bar tab, which held the venue’s list but could not match it against
    anything, and the My Shelf panel in Tools, which held the whole stock engine
    but was framed as home bartending, down to a preset called 'Starter home
    bar'. The framing is gone. The engine moved here, where the menu is.
@@ -29,7 +29,7 @@ function mintBarId(){
 }
 
 /* One shape for a bar record, wherever it came from: the form, a backup from
-   this app, a backup from the standalone Bartender's Ledger (whose empty
+   this app, a backup from the standalone Bartender’s Ledger (whose empty
    glass and garnish were a long dash), or a hand-edited file. Empty is '',
    and ticketHTML draws the dash at display time; a record with no usable
    name or spec is dropped and counted, so an import can say so instead of
@@ -69,7 +69,7 @@ function blankBarForm(){
 
 /* render() rebuilds the whole view, so any act that repaints mid-edit (adding a
    spec line, opening a row) must first read the live inputs back into state or
-   the typed text dies with the DOM. Same rule as the tasting form's notes. */
+   the typed text dies with the DOM. Same rule as the tasting form’s notes. */
 function captureBarForm(){
   const f = state.menu.form; if(!f) return;
   const g = id => { const el2 = document.getElementById(id); return el2 ? el2.value : null; };
@@ -167,13 +167,13 @@ function qMyBarSpecLine(b){
 
 /* ---- the form ----
    opts exists so the importer can reuse this exact form for one row at a time
-   rather than growing a second one that drifts. Today's behaviour is every
+   rather than growing a second one that drifts. Today’s behaviour is every
    default, so the two call sites in this file pass nothing. */
 function myBarFormHTML(opts){
   opts = opts || {};
   const f = state.menu.form;
   const specRows = f.spec.map((line, i) =>
-    '<div class="row" style="gap:8px"><input class="input" id="mb-spec-'+i+'" placeholder="'+(i===0?'2 oz house rum':'3/4 oz lime')+'" value="'+esc(line)+'" style="flex:1">'
+    '<div class="row" style="gap:8px"><input class="input" id="mb-spec-'+i+'" aria-label="Spec line '+(i+1)+'" placeholder="'+(i===0?'2 oz house rum':'3/4 oz lime')+'" value="'+esc(line)+'" style="flex:1">'
     + (f.spec.length > 1 ? '<button class="chip" data-act="menu-del-line" data-i="'+i+'" title="Remove this line">✕</button>' : '')
     + '</div>').join('');
   const famOpts = Object.keys(FAMILIES).concat('Other').map(k =>
@@ -186,22 +186,22 @@ function myBarFormHTML(opts){
   return '<div class="panel p5 col" style="gap:14px">'
     + '<div class="eyebrow">'+esc(opts.title || (state.menu.editing ? 'Edit the drink' : 'Add a drink from your menu'))+'</div>'
     + '<div class="row" style="gap:10px">'
-    + '<input class="input" id="mb-name" placeholder="What the menu calls it" value="'+esc(f.name)+'" style="flex:2;min-width:160px">'
-    + '<input class="input" id="mb-price" placeholder="Price (optional)" value="'+esc(f.price)+'" style="flex:1;min-width:90px">'
+    + '<input class="input" id="mb-name" aria-label="Drink name" placeholder="What the menu calls it" value="'+esc(f.name)+'" style="flex:2;min-width:160px">'
+    + '<input class="input" id="mb-price" aria-label="Price" placeholder="Price (optional)" value="'+esc(f.price)+'" style="flex:1;min-width:90px">'
     + '</div>'
     + '<div><div class="eyebrow mb1">The spec, one line per ingredient</div><div class="col-sm" style="gap:6px">'+specRows+'</div>'
     + '<div class="row mt1"><button class="chip" data-act="menu-add-line">+ Add a line</button></div></div>'
     + '<div class="row" style="gap:10px">'
-    + '<input class="input" id="mb-method" placeholder="Method, e.g. Shake, strain up" value="'+esc(f.method)+'" style="flex:1;min-width:140px">'
-    + '<input class="input" id="mb-glass" placeholder="Glass" value="'+esc(f.glass)+'" style="flex:1;min-width:110px">'
-    + '<input class="input" id="mb-garnish" placeholder="Garnish" value="'+esc(f.garnish)+'" style="flex:1;min-width:110px">'
+    + '<input class="input" id="mb-method" aria-label="Method" placeholder="Method, e.g. Shake, strain up" value="'+esc(f.method)+'" style="flex:1;min-width:140px">'
+    + '<input class="input" id="mb-glass" aria-label="Glass" placeholder="Glass" value="'+esc(f.glass)+'" style="flex:1;min-width:110px">'
+    + '<input class="input" id="mb-garnish" aria-label="Garnish" placeholder="Garnish" value="'+esc(f.garnish)+'" style="flex:1;min-width:110px">'
     + '</div>'
     + '<div class="row" style="gap:10px">'
-    + '<select class="input" id="mb-family" style="flex:1;min-width:140px" title="Family">'+famOpts+'</select>'
-    + '<select class="input" id="mb-spirit" style="flex:1;min-width:140px" title="Base spirit">'+spOpts+'</select>'
+    + '<div style="flex:1;min-width:140px"><label class="eyebrow mb1" for="mb-family" style="display:block">Family</label><select class="input" id="mb-family">'+famOpts+'</select></div>'
+    + '<div style="flex:1;min-width:140px"><label class="eyebrow mb1" for="mb-spirit" style="display:block">Base spirit</label><select class="input" id="mb-spirit">'+spOpts+'</select></div>'
     + '</div>'
     + '<div><div class="eyebrow mb1">Menu description or story (optional)</div>'
-    + '<textarea class="input" id="mb-note" rows="2" placeholder="What the menu says, or what the guest gets told.">'+esc(f.note)+'</textarea></div>'
+    + '<textarea class="input" id="mb-note" rows="2" aria-label="Menu description" placeholder="What the menu says, or what the guest gets told.">'+esc(f.note)+'</textarea></div>'
     + err
     + '<div class="row"><button class="btn btn-brass" data-act="menu-save">'+esc(opts.saveLabel || (state.menu.editing ? 'Save changes' : 'Add to the menu'))+'</button>'
     + '<button class="chip" data-act="menu-cancel">Cancel</button></div>'
@@ -213,7 +213,7 @@ function myBarFormHTML(opts){
    A menu is written without measures far more often than not, and balanceOf
    returns all zeros for a spec with no ounces in it. Printing 'strong 0 oz'
    over that would be the ledger inventing a reading it does not have, which
-   is the same sin as the old matcher's silent yes. So the zero case says why
+   is the same sin as the old matcher’s silent yes. So the zero case says why
    it is zero and what to do about it. */
 function menuBalanceWords(b){
   const bal = balanceOf(b);
@@ -289,7 +289,7 @@ function menuPaneHTML(b, pane){
 
     /* PROPORTIONS, which is where two drinks with the same ingredients stop
        being the same drink. This was missing entirely, so a Margarita at
-       3 : 1/4 : 1 1/2 read as identical to the book's 2 : 1 : 1. */
+       3 : 1/4 : 1 1/2 read as identical to the book’s 2 : 1 : 1. */
     const mineM = measureReport(b), theirsM = measureReport(c);
     if(mineM.kind === 'all' && theirsM.kind !== 'none'){
       const ba = balanceOf(b), bb = balanceOf(c);
@@ -375,7 +375,7 @@ function menuListHTML(){
     + '<span class="eyebrow">'+bar.length+' drink'+(bar.length===1?'':'s')+' on the list</span>'
     + (stocked
         ? '<span class="tiny dim">'+pourable+' pourable right now'
-          + (out86 ? ' · '+out86+' ingredient'+(out86===1?'':'s')+' 86\'d' : '')+'</span>'
+          + (out86 ? ' · '+out86+' ingredient'+(out86===1?'':'s')+' 86’d' : '')+'</span>'
         : '<button class="chip tiny" data-act="menu-view" data-v="stock">Tell it what the bar stocks</button>')
     + '</div>';
   const rows = bar.map(b => {
@@ -403,7 +403,7 @@ function menuListHTML(){
 
 /* ---- sub-view 2: the stock ---------------------------------------------
    The gap this tab exists to close. The matcher used to be hardcoded to the
-   three canon sources, so a bartender's own menu could not be measured against
+   three canon sources, so a bartender’s own menu could not be measured against
    their own stock. It needed no engine work: missingFor reads .spec, and a bar
    record has one. */
 function menuStockHTML(){
@@ -439,7 +439,7 @@ function menuStockHTML(){
       + '<div class="tiny dim lh">Tap one to put it back on. The list clears itself after the shift.</div></div>'
     : '';
 
-  /* the ready report, measured against the venue's own list by default */
+  /* the ready report, measured against the venue’s own list by default */
   const sources = deckSources();
   const src = sources.indexOf(state.menu.src) >= 0 ? state.menu.src : 'Cocktails';
   const srcChips = sources.map(function(s){
@@ -452,7 +452,7 @@ function menuStockHTML(){
     pool.forEach(function(d){
       const miss = missingFor(d, live);
       if(miss.length===0){ ready.push(d); return; }
-      if(!missingFor(d).length){ dead86.push(d); return; }   /* stocked, but 86'd tonight */
+      if(!missingFor(d).length){ dead86.push(d); return; }   /* stocked, but 86’d tonight */
       if(miss.length===1) close.push({d:d, miss:miss[0]});
     });
     ready.sort(function(a,b){ return a.name.localeCompare(b.name); });
@@ -474,7 +474,7 @@ function menuStockHTML(){
     + '<div class="small dim lh">Tap what is on the shelf tonight. The ledger tells you what you can pour, what is '
     + 'one bottle away, and what dies when something runs out. It saves between shifts.</div>'
     + '<div class="row" style="gap:6px;flex-wrap:wrap">'+presets+'<button class="chip" data-act="stock-clear">Clear</button>'
-    + '<span class="tiny dim push">'+t.shelf.length+' stocked'+(out.length? ' · '+out.length+' 86\'d':'')+'</span></div>'
+    + '<span class="tiny dim push">'+t.shelf.length+' stocked'+(out.length? ' · '+out.length+' 86’d':'')+'</span></div>'
     + '<div class="row" style="gap:6px">'+shelfChips+'</div></div>'
     + (t.shelf.length ? '<div class="panel p5 col" style="gap:12px">'
         + '<div class="row" style="gap:6px;flex-wrap:wrap">'+srcChips+'</div>'
@@ -482,7 +482,7 @@ function menuStockHTML(){
         + '<div class="row" style="gap:6px">'+(readyChips||'<span class="tiny dim">nothing yet, keep stocking</span>')+'</div></div>'
         + (dead86.length ? '<div><div class="eyebrow mb1">Off the board tonight: '+dead86.length+'</div>'
             + '<div class="row" style="gap:6px">'+dead86.map(function(d){ return '<span class="chip">'+esc(d.name)+'</span>'; }).join(' ')+'</div>'
-            + '<div class="tiny dim mt1">Stocked, but something in them is 86\'d.</div></div>' : '')
+            + '<div class="tiny dim mt1">Stocked, but something in them is 86’d.</div></div>' : '')
         + (next.length ? '<div><div class="eyebrow mb1">Best next bottle</div>'
             + '<div class="small dim lh mb2">Each of these unlocks the listed drinks on its own.</div>'
             + '<div class="col-sm">'+nextRows+'</div></div>' : '')
@@ -520,7 +520,7 @@ function menuDrillHTML(pool){
     + '<div class="small dim lh">Answer out loud before you read the substitutes.</div>'
     + '<div class="row" style="gap:6px;flex-wrap:wrap">'+owned+'</div></div>'
     + (dead ? '<div class="panel p5 col" style="gap:12px">'
-      + '<div class="eyebrow">'+esc(shelfLabel(pick))+' is 86\'d</div>'
+      + '<div class="eyebrow">'+esc(shelfLabel(pick))+' is 86’d</div>'
       + '<div class="small lh">'+(dead.lostCount
           ? '<span class="brass2 bold">'+dead.lostCount+' drink'+(dead.lostCount===1?'':'s')+' just died.</span>'
             + (dead.lostCount > dead.lost.length ? ' <span class="tiny dim">Showing the first '+dead.lost.length+'.</span>' : '')

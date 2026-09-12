@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>First Light: Two Years of Mornings</title>
+<title>First Light · Outside Of Time</title>
 <meta name="description" content="Two years of mornings: 732 voices on two tracks, five canons read through, a practice for the body, and a record of your own.">
 <meta name="theme-color" content="#EDEFEC">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -51,7 +51,15 @@ try {
 } catch (e) { document.documentElement.setAttribute('data-phase', 'day'); }
 </script>
 
-<link rel="stylesheet" href="css/firstlight.css?v=28">
+<link rel="stylesheet" href="css/firstlight.css?v=29">
+<!-- The shared streak band at the top of Today. oot-home.css carries no colour of
+     its own: it reads the --oot- tokens below, so the band takes the phase palette
+     like everything else, and it sits on the column's centre line as Today does. -->
+<link rel="stylesheet" href="../shared/oot-home.css?v=27">
+<style>
+:root { --oot-accent: var(--accent); --oot-line: var(--line); --oot-ink: var(--ink); --oot-dim: var(--faint); --oot-raise: var(--paper); }
+#view .oot-who { justify-content: center; }
+</style>
 </head>
 <body>
 
@@ -69,9 +77,9 @@ try {
 <div id="toast" role="alert" aria-live="assertive"></div>
 
 <!-- ═══ data (globals, no logic, no dependencies) ═══ -->
-<script src="../shared/oot-config.js?v=26"></script>
-<script src="../shared/oot-profiles.js?v=26"></script>
-<script src="../shared/oot-home.js?v=26"></script>
+<script src="../shared/oot-config.js?v=27"></script>
+<script src="../shared/oot-profiles.js?v=27"></script>
+<script src="../shared/oot-home.js?v=27"></script>
 <script src="js/data-year.js?v=28"></script>
 <script src="js/data-year-makers.js?v=3"></script>
 <script src="js/data-practice.js?v=27"></script>
@@ -88,8 +96,8 @@ try {
 <script src="js/registry.js?v=25"></script>
 <script src="js/store.js?v=29"></script>
 <script src="js/tracks.js?v=1"></script>
-<script src="js/plan.js?v=26"></script>
-<script src="js/sun.js?v=26"></script>
+<script src="js/plan.js?v=27"></script>
+<script src="js/sun.js?v=27"></script>
 <script src="js/text-store.js?v=27"></script>
 <script src="js/reading.js?v=25"></script>
 <script src="js/journal.js?v=27"></script>
@@ -99,30 +107,30 @@ try {
 <script src="js/practice.js?v=28"></script>
 
 <!-- ═══ views ═══ -->
-<script src="js/ui-today.js?v=34"></script>
-<script src="js/ui-year.js?v=26"></script>
+<script src="js/ui-today.js?v=35"></script>
+<script src="js/ui-year.js?v=27"></script>
 <script src="js/ui-life.js?v=25"></script>
-<script src="js/ui-library.js?v=26"></script>
-<script src="js/ui-hall.js?v=26"></script>
-<script src="js/ui-body.js?v=29"></script>
+<script src="js/ui-library.js?v=27"></script>
+<script src="js/ui-hall.js?v=27"></script>
+<script src="js/ui-body.js?v=30"></script>
 <script src="js/ui-floor.js?v=3"></script>
 <script src="js/ui-clear.js?v=4"></script>
-<script src="js/ui-lineup.js?v=2"></script>
+<script src="js/ui-lineup.js?v=3"></script>
 <script src="js/ui-astro.js?v=28"></script>
 <script src="js/ui-chart.js?v=29"></script>
-<script src="js/ui-journal.js?v=26"></script>
+<script src="js/ui-journal.js?v=27"></script>
 <script src="js/ui-vault.js?v=28"></script>
-<script src="js/ui-settings.js?v=34"></script>
+<script src="js/ui-settings.js?v=35"></script>
 
 <!-- ═══ boot last ═══ -->
-<script src="js/app.js?v=31"></script>
+<script src="js/app.js?v=32"></script>
 <script src="js/oot-light.js?v=2"></script>
-<script src="../shared/oot-auth.js?v=26"></script>
-<script src="../shared/oot-gate.js?v=26"></script>
-<script src="../shared/oot-locks.js?v=26"></script>
-<script src="../shared/oot-pass.js?v=26"></script>
-<script src="../shared/oot-log.js?v=26"></script>
-<script src="../shared/oot-bar.js?v=26"></script>
+<script src="../shared/oot-auth.js?v=27"></script>
+<script src="../shared/oot-gate.js?v=27"></script>
+<script src="../shared/oot-locks.js?v=27"></script>
+<script src="../shared/oot-pass.js?v=27"></script>
+<script src="../shared/oot-log.js?v=27"></script>
+<script src="../shared/oot-bar.js?v=27"></script>
 
 </body>
 </html>

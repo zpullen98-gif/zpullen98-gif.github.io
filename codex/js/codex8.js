@@ -533,9 +533,15 @@ dashView=function(){
     row.setAttribute('role','button'); row.tabIndex=0; row.setAttribute('aria-label','Drill '+cat);
     row.onkeydown=function(e){ if(e.target!==row)return; if(e.key==='Enter'||e.key===' '){ e.preventDefault(); startDrill(cat); } };
     if(haveP[cat]){
-      var p=el('<button class="dashprimer" title="Read the '+cat+' chapter">Chapter</button>');
+      /* A SIBLING, NOT A CHILD. The Chapter button used to sit inside the row,
+         so every tap that missed its fifteen pixels landed on the row and
+         started a drill instead. Two destinations are two doors: the button
+         now follows the row, and the row is tagged so the styles can hand it
+         the row's rule and keep the pair reading as one line. */
+      var p=el('<button class="dashprimer" aria-label="Read the '+cat+' chapter" title="Read the '+cat+' chapter">Chapter</button>');
       p.onclick=function(e){ e.stopPropagation(); S.primerKey=cat; S.view='primer'; render(); };
-      row.appendChild(p);
+      row.classList.add('haschapter');
+      row.parentNode.insertBefore(p,row.nextSibling);
     }
   });
   /* the weakest/strongest tags lead to their chapters too */
@@ -564,7 +570,7 @@ disputesView=function(){
       html+='<div class="dispute"><div class="mq">'+(x.q?x.q.q:escT(x.b.q||'(question no longer in the bank)'))+' <span class="lvltag">'+lab+'</span></div>'
         +(x.q?'<div class="ma">Codex answer: '+ansOf(x.q)+'</div>':'')
         +(x.b.note?'<div class="mu">Your report: '+escT(x.b.note)+'</div>':'')
-        +'<div class="mexp">Flagged '+x.b.n+'×</div></div>';
+        +'<div class="mexp">Reported '+x.b.n+'×</div></div>';
     });
     var block=el('<div>'+html+'</div>');
     var back=v.querySelector('.centerrow');

@@ -4,19 +4,19 @@ const TASTE_CATS = {
     glass:"Glencairn or copita: the tulip shape concentrates aroma. Never a rocks glass for evaluation.",
     nose:['grain/cereal','vanilla','caramel','honey','baking spice','black pepper','dried fruit','fresh orchard fruit','citrus peel','oak/sawdust','char/ash','smoke/peat','leather','tobacco','floral','mint','dill/anise','nutty','chocolate','solvent/acetone'],
     markers:["Grain shows as cereal, biscuit, or corn sweetness: high-rye whiskeys read peppery and dill-like.","Wood shows as vanilla, coconut (American oak), or dried fruit and clove (European/sherry oak).","Solvent or acetone notes usually mean young spirit or a hot cut.","Peat is not one flavor: medicinal iodine (Laphroaig), clean campfire (Ardbeg), or heather-honey smoke (Highland Park)."],
-    benchmarks:["Buffalo Trace: the neutral American reference","Heaven Hill's Rittenhouse BiB: what rye spice actually tastes like","Laphroaig 10: the peat benchmark","Midleton's Redbreast 12: single pot still texture"],
+    benchmarks:["Buffalo Trace: the neutral American reference","Heaven Hill’s Rittenhouse BiB: what rye spice actually tastes like","Laphroaig 10: the peat benchmark","Midleton’s Redbreast 12: single pot still texture"],
   },
   'Gin':{
     glass:"Copita, or a small wine glass. Add a few drops of water; gin opens dramatically.",
     nose:['juniper/pine','coriander','citrus peel','angelica/root','licorice','cardamom','cassia/cinnamon','floral','cucumber','herbal/grassy','pepper','earthy','almond','sweet/malty'],
-    markers:["Juniper should be identifiable; if you can't find it, you may be tasting a contemporary style.","Coriander reads as lemony and slightly soapy; angelica as dry, woody, and earthy.","Steeped gins feel heavier and oilier; vapor-infused gins feel lighter and brighter.","Old Tom will register as noticeably sweeter; genever will read malty, almost like a light whiskey."],
-    benchmarks:["Tanqueray: the London Dry reference","Plymouth: softer, root-forward","Hayman's Old Tom: the sweetened historical style","Monkey 47: the contemporary/botanical extreme"],
+    markers:["Juniper should be identifiable; if you can’t find it, you may be tasting a contemporary style.","Coriander reads as lemony and slightly soapy; angelica as dry, woody, and earthy.","Steeped gins feel heavier and oilier; vapor-infused gins feel lighter and brighter.","Old Tom will register as noticeably sweeter; genever will read malty, almost like a light whiskey."],
+    benchmarks:["Tanqueray: the London Dry reference","Plymouth: softer, root-forward","Hayman’s Old Tom: the sweetened historical style","Monkey 47: the contemporary/botanical extreme"],
   },
   'Rum':{
     glass:"Copita or Glencairn. Rum hides badly: heat and sugar both show fast.",
     nose:['molasses','fresh cane/grassy','banana','pineapple','overripe fruit','glue/ester funk','vanilla','caramel','coconut','baking spice','oak','smoke','brine/olive','nutty','burnt sugar'],
     markers:["Grassy and vegetal means cane juice (agricole); molasses reads darker and sweeter.","Banana, pineapple, and glue are esters, the Jamaican signature.","A syrupy, heavy mouthfeel with little aromatic complexity often means added sugar.","Tropical aging gives concentrated wood character at young ages; a tropical 8-year can taste like a continental 20."],
-    benchmarks:["Foursquare Doorly's: honest Barbadian blend, no additives","Hampden: the ester extreme","Rhum J.M or Neisson: agricole's grassy signature","El Dorado: Demerara wooden-still richness"],
+    benchmarks:["Foursquare Doorly’s: honest Barbadian blend, no additives","Hampden: the ester extreme","Rhum J.M or Neisson: agricole’s grassy signature","El Dorado: Demerara wooden-still richness"],
   },
   'Agave':{
     glass:"Copita or veladora (the traditional clay/glass cup). Never shoot it.",
@@ -27,11 +27,11 @@ const TASTE_CATS = {
   'Brandy':{
     glass:"Copita, not a balloon snifter: the wide bowl just concentrates alcohol vapor.",
     nose:['grape/wine','dried fruit','fig/raisin','apricot','floral','honey','vanilla','oak','rancio (mushroom/nutty)','baking spice','leather','tobacco','apple/pear','citrus'],
-    markers:["Rancio (a savory, mushroomy, nutty note) is the mark of genuinely old brandy and considered a virtue.","Grande Champagne cognac reads chalky and floral; Borderies reads nuttier and rounder.","Armagnac is rustic and more aromatic because it's distilled once at lower proof.","Pisco should show bright, unaged grape character with no wood at all."],
-    benchmarks:["Pierre Ferrand 1840: cognac as the classics knew it","Château du Tariquet: armagnac's rusticity","Christian Drouin: calvados benchmark","Caravedo: proper Peruvian pisco"],
+    markers:["Rancio (a savory, mushroomy, nutty note) is the mark of genuinely old brandy and considered a virtue.","Grande Champagne cognac reads chalky and floral; Borderies reads nuttier and rounder.","Armagnac is rustic and more aromatic because it’s distilled once at lower proof.","Pisco should show bright, unaged grape character with no wood at all."],
+    benchmarks:["Pierre Ferrand 1840: cognac as the classics knew it","Château du Tariquet: armagnac’s rusticity","Christian Drouin: calvados benchmark","Caravedo: proper Peruvian pisco"],
   },
   'Amaro & Vermouth':{
-    glass:"Small wine glass, lightly chilled. Taste them the way you'd serve them.",
+    glass:"Small wine glass, lightly chilled. Taste them the way you’d serve them.",
     nose:['gentian/root bitter','citrus peel','rhubarb','wormwood','mint/menthol','saffron','caramel','vanilla','dried herbs','cola/spice','cherry','wine/oxidized','floral','anise','chocolate'],
     markers:["Locate the bitterness first: root (gentian, rhubarb), peel (citrus pith), or herbal (wormwood, menthol).","Vermouth should taste like wine underneath: if it tastes flat and raisiny, the bottle is oxidized and dead.","Sweetness in amaro masks bitterness; taste for how quickly the sweetness fades and the bitter arrives.","A dead vermouth is the most common flaw on any back bar. Check yours weekly against a fresh bottle."],
     benchmarks:["Campari: the aperitivo bitterness standard","Fernet-Branca: the menthol/saffron extreme","Carpano Antica: rich sweet vermouth","Dolin Dry: light alpine dry vermouth"],
@@ -39,63 +39,63 @@ const TASTE_CATS = {
 };
 
 const FLIGHTS = [
-  { name:"Peat Is Not One Flavor", cat:"Whiskey", teaches:"That 'smoky' is a lazy word, and that phenol ppm doesn't predict taste.",
+  { name:"Peat Is Not One Flavor", cat:"Whiskey", teaches:"That 'smoky' is a lazy word, and that phenol ppm doesn’t predict taste.",
     pours:["Laphroaig 10: Islay, ~40ppm, coastal peat","Ardbeg 10: Islay, ~55ppm, purifier-equipped still","Highland Park 12: Orkney, heather peat, sherry casks"],
     look:"Rank them by how smoky you expect from the numbers, then taste blind and rank by how smoky they actually seem.",
-    lesson:"Ardbeg carries the highest phenol count and usually reads cleanest, because its purifier pipe strips the heaviest compounds. Laphroaig's peat is medicinal and iodine-driven; Highland Park's is floral and honeyed because Orkney's peat is heather rather than woodland. Peat level is a measurement of the malt, not a prediction of the glass." },
+    lesson:"Ardbeg carries the highest phenol count and usually reads cleanest, because its purifier pipe strips the heaviest compounds. Laphroaig’s peat is medicinal and iodine-driven; Highland Park’s is floral and honeyed because Orkney’s peat is heather rather than woodland. Peat level is a measurement of the malt, not a prediction of the glass." },
   { name:"Yeast Is an Ingredient", cat:"Whiskey", teaches:"That the same grain and the same warehouse can produce different whiskeys.",
     pours:["Four Roses Single Barrel (OBSV recipe)","Four Roses Small Batch (blend of four recipes)","Any second Four Roses single-barrel recipe you can find"],
     look:"Same distillery, same warehouses, same climate. Note fruit versus spice versus floral.",
     lesson:"Four Roses runs two mashbills against five proprietary yeast strains for ten distinct recipes. Most drinkers assume mashbill drives flavor; this flight shows yeast doing at least as much work." },
   { name:"Grain to Glass: The Bourbon Variables", cat:"Whiskey", teaches:"How mashbill and proof change texture, not just flavor.",
-    pours:["Maker's Mark: wheated","Wild Turkey 101: high rye, low barrel entry proof","Buffalo Trace: low rye, standard entry proof"],
+    pours:["Maker’s Mark: wheated","Wild Turkey 101: high rye, low barrel entry proof","Buffalo Trace: low rye, standard entry proof"],
     look:"Rank by sweetness, then by spice, then by mouthfeel weight. Note where heat appears on the palate.",
-    lesson:"Wheat softens and rounds; rye sharpens and adds pepper and dill. Wild Turkey's lower barrel entry proof means less water added at bottling, which is why it feels denser than its price suggests." },
+    lesson:"Wheat softens and rounds; rye sharpens and adds pepper and dill. Wild Turkey’s lower barrel entry proof means less water added at bottling, which is why it feels denser than its price suggests." },
   { name:"Juniper Forward, Juniper Back", cat:"Gin", teaches:"The full range the word 'gin' covers.",
-    pours:["Tanqueray: four botanicals, juniper-dominant","Plymouth: softer, root-forward","Monkey 47 or Hendrick's: contemporary style"],
+    pours:["Tanqueray: four botanicals, juniper-dominant","Plymouth: softer, root-forward","Monkey 47 or Hendrick’s: contemporary style"],
     look:"Find juniper in each. Note how hard you have to hunt for it in the third.",
     lesson:"London Dry is a production method, not a flavor promise. Contemporary gins are legal as long as juniper dominates, but 'dominates' leaves enormous room. Knowing where a bottle sits on this spectrum tells you whether it will survive a Negroni." },
   { name:"Old Tom and the Missing Sweetness", cat:"Gin", teaches:"Why 19th-century recipes taste wrong with modern gin.",
-    pours:["Hayman's London Dry","Hayman's Old Tom","Genever, if you can find it"],
+    pours:["Hayman’s London Dry","Hayman’s Old Tom","Genever, if you can find it"],
     look:"Taste each neat, then make a small Martinez with each.",
-    lesson:"Old Tom's light sweetening is the bridge between malty genever and bone-dry London Dry. The Martinez, the original Tom Collins, and much of the pre-1900 canon were written for it, which is why they taste thin and harsh when built with modern dry gin." },
+    lesson:"Old Tom’s light sweetening is the bridge between malty genever and bone-dry London Dry. The Martinez, the original Tom Collins, and much of the pre-1900 canon were written for it, which is why they taste thin and harsh when built with modern dry gin." },
   { name:"Molasses, Cane, and Funk", cat:"Rum", teaches:"That 'rum' describes at least three unrelated spirits.",
     pours:["A clean Spanish-style white (Havana Club 3 or Probitas)","A Jamaican pot still (Appleton Signature or Hampden)","A rhum agricole blanc (Rhum J.M or Neisson)"],
     look:"Nose all three before tasting. The agricole should smell like a cut lawn; the Jamaican like overripe fruit and glue.",
-    lesson:"Base material and still type matter more than color or age. Once you can identify these three poles blind, you can reverse-engineer almost any rum cocktail, and you'll understand why swapping rums changes a Daiquiri completely." },
+    lesson:"Base material and still type matter more than color or age. Once you can identify these three poles blind, you can reverse-engineer almost any rum cocktail, and you’ll understand why swapping rums changes a Daiquiri completely." },
   { name:"Terroir in Agave", cat:"Agave", teaches:"That where the plant grew is legible in the glass.",
     pours:["A Los Altos highland blanco (Tequila Ocho or G4)","A valley blanco (Cascahuín or Fortaleza)","An espadín mezcal (Del Maguey Vida)"],
     look:"Rank by fruitiness, then by earthiness and pepper. Note where minerality appears.",
     lesson:"Highland agave grows in iron-rich red soil at altitude and tends fruity and floral; valley agave tends earthy, peppery, and mineral. The mezcal adds pit-roasting on top of both variables, which is why smoke is a production choice rather than an agave characteristic." },
-  { name:"Additives and the Honest Blanco", cat:"Agave", teaches:"To recognize what shouldn't be there.",
+  { name:"Additives and the Honest Blanco", cat:"Agave", teaches:"To recognize what shouldn’t be there.",
     pours:["A verified additive-free blanco (Fortaleza, Ocho, G4, Siete Leguas)","A widely available mass-market blanco","A third of either kind, poured blind by a friend"],
     look:"Look specifically for vanilla, caramel, or a syrupy roundness in an unaged spirit. It has no legitimate source.",
     lesson:"Mexican regulations permit up to 1% undisclosed additives even in 100% agave tequila: glycerin for body, sweetener, oak extract, caramel color. None of it is illegal; all of it is invisible on the label. Your palate is the only detector you have." },
   { name:"Is Your Vermouth Dead?", cat:"Amaro & Vermouth", teaches:"The single most common flaw on any back bar.",
-    pours:["A freshly opened bottle of sweet vermouth","The bottle currently on your back bar","The same fresh bottle after a week unrefrigerated, if you're patient"],
+    pours:["A freshly opened bottle of sweet vermouth","The bottle currently on your back bar","The same fresh bottle after a week unrefrigerated, if you’re patient"],
     look:"Nose both. Fresh vermouth smells like wine with herbs; oxidized vermouth smells like raisins, sherry, and dust.",
     lesson:"Vermouth is wine. An open bottle at room temperature is noticeably degraded within a week and undrinkable within a month. Refrigerate, date the bottle, buy smaller formats. This one habit improves more of your cocktails than any technique you can practice." },
   { name:"Where the Bitterness Lives", cat:"Amaro & Vermouth", teaches:"To place a bitter liqueur by its source, not its brand.",
     pours:["Campari: citrus-peel and root bitterness","Cynar: vegetal artichoke bitterness","Fernet-Branca: menthol, saffron, and aggressive root"],
     look:"Note when the bitterness arrives (immediately, mid-palate, or only at the finish) and how long it stays.",
-    lesson:"Amari differ less in intensity than in the location and timing of their bitterness. Once you can identify that, substituting intelligently becomes possible: a Negroni made with Cynar isn't worse, it's a different drink with a known shape." },
+    lesson:"Amari differ less in intensity than in the location and timing of their bitterness. Once you can identify that, substituting intelligently becomes possible: a Negroni made with Cynar isn’t worse, it’s a different drink with a known shape." },
   { name:"Proof, Water, and Texture", cat:"Whiskey", teaches:"That dilution is a tool, not a compromise.",
     pours:["Any cask-strength whiskey, poured three times","Glass one neat","Glass two with a few drops of water; glass three with roughly 20% water"],
     look:"Nose and taste each in order. Track when aromas open up and when they flatten out.",
-    lesson:"Water breaks alcohol's surface tension and releases volatile aromatics: this is precisely what shaking and stirring do for a cocktail. Finding the point where a whiskey opens and the point where it collapses is the most direct lesson available in why dilution is an ingredient." },
+    lesson:"Water breaks alcohol’s surface tension and releases volatile aromatics: this is precisely what shaking and stirring do for a cocktail. Finding the point where a whiskey opens and the point where it collapses is the most direct lesson available in why dilution is an ingredient." },
   { name:"Pot Still Versus Column", cat:"Brandy", teaches:"How still design shapes a spirit before wood ever touches it.",
     pours:["A VSOP cognac (double pot distilled)","A Bas-Armagnac (single continuous column, lower proof)","A pisco (pot, distilled to proof, unaged)"],
     look:"Compare weight and aromatic intensity before judging the wood.",
-    lesson:"Cognac's double pot distillation to a higher proof yields elegance and polish; armagnac's single low-proof column pass leaves more congeners and more rustic aroma. Pisco, distilled to final strength with no water added and no wood, shows what the still alone produces." },
+    lesson:"Cognac’s double pot distillation to a higher proof yields elegance and polish; armagnac’s single low-proof column pass leaves more congeners and more rustic aroma. Pisco, distilled to final strength with no water added and no wood, shows what the still alone produces." },
 ];
 
 const TASTE_METHOD = [
-  ["Set up honestly","Use the same glass for every pour: a Glencairn or copita, never a rocks glass or balloon snifter. Pour equal, modest measures (half an ounce is plenty). Room temperature. Good light against a white background. If you're evaluating rather than enjoying, have a spit cup; a serious flight will otherwise end your usefulness for the evening."],
-  ["Nose it properly","Keep your mouth slightly open and take short, gentle sniffs from just above the rim: jamming your nose into the glass anaesthetizes you with ethanol. Nose each pour before tasting any of them. Your first impression is the most honest one you'll get, so write it down before you start second-guessing."],
-  ["Then taste","Take a small sip and let it coat your whole mouth before swallowing or spitting. The first sip mostly registers alcohol; it's the second that tells you anything. Note where flavors appear: front palate, mid, or only after you swallow. Finish length is a real quality signal; count the seconds it lingers."],
-  ["Add water deliberately","A few drops opens most spirits above 45% ABV, releasing aromatics that alcohol was masking. Nose again after the water; it's often a different spirit. This is the clearest demonstration of why dilution belongs in a cocktail rather than being a necessary evil."],
-  ["Manage palate fatigue","Taste light to heavy, unpeated before peated, low proof before high. Three to five pours is a real session; beyond six, you're guessing. Reset with plain water and unsalted crackers, not coffee. If everything starts tasting like alcohol, you're done: stop and come back tomorrow."],
-  ["Write before you look","Always record your notes before you learn what you tasted. Knowing the label rewrites your perception instantly and permanently. Blind tasting isn't a party trick; it's the only way to know whether your palate or your expectations are doing the work."],
+  ["Set up honestly","Use the same glass for every pour: a Glencairn or copita, never a rocks glass or balloon snifter. Pour equal, modest measures (half an ounce is plenty). Room temperature. Good light against a white background. If you’re evaluating rather than enjoying, have a spit cup; a serious flight will otherwise end your usefulness for the evening."],
+  ["Nose it properly","Keep your mouth slightly open and take short, gentle sniffs from just above the rim: jamming your nose into the glass anaesthetizes you with ethanol. Nose each pour before tasting any of them. Your first impression is the most honest one you’ll get, so write it down before you start second-guessing."],
+  ["Then taste","Take a small sip and let it coat your whole mouth before swallowing or spitting. The first sip mostly registers alcohol; it’s the second that tells you anything. Note where flavors appear: front palate, mid, or only after you swallow. Finish length is a real quality signal; count the seconds it lingers."],
+  ["Add water deliberately","A few drops opens most spirits above 45% ABV, releasing aromatics that alcohol was masking. Nose again after the water; it’s often a different spirit. This is the clearest demonstration of why dilution belongs in a cocktail rather than being a necessary evil."],
+  ["Manage palate fatigue","Taste light to heavy, unpeated before peated, low proof before high. Three to five pours is a real session; beyond six, you’re guessing. Reset with plain water and unsalted crackers, not coffee. If everything starts tasting like alcohol, you’re done: stop and come back tomorrow."],
+  ["Write before you look","Always record your notes before you learn what you tasted. Knowing the label rewrites your perception instantly and permanently. Blind tasting isn’t a party trick; it’s the only way to know whether your palate or your expectations are doing the work."],
   ["Build the vocabulary","Use the same words consistently, even imprecise ones, so your notes are comparable over time. Aroma vocabulary is learned, not innate; smell your ingredients deliberately: crack a coriander seed, smell juniper berries, taste your syrups. Nearly all of what people call taste is smell, and smell is trainable."],
 ];
 
@@ -147,7 +147,7 @@ const RAIL_STAGES = [
   /* anchored: "Build over ice, stir" is a built drink, not a stirred one */
   { rank:1, test:c => /^\s*stir/i.test(c.method),
     why:'Stirred goes into the mixing glass early. It chills and dilutes while your hands are elsewhere.' },
-  /* affirmative shake verb only: Bloody Mary's "never shake" must not match */
+  /* affirmative shake verb only: Bloody Mary’s "never shake" must not match */
   { rank:2, test:c => /^\s*(dry\s+|whip\s+|hard\s+)?shake|,\s*shake/i.test(c.method),
     why:'Shaken next, and if two drinks share a tin size, they share a shake.' },
   { rank:3, test:c => /soda|tonic|ginger beer|cola|champagne|prosecco|sparkling|beer/i.test(c.spec.join(' ')) || /build/i.test(c.method),
@@ -155,7 +155,7 @@ const RAIL_STAGES = [
 ];
 function railStage(c){
   for(const s of RAIL_STAGES) if(s.test(c)) return s;
-  /* rolled, thrown, muddled: hand-built but not shaken. Don't tell the learner
+  /* rolled, thrown, muddled: hand-built but not shaken. Don’t tell the learner
      to shake something whose own method says never to. */
   return { rank:2, why:'Rolled or hand-built: sits mid-rail, after the stirred and before anything carbonated.' };
 }
@@ -183,11 +183,11 @@ function railDeal(){
     picks.push(extra);
   }
   let deck = shuffle(picks).slice(0, 4).map(c => ({ src:'Cocktails', name:c.name }));
-  /* one ticket from the venue's own menu rides every rail once a list exists:
+  /* one ticket from the venue’s own menu rides every rail once a list exists:
      the order skill matters most on the drinks you will actually be fired.
-     No method requirement: railStage's default rank places a method-less
+     No method requirement: railStage’s default rank places a method-less
      drink mid-rail, the honest answer for a spec-only entry: requiring it
-     silently broke the tab's "one of yours on the rail" promise. */
+     silently broke the tab’s "one of yours on the rail" promise. */
   const bar = (progress.bar||[]).filter(b => (b.spec||[]).length);
   if(bar.length && deck.length){
     const b = sample(bar, 1)[0];
@@ -419,7 +419,7 @@ function renderPractice(){
     log.forEach(e => byCat[e.cat] = (byCat[e.cat]||0)+1);
     const stats = Object.keys(TASTE_CATS).map(c =>
       '<div class="hist-row"><span class="small">'+esc(c)+'</span><span class="font-tix brass2">'+(byCat[c]||0)+'</span></div>').join('');
-    return wrap('<div class="small dim lh" style="padding:0 4px">A structured card forces you to look for things you\'d otherwise skip. Fill it in <span class="brass2">before</span> you check the label: knowing what you\'re drinking rewrites your perception permanently.</div>'
+    return wrap('<div class="small dim lh" style="padding:0 4px">A structured card forces you to look for things you’d otherwise skip. Fill it in <span class="brass2">before</span> you check the label: knowing what you’re drinking rewrites your perception permanently.</div>'
       + renderTastingForm()
       + '<div class="panel p4 col-sm"><div class="eyebrow">Pours logged by category</div>'+stats
       + '<div class="tiny dim">'+log.length+' notes total. Twenty pours in one category is where patterns start appearing.</div></div>'
@@ -436,7 +436,7 @@ function renderPractice(){
         + '<div class="tix-rule"></div>'+pours+'<div class="tix-rule"></div>'
         + '<div><span class="tix-label">Look for </span>'+esc(f.look)+'</div></div></div>'
         + '<div style="max-width:440px"><div class="eyebrow mb1">The lesson</div><div class="small dim lh">'+esc(f.lesson)+'</div></div>'
-        + '<a class="btn btn-ghost tiny" href="'+ytSearch(f.name+' '+f.cat+' tasting comparison')+'" target="_blank" rel="noopener noreferrer">▶ Search related tastings</a>'
+        + '<a class="btn btn-ghost tiny" href="'+ytSearch(f.name+' '+f.cat+' tasting comparison')+'" target="_blank" rel="noopener noreferrer">Search related tastings</a>'
         + '</div>' : '';
       return '<div class="panel"><button class="drink-head" aria-expanded="'+(open?'true':'false')+'" data-act="pr-flight" data-i="'+i+'">'
         + '<span class="bold">'+esc(f.name)+'</span><span class="chip brass">'+esc(f.cat)+'</span>'
@@ -470,7 +470,7 @@ function renderPractice(){
     }
     const rows = log.slice(-5).reverse().map(e =>
       '<div class="hist-row"><span>'+esc(e.d)+'</span><span class="font-tix brass2">'+e.v+' '+esc(d.unit)+'</span></div>').join('');
-    /* pinned subject: the drill picks the drinks, so difficulty can't drift downward */
+    /* pinned subject: the drill picks the drinks, so difficulty can’t drift downward */
     const subj = p.subjects && p.subjects[d.id];
     const subjHTML = d.pick
       ? '<div class="row" style="gap:8px;align-items:center">'
@@ -502,7 +502,7 @@ function trimNum(x){ const r = Math.round(x*100)/100; return String(r); }
 function scaleLine(l, f){
   const UNIT = '(?:oz|ml|cl|l\\b|tsp|tbsp|dash(?:es)?|drops?|pinch(?:es)?|barspoons?|leaves|leaf|sprigs?|cubes?|slices?|wedges?|wheels?|scoops?|parts?|cups?|bottles?|cans?|shots?|pints?|handfuls?|sticks?|cloves?|berries|beans?|strawberr\\w*|grapes?)';
   // a number is scalable only when followed by a unit, or when the line is a
-  // bare "N thing" count (2 limes) and the number isn't part of a name
+  // bare "N thing" count (2 limes) and the number isn’t part of a name
   const re = new RegExp('(\\d+\\/\\d+|\\d+(?:\\.\\d+)?)(\\s*[–-]\\s*(?:\\d+\\/\\d+|\\d+(?:\\.\\d+)?))?(\\s*)('+UNIT+')?', 'gi');
   return l.replace(re, function(match, n1, range, sp, unit, off, whole){
     const after = whole.slice(off + match.length);
@@ -648,7 +648,7 @@ function lineABV(l){
 function estimateABV(c, dilutionPct){
   let alc=0, vol=0;
   (c.spec||[]).forEach(function(l){
-    /* per-item, so a Long Island's five spirits are priced as five spirits */
+    /* per-item, so a Long Island’s five spirits are priced as five spirits */
     specUnits(l).forEach(function(u){
       if(!u.oz) return;
       vol += u.oz;
@@ -716,7 +716,7 @@ function pourHTML(){
   const recent = log.slice(-5);
   const avgDev = recent.length ? recent.reduce((s,e) => s + (e.oz - e.target), 0) / recent.length : null;
   /* Priced from YOUR book when it has bottles: the median $/oz across what
-     you actually pour beats the guide's canned percentage. The two tools were
+     you actually pour beats the guide’s canned percentage. The two tools were
      built a week apart and did not speak until now. */
   const bts = progress.bottles || [];
   let perOzMed = null;
@@ -742,7 +742,7 @@ function pourHTML(){
     + '<h2 class="eyebrow">The free-pour bench</h2>'
     + '<div class="small dim lh">Speed pourer in the bottle, water in the bottle, jigger or scale on the bar. '
     + 'Pour to your count for the target, then MEASURE what landed and enter it. The bench keeps your deviation; '
-    + 'it stays in your ledger and nobody else\'s.</div>'
+    + 'it stays in your ledger and nobody else’s.</div>'
     + '<div class="row" style="gap:8px;flex-wrap:wrap">'+targets+'</div>'
     + '<div class="row" style="gap:10px">'
     + '<input class="input" type="number" step="any" inputmode="decimal" id="pour-oz" aria-label="Measured pour in ounces" placeholder="what landed (oz)" value="'+esc(String(state.practice.pourOz||''))+'" style="max-width:170px">'
@@ -754,10 +754,10 @@ function pourHTML(){
 }
 
 /* ---------------- THE SPILL LOG ---------------- */
-/* The training version of the register section's spill/waste key. Its creed,
-   quoted from this app's own service pages: "Waste rung honestly all night is
+/* The training version of the register section’s spill/waste key. Its creed,
+   quoted from this app’s own service pages: "Waste rung honestly all night is
    a rounding error. Waste never rung at all is why a variance report starts
-   to look like a crime scene." The reasons are the section's own list (
+   to look like a crime scene." The reasons are the section’s own list (
    remake, spill & breakage, comp, foam & line, and there is NO THEFT KEY on
    purpose: the same pages put theft LAST in the order of suspicion, and it is
    what the variance says after honest logging, never a button you press. */
@@ -809,7 +809,7 @@ function spillHTML(){
 }
 
 /* ---------------- THE OPEN BOTTLE BOARD ---------------- */
-/* Every window below is this app's OWN stated number, citable to its page:
+/* Every window below is this app’s OWN stated number, citable to its page:
    vermouth "refrigerate it, date the bottle, replace it monthly"; citrus
    "taste your citrus daily"; simple syrup "Fridge, ~1 month"; open wine
    "sparkling lasts one to two days, light whites and rosé two to three, big
@@ -859,7 +859,7 @@ function obHTML(){
 }
 
 /* ---- pour cost / pricing ---- */
-/** The venue's own price as a number, or null. Free text like the menu writes it. */
+/** The venue’s own price as a number, or null. Free text like the menu writes it. */
 function parseMenuPrice(raw){
   if(!raw) return null;
   const n = parseFloat(String(raw).replace(/[^\d.]/g, ''));
@@ -896,7 +896,7 @@ function toolSrcRowHTML(){
 /* @param only optional. Given a drink, cost that one; given nothing, cost
    whatever the Tools panel has selected, which is every existing call. The
    Menu tab needs a sheet for one named drink and must not have to move the
-   Tools panel's selection to get it. Same shape as missingFor(c, shelf). */
+   Tools panel’s selection to get it. Same shape as missingFor(c, shelf). */
 function costTicketHTML(only){
   const t = state.tools;
   const bar = progress.bar || [];
@@ -906,8 +906,8 @@ function costTicketHTML(only){
   const bottle = Number(t.bottlePrice)||0;
   const bottleMl = Number(t.bottleMl)||750;
   const target = Number(t.targetPour)||20;
-  /* The engine's own read, not a private reduce: balanceOf already promotes a
-     liqueur- or wine-based drink's real base into the strong column, so an
+  /* The engine’s own read, not a private reduce: balanceOf already promotes a
+     liqueur- or wine-based drink’s real base into the strong column, so an
      Aperol Spritz stops pricing at $0. Mixers are never promoted: a Mimosa
      genuinely has no ounce-priced base, and the guard below says so instead
      of printing MENU PRICE $0 with a straight face. */
@@ -937,7 +937,7 @@ function costTicketHTML(only){
   const price = target>0 ? totalCost / (target/100) : 0;
   const menu = Math.ceil(price);
   /* Your ACTUAL pour cost, when the drink carries your price. The verdict is
-     scored against the tool's own stated band, words beside the number. */
+     scored against the tool’s own stated band, words beside the number. */
   const menuPrice = useBar ? parseMenuPrice(b.price) : null;
   const actualPct = menuPrice ? (totalCost / menuPrice) * 100 : null;
   const verdict = actualPct === null ? '' :
@@ -1003,7 +1003,7 @@ function costHTML(){
 function strengthHTML(){
   const t = state.tools;
   const c = toolDrink();
-  /* Number(x)||25 turned the neat chip's honest 0 back into 25 */
+  /* Number(x)||25 turned the neat chip’s honest 0 back into 25 */
   const raw = Number(t.dilPct);
   const dil = Number.isFinite(raw) ? raw : 25;
   const e = estimateABV(c, dil);
@@ -1089,9 +1089,9 @@ function renderTools(){
     return wrap('<div class="row" style="gap:10px;flex-wrap:wrap">'+sr.srcChips+(sr.barSel||drinkSel('tool-drink'))+'</div>'+strengthHTML());
   }
 
-  /* The shelf panel that stood here is now the Menu tab's Stock view, in
-     js/ui-menu.js. It was written as a home bartender's toy ('Starter home
-     bar' was one of its presets) and it is a professional's stock list now,
+  /* The shelf panel that stood here is now the Menu tab’s Stock view, in
+     js/ui-menu.js. It was written as a home bartender’s toy ('Starter home
+     bar' was one of its presets) and it is a professional’s stock list now,
      so it belongs beside the menu it is measured against rather than in a
      drawer of calculators. The engine did not move: SHELF, missingFor,
      bestNextBottles and eightySixReport are all still in engine.js, and
@@ -1108,7 +1108,7 @@ function renderTools(){
     + '<input class="input" type="number" min="1" max="200" id="tool-serv" value="'+t.serv+'" style="flex:1;min-width:80px" aria-label="Servings" title="servings">'
     + '<button class="chip'+(t.dilute?' on':'')+'" aria-pressed="'+(t.dilute?'true':'false')+'" data-act="tool-dilute">+25% water</button></div>'
     + '<div id="batch-out" style="display:flex;justify-content:center">'+batchOutHTML()+'</div>'
-    + '<div class="row"><a class="btn btn-ghost tiny" href="'+ytSearch('how to batch cocktails pre dilution bottled'+scopeSuffix())+'" target="_blank" rel="noopener noreferrer">▶ Watch batching explained</a></div>'
+    + '<div class="row"><a class="btn btn-ghost tiny" href="'+ytSearch('how to batch cocktails pre dilution bottled'+scopeSuffix())+'" target="_blank" rel="noopener noreferrer">Watch batching explained</a></div>'
     + '</div>');
 }
 

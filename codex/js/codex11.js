@@ -127,7 +127,7 @@ function readinessLine(lvl){
 /* ---- 4. a verdict only where a verdict belongs ---- */
 function isExamMode(){ return S.mode==='mock'||S.mode==='sim'; }
 var MODE_NOUNS={review:'Weakness Review',weak:'Weakness Review',daily:'Daily Review',
-  drill:'Section Drill',endless:'Endless Practice',flagged:'Flagged Review',
+  drill:'Section Drill',endless:'Endless Practice',flagged:'Bookmark Review',
   lightning:'Lightning Round',sudden:'Sudden Death'};
 
 var _v10ResultsView=resultsView;

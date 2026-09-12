@@ -308,4 +308,38 @@ header.top { padding: 0; }
 .plate-failed header.top .wrap > * { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; }
 .plate-failed .plate { display: none; }
 
+/* ---- magnified: the real text comes back, the painting stays ------------
+   hub-plate.js sets .plate-zoomed when the browser has been zoomed to about
+   160% or more: outerWidth against innerWidth where the engine keeps the
+   frame in screen pixels (Chrome, Edge, Safari), and, in Firefox only, a
+   dense window shorter than 480 CSS px and narrower than 1100, because
+   Firefox scales outerWidth with the page; the reasoning is there. While the
+   class is on, the hotspots over the cards are hidden from assistive
+   technology and out of the tab order, because the list under the painting
+   carries the same five doors as visible text. The plate's own caps are all
+   derived from the height of the window, and zoom shrinks that window in the
+   same proportion, so from 100% to 200% the picture is painted on the same
+   device pixels: a reader who asked for magnification got none. Every word
+   on the page is pixels in that picture.
+
+   So at that zoom the masthead and the list of doors, which are real text and
+   were only ever clipped for the artwork to stand in for them, are unclipped:
+   the masthead above the painting and the doors below it, in the reader's
+   own size, with the glyph and the legal links back in the flow under them
+   rather than pinned to the corners of a window that now scrolls. The plate
+   is not resized, moved or captioned, and nothing here fires for a reader who
+   has not zoomed. Three classes deep so it outranks every .plate-live rule
+   above, including the absolute corners in the landscape branch. */
+.plate-live.plate-zoomed header.top { padding: 28px 0 8px; }
+.plate-live.plate-zoomed header.top .wrap > :not(.acct):not(.acct-form) {
+  position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal;
+}
+.plate-live.plate-zoomed #pillars { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
+.plate-live.plate-zoomed .keep-offline,
+.plate-live.plate-zoomed footer.foot {
+  position: static; max-width: none; padding-left: 0; padding-right: 0; text-align: center;
+}
+.plate-live.plate-zoomed .keep-offline { margin: 14px 0 0; }
+.plate-live.plate-zoomed footer.foot { padding: 10px 0 12px; border-top: 1px solid var(--hair-firm); }
+
 .venue-note { text-align: center; }

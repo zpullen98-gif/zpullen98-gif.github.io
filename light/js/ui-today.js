@@ -262,9 +262,11 @@ function todayGuided(m, d, e, doy, p) {
       } },
     { label: 'Sit with it', body: function () {
         var on = (typeof pacer !== 'undefined' && pacer.on);
-        return '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
+        return '<div class="pacerbox">' +
+          '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
           '<div class="pacer-label" id="pacer-label">' + (on ? '' : 'Ready') + '</div>' +
           '<div class="ds" id="pacer-count"></div>' +
+          '</div>' +
           '<p class="mintro">A minute, or the length of ten slow breaths. Nothing to achieve: ' +
           'this is the interval in which the line stops being information and becomes yours.</p>' +
           '<div style="text-align:center;margin-top:10px">' +

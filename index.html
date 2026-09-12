@@ -10,12 +10,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Outside Of Time">
 <title>Outside Of Time Hospitality: the complete life of the hospitality professional</title>
-<meta name="description" content="Enter your wine list, your bar menu and your kitchen's menu once; every wing drills them beside the canon, offline, on the device in your hand. No account, no signal needed, and nothing sent anywhere. Five free wings: The Sommelier's Codex, The Bartender's Ledger, The World Table, First Light and Calendar For Life.">
+<meta name="description" content="Five free study apps for hospitality, offline and on the device in your hand: no account, no signal needed, nothing sent anywhere. The Sommelier’s Codex (four examinations, 4,357 questions), The Bartender’s Ledger (365 cocktails), The World Table (1,844 recipes), First Light (two years of mornings) and Calendar For Life (an illuminated almanac of festivals).">
 <meta name="theme-color" content="#0b0908">
 <link rel="canonical" href="https://zpullen98-gif.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Outside Of Time Hospitality">
-<meta property="og:description" content="Enter your wine list, your bar menu and your kitchen's menu once; every wing drills them beside the canon, offline, on the device in your hand. No account, no signal needed, and nothing sent anywhere.">
+<meta property="og:description" content="Five free study apps for hospitality, offline and on the device in your hand: no account, no signal needed, nothing sent anywhere. The Sommelier’s Codex (four examinations, 4,357 questions), The Bartender’s Ledger (365 cocktails), The World Table (1,844 recipes), First Light (two years of mornings) and Calendar For Life (an illuminated almanac of festivals).">
 <meta property="og:url" content="https://zpullen98-gif.github.io/">
 <meta property="og:image" content="https://zpullen98-gif.github.io/assets/hub-card.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -309,13 +309,13 @@ footer.foot a:hover{color:var(--brass-hi)}
   </div>
 </footer>
 
-<script src="shared/oot-config.js?v=26"></script>
-<script src="shared/oot-profiles.js?v=26"></script>
-<script src="shared/oot-home.js?v=26"></script>
-<script src="shared/oot-auth.js?v=26"></script>
-<script src="shared/oot-gate.js?v=26"></script>
-<script src="shared/oot-pass.js?v=26"></script>
-<script src="shared/oot-log.js?v=26"></script>
+<script src="shared/oot-config.js?v=27"></script>
+<script src="shared/oot-profiles.js?v=27"></script>
+<script src="shared/oot-home.js?v=27"></script>
+<script src="shared/oot-auth.js?v=27"></script>
+<script src="shared/oot-gate.js?v=27"></script>
+<script src="shared/oot-pass.js?v=27"></script>
+<script src="shared/oot-log.js?v=27"></script>
 <script>
 /* The hub renders itself from OOT.config so the wing list, the free/paid copy
    and the prices are written down exactly once. Phases 2 and 3 change behaviour
@@ -502,8 +502,9 @@ footer.foot a:hover{color:var(--brass-hi)}
       }, Promise.resolve()).then(function () {
         if (!failed.length) {
           offlineMsg.textContent = 'All five wings are stored on this device and ' +
-            'open with no connection. First Light’s library texts and any ' +
-            'practice films still need a connection the first time you open them.';
+            'open with no connection. First Light’s library texts, its practice ' +
+            'films and Calendar For Life’s lettering still need a connection the ' +
+            'first time you open them.';
           offlineBtn.dataset.state = 'done';
           offlineBtn.style.setProperty('--p', '1');
           offlineBtn.setAttribute('aria-label', 'Every wing is stored on this device');

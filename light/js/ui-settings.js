@@ -138,7 +138,7 @@ FL_ACTS.importChosen = function (el) {
       toast(bits.length ? 'Merged in ' + bits.join(', ') + '.' : 'That record held nothing new: everything in it was already here.');
       render();
     } catch (err) {
-      toast('That file could not be read as a First Light record.');
+      toast('That file could not be read as a First Light record. Use the file Settings exported, whole and unedited.');
       console.warn(err);
     }
   };

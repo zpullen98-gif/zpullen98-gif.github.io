@@ -15,7 +15,7 @@
  * narrower scope, and a narrower scope always wins, so /ledger/ is served by
  * ledger/sw.js and never by this file.
  */
-const CACHE = 'oot-shell-v19';
+const CACHE = 'oot-shell-v20';
 
 /* Every page asks for shared/oot-config.js?v=23 and the cache is matched with
    ignoreSearch, so the precached copy answers whatever stamp the page wears:
@@ -45,6 +45,9 @@ const ASSETS = [
   './assets/fonts/cinzel-normal-400-900-latin.woff2',
   './assets/fonts/cinzel-normal-400-900-latin-ext.woff2',
   './shared/oot-home.css',
+  /* privacy.html links the font licence; offline, that link should answer */
+  './shared/licenses/OFL.txt',
+  './shared/licenses/NOTICE.md',
   './shared/oot-config.js',
   './shared/oot-profiles.js',
   './shared/oot-home.js',

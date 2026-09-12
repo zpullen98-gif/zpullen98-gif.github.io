@@ -39,10 +39,33 @@
 
   /* ---- a band ---------------------------------------------------------
      name  the word that must be identical across all three wings
-     blurb one line saying what the band is for, in the wing's own voice */
-  function section(name, blurb, inner) {
+     blurb one line saying what the band is for, in the wing's own voice
+     level the heading level, 2 unless a wing says otherwise (2, 3 or 4)
+
+     THE LEVEL IS H2 BY DEFAULT, and that is the fix for a heading-order skip.
+     A band sits directly under the wing's own h1, so h2 is the level that
+     keeps the outline whole. This used to emit h3, which left the Ledger's
+     home h1 -> h3 with no h2 on the page, while the World Table's
+     HomeBands.svelte renders the same bands as h2: identical screens, two
+     outlines. oot-home.css styles the head with :is(h2, h3), so the level
+     changes nothing visual.
+
+     COORDINATION, for the wings that do not come through here, both done:
+       ledger/js/ui-study.js hard-codes one band head, Record, next to three
+         that do come through here; it reads <h2> to match.
+       codex/js/codex14.js builds its own band heads, now <h2>, and then
+         FINDS the Examination band by its head. That selector matches on the
+         class and either tag ('.oot-sec-head h2, .oot-sec-head h3'), so a
+         head changing level cannot delete the rank pins from the Codex home.
+         The standalone SommeliersCodex builds .homesec-head the same way and
+         carries the same h2.
+       A wing that nests a band under an h2 of its own passes level 3. */
+  function section(name, blurb, inner, level) {
+    var lv = parseInt(String(level == null ? 2 : level).replace(/^h/i, ''), 10);
+    if (!(lv >= 2 && lv <= 4)) lv = 2;
+    var tag = 'h' + lv;
     return '<section class="oot-sec">' +
-      '<div class="oot-sec-head"><h3>' + esc(name) + '</h3>' +
+      '<div class="oot-sec-head"><' + tag + '>' + esc(name) + '</' + tag + '>' +
       (blurb ? '<span>' + esc(blurb) + '</span>' : '') + '</div>' +
       (inner || '') + '</section>';
   }
@@ -54,7 +77,11 @@
        fresh    new items it would introduce
        mins     rough minutes, so a person on a break knows if there is time
        line     an override when a wing wants its own sentence
-       cta      the button label
+       cta      the button label for the working states
+       ctaFresh the button label on a device with nothing recorded ("Begin")
+       started  the wing's own answer to "has this device been used": pass it
+       wing     'codex' | 'ledger' | 'light' | 'almanac' | 'table', so that the
+                fallback for `started` reads only that wing's record
        act      whatever the wing's delegated click handler expects,
                 e.g. 'data-act="sess-start"' or 'id="oot-today-go"'
 
@@ -64,8 +91,18 @@
     o = o || {};
     var due = o.due | 0, fresh = o.fresh | 0;
     /* Has this device ever been used? A wing may answer for itself with
-       o.started; otherwise the shared record is the evidence. */
-    var started = (o.started != null) ? !!o.started : hasHistory();
+       o.started; otherwise the record on the device is the evidence.
+
+       THE FALLBACK IS A WEAKER WITNESS than the wing's own predicate, and a
+       wing should pass `started` (the Codex has ootFreshDevice()). Two things
+       make the fallback as honest as it can be from here. It reads the
+       record, not the key: the Codex writes codexStats from codex10's
+       migration before a question is ever shown, so on a brand-new device
+       the key exists and holds nothing, and hasHistory() only counts a Codex
+       record once it has a question in it. And o.wing narrows it to that
+       wing's own keys, so a month of Ledger drills does not tell a person
+       opening the Codex for the first time that they are current. */
+    var started = (o.started != null) ? !!o.started : hasHistory(o.wing);
     var line;
 
     if (o.line) {
@@ -94,7 +131,14 @@
           ? 'Study anyway if you have ten minutes, or come back tomorrow.'
           : 'Ten minutes is a start, and the first ten questions tell you where you stand.';
 
-    var label = o.cta || ((due || fresh) ? 'Start' : (started ? 'Study anyway' : 'Begin'));
+    /* o.cta names the button for the working states. The never-started state
+       takes o.ctaFresh, or "Begin": a wing that hard-codes cta 'Study anyway'
+       for the nothing-due case wrote that label for a record with history in
+       it, and "Study anyway" under "Nothing recorded yet" is the same wrong
+       sentence in fewer words. */
+    var label = (!(due || fresh) && !started)
+      ? (o.ctaFresh || 'Begin')
+      : (o.cta || ((due || fresh) ? 'Start' : 'Study anyway'));
     var btn = '<button class="' + esc(o.btnClass || 'btn') + ' oot-today-go"' +
       (o.act ? ' ' + o.act : '') + '>' + esc(label) + '</button>';
 
@@ -140,14 +184,20 @@
       : function (id) { return !!(done && done[id]); };
 
     var n = 0;
-    var rows = steps.map(function (s) {
+    /* TYPOGRAPHY ONLY. The mark used to be a tick for a finished step and a
+       hollow circle for the rest, and this renders inside the Codex, where
+       the house rule is no pictorial glyph of any kind. The mark is now the
+       step's number, which is what a path is, and a finished step says the
+       word "done" where its minutes were: a word a screen reader can read
+       and a person can find, in place of a dingbat that said "check mark". */
+    var rows = steps.map(function (s, i) {
       var d = isDone(s.id);
       if (d) n++;
       return '<button class="oot-path-row' + (d ? ' done' : '') + '"' +
         (s.act ? ' ' + s.act : '') + attrs({ 'data-path-step': s.id }) + '>' +
-        '<span class="oot-path-mark">' + (d ? '✓' : '○') + '</span>' +
+        '<span class="oot-path-mark">' + (i + 1) + '</span>' +
         '<span class="oot-path-t">' + esc(s.t) + '</span>' +
-        '<span class="oot-path-mins">' + (s.mins ? (s.mins | 0) + ' min' : '') + '</span>' +
+        '<span class="oot-path-mins">' + (d ? 'done' : (s.mins ? (s.mins | 0) + ' min' : '')) + '</span>' +
         '</button>';
     }).join('');
 
@@ -278,15 +328,42 @@
      cannot look, so it leaves 'world-table-has-history-v1' = '1' on its first
      save. Without that, the first name typed on a Table-only device would
      never be asked whether the record is theirs. */
-  var HISTORY_KEYS = ['bartenders-ledger-v1', 'codexStats', 'firstlight-v1',
-                      'cfl-journals-v1', 'cfl-bookmarks-v1', 'cfl-fnb-v1', 'cfl-manifest-v1',
-                      'world-table-has-history-v1', 'world-table-summary-v1'];
-  function hasHistory() {
+  var WING_KEYS = {
+    codex:   ['codexStats'],
+    ledger:  ['bartenders-ledger-v1'],
+    light:   ['firstlight-v1'],
+    almanac: ['cfl-journals-v1', 'cfl-bookmarks-v1', 'cfl-fnb-v1', 'cfl-manifest-v1'],
+    table:   ['world-table-has-history-v1', 'world-table-summary-v1']
+  };
+  var HISTORY_KEYS = [].concat(WING_KEYS.ledger, WING_KEYS.codex, WING_KEYS.light,
+                               WING_KEYS.almanac, WING_KEYS.table);
+
+  /* A KEY IS NOT A HISTORY. The Codex saves codexStats from its own boot
+     (codex10's qidRekey migration normalises the record and calls stSave
+     before a question is ever shown), so on a brand-new device the key is
+     there and holds a migration flag and nothing else. Read the way the
+     Codex's own ootFreshDevice() reads: a Codex record counts once ST.q has
+     a question in it. Every other wing writes its key on first real use, so
+     for those presence is the evidence. A record that will not parse counts
+     as history rather than as nothing: a damaged record is still a record. */
+  function worked(key) {
+    var raw;
+    try { raw = localStorage.getItem(key); } catch (e) { return false; }
+    if (raw === null) return false;
+    if (key !== 'codexStats') return true;
     try {
-      for (var hi = 0; hi < localStorage.length; hi++) {
-        if (HISTORY_KEYS.indexOf(localStorage.key(hi)) > -1) return true;
-      }
-    } catch (e) {}
+      var st = JSON.parse(raw);
+      return !!(st && st.q && typeof st.q === 'object' && Object.keys(st.q).length);
+    } catch (e) { return true; }
+  }
+
+  /* hasHistory()        any wing's record on this device
+     hasHistory('codex') that wing's alone */
+  function hasHistory(wing) {
+    var keys = (wing && WING_KEYS[wing]) ? WING_KEYS[wing] : HISTORY_KEYS;
+    for (var hi = 0; hi < keys.length; hi++) {
+      if (worked(keys[hi])) return true;
+    }
     return false;
   }
 

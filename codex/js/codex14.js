@@ -71,6 +71,16 @@ function ootFreshDevice() {
   return !(ST && ST.q && Object.keys(ST.q).length);
 }
 
+/* Ask that question at load, not only from an induction tap. codex7's restore
+   block asks it too, but codex7 runs seven scripts before this function
+   exists, so on a never-chosen device its guard finds nothing and the Village
+   default framed the whole first screen anyway: the rank strip, the mock
+   tile, "0 of 1283 questions met". boot.js paints last, so correcting here
+   paints the first screen at Régionale. applyLevel persists the choice, which
+   is what the standalone Codex does in the same case, so from the next visit
+   the stored rank restores it and this branch never runs again. */
+if (ootFreshDevice() && activeLevel !== 'intro' && typeof LEVELS !== 'undefined' && LEVELS.intro) applyLevel('intro', true);
+
 /* Ten multiple-choice questions from the Régionale bank, counted and ended:
    a first round, not a bottomless drill. */
 function startFirstTen() {
@@ -155,34 +165,45 @@ function organiseHome() {
 
     if (name === 'Today' && H) {
       var due = ootCodexDue();
+      /* A device that has answered nothing has not started, whatever the
+         suite-wide record says: the shared card's own fallback is a month of
+         Ledger drills, or the Codex's own boot-time save, and either told a
+         first-time reader "Nothing owed. You are current." This wing owns
+         the right witness, its own answers, and passes it. */
+      var started = !!(ST && ST.q && Object.keys(ST.q).length);
       extra = H.todayCard({
         due: due,
+        started: started,
         mins: due ? Math.max(5, Math.round(due * 0.4)) : 0,
-        cta: due ? 'Begin the review' : 'Study anyway',
+        cta: due ? 'Begin the review' : (started ? 'Study anyway' : 'Begin'),
         act: 'data-oot-today="1"',
         btnClass: 'btn gold'
       });
-    }
 
-    /* The induction sits at the top of Learn until it is finished, then it
-       stops taking up room: a course completed three months ago is not what
-       anyone came back for. */
-    /* The ticks live in the Codex's own record now, beside everything else
-       it remembers, which is where the Ledger has kept its induction since
-       names came out of that wing. ST.path rides codexStats, so it is
-       carried by the migration, by the Codex's own export and by a record
-       file for free. P is no longer required for any of it. */
-    if (name === 'Learn' && H && typeof FIRST_PATH !== 'undefined') {
-      var done = {};
-      ST.path = ST.path || {};
-      FIRST_PATH.forEach(function (s) { if (ST.path[s.id]) done[s.id] = 1; });
-      var path = H.firstPath(FIRST_PATH.map(function (s) {
-        return { id: s.id, t: s.t, mins: s.mins, act: 'data-oot-step="' + s.id + '"' };
-      }), done);
-      if (path) {
-        extra = '<div class="oot-today-sub" style="margin:0 0 8px">Your first week. ' +
-          'Finish it and you have been over the ground a new hire is expected ' +
-          'to know.</div>' + path;
+      /* The induction sits in Today, under the day's card, until it is
+         finished, then it stops taking up room: a course completed three
+         months ago is not what anyone came back for. It used to sit at the
+         top of Learn, the fourth band, which on a phone put "Read one study
+         chapter, 8 min" two and two-thirds screens below "Sudden Death: one
+         mistake ends the run". A new hire's first week is what the Codex has
+         set for them now, which is what this band is for. */
+      /* The ticks live in the Codex's own record now, beside everything else
+         it remembers, which is where the Ledger has kept its induction since
+         names came out of that wing. ST.path rides codexStats, so it is
+         carried by the migration, by the Codex's own export and by a record
+         file for free. P is no longer required for any of it. */
+      if (typeof FIRST_PATH !== 'undefined') {
+        var done = {};
+        ST.path = ST.path || {};
+        FIRST_PATH.forEach(function (s) { if (ST.path[s.id]) done[s.id] = 1; });
+        var path = H.firstPath(FIRST_PATH.map(function (s) {
+          return { id: s.id, t: s.t, mins: s.mins, act: 'data-oot-step="' + s.id + '"' };
+        }), done);
+        if (path) {
+          extra += '<div class="oot-today-sub" style="margin:14px 0 8px">Your first week. ' +
+            'Finish it and you have been over the ground a new hire is expected ' +
+            'to know.</div>' + path;
+        }
       }
     }
 
@@ -205,7 +226,11 @@ function organiseHome() {
 
     var wrap = document.createElement('section');
     wrap.className = 'oot-sec';
-    wrap.innerHTML = '<div class="oot-sec-head"><h3>' + name + '</h3>' +
+    /* h2, not h3: a band sits directly under the wing's h1, and this home
+       went h1 -> h3 with no h2 on the page while the World Table's identical
+       bands are h2. shared/oot-home.css styles the head with :is(h2, h3), so
+       nothing moves. */
+    wrap.innerHTML = '<div class="oot-sec-head"><h2>' + name + '</h2>' +
       '<span>' + blurb + '</span></div>' + extra;
     if (mine.length) {
       var grid = document.createElement('div');
@@ -220,7 +245,7 @@ function organiseHome() {
   if (strays.length) {
     var w2 = document.createElement('section');
     w2.className = 'oot-sec';
-    w2.innerHTML = '<div class="oot-sec-head"><h3>More</h3>' +
+    w2.innerHTML = '<div class="oot-sec-head"><h2>More</h2>' +
       '<span>Everything else the Codex holds</span></div>';
     var g2 = document.createElement('div');
     g2.className = 'modes oot-sec-grid';
@@ -242,7 +267,13 @@ function organiseHome() {
   if (pins) {
     var exam = null;
     Array.prototype.forEach.call(host.querySelectorAll('.oot-sec'), function (s) {
-      var h = s.querySelector('.oot-sec-head h3');
+      /* Matched on the class, not the tag: a band head belongs at h2 under
+         the wing's h1 (shared/oot-home.js section() and the World Table both
+         emit h2), and a selector pinned to h3 deletes the rank pins the
+         moment the heads above change level. Written as a plain list rather
+         than :is(), which throws a SyntaxError from querySelector on an
+         engine that predates it and would abort this whole pass. */
+      var h = s.querySelector('.oot-sec-head h2, .oot-sec-head h3');
       if (h && h.textContent.trim() === 'Examination') exam = s;
     });
     if (exam) {
@@ -381,7 +412,7 @@ render = function () {
         pathWing: 'codex',
         pathTotal: (typeof FIRST_PATH !== 'undefined') ? FIRST_PATH.length : 0
       });
-      var back = el('<button class="btn" style="margin-top:18px">Back</button>');
+      var back = el('<button class="btn" style="margin-top:18px">Home</button>');
       back.onclick = function () { S.view = 'home'; render(); };
       wrap.appendChild(back);
       app.innerHTML = '';

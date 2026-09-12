@@ -71,7 +71,7 @@ function startFlagged(){
   if(!pool.length)return;
   stopTimer(); S.pool=shuffle(pool); S.mode='flagged'; S.idx=0; S.correct=0; S.results=[]; resetQ(); S.view='quiz'; render();
 }
-var MODE_LABEL={weak:'Weakness Review',lightning:'Lightning Round',sudden:'Sudden Death',flagged:'Flagged Review'};
+var MODE_LABEL={weak:'Weakness Review',lightning:'Lightning Round',sudden:'Sudden Death',flagged:'Bookmark Review'};
 /* ---- wrap next() for sudden death + lightning rearm ---- */
 var _origNext=next;
 next=function(){
@@ -136,6 +136,18 @@ function decorateQuiz(){
   }
   if(S.mode==='lightning')lightArm();
 }
+/* EVERY bank, one entry per id, which is exactly what encyView searches.
+   QUESTIONS alone is the rank being sat, so "Search all 1283 questions" was
+   true of Village and false of the Codex. */
+function encyQuestionCount(){
+  if(typeof LEVEL_ORDER==='undefined'||typeof LEVELS==='undefined')return QUESTIONS.length;
+  const seen=Object.create(null);let n=0;
+  LEVEL_ORDER.forEach(function(lv){
+    const L=LEVELS[lv];if(!L||!L.bank)return;
+    L.bank.forEach(function(q){const k=q.id||q.q;if(seen[k])return;seen[k]=1;n++;});
+  });
+  return n;
+}
 function decorateHome(){
   const answered=Object.values(ST.q).reduce((a,r)=>a+r.c+r.w,0);
   const correct=Object.values(ST.q).reduce((a,r)=>a+r.c,0);
@@ -152,8 +164,8 @@ function decorateHome(){
     ['t-light','\u2607','Lightning Round','Fifty questions, thirty seconds each. The clock is the examiner.'],
     ['t-sudden','\u2620','Sudden Death','One mistake ends the run. Best: '+(ST.best.sudden||0)+'.'],
     ['t-dash','\u2726','Dashboard','Accuracy by section, coverage, streaks, and exam readiness.'],
-    ['t-ency','\u2748','Encyclopedia','Search all '+QUESTIONS.length+' questions, the Atlas, the Producer Codex, and grape profiles.'],
-    ['t-flag','\u2605','Flagged Review','Drill your '+ST.flags.length+' bookmarked questions.']
+    ['t-ency','\u2748','Encyclopedia','Search all '+encyQuestionCount()+' questions across every rank, the Atlas, the Producer Codex, and grape profiles.'],
+    ['t-flag','\u2605','Bookmark Review','Drill your '+ST.flags.length+' bookmarked questions.']
   ];
   tiles.forEach(function(t){
     m2.appendChild(el('<button class="mode" id="'+t[0]+'"><div class="band"></div><h3>'+t[2]+'</h3><p>'+t[3]+'</p></button>'));
@@ -271,7 +283,15 @@ function encyView(){
     if(typeof PRODUCERS!=='undefined')html+=rows(PRODUCERS,'Producer Codex');
     if(typeof GRAPES!=='undefined'){
       let h='';
-      GRAPES.forEach(function(g){
+      /* every rank's grape list, one entry per name: GRAPES is rebound per
+         rank by codex7 (twelve at Village, the full list plus GRAPES_PLUS
+         above), and the subtitle promises the profiles "at once" */
+      const gseen=Object.create(null), gall=[];
+      const glists=(typeof LEVEL_ORDER!=='undefined'&&typeof LEVELS!=='undefined')
+        ? LEVEL_ORDER.map(function(lv){return LEVELS[lv]&&LEVELS[lv].grapes;}).filter(Boolean)
+        : [GRAPES];
+      glists.forEach(function(list){list.forEach(function(g){const k=g.g||g.name;if(gseen[k])return;gseen[k]=1;gall.push(g);});});
+      gall.forEach(function(g){
         if(JSON.stringify(g).toLowerCase().indexOf(t)>=0)
           h+='<div class="encyq"><div class="encyqt">'+(g.g||g.name||'')+'</div><div class="encyx">'+Object.keys(g).filter(k=>k!=='g'&&k!=='name').map(k=>'<b>'+k+':</b> '+g[k]).join(' \u00b7 ')+'</div></div>';
       });

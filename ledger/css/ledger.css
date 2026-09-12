@@ -10,6 +10,11 @@
 
 :root{
   --felt:#14312a; --felt-2:#0d211c; --felt-3:#1d443a;
+  /* Text-field boundary. --felt-3 on the field fill is 1.55:1 and the fill on
+     the page felt is 1.2:1, so a resting field had no visible edge at all;
+     WCAG 1.4.11 asks 3:1. This is the lightest felt: 4.0:1 on --felt-2 and
+     3.4:1 on --felt. Inputs only; the decorative --felt-3 lines stay put. */
+  --felt-line:#5a8574;
   --brass:#c9a44c; --brass-2:#e6cc8a;
   --cream:#f1e7d3; --cream-dim:#b9ac91;
   --oxblood:#a1453d; --oxblood-2:#7c332d;
@@ -80,8 +85,6 @@ nav.tabs{ display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
   padding:8px 14px 6px; cursor:pointer; transition:all .15s; }
 .cl-btn:hover{ color:var(--brass-2); }
 .cl-btn.active{ color:var(--brass-2); border-bottom-color:var(--brass); }
-.cl-btn.cl-search{ padding:8px 10px 4px; color:var(--cream-dim); }
-.cl-btn.cl-search:hover{ color:var(--brass-2); }
 .subtabs{ display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; justify-content:center; flex-wrap:wrap; }
 /* sub-navs rendered inside a view (Practice, Tools, Shots, Zero Proof) reuse
    nav.tabs: they must stay a horizontal row, not inherit the masthead column */
@@ -97,7 +100,11 @@ nav.tabs{ display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
 #sheet{ display:none; }
 @media (max-width: 639px){
   nav.tabs .clusters{ display:none; }
-  .wrap{ padding-bottom:96px; }
+  /* 48px, not 32px: the suite's return chip rests at the top-left of every
+     wing, a 44px disc at x 10 to 54, y 10 to 54 on a phone, and at 32px the
+     h1's line box began at y 40 with the T of The under the disc. 48px puts
+     the line box at y 56. The standalone Ledger has no chip and keeps 32px. */
+  .wrap{ padding-bottom:96px; padding-top:calc(48px + env(safe-area-inset-top)); }
   #bnav{ position:fixed; left:0; right:0; bottom:0; z-index:50; display:flex;
     background:var(--felt-2); border-top:2px solid var(--brass);
     padding:6px 4px calc(6px + env(safe-area-inset-bottom));
@@ -105,10 +112,11 @@ nav.tabs{ display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
        the empty bar from growing when they land (that growth was the wing's
        whole Lighthouse layout-shift score). 60px = 48px buttons + padding. */
     min-height:calc(60px + env(safe-area-inset-bottom)); }
-  .bnav-btn{ flex:1; display:flex; flex-direction:column; align-items:center; gap:3px;
+  .bnav-btn{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
     background:transparent; border:none; color:var(--cream-dim); cursor:pointer;
-    /* 0.58rem was 9px uppercase for the only navigation a phone has */
-    font-family:inherit; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:600;
+    /* 0.58rem was 9px uppercase for the only navigation a phone has; the word
+       is the whole button now, so it is set at a size a thumb can read */
+    font-family:inherit; font-size:0.76rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:600;
     padding:6px 2px; min-height:48px; }
   .bnav-btn.active{ color:var(--brass-2); }
   #sheet.open{ display:block; position:fixed; inset:0; z-index:55; }
@@ -187,10 +195,13 @@ button.chip{ cursor:pointer; background:transparent; transition:all .15s; font-f
 button.chip:hover{ border-color:var(--brass); color:var(--brass-2); }
 button.chip.on{ background:var(--brass); color:var(--ink); border-color:var(--brass); }
 
-.input{ background:var(--felt-2); border:1px solid var(--felt-3); color:var(--cream);
+.input{ background:var(--felt-2); border:1px solid var(--felt-line); color:var(--cream);
   border-radius:4px; padding:10px 12px; font-size:0.9rem; width:100%; font-family:inherit; }
 .input::placeholder{ color:var(--cream-dim); opacity:0.7; }
-.input:focus{ outline:none; border-color:var(--brass); }
+/* No outline:none here: .input:focus outranks the universal :focus-visible
+   ring below, so it was switching the ring off for every text field. The
+   brass border is the bonus, the ring is the indicator. */
+.input:focus{ border-color:var(--brass); }
 
 .drink-head{ width:100%; text-align:left; background:transparent; border:none; color:var(--cream);
   cursor:pointer; padding:14px 16px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;
@@ -231,11 +242,23 @@ footer.foot a{ color:var(--cream-dim); text-decoration:underline; text-underline
 footer.foot a:hover{ color:var(--brass-2); }
 
 .sw-toast{ position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+  display:flex; align-items:stretch; max-width:calc(100vw - 24px);
   background:var(--brass); color:var(--ink); border:1px solid var(--brass-2); border-radius:4px;
-  padding:10px 18px; cursor:pointer; font-family:inherit; font-size:0.85rem; z-index:60;
+  font-family:inherit; font-size:0.85rem; overflow:hidden;
+  /* above the bottom bar (50), under the sheet (55): the toast must never
+     sit on a sheet row */
+  z-index:52;
   box-shadow:0 4px 14px rgba(0,0,0,0.45); }
+/* two controls in one plate: refresh, and put it away; each a 44px target */
+.sw-toast button{ background:transparent; border:none; color:inherit; font:inherit; cursor:pointer;
+  min-height:44px; padding:10px 16px; text-align:left; }
+.sw-toast .sw-toast-no{ border-left:1px solid var(--brass-2); font-size:0.72rem; letter-spacing:0.08em;
+  text-transform:uppercase; font-weight:600; white-space:nowrap; }
 .sw-toast .font-display{ letter-spacing:0.03em; }
-.sw-toast:hover{ background:var(--brass-2); }
+.sw-toast button:hover{ background:var(--brass-2); }
+/* the toast is appended to body after #sheet; while a cluster sheet is open
+   it is gone, not merely underneath */
+#sheet.open ~ .sw-toast{ display:none; }
 
 /* "The Story" lore panel */
 details.story{ max-width:400px; width:100%; border-left:2px solid var(--brass); padding-left:12px; }
@@ -279,12 +302,24 @@ details.story[open] summary{ margin-bottom:6px; }
 .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px;
   overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; border:0; }
 
+/* skip link: the first tab stop on the page, off-canvas until it takes focus.
+   Centred, not top-left: the suite's return chip sits at 10px,10px in every
+   wing and a left:8px link would cover it while focused. */
+.skip{ position:absolute; left:50%; transform:translateX(-50%); top:-60px; z-index:80; background:var(--brass); color:var(--ink);
+  border:1px solid var(--brass-2); border-radius:4px; padding:10px 16px; font-size:0.85rem; font-weight:600;
+  text-decoration:none; transition:top .15s; }
+.skip:focus{ top:8px; }
+
 *:focus-visible{ outline:2px solid var(--brass-2); outline-offset:2px; }
 
 @media (max-width: 639px){
   .sw-toast{ bottom:calc(78px + env(safe-area-inset-bottom)); }
   .btn{ min-height:44px; }
-  button.chip{ padding:7px 11px; }
+  .input{ min-height:44px; }
+  /* the filter chips were the one control left at ~29px; 0.72rem is the
+     .tab-btn size, still small caps, readable on a phone behind a bar */
+  button.chip, a.chip{ min-height:44px; padding:10px 12px; font-size:0.72rem; }
+  a.chip{ display:inline-flex; align-items:center; }
   .drink-head{ padding:15px 14px; min-height:48px; }
   .accordion-btn{ min-height:48px; }
   .opt-btn{ padding:13px 14px; min-height:46px; }
@@ -303,6 +338,7 @@ details.story[open] summary{ margin-bottom:6px; }
     outline:2px solid CanvasText; outline-offset:-2px;
   }
   .btn-brass, .btn-ox{ border:1px solid CanvasText; }
+  .input:focus-visible{ outline:2px solid Highlight; outline-offset:2px; }
   .ticket{ border:1px solid CanvasText; }
 }
 
@@ -311,6 +347,8 @@ details.story[open] summary{ margin-bottom:6px; }
      control already had a 44px minimum */
   .tab-btn{ min-height:44px; padding:11px 12px; }
 }
-button.chip{ min-height:26px; }
+/* desktop floor only: the phone block above sets 44px, and an un-mediated
+   rule here would win on source order and pull it back down */
+@media (min-width: 640px){ button.chip, a.chip{ min-height:26px; } }
 
 @media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation:none !important; } }

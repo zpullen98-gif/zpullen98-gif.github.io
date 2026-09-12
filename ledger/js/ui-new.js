@@ -21,7 +21,7 @@ NAV_CLUSTERS.forEach(([ck,,tabs]) => tabs.forEach(t => TAB_CLUSTER[t] = ck));
 function clusterOf(tab){ return TAB_CLUSTER[tab] || 'ledger'; }
 
 /* A tab the gate would bounce to the paywall. Fails open: no gate, no lock.
-   Used to MARK locked tabs and tiles (the locks file's own rule is mark, do
+   Used to MARK locked tabs and tiles (the locks file’s own rule is mark, do
    not hide) and to keep a cluster tap from landing on one. */
 function tabLocked(tab){
   try{ return !!(window.OOT && OOT.gate && !OOT.gate.allow('ledger', tab)); }
@@ -37,13 +37,12 @@ function clusterLanding(ck){
   return tabs.find(t => !tabLocked(t)) || want;
 }
 
-const NAV_ICONS = {
-  ledger:'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4z"/><path d="M5 4a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h14"/><path d="M9 9h6M9 12.5h6"/></svg>',
-  study:'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="13" height="15" rx="1.5"/><path d="M8 3h13v15"/><path d="M6.5 11h6M6.5 14.5h6"/></svg>',
-  reference:'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 3 L17 3 L15 9 C14.5 10.6 13 11.4 13 13 L13 19 L11 19 L11 13 C11 11.4 9.5 10.6 9 9 Z"/><path d="M9 21h6M12 19v2M8.2 6h7.6"/></svg>',
-  toolkit:'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3h6l-1 8a3.5 3.5 0 0 1-4 0z"/><path d="M10 4.5 L8 16.5 a4 2 0 0 0 8 0 L14 4.5"/><path d="M9.5 19.5h5"/></svg>',
-  search:'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15.5 15.5 5 5"/></svg>',
-};
+/* No pictograms in the navigation. The bottom bar used to draw a book, a
+   glass and a magnifier over its words; that is the mainstream tab-bar
+   idiom, not this wing’s, whose vocabulary is the ticket, the brass rule
+   and small caps. The Ledger’s line art is content (the technique plates,
+   the glass mark on a ticket), never chrome, and the sibling wings are
+   word-only, so the word is the button. */
 
 function renderNav(){
   if(!Object.keys(TAB_LABEL).length) TABS.forEach(([k,l]) => TAB_LABEL[k] = l);
@@ -56,13 +55,13 @@ function renderNav(){
         '<button class="tab-btn'+(state.tab===k?' active':'')+(tabLocked(k)?' oot-locked':'')+'"'+(state.tab===k?' aria-current="page"':'')+(tabLocked(k)?' aria-disabled="true"':'')+' data-tab="'+k+'">'+TAB_LABEL[k]+'</button>').join('')+'</div>'
     : '';
   document.getElementById('tabs').innerHTML =
-    '<div class="clusters">'+clusterRow+'<button class="cl-btn cl-search" data-search="1" aria-label="Search" title="Search ( / )">'+NAV_ICONS.search+'</button></div>'+subRow;
+    '<div class="clusters">'+clusterRow+'<button class="cl-btn cl-search" data-search="1" title="Search ( / )">Search</button></div>'+subRow;
 
   const b = document.getElementById('bnav');
   if(b) b.innerHTML = NAV_CLUSTERS.map(([ck,label]) =>
-      '<button class="bnav-btn'+(activeCluster===ck?' active':'')+'"'+(activeCluster===ck?' aria-current="true"':'')+' data-cluster="'+ck+'">'+NAV_ICONS[ck]+'<span>'+label+'</span></button>'
+      '<button class="bnav-btn'+(activeCluster===ck?' active':'')+'"'+(activeCluster===ck?' aria-current="true"':'')+' data-cluster="'+ck+'"><span>'+label+'</span></button>'
     ).join('') +
-    '<button class="bnav-btn" data-search="1">'+NAV_ICONS.search+'<span>Search</span></button>';
+    '<button class="bnav-btn" data-search="1"><span>Search</span></button>';
 
   const sh = document.getElementById('sheet');
   if(sh){
@@ -121,8 +120,8 @@ function applyRoute(){
     else if(tab==='menu'){ state.menu.open = (progress.bar||[])[i] ? progress.bar[i].id : null;
                            state.menu.view = 'menu'; state.menu.pane = 'build'; }
   } else {
-    /* slugless or unresolved slug: clear the tab's open item so syncRoute
-       doesn't resurrect a previously-open drink into the shared URL */
+    /* slugless or unresolved slug: clear the tab’s open item so syncRoute
+       doesn’t resurrect a previously-open drink into the shared URL */
     if(tab==='library')      state.lib.open = null;
     else if(tab==='shots')   Object.assign(state.shots, { open:null, drill:false });
     else if(tab==='na')      Object.assign(state.na, { open:null, drill:false });
@@ -191,14 +190,17 @@ function buildSearchIndex(){
 
 const search = { open:false, q:'', sel:0 };
 
+/* The corpus spells its apostrophes typographically; a query typed on a
+   phone keyboard does not. Fold both to the straight form before matching. */
+function foldQuote(s){ return s.replace(/[\u2018\u2019]/g, "'"); }
 function searchResults(q){
-  q = q.trim().toLowerCase();
+  q = foldQuote(q.trim().toLowerCase());
   if(!q) return [];
   if(!SEARCH_INDEX) SEARCH_INDEX = buildSearchIndex();
   return SEARCH_INDEX
     .map(e => {
-      const tl = e.t.toLowerCase();
-      let score = tl.startsWith(q) ? 0 : tl.includes(q) ? 1 : e.body.includes(q) ? 2 : -1;
+      const tl = foldQuote(e.t.toLowerCase());
+      let score = tl.startsWith(q) ? 0 : tl.includes(q) ? 1 : foldQuote(e.body).includes(q) ? 2 : -1;
       return { e, score };
     })
     .filter(r => r.score >= 0)
@@ -307,7 +309,7 @@ function renderService(){
     + '<div class="small dim lh">The half of the job that isn’t a cocktail. Most bartenders pour more of this than they ever shake, and it is where a trail shift is actually won or lost.</div>'
     + '<div class="tiny dim lh mt1">Written for US service: statutes vary by state, and nothing here is legal advice.</div></div>'
     + (sec.key === 'law'
-        ? '<div class="tiny dim lh" style="padding:0 4px">These rows describe US law as it generally stands. The statute, the BAC limit and the certification that count are your state\'s, and this is training, not legal advice.</div>'
+        ? '<div class="tiny dim lh" style="padding:0 4px">These rows describe US law as it generally stands. The statute, the BAC limit and the certification that count are your state’s, and this is training, not legal advice.</div>'
         : '')
     + '<div class="col-sm">'+rows+'</div>'
     + refHTML
@@ -315,7 +317,7 @@ function renderService(){
 }
 
 /* ---------------- TECHNIQUE PLATES: engraved instructional figures ---------------- */
-/* Line-art SVGs in the ledger's engraving style: currentColor so they take
+/* Line-art SVGs in the ledger’s engraving style: currentColor so they take
    brass on felt. Rendered as an accordion in Notes; searchable. */
 
 const PLATES = [
@@ -329,13 +331,13 @@ const PLATES = [
     caption:'Hawthorne on the tin, fine mesh held over the glass: the second net catches what the first forgives. Standard for every shaken drink served up: nothing should float in a coupe but the garnish.',
     svg:'<g transform="rotate(32 60 40)"><path d="M38 20 L46 72 L88 72 L96 20"/><path d="M30 20 L104 20"/></g><path d="M96 62 C100 72 104 82 106 92" stroke-dasharray="2 4"/><path d="M84 96 L128 96 L106 122 Z"/><path d="M90 102 L122 102 M96 109 L116 109" opacity="0.55"/><path d="M76 128 C82 140 96 146 106 146 C116 146 130 140 136 128 Z"/><path d="M106 146 L106 150" ' + '/>' },
   { id:'express', title:'Plate IV · Expressing the Peel',
-    caption:'Hold the peel skin-side down a hand above the drink and snap it once, sharply: the oils rain, they don\'t drip. Then wipe the rim with the skin and drop it in or discard it, as the spec demands. Express high; the spray should fall like weather.',
+    caption:'Hold the peel skin-side down a hand above the drink and snap it once, sharply: the oils rain, they don’t drip. Then wipe the rim with the skin and drop it in or discard it, as the spec demands. Express high; the spray should fall like weather.',
     svg:'<path d="M34 36 C48 26 66 26 80 36" stroke-width="7" stroke-linecap="round"/><path d="M88 44 L102 56 M92 34 L110 44 M96 24 L114 30" stroke-dasharray="1 5" stroke-linecap="round"/><path d="M96 78 C102 90 116 96 128 96 C140 96 154 90 160 78 Z"/><path d="M128 96 L128 122 M112 128 C112 124 120 122 128 122 C136 122 144 124 144 128 Z"/>' },
   { id:'dome', title:'Plate V · The Julep Dome',
     caption:'Pack crushed ice past the rim and shape it into a dome: the meltwater is an ingredient, and the dome meters it. Swizzle until the metal frosts; the frost line is your doneness indicator.',
     svg:'<path d="M64 78 L72 140 L128 140 L136 78"/><path d="M60 78 L140 78"/><path d="M66 78 C66 52 84 40 100 40 C116 40 134 52 134 78" stroke-dasharray="3 3"/><circle cx="86" cy="64" r="4"/><circle cx="102" cy="54" r="4"/><circle cx="116" cy="66" r="4"/><circle cx="98" cy="70" r="4"/><path d="M112 44 L134 12 M120 20 C126 14 132 12 138 14" opacity="0.8"/>' },
   { id:'dryshake', title:'Plate VI · The Dry Shake',
-    caption:'Egg-white drinks shake twice: first without ice (hard, ten seconds, to build the foam), then again with ice to chill. Skip the dry shake and the drink reads thin; do it lazily and the foam won\'t hold a straw.',
+    caption:'Egg-white drinks shake twice: first without ice (hard, ten seconds, to build the foam), then again with ice to chill. Skip the dry shake and the drink reads thin; do it lazily and the foam won’t hold a straw.',
     svg:'<path d="M30 40 L38 108 L74 108 L82 40 Z"/><ellipse cx="56" cy="80" rx="13" ry="16" opacity="0.8"/><path d="M44 30 L68 54 M68 30 L44 54" stroke-width="2.2"/><rect x="42" y="28" width="28" height="28" rx="3" opacity="0.55"/><path d="M96 74 L118 74 M118 74 L112 68 M118 74 L112 80"/><path d="M132 40 L140 108 L176 108 L184 40 Z"/><rect x="144" y="58" width="14" height="14" rx="2"/><rect x="156" y="76" width="14" height="14" rx="2"/><rect x="142" y="84" width="12" height="12" rx="2"/>' },
   { id:'muddle', title:'Plate VII · The Muddle Press',
     caption:'Press, twist a quarter turn, lift: three or four times, no more. You are coaxing oil from the leaf and juice from the fruit, not making pesto: a ground herb releases chlorophyll and bitterness, and no amount of rum forgives it.',
@@ -362,7 +364,7 @@ function platesHTML(){
     + '<span style="color:var(--brass)">'+(isOpen?'−':'+')+'</span></button>'+body+'</div>';
 }
 
-/* ---------------- TONIGHT'S SESSION: one-button guided study ---------------- */
+/* ---------------- TONIGHT’S SESSION: one-button guided study ---------------- */
 /* Deals due reviews + a few new cards, then a quiz round, then prescribes a
    drill. Completing cards + quiz stamps the night and feeds the streak. */
 
@@ -416,8 +418,8 @@ function recordSessionComplete(withHands, night){
 }
 function tonightDrill(){
   /* skip hidden entries (the Ticket Rail lives in its own view, so naming it
-     here sent you to a drills list that didn't contain it), and rotate on the
-     LOCAL calendar day so the prescribed drill doesn't change mid-evening */
+     here sent you to a drills list that didn’t contain it), and rotate on the
+     LOCAL calendar day so the prescribed drill doesn’t change mid-evening */
   const pool = DRILLS.filter(d => !d.hidden);
   const n = new Date();
   const day = Math.floor(Date.UTC(n.getFullYear(), n.getMonth(), n.getDate()) / 86400000);
@@ -439,7 +441,7 @@ function sessionDeckParts(){
     const sa = progress.cards[cardKey(a)], sb = progress.cards[cardKey(b)];
     return (sa.due - sb.due) || (weakScore(cardKey(b)) - weakScore(cardKey(a)));
   }).slice(0, 20);
-  /* the venue's own list outranks the canon: a fresh menu card is the drink
+  /* the venue’s own list outranks the canon: a fresh menu card is the drink
      someone will actually order tonight, so it deals first. After that, new
      cards come from the lowest tier that still has unseen cocktails, so the
      canon is learned in order; shots/NA join once cocktails run dry */
@@ -466,15 +468,15 @@ function streakChipsHTML(){
   const n = currentStreak(), h = handsStreak();
   if(!n) return '';
   return '<span class="row" style="gap:6px">'
-    + '<span class="chip brass" title="Consecutive nights with a completed session">✦ '+n+' night'+(n===1?'':'s')+'</span>'
+    + '<span class="chip brass" title="Consecutive nights with a completed session">'+n+' night'+(n===1?'':'s')+'</span>'
     + '<span class="chip'+(h?' brass':'')+'" title="Nights in this streak where you actually made drinks. This is the number that predicts a trail shift.">'
-    + '✋ '+h+' with hands</span></span>';
+    + h+' with hands</span></span>';
 }
 
 function sessionPanelHTML(){
   const drill = tonightDrill();
   /* a session is running: offer to resume it. The old panel showed the same
-     brass "Pour tonight's session" button, which silently threw away the run. */
+     brass "Pour tonight’s session" button, which silently threw away the run. */
   if(state.sess && state.sess.active && !sessionDoneToday()){
     const where = state.sess.step==='cards' ? 'the cards' : state.sess.step==='quiz' ? 'the quiz round' : esc(drill.name);
     return '<div class="panel p5 col" style="gap:10px;border-color:var(--brass)">'
@@ -486,7 +488,7 @@ function sessionPanelHTML(){
   if(sessionDoneToday()){
     const handsTonight = handsDoneToday();
     return '<div class="panel p5 col" style="gap:10px">'
-      + '<div class="row between"><div class="eyebrow">Tonight\'s session</div>'+streakChipsHTML()+'</div>'
+      + '<div class="row between"><div class="eyebrow">Tonight’s session</div>'+streakChipsHTML()+'</div>'
       + (handsTonight
         ? '<div class="small dim lh">The ledger is closed for tonight: cards, quiz, and <span class="brass2">'+esc(drill.name)+'</span> logged. That is a complete night.</div>'
         : '<div class="small dim lh">Cards and quiz are done, but tonight went in the book without hands. '
@@ -496,7 +498,7 @@ function sessionPanelHTML(){
   }
   const { dueDeck, newDeck, dueAll } = sessionDeckParts();
   const parts = [];
-  /* say the true size of the backlog, not just tonight's slice of it */
+  /* say the true size of the backlog, not just tonight’s slice of it */
   if(dueDeck.length) parts.push(dueAll > dueDeck.length
     ? dueDeck.length + ' of ' + dueAll + ' reviews due'
     : dueDeck.length + ' review' + (dueDeck.length===1?'':'s') + ' due');
@@ -505,9 +507,9 @@ function sessionPanelHTML(){
   parts.push('a 10-question quiz round');
   parts.push('then <span class="brass2">'+esc(drill.name)+'</span> with your hands');
   return '<div class="panel p5 col" style="gap:10px">'
-    + '<div class="row between"><div class="eyebrow">Tonight\'s session</div>'+streakChipsHTML()+'</div>'
+    + '<div class="row between"><div class="eyebrow">Tonight’s session</div>'+streakChipsHTML()+'</div>'
     + '<div class="small dim lh">One pour, everything in order: ' + parts.join(' · ') + '.</div>'
-    + '<div class="row"><button class="btn btn-brass" data-act="sess-start">Pour tonight\'s session</button></div></div>';
+    + '<div class="row"><button class="btn btn-brass" data-act="sess-start">Pour tonight’s session</button></div></div>';
 }
 
 function sessionQuizDoneHTML(){
@@ -516,12 +518,12 @@ function sessionQuizDoneHTML(){
   return '<button class="btn btn-brass" data-act="sess-drill">Last: '+esc(tonightDrill().name)+' →</button>';
 }
 
-/* the banner that sits above the drill panel during the session's third step */
+/* the banner that sits above the drill panel during the session’s third step */
 function sessionDrillHTML(){
   if(!(state.sess && state.sess.active && state.sess.step === 'drill')) return '';
   const d = tonightDrill();
   return '<div class="panel p4 col" style="gap:8px;border-color:var(--brass)">'
-    + '<div class="eyebrow">Tonight\'s session · the last step</div>'
+    + '<div class="eyebrow">Tonight’s session · the last step</div>'
     + '<div class="small lh">Cards and quiz are behind you. Make the drinks: <span class="brass2">'+esc(d.name)+'</span>, '
     + 'logged below. That is what turns a streak into a skill.</div>'
     + '<div class="row"><button class="btn btn-ghost tiny" data-act="sess-nobar">No bar tonight: close without it</button></div></div>';
@@ -579,7 +581,7 @@ function dataToolHTML(){
   return '<div class="col">'
     + '<div class="panel p5 col" style="gap:12px">'
     + '<div class="eyebrow">Back up the ledger</div>'
-    + '<div class="small dim lh">Everything you\'ve earned (mastery records, quiz history, tasting notes, practice logs, your menu and what the bar stocks) lives in this browser and goes nowhere else. Export a copy now and then; paper burns and browsers forget.</div>'
+    + '<div class="small dim lh">Everything you’ve earned (mastery records, quiz history, tasting notes, practice logs, your menu and what the bar stocks) lives in this browser and goes nowhere else. Export a copy now and then; paper burns and browsers forget.</div>'
     + '<div class="tiny font-tix dim">'+progressSummaryHTML()+'</div>'
     + '<div class="row" style="gap:8px"><button class="btn btn-brass" data-act="data-export">Export my records</button>'
     + (canShareBackup() ? '<button class="btn btn-ghost" data-act="data-share">Share the backup…</button>' : '')
@@ -602,7 +604,7 @@ function dataToolHTML(){
 }
 
 /* Shown wherever records are discussed, the moment a save has fallen through
-   to memory: the truth is "this session's records die with this tab". */
+   to memory: the truth is "this session’s records die with this tab". */
 function storageWarningHTML(){
   if(!store.degraded) return '';
   return '<div class="panel p4" style="border-color:var(--oxblood)">'
@@ -649,8 +651,8 @@ function dataExport(){
   a.click();
   setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
-/* The phone path. An installed app's share sheet saves to Files, mails the
-   backup or drops it in the venue's chat, where an <a download> can open a
+/* The phone path. An installed app’s share sheet saves to Files, mails the
+   backup or drops it in the venue’s chat, where an <a download> can open a
    blank sheet instead. Offered only where the browser says it can share a
    File; the download stays as the desktop path, and the clipboard is the
    fallback that works everywhere. */
@@ -663,7 +665,7 @@ function canShareBackup(){
 function dataShare(){
   const payload = backupPayload();
   const file = new File([JSON.stringify(payload, null, 1)], backupFilename(payload), { type: 'application/json' });
-  navigator.share({ files: [file], title: 'Bartender\'s Ledger backup' })
+  navigator.share({ files: [file], title: 'Bartender’s Ledger backup' })
     .then(() => exportStatus('Shared.'))
     .catch(e => { if(!e || e.name !== 'AbortError') dataExport(); });
 }
@@ -679,11 +681,11 @@ function dataCopy(){
 
 /* Which of two records of the same card survives, and what it keeps.
 
-   Net record (right minus wrong) decides the winner, and the loser's SRS
+   Net record (right minus wrong) decides the winner, and the loser’s SRS
    schedule is grafted on when the winner never earned one, so a mastered
    card cannot be demoted and an earned interval is not reset. `lapses` rides
    with the graft: the counter that says HOW a card has been hard was being
-   dropped, which quietly reset every card's difficulty history while keeping
+   dropped, which quietly reset every card’s difficulty history while keeping
    its schedule.
 
    EXTRACTED because the rename path needs the same rule. It had its own,
@@ -732,12 +734,12 @@ function dataImport(file){
         if(!Array.isArray(p.practice[k])) delete p.practice[k];
       });
       /* every bar record to one shape before the merge reads a single field:
-         the standalone app's dash placeholder, a numeric name, a string spec */
+         the standalone app’s dash placeholder, a numeric name, a string spec */
       if(p.bar){ const nb = normalizeBarRecords(p.bar); p.bar = nb.bar; barSkipped = nb.skipped; }
-    }catch(e){ status('That file isn\'t a ledger backup.'); return; }
+    }catch(e){ status('That file isn’t a ledger backup.'); return; }
     const theirs = Object.keys(p.cards || {}).length;
     /* name the record the merge lands in: on a shared device a backup for
-       Devon merged into Maria's record is the one mistake a backup cannot undo */
+       Devon merged into Maria’s record is the one mistake a backup cannot undo */
     const target = (() => {
       try{ return 'this ledger'; }
       catch(e){ return 'the unnamed record'; }
@@ -761,7 +763,7 @@ function dataImport(file){
         progress.practice[id] = mine.sort(byTs).slice(-20);
       });
       /* UNION, not adopt-if-empty: the old clause kept any non-empty local
-         shelf and dropped the backup's entirely: merging two devices' owned
+         shelf and dropped the backup’s entirely: merging two devices' owned
          bottles should own both sets. Ids, so the union is exact. */
       if(Array.isArray(p.shelf)){
         /* The backup may predate the vocabulary, so its ids are migrated on
@@ -770,7 +772,7 @@ function dataImport(file){
         progress.shelf = [...new Set([...(progress.shelf || []), ...migrateShelf(p.shelf)])];
       }
       /* the additive-only rule in person: every store the merge does not name
-         is silently dropped, so the venue's own list gets an explicit clause: union by id
+         is silently dropped, so the venue’s own list gets an explicit clause: union by id
          (name as the fallback for hand-edited files), newer edit wins */
       /* pours: union by timestamp; two devices' pours are disjoint
          observations, and the additive-only rule says every new store gets a
@@ -798,7 +800,7 @@ function dataImport(file){
       /* bottles: union by name, HISTORY unioned inside each: newer-wins-whole
          would discard every price change the losing device recorded, which is
          the one thing the book exists to keep. Same conclusion the World
-         Table's item book reached, ported with its reasoning. */
+         Table’s item book reached, ported with its reasoning. */
       /* spills and open bottles: union by ts/id, the additive-only rule,
          paid in the same commit that minted the fields. */
       if(Array.isArray(p.spills)){
@@ -834,7 +836,7 @@ function dataImport(file){
           if(head){ mine.price = head.price; mine.sizeMl = head.sizeMl; mine.ts = Math.max(mine.ts||0, tb.ts||0); }
         });
       }
-      /* streak: a RECORD, not a pref, the additive-only rule's reach. A
+      /* streak: a RECORD, not a pref, the additive-only rule’s reach. A
          merge-restore onto a new phone zeroed a 200-night streak because
          nothing named it. More recent night wins (last is YYYY-MM-DD, so
          string compare IS date compare); ties keep the longer run. vidPrefs
@@ -845,7 +847,7 @@ function dataImport(file){
         else {
           /* {n, last} guarantees contiguity, so two records are date SPANS.
              When the spans touch or overlap they are one unbroken streak:
-             winner-take-all was zeroing the old device's 200 nights the
+             winner-take-all was zeroing the old device’s 200 nights the
              moment the new device stamped one newer night. */
           const T = p.streakData, M = mineS;
           const parseK = (k) => { const q = k.split('-').map(Number); return new Date(q[0], q[1] - 1, q[2]); };
@@ -872,11 +874,11 @@ function dataImport(file){
          it is the worse one. Two tablets behind the same bar, A 86s the rye at
          eight and B 86s the gin at nine; merge A into B and the rye is back on
          the board, so the ledger tells a bartender the Sazerac is pourable out
-         of an empty bottle. That is a false YES, which reqsOf's own sentinel
+         of an empty bottle. That is a false YES, which reqsOf’s own sentinel
          comment refuses in as many words: the ledger would rather say it does
          not know than say yes.
 
-         The union's error is the cheap one. A bottle that has been restocked
+         The union’s error is the cheap one. A bottle that has been restocked
          shows as off the board, the bartender taps it back on, and it is
          right. The false yes is invisible until somebody reaches for the
          bottle in front of a guest.
@@ -895,8 +897,8 @@ function dataImport(file){
         progress.bar = progress.bar || [];
         p.bar.forEach(b => {
           if(!b || !b.name) return;
-          /* case-insensitive, matching saveBarRecord's own uniqueness rule, and
-             when the kept record's name differs in case, its card record rides
+          /* case-insensitive, matching saveBarRecord’s own uniqueness rule, and
+             when the kept record’s name differs in case, its card record rides
              along to the new key instead of stranding */
           const i = progress.bar.findIndex(x => (b.id && x.id === b.id) || x.name.toLowerCase() === b.name.toLowerCase());
           if(i < 0) progress.bar.push(b);
@@ -940,15 +942,15 @@ function dataImport(file){
       if(k.indexOf('My Bar · ') === 0 && !barNames.has(k)) delete progress.cards[k];
     });
     /* migrateShelf here as well as in the merge branch above, because a whole
-       REPLACE assigns the backup's raw shelf straight onto progress and would
+       REPLACE assigns the backup’s raw shelf straight onto progress and would
        otherwise land pre-vocabulary ids that satisfy nothing. Idempotent, so
        running it on an already-migrated list costs a comparison. */
     progress.shelf = Array.isArray(progress.shelf) ? migrateShelf(progress.shelf) : [];
     state.tools.shelf = progress.shelf.slice();
     /* The same eighteen hour rule the boot applies. It lived ONLY in the boot
-       sequence, so a restore brought a dead shift's 86 list back to life and
+       sequence, so a restore brought a dead shift’s 86 list back to life and
        kept it there until the next reload: drinks off the board for a
-       bartender who never 86'd anything. One function, both call sites. */
+       bartender who never 86’d anything. One function, both call sites. */
     expireStaleEightySix();
     dropDeadEightySix();
     barChanged();
@@ -1076,7 +1078,7 @@ function dashboardHTML(){
       }).join('')
     : '';
 
-  return '<div class="panel p5"><div class="eyebrow mb2">The night\'s numbers</div>'
+  return '<div class="panel p5"><div class="eyebrow mb2">The night’s numbers</div>'
     + '<div class="row" style="gap:18px;justify-content:space-around;flex-wrap:wrap">'+donuts+'</div>'
     + '<div class="row mt3" style="gap:24px;align-items:flex-start;flex-wrap:wrap">'
     + '<div style="flex:1;min-width:230px"><div class="eyebrow mb1">Quiz trend</div>'+quizBlock+'</div>'
@@ -1086,7 +1088,7 @@ function dashboardHTML(){
     + '</div>';
 }
 
-/* ---------------- THE BAR MANAGER'S NOTE: rules-based riff critique ---------------- */
+/* ---------------- THE BAR MANAGER’S NOTE: rules-based riff critique ---------------- */
 /* Replaces the old Ask-Claude button. Deterministic per deal (seeded from the spec). */
 
 function riffSeed(str){
@@ -1101,39 +1103,39 @@ const RIFF_INGREDIENT_NOTES = [
   [/blended scotch/i, "Blended scotch is gentler than its reputation: this will drink soft and malty. A bar spoon of Islay over the top would give it weather without taking over."],
   [/honey/i, "Honey syrup is richer and rounder than simple: most palates read it a shade sweeter at the same measure. Consider pulling it back an eighth, or lean in and call it deliberate."],
   [/maple/i, "Maple brings autumn and a faint bitterness at the finish. It loves aged spirits and quarrels politely with unaged ones."],
-  [/orgeat/i, "Orgeat is doing two jobs: sweetness and almond body. Your drink now has one foot in tiki; a lime component and it's fully across the border."],
+  [/orgeat/i, "Orgeat is doing two jobs: sweetness and almond body. Your drink now has one foot in tiki; a lime component and it’s fully across the border."],
   [/ginger syrup/i, "Ginger syrup bites back. It pairs beautifully with whiskey and rum, and it will happily bully a delicate gin."],
   [/demerara/i, "Demerara deepens without complicating: the safest upgrade in the well. Good call."],
   [/fino sherry/i, "Fino instead of vermouth is a dry, saline, nutty read: the drink gets quieter and more adult. Serve it colder than usual; sherry blooms with the chill."],
   [/blanc vermouth/i, "Blanc vermouth is sweeter than dry but brighter than rosso; it flatters citrus-forward gins and makes tequila taste expensive."],
-  [/dry vermouth/i, "With dry vermouth this leans Continental: crisp, pale, before-dinner. Watch that your bitters don't outweigh the wine."],
+  [/dry vermouth/i, "With dry vermouth this leans Continental: crisp, pale, before-dinner. Watch that your bitters don’t outweigh the wine."],
   [/^campari/i, "Campari as the base makes this an aperitivo drink, full stop: low-slung, bitter, sessionable. Own it: serve it before dinner and garnish with something orange."],
   [/pisco/i, "Pisco brings grape and altitude: floral, unoaked, a little wild. It rewards fresh citrus and resents heavy syrup."],
-  [/cachaça|cacha/i, "Cachaça's green funk is the point: don't sand it down. Lime is its oldest friend."],
+  [/cachaça|cacha/i, "Cachaça’s green funk is the point: don’t sand it down. Lime is its oldest friend."],
   [/mole bitters/i, "Mole bitters bring chocolate and chile warmth: made for agave and aged rum, surprisingly good over cognac."],
-  [/peychaud/i, "Peychaud's is lighter and more anise-forward than Angostura; it perfumes rather than anchors. Two dashes is a whisper, not a wall."],
+  [/peychaud/i, "Peychaud’s is lighter and more anise-forward than Angostura; it perfumes rather than anchors. Two dashes is a whisper, not a wall."],
   [/apple brandy/i, "Apple brandy is orchard-in-a-glass: it makes old templates taste like October. Bonded if you can get it; the 80-proof stuff disappears under sugar."],
   [/aged rum/i, "Aged rum slots into whiskey templates almost one-for-one: expect it rounder and a touch sweeter than the rye version of the same math."],
-  [/tonic/i, "Tonic's quinine is a flavor, not just fizz; it argues with heavily sweet drinks and loves botanical and bitter ones."],
+  [/tonic/i, "Tonic’s quinine is a flavor, not just fizz; it argues with heavily sweet drinks and loves botanical and bitter ones."],
   [/grapefruit soda/i, "Grapefruit soda self-balances: sweet, sour and bitter in one pour. Keep any added syrup out or it turns to candy."],
-  [/cola/i, "Cola is already a finished cocktail's worth of spice and sugar: the spirit is seasoning. A squeeze of lime keeps it honest."],
-  [/dry sparkling wine/i, "Sparkling wine as mixer turns any build into an occasion: pour it last, over the back of a spoon, and don't stir the wedding away."],
+  [/cola/i, "Cola is already a finished cocktail’s worth of spice and sugar: the spirit is seasoning. A squeeze of lime keeps it honest."],
+  [/dry sparkling wine/i, "Sparkling wine as mixer turns any build into an occasion: pour it last, over the back of a spoon, and don’t stir the wedding away."],
 ];
 
 const RIFF_TWIST_NOTES = [
-  [/egg white/i, "The egg white wants a dry shake first (hard, no ice) then the cold shake. It'll mute the sharp edges and add three minutes of theater. Worth it."],
+  [/egg white/i, "The egg white wants a dry shake first (hard, no ice) then the cold shake. It’ll mute the sharp edges and add three minutes of theater. Worth it."],
   [/soda/i, "Topping with soda makes it a long drink; rebalance in your head: the dilution is built in now, so keep the shake short and the ice fresh."],
   [/maraschino/i, "That quarter ounce of maraschino is the Martinez move, funky cherry-almond that reads as 'old money.' It counts toward your sweet total; adjust accordingly."],
   [/red wine/i, "The wine float is pure New York Sour lineage: pour it over the back of a spoon and let it sit like a sunset. Tell the guest to drink through it, not stir."],
   [/absinthe/i, "Absinthe is a seasoning here: rinse and dump, or one dash. At two dashes the anise annexes the drink."],
-  [/half lemon, half lime/i, "Splitting the citrus is a bartender's hedge that usually wins: lemon for lift, lime for bite. No spec change needed."],
-  [/amaro/i, "Swapping toward amaro deepens and darkens: you're trading wine's freshness for root-and-herb weight. Start 1:1 with the original modifier before going all in."],
+  [/half lemon, half lime/i, "Splitting the citrus is a bartender’s hedge that usually wins: lemon for lift, lime for bite. No spec change needed."],
+  [/amaro/i, "Swapping toward amaro deepens and darkens: you’re trading wine’s freshness for root-and-herb weight. Start 1:1 with the original modifier before going all in."],
   [/split the base/i, "A split base is how half the modern classics were born: keep the two spirits in the same weight class or one will disappear."],
   [/campari/i, "Equal parts with Campari is Negroni logic: it will work, it always works, but it stops being your riff and starts being their family."],
   [/citrus peels/i, "Two expressed peels layer the aromatics: orange for warmth, lemon for lift. Express high and let the oils rain."],
-  [/salt/i, "The pinch of salt isn't for salinity: it suppresses bitterness and rounds sweetness. The cheapest upgrade in bartending."],
+  [/salt/i, "The pinch of salt isn’t for salinity: it suppresses bitterness and rounds sweetness. The cheapest upgrade in bartending."],
   [/bitters over the top|dash of bitters/i, "Bitters over the top aromatize every sip without recoloring the drink beneath; drag a straw through for marbling."],
-  [/rich liqueur/i, "A bar-spoon of rich liqueur as the sweetener is the Sazerac school, flavor and sugar in one move. Choose one that agrees with your base's barrel time."],
+  [/rich liqueur/i, "A bar-spoon of rich liqueur as the sweetener is the Sazerac school, flavor and sugar in one move. Choose one that agrees with your base’s barrel time."],
 ];
 
 const RIFF_GLASS = {
@@ -1172,16 +1174,16 @@ function critiqueRiff(frame, deal){
   const b = balanceOf(pseudo);
   const notes = [];
 
-  /* 1: the math, checked against the family's target */
+  /* 1: the math, checked against the family’s target */
   if(frame.fam === 'Sour'){
     const gap = b.sweet - b.sour;
     if(Math.abs(gap) <= 0.25) notes.push("The math checks out: "+ozNice(b.strong)+" strong against "+ozNice(b.sour)+" sour and "+ozNice(b.sweet)+" sweet, textbook sour architecture.");
-    else if(gap > 0.25) notes.push("You're running "+ozNice(gap)+" oz sweet-heavy. With a rich syrup in play that will read as dessert: pull the sweet back or brighten the citrus.");
-    else notes.push("You're running "+ozNice(-gap)+" oz tart-heavy: bracing on the first sip, hollow by the third. Nudge the sweet up an eighth.");
+    else if(gap > 0.25) notes.push("You’re running "+ozNice(gap)+" oz sweet-heavy. With a rich syrup in play that will read as dessert: pull the sweet back or brighten the citrus.");
+    else notes.push("You’re running "+ozNice(-gap)+" oz tart-heavy: bracing on the first sip, hollow by the third. Nudge the sweet up an eighth.");
   } else if(frame.fam === 'Spirit & Vermouth'){
     const ratio = b.modifier ? (b.strong / b.modifier) : 99;
     if(ratio >= 1.8 && ratio <= 2.4) notes.push("Two-to-one spirit to wine, the modern standard, and the right place to start any new marriage of the two.");
-    else if(ratio < 1.8) notes.push("You're wine-forward of the modern 2:1: that's the 1880s ratio, silkier and lower octane. Legitimate, just know you chose it.");
+    else if(ratio < 1.8) notes.push("You’re wine-forward of the modern 2:1: that’s the 1880s ratio, silkier and lower octane. Legitimate, just know you chose it.");
     else notes.push("Spirit-heavy of 2:1; it will drink hot unless your stir is patient. Count thirty revolutions minimum.");
   } else if(frame.fam === 'Old Fashioned'){
     if(b.sweet <= 0.375) notes.push("Sweetness at "+ozNice(b.sweet)+" oz, a whisper, which is exactly what this family wants. The water from the stir is your real second ingredient.");
@@ -1189,7 +1191,7 @@ function critiqueRiff(frame, deal){
   } else if(frame.fam === 'Highball'){
     const ratio = b.strong ? (b.long / b.strong) : 0;
     if(ratio >= 1.5) notes.push("Mixer at "+ozNice(b.long)+" oz over "+ozNice(b.strong)+" of spirit: proper highball proportions. The drink is temperature and bubbles now; build it ice-cold and barely stir.");
-    else notes.push("Your mixer's running short at "+ozNice(b.long)+" oz: under 1.5× the spirit, it's a strong drink with fizz, not a highball. Either commit taller or serve it over one big rock and call it something else.");
+    else notes.push("Your mixer’s running short at "+ozNice(b.long)+" oz: under 1.5× the spirit, it’s a strong drink with fizz, not a highball. Either commit taller or serve it over one big rock and call it something else.");
   }
 
   /* 2: ingredient-aware observations */
@@ -1203,7 +1205,7 @@ function critiqueRiff(frame, deal){
   /* 4: glass & garnish */
   const gg = RIFF_GLASS[frame.fam] || RIFF_GLASS['Sour'];
 
-  /* 5: three names, seeded so the note doesn't reshuffle on re-render */
+  /* 5: three names, seeded so the note doesn’t reshuffle on re-render */
   const rnd = riffSeed(deal.resolved.join('|') + deal.twist);
   const sp = baseSpirit(deal.picks.base || '') || 'default';
   const leads = RIFF_NAME_BANKS.lead[sp] || RIFF_NAME_BANKS.lead.default;
@@ -1226,6 +1228,22 @@ function critiqueRiff(frame, deal){
 
   return { notes, glass: gg[0], garnish: gg[1], names: [...names] };
 }
+
+/* The skip link points at #view, but this app routes on location.hash:
+   letting the browser follow it leaves "#view" in the URL, applyRoute
+   returns false for it, and a reload then lands on Home instead of the
+   tab that was open. So the link moves focus itself and the hash stays. */
+(function(){
+  const skip = document.querySelector('a.skip');
+  if(!skip) return;
+  skip.addEventListener('click', function(e){
+    const v = document.getElementById('view');
+    if(!v) return;
+    e.preventDefault();
+    v.focus();
+    v.scrollIntoView();
+  });
+})();
 
 function critiqueHTML(frame, deal){
   const c = critiqueRiff(frame, deal);

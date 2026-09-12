@@ -74,9 +74,11 @@ FL_VIEWS.reset = {
     }
     if (resetState.on) {
       return '<div class="kick">The Walk-In</div>' +
-        '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
-        '<div class="pacer-label" id="pacer-label"></div>' +
-        '<div class="ds" id="pacer-count"></div>' +
+        '<div class="pacerbox">' +
+          '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
+          '<div class="pacer-label" id="pacer-label"></div>' +
+          '<div class="ds" id="pacer-count"></div>' +
+        '</div>' +
         '<p class="mintro">' + esc(line) + '</p>' +
         '<div style="text-align:center;margin-top:14px">' +
           '<button class="readmini" data-act="resetEnd">Back early</button></div>';

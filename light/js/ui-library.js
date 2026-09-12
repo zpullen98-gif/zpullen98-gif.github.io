@@ -267,7 +267,7 @@ FL_VIEWS.library = {
   title: 'The Library',
   render: function (arg) {
     if (typeof FL_LIBRARY === 'undefined') {
-      return '<h1>The Library</h1><p class="note">The library index did not load.</p>';
+      return '<h1>The Library</h1><p class="note">The library index did not load. Reload the page; if it happens again, open it once while you have a connection.</p>';
     }
     var parts = (arg || '').split('/');
 

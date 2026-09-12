@@ -43,6 +43,12 @@
   --ink:     #2A3330;
   --faint:   #646F6A;
   --line:    #D8DDD9;
+  /* Text-field edges only. --line is a hairline for rules and cards and sits at
+     1.3:1, which is invisible as the boundary of a box you are meant to type
+     into; WCAG 1.4.11 wants 3:1. Each value below is the lightest tint of
+     --faint that clears 3:1 against both --paper and --bg in its palette
+     (day 3.30 / 3.07). */
+  --field-line: #818A86;
   --accent:  #8D6334;
   --accent-2:#5A5F78;
   --disc-a:  #F3E4CE;
@@ -63,6 +69,7 @@
   --ink:     #2F2A25;
   --faint:   #76695D;
   --line:    #E4DBCF;
+  --field-line: #90857A;   /* 3.35 on paper, 3.07 on bg */
   --accent:  #916028;
   --accent-2:#8A6A78;
   --disc-a:  #FBEBD2;
@@ -79,6 +86,7 @@
   --ink:     #2B2C34;
   --faint:   #646471;
   --line:    #D4D3DB;
+  --field-line: #81818C;   /* 3.33 on paper, 3.04 on bg */
   --accent:  #885B3F;
   --accent-2:#5A5F78;
   --disc-a:  #EBDCCB;
@@ -95,6 +103,7 @@
   --ink:     #DDE1DD;
   --faint:   #8C9491;
   --line:    #2B3038;
+  --field-line: #6B7271;   /* 3.36 on paper, 3.68 on bg */
   --accent:  #C9964F;
   --accent-2:#8E93AE;
   --disc-a:  #3A3226;
@@ -170,7 +179,6 @@ nav { margin-bottom: 40px; }
    Adopted from the light/ wing's accessibility audit. */
 .nav-tools a { font-size: 10px; color: var(--faint); }
 .nav-tools a:hover, .nav-tools a[aria-current="page"] { color: var(--ink); }
-@media (max-width: 480px) { .nav-places { gap: 13px; } .nav-tools { gap: 12px; } }
 nav a {
   background: none; border: none; cursor: pointer; text-decoration: none;
   font-family: var(--sans); font-size: 11px; letter-spacing: .2em;
@@ -182,6 +190,23 @@ nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accen
 /* the open cluster carries the ink without the accent; the accent belongs to
    the room you are actually in, one tier down */
 .nav-places a.on { color: var(--ink); border-bottom-color: var(--line); }
+/* The touch floor, for the nav this time. At 375px every link was a 21px strip
+   of 10px caps, the very target the .keep pills below were lifted from: the
+   padding, not the type, makes the 44px, and the hairline indicator moves to
+   the foot of the taller box. The second tier keeps its hierarchy by colour
+   (--faint against --ink) and comes up to 11px so it is never the smallest
+   type on the page. The gaps close because the padding now holds the space,
+   and the 340px cap comes off so nine rooms wrap into three rows, not four.
+   Applied by width and by pointer, so a tablet in a wide window gets it too. */
+@media (max-width: 480px), (pointer: coarse) {
+  .nav-places { gap: 0 4px; }
+  .nav-tools { gap: 0 2px; max-width: none; margin-top: 8px; padding-top: 6px; }
+  nav a {
+    padding: 12px 8px; min-height: 44px;
+    display: inline-flex; align-items: center;
+  }
+  .nav-tools a { font-size: 11px; }
+}
 
 /* ═══ the disc ═══ */
 .disc {
@@ -345,7 +370,7 @@ h1 {
 
 .drawrow { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
 .drawrow input, .sel {
-  flex: 1; min-width: 140px; background: var(--paper); border: 1px solid var(--line);
+  flex: 1; min-width: 140px; background: var(--paper); border: 1px solid var(--field-line);
   border-radius: 4px; padding: 12px 14px; font-family: var(--sans);
   font-size: 14px; color: var(--ink);
 }
@@ -414,7 +439,7 @@ h1 {
 
 /* ═══ the journal ═══ */
 .jbox {
-  width: 100%; background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
+  width: 100%; background: var(--paper); border: 1px solid var(--field-line); border-radius: 4px;
   padding: 14px 16px; font-family: var(--serif); font-size: 17px; line-height: 1.65;
   color: var(--ink); resize: vertical; min-height: 96px;
 }
@@ -443,7 +468,7 @@ h1 {
 
 /* ═══ search ═══ */
 input[type="search"] {
-  flex: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
+  flex: 1; background: var(--paper); border: 1px solid var(--field-line); border-radius: 4px;
   padding: 13px 15px; font-family: var(--sans); font-size: 15px; color: var(--ink);
 }
 mark { background: transparent; color: var(--accent); font-weight: 600; }
@@ -478,8 +503,15 @@ footer {
 @media (max-width: 480px) {
   h1 { font-size: 31px; }
   .qt { font-size: 20px; }
-  nav { gap: 14px; }
-  .col { padding-top: max(24px, env(safe-area-inset-top)); }
+  nav { margin-bottom: 28px; }
+}
+/* The suite's return chip rests at the top-left of every wing, a 44px disc at
+   x 10 to 54 and y 10 to 54, and under 600px the nav row runs the full width
+   of the column, so its first link began inside that square and a thumb aimed
+   at Today left the wing. From 600px the centred row starts past x 54 on its
+   own. The standalone First Light has no chip and keeps 36px and 24px. */
+@media (max-width: 599px) {
+  .col { padding-top: max(58px, env(safe-area-inset-top)); }
 }
 
 /* ═══ the practice engine ═══ */

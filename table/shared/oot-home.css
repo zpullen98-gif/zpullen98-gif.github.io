@@ -157,10 +157,13 @@
 }
 .oot-path-row:last-child { border-bottom: 0; }
 .oot-path-row:hover .oot-path-t { text-decoration: underline; }
-.oot-path-mark { color: var(--oot-accent, currentColor); font-size: .95rem; }
+/* The mark is the step's number, tabular so a column of them lines up. It was
+   a tick and a hollow circle once, and this row renders inside the Codex,
+   which allows no pictorial glyph at all. */
+.oot-path-mark { color: var(--oot-accent, currentColor); font-size: .95rem; font-variant-numeric: tabular-nums; }
 .oot-path-t { color: var(--oot-ink, currentColor); }
-/* Done recedes to the muted colour rather than to 55% of the ink. The tick
-   in .oot-path-mark is what actually says "done"; this is the echo. */
+/* Done recedes to the muted colour rather than to 55% of the ink. The word
+   "done" in .oot-path-mins is what actually says done; this is the echo. */
 .oot-path-row.done .oot-path-t { color: var(--oot-dim, currentColor); }
 .oot-path-mins {
   font-size: .74rem;

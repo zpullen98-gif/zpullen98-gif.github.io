@@ -11,7 +11,7 @@
 <meta name="description" content="Who on this device is training, how far they have got, and where the team is weakest.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#12100e">
-<link rel="stylesheet" href="../shared/oot-home.css?v=26">
+<link rel="stylesheet" href="../shared/oot-home.css?v=27">
 <style>
 /* ============ The Pass ============
    One page for the whole product rather than one per wing. It reads what every
@@ -95,10 +95,10 @@ footer nav a:hover{color:var(--brass-hi)}
   <footer id="foot"></footer>
 </div>
 
-<script src="../shared/oot-config.js?v=26"></script>
-<script src="../shared/oot-profiles.js?v=26"></script>
-<script src="../shared/oot-home.js?v=26"></script>
-<script src="../shared/oot-pass.js?v=26"></script>
+<script src="../shared/oot-config.js?v=27"></script>
+<script src="../shared/oot-profiles.js?v=27"></script>
+<script src="../shared/oot-home.js?v=27"></script>
+<script src="../shared/oot-pass.js?v=27"></script>
 <script>
 (function () {
   var el = document.getElementById('pass');
@@ -214,11 +214,24 @@ footer nav a:hover{color:var(--brass-hi)}
        and nothing left to make the question conditional on. It names the wings
        the file carries, because those are precisely the ones about to be
        overwritten, and it says what happens to the others. */
-    var q = 'This device already has its own records.\n\n'
-      + 'Taking this file in will REPLACE what is on this device for: ' + carried + '.\n\n'
-      + 'Anything the file does not carry is left as it is. This cannot be undone, '
-      + 'so export a backup first if you are not sure.\n\n'
-      + 'Replace them?';
+    /* Whether this device holds anything the file would displace is read off
+       the carried keys themselves: on a fresh device "already has its own
+       records" was a false first sentence, and a warning to back up nothing
+       is noise in front of the one question that matters. */
+    var held = false;
+    try {
+      Object.keys(v.keys || {}).forEach(function (k) { if (localStorage.getItem(k) !== null) held = true; });
+    } catch (e) {}
+    var q = held
+      ? ('This device already has its own records.\n\n'
+        + 'Taking this file in will REPLACE what is on this device for: ' + carried + '.\n\n'
+        + 'Anything the file does not carry is left as it is. This cannot be undone, '
+        + 'so export a backup first if you are not sure.\n\n'
+        + 'Replace them?')
+      : ('This device has nothing recorded for ' + carried + ' yet.\n\n'
+        + 'Taking this file in will write its records onto this device for: ' + carried + '.\n\n'
+        + 'Anything the file does not carry is left as it is.\n\n'
+        + 'Take it in?');
     var ok;
     try { ok = window.confirm(q); } catch (e) { ok = false; }
     if (!ok) {
@@ -228,6 +241,28 @@ footer nav a:hover{color:var(--brass-hi)}
 
     var r = OOT.profiles.importProfile(v.record, { replace: true });
     if (!r) { say('Not taken in: the record could not be written on this device.', true); return; }
+    /* A HALF-APPLIED FILE IS NOT A SUCCESS. importProfile writes the wings one
+       key at a time inside one try/catch, so a storage quota reached on the
+       third of four keys stops the loop, swallows the throw, and still hands
+       back an object. r.restored is the count that actually landed; v.keys is
+       the count the file carried. When they differ, this device now holds a
+       mixture of two records, and the person must be told so in words rather
+       than shown the "Replaced" line as if it were whole. */
+    var wanted = Object.keys(v.keys || {}).length;
+    var got = r.restored | 0;
+    if (wanted && got < wanted) {
+      /* Zero landed is not a mixture: the first write threw and the live
+         records are exactly as they were, so say that rather than describe a
+         device that was never changed as half changed. */
+      say(got
+        ? 'Only part of the file was written: ' + got + ' of ' + wanted +
+          ' records landed before this browser ran out of storage room. This device ' +
+          'now holds a mixture. Free some space and receive the file again.'
+        : 'Nothing from the file was written: this browser is out of storage room. ' +
+          'This device is as it was. Free some space and receive the file again.', true);
+      paint();
+      return;
+    }
     /* "Replaced", not "Received". r.replaced is only true when importProfile
        found an existing entry BY NAME in the roster, and the roster is empty in
        this edition, so it reports false for a write that did replace the live
@@ -250,11 +285,19 @@ footer nav a:hover{color:var(--brass-hi)}
     });
   }
 
+  /* The footer is built here, outside paint(), so the personal-edition guard
+     has to be repeated: paint() returns before any ranking is drawn, and a
+     footnote about section rankings under a page with none on it reads as a
+     page that failed to load half of itself. Under PERSONAL only the sentence
+     that is still true is printed. The roster edition keeps the full text. */
+  var pers = !!(window.OOT && OOT.profiles && OOT.profiles.personal && OOT.profiles.personal());
   var foot = document.getElementById('foot');
-  foot.innerHTML = 'Section rankings are worked out by each app while it is open ' +
-    'and left here, so they are a snapshot rather than a live figure. Progress ' +
-    'itself is kept in this browser and never sent anywhere, which is why this ' +
-    'page can only show this device and whatever has been received into it.' +
+  foot.innerHTML = (pers ? '' :
+    'Section rankings are worked out by each app while it is open ' +
+    'and left here, so they are a snapshot rather than a live figure. ') +
+    'Progress ' + (pers ? '' : 'itself ') + 'is kept in this browser and never sent anywhere, ' +
+    'which is why this page can only show this device and whatever has been ' +
+    'received into it.' +
     '<nav aria-label="Legal"><a href="../privacy.html">Privacy</a> &middot; ' +
     '<a href="../terms.html">Terms</a></nav>';
 })();

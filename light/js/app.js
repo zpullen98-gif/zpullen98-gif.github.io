@@ -180,9 +180,11 @@ function flOnboardHTML() {
     '<h1>Two minutes, most mornings</h1>' +
     '<p class="note">Your words never leave this device. The count of mornings and your streak are kept here too. ' +
     'No manager, no feed: what you write stays in this browser, and exports to a file you own.</p>' +
-    '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
-    '<div class="pacer-label" id="pacer-label">Ready</div>' +
-    '<div class="ds" id="pacer-count"></div>' +
+    '<div class="pacerbox">' +
+      '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
+      '<div class="pacer-label" id="pacer-label">Ready</div>' +
+      '<div class="ds" id="pacer-count"></div>' +
+    '</div>' +
     '<div style="text-align:center;margin-top:10px">' +
       '<button class="mchip' + ((typeof pacer !== 'undefined' && pacer.on) ? ' on' : '') + '" data-act="onboardBreath">' +
       ((typeof pacer !== 'undefined' && pacer.on) ? 'Let it fade' : 'Try ten slow breaths first') + '</button></div>' +
@@ -238,7 +240,7 @@ function render() {
     console.error('First Light: the ' + flRoute.view + ' view failed to render.', err);
     host.innerHTML = '<div class="kick">Something went wrong</div>' +
       '<h1>This page did not open</h1>' +
-      '<p class="note">The rest of the app still works. If this keeps happening, the console has the detail.</p>';
+      '<p class="note">The rest of the app still works. Go back to Today and try again.</p>';
   }
   renderNav();
   document.title = (v.title ? v.title + ' · ' : '') + 'First Light';
