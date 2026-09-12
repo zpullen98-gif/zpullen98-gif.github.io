@@ -1,43 +1,41 @@
 /* First Light: Today.
 
-   The morning page. It asks the reader to write nothing: every field lives in
-   Reflection, one tab over. What it does is lift. The dated voice opens it,
-   then two lines from the lift bank (films and people who made something),
-   then a short teaching for the month, then the practice and the doors onward.
+   The morning page. Two rules govern it.
 
-   Two ways to read it, chosen in the page itself and remembered:
+   IT ASKS THE READER TO WRITE NOTHING. Every field lives in Reflection, one
+   tab over.
 
+   IT NEVER COUNTS AT THEM. No streak, no day number, no notice about how long
+   it has been. A streak punishes hardest exactly when somebody is already
+   struggling, and an absence notice is an app telling a person off for living.
+   The totals still exist for anyone who goes looking for them, in Settings and
+   in The Record. They are not brought to the reader unasked. This is the same
+   position the journal heatmap already took when it chose to report a steady
+   month or a fallow month rather than a verdict.
+
+   WHAT IT DOES INSTEAD is give every morning the same shape. Four things, in
+   the same order, whether it is day two or day two hundred:
+
+     Read      the voice, the lift, the teaching
+     Move      the day's session from the movement programme, run on this page
+     Breathe   ten slow breaths on the pacer
+     Reflect   the question, in the Reflection tab
+
+   Three of the four tick themselves when the app can honestly know they are
+   done. All four can be tapped, because an app that will not let you say you
+   did it is worse than one that trusts you.
+
+   Two ways to read the page, remembered in FL.prefs.todayMode:
      page      one flowing page, the default
-     guided    the walk: voice, sit with it, the practice, then the finish
+     guided    the walk: voice, sit with it, the practice
 
-   At dusk the page does not change into something else. It adds one quiet
-   card at the top that opens the examined evening in Reflection. An app that
-   silently became a different app after sunset was alarming; one that offers
-   the evening's work and stays where it was is just attentive. */
+   At dusk the page does not become something else. It adds one card that opens
+   the examined evening in Reflection. */
 
 var todayStep = 0;
-var todayReturnSeen = false;   // the return card shows once per sitting
 var todayKeptFired = null;     // the day key the kept event last went out for
 var todayForceMode = null;     // 'guided' | 'page' | null (= the saved preference)
 var liftSeed = 0;              // "Another" deals a fresh pair for the session; nothing is recorded
-
-/* After three or more missed days, the first thing Today says is not a broken
-   number: it is a door. The record keeps what you kept; the year kept your
-   place. One interaction and the card is gone. */
-function todayReturnCard() {
-  if (todayReturnSeen) return '';
-  var today = flToday();
-  var prior = FL.days.filter(function (k) { return k < today; });
-  if (!prior.length) return '';
-  var last = prior[prior.length - 1];
-  var gap = Math.round((new Date(today + 'T12:00') - new Date(last + 'T12:00')) / 86400000);
-  if (gap < 4) return '';
-  return '<div class="card" style="margin-bottom:18px"><p class="pt">The record keeps what you kept</p>' +
-    '<p class="px">' + gap + ' days since your last morning, and the year kept your place. ' +
-    'No chain broke, because none of this was ever a chain. One voice, one breath, begin again.</p>' +
-    '<button class="keep" data-act="returnBegin">Begin again</button></div>';
-}
-FL_ACTS.returnBegin = function () { todayReturnSeen = true; todayStep = 0; render(); };
 
 /* Keyed by the track actually being read, not the raw preference: flActiveTrack()
    falls back to the Philosophers for a track that is unknown or unfinished, and
@@ -141,6 +139,122 @@ FL_ACTS.pickIntent = function (el) {
   flSave();
   render();
 };
+
+/* ═══════════════ this morning ═══════════════ */
+
+/* Whether anything at all was written for today, in either the morning's
+   question or either evening bank. This is the one item the app can know
+   about without being told, so it checks rather than asks. */
+function todayReflected() {
+  var k = flToday();
+  if (jText(jRef('day', k)).trim()) return true;
+  var banks = [['examen', EXAMEN_QUESTIONS], ['debrief', DEBRIEF_QUESTIONS]];
+  for (var i = 0; i < banks.length; i++) {
+    for (var j = 0; j < banks[i][1].length; j++) {
+      if (jText(jRef(banks[i][0], k + ':' + banks[i][1][j].key)).trim()) return true;
+    }
+  }
+  return false;
+}
+
+/* Anything the app can see for itself is ticked before the list is drawn, so
+   the record is the single source of truth and a tick survives a reload. */
+function todaySyncTicks() {
+  var done = flMorningOf();
+  if (!done.reflect && todayReflected()) flMorningTick('reflect');
+  if (!done.move && (FL.moves[flToday()] || 0) > 0) flMorningTick('move');
+}
+
+FL_ACTS.mornTick = function (el) {
+  var item = el.getAttribute('data-item');
+  if (flMorningOf()[item]) flMorningUntick(item); else flMorningTick(item);
+  render();
+};
+
+function todayMorningList() {
+  var done = flMorningOf();
+  var mv = moveToday();
+  var items = [
+    ['read', 'Read', 'The voice, a line to lift you, and the teaching for the month.'],
+    ['move', 'Move', mv.name + ', ' + mv.mins + ' minutes.'],
+    ['breathe', 'Breathe', 'Ten slow breaths, paced.'],
+    ['reflect', 'Reflect', 'One question, in your own words.']
+  ];
+  var rows = items.map(function (it) {
+    var on = !!done[it[0]];
+    return '<button class="mrow' + (on ? ' on' : '') + '" data-act="mornTick" data-item="' + it[0] + '"' +
+      ' aria-pressed="' + on + '">' +
+      '<span class="mbox" aria-hidden="true">' + (on ? '&#10003;' : '') + '</span>' +
+      '<span><span class="mname">' + esc(it[1]) + '</span>' +
+      '<span class="mwhat">' + esc(it[2]) + '</span></span></button>';
+  }).join('');
+  return '<div class="label">This morning</div>' +
+    '<div class="morn">' + rows + '</div>';
+}
+
+/* ═══════════════ the movement ═══════════════ */
+
+FL_ACTS.moveStart = function (el) {
+  if (typeof pacer !== 'undefined' && pacer.on) pacerStop();
+  seqStart(el.getAttribute('data-id'), 0);
+  render();
+};
+FL_ACTS.moveStop = function () { seqStop(); };
+
+function todayMove() {
+  var mv = moveToday();
+  var focus = moveFocusFor(flShiftedNow().getDay());
+  var lv = moveLevel();
+  var toNext = moveToNext();
+  var levelLine = 'Level ' + lv +
+    (toNext === null ? ', the last one' : ', ' + toNext + ' more ' + (toNext === 1 ? 'session' : 'sessions') + ' to level ' + (lv + 1));
+
+  /* running: the engine writes into #seq-time and #seq-bar, so all this has to
+     do is print them and the step it is on */
+  if (typeof seq !== 'undefined' && seq.on && String(seq.id).indexOf('mv-') === 0) {
+    var s = seqFind(seq.id);
+    var step = s.steps[seq.step] || s.steps[s.steps.length - 1];
+    return '<div class="label">Today’s movement</div>' +
+      '<div class="movecard">' +
+        '<div class="mfocus">' + esc(s.name) + ' · step ' + (seq.step + 1) + ' of ' + s.steps.length + '</div>' +
+        '<p class="movestep">' + esc(step[0]) + '</p>' +
+        '<p class="px">' + esc(step[2]) + '</p>' +
+        '<div class="seqtime" id="seq-time" style="margin-top:12px">0:00</div>' +
+        '<div class="seqtrack"><div class="seqbar" id="seq-bar"></div></div>' +
+        '<div style="margin-top:14px"><button class="keep" data-act="moveStop">Stop</button></div>' +
+      '</div>';
+  }
+
+  return '<div class="label">Today’s movement</div>' +
+    '<div class="movecard">' +
+      '<div class="mfocus">' + esc(focus.name) + '</div>' +
+      '<p class="pt">' + esc(mv.name) + '</p>' +
+      '<p class="mwhy">' + esc(mv.why) + '</p>' +
+      '<p class="px" style="color:var(--faint)">' + esc(mv.note) + '</p>' +
+      '<div style="margin-top:14px">' +
+        '<button class="btn" data-act="moveStart" data-id="' + esc(mv.id) + '">Begin, ' + mv.mins + ' minutes</button>' +
+      '</div>' +
+      '<p class="movelevel" style="margin-top:12px">' + esc(levelLine) + '</p>' +
+    '</div>' +
+    '<p class="px" style="margin-top:6px"><a class="readmini" href="#/body">The whole programme, and the week</a></p>';
+}
+
+/* ═══════════════ the breath ═══════════════ */
+
+function todayBreath() {
+  var on = (typeof pacer !== 'undefined' && pacer.on);
+  return '<div class="label">The breath</div>' +
+    '<div class="pacerbox">' +
+      '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
+      '<div class="pacer-label" id="pacer-label">' + (on ? '' : 'Ready') + '</div>' +
+      '<div class="ds" id="pacer-count"></div>' +
+    '</div>' +
+    '<p class="mintro">Follow the disc. In as it grows, out as it falls. Five full rounds is a morning’s worth, ' +
+    'and the day’s Breathe marks itself when you get there.</p>' +
+    '<div style="text-align:center;margin-top:10px">' +
+      '<button class="mchip' + (on ? ' on' : '') + '" data-act="sitBreath">' +
+      (on ? 'Let it fade' : 'Pace the breaths') + '</button></div>';
+}
 
 /* --- pieces --- */
 function todayVoice(m, d, e) {
@@ -271,7 +385,8 @@ function todayCanonOn() { return FL.prefs.canonLines === 'on'; }
 
 /* One event per day, the first time a morning renders. The shared layer in the
    suite listens for this rather than counting steps from outside, and the day
-   latch keeps re-renders from sending it twice. */
+   latch keeps re-renders from sending it twice. Nothing in this file displays
+   the streak it carries. */
 function todayFireKept() {
   var keptDay = flToday();
   if (todayKeptFired === keptDay) return;
@@ -294,23 +409,13 @@ function todayGuided(m, d, e, doy, p) {
           '<p class="refl" style="margin-top:14px">' + esc(TURN_PROMPTS[doy % TURN_PROMPTS.length]) + '</p>';
       } },
     { label: 'Sit with it', body: function () {
-        var on = (typeof pacer !== 'undefined' && pacer.on);
-        return '<div class="pacerbox">' +
-          '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
-          '<div class="pacer-label" id="pacer-label">' + (on ? '' : 'Ready') + '</div>' +
-          '<div class="ds" id="pacer-count"></div>' +
-          '</div>' +
-          '<p class="mintro">A minute, or the length of ten slow breaths. Nothing to achieve: ' +
-          'this is the interval in which the line stops being information and becomes yours.</p>' +
-          '<div style="text-align:center;margin-top:10px">' +
-          '<button class="mchip' + (on ? ' on' : '') + '" data-act="sitBreath">' +
-          (on ? 'Let it fade' : 'Pace the breaths') + '</button></div>';
+        return todayBreath();
       } },
+    { label: 'Move', body: function () { return todayMove(); } },
     { label: 'The practice', body: function () { return todayPractice(p) + todayLift(doy); } }
   ];
 
   if (todayStep >= steps.length) {
-    var streak = flStreak();
     todayFireKept();
     /* one line the reader knows by heart goes onto the floor with them,
        rotating through the by-heart shelf by the day */
@@ -329,8 +434,7 @@ function todayGuided(m, d, e, doy, p) {
     return '<div class="disc" aria-hidden="true"></div>' +
       todayDateLine() +
       '<h1>The morning is kept</h1>' +
-      '<p class="note">' + (streak > 1 ? streak + ' consecutive mornings. ' : '') +
-      FL.days.length + ' in the record.</p>' +
+      '<p class="note">Whatever else today asks of you, this part is done.</p>' +
       '<div class="drawrow" style="justify-content:center;margin-top:24px">' +
         '<a class="btn" href="#/reflect">Write your reflection</a>' +
         '<button class="keep" data-act="todayStep" data-to="0">Walk it again</button>' +
@@ -345,15 +449,13 @@ function todayGuided(m, d, e, doy, p) {
   }
 
   var s = steps[todayStep];
-  var returnCard = todayStep === 0 ? todayReturnCard() : '';
   var dots = steps.map(function (x, i) {
     return '<button class="stepdot' + (i === todayStep ? ' on' : '') + (i < todayStep ? ' past' : '') +
       '" data-act="todayStep" data-to="' + i + '" aria-label="' + esc(x.label) + '"' +
       (i === todayStep ? ' aria-current="step"' : '') + '></button>';
   }).join('');
 
-  return returnCard +
-    todayDateLine() +
+  return todayDateLine() +
     '<h1>' + esc(trackMonths()[m - 1][1]) + '</h1>' +
     '<div class="steprow">' + dots + '</div>' +
     '<div class="label" style="margin-top:8px">' + esc(s.label) + '</div>' +
@@ -370,24 +472,20 @@ function todayGuided(m, d, e, doy, p) {
 
 /* --- the whole page --- */
 function todayPage(m, d, e, doy, p) {
-  var streak = flStreak();
-  var count = streak > 1
-    ? 'Morning ' + FL.days.length + ' of your record · ' + streak + ' consecutive'
-    : 'Morning ' + FL.days.length + ' of your record.';
   todayFireKept();
-
   return '<div class="disc" aria-hidden="true"></div>' +
     todayDateLine() +
-    '<div class="streakline">' + esc(count) + '</div>' +
     '<h1>' + esc(trackMonths()[m - 1][1]) + '</h1>' +
     '<p class="note">' + esc(trackMonths()[m - 1][2]) + '</p>' +
     '<div class="flow">' +
-      todayReturnCard() +
       todayEveningCard() +
+      todayMorningList() +
       todayVoice(m, d, e) +
       '<p class="refl" style="margin-top:10px">' + esc(TURN_PROMPTS[doy % TURN_PROMPTS.length]) + '</p>' +
       todayLift(doy) +
       todayTeaching(m, doy) +
+      todayMove() +
+      todayBreath() +
       '<div class="label">Today’s practice</div>' + todayPractice(p) +
       todayIntentPanel() +
       todaySortPanel() +
@@ -411,6 +509,8 @@ FL_VIEWS.today = {
     var e = dayEntry(m, d);
     var doy = doyOf(m, d);
     var p = PRACTICES[(now.getDay() + 7 - (Number(FL.prefs.weekAnchor) || 0)) % 7];
+
+    todaySyncTicks();
 
     var mode = todayForceMode || (FL.prefs.todayMode === 'guided' ? 'guided' : 'page');
     if (mode === 'guided') return todayGuided(m, d, e, doy, p);

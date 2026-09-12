@@ -208,6 +208,7 @@ FL_VIEWS.body = {
       '<h1>The Body</h1>' +
       '<p class="note">Every tradition in this book asks something of the body. What follows is what they teach, and the practices to do it with.</p>' +
       '<p class="px" style="text-align:center"><a class="readmini" href="#/reset">Mid-shift? The Walk-In: ninety seconds, one tap</a></p>' +
+      programme() +
       pacerUI + seqUI +
       teach +
       '<div class="label">The eight limbs of yoga</div>' +
@@ -222,6 +223,7 @@ FL_VIEWS.body = {
       '<p class="mintro" style="margin-top:30px">Move within your own limits. Pain is information, not weakness, and none of this is medical advice.</p>';
   },
 
+  _programme: true,
   after: function () {
     BODY_VIDEOS.concat(TRADE_VIDEOS).forEach(function (v, i) {
       fetchYouTubeTitle(v.id).then(function (info) {
@@ -243,3 +245,50 @@ FL_VIEWS.body = {
     });
   }
 };
+
+
+/* ═══════════════ the movement programme ═══════════════
+
+   The week, the level, and every session in the bank. Today's is marked. The
+   morning page runs the day's session in place; this is where a reader comes
+   to see the shape of the thing, or to do a different day's work because
+   their week is not the calendar's week.
+
+   Level rises on work done and never falls for time away, which is the whole
+   point: a programme that demotes somebody for a hard fortnight is a
+   programme they do not come back to. */
+
+FL_ACTS.moveRun = function (el) {
+  if (typeof pacer !== 'undefined' && pacer.on) pacerStop();
+  seqStart(el.getAttribute('data-id'), 0);
+  render();
+};
+
+function programme() {
+  if (typeof MOVE_WEEK === 'undefined') return '';
+  var lv = moveLevel();
+  var toNext = moveToNext();
+  var total = moveTotal();
+  var todayFocus = moveFocusFor(flShiftedNow().getDay()).id;
+
+  var head = '<div class="label">The programme</div>' +
+    '<p class="px" style="color:var(--faint);margin-bottom:14px">Seven focuses, one a day, turning on your own rest day rather than the calendar\u2019s. ' +
+    'Three levels, and a level is reached by sessions finished, never by days in a row. Nothing here is lost by a week away.</p>' +
+    '<p class="movelevel" style="margin-bottom:16px">Level ' + lv + ' \u00b7 ' + total + ' ' + (total === 1 ? 'session' : 'sessions') + ' finished' +
+    (toNext === null ? ' \u00b7 the last level' : ' \u00b7 ' + toNext + ' more to level ' + (lv + 1)) + '</p>';
+
+  var rows = MOVE_WEEK.map(function (f) {
+    var mv = moveFor(f.id, lv);
+    var isToday = f.id === todayFocus;
+    return '<div class="card" style="margin-bottom:10px' + (isToday ? ';border-left:2px solid var(--accent)' : '') + '">' +
+      '<div class="mfocus">' + esc(f.name) + (isToday ? ' \u00b7 today' : '') + '</div>' +
+      '<p class="pt" style="margin-top:4px">' + esc(mv.name) + '</p>' +
+      '<p class="px" style="color:var(--faint)">' + esc(f.line) + '</p>' +
+      '<div class="ds" style="margin-top:6px">' + mv.mins + ' minutes \u00b7 ' + mv.steps.length + ' steps \u00b7 level ' + mv.level + '</div>' +
+      '<p class="px" style="margin-top:8px">' + esc(mv.why) + '</p>' +
+      '<button class="keep" data-act="moveRun" data-id="' + esc(mv.id) + '" style="margin-top:10px">Begin</button>' +
+      '</div>';
+  }).join('');
+
+  return head + rows;
+}

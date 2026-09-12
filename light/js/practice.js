@@ -119,6 +119,7 @@ function pacerStart(id) {
   pacer.start = performance.now();
   pacer.on = true;
   pacer.cycles = 0;
+  pacer.counted = false;
   pacerTick();
 }
 
@@ -141,6 +142,13 @@ function pacerTick() {
      frame then costs nothing, and the pacer stays true to the actual seconds. */
   var elapsed = (performance.now() - pacer.start) / 1000;
   pacer.cycles = Math.floor(elapsed / total);
+  /* Five full rounds is a morning's breathing rather than a tap, so that is
+     where Breathe ticks itself. The latch keeps sixty frames a second from
+     writing sixty times. */
+  if (pacer.cycles >= 5 && !pacer.counted) {
+    pacer.counted = true;
+    if (typeof flMorningTick === 'function') flMorningTick('breathe');
+  }
   var t = elapsed % total;
 
   var acc = 0, phase = p.phases[0], idx = 0;
@@ -175,8 +183,28 @@ function pacerTick() {
 /* --- the sequence timer --- */
 var seq = { on: false, id: null, step: 0, start: 0, raf: null };
 
+/* What a finished sequence writes. Only a natural finish reaches here: Stop
+   records nothing, which is the rule the Walk-In established and the reason
+   these counts can be trusted. A movement also counts toward the programme's
+   level and ticks Move on the morning page. */
+function seqRecord(id) {
+  var k = flToday();
+  FL.sessions[k] = (FL.sessions[k] || 0) + 1;
+  if (String(id).indexOf('mv-') === 0) {
+    FL.moves[k] = (FL.moves[k] || 0) + 1;
+    if (typeof flMorningTick === 'function') flMorningTick('move');
+  }
+  flSave();
+}
+
+/* The eight sequences here, and the movement programme in data-move.js, which
+   uses this same object shape on purpose so the timer needs no changes. The
+   second lookup is guarded because practice.js loads before the data file. */
 function seqFind(id) {
   for (var i = 0; i < SEQUENCES.length; i++) if (SEQUENCES[i].id === id) return SEQUENCES[i];
+  if (typeof MOVES !== 'undefined') {
+    for (var j = 0; j < MOVES.length; j++) if (MOVES[j].id === id) return MOVES[j];
+  }
   return null;
 }
 
@@ -195,7 +223,7 @@ function seqStop() {
 function seqTick() {
   if (!seq.on) return;
   var s = seqFind(seq.id);
-  if (!s || seq.step >= s.steps.length) { seq.on = false; FL.sessions[flToday()] = (FL.sessions[flToday()] || 0) + 1; flSave(); render(); announce('Sequence complete.'); return; }
+  if (!s || seq.step >= s.steps.length) { seq.on = false; seqRecord(seq.id); render(); announce('Sequence complete.'); return; }
   var step = s.steps[seq.step];
   var elapsed = (performance.now() - seq.start) / 1000;
   var left = Math.max(0, step[1] - elapsed);
@@ -208,7 +236,7 @@ function seqTick() {
   if (left <= 0) {
     seq.step++;
     seq.start = performance.now();
-    if (seq.step >= s.steps.length) { seq.on = false; FL.sessions[flToday()] = (FL.sessions[flToday()] || 0) + 1; flSave(); render(); announce('Sequence complete.'); return; }
+    if (seq.step >= s.steps.length) { seq.on = false; seqRecord(seq.id); render(); announce('Sequence complete.'); return; }
     render();
     /* the loop must re-arm itself: a bare return here froze every sequence
        at its first step boundary, since nothing else ever re-enters the tick */

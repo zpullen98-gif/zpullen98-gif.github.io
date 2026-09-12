@@ -401,7 +401,6 @@ function offerUpdate() {
       todayForceMode = null;
       todayStep = 0;
       todaySort = null;
-      todayReturnSeen = false;
       todayExamenKind = 'day';
       render();
     }

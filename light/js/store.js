@@ -55,6 +55,8 @@ var FL = {
   checks: {},        // "g-<tier>-<goal>"  -> 1        the goal ladder
   days: [],          // ["YYYY-MM-DD"]                 mornings observed, ascending
   practice: {},      // "YYYY-MM-DD"       -> 1        the day's practice marked done
+  morning: {},       // "YYYY-MM-DD"       -> {read,move,breathe,reflect}  the day's four, ticked
+  moves: {},         // "YYYY-MM-DD"       -> n        movement sessions finished, for the level
   intents: {},       // "YYYY-MM-DD"       -> "Grief"  a named need, when one was named
   journal: {},       // id -> {d, ref, text, t}        writing; ref ties it to a day/quote/passage
   examen: {},        // "YYYY-MM-DD"       -> {well, short, tomorrow}
@@ -208,6 +210,32 @@ function flLongestStreak(days) {
 }
 
 /* Record that today was observed. Idempotent: safe to call on every render. */
+/* The four things a morning asks: read, move, breathe, reflect. Set once per
+   day per item and never unset by the app itself, so nothing the reader has
+   already done can be taken back from them by a re-render. The reader can
+   still untick by hand; that is what flMorningUntick is for.
+
+   Keyed by flToday(), so a closer's 2am belongs to the day they closed, like
+   every other per-day bucket in the record. */
+function flMorningOf(day) { return FL.morning[day || flToday()] || {}; }
+
+function flMorningTick(item) {
+  var k = flToday();
+  if (!FL.morning[k]) FL.morning[k] = {};
+  if (FL.morning[k][item]) return false;
+  FL.morning[k][item] = 1;
+  flSave();
+  return true;
+}
+
+function flMorningUntick(item) {
+  var k = flToday();
+  if (!FL.morning[k] || !FL.morning[k][item]) return false;
+  delete FL.morning[k][item];
+  flSave();
+  return true;
+}
+
 function flMarkDay() {
   var k = flToday();
   if (FL.days.indexOf(k) === -1) { FL.days.push(k); FL.days.sort(); flSave(); return true; }
@@ -364,6 +392,20 @@ function flImport(text) {
      double-bill a morning, and neither can erase the other's */
   if (rec.sessions) Object.keys(rec.sessions).forEach(function (k) {
     if ((rec.sessions[k] || 0) > (FL.sessions[k] || 0)) FL.sessions[k] = rec.sessions[k];
+  });
+
+  /* moves merge toward the larger count per day, exactly as sessions do: two
+     devices cannot double-bill a morning and neither can erase the other's. */
+  if (rec.moves) Object.keys(rec.moves).forEach(function (k) {
+    if ((rec.moves[k] || 0) > (FL.moves[k] || 0)) FL.moves[k] = rec.moves[k];
+  });
+  /* the day's four ticks merge as a union: a thing done on either device was
+     done, and this app does not take a finished morning back off anybody. */
+  if (rec.morning) Object.keys(rec.morning).forEach(function (day) {
+    if (!FL.morning[day]) FL.morning[day] = {};
+    Object.keys(rec.morning[day] || {}).forEach(function (item) {
+      if (rec.morning[day][item]) FL.morning[day][item] = 1;
+    });
   });
 
   ['kept', 'checks', 'practice', 'intents', 'clear'].forEach(function (bucket) {
