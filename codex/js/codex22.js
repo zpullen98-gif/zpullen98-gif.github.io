@@ -71,9 +71,13 @@ var V22_TILES = {
     return (typeof PAIRS !== 'undefined') ? PAIRS.length + ' dishes' : null;
   },
 
+  /* 'no questions due today' on a fresh record carries no digit, so a rule
+     that insists on one silently leaves the longest description on the page
+     for exactly the reader who has just arrived. */
   't-daily': function (txt) {
-    var n = v22Lead(txt, /(\d+)\s+questions? due/);
-    return n === null ? null : n + ' due today';
+    var m = String(txt || '').match(/(\d+|no)\s+questions?\s+due/i);
+    if (!m) return null;
+    return m[1].toLowerCase() === 'no' ? 'nothing due today' : m[1] + ' due today';
   },
   'm-mock': function () {
     return (typeof MOCK_N !== 'undefined' && typeof MOCK_SECS !== 'undefined')
