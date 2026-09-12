@@ -23,10 +23,15 @@
 
    TWO. mergeStats added counts, so moving between two devices inflated them.
 
-   Every other store in that merge is idempotent by construction: days takes the
-   max, srs takes the newer due date, hist dedupes on a composite key, flags and
-   ach union, notes keep the first. Only the per question counters summed, and
-   only sess. So the merge as a whole was ALMOST re-runnable, and the two that
+   Every other store CODEX4 merges is idempotent by construction: days takes
+   the max, srs takes the newer due date, hist dedupes on a composite key,
+   flags and ach union, notes keep the first. Of codex4's, only the per
+   question counters summed, and only sess.
+
+   THAT SURVEY WAS INCOMPLETE and this paragraph is the correction. codex8
+   wraps the same mergeStats and adds stores of its own, and three of those
+   sum too: ST.tast, ST.grader[k].r/.w and ST.bad[k].n. They are repaired in
+   codex17, in the shape this file established. Read that file next. So the merge as a whole was ALMOST re-runnable, and the two that
    were not made a laptop to phone to laptop round trip count the same answers
    twice, then four times, then eight.
 
@@ -65,7 +70,12 @@ var ST_SAVE_BROKEN = null;
 var _v15StSave = stSave;
 stSave = function(){
   try{
-    localStorage.setItem('codexStats', JSON.stringify(ST));
+    /* stKey(), not the literal. codex2 routes every read and write through
+       it, and the two agree only while PERSONAL is true. The moment it is
+       not, the app would load from codexStats::<id> and save to codexStats,
+       so every answer goes to a key nothing reads and the record appears to
+       reset on reload. */
+    localStorage.setItem(typeof stKey === 'function' ? stKey() : 'codexStats', JSON.stringify(ST));
     if(ST_SAVE_BROKEN){ ST_SAVE_BROKEN = null; v15Banner(); }
   }catch(e){
     /* QuotaExceededError is the one worth naming, because the student can act

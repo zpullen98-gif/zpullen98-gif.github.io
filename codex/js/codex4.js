@@ -161,7 +161,7 @@ function syncView(){
    +'<div class="sarow"><button class="btn gold" id="dl">Download progress file</button><button class="btn" id="copy">Copy to clipboard</button></div>'
    +'<textarea class="noteinput" id="outbox" rows="3" readonly aria-label="Your progress export code" style="margin-top:10px"></textarea>'
    +'<div class="secgroup">Import</div>'
-   +'<div class="fmtnote">Importing <b>merges</b>: answer counts add up, streaks and honors combine, and the more recent review date wins. Nothing is lost.</div>'
+   +'<div class="fmtnote">Importing <b>merges</b>: where both records know a question, the one with more answers in it is kept whole rather than the two being added together, so merging the same file twice changes nothing. Streaks and honors combine and the more recent review date wins.</div>'
    +'<div class="sarow" style="margin-top:10px"><input type="file" id="fin" accept="application/json,.json" class="sainput" aria-label="Choose a progress file to import"></div>'
    +'<textarea class="noteinput" id="inbox" rows="3" placeholder="\u2026or paste an exported progress code here" style="margin-top:10px"></textarea>'
    +'<div class="sarow" style="margin-top:8px"><button class="btn" id="imp">Merge pasted progress</button></div>'

@@ -79,18 +79,49 @@ function wineTakeVintage(name) {
    middle of a tasting note is being described, not bottled, and a list reading
    "Chardonnay, in the manner of Coche-Dury" must not come back as a
    Coche-Dury. */
+/* WHAT A LIST PUTS IN FRONT OF AN ESTATE'S NAME.
+   A German list writes "Weingut Donnhoff", a Portuguese one "Quinta do Noval",
+   an Italian one "Azienda Agricola Gaja". These words mean "wine estate"; they
+   are not part of the name that distinguishes one producer from another, and
+   the codex stores the name without them. Head-matching the raw line therefore
+   missed every such bottle and silently left the producer blank.
+
+   Skipping them is reading the page, not guessing at it. And nothing is lost
+   where the prefix IS part of the name: the full string is always tried first,
+   so "Domaine Leflaive" still matches as itself rather than as "Leflaive". */
+var WINE_ESTATE_WORDS = ['weingut', 'weinhaus', 'domaine', 'domaines', 'dom',
+  'chateau', 'ch', 'quinta do', 'quinta da', 'quinta de', 'quinta',
+  'azienda agricola', 'azienda', 'tenuta', 'cantina', 'cantine', 'fattoria',
+  'podere', 'bodegas', 'bodega', 'vinedos', 'vinicola', 'celler', 'cellers',
+  'maison', 'champagne', 'castello', 'marques de', 'casa', 'herdade',
+  'schloss', 'weinbau', 'estate', 'winery', 'vineyards', 'vineyard', 'cave',
+  'caves', 'clos', 'mas', 'finca', 'vina', 'vinas'];
+
 function wineMatchProducer(name, corpus) {
   /* Both strings are padded, so a head match sits at index 0 and the trailing
      space is what stops "Krug" matching inside "Krugmann". */
-  var f = ' ' + wineFold(name) + ' ';
-  var best = null, bestLen = 0;
-  (corpus || []).forEach(function (rec) {
-    if (!rec || !rec.p) return;
-    var pf = wineFold(rec.p);
-    if (!pf || pf.length <= bestLen) return;
-    if (f.indexOf(' ' + pf + ' ') === 0) { best = rec; bestLen = pf.length; }
+  var folded = wineFold(name);
+
+  /* The whole line first, then the line with one estate word taken off the
+     front. Longest match still wins within each attempt, and an earlier
+     attempt beats a later one, so the unstripped reading always has priority. */
+  var tries = [folded];
+  WINE_ESTATE_WORDS.forEach(function (w) {
+    if (folded.indexOf(w + ' ') === 0) tries.push(folded.slice(w.length + 1));
   });
-  return best;
+
+  for (var t = 0; t < tries.length; t++) {
+    var f = ' ' + tries[t] + ' ';
+    var best = null, bestLen = 0;
+    (corpus || []).forEach(function (rec) {
+      if (!rec || !rec.p) return;
+      var pf = wineFold(rec.p);
+      if (!pf || pf.length <= bestLen) return;
+      if (f.indexOf(' ' + pf + ' ') === 0) { best = rec; bestLen = pf.length; }
+    });
+    if (best) return best;
+  }
+  return null;
 }
 
 /* TWO PRICES MEAN GLASS THEN BOTTLE. A wine list that prints "24 / 110" is
@@ -122,25 +153,47 @@ function wineRowFrom(dish, corpus) {
 
   if (rec) {
     /* Take the corpus's spelling of the name, which is the one the Court uses,
-       and leave whatever the list printed after it as the wine. */
+       and leave whatever the list printed after it as the wine.
+
+       The accumulator has to tolerate the estate word the matcher skipped, or
+       it walks the whole line without ever equalling the producer and returns
+       an EMPTY wine name having eaten the bottle: "Weingut Donnhoff Oberhauser
+       Brucke Riesling Spatlese" would come back as Dönnhoff and nothing else. */
     var pf = wineFold(rec.p);
     var words = v.rest.split(/\s+/);
-    var take = 0, acc = '';
+    var take = 0, acc = '', found = false;
     while (take < words.length) {
       acc = (acc ? acc + ' ' : '') + words[take];
       take++;
-      if (wineFold(acc) === pf) break;
+      var a = wineFold(acc);
+      if (a === pf) { found = true; break; }
+      var skipped = false;
+      for (var e = 0; e < WINE_ESTATE_WORDS.length && !skipped; e++) {
+        var w = WINE_ESTATE_WORDS[e];
+        if (a.indexOf(w + ' ') === 0 && a.slice(w.length + 1) === pf) skipped = true;
+      }
+      if (skipped) { found = true; break; }
     }
     producer = rec.p;
-    name = words.slice(take).join(' ').trim();
+    /* If the walk never landed on the producer the line is shaped in a way this
+       does not understand. Keep the line whole as the wine rather than throwing
+       away the half of it that was never matched. */
+    name = found ? words.slice(take).join(' ').trim() : v.rest;
   }
 
   var price = winePlacePrice(dish.price, dish.section);
   var fromCodex = [];
   var region = '', grapes = '';
   if (rec) {
-    var where = [rec.sub, rec.r].filter(Boolean).join(', ');
-    if (where) { region = where; fromCodex.push('region'); }
+    /* THE REGION COMES FROM `r` ALONE, NEVER FROM `sub`.
+       `sub` is not a place. Measured over the corpus: 565 records use it for a
+       commune, 69 for a classification, and the rest for neither ("Unclassified",
+       "Also Pacherenc du Vic-Bilh"). Joining the two put "Premier Cru Classé
+       (1855), Margaux" into a bottle's Region field, which is a classification
+       wearing a region's label and would then be DRILLED as the answer to
+       "where does our Château Margaux come from?". `r` is a place on all 665
+       records and none is empty. */
+    if (rec.r) { region = rec.r; fromCodex.push('region'); }
     var g = ((rec.wines || [])[0] || {}).grape || '';
     if (g) { grapes = g; fromCodex.push('grapes'); }
   }

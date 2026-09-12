@@ -194,24 +194,47 @@ footer nav a:hover{color:var(--brass-hi)}
       return;
     }
     var carried = v.wings.join(', ');
-    var taken = OOT.profiles.list().some(function (p) { return p.name === v.name; });
-    var replace = false;
-    if (taken) {
-      var q = v.name + ' is already on this device. Replace the ' + carried +
-        ' records under that name with the ones in this file? Records the file ' +
-        'does not carry are left as they are.';
-      var ok;
-      try { ok = window.confirm(q); } catch (e) { ok = false; }
-      if (!ok) {
-        say('Not taken in: ' + v.name + ' is already on this device and the records were not replaced.', true);
-        return;
-      }
-      replace = true;
+
+    /* ALWAYS ASK, because in this edition taking a record in ALWAYS replaces.
+       The question used to be conditional:
+
+           var taken = OOT.profiles.list().some(p => p.name === v.name);
+           if (taken) { ...confirm...; replace = true; }
+
+       and in the Personal Edition `list()` is `PERSONAL ? [] : ...`, so `taken`
+       was always false, the confirm was never reached, and `replace` stayed
+       false. That last part looked like the safe outcome and was not:
+       importProfile ignores `replace` when it decides where to write, because
+       its key suffix is `PERSONAL ? '' : ...` too. So it wrote the file
+       straight onto the live keys of every wing it carried. Choosing a file on
+       this page overwrote this device's Codex, Ledger, First Light and
+       Calendar For Life records with no prompt of any kind and no way back.
+
+       One device holds one record now, so there is no name to compare against
+       and nothing left to make the question conditional on. It names the wings
+       the file carries, because those are precisely the ones about to be
+       overwritten, and it says what happens to the others. */
+    var q = 'This device already has its own records.\n\n'
+      + 'Taking this file in will REPLACE what is on this device for: ' + carried + '.\n\n'
+      + 'Anything the file does not carry is left as it is. This cannot be undone, '
+      + 'so export a backup first if you are not sure.\n\n'
+      + 'Replace them?';
+    var ok;
+    try { ok = window.confirm(q); } catch (e) { ok = false; }
+    if (!ok) {
+      say('Not taken in. Nothing on this device was changed.', true);
+      return;
     }
-    var r = OOT.profiles.importProfile(v.record, { replace: replace });
+
+    var r = OOT.profiles.importProfile(v.record, { replace: true });
     if (!r) { say('Not taken in: the record could not be written on this device.', true); return; }
-    say((r.replaced ? 'Replaced ' : 'Received ') + r.profile.name + ' with ' + carried +
-      (r.skipped.length ? '. Left aside: ' + r.skipped.join(', ') : '') + '.');
+    /* "Replaced", not "Received". r.replaced is only true when importProfile
+       found an existing entry BY NAME in the roster, and the roster is empty in
+       this edition, so it reports false for a write that did replace the live
+       records. The person has just agreed to a replacement; telling them
+       something milder happened is the same defect as the missing prompt. */
+    say('Replaced this device\'s ' + carried + ' with ' + r.profile.name + '\'s'
+      + (r.skipped.length ? '. Left as they were: ' + r.skipped.join(', ') : '') + '.');
     paint();
   }
 

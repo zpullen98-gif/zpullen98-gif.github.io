@@ -686,7 +686,7 @@ function convertHTML(){
     + '<div class="small dim lh">Most of the world specs in ml; American bar books spec in ounces. A jigger marked 1 oz is 29.6ml, not 30: the 30ml jiggers sold as "1 oz" run about 1.5% over on every pour.</div>'
     + '<div class="row" style="gap:10px"><input class="input" type="number" step="any" id="conv-val" aria-label="Amount to convert" value="'+esc(String(t.convVal))+'" style="max-width:140px"><div class="row" style="gap:6px">'+fromChips+'</div></div>'
     + '<div id="conv-out">'+convOutHTML()+'</div>'
-    + '<div class="tiny dim lh">Handy anchors: 1 oz = 29.6ml · 1.5 oz = 44ml · 2 oz = 59ml · 750ml bottle = 25.4 oz = about 16 two-ounce pours.</div>'
+    + '<div class="tiny dim lh">Handy anchors: 1 oz = 29.6ml · 1.5 oz = 44ml · 2 oz = 59ml · 750ml bottle = 25.4 oz = 12 two-ounce pours, or 16 at an ounce and a half.</div>'
     + '</div>';
 }
 

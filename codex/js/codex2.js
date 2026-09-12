@@ -220,11 +220,37 @@ function encyView(){
     out.innerHTML='';
     if(t.length<2)return;
     let html='';
-    const qh=QUESTIONS.filter(q=>JSON.stringify(q).toLowerCase().indexOf(t)>=0);
+    /* EVERY question, which is what the subtitle above promises. QUESTIONS is
+       rebound per rank by codex7 (QUESTIONS=L.bank), so filtering it searched
+       only the rank being sat: 1,778 of 4,357 at Regionale. An encyclopedia
+       that silently hides three quarters of the book is worse than one that
+       admits its scope, and hiding it behind the word "every" is worse again.
+       Each hit carries the rank it came from, because half the reason to
+       search is to find out where a thing was written down. */
+    const qh=(function(){
+      const out=[], seen=Object.create(null);
+      const haveLevels=(typeof LEVEL_ORDER!=='undefined'&&typeof LEVELS!=='undefined');
+      const banks=haveLevels
+        ? LEVEL_ORDER.filter(function(lv){return LEVELS[lv]&&LEVELS[lv].bank;})
+            .map(function(lv){return {rank:LEVELS[lv].short||lv,bank:LEVELS[lv].bank};})
+        : [{rank:'',bank:QUESTIONS}];
+      banks.forEach(function(b){
+        b.bank.forEach(function(q){
+          /* one entry per question: the same id can sit in two banks */
+          const key=q.id||q.q;
+          if(seen[key])return;
+          if(JSON.stringify(q).toLowerCase().indexOf(t)<0)return;
+          seen[key]=1;
+          out.push({q:q,rank:b.rank});
+        });
+      });
+      return out;
+    })();
     if(qh.length){
       html+='<div class="secgroup">Questions ('+qh.length+')</div>';
-      qh.slice(0,30).forEach(function(q){
-        html+='<div class="encyq"><div class="encyqt">'+q.q+'</div><div class="encya">'+ansOf(q)+'</div><div class="encyx">'+q.exp+' <span class="encycat">'+q.cat+'</span></div></div>';
+      qh.slice(0,30).forEach(function(h){
+        const q=h.q;
+        html+='<div class="encyq"><div class="encyqt">'+q.q+'</div><div class="encya">'+ansOf(q)+'</div><div class="encyx">'+q.exp+' <span class="encycat">'+q.cat+(h.rank?' \u00b7 '+h.rank:'')+'</span></div></div>';
       });
       if(qh.length>30)html+='<div class="sub" style="margin:6px 0">\u2026and '+(qh.length-30)+' more. Narrow the search.</div>';
     }

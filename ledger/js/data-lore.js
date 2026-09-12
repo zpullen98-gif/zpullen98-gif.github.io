@@ -169,7 +169,7 @@ const LORE = {
   "Left Hand":
     "Milk & Honey: a Boulevardier that swapped in mole bitters: chocolate and chile murmuring under bourbon, Campari and sweet vermouth. Stirred proof that one dasher bottle can re-season a whole template.",
   "Bitter Giuseppe":
-    "Chicago's Violet Hour: Cynar out front for once, sweet vermouth behind it, a little lemon and a fat pinch of salt-adjacent orange bitters. A drink built low and bitter, for the end of the shift.",
+    "Chicago's Violet Hour: Cynar out front for once, sweet vermouth behind it, a little lemon, and six dashes of orange bitters to lift it. A drink built low and bitter, for the end of the shift.",
   "Enzoni":
     "Another Milk & Honey classic: a Negroni that collided with a sour: muddled fresh grapes, lemon, gin and Campari. The grapes do the vermouth's job, juicier and stranger.",
   "Jasmine":

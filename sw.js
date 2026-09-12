@@ -15,7 +15,7 @@
  * narrower scope, and a narrower scope always wins, so /ledger/ is served by
  * ledger/sw.js and never by this file.
  */
-const CACHE = 'oot-shell-v14';
+const CACHE = 'oot-shell-v15';
 
 /* Every page asks for shared/oot-config.js?v=23 and the cache is matched with
    ignoreSearch, so the precached copy answers whatever stamp the page wears:

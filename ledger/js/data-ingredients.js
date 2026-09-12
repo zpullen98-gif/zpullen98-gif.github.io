@@ -238,7 +238,14 @@ const INGREDIENTS = [
 	{ id: 'gentian', label: 'Gentian liqueur', kind: 'liqueur', abv: 0.2, bal: 'modifier', shelf: true,
 	  alias: ['gentian liqueur', 'gentian'] },
 	{ id: 'chart', label: 'Chartreuse', kind: 'liqueur', abv: 0.55, bal: 'sweet', shelf: true,
-	  alias: ['chartreuse', 'green chartreuse', 'yellow chartreuse'] },
+	  alias: ['chartreuse', 'green chartreuse'] },
+	/* Yellow is 40%, green is 55%, and one row carrying both aliases read every
+	   yellow pour as green. Five canon drinks call for yellow by name and all
+	   five came out stronger than they are. Longest alias wins, so this row
+	   takes 'yellow chartreuse' and the bare word still means green, which is
+	   what a spec means when it does not say. */
+	{ id: 'chartyellow', label: 'Yellow Chartreuse', kind: 'liqueur', abv: 0.40, bal: 'sweet', shelf: true,
+	  alias: ['yellow chartreuse'] },
 	{ id: 'bene', label: 'Bénédictine', kind: 'liqueur', abv: 0.4, bal: 'sweet', shelf: true,
 	  alias: ['bénédictine', 'benedictine'] },
 	{ id: 'drambuie', label: 'Drambuie', kind: 'liqueur', abv: 0.4, bal: 'sweet', shelf: true, alias: ['drambuie'] },
