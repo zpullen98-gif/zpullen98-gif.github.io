@@ -88,7 +88,7 @@ function flSearch(query) {
     if (sHit(p[0], q) || sHit(p[1], q)) push('Practices', p[0], 'Daily practice', p[1], '#/today');
   });
   REFLECTIONS.forEach(function (r) {
-    if (sHit(r, q)) push('Practices', 'Reflection', '', r, '#/today');
+    if (sHit(r, q)) push('Practices', 'Reflection', '', r, '#/reflect');
   });
 
   /* --- the chambers ---

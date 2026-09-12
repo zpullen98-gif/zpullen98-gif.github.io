@@ -82,6 +82,7 @@ var flRendered = false;   // true once the first navigate() has painted a view
    its own line. The clusters follow what a reader is actually doing:
 
      Today          the daily loop: one tap, no sub-row
+     Reflection     the writing: the morning's question and the evening's examen
      The Practice   the work: the body, the Vault's rehearsal room, the ladder
      The Book       the reading: the 366 and the sky
      Prayer         the scripture: seven traditions, the reading plans, the threads
@@ -103,6 +104,7 @@ var flRendered = false;   // true once the first navigate() has painted a view
    nowhere in the morning for a reader who does not. */
 var NAV_CLUSTERS = [
   ['today',    'Today',        ['today']],
+  ['reflect',  'Reflection',   ['reflect']],
   ['practice', 'The Practice', ['body', 'vault', 'life']],
   ['book',     'The Book',     ['year', 'astro']],
   ['canon',    'Prayer',       ['library']],
@@ -165,7 +167,7 @@ document.addEventListener('keydown', function (e) {
   var t = e.target;
   if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;
   if (e.key === '/') { location.hash = '#/search'; e.preventDefault(); return; }
-  if (/^[1-5]$/.test(e.key)) {
+  if (/^[1-6]$/.test(e.key)) {
     var c = NAV_CLUSTERS[Number(e.key) - 1];
     location.hash = '#/' + (flLastSub[c[0]] || c[2][0]);
     e.preventDefault();

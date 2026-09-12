@@ -22,10 +22,11 @@
  *
  * The URLs are BARE. shell.html loads them as /shared/oot-x.js?v=N and the
  * stamp is written by the monorepo's inject-oot-bar.mjs, which this file
- * cannot see. The runtime route matches with ignoreSearch, so a ?v=N request
- * is answered from the bare entry and revalidated the next time the network is
- * there. Order matters nowhere here: the page's own script tags decide the
- * load order.
+ * cannot see. The runtime route (vite.config.ts) strips the search from its
+ * cache KEY on every read and write, so a ?v=N request is answered from the
+ * bare entry written here and the revalidation refreshes that same entry, not
+ * a stamped twin nothing reads. Order matters nowhere here: the page's own
+ * script tags decide the load order.
  *
  * ONE LIST. inject-oot-bar.mjs --check reads OOT_SHARED out of the built copy
  * of this file and fails when its own SHARED list disagrees, so a script added

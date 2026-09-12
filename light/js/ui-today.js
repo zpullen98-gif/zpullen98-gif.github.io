@@ -1,23 +1,25 @@
 /* First Light: Today.
 
-   The artifact's Today was one long scroll: quote, practice, reflection, five canon
-   lines, all at once, asking nothing and recording nothing. This is the same
-   material arranged as a passage you walk through, ending in a morning that is
-   actually finished.
+   The morning page. It asks the reader to write nothing: every field lives in
+   Reflection, one tab over. What it does is lift. The dated voice opens it,
+   then two lines from the lift bank (films and people who made something),
+   then a short teaching for the month, then the practice and the doors onward.
 
-   Three states, and the app chooses between them by the sun rather than the clock:
+   Two ways to read it, chosen in the page itself and remembered:
 
-     morning   the guided sequence: voice, practice, reflection, reading
-     evening   the examen, after sunIsEvening() says the sun is down
-     page      everything at once, for a reader with thirty seconds
+     page      one flowing page, the default
+     guided    the walk: voice, sit with it, the practice, then the finish
 
-   The evening switch is deliberate and reversible from the page itself. An app that
-   silently becomes a different app at dusk would be alarming; one that offers the
-   evening's work and lets you go back to the morning's is just attentive. */
+   At dusk the page does not change into something else. It adds one quiet
+   card at the top that opens the examined evening in Reflection. An app that
+   silently became a different app after sunset was alarming; one that offers
+   the evening's work and stays where it was is just attentive. */
 
 var todayStep = 0;
 var todayReturnSeen = false;   // the return card shows once per sitting
 var todayKeptFired = null;     // the day key the kept event last went out for
+var todayForceMode = null;     // 'guided' | 'page' | null (= the saved preference)
+var liftSeed = 0;              // "Another" deals a fresh pair for the session; nothing is recorded
 
 /* After three or more missed days, the first thing Today says is not a broken
    number: it is a door. The record keeps what you kept; the year kept your
@@ -36,8 +38,6 @@ function todayReturnCard() {
     '<button class="keep" data-act="returnBegin">Begin again</button></div>';
 }
 FL_ACTS.returnBegin = function () { todayReturnSeen = true; todayStep = 0; render(); };
-var todayExamenKind = 'day';   // 'day' (Seneca's three) | 'shift' (the debrief)
-var todayForceMode = null;     // 'morning' | 'evening' | null (= follow the sun)
 
 /* Keyed by the track actually being read, not the raw preference: flActiveTrack()
    falls back to the Philosophers for a track that is unknown or unfinished, and
@@ -110,21 +110,25 @@ FL_ACTS.todayStep = function (el) {
   window.scrollTo(0, 0);
 };
 
+/* 'page' and 'guided' are remembered; 'evening' is a door to Reflection, where
+   the examen lives now; 'morning' is the old name for the guided walk and is
+   kept so a stale button cannot do nothing. */
 FL_ACTS.todayMode = function (el) {
   if (typeof pacer !== 'undefined' && pacer.on) pacerStop();
   var m = el.getAttribute('data-mode');
-  if (m === 'page' || m === 'guided') {
-    FL.prefs.todayMode = m; flSave();
-    /* clear the session override, or these buttons silently do nothing after
-       a forced morning/evening. 'Guided' chosen during the evening forces the
-       morning walk, that is what the button promises at that hour, while a
-       daytime choice leaves the automatic dusk turn intact. */
-    todayForceMode = (m === 'guided' && sunIsEvening()) ? 'morning' : null;
-  }
-  else { todayForceMode = m; }
+  if (m === 'evening') { location.hash = '#/reflect'; return; }
+  if (m === 'morning') m = 'guided';
+  FL.prefs.todayMode = m; flSave();
+  todayForceMode = null;
   todayStep = 0;
   render();
   window.scrollTo(0, 0);
+};
+
+FL_ACTS.liftAgain = function () {
+  liftSeed++;
+  render();
+  announce('Two more lines.');
 };
 
 /* FL.intents is the ONLY source of truth for the chosen intent: a session
@@ -144,6 +148,38 @@ function todayVoice(m, d, e) {
     '<span class="qs">' + esc(e.s) + '</span><span class="qtr">' + esc(e.t) + '</span>' +
     provNote(e.n) + '<br>' +
     keepButton(m, d, true) + '</div>';
+}
+
+/* Two lines from the lift bank, chosen by the day; "Another" walks the seed. */
+function todayLift(doy) {
+  if (typeof UPLIFT === 'undefined' || !UPLIFT.length) return '';
+  var n = UPLIFT.length;
+  var a = (doy + liftSeed * 13) % n;
+  var b = (doy * 7 + 3 + liftSeed * 17) % n;
+  if (b === a) b = (b + 1) % n;
+  var one = function (i) {
+    var u = UPLIFT[i];
+    return '<div class="lift"><p class="lq">“' + esc(u[0]) + '”</p>' +
+      '<span class="ls">' + esc(u[1]) + '</span></div>';
+  };
+  return '<div class="label">A lift for the day</div>' + one(a) + one(b) +
+    '<div style="text-align:center;margin-top:4px"><button class="keep" data-act="liftAgain">Another</button></div>';
+}
+
+/* One short teaching for the month, in the app's own voice. */
+function todayTeaching(m, doy) {
+  if (typeof TEACHINGS === 'undefined' || !TEACHINGS[m - 1]) return '';
+  var set = TEACHINGS[m - 1];
+  var t = set[doy % set.length];
+  return '<div class="teach"><p class="pt">' + esc(trackMonths()[m - 1][1]) + '</p>' +
+    '<p class="px">' + esc(t) + '</p></div>';
+}
+
+function todayEveningCard() {
+  if (!sunIsEvening()) return '';
+  return '<div class="card evecard" style="margin-bottom:18px"><p class="pt">The sun is down</p>' +
+    '<p class="px">The examined evening is waiting in Reflection: Seneca’s three questions, or the shift’s last call.</p>' +
+    '<a class="keep" href="#/reflect" style="text-decoration:none">Open the evening</a></div>';
 }
 
 function todayIntentPanel() {
@@ -169,7 +205,7 @@ function todayPractice(p) {
   /* the two practices the app can now actually run link to their rooms */
   var door = '';
   if (p[0] === 'The Examined Evening') {
-    door = ' <button class="keep" data-act="todayMode" data-mode="evening">Hold it tonight</button>';
+    door = ' <a class="keep" href="#/reflect" style="text-decoration:none">Hold it tonight</a>';
   } else if (p[0] === 'Premeditatio Malorum') {
     door = ' <a class="keep" href="#/body" style="text-decoration:none">The Rehearsal: three minutes, timed</a>';
   }
@@ -228,29 +264,26 @@ function todaySortPanel() {
     '<p class="px" style="margin-top:10px"><a class="readmini" href="#/floor">The floor book: reframes for real tables</a></p>';
 }
 
-function todayReadingLines(doy) {
-  return HALL_YEARS.map(function (h) {
-    return '<p class="px" style="margin-bottom:8px">' +
-      '<a href="#/hall/' + h[0] + '" style="font-weight:600">' + esc(h[1]) + '</a>: ' +
-      esc(h[4][doy - 1]) + '</p>';
-  }).join('');
-}
-
-/* The reader decides whether scripture appears on the morning page. Until they
-   say yes, at first run or in Settings, the default path stays secular and
-   the Library keeps its own tab. This is the promise the suite makes out loud:
-   the religious rooms exist, and nobody is walked into them.
-
-   When this is off the morning says NOTHING about the Library. There was once a
-   todayCanonQuiet() here that rendered a faint "there is a Library, when you
-   want it" line into the reading slot; it is gone. A reader who answered the
-   question at first run should not be re-offered the answer every morning, and
-   the Library now stands in the top nav where anyone who changes their mind can
-   see it without being told. */
 /* Kept, and still read by the goal ladder and by search: those are the two
    places outside Prayer where scripture can still appear, and the preference is
-   what decides it. Nothing on the morning page consults it any more. */
+   what decides it. Nothing on the morning page consults it. */
 function todayCanonOn() { return FL.prefs.canonLines === 'on'; }
+
+/* One event per day, the first time a morning renders. The shared layer in the
+   suite listens for this rather than counting steps from outside, and the day
+   latch keeps re-renders from sending it twice. */
+function todayFireKept() {
+  var keptDay = flToday();
+  if (todayKeptFired === keptDay) return;
+  todayKeptFired = keptDay;
+  try {
+    window.dispatchEvent(new CustomEvent('fl:morning-kept', { detail: { day: FL.days.length, streak: flStreak() } }));
+  } catch (e) {}
+}
+
+function todayDateLine() {
+  return '<div class="kick">' + esc(flShiftedNow().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })) + '</div>';
+}
 
 /* --- the guided morning --- */
 function todayGuided(m, d, e, doy, p) {
@@ -273,32 +306,12 @@ function todayGuided(m, d, e, doy, p) {
           '<button class="mchip' + (on ? ' on' : '') + '" data-act="sitBreath">' +
           (on ? 'Let it fade' : 'Pace the breaths') + '</button></div>';
       } },
-    { label: 'The practice', body: function () { return todayPractice(p); } },
-    { label: 'The reflection', body: function () {
-        var ref = jRef('day', flToday());
-        return '<p class="refl">' + esc(REFLECTIONS[doy % REFLECTIONS.length]) + '</p>' +
-          '<div style="margin-top:16px">' + jField(ref, 'Answer it, or don’t. A sentence counts.', flToday(), 5) + '</div>';
-      } },
+    { label: 'The practice', body: function () { return todayPractice(p) + todayLift(doy); } }
   ];
-
-  /* There is no reading step, for anybody, on any setting. The scripture lives
-     in Prayer and is entered on purpose. It was a step for a reader who had
-     asked for it, which was already a long way from where this began, and the
-     morning is now four steps for everyone: voice, practice, reflection, and
-     what you write. A person who wants the day's readings goes and gets them. */
 
   if (todayStep >= steps.length) {
     var streak = flStreak();
-    /* One event per day, the first time the kept state renders. The shared
-       layer listens for this rather than counting steps from outside, and the
-       day latch keeps "Walk it again" and every re-render from sending it twice. */
-    var keptDay = flToday();
-    if (todayKeptFired !== keptDay) {
-      todayKeptFired = keptDay;
-      try {
-        window.dispatchEvent(new CustomEvent('fl:morning-kept', { detail: { day: FL.days.length, streak: streak } }));
-      } catch (e) {}
-    }
+    todayFireKept();
     /* one line the reader knows by heart goes onto the floor with them,
        rotating through the by-heart shelf by the day */
     var prefix = flActiveTrack().id + ':';
@@ -314,19 +327,21 @@ function todayGuided(m, d, e, doy, p) {
         '<p class="px" style="color:var(--faint)">' + esc(ke.s) + ', you know this one. Take it with you.</p>';
     }
     return '<div class="disc" aria-hidden="true"></div>' +
-      '<div class="kick">' + esc(flShiftedNow().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })) + '</div>' +
+      todayDateLine() +
       '<h1>The morning is kept</h1>' +
       '<p class="note">' + (streak > 1 ? streak + ' consecutive mornings. ' : '') +
       FL.days.length + ' in the record.</p>' +
       '<div class="drawrow" style="justify-content:center;margin-top:24px">' +
+        '<a class="btn" href="#/reflect">Write your reflection</a>' +
         '<button class="keep" data-act="todayStep" data-to="0">Walk it again</button>' +
         '<button class="keep" data-act="todayMode" data-mode="page">See the whole page</button>' +
       '</div>' +
+      todayTeaching(m, doy) +
       ready +
       '<p class="px" style="text-align:center;margin-top:10px"><a class="readmini" href="#/reset">' +
-        'Later, mid-shift: the Walk-In: ninety seconds</a></p>' +
+        'Later, mid-shift: the Walk-In, ninety seconds</a></p>' +
       (sunIsEvening() ? '<div class="drawrow" style="justify-content:center">' +
-        '<button class="btn" data-act="todayMode" data-mode="evening">The evening examen</button></div>' : '');
+        '<a class="btn" href="#/reflect">The evening examen</a></div>' : '');
   }
 
   var s = steps[todayStep];
@@ -338,7 +353,7 @@ function todayGuided(m, d, e, doy, p) {
   }).join('');
 
   return returnCard +
-    '<div class="kick">' + esc(flShiftedNow().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })) + '</div>' +
+    todayDateLine() +
     '<h1>' + esc(trackMonths()[m - 1][1]) + '</h1>' +
     '<div class="steprow">' + dots + '</div>' +
     '<div class="label" style="margin-top:8px">' + esc(s.label) + '</div>' +
@@ -353,79 +368,34 @@ function todayGuided(m, d, e, doy, p) {
     '</div>';
 }
 
-/* --- the evening examen ---
-   Seneca's three questions, recovered from first-light.jsx. The artifact still named
-   "The Examined Evening" as a practice but had nowhere to actually do it. */
-FL_ACTS.examKind = function (el) {
-  todayExamenKind = el.getAttribute('data-kind') === 'shift' ? 'shift' : 'day';
-  render();
-};
-
-function todayExamen() {
-  var key = flToday();   /* respects prefs.dayEnd: a 2am debrief lands on the shift's own day */
-  var shift = todayExamenKind === 'shift';
-  var bank = shift ? DEBRIEF_QUESTIONS : EXAMEN_QUESTIONS;
-  var kind = shift ? 'debrief' : 'examen';
-  var fields = bank.map(function (q) {
-    var ref = jRef(kind, key + ':' + q.key);
-    return '<div class="label">' + esc(q.label) + '</div>' + jField(ref, '', key, 3, q.label);
-  }).join('');
-
-  var wrote = bank.some(function (q) { return jText(jRef(kind, key + ':' + q.key)).trim(); });
-
-  var tabs = '<div class="months" style="justify-content:center;margin-bottom:14px">' +
-    '<button class="mchip' + (!shift ? ' on' : '') + '" data-act="examKind" data-kind="day" aria-pressed="' + !shift + '">The day</button>' +
-    '<button class="mchip' + (shift ? ' on' : '') + '" data-act="examKind" data-kind="shift" aria-pressed="' + shift + '">The shift</button>' +
-    '</div>';
-
-  var kept = shift
-    ? '<p class="mintro" style="margin-top:22px">Kept. What got left here, stays here.</p>' +
-      '<p class="px" style="text-align:center"><a href="#/body">After close: twelve minutes on the floor before bed</a></p>'
-    : '<p class="mintro" style="margin-top:22px">Kept. The day is closed.</p>';
-
-  return '<div class="disc" aria-hidden="true"></div>' +
-    '<div class="kick">' + esc(flShiftedNow().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })) + '</div>' +
-    '<h1>' + (shift ? 'Last call' : 'The examined evening') + '</h1>' +
-    (shift
-      ? '<p class="note">The shift has a residue, and it does not belong in your bed. ' +
-        'Four questions. No one else reads the answers, not a manager, not anyone.</p>'
-      : '<p class="note">Seneca pleaded his case before his own court each night, and hid nothing from himself. ' +
-        'His three questions, and a fourth to leave at the door. No one else reads the answers.</p>') +
-    tabs +
-    fields +
-    (wrote ? kept : '') +
-    '<div style="text-align:center;margin-top:22px">' +
-      '<button class="readmini" data-act="todayMode" data-mode="morning">Back to the morning</button> ' +
-      '<button class="readmini" data-act="todayMode" data-mode="page">The whole page</button>' +
-    '</div>';
-}
-
 /* --- the whole page --- */
 function todayPage(m, d, e, doy, p) {
   var streak = flStreak();
   var count = streak > 1
     ? 'Morning ' + FL.days.length + ' of your record · ' + streak + ' consecutive'
     : 'Morning ' + FL.days.length + ' of your record.';
+  todayFireKept();
 
   return '<div class="disc" aria-hidden="true"></div>' +
-    '<div class="kick">' + esc(flShiftedNow().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })) + '</div>' +
+    todayDateLine() +
     '<div class="streakline">' + esc(count) + '</div>' +
     '<h1>' + esc(trackMonths()[m - 1][1]) + '</h1>' +
     '<p class="note">' + esc(trackMonths()[m - 1][2]) + '</p>' +
-    todayVoice(m, d, e) +
-    '<p class="refl" style="margin-top:10px">' + esc(TURN_PROMPTS[doy % TURN_PROMPTS.length]) + '</p>' +
-    '<div class="label">Today’s practice</div>' + todayPractice(p) +
-    '<div class="label">Reflection</div>' +
-    '<p class="refl">' + esc(REFLECTIONS[doy % REFLECTIONS.length]) + '</p>' +
-    '<div style="margin-top:14px">' + jField(jRef('day', flToday()), 'Answer it, or don’t. A sentence counts.', flToday(), 4) + '</div>' +
-    /* "Today in the five canons" stood here. Nothing does now: the morning page
-       carries no scripture on any setting, and Prayer is a tab you open. */
-    todayIntentPanel() +
-    todaySortPanel() +
+    '<div class="flow">' +
+      todayReturnCard() +
+      todayEveningCard() +
+      todayVoice(m, d, e) +
+      '<p class="refl" style="margin-top:10px">' + esc(TURN_PROMPTS[doy % TURN_PROMPTS.length]) + '</p>' +
+      todayLift(doy) +
+      todayTeaching(m, doy) +
+      '<div class="label">Today’s practice</div>' + todayPractice(p) +
+      todayIntentPanel() +
+      todaySortPanel() +
+    '</div>' +
     '<div style="text-align:center;margin-top:26px">' +
-      '<a class="readmini" href="#/reset">The Walk-In: ninety seconds, mid-shift</a> ' +
-      '<button class="readmini" data-act="todayMode" data-mode="guided">Walk it through instead</button>' +
-      (sunIsEvening() ? ' <button class="readmini" data-act="todayMode" data-mode="evening">The evening examen</button>' : '') +
+      '<a class="readmini" href="#/reflect">Write your reflection</a> ' +
+      '<button class="readmini" data-act="todayMode" data-mode="guided">Walk it through instead</button> ' +
+      '<a class="readmini" href="#/reset">The Walk-In: ninety seconds, mid-shift</a>' +
     '</div>';
 }
 
@@ -442,12 +412,8 @@ FL_VIEWS.today = {
     var doy = doyOf(m, d);
     var p = PRACTICES[(now.getDay() + 7 - (Number(FL.prefs.weekAnchor) || 0)) % 7];
 
-    var mode = todayForceMode ||
-               (FL.prefs.todayMode === 'page' ? 'page'
-                : sunIsEvening() ? 'evening' : 'guided');
-
-    if (mode === 'evening') return todayExamen();
-    if (mode === 'page') return todayPage(m, d, e, doy, p);
-    return todayGuided(m, d, e, doy, p);
+    var mode = todayForceMode || (FL.prefs.todayMode === 'guided' ? 'guided' : 'page');
+    if (mode === 'guided') return todayGuided(m, d, e, doy, p);
+    return todayPage(m, d, e, doy, p);
   }
 };

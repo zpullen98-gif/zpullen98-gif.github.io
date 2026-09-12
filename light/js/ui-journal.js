@@ -17,10 +17,10 @@ FL_VIEWS.journal = {
 
     if (!all.length) {
       return head + '<p class="note" style="margin-top:26px">Nothing written yet. ' +
-        'The reflection on Today is the usual place to start, and a single sentence counts. ' +
+        'The Reflection tab is the usual place to start, and a single sentence counts. ' +
         'Anything you write is kept on this device and appears here.</p>' +
         '<div class="drawrow" style="justify-content:center;margin-top:20px">' +
-        '<a class="btn" href="#/today">Go to today</a></div>';
+        '<a class="btn" href="#/reflect">Go to Reflection</a></div>';
     }
 
     var days = jDays().length;

@@ -208,6 +208,29 @@ nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accen
   .nav-tools a { font-size: 11px; }
 }
 
+/* ═══ the lift and the teaching ═══ */
+/* Two lines that raise the morning, and one short teaching for the month. The
+   cards sit on --paper like every other card; the accent rule on the lift is
+   the only ornament. */
+.lift { padding: 18px 20px; margin: 12px 0; background: var(--paper); border-left: 2px solid var(--accent);
+  border-radius: 3px; box-shadow: var(--shadow); }
+.lift .lq { font-family: var(--serif); font-style: italic; font-size: 20px; line-height: 1.45; margin: 0 0 8px; }
+.lift .ls { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); }
+.teach { padding: 20px 22px; margin: 14px 0 6px; background: var(--paper); border-radius: 3px; box-shadow: var(--shadow); }
+.teach .pt { font-size: 18px; }
+.evecard { text-align: center; }
+/* The page arrives rather than appears: each block rises a few pixels into
+   place, staggered down the page. The reduced-motion block above zeroes it. */
+.flow > * { animation: rise .6s ease both; }
+.flow > :nth-child(2) { animation-delay: .05s; }
+.flow > :nth-child(3) { animation-delay: .1s; }
+.flow > :nth-child(4) { animation-delay: .15s; }
+.flow > :nth-child(5) { animation-delay: .2s; }
+.flow > :nth-child(6) { animation-delay: .25s; }
+.flow > :nth-child(7) { animation-delay: .3s; }
+.flow > :nth-child(n+8) { animation-delay: .35s; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
 /* ═══ the disc ═══ */
 .disc {
   width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 24px;
