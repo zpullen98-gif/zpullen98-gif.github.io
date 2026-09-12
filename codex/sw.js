@@ -1,6 +1,21 @@
 /* The Sommelier's Codex: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-codex-v93';
+const CACHE = 'oot-codex-v95';
+
+/* The world maps (maps/*.jpg) are deliberately NOT in ASSETS above.
+
+   This wing precaches one asset at a time rather than atomically, so a
+   missing map would not take the offline shell down with it, but everything
+   in ASSETS is still re-downloaded in full on every CACHE bump and these
+   files are large.
+
+   So they live here instead, in a cache of their own that the page fills only
+   when the reader asks for it. THE NAME DOES NOT CARRY THIS WORKER'S PREFIX
+   ON PURPOSE: activate below deletes every cache matching 'oot-codex-', and
+   the standalone tree's worker sweeps 'codex-'. A name caught by either would
+   be swept away on the first deploy after somebody stored nine megabytes of
+   maps. This one is caught by neither. */
+const MAPS = 'codexmaps-v1';
 
 const ASSETS = [
   './',
@@ -32,6 +47,7 @@ const ASSETS = [
   './js/data-tasting.js',
   './js/data-floor.js',
   './js/data-pairing.js',
+  './js/data-maps.js',
   './js/data-advanced.js',
   './js/data-primers-advanced.js',
   './js/data-master.js',
@@ -51,6 +67,7 @@ const ASSETS = [
   './js/codex20.js',
   './js/codex21.js',
   './js/codex22.js',
+  './js/codex23.js',
   './js/wine-rows.js',
   './js/wine-parse.js',
   './js/data-producers.js',
@@ -129,6 +146,15 @@ self.addEventListener('fetch', e => {
      by ignoreSearch, and the interception itself made crawler-style fetches
      flaky. Anything else, the browser handles natively. */
   if (!url.pathname.startsWith('/codex/') && !url.pathname.startsWith('/shared/')) return;
+
+  /* Served out of the maps cache, never out of CACHE, so a deploy cannot
+     throw away what the reader chose to keep. Falling through to the network
+     covers a map that is present on the server and not yet stored. */
+  if (url.pathname.indexOf('/maps/') >= 0) {
+    e.respondWith(caches.open(MAPS).then(c =>
+      c.match(e.request).then(hit => hit || fetch(e.request))));
+    return;
+  }
   e.respondWith(
     /* Scoped to OUR cache. The bare caches.match() walks every cache on the
        origin in creation order and returns the first hit, and since Phase 2
