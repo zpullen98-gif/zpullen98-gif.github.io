@@ -248,13 +248,19 @@ decorateHome=function(){
     flag.querySelector('p').textContent='Drill your '+nf+' bookmarked questions.';
     flag.disabled=!nf;
   }
-  /* intro compendium row */
-  if(activeLevel==='intro'){
+  /* THE COMPENDIUM, AT EVERY RANK.
+     It was gated to intro, which meant the twelve hand-drawn maps and their
+     ninety eight regions were invisible at the three ranks where tasting and
+     service are actually examined. A region does not move when a student is
+     promoted, and a Premier Cru candidate needs the map more than a beginner
+     does, not less. The tile keeps its own name at intro and loses the rank
+     word above it, because it is no longer a Régionale thing. */
+  if(true){
     var modes=document.querySelectorAll('.modes');
     var anchor=modes[modes.length-1];
     if(anchor&&!document.getElementById('t-compendium')){
       var m7=el('<div class="modes" style="margin-top:14px"></div>');
-      m7.appendChild(el('<button class="mode" id="t-compendium"><div class="band"></div><h3>The Régionale Compendium</h3><p>'
+      m7.appendChild(el('<button class="mode" id="t-compendium"><div class="band"></div><h3>'+(activeLevel==='intro'?'The Régionale Compendium':'The Compendium')+'</h3><p>'
         +INTRO_ATLAS.length+' hand-drawn country maps with '+INTRO_ATLAS.reduce(function(a,c){return a+c.r.length;},0)+' regions, classification pyramids for '+INTRO_CLASS.length+' nations, winemaking, soils, sweet wines, and all '+INTRO_GRAPES.length+' grapes.</p></button>'));
       anchor.parentNode.insertBefore(m7,anchor.nextSibling);
       m7.querySelector('#t-compendium').onclick=function(){S.cmp=null;S.view='compendium';render();};
