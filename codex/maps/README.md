@@ -24,10 +24,12 @@ not shown, so the folder can be filled in any order and at any pace.
 | 13 | Australia | `australia.jpg` |
 | 14 | New Zealand | `new-zealand.jpg` |
 | 15 | South Africa | `south-africa.jpg` |
+| 16 | Hungary | `hungary.jpg` |
+| 17 | Greece | `greece.jpg` |
 
 Lower case, hyphens not spaces, `.jpg` not `.jpeg`.
 
-While this folder is empty the browser console shows fifteen 404s on every
+While a map is missing the browser console shows a 404 for it on every
 load. That is the app asking whether each map is there yet and being told no.
 It is not a fault, nothing is broken by it, and it stops the moment the files
 land. The World Map door stays hidden until at least one of them does.
@@ -51,14 +53,20 @@ interrupted first visit must never leave somebody with a broken app. They
 load like any other image, and the World Map tab offers to keep them on the
 device, in a cache called `codexmaps-v1` that survives every later deploy.
 
-## Adding a sixteenth
+## Adding an eighteenth
 
-Two regions the app examines have no map: **Hungary and Greece** (Tokaj,
-Eger, Santorini, Nemea, Naoussa) and **Canada** (Niagara, Okanagan). Virginia
-and Texas are examined and are currently listed under New York with a note
-saying they are on no map yet.
+One examined region still has no map: **Canada** (Niagara Peninsula,
+Okanagan, icewine), which the app tests inside its Pacific Northwest
+category. Virginia and Texas are examined too, and are listed under New York
+with a note saying they are on no map yet.
 
 To add one, put the file here and add a row to `MAP_SHEETS` in
-`js/data-maps.js`, giving its `id`, its `name`, the matching `INTRO_ATLAS`
-country name, and the drill section it should offer. Then add the id to the
-right group in `MAP_GROUPS`.
+`js/data-maps.js`, giving its `id`, its `name`, and the drill section it
+should offer. Then add the id to the right group in `MAP_GROUPS`.
+
+Where the country already exists in `INTRO_ATLAS`, give the row an `atlas`
+key naming it and the regions come across on their own. Where it does not,
+as with Hungary and Greece, give it an `own` key and add its regions to
+`MAP_OWN_REGIONS` at the foot of the same file. Write those against the app's
+own question bank rather than from memory, or the map will teach a student
+something the exam then marks wrong.
