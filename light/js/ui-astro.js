@@ -158,7 +158,7 @@ FL_VIEWS.astro = {
         '<p class="px">Birth date, time and place give the real positions of all ten bodies, ' +
         'the Ascendant and Midheaven, the twelve house cusps and every aspect: worked out on ' +
         'this device from an ephemeris, not looked up in a table. The birth details never leave this device; ' +
-        'if you are signed in, only a count of mornings and your streak is recorded.</p>' +
+        'Only a count of mornings and your streak are kept alongside them.</p>' +
         '<a class="keep" href="#/chart">Draw my chart</a>' +
       '</div>' +
 

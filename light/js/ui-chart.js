@@ -188,7 +188,7 @@ FL_VIEWS.chart = {
 
     return '<a class="keep" style="margin-bottom:20px" href="#/astro">← Astrology</a>' +
       '<div class="kick">Computed on this device</div><h1>Your chart</h1>' +
-      '<p class="note">Real positions for the ten bodies, the Ascendant and Midheaven, the house cusps and the aspects, worked out here and kept here; if you are signed in, only a count of mornings and your streak is recorded.</p>' +
+      '<p class="note">Real positions for the ten bodies, the Ascendant and Midheaven, the house cusps and the aspects, worked out here and kept here. Only a count of mornings and your streak are kept alongside them.</p>' +
       form + body;
   },
 

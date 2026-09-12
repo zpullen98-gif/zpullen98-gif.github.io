@@ -178,7 +178,7 @@ document.addEventListener('keydown', function (e) {
 function flOnboardHTML() {
   return '<div class="kick">First Light</div>' +
     '<h1>Two minutes, most mornings</h1>' +
-    '<p class="note">Your words never leave this device; if you are signed in, a count of mornings and your streak is recorded. ' +
+    '<p class="note">Your words never leave this device. The count of mornings and your streak are kept here too. ' +
     'No manager, no feed: what you write stays in this browser, and exports to a file you own.</p>' +
     '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +
     '<div class="pacer-label" id="pacer-label">Ready</div>' +

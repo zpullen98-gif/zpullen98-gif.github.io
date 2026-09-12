@@ -256,7 +256,7 @@ FL_VIEWS.settings = {
       '<div class="label">Where you are</div>' +
       '<div class="card">' + located +
         '<p class="vidnote" style="margin-top:10px">Used only on this device, only to compute the hour of the sun. ' +
-        'It never leaves this device; if you are signed in, only a count of mornings and your streak is recorded.</p>' +
+        'It never leaves this device. Only a count of mornings and your streak are kept alongside them.</p>' +
       '</div>' +
 
       '<div class="label">Your record</div>' +
@@ -266,7 +266,7 @@ FL_VIEWS.settings = {
         '<div class="astrorow"><span class="k">Longest streak</span> ' + flLongestStreak() + '</div>' +
         '<div class="astrorow"><span class="k">Kept voices</span> ' + totalKept + '</div>' +
         '<div class="astrorow"><span class="k">Goals checked</span> ' + totalChecks + '</div>' +
-        '<p class="px" style="margin:14px 0 10px;color:var(--faint)">Your words never leave this device; if you are signed in, a count of mornings and your streak is recorded. ' +
+        '<p class="px" style="margin:14px 0 10px;color:var(--faint)">Your words never leave this device. The count of mornings and your streak are kept here too. ' +
         'Anyone who opens this app on this device can read this room, so use your own phone for what is yours alone. ' +
         'Export before you change phones, clear your browser, or do anything you might regret.</p>' +
         '<button class="btn" data-act="exportRecord">Export</button> ' +
@@ -336,6 +336,6 @@ FL_VIEWS.settings = {
       '<p class="px" style="margin-top:26px;text-align:center;color:var(--faint)">' +
         '<a class="readmini" href="#/clear">For anyone thinking about their drinking: a room of its own.</a></p>' +
 
-      '<p class="mintro" style="margin-top:16px">Your words never leave this device; if you are signed in, a count of mornings and your streak is recorded.</p>';
+      '<p class="mintro" style="margin-top:16px">Your words never leave this device. The count of mornings and your streak are kept here too.</p>';
   }
 };

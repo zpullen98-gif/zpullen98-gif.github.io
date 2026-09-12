@@ -50,8 +50,7 @@ function libShelf() {
 
   var out = '<div class="kick">' + wordFor(FL_TRADITIONS.length) + ' traditions, ' +
       wordFor(works) + ' works</div><h1>The Library</h1>' +
-    '<p class="note">Complete scriptures, ' + FLBytes(bytesAll) + ' of them, held on this device. ' +
-    'Nothing here needs a connection once it has been opened.</p>' +
+    '<p class="note">Complete scriptures, ' + FLBytes(bytesAll) + ' of them. Each book is stored the first time you open it, and needs no connection afterwards.</p>' +
     '<div class="drawrow" style="justify-content:center;margin-top:18px">' +
       '<a class="keep" href="#/threads">The threads: one question, seven answers</a>' +
       '<a class="keep" href="#/hall">The year’s reading plans</a>' +
