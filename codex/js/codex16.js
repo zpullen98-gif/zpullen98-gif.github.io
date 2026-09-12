@@ -756,6 +756,11 @@ applyLevel = function (lvl, skipRender) {
     '.wimp-note{font-size:.82rem;line-height:1.5;opacity:.68;font-style:italic;margin-bottom:8px}',
     '.codexfind .sainput{width:100%}',
     '.codexfind .seclist{margin-top:8px}',
+    /* .seclist is an auto-fill grid, so a heading dropped into it takes a
+       cell and sits BESIDE the first two results instead of above them. */
+    '.codexfind .seclist .secgroup{grid-column:1/-1;margin:10px 0 0}',
+    '.codexfind .seclist .secgroup:first-child{margin-top:0}',
+    '.codexfind .sub{grid-column:1/-1}',
     '@media(prefers-reduced-motion:reduce){.codexdoor{transition:none}',
     '  .codexdoor:hover{transform:none}}'
   ].join('\n');
