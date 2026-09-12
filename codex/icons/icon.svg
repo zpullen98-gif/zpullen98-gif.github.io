@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%" r="90%">
+      <stop offset="0%" stop-color="#331420"/>
+      <stop offset="60%" stop-color="#1c0d11"/>
+      <stop offset="100%" stop-color="#130709"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f2e2a8"/>
+      <stop offset="55%" stop-color="#c9a227"/>
+      <stop offset="100%" stop-color="#8a6d17"/>
+    </linearGradient>
+    <radialGradient id="wine" cx="40%" cy="25%" r="90%">
+      <stop offset="0%" stop-color="#a03348"/>
+      <stop offset="55%" stop-color="#7b1e2e"/>
+      <stop offset="100%" stop-color="#4a1220"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <rect x="18" y="18" width="476" height="476" rx="82" fill="none" stroke="#c9a227" stroke-opacity=".55" stroke-width="6"/>
+  <rect x="32" y="32" width="448" height="448" rx="70" fill="none" stroke="#c9a227" stroke-opacity=".28" stroke-width="2"/>
+
+  <!-- corner fleurons -->
+  <g fill="#c9a227" fill-opacity=".8" font-family="Georgia,serif" font-size="44" text-anchor="middle">
+    <text x="86" y="104">❧</text>
+    <text x="426" y="104" transform="scale(-1,1) translate(-852,0)">❧</text>
+    <text x="86" y="452" transform="scale(1,-1) translate(0,-880)">❧</text>
+    <text x="426" y="452" transform="scale(-1,-1) translate(-852,-880)">❧</text>
+  </g>
+
+  <!-- chalice -->
+  <g>
+    <!-- bowl -->
+    <path d="M136 138 h240 v50 a120 132 0 0 1 -240 0 z" fill="none" stroke="url(#gold)" stroke-width="14"/>
+    <!-- wine surface inside bowl -->
+    <path d="M152 176 h208 v14 a104 112 0 0 1 -208 0 z" fill="url(#wine)"/>
+    <ellipse cx="256" cy="178" rx="104" ry="13" fill="#a03348"/>
+    <ellipse cx="222" cy="175" rx="30" ry="5" fill="#c76a7d" opacity=".55"/>
+    <!-- stem -->
+    <rect x="249" y="316" width="14" height="82" rx="7" fill="url(#gold)"/>
+    <!-- foot -->
+    <path d="M176 408 q80 -26 160 0" fill="none" stroke="url(#gold)" stroke-width="14" stroke-linecap="round"/>
+  </g>
+
+  <!-- star above -->
+  <text x="256" y="112" font-family="Georgia,serif" font-size="52" fill="#f2e2a8" text-anchor="middle">✦</text>
+</svg>

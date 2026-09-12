@@ -1,0 +1,24 @@
+{
+ "title": "Three Upanishads",
+ "translation": "Swami Paramananda — Isa, Katha and Kena, with his commentary",
+ "license": "Public domain",
+ "source": "Project Gutenberg",
+ "whole": true,
+ "chapters": [
+  {
+   "n": 1,
+   "title": "Isa-Upanishad",
+   "blocks": 64
+  },
+  {
+   "n": 2,
+   "title": "Katha-Upanishad",
+   "blocks": 310
+  },
+  {
+   "n": 3,
+   "title": "Kena-Upanishad",
+   "blocks": 103
+  }
+ ]
+}

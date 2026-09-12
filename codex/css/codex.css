@@ -1,0 +1,566 @@
+/* The Sommelier's Codex, self-hosted type: Cinzel, Cinzel Decorative, EB Garamond */
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:400 900;font-display:swap;src:url('../fonts/cinzel-normal-400-900-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:400 900;font-display:swap;src:url('../fonts/cinzel-normal-400-900-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cinzel Decorative';font-style:normal;font-weight:700;font-display:swap;src:url('../fonts/cinzeldecorative-normal-700-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Cinzel Decorative';font-style:normal;font-weight:700;font-display:swap;src:url('../fonts/cinzeldecorative-normal-700-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cinzel Decorative';font-style:normal;font-weight:900;font-display:swap;src:url('../fonts/cinzeldecorative-normal-900-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Cinzel Decorative';font-style:normal;font-weight:900;font-display:swap;src:url('../fonts/cinzeldecorative-normal-900-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:italic;font-weight:400 800;font-display:swap;src:url('../fonts/ebgaramond-italic-400-800-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:italic;font-weight:400 800;font-display:swap;src:url('../fonts/ebgaramond-italic-400-800-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:400 800;font-display:swap;src:url('../fonts/ebgaramond-normal-400-800-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:400 800;font-display:swap;src:url('../fonts/ebgaramond-normal-400-800-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root{
+  --bg:#130709;
+  --bg2:#1c0d11;
+  --parch:#ecdfc0;
+  --parch2:#e1d0a8;
+  --ink:#2b1a10;
+  --ink-soft:#5d4530;
+  --gold:#c9a227;
+  --gold-soft:#e6cf8a;
+  --gold-hi:#f2e2a8;
+  --claret:#7b1e2e;
+  --claret-deep:#4a1220;
+  --green:#3c6045;
+  --red:#9c2f2f;
+  --line:rgba(201,162,39,.30);
+
+  /* The shared home components in shared/oot-home.css carry no colour of
+     their own. This maps the Codex's palette onto them, so a section header
+     there is this wing's gold and a rule is this wing's line. */
+  --oot-accent:var(--gold);
+  --oot-line:var(--line);
+  --oot-ink:var(--parch);
+  --oot-dim:var(--parch2);
+  --oot-raise:var(--bg2);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:radial-gradient(1200px 700px at 50% -10%, #2a1520 0%, var(--bg) 60%);color:var(--parch);font-family:'Archivo',system-ui,-apple-system,sans-serif;min-height:100vh;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding:18px 16px 80px}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif}
+a{color:var(--gold)}
+button{font-family:inherit;cursor:pointer;border:none}
+
+/* ------- header ------- */
+/* The title is centred on the page, not floated beside a badge. Return is taken
+   out of the flow so it cannot pull the centre off to one side: with the button
+   in the flex row, the title sat centred only on the home view and shifted left
+   on every other one. */
+.topbar{position:relative;display:flex;align-items:center;justify-content:center;
+  min-height:44px;padding:8px 0 16px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.brand{display:flex;align-items:center;justify-content:center;text-align:center}
+.brand h1{font-size:17px;font-weight:600;letter-spacing:.3px}
+.homebtn{position:absolute;right:0;top:50%;transform:translateY(-50%);
+  background:transparent;color:var(--gold-soft);border:1px solid var(--line);padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;transition:.15s}
+.homebtn:hover{background:rgba(200,151,63,.12)}
+
+/* ------- home ------- */
+.hero{text-align:center;padding:14px 8px 26px}
+.hero h2{font-size:clamp(28px,5.5vw,40px);font-weight:600;line-height:1.15}
+.hero h2 em{font-style:italic;color:var(--gold)}
+.hero .lead{margin-top:10px;color:var(--gold-soft);font-size:15px}
+.statrow{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:18px 0 6px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:10px 18px;min-width:104px;background:rgba(0,0,0,.22)}
+.stat b{display:block;font-family:'Fraunces',serif;font-size:24px;color:var(--gold)}
+.stat span{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold-soft)}
+.fmtnote{max-width:620px;margin:10px auto 0;font-size:13px;color:rgba(242,232,213,.72)}
+
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:22px}
+.mode{background:linear-gradient(160deg,var(--parch) 0%,var(--parch2) 100%);color:var(--ink);border-radius:14px;padding:20px 18px;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,.45);transition:transform .15s;position:relative;overflow:hidden}
+.mode:hover{transform:translateY(-3px)}
+.mode h3{font-size:19px;margin:8px 0 4px;font-weight:700}
+.mode p{font-size:13px;color:var(--ink-soft)}
+.mode .band{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--claret),var(--gold))}
+
+/* ------- drill list ------- */
+.seclist{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px}
+.secbtn{background:rgba(242,232,213,.05);border:1px solid var(--line);color:var(--parch);border-radius:10px;padding:12px 14px;text-align:left;font-size:14px;font-weight:500;display:flex;justify-content:space-between;align-items:center;gap:8px;transition:.15s}
+.secbtn:hover{background:rgba(200,151,63,.14)}
+.secbtn .n{font-family:'Fraunces',serif;color:var(--gold);font-size:14px}
+.viewhead{margin:6px 0 4px}
+.viewhead h2{font-size:24px}
+.viewhead .sub{color:var(--gold-soft);font-size:13px;margin-top:4px}
+
+/* ------- quiz ------- */
+.quizbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;font-size:13px;color:var(--gold-soft)}
+.timer{font-family:'Fraunces',serif;font-size:20px;color:var(--gold);font-variant-numeric:tabular-nums}
+.timer.low{color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.55}}
+.progress{height:4px;background:rgba(242,232,213,.12);border-radius:2px;margin-bottom:18px;overflow:hidden}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--claret),var(--gold));transition:width .25s}
+
+.card{background:linear-gradient(165deg,var(--parch) 0%,var(--parch2) 100%);color:var(--ink);border-radius:16px;padding:24px 22px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.qmeta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
+.qcat{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--claret);font-weight:700}
+.qtype{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft);border:1px solid rgba(42,28,20,.25);border-radius:10px;padding:2px 9px}
+.qtext{font-family:'Fraunces',Georgia,serif;font-size:19px;line-height:1.45;font-weight:600;margin-bottom:18px}
+.opts{display:grid;gap:9px}
+.opt{background:rgba(255,255,255,.5);border:1.5px solid rgba(42,28,20,.22);border-radius:10px;padding:12px 14px;text-align:left;font-size:15px;color:var(--ink);display:flex;gap:10px;align-items:baseline;transition:.12s}
+.opt:hover:not(:disabled){border-color:var(--claret);background:#fff}
+.opt:disabled{cursor:default}
+.opt .key{font-family:'Fraunces',serif;font-weight:700;color:var(--claret);min-width:16px}
+.opt.correct{background:#e3eee5;border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
+.opt.wrong{background:#f3dcdc;border-color:var(--red)}
+.opt.dim{opacity:.55}
+
+.sarow{display:flex;gap:10px;flex-wrap:wrap}
+.sainput{flex:1;min-width:200px;font-family:'Fraunces',Georgia,serif;font-size:18px;padding:12px 14px;border:1.5px solid rgba(42,28,20,.35);border-radius:10px;background:rgba(255,255,255,.75);color:var(--ink)}
+.sainput:focus{outline:2px solid var(--claret);border-color:var(--claret)}
+.btn{background:var(--claret);color:var(--parch);border-radius:10px;padding:12px 22px;font-size:14px;font-weight:700;letter-spacing:.4px;transition:.15s}
+.btn:hover{background:var(--claret-deep)}
+.btn.ghost{background:transparent;color:var(--claret);border:1.5px solid var(--claret)}
+.btn.small{padding:8px 14px;font-size:13px}
+.btn.gold{background:var(--gold);color:var(--ink)}
+
+.reveal{margin-top:16px;border-top:1px dashed rgba(42,28,20,.3);padding-top:14px}
+.verdict{font-family:'Fraunces',serif;font-size:17px;font-weight:700;margin-bottom:6px}
+.verdict.ok{color:var(--green)}
+.verdict.no{color:var(--red)}
+.answer-line{font-size:15px;margin-bottom:6px}
+.answer-line b{color:var(--claret)}
+.exp{font-size:14px;color:var(--ink-soft);font-style:italic}
+.selfgrade{margin-top:10px;display:flex;gap:8px;align-items:center;font-size:13px;color:var(--ink-soft);flex-wrap:wrap}
+.nextrow{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:10px}
+.skipbtn{background:none;color:var(--ink-soft);font-size:13px;text-decoration:underline}
+
+/* ------- results ------- */
+.result-hero{text-align:center;padding:26px 12px}
+.result-hero .big{font-family:'Fraunces',serif;font-size:56px;font-weight:700;color:var(--gold)}
+.result-hero .passfail{font-family:'Fraunces',serif;font-size:22px;margin-top:4px}
+.pass{color:#7fc492}.fail{color:#e08585}
+.result-hero .sub2{color:var(--gold-soft);font-size:13px;margin-top:8px}
+.catbreak{margin-top:22px;display:grid;gap:8px}
+.catrow{display:flex;align-items:center;gap:10px;font-size:13px}
+.catrow .cname{flex:0 0 46%;text-align:right;color:var(--parch)}
+.catrow .bar{flex:1;height:9px;background:rgba(242,232,213,.12);border-radius:5px;overflow:hidden}
+.catrow .bar i{display:block;height:100%;background:var(--gold)}
+.catrow .pct{flex:0 0 62px;color:var(--gold-soft);font-variant-numeric:tabular-nums}
+.misslist{margin-top:24px;display:grid;gap:10px}
+.miss{background:rgba(242,232,213,.06);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px}
+.miss .mq{font-family:'Fraunces',serif;font-weight:600;margin-bottom:4px}
+.miss .ma{color:#7fc492}
+.miss .mu{color:#e08585}
+.miss .mexp{color:rgba(242,232,213,.65);font-style:italic;font-size:13px;margin-top:3px}
+.centerrow{display:flex;justify-content:center;gap:12px;margin-top:24px;flex-wrap:wrap}
+
+/* ------- terroir atlas ------- */
+.refcountry{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--gold);margin:26px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.refrow{display:grid;grid-template-columns:1.1fr .9fr 1fr 1.6fr;gap:10px;padding:10px 12px;border:1px solid rgba(200,151,63,.16);border-radius:10px;background:rgba(242,232,213,.05);margin-bottom:8px;font-size:13px;align-items:start}
+.refr{font-family:'Fraunces',serif;font-weight:600;font-size:14px;color:var(--parch)}
+.refcl{color:var(--gold-soft)}
+.refso{color:#d9a9b2}
+.refnote{color:rgba(242,232,213,.7);font-style:italic}
+@media(max-width:700px){.refrow{grid-template-columns:1fr 1fr}.refnote{grid-column:1/-1}}
+
+/* ------- drill groups ------- */
+.secgroup{font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:var(--gold);letter-spacing:.6px;margin:20px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.secgroup:first-of-type{margin-top:10px}
+
+/* ------- flashcards ------- */
+.fctools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px;align-items:center}
+.fcprog{font-size:12px;color:var(--gold-soft);margin:4px 0 12px;letter-spacing:.4px}
+.fcstage{perspective:1400px;min-height:430px}
+.fcard{position:relative;width:100%;height:430px;transform-style:preserve-3d;transition:transform .45s ease;cursor:pointer}
+.fcard.flip{transform:rotateY(180deg)}
+.fface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:linear-gradient(165deg,var(--parch) 0%,var(--parch2) 100%);color:var(--ink);border-radius:16px;padding:26px 22px;box-shadow:0 10px 30px rgba(0,0,0,.5);overflow-y:auto}
+.fback{transform:rotateY(180deg)}
+.ffront{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px}
+.fcname{font-family:'Fraunces',Georgia,serif;font-size:34px;font-weight:700;color:var(--claret)}
+.fcname.sm{font-size:22px;margin-bottom:10px}
+.fchint{font-size:12px;color:var(--ink-soft);letter-spacing:1.2px;text-transform:uppercase}
+.gchip{display:inline-block;font-size:10px;letter-spacing:2px;font-weight:700;border-radius:10px;padding:3px 12px}
+.gchip.gw{background:rgba(200,151,63,.2);color:#8a6420;border:1px solid rgba(200,151,63,.5)}
+.gchip.gr{background:rgba(141,47,63,.14);color:var(--claret);border:1px solid rgba(141,47,63,.4)}
+.ffront .gchip{margin-bottom:2px}
+.fback .gchip{margin-bottom:8px}
+.frow{font-size:13.5px;line-height:1.5;margin-bottom:9px;padding-bottom:9px;border-bottom:1px dashed rgba(42,28,20,.18)}
+.frow b{display:block;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--claret);margin-bottom:2px}
+.frow.tellrow{background:rgba(200,151,63,.14);border:1px solid rgba(200,151,63,.4);border-radius:8px;padding:8px 10px;margin:2px 0 11px}
+.ffront .frow{width:100%;text-align:left}
+.fcbtns{display:flex;justify-content:center;gap:12px;margin-top:16px}
+.key2{opacity:.6;font-size:11px;border:1px solid currentColor;border-radius:4px;padding:0 5px;margin-left:6px}
+@media(max-width:560px){.fcard,.fcstage{height:470px;min-height:470px}.fcname{font-size:28px}}
+
+@media(max-width:560px){
+  .card{padding:18px 15px}
+  .qtext{font-size:17px}
+  .catrow .cname{flex-basis:42%;font-size:12px}
+}
+
+/* ═══════════ CODEX THEME · illuminated-manuscript overrides ═══════════ */
+body{
+  font-family:'EB Garamond',Georgia,serif;font-size:17px;
+  background:
+    radial-gradient(1300px 750px at 50% -12%, #331420 0%, transparent 60%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><g fill='none' stroke='%23c9a227' stroke-opacity='0.055' stroke-width='1.4'><path d='M20 120 q40 -70 100 -60 q60 10 100 -40'/><path d='M20 120 q40 70 100 60 q60 -10 100 40'/><path d='M60 90 q14 -22 34 -14'/><path d='M60 150 q14 22 34 14'/><circle cx='150' cy='58' r='4'/><circle cx='159' cy='66' r='4'/><circle cx='150' cy='74' r='4'/><circle cx='141' cy='66' r='4'/><circle cx='150' cy='182' r='4'/><circle cx='159' cy='174' r='4'/><circle cx='141' cy='174' r='4'/></g></svg>"),
+    var(--bg);
+  color:var(--parch);line-height:1.55}
+h1,h2,h3{font-family:'Cinzel',Georgia,serif}
+.brand h1{font-family:'Cinzel Decorative','Cinzel',serif;font-size:21px;font-weight:700;letter-spacing:1.5px;
+  background:linear-gradient(180deg,var(--gold-hi) 10%,var(--gold) 55%,#8a6d17 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 1px 0 rgba(0,0,0,.35)}
+.topbar{border-bottom:3px double var(--line);padding-bottom:14px}
+.homebtn{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.5px}
+
+/* hero as illuminated frontispiece */
+.hero{position:relative;border:1px solid var(--line);
+  box-shadow:inset 0 0 0 4px var(--bg2), inset 0 0 0 5px var(--line), 0 8px 30px rgba(0,0,0,.45)}
+.hero h2{font-family:'Cinzel',serif;font-weight:600;letter-spacing:.4px}
+.hero h2 em{font-style:normal;color:var(--gold-soft)}
+.hero h2::first-letter{font-family:'Cinzel Decorative',serif;font-size:1.28em;color:var(--gold)}
+/* The colophon: the motto and the notice the wing is required to carry, under
+   everything rather than in front of it. A rule of its own so the pair has air
+   above it and is read as a signature rather than as another band. */
+.colophon{margin-top:34px;padding-top:22px;border-top:1px solid var(--line)}
+.motto{font-variant:small-caps;letter-spacing:5px;font-size:13px;color:var(--gold);text-align:center;margin-top:14px}
+.nonaffil{font-size:11px;color:rgba(236,223,192,.55);text-align:center;margin-top:10px;letter-spacing:.4px}
+/* The rank pins sit inside Examination now, so they need the space the hero
+   used to give them. */
+.oot-sec > .courtstrip{margin:2px 0 14px}
+.stat b{font-family:'Cinzel',serif}
+.lead{font-style:italic;color:var(--gold-soft)}
+
+/* mode plates */
+.mode{border:1px solid var(--line);box-shadow:inset 0 0 0 3px var(--bg2), inset 0 0 0 4px rgba(201,162,39,.18)}
+.mode h3{font-family:'Cinzel',serif;font-weight:600;letter-spacing:.6px}
+.mode p{font-family:'EB Garamond',serif;font-size:15px}
+
+/* quiz scriptorium */
+.qtext{font-family:'EB Garamond',Georgia,serif;font-size:21px;font-weight:600;line-height:1.4}
+.sainput{font-family:'EB Garamond',Georgia,serif;background:rgba(255,252,240,.85)}
+.opt .key,.verdict,.timer{font-family:'Cinzel',serif}
+.timer{font-weight:600}
+.card{border:1px solid rgba(201,162,39,.35)}
+.secbtn,.btn{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.2px;font-size:15px}
+.secbtn .n,.result-hero .big,.result-hero .passfail,.miss .mq{font-family:'Cinzel',serif}
+.secgroup,.refcountry{font-family:'Cinzel',serif;font-weight:600;letter-spacing:1.2px}
+.refr{font-family:'Cinzel',serif;font-weight:500}
+.viewhead h2{font-family:'Cinzel',serif;font-weight:600;letter-spacing:.8px}
+.viewhead .sub{font-style:italic}
+
+/* flashcards as vellum leaves */
+.fface{background:
+  radial-gradient(120% 90% at 50% 0%, rgba(255,250,235,.55) 0%, transparent 55%),
+  linear-gradient(165deg,var(--parch) 0%,var(--parch2) 100%);
+  box-shadow:0 12px 34px rgba(0,0,0,.55), inset 0 0 0 5px rgba(123,30,46,.16), inset 0 0 0 6px rgba(201,162,39,.4), inset 0 0 60px rgba(120,80,20,.12)}
+.fcname{font-family:'Cinzel Decorative','Cinzel',serif;font-weight:700}
+.frow b{font-family:'Cinzel',serif;font-weight:600}
+.fchint{font-variant:small-caps;letter-spacing:2.5px}
+.gchip{font-family:'Cinzel',serif}
+
+
+/* ------- Codex II: dashboard, encyclopedia, study chrome ------- */
+.studyline{font-variant:small-caps;letter-spacing:2px;font-size:13px;color:var(--gold-soft);text-align:center;margin-top:10px}
+.flagbtn{margin-left:auto;background:none;border:none;color:var(--gold-soft);font-size:19px;cursor:pointer;padding:0 2px;line-height:1}
+.flagbtn.on{color:var(--gold);text-shadow:0 0 10px rgba(201,162,39,.5)}
+.dashrow{display:grid;grid-template-columns:minmax(120px,1.3fr) 2fr 46px 64px;gap:10px;align-items:center;padding:7px 4px;border-bottom:1px solid rgba(201,162,39,.13)}
+.dashcat{font-size:14px}
+.dashbar{height:10px;border:1px solid var(--line);background:rgba(0,0,0,.35)}
+.dashbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-soft))}
+.dashbar i.low{background:linear-gradient(90deg,#7a2929,var(--red))}
+.dashnum{font-family:'Cinzel',serif;font-size:13px;text-align:right}
+.dashseen{font-size:12px;color:var(--ink-soft);color:var(--gold-soft);opacity:.75;text-align:right}
+.dashduo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:6px 0 2px}
+.dashtag{display:inline-block;margin:3px 4px 3px 0;padding:3px 9px;border:1px solid var(--line);font-size:13px}
+.dashtag.no{border-color:rgba(156,47,47,.6)}
+.dashtag.ok{border-color:rgba(60,96,69,.8)}
+.encyq{padding:10px 4px;border-bottom:1px solid rgba(201,162,39,.13)}
+.encyqt{font-weight:600}
+.encya{color:var(--gold-soft);font-size:15px;margin-top:2px}
+.encyx{font-size:14px;opacity:.85;margin-top:2px;font-style:italic}
+.encycat{font-style:normal;font-variant:small-caps;letter-spacing:1px;font-size:12px;color:var(--gold)}
+@media(max-width:640px){.dashrow{grid-template-columns:1fr 1.4fr 40px 52px}}
+
+
+/* ------- Codex III: SRS, formats, hall of fame ------- */
+.mtrow{display:grid;grid-template-columns:minmax(120px,1fr) 1.2fr;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid rgba(201,162,39,.13)}
+.mtl{font-weight:600;font-size:15px}
+.mtsel{font-family:'EB Garamond',Georgia,serif;font-size:15px;padding:7px 8px;background:rgba(255,252,240,.88);color:var(--ink);border:1px solid var(--line);width:100%}
+.mtr{font-size:15px;padding:5px 8px;border:1px solid var(--line)}
+.mtr.ok{border-color:rgba(60,96,69,.9);color:var(--gold-hi)}
+.mtr.no{border-color:rgba(156,47,47,.75)}
+.opt.sel .key{font-size:17px}
+.opt.sel.picked{border-color:var(--gold);box-shadow:inset 0 0 0 1px rgba(201,162,39,.35)}
+.hall{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:12px}
+/* An unclaimed plate is dimmed by its border and its ink, never by opacity:
+   at 42% the description fell to about 2.5:1 against the plate, unreadable in
+   daylight. Parchment-2 on the plate clears 4.5:1 with room to spare. */
+.medal{border:1px dashed rgba(201,162,39,.35);padding:14px 10px;text-align:center;color:var(--parch2);background:rgba(0,0,0,.18)}
+.medal.on{color:var(--parch);border-style:solid;border-color:var(--gold);box-shadow:inset 0 0 0 3px var(--bg2),inset 0 0 0 4px rgba(201,162,39,.25),0 4px 16px rgba(0,0,0,.4)}
+.medal .mname{font-family:'Cinzel',serif;font-size:14px;font-weight:600;letter-spacing:.5px;margin-top:5px}
+.medal .mdesc{font-size:12.5px;opacity:.8;margin-top:3px;font-style:italic}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;transition:.35s;
+  background:linear-gradient(180deg,#2a1218,#1a0b10);border:1px solid var(--gold);color:var(--gold-hi);
+  font-family:'Cinzel',serif;font-size:14px;letter-spacing:.5px;padding:11px 20px;box-shadow:0 8px 30px rgba(0,0,0,.6);z-index:99;max-width:88vw;text-align:center}
+.toast.go{opacity:1;transform:translate(-50%,0)}
+@media(max-width:640px){.mtrow{grid-template-columns:1fr;gap:5px}.hall{grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}}
+
+
+/* ------- Codex IV: notes, sync, trend ------- */
+.notebox{margin:12px 0 4px;border-top:1px solid rgba(201,162,39,.18);padding-top:10px}
+.notetoggle{background:none;border:none;color:var(--gold-soft);font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.5px;font-size:14px;cursor:pointer;padding:0}
+.noteinput{width:100%;font-family:'EB Garamond',Georgia,serif;font-size:15px;padding:8px 10px;margin-top:7px;background:rgba(255,252,240,.9);color:var(--ink);border:1px solid var(--line);resize:vertical}
+.notesaved{font-size:12.5px;color:var(--gold-soft);font-variant:small-caps;letter-spacing:1.5px;margin-top:4px;min-height:15px}
+.encynote{font-size:14px;color:var(--gold-soft);margin-top:3px}
+.trend{width:100%;height:150px;margin-top:8px;overflow:visible}
+.trend .tline{fill:none;stroke:var(--gold);stroke-width:2}
+.trend .tpass{stroke:var(--gold-soft);stroke-width:1;stroke-dasharray:5 5;opacity:.5}
+.trend .tdot{fill:var(--red);stroke:var(--bg);stroke-width:1}
+.trend .tdot.ok{fill:var(--gold-hi)}
+.trendfoot{font-size:13.5px;font-style:italic;opacity:.85;margin-top:4px}
+.trendfoot .up{color:var(--gold-hi);font-style:normal}
+.trendfoot .down{color:var(--red);font-style:normal}
+
+
+/* ------- Codex V: video scriptorium ------- */
+.vidrow{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;padding:11px 6px;border-bottom:1px solid rgba(201,162,39,.13);text-decoration:none;color:var(--parch)}
+.vidrow:hover{background:rgba(201,162,39,.06)}
+.vtitle{font-weight:600;font-size:15.5px}
+.vwhy{font-size:14px;font-style:italic;opacity:.85;margin-top:1px}
+/* The chosen film, named. A row that pins one earns a slightly brighter left
+   edge so the eye can find the pinned rows while scrolling a long topic. */
+.vfilm{font-size:13px;margin-top:4px;opacity:.92}
+.vchan{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.2px;font-size:12px;color:var(--gold);margin-left:6px}
+.vidrow.pinned{border-left:2px solid rgba(201,162,39,.42);padding-left:8px}
+.watchlink{display:block;margin:10px 0 2px;background:none;border:1px solid var(--line);color:var(--gold-soft);
+  font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.5px;font-size:14px;padding:7px 12px;cursor:pointer}
+.watchlink:hover{border-color:var(--gold);color:var(--gold-hi)}
+
+
+/* ------- Codex V.1: scriptorium nav + kind chips ------- */
+.vidnav{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px}
+.vnav{background:none;border:1px solid rgba(201,162,39,.3);color:var(--gold-soft);font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1px;font-size:12.5px;padding:4px 10px;cursor:pointer}
+.vnav:hover{border-color:var(--gold);color:var(--gold-hi)}
+.vkind{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.5px;font-weight:400;font-size:11.5px;color:var(--gold);border:1px solid rgba(201,162,39,.35);padding:1px 7px;margin-left:7px;vertical-align:2px}
+
+
+/* ------- Codex VI: deductive tasting, primers, service ritual ------- */
+.ttgrid .frow{border-bottom:1px dashed rgba(42,28,20,.18)}
+.gridrow{display:grid;grid-template-columns:minmax(130px,.8fr) 2.2fr;gap:12px;padding:9px 4px;border-bottom:1px solid rgba(201,162,39,.13);font-size:14.5px;align-items:start}
+.gridt{font-family:'Cinzel',serif;font-weight:600;font-size:13.5px;color:var(--gold-soft);letter-spacing:.5px}
+.gridd{color:rgba(242,232,213,.88)}
+@media(max-width:560px){.gridrow{grid-template-columns:1fr;gap:2px}}
+
+.rite{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;padding:10px 6px;border-bottom:1px solid rgba(201,162,39,.13);cursor:pointer;transition:.12s}
+.rite:hover{background:rgba(201,162,39,.06)}
+.ritebox{width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:13px;color:var(--gold-soft);border:1px solid rgba(201,162,39,.4);background:rgba(0,0,0,.25)}
+.rite.done .ritebox{background:radial-gradient(circle at 35% 30%, #a03348 0%, var(--claret) 50%, var(--claret-deep) 100%);color:var(--gold-hi);border-color:var(--gold);box-shadow:0 0 0 1px #3a0f19}
+.rite.done .ritet{color:var(--gold-soft)}
+.ritet{font-weight:600;font-size:15.5px}
+.ritew{font-size:14px;font-style:italic;opacity:.82;margin-top:2px}
+.ritecount{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1px;font-weight:400;font-size:12.5px;color:var(--gold-soft);border:1px solid rgba(201,162,39,.35);padding:1px 8px;margin-left:8px;vertical-align:2px}
+
+.primerpage{margin-top:6px}
+.primerlead{font-family:'EB Garamond',Georgia,serif;font-size:17.5px;line-height:1.55;font-weight:500;margin-bottom:14px}
+.primerlead::first-letter{font-family:'Cinzel Decorative',serif;font-size:2.6em;float:left;line-height:.85;padding:2px 8px 0 0;color:var(--claret)}
+.primerexam{background:rgba(200,151,63,.14);border:1px solid rgba(200,151,63,.4);border-radius:8px;padding:10px 12px;font-size:14px;margin-bottom:14px}
+.primerexam b{display:block;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--claret);margin-bottom:3px}
+.primertraps{margin-top:12px;border-top:1px dashed rgba(42,28,20,.3);padding-top:10px;font-size:14px}
+.primertraps b{display:block;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--red);margin-bottom:5px}
+.primertraps ul{margin:0;padding-left:20px}
+.primertraps li{margin-bottom:5px;font-style:italic;color:var(--ink-soft)}
+
+/* keyboard accessibility */
+button:focus-visible,.opt:focus-visible,.secbtn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* ------- Codex VII: the Four-Level Court ------- */
+.courtstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.courtpin{background:rgba(0,0,0,.28);border:1px solid var(--line);padding:13px 6px 12px;text-align:center;cursor:pointer;transition:.15s;color:var(--parch)}
+.courtpin:hover{background:rgba(201,162,39,.10)}
+/* The numeral above the name is gone, so the name takes the weight it had. */
+.courtpin .cpname{font-family:'Cinzel',serif;font-size:15px;font-weight:700;letter-spacing:.9px}
+.courtpin .cpstat{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1px;font-size:11.5px;color:var(--gold-soft);opacity:.85;margin-top:3px}
+.courtpin.on{background:linear-gradient(160deg,var(--parch) 0%,var(--parch2) 100%);color:var(--ink);border-color:var(--gold);box-shadow:inset 0 0 0 2px var(--bg2),inset 0 0 0 3px rgba(201,162,39,.3),0 4px 14px rgba(0,0,0,.4)}
+.courtpin.on .cpstat{color:var(--ink-soft)}
+/* gilding used to land on the numeral; it lands on the name instead */
+.courtpin.gilded .cpname{background:linear-gradient(180deg,var(--gold-hi) 10%,var(--gold) 55%,#8a6d17 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 12px rgba(201,162,39,.45)}
+.courtpin.gilded{border-color:var(--gold)}
+.courtpin.sealed{opacity:.42;cursor:default}
+@media(max-width:560px){.courtpin{padding:11px 4px 10px}.courtpin .cpname{font-size:12px;letter-spacing:.3px}.courtpin .cpstat{font-size:10px}}
+
+/* intro study chapters */
+.chapterbody{font-size:15.5px;line-height:1.6}
+.chapterbody p{margin-bottom:10px}
+.chapterbody h4{font-family:'Cinzel',serif;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--claret);margin:14px 0 6px}
+.chapterbody ul,.chapterbody ol{margin:0 0 10px 20px}
+.chapterbody li{margin-bottom:4px}
+.chapterbody table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:10px}
+.chapterbody th,.chapterbody td{border:1px solid rgba(42,28,20,.25);padding:5px 8px;text-align:left}
+.chapterbody th{font-family:'Cinzel',serif;font-size:11.5px;letter-spacing:1px;color:var(--claret)}
+.chip{display:inline-block;background:rgba(123,30,46,.10);border:1px solid rgba(123,30,46,.3);color:var(--claret);border-radius:9px;padding:1px 9px;margin:1px 4px 1px 0;font-size:13px}
+
+/* compendium */
+.mapwrap{padding:14px}
+.mapwrap svg{display:block;width:100%;height:auto}
+.maplegend{margin-top:10px}
+.leg-row{display:grid;grid-template-columns:30px 1fr;gap:10px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid rgba(201,162,39,.13);padding:9px 4px;color:var(--parch);cursor:pointer;align-items:start}
+.leg-row:hover{background:rgba(201,162,39,.06)}
+.leg-row.sel{background:rgba(201,162,39,.12)}
+.leg-badge{width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:#fff;background:radial-gradient(circle at 35% 30%, #a03348 0%, var(--claret) 55%, var(--claret-deep) 100%);border-radius:50%;box-shadow:0 0 0 1px #3a0f19,0 0 0 2px rgba(201,162,39,.5)}
+.leg-row.sel .leg-badge{background:radial-gradient(circle at 35% 30%, var(--gold-hi) 0%, var(--gold) 60%, #8a6d17 100%);color:var(--ink)}
+.leg-nm{display:block;font-weight:600;font-size:15px}
+.leg-g{display:block;font-size:13.5px;color:var(--gold-soft)}
+.leg-soil{display:block;font-size:12.5px;font-style:italic;opacity:.8}
+.cls-framework{background:rgba(200,151,63,.10);border:1px solid rgba(201,162,39,.3);padding:10px 12px;font-size:14.5px;font-style:italic;margin:10px 0 4px}
+.pyramid{margin:6px 0}
+.pyr-row{margin-bottom:8px}
+.pyr-bar{background:linear-gradient(160deg,var(--parch) 0%,var(--parch2) 100%);color:var(--ink);font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:.5px;padding:6px 12px;border:1px solid rgba(201,162,39,.5);box-shadow:inset 0 0 0 2px var(--bg2)}
+.pyr-d{font-size:13.5px;opacity:.85;margin-top:3px;font-style:italic}
+.sysitem{padding:8px 4px;border-bottom:1px solid rgba(201,162,39,.13);font-size:14.5px}
+.sysitem b{display:block;color:var(--gold-soft)}
+.trap-i{padding:7px 10px;border-left:3px solid var(--red);background:rgba(156,47,47,.10);font-size:14px;margin-bottom:6px;font-style:italic}
+.flowstep{padding:8px 4px;border-bottom:1px solid rgba(201,162,39,.13)}
+.flowstep b{font-size:15px}
+.flow-n{display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:12px;color:var(--gold-hi);background:radial-gradient(circle at 35% 30%, #a03348 0%, var(--claret) 55%, var(--claret-deep) 100%);border-radius:50%;margin-right:8px;box-shadow:0 0 0 1px #3a0f19,0 0 0 2px rgba(201,162,39,.4)}
+.flow-d{font-size:14px;opacity:.88;margin-top:3px}
+.techitem{padding:9px 4px;border-bottom:1px solid rgba(201,162,39,.13)}
+.techitem b{font-size:15px}
+.tech-d{font-size:14px;opacity:.88;margin-top:2px}
+.where-chip{display:inline-block;font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1px;font-size:12.5px;color:var(--gold);border:1px solid rgba(201,162,39,.35);padding:1px 9px;margin-top:5px}
+.grape-row{padding:10px 4px;border-bottom:1px solid rgba(201,162,39,.13)}
+.grape-head b{font-family:'Cinzel',serif;font-size:15px;font-weight:600}
+.grape-struct{display:block;font-size:12.5px;color:var(--gold-soft);letter-spacing:.6px;margin-top:2px}
+.grape-line{font-size:13.5px;margin-top:3px}
+.grape-line b{color:var(--gold-soft);font-variant:small-caps;letter-spacing:1px;font-weight:400;font-size:12px}
+.grape-line.trapline{font-style:italic;color:#d9a9b2}
+
+/* ------- Codex VII.1: Master origin call ------- */
+.originblock{margin-top:14px;border-top:1px dashed rgba(42,28,20,.3);padding-top:12px}
+.originblock .qtext{font-family:'Cinzel',serif;letter-spacing:.5px;color:var(--claret)}
+
+/* ------- Codex VIII: honest grading ------- */
+.verdict.unsure{color:var(--gold)}
+.acceptbox{margin:8px 0;padding:8px 11px;background:rgba(200,151,63,.13);border:1px solid rgba(200,151,63,.35);border-radius:8px;font-size:13.5px}
+.acceptbox b{display:block;font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--claret);margin-bottom:3px}
+.acceptbox span{color:var(--ink-soft);font-style:italic}
+.selfgrade.primary{background:rgba(200,151,63,.14);border:1px solid rgba(200,151,63,.4);border-radius:8px;padding:9px 11px;margin-top:12px}
+.selfgrade.primary>span{font-weight:600;color:var(--claret)}
+.dispute{padding:11px 4px;border-bottom:1px solid rgba(201,162,39,.13)}
+.dispute .mq{font-family:'Cinzel',serif;font-size:15px;font-weight:600}
+.dispute .ma{color:var(--gold-soft);font-size:14px;margin-top:3px}
+.disputea{font-size:13.5px;font-style:italic;opacity:.8;margin-top:2px}
+.dispute .mu{font-size:13.5px;color:#e08585;margin-top:2px}
+.dispute .mexp{font-size:12.5px;font-variant:small-caps;letter-spacing:1px;color:var(--gold-soft);margin-top:3px}
+
+/* ------- Codex VIII: the study coach ------- */
+.planprompt{display:block;width:100%;margin-bottom:16px;background:rgba(200,151,63,.10);border:1px dashed rgba(201,162,39,.5);color:var(--gold-soft);font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.6px;font-size:14.5px;padding:11px;cursor:pointer;transition:.15s}
+.planprompt:hover{background:rgba(200,151,63,.18);color:var(--gold-hi)}
+.planpanel{margin-bottom:16px;border:1px solid var(--line);background:rgba(0,0,0,.3);padding:12px 14px;box-shadow:inset 0 0 0 3px var(--bg2),inset 0 0 0 4px rgba(201,162,39,.16)}
+.planhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1px solid rgba(201,162,39,.2);padding-bottom:7px;margin-bottom:9px}
+.planhead b{font-family:'Cinzel',serif;font-size:14.5px;letter-spacing:.8px;color:var(--gold)}
+.planhead span{font-size:12.5px;font-variant:small-caps;letter-spacing:1.2px;color:var(--gold-soft);opacity:.9}
+.ontrack{color:#8fd0a2}
+.behind{color:#e08585}
+.planactt{font-family:'Cinzel',serif;font-size:15px;font-weight:600;color:var(--parch)}
+.planactd{font-size:14px;opacity:.85;margin-top:2px;font-style:italic}
+.planrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+.planitem{padding:11px 4px;border-bottom:1px solid rgba(201,162,39,.13)}
+.ontracknote{border-left:3px solid #3c6045;padding-left:10px}
+.behindnote{border-left:3px solid var(--red);padding-left:10px}
+input[type=date].sainput{font-family:'EB Garamond',Georgia,serif;color:var(--ink)}
+
+/* ------- Codex VIII: oral mode ------- */
+.oraltoggle{background:none;border:1px solid rgba(201,162,39,.35);color:var(--gold-soft);font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.2px;font-size:12.5px;padding:3px 10px;cursor:pointer;margin-right:auto}
+.oraltoggle.on{border-color:var(--gold);color:var(--gold-hi)}
+.oralreveal{width:100%}
+.oralhint{font-size:13.5px;font-style:italic;color:var(--ink-soft);margin-top:8px;text-align:center;width:100%}
+
+/* ------- Codex VIII: actionable dashboard + error reports ------- */
+.dashrow.actionable{cursor:pointer;transition:.12s}
+.dashrow.actionable:hover{background:rgba(201,162,39,.08)}
+/* keyboard doors: the rite steps and the dash rows are controls now */
+.dashrow.actionable:focus-visible,.rite:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.verdict:focus{outline:0}
+.dashprimer{background:none;border:none;color:var(--gold-soft);font-size:15px;cursor:pointer;padding:0 2px;line-height:1}
+.dashprimer:hover{color:var(--gold-hi)}
+.dashtag.actionable{cursor:pointer}
+.dashtag.actionable:hover{border-color:var(--gold);color:var(--gold-hi)}
+.reportbox{margin:10px 0 2px}
+.reporttoggle{background:none;border:none;color:rgba(93,69,48,.75);font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.3px;font-size:13px;cursor:pointer;padding:0}
+.reporttoggle:hover{color:var(--red)}
+.reportbody{margin-top:7px}
+.lvltag{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.2px;font-size:11.5px;font-weight:400;color:var(--gold);border:1px solid rgba(201,162,39,.35);padding:0 7px;vertical-align:2px}
+
+/* ------- Codex VIII.1: the title stands alone, centred ------- */
+.brand h1{margin:0}
+
+/* ═══════════ Codex IX: typographic interface ═══════════
+   The pictorial icons are gone. What carries hierarchy now is type, rule and
+   space, which is what a professional reference should have used all along. */
+
+/* mode plates: title-led, evenly ranked, no icon gutter */
+.mode{padding:18px 20px}
+.mode h3{font-size:18px;margin:0 0 5px;letter-spacing:.7px;line-height:1.25}
+.mode p{font-size:14.5px;line-height:1.45;color:var(--ink-soft)}
+.mode .band{height:3px}
+.modes{gap:12px;margin-top:18px}
+
+/* bookmark reads as a word, not a star */
+.flagbtn{margin-left:auto;background:none;border:1px solid rgba(42,28,20,.28);color:var(--ink-soft);
+  font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:1.3px;font-size:11.5px;
+  cursor:pointer;padding:2px 9px;line-height:1.5;transition:.12s}
+.flagbtn:hover{border-color:var(--claret);color:var(--claret)}
+.flagbtn.on{background:var(--claret);border-color:var(--claret);color:var(--parch);text-shadow:none}
+
+/* honours: a plate of type, claimed or not */
+.medal{padding:13px 12px;text-align:left}
+.medal .mname{margin-top:0;font-size:13.5px}
+.medal .mdesc{font-size:12.5px}
+.medal.on .mname{color:var(--gold)}
+
+/* video rows: single column, ruled */
+.vidrow{grid-template-columns:1fr;gap:2px;padding:10px 4px}
+
+/* section rules carry the weight the fleurons used to */
+.secgroup{border-bottom:1px solid var(--line);padding-bottom:5px}
+.viewhead h2{line-height:1.2}
+
+/* verdicts are words; give them room instead of a glyph */
+.verdict{letter-spacing:.6px}
+.ritebox{font-size:12px}
+
+/* ═══════════ Codex IX.1: contrast corrections ═══════════
+   Several controls sit on the parchment card but were coloured for the dark
+   page. Gold-soft on parchment measures about 1.2:1, effectively invisible.
+   Anything inside .card is re-tuned to the ink/claret palette. */
+.card .notetoggle,.card .watchlink,.card .notesaved{color:var(--claret)}
+.card .watchlink{border-color:rgba(123,30,46,.45)}
+.card .watchlink:hover{border-color:var(--claret);color:var(--claret-deep);background:rgba(123,30,46,.06)}
+.card .notesaved{color:var(--ink-soft)}
+.card .noteinput,.card .reportbody textarea{color:var(--ink);border-color:rgba(42,28,20,.3)}
+.reporttoggle{color:var(--ink-soft)}
+
+/* ghost buttons live mostly on the dark page; the card gets its own variant */
+.btn.ghost{color:var(--gold-soft);border-color:rgba(201,162,39,.55)}
+.btn.ghost:hover{background:rgba(200,151,63,.12);color:var(--gold-hi);border-color:var(--gold)}
+.card .btn.ghost{color:var(--claret);border-color:var(--claret)}
+.card .btn.ghost:hover{background:rgba(123,30,46,.08);color:var(--claret-deep);border-color:var(--claret-deep)}
+
+/* ------- Codex IX: list grading ------- */
+.listgrade{margin:10px 0;padding:10px 12px;background:rgba(200,151,63,.12);border:1px solid rgba(200,151,63,.38);border-radius:8px}
+.lgscore{font-family:'Cinzel',serif;font-size:13px;letter-spacing:1.2px;color:var(--claret);margin-bottom:5px}
+.lgscore em{font-style:normal;font-variant:small-caps;letter-spacing:1px;color:var(--ink-soft)}
+.lgrow{font-size:13.5px;line-height:1.45;margin-top:3px}
+.lgrow b{display:inline-block;min-width:82px;font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);vertical-align:top}
+.lgrow span{display:inline-block;max-width:calc(100% - 90px)}
+.lghit span{color:var(--ink)}
+.lgmiss span{color:var(--red);font-style:italic}
+@media(max-width:560px){.lgrow b{display:block;min-width:0;margin-bottom:1px}.lgrow span{max-width:100%}}
+
+/* ------- Codex XI: honest readiness -------
+   .rdy sits inside .planpanel and planView, both on the dark page, so it uses
+   the dark-page palette (--parch / --gold-soft), not the parchment one. */
+.passfail.neutral{color:var(--gold-soft)}
+.result-hero .selfnote,.result-hero .covernote{opacity:.85;font-style:italic;margin-top:5px}
+.rdy{margin-top:10px;padding-top:9px;border-top:1px solid rgba(201,162,39,.2);display:flex;flex-direction:column;gap:4px}
+.rdyrow{display:flex;align-items:baseline;gap:9px;font-size:13px;line-height:1.4}
+.rdyname{font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-soft);min-width:66px;flex:0 0 auto}
+.rdystate{color:var(--parch);opacity:.92}
+.rdy-ok{color:#8fd0a2}
+.rdy-part{color:var(--gold-soft)}
+.rdy-none{color:#e08585}
+.rdyverdict{font-size:13px;font-style:italic;color:var(--parch);opacity:.8;margin-top:5px}
+@media(max-width:560px){.rdyrow{flex-direction:column;gap:0}.rdyname{min-width:0}}

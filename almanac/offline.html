@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Calendar For Life: Becalmed · Outside Of Time</title>
+<meta name="theme-color" content="#1a1410">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background:
+      radial-gradient(ellipse at top, #1c1208 0%, #0a0604 60%),
+      #0a0604;
+    color: #f3e6c8;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.55;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+  .inner { max-width: 540px; position: relative; z-index: 1; }
+  .compass {
+    width: 140px; height: 140px;
+    margin: 0 auto 2rem;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 22px rgba(184,137,58,0.35));
+    animation: drift 12s ease-in-out infinite;
+  }
+  @keyframes drift {
+    0%,100% { transform: rotate(-6deg); }
+    50%     { transform: rotate(6deg); }
+  }
+  h1 {
+    font-family: 'Georgia', serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    letter-spacing: 0.05em;
+    color: #f3e6c8;
+    margin-bottom: 0.6rem;
+    text-shadow: 0 0 30px rgba(184,137,58,0.4);
+  }
+  .roman {
+    color: #d4b366;
+    letter-spacing: 0.4em;
+    font-size: 0.8rem;
+    margin-bottom: 1.4rem;
+    text-transform: uppercase;
+  }
+  p {
+    color: #ead8b0;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.4rem;
+  }
+  .divider {
+    display: flex; align-items: center; justify-content: center;
+    margin: 1.5rem auto;
+    width: 60%;
+  }
+  .divider .line {
+    height: 1px; flex: 1;
+    background: linear-gradient(to right, transparent, #b8893a, transparent);
+  }
+  .divider .ornament { color: #b8893a; margin: 0 0.8rem; }
+  button {
+    background: linear-gradient(135deg, #4d1118, #7a1f2b);
+    color: #f3e6c8;
+    border: 1px solid #b8893a;
+    padding: 0.9rem 2.2rem;
+    font-family: 'Georgia', serif;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow:
+      0 0 0 4px rgba(184,137,58,0.15),
+      0 8px 24px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+  }
+  button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #7a1f2b, #92263a);
+  }
+  .footnote {
+    margin-top: 1.8rem;
+    color: #b59c6a;
+    font-style: italic;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+  <div class="inner">
+    <svg class="compass" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <rect width="40" height="40" fill="#1a1006"/>
+      <circle cx="20" cy="20" r="15" fill="none" stroke="#b8893a" stroke-width="1.5"/>
+      <polygon points="20,4 17,20 20,36 23,20" fill="#b8893a"/>
+      <polygon points="4,20 20,17 36,20 20,23" fill="#7a5826"/>
+      <circle cx="20" cy="20" r="2" fill="#e2c389"/>
+    </svg>
+
+    <div class="roman">· The Almanac Sleeps ·</div>
+    <h1>Becalmed</h1>
+
+    <div class="divider">
+      <span class="line"></span>
+      <span class="ornament">✦</span>
+      <span class="line"></span>
+    </div>
+
+    <p>
+      The winds have died, and the charts cannot be drawn from these waters.<br>
+      Find a friendlier port, a network signal, and the almanac will return.
+    </p>
+
+    <button onclick="location.reload()">Try Again</button>
+
+    <p class="footnote">✦ <em>Don't be the one who wasn't there.</em> ✦</p>
+  </div>
+</body>
+</html>

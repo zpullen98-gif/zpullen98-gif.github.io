@@ -1,0 +1,286 @@
+/* ============ Outside Of Time: the shape of a home screen ============
+   Three wings, one grammar. A person learns the app once and can use all three.
+
+   THIS FILE CONTAINS NO COLOUR. Every colour is read from a token the wing sets
+   for itself, so the Codex stays claret and gold, the Ledger stays felt and
+   brass, and the Table stays paper and turmeric, while the bones are identical.
+   A wing opts in with one block:
+
+       :root { --oot-accent:var(--gold); --oot-accent-deep:var(--gold-deep);
+               --oot-line:rgba(201,162,39,.25);
+               --oot-ink:var(--parch); --oot-dim:var(--ink-soft);
+               --oot-raise:var(--bg2); }
+
+   --oot-accent-deep is the accent DARK ENOUGH TO READ AT LABEL SIZE. A mid-tone
+   accent that looks right as a rule, a tick or a border is usually too light as
+   12px text: the Table's turmeric measures 3.53:1 on its paper where AA wants
+   4.5, and its turmeric-deep measures 5.90:1. A wing that omits it falls back to
+   --oot-accent, which is what every wing did before this existed.
+
+   Fallbacks are `currentColor` and transparent, so a wing that forgets the
+   block gets something plain rather than something invisible. That matters:
+   the three wings disagree about what --ink means (near-black on the hub, dark
+   brown in the Codex), so nothing here may reach for a wing's own token names.
+
+   Everything is prefixed .oot- because these classes live inside three
+   stylesheets that know nothing about each other.
+   ============ */
+
+.oot-sec { margin: 26px 0 0; }
+
+.oot-sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 0 0 10px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--oot-line, currentColor);
+}
+/* :is(h2, h3): each wing's own band heading was h1 -> h3 with no h2 between
+   them, a heading-order skip. WorldTable's HomeBands.svelte now renders h2;
+   :is() keeps this selector working for whichever level a wing uses without
+   this shared file needing to know or coordinate across the three of them. */
+.oot-sec-head :is(h2, h3) {
+  margin: 0;
+  font-size: .78rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  /* The DEEP accent: this is 12.5px text, not a rule or a tick. At 600 weight it
+     is still "normal text" to WCAG (large needs 18.66px AND bold), so it owes
+     4.5:1 and the mid-tone accent only pays 3.53. */
+  color: var(--oot-accent-deep, var(--oot-accent, currentColor));
+}
+/* CONTRAST: --oot-dim is already the muted colour, and it was chosen to MEET
+   AA against the paper. Five rules below then stacked opacity .6-.68 on top of
+   it and one dimmed --oot-ink the same way, which took measured 4.55:1 down to
+   2.33:1 in day service and 5.70:1 down to 2.97:1 at night: the whole point of
+   the token, undone by the line after it.
+
+   Do not put opacity back on text. If something needs to recede, give it a
+   colour that recedes. The day-service margin is thin at 4.55:1, so a lighter
+   --oot-dim would fail on its own: measure before changing that token. */
+.oot-sec-head span {
+  font-size: .82rem;
+  font-style: italic;
+  color: var(--oot-dim, currentColor);
+}
+
+/* ---- TODAY: the one thing to do now -------------------------------- */
+.oot-today {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--oot-line, currentColor);
+  background: var(--oot-raise, transparent);
+}
+.oot-today-main { flex: 1 1 260px; min-width: 0; }
+.oot-today-line {
+  font-size: 1.06rem;
+  line-height: 1.35;
+  color: var(--oot-ink, currentColor);
+}
+.oot-today-sub {
+  font-size: .84rem;
+  margin-top: 4px;
+  color: var(--oot-dim, currentColor);
+}
+/* A count a tired person reads across a room. */
+.oot-today-n {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: 600;
+  color: var(--oot-accent, currentColor);
+}
+.oot-today-go { flex: 0 0 auto; }
+
+/* ---- the streak, and why it is quiet -------------------------------- */
+.oot-streak {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: .74rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--oot-dim, currentColor);
+}
+.oot-streak b {
+  font-variant-numeric: tabular-nums;
+  color: var(--oot-accent, currentColor);
+}
+
+/* ---- readiness ------------------------------------------------------ */
+.oot-meter { display: flex; flex-direction: column; gap: 5px; min-width: 150px; }
+.oot-meter-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: .76rem;
+  color: var(--oot-dim, currentColor);
+}
+.oot-meter-top b {
+  font-variant-numeric: tabular-nums;
+  color: var(--oot-ink, currentColor);
+}
+.oot-meter-track {
+  height: 5px;
+  background: var(--oot-line, currentColor);
+  overflow: hidden;
+}
+.oot-meter-fill {
+  height: 100%;
+  background: var(--oot-accent, currentColor);
+  transition: width .5s ease;
+}
+@media (prefers-reduced-motion: reduce) { .oot-meter-fill { transition: none; } }
+
+/* ---- the first path ------------------------------------------------- */
+.oot-path { display: flex; flex-direction: column; gap: 0; }
+.oot-path-row {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: baseline;
+  padding: 9px 2px;
+  border-bottom: 1px solid var(--oot-line, currentColor);
+  text-align: left;
+  width: 100%;
+  background: none;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.oot-path-row:last-child { border-bottom: 0; }
+.oot-path-row:hover .oot-path-t { text-decoration: underline; }
+.oot-path-mark { color: var(--oot-accent, currentColor); font-size: .95rem; }
+.oot-path-t { color: var(--oot-ink, currentColor); }
+/* Done recedes to the muted colour rather than to 55% of the ink. The tick
+   in .oot-path-mark is what actually says "done"; this is the echo. */
+.oot-path-row.done .oot-path-t { color: var(--oot-dim, currentColor); }
+.oot-path-mins {
+  font-size: .74rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--oot-dim, currentColor);
+  white-space: nowrap;
+}
+.oot-path-progress {
+  font-size: .74rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--oot-dim, currentColor);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- who is studying ------------------------------------------------ */
+.oot-who {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 14px;
+}
+.oot-who-label {
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--oot-dim, currentColor);
+}
+.oot-chip {
+  font: inherit;
+  font-size: .8rem;
+  padding: 5px 11px;
+  border: 1px solid var(--oot-line, currentColor);
+  background: none;
+  color: var(--oot-ink, currentColor);
+  cursor: pointer;
+  border-radius: 2px;
+}
+.oot-chip.on {
+  border-color: var(--oot-accent, currentColor);
+  color: var(--oot-accent, currentColor);
+}
+.oot-chip:focus-visible,
+.oot-path-row:focus-visible { outline: 2px solid var(--oot-accent, currentColor); outline-offset: 2px; }
+/* The inline fallback for a webview with no prompt(): see bindWho in oot-home.js. */
+.oot-who-form {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.oot-who-form p { margin: 0; flex: 1 1 100%; font-size: .85rem; }
+.oot-who-form input {
+  font: inherit;
+  font-size: .85rem;
+  padding: 5px 9px;
+  border: 1px solid var(--oot-line, currentColor);
+  background: none;
+  color: var(--oot-ink, currentColor);
+  border-radius: 2px;
+  min-width: 0;
+  flex: 1 1 160px;
+}
+.oot-who-form input:focus-visible { outline: 2px solid var(--oot-accent, currentColor); outline-offset: 2px; }
+
+/* ---- the pass: the manager strip ------------------------------------ */
+.oot-pass {
+  border: 1px solid var(--oot-accent, currentColor);
+  padding: 14px 16px;
+  margin: 0 0 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  align-items: center;
+}
+.oot-pass-label {
+  font-size: .7rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--oot-accent, currentColor);
+  flex: 0 0 100%;
+}
+.oot-pass-stat { display: flex; flex-direction: column; gap: 2px; }
+.oot-pass-stat b {
+  font-size: 1.3rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--oot-ink, currentColor);
+}
+.oot-pass-stat span {
+  font-size: .72rem;
+  color: var(--oot-dim, currentColor);
+}
+.oot-pass-go { margin-left: auto; }
+
+/* Touch targets on a phone held in one hand behind a bar. */
+@media (max-width: 639px) {
+  .oot-chip { min-height: 40px; }
+  .oot-path-row { padding: 12px 2px; }
+  .oot-pass-go { margin-left: 0; flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .oot-sec { animation: ootSecIn .4s ease both; }
+  .oot-sec:nth-of-type(2) { animation-delay: .04s; }
+  .oot-sec:nth-of-type(3) { animation-delay: .08s; }
+  .oot-sec:nth-of-type(4) { animation-delay: .12s; }
+  .oot-sec:nth-of-type(5) { animation-delay: .16s; }
+}
+/* TRANSFORM ONLY, never opacity.
+
+   Fading a section in fades every word inside it through every contrast ratio
+   between nothing and correct, and axe samples mid-flight: it reported the
+   dashboard's muted text at 4.18-4.46:1 against colours that measure 4.55-5.70
+   at rest. Those were real readings of a real frame: a reader on a slow device
+   sees them too. The rise is the whole effect anyway; the fade only ever cost
+   legibility. */
+@keyframes ootSecIn { from { transform: translateY(7px); } to { transform: none; } }
+
+@media print { .oot-sec, .oot-today, .oot-pass { animation: none; break-inside: avoid; } }

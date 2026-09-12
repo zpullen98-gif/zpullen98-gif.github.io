@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.CV_fFSEz.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BRudWspQ.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DIdSjA7X.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.CTuQs3Jd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.BDKJzSZV.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/1n9Euyu4.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BttsuRUD.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/LWMqHn7K.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C2FuqdG1.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/nc6GVsGi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNJjSNMP.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Bqqn4epD.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DEkrWLsl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/21.DYfS2dF3.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BdOUBD0X.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CnIlT4YR.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/PvQQTLZ4.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/zkCCN76P.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CSR7rlBf.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/LhhV_GIh.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/rcgfH6Am.js" rel="modulepreload">
+		<!--12qhfyh--><!--[0--><link rel="manifest" href="/manifest.webmanifest"/><!--]--> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-status-bar-style" content="black"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1844 recipes across 171 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--131j3h6--><meta name="description" content="Leads with richness that coats and comforts, fresh herbs arguing happily on top, on a drift of smoke."/><!----><title>Lapin à la Moutarde · The World Table</title>
+		<link href="/table/_app/immutable/assets/0.BOpAsM7z.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/Ornament.D4liLlNF.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeDetailView.DX-iU9nr.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: recipes, lexicon and study</p></div></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" aria-current="page" href="/table/recipes">Library<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/menu">Menu<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service"><span class="svcglyph" aria-hidden="true">☀</span><span class="svcword svelte-12qhfyh">Day service</span></button></div></nav> <!--[-1--><!--]--> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><article class="shell sheet svelte-131j3h6"><nav class="crumbs svelte-131j3h6" data-print="hide"><a href="/table/recipes" class="svelte-131j3h6">All chapters</a> <span aria-hidden="true">›</span> <a href="/table/chapter/french" class="svelte-131j3h6">French</a></nav> <header class="head svelte-131j3h6"><p class="eyebrow">French · Main</p> <h1 class="svelte-131j3h6">Lapin à la Moutarde</h1> <ul class="stats svelte-131j3h6"><li class="svelte-131j3h6">Intermediate</li> <li class="svelte-131j3h6">35 min</li> <!--[-1--><!--]--> <!--[-1--><!--]--> <li title="Rough cost, derived from the ingredients" class="svelte-131j3h6"><span aria-hidden="true">$$</span> <span class="sr svelte-131j3h6">roughly 2 of 4 for cost</span></li> <!--[-1--><!--]--> <!--[-1--><!--]--> <!--[-1--><!--]--></ul> <p class="palate svelte-131j3h6"><span class="tags svelte-131j3h6">rich · herb-fresh · aromatic · smoky</span> <span class="sentence svelte-131j3h6">Leads with richness that coats and comforts, fresh herbs arguing happily on top, on a drift of smoke.</span></p></header> <div class="tools svelte-131j3h6" data-print="hide"><div class="group svelte-131j3h6" role="group" aria-label="Scale the recipe"><!--[--><button aria-pressed="false" class="svelte-131j3h6">×½</button><button aria-pressed="true" class="svelte-131j3h6 on">×1</button><button aria-pressed="false" class="svelte-131j3h6">×2</button><button aria-pressed="false" class="svelte-131j3h6">×3</button><!--]--></div> <div class="group svelte-131j3h6" role="group" aria-label="Units"><button aria-pressed="true" class="svelte-131j3h6 on">Metric</button> <button aria-pressed="false" class="svelte-131j3h6">US</button></div> <button class="chip svelte-131j3h6">Cook mode ▸</button> <button class="chip pin svelte-131j3h6" aria-pressed="false">📌 Add to menu</button> <button class="chip svelte-131j3h6">Print</button></div> <div class="cols svelte-131j3h6"><section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Ingredients</h2> <ul class="ingredients svelte-131j3h6"><!--[--><!--[-1--><li class="item svelte-131j3h6"><span>1 rabbit, about 1.4 kg, jointed into 6 with the saddle cut in 2</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>90 g Dijon mustard</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>40 g butter</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>15 ml sunflower oil</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>120 g smoked bacon lardons</span> <!--[0--><button class="subbtn svelte-131j3h6" data-print="hide" aria-expanded="false" aria-label="Show the substitution for this ingredient" title="Substitution">⇄</button> <!--[-1--><!--]--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>100 g shallots, sliced</span> <!--[0--><button class="subbtn svelte-131j3h6" data-print="hide" aria-expanded="false" aria-label="Show the substitution for this ingredient" title="Substitution">⇄</button> <!--[-1--><!--]--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>200 ml dry white wine</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>250 ml chicken stock</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>150 ml double cream</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>20 g wholegrain mustard</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>3 sprigs thyme</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>1 bay leaf</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>6 g fine salt</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>10 g tarragon leaves, chopped</span> <!--[-1--><!--]--></li><!--]--><!--]--></ul> <!--[-1--><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The skills inside</h2> <p class="skills svelte-131j3h6"><!--[--><a href="/table/technique/the-bare-simmer-holding-liquid-below-the-boil" class="svelte-131j3h6">The bare simmer: holding liquid below the boil</a><!--]--></p><!--]--> <!--[-1--><!--]--> <h2 class="sec svelte-131j3h6">Allergen screen</h2> <p class="equip svelte-131j3h6"><!--[0--><b>Found:</b> dairy · mustard · alcohol<!--]--></p> <p class="screened svelte-131j3h6">Screened for: gluten, dairy, egg, nuts, peanuts, fish, shellfish, molluscs, soy, sesame, celery, mustard, lupin, alcohol. <b>Not screened:</b> sulphites.</p> <!--[-1--><p class="screened derived svelte-131j3h6">Screened by keyword from the ingredient list, not reviewed by a person; check every
+					label for what the list cannot show.</p><!--]--></section> <section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Method</h2> <ol class="steps svelte-131j3h6"><!--[--><li class="step svelte-131j3h6">Salt the joints and smear 50 g of the Dijon over every surface. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Colour them gently in the butter and oil with the lardons and shallots over medium heat, turning often, because mustard scorches in a fierce pan, then lift the two saddle pieces out onto a plate and leave the legs in the pan. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Pour in the wine and stock, add the thyme and bay, cover and hold at a bare simmer for 35 minutes. <!--[0--><span class="dur svelte-131j3h6">35 min</span><!--]--></li><li class="step svelte-131j3h6">Return the saddle pieces and simmer 12 minutes more, until the loin reads 65C (149F) and the leg meat yields at the bone, then lift everything out. <!--[0--><span class="dur svelte-131j3h6">12 min</span><!--]--></li><li class="step svelte-131j3h6">Reduce the liquid by a third, take the pan off the heat, whisk in the cream, the remaining Dijon and the wholegrain mustard, then return the rabbit and scatter the tarragon. <!--[-1--><!--]--></li><!--]--></ol></section></div> <!--[1--><section class="standard judged svelte-131j3h6"><h2 class="sec svelte-131j3h6">How to tell it is going right</h2> <!--[-1--><!--]--> <p class="judgedintro svelte-131j3h6">This dish has no standard of its own yet. It is judged on the technique it exercises: checked at the pan, while there is still something to be
+				done about it.</p> <!--[--><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/the-bare-simmer-holding-liquid-below-the-boil" class="svelte-131j3h6">The bare simmer: holding liquid below the boil</a> <span class="judgedcount svelte-131j3h6">183 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">The surface is read rather than assumed: bubbles break slowly in one or two places, or the surface merely shivers, and it does not reach a rolling boil at any point.</li><li class="svelte-131j3h6">It was held there: the pot was watched and the heat adjusted rather than set once and left, and there is no tide mark up the pot wall from a boil-over.</li><li class="svelte-131j3h6">The liquid stayed as clear as it should be: no clouding from agitation, and no fat churned into an emulsion through it.</li><li class="svelte-131j3h6">Whatever is in the liquid is still intact: nothing shredded, broken up, or worried apart by movement.</li><li class="svelte-131j3h6">The level is roughly where the elapsed time should have left it; a large drop is the evidence that it ran hotter than this while nobody was looking.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> It was brought to a boil and then left on the same heat, so it churned for the whole cook: the liquid clouded, the fat emulsified into it, and the solids broke apart into the broth.</p></div><!--]--></section><!--]--> <aside class="note recipe-note svelte-131j3h6"><p class="eyebrow">From the pass</p> <p class="notebody svelte-131j3h6">A rabbit is two different meats on one carcass. The hind legs are collagen rich and want 45 minutes at a bare simmer; the saddle is a fast lean muscle that is wrung out by 71C (160F), so it leaves the pan at 65C (149F), clear of the 63C (145F) whole cut standard and short of the ruin. Cook them together throughout and one of them is always wrong. Mustard's pungency is a volatile oil that boils off and leaves bitterness, so half goes in early for body and half off the heat for the edge.</p></aside> <section class="pairing svelte-131j3h6"><div class="orn svelte-1dnahwc" aria-hidden="true" style="font-size:15px"><span class="rule svelte-1dnahwc"></span> <span class="mark svelte-1dnahwc">✻</span> <span class="rule svelte-1dnahwc"></span></div><!----> <h2 class="sec centered svelte-131j3h6">At the Table</h2> <dl class="svelte-131j3h6"><div class="svelte-131j3h6"><dt class="svelte-131j3h6">The Pour</dt><dd class="svelte-131j3h6">Riesling or Grenache</dd></div> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Also Right</dt><dd class="svelte-131j3h6">Cru Beaujolais</dd></div> <!--[0--><div class="svelte-131j3h6"><dt class="svelte-131j3h6">From the Taps</dt><dd class="svelte-131j3h6">Farmhouse saison</dd></div><!--]--> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Zero-Proof</dt><dd class="svelte-131j3h6">Cloudy apple juice, chilled</dd></div></dl> <p class="why svelte-131j3h6">Pork loves fruit and gentle sweetness: orchard-note whites and low-tannin reds flatter it where heavy oak flattens.</p></section> <section class="notes svelte-131j3h6" data-print="hide"><label for="famnotes" class="sec svelte-131j3h6">Family notes</label> <p class="hint svelte-131j3h6">Saved on this device and kept across visits: export from My Menu to move them.</p> <textarea id="famnotes" rows="4" placeholder="Your adjustments, stains, and marginalia…" class="svelte-131j3h6"></textarea></section> <!--[-1--><!--]--> <section class="films svelte-131j3h6" data-print="hide"><h2 class="sec svelte-131j3h6">Film school</h2> <!--[-1--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Lapin%20%C3%A0%20la%20Moutarde%20recipe" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">This dish, cooked on camera</span> <span class="vsub svelte-131j3h6">Search films of Lapin à la Moutarde</span></a> <!--[--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Jacques%20P%C3%A9pin%20Lapin%20%C3%A0%20la%20Moutarde" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Search YouTube: Jacques Pépin on Lapin à la Moutarde</span> <span class="vsub svelte-131j3h6">A YouTube search for Jacques Pépin and this dish. No affiliation.</span></a></section></article><!--]--><!----></main> <div class="dock svelte-12qhfyh" data-print="hide"><!--[-1--><!--]--><!----> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----></div> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1844 recipes · 171 chapters · Chef’s Lexicon: 479 terms <!--[0--><span class="legal">· <a href="/privacy.html" rel="external">Privacy</a> · <a href="/terms.html" rel="external">Terms</a></span><!--]--></div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_wihv31 = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.CV_fFSEz.js"),
+						import("/table/_app/immutable/entry/app.CTuQs3Jd.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 21],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+<script src="/shared/oot-config.js?v=25"></script>
+<script src="/shared/oot-profiles.js?v=25"></script>
+<script src="/shared/oot-home.js?v=25"></script>
+<script src="/shared/oot-auth.js?v=25"></script>
+<script src="/shared/oot-gate.js?v=25"></script>
+<script src="/shared/oot-locks.js?v=25"></script>
+<script src="/shared/oot-pass.js?v=25"></script>
+<script src="/shared/oot-log.js?v=25"></script>
+<script src="/shared/oot-bar.js?v=25"></script>
+</body>
+</html>

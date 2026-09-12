@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.CV_fFSEz.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BRudWspQ.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DIdSjA7X.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.CTuQs3Jd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.BDKJzSZV.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/1n9Euyu4.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BttsuRUD.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/LWMqHn7K.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C2FuqdG1.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/nc6GVsGi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNJjSNMP.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Bqqn4epD.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DEkrWLsl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/21.DYfS2dF3.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BdOUBD0X.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CnIlT4YR.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/PvQQTLZ4.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/zkCCN76P.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CSR7rlBf.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/LhhV_GIh.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/rcgfH6Am.js" rel="modulepreload">
+		<!--12qhfyh--><!--[0--><link rel="manifest" href="/manifest.webmanifest"/><!--]--> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-status-bar-style" content="black"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1844 recipes across 171 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--131j3h6--><meta name="description" content="Leads with wood-smoke running underneath, richness that coats and comforts, with a bitter-edged char at the rim."/><!----><title>Central Texas Smoked Brisket · The World Table</title>
+		<link href="/table/_app/immutable/assets/0.BOpAsM7z.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/Ornament.D4liLlNF.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeDetailView.DX-iU9nr.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: recipes, lexicon and study</p></div></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" aria-current="page" href="/table/recipes">Library<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/menu">Menu<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service"><span class="svcglyph" aria-hidden="true">☀</span><span class="svcword svelte-12qhfyh">Day service</span></button></div></nav> <!--[-1--><!--]--> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><article class="shell sheet svelte-131j3h6"><nav class="crumbs svelte-131j3h6" data-print="hide"><a href="/table/recipes" class="svelte-131j3h6">All chapters</a> <span aria-hidden="true">›</span> <a href="/table/chapter/grill-and-bbq-atlas" class="svelte-131j3h6">Grill &amp; BBQ Atlas</a></nav> <header class="head svelte-131j3h6"><p class="eyebrow">Grill &amp; BBQ Atlas · Main</p> <h1 class="svelte-131j3h6">Central Texas Smoked Brisket</h1> <ul class="stats svelte-131j3h6"><li class="svelte-131j3h6">Advanced</li> <li class="svelte-131j3h6">12 h</li> <!--[-1--><!--]--> <!--[-1--><!--]--> <li title="Rough cost, derived from the ingredients" class="svelte-131j3h6"><span aria-hidden="true">$$$</span> <span class="sr svelte-131j3h6">roughly 3 of 4 for cost</span></li> <!--[-1--><!--]--> <!--[-1--><!--]--> <!--[-1--><!--]--></ul> <p class="palate svelte-131j3h6"><span class="tags svelte-131j3h6">smoky · rich · charred</span> <span class="sentence svelte-131j3h6">Leads with wood-smoke running underneath, richness that coats and comforts, with a bitter-edged char at the rim.</span></p></header> <div class="tools svelte-131j3h6" data-print="hide"><div class="group svelte-131j3h6" role="group" aria-label="Scale the recipe"><!--[--><button aria-pressed="false" class="svelte-131j3h6">×½</button><button aria-pressed="true" class="svelte-131j3h6 on">×1</button><button aria-pressed="false" class="svelte-131j3h6">×2</button><button aria-pressed="false" class="svelte-131j3h6">×3</button><!--]--></div> <div class="group svelte-131j3h6" role="group" aria-label="Units"><button aria-pressed="true" class="svelte-131j3h6 on">Metric</button> <button aria-pressed="false" class="svelte-131j3h6">US</button></div> <button class="chip svelte-131j3h6">Cook mode ▸</button> <button class="chip pin svelte-131j3h6" aria-pressed="false">📌 Add to menu</button> <button class="chip svelte-131j3h6">Print</button></div> <div class="cols svelte-131j3h6"><section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Ingredients</h2> <ul class="ingredients svelte-131j3h6"><!--[--><!--[-1--><li class="item svelte-131j3h6"><span>1 whole packer brisket, 5–6kg, trimmed to a ¼-inch fat cap, edges rounded (aerodynamics against drying)</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>The rub, in its entirety: coarse salt and coarse black pepper, 50/50. Central Texas has spoken; everything else is another state</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>Post oak if you can get it; oak or hickory otherwise; a smoker or kettle rigged for indirect at a steady 120°C</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>Butcher paper for the wrap: paper breathes where foil braises</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>A 10–14 hour day, a chair, and something to read</span> <!--[-1--><!--]--></li><!--]--><!--]--></ul> <!--[0--><h2 class="sec svelte-131j3h6">Equipment</h2> <p class="equip svelte-131j3h6">Thermometer · Smoker</p><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The skills inside</h2> <p class="skills svelte-131j3h6"><!--[--><a href="/table/technique/low-and-slow-smoking" class="svelte-131j3h6">Low &amp; slow smoking</a><a href="/table/technique/braising" class="svelte-131j3h6">Braising</a><a href="/table/technique/resting-meat-and-slicing-against-the-grain" class="svelte-131j3h6">Resting meat &amp; slicing against the grain</a><!--]--></p><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The words inside</h2> <p class="skills words svelte-131j3h6"><!--[--><a href="/table/lexicon#brisket-point-vs-flat" class="svelte-131j3h6">Brisket (Point vs. Flat)</a><a href="/table/lexicon#grills-and-smokers-kettle-kamado-offset-pellet" class="svelte-131j3h6">Grills &amp; Smokers: Kettle, Kamado, Offset, Pellet</a><!--]--></p><!--]--> <h2 class="sec svelte-131j3h6">Allergen screen</h2> <p class="equip svelte-131j3h6"><!--[-1--><b>None found</b> among the 14 screened.<!--]--></p> <p class="screened svelte-131j3h6">Screened for: gluten, dairy, egg, nuts, peanuts, fish, shellfish, molluscs, soy, sesame, celery, mustard, lupin, alcohol. <b>Not screened:</b> sulphites.</p> <!--[-1--><p class="screened derived svelte-131j3h6">Screened by keyword from the ingredient list, not reviewed by a person; check every
+					label for what the list cannot show.</p><!--]--></section> <section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Method</h2> <ol class="steps svelte-131j3h6"><!--[--><li class="step svelte-131j3h6">Rub the night before. Smoke fat-side toward the heat at 120°C, thin blue smoke only: white billowing smoke is bitterness in progress. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Ride it to the STALL: around 70°C internal the temperature freezes for hours as the meat sweats. This is normal. Do not panic. Do not crank the heat. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">When the bark is set and mahogany (usually mid-stall), wrap tightly in butcher paper; continue to 95°C internal, when a probe slides in like warm butter: feel outranks number. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">REST 1–2 hours minimum, wrapped, in a cooler. Slice the flat across the grain in pencil-width slices; turn the point 90 degrees and slice again. The slice should drape, not fall apart. <!--[0--><span class="dur svelte-131j3h6">120 min</span><!--]--></li><!--]--></ol></section></div> <!--[0--><section class="standard svelte-131j3h6"><h2 class="sec svelte-131j3h6">How it should come out</h2> <!--[-1--><!--]--> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">Bark is uniform near-black mahogany and stays put: a thumb drawn across it neither smears nor lifts, and the coarse pepper is still visible as grain in the crust.</li><li class="svelte-131j3h6">Resistance to the probe is equal at three points along the flat, thick end included, at 95C internal; one soft spot and two firm ones means it goes back on.</li><li class="svelte-131j3h6">The fat cap has rendered translucent and spreadable, and the seam fat inside the point gives under finger pressure with no hard white core left in it.</li><li class="svelte-131j3h6">Slices are pencil-width, about 6mm, cut across the grain on the flat and again after the point is turned 90 degrees; a slice held at one end drapes over a finger, parts under a gentle tug, and does not shred under its own weight or spring back.</li><li class="svelte-131j3h6">A slice from the thin end of the flat, not the point, beads moisture immediately when squeezed between two fingers, and the board carries beads and smears rather than a spreading pool; the crust tastes of pepper first with the salt behind it, and no slice needs sauce.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> Panic at the stall and the pit pushed to 150C, so the brisket hits 95C hours early with the collagen only half converted: the flat slices firm and dry, the bark tastes scorched rather than smoked, and no rest recovers it.</p></section><!--]--> <aside class="note recipe-note svelte-131j3h6"><p class="eyebrow">From the pass</p> <p class="notebody svelte-131j3h6">Brisket is a patience exam with a meat certificate: the stall is evaporative cooling doing its work, the paper wrap (the Franklin method) is the compromise between bark and speed, and the long rest redistributes what twelve hours of smoke fought for. Salt, pepper, oak, time: the Central Texas liturgy has four words, and juiciness is the sermon.</p></aside> <section class="pairing svelte-131j3h6"><div class="orn svelte-1dnahwc" aria-hidden="true" style="font-size:15px"><span class="rule svelte-1dnahwc"></span> <span class="mark svelte-1dnahwc">⁂</span> <span class="rule svelte-1dnahwc"></span></div><!----> <h2 class="sec centered svelte-131j3h6">At the Table</h2> <dl class="svelte-131j3h6"><div class="svelte-131j3h6"><dt class="svelte-131j3h6">The Pour</dt><dd class="svelte-131j3h6">Zinfandel (old-vine)</dd></div> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Also Right</dt><dd class="svelte-131j3h6">Shiraz or Malbec</dd></div> <!--[0--><div class="svelte-131j3h6"><dt class="svelte-131j3h6">From the Taps</dt><dd class="svelte-131j3h6">Smoked porter</dd></div><!--]--> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Zero-Proof</dt><dd class="svelte-131j3h6">Cherry cola, honestly</dd></div></dl> <p class="why svelte-131j3h6">Barbecue’s sweet-smoke wants jammy fruit that shakes hands with the sauce; dry austere reds argue with sugar and lose.</p></section> <section class="notes svelte-131j3h6" data-print="hide"><label for="famnotes" class="sec svelte-131j3h6">Family notes</label> <p class="hint svelte-131j3h6">Saved on this device and kept across visits: export from My Menu to move them.</p> <textarea id="famnotes" rows="4" placeholder="Your adjustments, stains, and marginalia…" class="svelte-131j3h6"></textarea></section> <!--[-1--><!--]--> <section class="films svelte-131j3h6" data-print="hide"><h2 class="sec svelte-131j3h6">Film school</h2> <!--[0--><a class="vrow svelte-131j3h6" href="https://www.youtube.com/watch?v=VmTzdMHu5KU" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">BBQ with Franklin: The Brisket</span> <span class="vsub svelte-131j3h6">★ A canon film: verified</span></a><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Central%20Texas%20Smoked%20Brisket%20recipe" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">This dish, cooked on camera</span> <span class="vsub svelte-131j3h6">Search films of Central Texas Smoked Brisket</span></a> <!--[--><a class="vrow svelte-131j3h6" href="https://www.youtube.com/watch?v=VmTzdMHu5KU" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Technique: Low &amp; slow smoking</span><span class="vsub svelte-131j3h6">★ A canon film, verified</span></a><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Aaron%20Franklin%20Central%20Texas%20Smoked%20Brisket" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Search YouTube: Aaron Franklin on Central Texas Smoked Brisket</span> <span class="vsub svelte-131j3h6">A YouTube search for Aaron Franklin and this dish. No affiliation.</span></a></section></article><!--]--><!----></main> <div class="dock svelte-12qhfyh" data-print="hide"><!--[-1--><!--]--><!----> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----></div> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1844 recipes · 171 chapters · Chef’s Lexicon: 479 terms <!--[0--><span class="legal">· <a href="/privacy.html" rel="external">Privacy</a> · <a href="/terms.html" rel="external">Terms</a></span><!--]--></div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_wihv31 = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.CV_fFSEz.js"),
+						import("/table/_app/immutable/entry/app.CTuQs3Jd.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 21],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+<script src="/shared/oot-config.js?v=25"></script>
+<script src="/shared/oot-profiles.js?v=25"></script>
+<script src="/shared/oot-home.js?v=25"></script>
+<script src="/shared/oot-auth.js?v=25"></script>
+<script src="/shared/oot-gate.js?v=25"></script>
+<script src="/shared/oot-locks.js?v=25"></script>
+<script src="/shared/oot-pass.js?v=25"></script>
+<script src="/shared/oot-log.js?v=25"></script>
+<script src="/shared/oot-bar.js?v=25"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "id": "/",
+  "name": "Outside Of Time Hospitality",
+  "short_name": "Outside Of Time",
+  "_short_name_note": "The caption under the home-screen icon. Phones cut this to about twelve characters, so the full name would arrive as 'Outside Of T...'. The full name is on 'name', which is what the install prompt and the app listing show.",
+  "description": "Outside Of Time Hospitality. The complete life of the hospitality professional: the craft, the reset, and the road. Five wings in one app, all of it free and all of it offline.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "launch_handler": { "client_mode": "navigate-existing" },
+  "background_color": "#0b0908",
+  "theme_color": "#0b0908",
+  "categories": ["education", "food", "lifestyle"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "shortcuts": [
+    { "name": "The Sommelier's Codex", "short_name": "Codex", "url": "/codex/" },
+    { "name": "The Bartender's Ledger", "short_name": "Ledger", "url": "/ledger/" },
+    { "name": "The World Table", "short_name": "World Table", "url": "/table/" },
+    { "name": "First Light", "short_name": "First Light", "url": "/light/" },
+    { "name": "Calendar For Life", "short_name": "Calendar", "url": "/almanac/" }
+  ]
+}

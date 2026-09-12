@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.CV_fFSEz.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BRudWspQ.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DIdSjA7X.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.CTuQs3Jd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.BDKJzSZV.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/1n9Euyu4.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BttsuRUD.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/LWMqHn7K.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C2FuqdG1.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/nc6GVsGi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNJjSNMP.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Bqqn4epD.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DEkrWLsl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/27.P-KuCK1Y.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BdOUBD0X.js" rel="modulepreload">
+		<!--12qhfyh--><!--[0--><link rel="manifest" href="/manifest.webmanifest"/><!--]--> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-status-bar-style" content="black"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1844 recipes across 171 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--rexikk--><!----><title>The Levant, South Asia and the Americas · Service · The World Table</title>
+		<link href="/table/_app/immutable/assets/0.BOpAsM7z.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/27.MKDYTmd-.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: recipes, lexicon and study</p></div></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" aria-current="page" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/recipes">Library<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/menu">Menu<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service"><span class="svcglyph" aria-hidden="true">☀</span><span class="svcword svelte-12qhfyh">Day service</span></button></div></nav> <!--[-1--><!--]--> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><div class="shell view"><nav class="crumbs svelte-rexikk"><a href="/table/service" class="svelte-rexikk">Service</a> <span aria-hidden="true" class="svelte-rexikk">›</span> <span class="svelte-rexikk">Module 17 of 27</span></nav> <header class="head svelte-rexikk"><h1 class="svelte-rexikk">The Levant, South Asia and the Americas</h1> <p class="outcome svelte-rexikk"><b>After this you can</b> You can serve and describe paneer, labneh, the Mexican trio and the American four without apology or condescension, including why American cheese is engineered the way it is.</p></header> <ol class="svcterms svelte-rexikk"><!--[--><li class="svelte-rexikk"><h2 class="svcterm svelte-rexikk">Paneer <a class="src svelte-rexikk" href="/table/lexicon#paneer">Cheese Atlas</a></h2> <p class="svcdef svelte-rexikk">South Asia's fresh acid-set cheese: milk split with lemon or vinegar, drained, and pressed into a firm block; no rennet, no aging, no melt. Its refusal to melt is the feature: cubes hold proud through saag paneer, matar paneer, and the tandoor's skewers, browning at the edges while staying milky within. Make it at home in 30 minutes (the fresher, the softer) and press to the firmness the dish demands. Fry cubes lightly before saucing for structure, or soak them in warm water for pillowy softness: two textures, one cheese, cook's choice.</p></li><li class="svelte-rexikk"><h2 class="svcterm svelte-rexikk">Akkawi &amp; Nabulsi <a class="src svelte-rexikk" href="/table/lexicon#akkawi-and-nabulsi">Cheese Atlas</a></h2> <p class="svcdef svelte-rexikk">The Levant's white brined pair. AKKAWI (from Akka): smooth, salty, semi-soft; desalted by soaking, it becomes the melting layer of knafeh (see the dessert wing) and the breakfast slice beside olives and za'atar. NABULSI (from Nablus): firmer, boiled and often perfumed with mahleb and nigella seeds, the other knafeh cheese and a fried mezze star. Both are engineered around brine-preservation in a hot climate, and the professional trick, changing soaking water until the cheese turns sweet, is the pastry chef's required ritual before any true knafeh.</p></li><li class="svelte-rexikk"><h2 class="svcterm svelte-rexikk">Labneh <a class="src svelte-rexikk" href="/table/lexicon#labneh">Cheese Atlas</a></h2> <p class="svcdef svelte-rexikk">Yogurt strained until it crosses the border into cheese, thick, tangy, spreadable, the Levantine breakfast's white canvas: swooshed on a plate, flooded with olive oil, dusted with za'atar, scooped with warm bread. Strain it further and roll it into balls preserved under oil (labneh makbus), a shelf-stable ferment with chili or herbs. In the modern kitchen it is the professional's sour-cream upgrade: dollops on roasted vegetables, bases under charred meats, frosting-adjacent uses where tang should outrank sugar. Salt the yogurt before straining; that is the entire recipe.</p></li><li class="svelte-rexikk"><h2 class="svcterm svelte-rexikk">Queso Oaxaca (Quesillo) <a class="src svelte-rexikk" href="/table/lexicon#queso-oaxaca-quesillo">Cheese Atlas</a></h2> <p class="svcdef svelte-rexikk">Mexico's stretched-curd ball of ribbons: pasta filata technique carried by a Dominican-era detour into Oaxaca and wound like a skein of yarn: mild, milky, faintly tangy, and the country's premier melting cheese. Unravel and shred it by hand (never grate) into quesadillas, tlayudas, queso fundido, and chiles rellenos: the pull IS the point. The supermarket's 'Oaxaca-style' approximates; a real quesillo from a market vendor, still damp, is a different order of cheese. Where a recipe abroad says 'mozzarella, for melting' in a Mexican dish, this is the name it meant.</p></li><li class="svelte-rexikk"><h2 class="svcterm svelte-rexikk">Cotija <a class="src svelte-rexikk" href="/table/lexicon#cotija">Cheese Atlas</a></h2> <p class="svcdef svelte-rexikk">Michoacán's salty aged crumbler, 'the parmesan of Mexico' by function: young cotija crumbles like a drier, saltier feta over elotes, esquites, beans, and enchiladas; aged (añejo) it grates hard and loud. It does not melt; it seasons, which is why it finishes dishes rather than fills them. The elote quartet (mayo, chile, lime, cotija) is its global ambassador. Substitution fluency for the kitchen: feta approximates young cotija in a pinch; ricotta salata approximates it politely; nothing carries its corn-field saltiness exactly.</p></li><li class="svelte-rexikk"><h2 class="svcterm svelte-rexikk">Queso Fresco <a class="src svelte-rexikk" href="/table/lexicon#queso-fresco">Cheese Atlas</a></h2> <p class="svcdef svelte-rexikk">Latin America's daily fresh cheese: mild, milky, lightly salty, crumbling soft over beans, tacos dorados, and huevos, tempering chile heat the way yogurt tempers curry (fat and casein are capsaicin's counselors). It softens with heat but holds shape: crumble, don't expect melt. QUESO PANELA, its basket-molded cousin, slices and grills; queso para freír fries. The fresh-cheese family across this atlas (paneer, queso fresco, farmer cheese, twaróg) is one idea wearing many flags: milk, acid or gentle rennet, salt, and no patience required.</p></li><li class="svelte-rexikk"><h2 class="svcterm svelte-rexikk">Monterey Jack &amp; Pepper Jack <a class="src svelte-rexikk" href="/table/lexicon#monterey-jack-and-pepper-jack">Cheese Atlas</a></h2> <p class="svcdef svelte-rexikk">California's mission-era original: a buttery, high-moisture melter that quietly does more work in American kitchens than any cheese with a fancier passport: quesadillas, burgers, mac blends (its moisture loosens where cheddar tightens). PEPPER JACK arms it with chiles. The revelation is DRY JACK: wheels aged out (a WWI-era accident when shipments stalled) into a nutty, crystalline grating cheese that stands honest comparison to European granas; American cheesemaking's first great aged wheel, and a board-worthy story of accident becoming tradition.</p></li><li class="svelte-rexikk"><h2 class="svcterm svelte-rexikk">Humboldt Fog <a class="src svelte-rexikk" href="/table/lexicon#humboldt-fog">Cheese Atlas</a></h2> <p class="svcdef svelte-rexikk">The flag-bearer of the American artisanal revolution, Cypress Grove's California goat cheese with a line of vegetal ash through its center like morning fog through a valley: bright, lemony, and cakey when young, ripening from the bloomy rind inward into a translucent cream layer that deepens by the week. Proof on one plate that American cheese could stand original, not imitation European, and win. Serve with sparkling wine or sauvignon blanc; slice with a wire or hot knife to keep the fog line photogenic, because it will be photographed.</p></li><li class="svelte-rexikk"><h2 class="svcterm svelte-rexikk">American Cheese, Defended <a class="src svelte-rexikk" href="/table/lexicon#american-cheese-defended">Cheese Atlas</a></h2> <p class="svcdef svelte-rexikk">Process cheese: real cheese (usually cheddar/colby) melted with emulsifying salts (sodium citrate) that outlaw breaking: engineered, unbeatable melt. On a smash burger, in a diner grilled cheese, or as queso's silk backbone, nothing natural flows like it; this is chemistry, not corner-cutting, and chefs who sneer publicly use it privately. Buy deli-sliced 'real' American over individually-wrapped 'cheese product.' The professional's power move: sodium citrate itself (a few grams) turns ANY cheese (aged gruyère, clothbound cheddar) into a sauce with American's melt and the good cheese's flavor. Best of both churches.</p></li><li class="svelte-rexikk"><h2 class="svcterm svelte-rexikk">Cream Cheese &amp; Its Kin <a class="src svelte-rexikk" href="/table/lexicon#cream-cheese-and-its-kin">Cheese Atlas</a></h2> <p class="svcdef svelte-rexikk">America's fresh lactic spread: cream and milk cultured and stabilized, born in 1870s New York (Philadelphia was branding, not geography) and now structural to cheesecake, frosting, bagel culture, and half the world's snack aisle. Kitchen intel: blocks over tubs for baking (tubs carry more gums and air); full-fat or accept the texture tax; beat it cold-smooth before adding liquids or lumps are forever. Its refined European cousins, Neufchâtel (the true French one is a bloomy heart-shaped cheese; the US version is just lower-fat cream cheese), fromage blanc, quark, map the same idea at different fat percentages and levels of ceremony.</p></li><!--]--></ol> <nav class="steps svelte-rexikk"><!--[0--><a class="chip svelte-rexikk" href="/table/service/srv-cheese-isles-north">◀ Britain, the Low Countries and the Cold Edge</a><!--]--> <!--[0--><a class="chip svelte-rexikk" href="/table/service/srv-charc-craft">The Charcuterie Board: Two Churches, One Slicer ▶</a><!--]--></nav></div><!--]--><!----></main> <div class="dock svelte-12qhfyh" data-print="hide"><!--[-1--><!--]--><!----> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----></div> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1844 recipes · 171 chapters · Chef’s Lexicon: 479 terms <!--[0--><span class="legal">· <a href="/privacy.html" rel="external">Privacy</a> · <a href="/terms.html" rel="external">Terms</a></span><!--]--></div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_wihv31 = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.CV_fFSEz.js"),
+						import("/table/_app/immutable/entry/app.CTuQs3Jd.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 27],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+<script src="/shared/oot-config.js?v=25"></script>
+<script src="/shared/oot-profiles.js?v=25"></script>
+<script src="/shared/oot-home.js?v=25"></script>
+<script src="/shared/oot-auth.js?v=25"></script>
+<script src="/shared/oot-gate.js?v=25"></script>
+<script src="/shared/oot-locks.js?v=25"></script>
+<script src="/shared/oot-pass.js?v=25"></script>
+<script src="/shared/oot-log.js?v=25"></script>
+<script src="/shared/oot-bar.js?v=25"></script>
+</body>
+</html>

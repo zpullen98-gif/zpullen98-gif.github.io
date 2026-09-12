@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.CV_fFSEz.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BRudWspQ.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DIdSjA7X.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.CTuQs3Jd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.BDKJzSZV.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/1n9Euyu4.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BttsuRUD.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/LWMqHn7K.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C2FuqdG1.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/nc6GVsGi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNJjSNMP.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Bqqn4epD.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DEkrWLsl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/21.DYfS2dF3.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BdOUBD0X.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CnIlT4YR.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/PvQQTLZ4.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/zkCCN76P.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CSR7rlBf.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/LhhV_GIh.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/rcgfH6Am.js" rel="modulepreload">
+		<!--12qhfyh--><!--[0--><link rel="manifest" href="/manifest.webmanifest"/><!--]--> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-status-bar-style" content="black"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1844 recipes across 171 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--131j3h6--><meta name="description" content="Leads with richness that coats and comforts."/><!----><title>Sfoglia all'Uovo, the Hand-Rolled Sheet · The World Table</title>
+		<link href="/table/_app/immutable/assets/0.BOpAsM7z.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/Ornament.D4liLlNF.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeDetailView.DX-iU9nr.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: recipes, lexicon and study</p></div></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" aria-current="page" href="/table/recipes">Library<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/menu">Menu<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service"><span class="svcglyph" aria-hidden="true">☀</span><span class="svcword svelte-12qhfyh">Day service</span></button></div></nav> <!--[-1--><!--]--> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><article class="shell sheet svelte-131j3h6"><nav class="crumbs svelte-131j3h6" data-print="hide"><a href="/table/recipes" class="svelte-131j3h6">All chapters</a> <span aria-hidden="true">›</span> <a href="/table/chapter/pasta-and-fresh-dough" class="svelte-131j3h6">Pasta &amp; Fresh Dough</a></nav> <header class="head svelte-131j3h6"><p class="eyebrow">Pasta &amp; Fresh Dough · Main</p> <h1 class="svelte-131j3h6">Sfoglia all'Uovo, the Hand-Rolled Sheet</h1> <ul class="stats svelte-131j3h6"><li class="svelte-131j3h6">Advanced</li> <li class="svelte-131j3h6">55 min</li> <!--[-1--><!--]--> <!--[-1--><!--]--> <li title="Rough cost, derived from the ingredients" class="svelte-131j3h6"><span aria-hidden="true">$</span> <span class="sr svelte-131j3h6">roughly 1 of 4 for cost</span></li> <!--[0--><li class="veg svelte-131j3h6">Vegetarian</li><!--]--> <!--[-1--><!--]--> <!--[-1--><!--]--></ul> <p class="palate svelte-131j3h6"><span class="tags svelte-131j3h6">rich</span> <span class="sentence svelte-131j3h6">Leads with richness that coats and comforts.</span></p></header> <div class="tools svelte-131j3h6" data-print="hide"><div class="group svelte-131j3h6" role="group" aria-label="Scale the recipe"><!--[--><button aria-pressed="false" class="svelte-131j3h6">×½</button><button aria-pressed="true" class="svelte-131j3h6 on">×1</button><button aria-pressed="false" class="svelte-131j3h6">×2</button><button aria-pressed="false" class="svelte-131j3h6">×3</button><!--]--></div> <div class="group svelte-131j3h6" role="group" aria-label="Units"><button aria-pressed="true" class="svelte-131j3h6 on">Metric</button> <button aria-pressed="false" class="svelte-131j3h6">US</button></div> <button class="chip svelte-131j3h6">Cook mode ▸</button> <button class="chip pin svelte-131j3h6" aria-pressed="false">📌 Add to menu</button> <button class="chip svelte-131j3h6">Print</button></div> <div class="cols svelte-131j3h6"><section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Ingredients</h2> <ul class="ingredients svelte-131j3h6"><!--[--><!--[-1--><li class="item svelte-131j3h6"><span>300 g 00 flour, soft wheat, W180 to W220 (100%)</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>2 whole eggs, 110 g shelled</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>6 egg yolks, 108 g</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>5 g fine sea salt (1.7%)</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>semola rimacinata for dusting</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>10 g salt per litre of cooking water</span> <!--[-1--><!--]--></li><!--]--><!--]--></ul> <!--[-1--><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The skills inside</h2> <p class="skills svelte-131j3h6"><!--[--><a href="/table/technique/fresh-pasta" class="svelte-131j3h6">Fresh pasta</a><a href="/table/technique/kneading-dough" class="svelte-131j3h6">Kneading dough</a><a href="/table/technique/salted-water-and-the-float-test" class="svelte-131j3h6">Salted water &amp; the float test</a><a href="/table/technique/resting-dough-the-pause-that-does-the-work" class="svelte-131j3h6">Resting dough: the pause that does the work</a><!--]--></p><!--]--> <!--[-1--><!--]--> <h2 class="sec svelte-131j3h6">Allergen screen</h2> <p class="equip svelte-131j3h6"><!--[0--><b>Found:</b> gluten · egg<!--]--></p> <p class="screened svelte-131j3h6">Screened for: gluten, dairy, egg, nuts, peanuts, fish, shellfish, molluscs, soy, sesame, celery, mustard, lupin, alcohol. <b>Not screened:</b> sulphites.</p> <!--[-1--><p class="screened derived svelte-131j3h6">Screened by keyword from the ingredient list, not reviewed by a person; check every
+					label for what the list cannot show.</p><!--]--></section> <section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Method</h2> <ol class="steps svelte-131j3h6"><!--[--><li class="step svelte-131j3h6">Mound the flour, crater it, and break the whole eggs and yolks into the well with the salt; draw flour in from the inner wall with a fork until the paste is too stiff to stir and drags on the tines. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Knead 10 minutes on an unfloured board, pushing with the heel and folding back, until the surface turns from ragged to satin and a pressed thumbprint fills back slowly instead of snapping shut. <!--[0--><span class="dur svelte-131j3h6">10 min</span><!--]--></li><li class="step svelte-131j3h6">Wrap airtight and rest 45 minutes at room temperature; it is ready when a pinched corner pulls to twice its length before it parts. <!--[0--><span class="dur svelte-131j3h6">45 min</span><!--]--></li><li class="step svelte-131j3h6">Roll from the centre outward with a long pin, giving the sheet a quarter turn each pass and wrapping the far edge around the pin to stretch rather than press, until it is 0.6 mm and the grain of the board reads through it. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Cut, then boil 90 seconds in water at 100C (212F) salted at 10 g per litre; this is the only seasoning the pasta itself will ever take. <!--[-1--><!--]--></li><!--]--></ol></section></div> <!--[1--><section class="standard judged svelte-131j3h6"><h2 class="sec svelte-131j3h6">How to tell it is going right</h2> <!--[-1--><!--]--> <p class="judgedintro svelte-131j3h6">This dish has no standard of its own yet. It is judged on the techniques it exercises: checked at the pan, while there is still something to be
+				done about it.</p> <!--[--><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/kneading-dough" class="svelte-131j3h6">Kneading dough</a> <span class="judgedcount svelte-131j3h6">57 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">The work changed it: what began shaggy and rough is one smooth, cohesive mass, with nothing raggy hanging off it.</li><li class="svelte-131j3h6">The surface has gone satin and barely tacky, releasing cleanly from hands and board instead of leaving a trail.</li><li class="svelte-131j3h6">Worked to the point this dough asks for and no further: springy and elastic where structure is wanted, just brought together where tenderness is.</li><li class="svelte-131j3h6">Torn or cut open, the inside is uniform: no dry streaks, no unmixed pockets, no core of flour that never met the water.</li><li class="svelte-131j3h6">After its rest it rolls and shapes without snapping back. A dough that fights the pin needed more rest, not more force.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> Sticking was fought with flour instead of technique or patience, stroke after stroke, until the dough had taken in far more than the formula asked; it turns tight and dry under the hands, and bakes dense however well everything else goes.</p></div><div class="judgedblock svelte-131j3h6"><p class="judgedlabel svelte-131j3h6"><a href="/table/technique/resting-dough-the-pause-that-does-the-work" class="svelte-131j3h6">Resting dough: the pause that does the work</a> <span class="judgedcount svelte-131j3h6">71 recipes</span></p> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">It actually rested, covered, for the time stated, not cut short because the rest of the schedule was tight.</li><li class="svelte-131j3h6">It rolls and shapes without fighting: it stays where it is put, and it does not spring back or shrink on the bench between passes.</li><li class="svelte-131j3h6">The surface is smooth and supple rather than dry, cracked, or skinned over.</li><li class="svelte-131j3h6">It is at the temperature the next step needs: cold where the fat must stay solid, cool and relaxed where it must be rolled thin.</li><li class="svelte-131j3h6">Baked, it holds the dimensions it was shaped to rather than shrinking back from the edges of the tin or the rim of the dish.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> The rest was skipped or shortened, so the gluten was still tight: the dough fought the pin and sprang back thick and uneven, then shrank down the sides of the tin in the oven.</p></div><!--]--></section><!--]--> <aside class="note recipe-note svelte-131j3h6"><p class="eyebrow">From the pass</p> <p class="notebody svelte-131j3h6">Yolk is roughly half water, half fat and protein, and the fat coats gluten strands and shortens them, which is why a yolk-rich sheet rolls thin and stays tender. But yolks bring little water: 218 g egg to 300 g flour sits near 45% hydration, and below that the sheet cracks at the edges as you roll. Cracking means dry, not underkneaded. Rest the full 45 minutes so water reaches the starch.</p></aside> <section class="pairing svelte-131j3h6"><div class="orn svelte-1dnahwc" aria-hidden="true" style="font-size:15px"><span class="rule svelte-1dnahwc"></span> <span class="mark svelte-1dnahwc">❈</span> <span class="rule svelte-1dnahwc"></span></div><!----> <h2 class="sec centered svelte-131j3h6">At the Table</h2> <dl class="svelte-131j3h6"><div class="svelte-131j3h6"><dt class="svelte-131j3h6">The Pour</dt><dd class="svelte-131j3h6">Grüner Veltliner</dd></div> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Also Right</dt><dd class="svelte-131j3h6">Vermentino or dry Chenin</dd></div> <!--[0--><div class="svelte-131j3h6"><dt class="svelte-131j3h6">From the Taps</dt><dd class="svelte-131j3h6">Saison</dd></div><!--]--> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Zero-Proof</dt><dd class="svelte-131j3h6">Sparkling water with citrus &amp; herbs</dd></div></dl> <p class="why svelte-131j3h6">The vegetable whisperers: peppery, high-acid whites that flatter greens, roots, and grains without bullying them.</p></section> <section class="notes svelte-131j3h6" data-print="hide"><label for="famnotes" class="sec svelte-131j3h6">Family notes</label> <p class="hint svelte-131j3h6">Saved on this device and kept across visits: export from My Menu to move them.</p> <textarea id="famnotes" rows="4" placeholder="Your adjustments, stains, and marginalia…" class="svelte-131j3h6"></textarea></section> <!--[-1--><!--]--> <section class="films svelte-131j3h6" data-print="hide"><h2 class="sec svelte-131j3h6">Film school</h2> <!--[-1--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Sfoglia%20all'Uovo%2C%20the%20Hand-Rolled%20Sheet%20recipe" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">This dish, cooked on camera</span> <span class="vsub svelte-131j3h6">Search films of Sfoglia all'Uovo, the Hand-Rolled Sheet</span></a> <!--[--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Pasta%20%26%20Fresh%20Dough%20cooking%20techniques" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">The cuisine, deeper</span> <span class="vsub svelte-131j3h6">Technique films from the Pasta &amp; Fresh Dough kitchen</span></a></section></article><!--]--><!----></main> <div class="dock svelte-12qhfyh" data-print="hide"><!--[-1--><!--]--><!----> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----></div> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1844 recipes · 171 chapters · Chef’s Lexicon: 479 terms <!--[0--><span class="legal">· <a href="/privacy.html" rel="external">Privacy</a> · <a href="/terms.html" rel="external">Terms</a></span><!--]--></div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_wihv31 = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.CV_fFSEz.js"),
+						import("/table/_app/immutable/entry/app.CTuQs3Jd.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 21],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+<script src="/shared/oot-config.js?v=25"></script>
+<script src="/shared/oot-profiles.js?v=25"></script>
+<script src="/shared/oot-home.js?v=25"></script>
+<script src="/shared/oot-auth.js?v=25"></script>
+<script src="/shared/oot-gate.js?v=25"></script>
+<script src="/shared/oot-locks.js?v=25"></script>
+<script src="/shared/oot-pass.js?v=25"></script>
+<script src="/shared/oot-log.js?v=25"></script>
+<script src="/shared/oot-bar.js?v=25"></script>
+</body>
+</html>

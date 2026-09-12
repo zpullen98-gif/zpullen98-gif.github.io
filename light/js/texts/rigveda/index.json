@@ -1,0 +1,58 @@
+{
+ "title": "The Rig Veda",
+ "translation": "Ralph T. H. Griffith, 1896",
+ "license": "Public domain",
+ "source": "Wikisource",
+ "books": [
+  {
+   "part": "01",
+   "mandala": 1,
+   "hymns": 191
+  },
+  {
+   "part": "02",
+   "mandala": 2,
+   "hymns": 43
+  },
+  {
+   "part": "03",
+   "mandala": 3,
+   "hymns": 62
+  },
+  {
+   "part": "04",
+   "mandala": 4,
+   "hymns": 58
+  },
+  {
+   "part": "05",
+   "mandala": 5,
+   "hymns": 87
+  },
+  {
+   "part": "06",
+   "mandala": 6,
+   "hymns": 75
+  },
+  {
+   "part": "07",
+   "mandala": 7,
+   "hymns": 104
+  },
+  {
+   "part": "08",
+   "mandala": 8,
+   "hymns": 103
+  },
+  {
+   "part": "09",
+   "mandala": 9,
+   "hymns": 114
+  },
+  {
+   "part": "10",
+   "mandala": 10,
+   "hymns": 191
+  }
+ ]
+}

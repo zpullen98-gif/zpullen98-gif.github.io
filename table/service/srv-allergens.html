@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.CV_fFSEz.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BRudWspQ.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DIdSjA7X.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.CTuQs3Jd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.BDKJzSZV.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/1n9Euyu4.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BttsuRUD.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/LWMqHn7K.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C2FuqdG1.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/nc6GVsGi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNJjSNMP.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Bqqn4epD.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DEkrWLsl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/27.P-KuCK1Y.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BdOUBD0X.js" rel="modulepreload">
+		<!--12qhfyh--><!--[0--><link rel="manifest" href="/manifest.webmanifest"/><!--]--> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-status-bar-style" content="black"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1844 recipes across 171 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--rexikk--><!----><title>What We Screened and What We Did Not · Service · The World Table</title>
+		<link href="/table/_app/immutable/assets/0.BOpAsM7z.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/27.MKDYTmd-.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: recipes, lexicon and study</p></div></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" aria-current="page" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/recipes">Library<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/menu">Menu<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service"><span class="svcglyph" aria-hidden="true">☀</span><span class="svcword svelte-12qhfyh">Day service</span></button></div></nav> <!--[-1--><!--]--> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><div class="shell view"><nav class="crumbs svelte-rexikk"><a href="/table/service" class="svelte-rexikk">Service</a> <span aria-hidden="true" class="svelte-rexikk">›</span> <span class="svelte-rexikk">Module 2 of 27</span></nav> <header class="head svelte-rexikk"><h1 class="svelte-rexikk">What We Screened and What We Did Not</h1> <p class="outcome svelte-rexikk"><b>After this you can</b> You never answer an allergen question from the app. You can say what the recipe screen is (a text screen over the ingredient lines, which by design cannot see a shared fryer, a dusted board, or a supplier’s label), and you know that a dish showing nothing means the screen found nothing, never that the dish is clear. The screen itself names what it checked and what it did not, on every recipe.</p></header> <ol class="svcterms svelte-rexikk"><!--[--><li class="svelte-rexikk"><h2 class="svcterm svelte-rexikk">Food Safety: The Chef-Owner's Non-Negotiables <a class="src svelte-rexikk" href="/table/lexicon#food-safety-the-chef-owners-non-negotiables">The Professional Kitchen</a></h2> <p class="svcdef svelte-rexikk">THE DANGER ZONE: 4–60°C (40–140°F), where pathogens multiply: the two-hour rule governs everything left in it. Cooling law: hot food to 21°C within 2 hours, to 4°C within 4 more (shallow pans, ice baths: never a stockpot straight into the walk-in). CROSS-CONTAMINATION: raw below ready-to-eat in storage, color-coded boards, hands and towels as vectors. FIFO: first in, first out: label and date everything (masking tape and a Sharpie run more restaurants than any software). HACCP is the systematized version: identify hazards, control critical points, document. Allergen protocol is service-critical and legal-critical. None of this is glamour; all of it is the license to do the glamorous parts.</p></li><!--]--></ol> <nav class="steps svelte-rexikk"><!--[0--><a class="chip svelte-rexikk" href="/table/service/srv-room">◀ The Room's Vocabulary</a><!--]--> <!--[0--><a class="chip svelte-rexikk" href="/table/service/srv-license">Responsible Service and the Law ▶</a><!--]--></nav></div><!--]--><!----></main> <div class="dock svelte-12qhfyh" data-print="hide"><!--[-1--><!--]--><!----> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----></div> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1844 recipes · 171 chapters · Chef’s Lexicon: 479 terms <!--[0--><span class="legal">· <a href="/privacy.html" rel="external">Privacy</a> · <a href="/terms.html" rel="external">Terms</a></span><!--]--></div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_wihv31 = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.CV_fFSEz.js"),
+						import("/table/_app/immutable/entry/app.CTuQs3Jd.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 27],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+<script src="/shared/oot-config.js?v=25"></script>
+<script src="/shared/oot-profiles.js?v=25"></script>
+<script src="/shared/oot-home.js?v=25"></script>
+<script src="/shared/oot-auth.js?v=25"></script>
+<script src="/shared/oot-gate.js?v=25"></script>
+<script src="/shared/oot-locks.js?v=25"></script>
+<script src="/shared/oot-pass.js?v=25"></script>
+<script src="/shared/oot-log.js?v=25"></script>
+<script src="/shared/oot-bar.js?v=25"></script>
+</body>
+</html>

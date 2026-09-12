@@ -1,0 +1,109 @@
+{
+ "title": "The Analects",
+ "translation": "James Legge, 1893",
+ "license": "Public domain",
+ "source": "Project Gutenberg",
+ "whole": true,
+ "chapters": [
+  {
+   "n": 1,
+   "title": "HSIO R.",
+   "chapters": 16
+  },
+  {
+   "n": 2,
+   "title": "WEI CHANG.",
+   "chapters": 24
+  },
+  {
+   "n": 3,
+   "title": "PA YIH.",
+   "chapters": 26
+  },
+  {
+   "n": 4,
+   "title": "LE JIN.",
+   "chapters": 26
+  },
+  {
+   "n": 5,
+   "title": "KUNG-YE CH'ANG.",
+   "chapters": 27
+  },
+  {
+   "n": 6,
+   "title": "YUNG YEY.",
+   "chapters": 28
+  },
+  {
+   "n": 7,
+   "title": "SHU R.",
+   "chapters": 36
+  },
+  {
+   "n": 8,
+   "title": "T'AI-PO.",
+   "chapters": 21
+  },
+  {
+   "n": 9,
+   "title": "TSZE HAN.",
+   "chapters": 30
+  },
+  {
+   "n": 10,
+   "title": "HEANG TANG.",
+   "chapters": 18
+  },
+  {
+   "n": 11,
+   "title": "HSIEN TSIN.",
+   "chapters": 25
+  },
+  {
+   "n": 12,
+   "title": "YEN YUAN.",
+   "chapters": 24
+  },
+  {
+   "n": 13,
+   "title": "TSZE-LU.",
+   "chapters": 30
+  },
+  {
+   "n": 14,
+   "title": "HSIEN WAN.",
+   "chapters": 47
+  },
+  {
+   "n": 15,
+   "title": "WEI LING KUNG.",
+   "chapters": 41
+  },
+  {
+   "n": 16,
+   "title": "KE SHE.",
+   "chapters": 14
+  },
+  {
+   "n": 17,
+   "title": "YANG HO.",
+   "chapters": 26
+  },
+  {
+   "n": 18,
+   "title": "WEI TSZE.",
+   "chapters": 11
+  },
+  {
+   "n": 19,
+   "title": "TSZE-CHANG.",
+   "chapters": 25
+  },
+  {
+   "n": 20,
+   "title": "YAO YUEH.",
+   "chapters": 3
+  }
+ ]
+}

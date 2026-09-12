@@ -1,0 +1,535 @@
+/* First Light: one stylesheet.
+
+   Colour lives here and only here; sun.js sets data-phase on <html> and never
+   touches a hex value. The four palettes are the same design at four times of day,
+   not four themes, the same relationships, re-lit. */
+
+/* ═══ fonts ═══
+   Self-hosted. The artifact pulled Cormorant Garamond and Karla from Google over an
+   @import, which is a render-blocking third-party request that fails offline, in an
+   app whose whole promise is that it works on a plane. */
+/* Both families ship as VARIABLE fonts, so one file covers every weight the app
+   uses: Google serves byte-identical files for Cormorant 400 and 500, and for all
+   three Karla weights. Declaring a weight range instead of six static faces takes
+   the font payload from six requests to three, and 93 KB total. Latin subset only;
+   the app is English. */
+@font-face {
+  font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 300 700;
+  font-display: swap; src: url('../fonts/cormorant.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 300 700;
+  font-display: swap; src: url('../fonts/cormorant-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Karla'; font-style: normal; font-weight: 200 800;
+  font-display: swap; src: url('../fonts/karla.woff2') format('woff2');
+}
+
+/* ═══ palettes ═══
+   :root carries the day palette, so a paint before JS runs is the artifact's
+   original look rather than an unstyled flash. The inline script in <head> sets
+   data-phase before first paint; sun.js refines it a moment later. */
+/* CONTRAST RULE: every colour that carries text must clear 4.5:1 on the surface it
+   sits on. The artifact's --faint (#6E7A75) and --dawn (#A8763E) measured 3.86 and
+   3.41 against its fog ground, and both are used for real prose: --faint on .note,
+   .gp and .ds, --accent on .label at 11px. They are darkened here by the smallest
+   step that clears AA, holding hue, so the palette reads the same and is legible.
+   Measured after the change: --faint 4.51, --accent 4.58. Do not lighten these back
+   toward the originals without re-measuring. */
+:root {
+  --bg:      #EDEFEC;
+  --paper:   #F6F7F5;
+  --ink:     #2A3330;
+  --faint:   #646F6A;
+  --line:    #D8DDD9;
+  --accent:  #8D6334;
+  --accent-2:#5A5F78;
+  --disc-a:  #F3E4CE;
+  --disc-b:  #E4DECF;
+  --disc-c:  #DCE0D8;
+  --shadow:  0 1px 2px rgba(42,51,48,.04);
+
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans:  'Karla', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --col:   640px;
+}
+
+/* The hour before and after sunrise. Warmer, paler, lower contrast: the light is
+   not yet strong and the page should not pretend otherwise. */
+:root[data-phase="firstlight"] {
+  --bg:      #F1ECE4;
+  --paper:   #FAF6F0;
+  --ink:     #2F2A25;
+  --faint:   #76695D;
+  --line:    #E4DBCF;
+  --accent:  #916028;
+  --accent-2:#8A6A78;
+  --disc-a:  #FBEBD2;
+  --disc-b:  #F0DCC0;
+  --disc-c:  #E6D8C6;
+  --shadow:  0 1px 2px rgba(47,42,37,.05);
+}
+
+/* The sun on its way down. Cooler and a little dimmer than day; the accent shifts
+   toward the violet the artifact already had waiting in its --dusk token. */
+:root[data-phase="dusk"] {
+  --bg:      #E5E4E7;
+  --paper:   #EFEEF1;
+  --ink:     #2B2C34;
+  --faint:   #646471;
+  --line:    #D4D3DB;
+  --accent:  #885B3F;
+  --accent-2:#5A5F78;
+  --disc-a:  #EBDCCB;
+  --disc-b:  #DCD8DC;
+  --disc-c:  #D2D2DA;
+  --shadow:  0 1px 2px rgba(43,44,52,.06);
+}
+
+/* Below civil twilight. A real dark surface, not an inverted one: warm brass on
+   near-black, so reading at five in the morning doesn't scald. */
+:root[data-phase="night"] {
+  --bg:      #14161A;
+  --paper:   #1C1F25;
+  --ink:     #DDE1DD;
+  --faint:   #8C9491;
+  --line:    #2B3038;
+  --accent:  #C9964F;
+  --accent-2:#8E93AE;
+  --disc-a:  #3A3226;
+  --disc-b:  #24262C;
+  --disc-c:  #1A1D22;
+  --shadow:  none;
+}
+
+/* ═══ base ═══ */
+* { box-sizing: border-box; }
+
+html { background: var(--bg); }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  /* The palette moves on a one-minute tick. Without a transition the change lands
+     as a flicker; with one it reads as light actually shifting. */
+  transition: background-color 1.2s linear, color 1.2s linear;
+}
+
+.col {
+  max-width: var(--col);
+  margin: 0 auto;
+  /* Safe-area insets so the app doesn't sit under the notch or the home indicator
+     once it is installed and running without browser chrome. */
+  padding: max(36px, env(safe-area-inset-top)) max(22px, env(safe-area-inset-right))
+           max(90px, env(safe-area-inset-bottom)) max(22px, env(safe-area-inset-left));
+}
+
+a { color: var(--accent); }
+
+/* ═══ accessibility ═══ */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+.skip {
+  position: absolute; left: 8px; top: -60px; z-index: 50;
+  background: var(--paper); color: var(--ink); border: 1px solid var(--accent);
+  padding: 10px 16px; border-radius: 3px; font-size: 13px;
+  transition: top .15s;
+}
+.skip:focus { top: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important; scroll-behavior: auto !important;
+  }
+}
+
+/* ═══ navigation ═══ */
+/* Two tiers: four clusters, then the rooms of whichever cluster is open. */
+nav { margin-bottom: 40px; }
+.nav-places, .nav-tools { display: flex; justify-content: center; flex-wrap: wrap; }
+.nav-places { gap: 20px; }
+.nav-tools {
+  gap: 16px; margin-top: 12px; padding-top: 11px;
+  border-top: 1px solid var(--line);
+  /* Narrower than the section row so the hairline reads as a division rather than
+     a box, and the eye still lands on the book first. */
+  max-width: 340px; margin-left: auto; margin-right: auto;
+}
+/* Hierarchy by COLOR, not opacity: the .82 opacity quietly blended --faint
+   back below the 4.5:1 line the palette block above fought for (measured
+   3.24 in the day theme). --faint alone passes in every theme by design.
+   Adopted from the light/ wing's accessibility audit. */
+.nav-tools a { font-size: 10px; color: var(--faint); }
+.nav-tools a:hover, .nav-tools a[aria-current="page"] { color: var(--ink); }
+@media (max-width: 480px) { .nav-places { gap: 13px; } .nav-tools { gap: 12px; } }
+nav a {
+  background: none; border: none; cursor: pointer; text-decoration: none;
+  font-family: var(--sans); font-size: 11px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--faint);
+  padding: 4px 2px; border-bottom: 1px solid transparent;
+}
+nav a:hover { color: var(--ink); }
+nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+/* the open cluster carries the ink without the accent; the accent belongs to
+   the room you are actually in, one tier down */
+.nav-places a.on { color: var(--ink); border-bottom-color: var(--line); }
+
+/* ═══ the disc ═══ */
+.disc {
+  width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 24px;
+  background: radial-gradient(circle at 38% 32%, var(--disc-a) 0%, var(--disc-b) 45%, var(--disc-c) 100%);
+  animation: breathe 7s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: .85; }
+  50%      { transform: scale(1.08); opacity: 1; }
+}
+
+/* ═══ type ═══ */
+.kick {
+  text-align: center; font-size: 11px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 8px;
+}
+h1 {
+  text-align: center; font-family: var(--serif); font-weight: 500;
+  font-size: 38px; line-height: 1.1; margin: 0 0 10px;
+}
+.note {
+  text-align: center; font-size: 14.5px; color: var(--faint);
+  max-width: 430px; margin: 0 auto 6px; line-height: 1.6;
+}
+.label {
+  font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent); margin: 44px 0 12px;
+}
+.q { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.q:last-child { border-bottom: none; }
+.qt { font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1.45; margin: 0 0 10px; }
+.qs { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
+.qtr { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-left: 10px; }
+
+.card {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: 4px; padding: 22px; box-shadow: var(--shadow);
+}
+.pt { font-family: var(--serif); font-size: 21px; font-weight: 500; margin: 0 0 6px; }
+.px { font-size: 14.5px; line-height: 1.7; margin: 0; }
+.refl { font-family: var(--serif); font-style: italic; font-size: 20px; line-height: 1.5; margin: 0; }
+
+/* ═══ controls ═══ */
+.keep, .btn-ghost {
+  margin-top: 14px; background: none; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 999px;
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--faint); padding: 6px 14px; font-family: var(--sans);
+}
+.keep:hover, .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.keep.on { border-color: var(--accent); color: var(--accent); }
+/* The touch floor. These pills keep their small type but stand 44px tall, the
+   same floor the step dots were given: at 22px, "Mark read" and "Keep" were the
+   things a wet thumb missed at 1am. inline-flex centres the label in the taller
+   box, and the margins hold 8px between neighbours. */
+.keep, .readmini, .tick {
+  min-height: 44px; box-sizing: border-box; display: inline-flex;
+  align-items: center; justify-content: center; vertical-align: middle;
+}
+.keep + .keep, .btn + .keep, .keep + .btn, .readmini + .readmini, .readmini + .tick, .tick + .tick { margin-left: 8px; }
+
+.btn {
+  background: var(--ink); color: var(--bg); border: none; cursor: pointer;
+  font-family: var(--sans); font-size: 12px; letter-spacing: .16em;
+  text-transform: uppercase; padding: 12px 22px; border-radius: 2px;
+}
+.btn:hover { background: var(--accent); }
+
+.months { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 8px; }
+.mchip {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 999px;
+  cursor: pointer; font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  padding: 8px 14px; font-family: var(--sans); color: var(--ink);
+}
+.mchip.on { border-color: var(--accent); color: var(--accent); }
+.mintro {
+  text-align: center; font-family: var(--serif); font-style: italic; font-size: 17px;
+  color: var(--faint); margin: 14px auto 2px; max-width: 460px; line-height: 1.5;
+}
+
+/* ═══ rows ═══ */
+.dayrow { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.dn { font-family: var(--serif); font-size: 18px; color: var(--accent); min-width: 34px; }
+.dq { font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.45; margin: 0 0 4px; }
+.ds { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+
+.tier { margin-bottom: 34px; }
+.goal { display: flex; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); align-items: flex-start; }
+.goal input { margin-top: 4px; accent-color: var(--accent); width: 17px; height: 17px; }
+.gt { font-weight: 600; font-size: 14px; }
+.gq { font-family: var(--serif); font-style: italic; font-size: 14.5px; color: var(--accent); margin: 2px 0; }
+.gp { font-size: 13px; color: var(--faint); line-height: 1.6; }
+
+.limb { display: flex; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--line); align-items: flex-start; }
+.limb:last-child { border-bottom: none; }
+.limbn { font-family: var(--serif); font-size: 19px; color: var(--accent); min-width: 24px; }
+
+/* ═══ study hall ═══ */
+.canon {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
+  padding: 22px; margin-bottom: 14px; box-shadow: var(--shadow);
+}
+.cep { font-family: var(--serif); font-style: italic; font-size: 16px; margin: 6px 0 10px; }
+.ct { font-size: 13.5px; line-height: 1.7; color: var(--faint); margin: 0; }
+.readmini {
+  margin-top: 6px; background: none; border: 1px solid var(--line); border-radius: 999px;
+  cursor: pointer; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--faint); padding: 4px 11px; font-family: var(--sans);
+}
+.readmini:hover { border-color: var(--accent); color: var(--accent); }
+.readbox { margin-top: 12px; padding: 16px 18px; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; }
+.chaphead { font-family: var(--serif); font-weight: 500; font-size: 16px; color: var(--accent); margin: 14px 0 6px; }
+.chaphead:first-child { margin-top: 0; }
+.passage { font-family: var(--serif); font-size: 16px; line-height: 1.75; color: var(--ink); margin: 0 0 14px; }
+/* Verse keeps the translator's lineation. The hanging indent is what stops a long
+   line that wraps from reading as two lines of the poem. */
+.passage.verse { padding-left: 1.4em; text-indent: -1.4em; line-height: 1.6; }
+.chaphead a, .pt a, .gt a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
+.chaphead a:hover, .pt a:hover, .gt a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.months a.mchip { text-decoration: none; }
+.vnum { font-family: var(--sans); font-size: 10px; color: var(--faint); vertical-align: super; margin-right: 2px; }
+.loadnote { font-size: 13px; color: var(--faint); font-style: italic; margin: 0; }
+/* One glyph per row saying whether that day's text is already on the device.
+   The artifact had no such signal, which is how a completely dead Rig Veda path
+   went unnoticed through a year of use. */
+.heldot {
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  margin-right: 8px; vertical-align: middle;
+  border: 1px solid var(--line); background: transparent;
+}
+.heldot.on { background: var(--accent); border-color: var(--accent); }
+.apicredit { font-size: 10px; color: var(--faint); margin-top: 10px; text-align: right; }
+
+/* ═══ the body ═══ */
+.vidcard { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; margin-bottom: 16px; }
+.vidframe { position: relative; width: 100%; aspect-ratio: 16/9; background: var(--disc-c); }
+.vidframe iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.vidthumb {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0; cursor: pointer;
+  background-size: cover; background-position: center;
+  display: flex; align-items: center; justify-content: center;
+}
+.playbtn {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(20,22,26,.72); color: #F6F7F5;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 19px; padding-left: 4px;
+}
+.vidthumb:hover .playbtn { background: var(--accent); }
+.vidmeta { padding: 16px 18px; }
+.vidframe-label { font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+.vidtitle { font-family: var(--serif); font-size: 19px; line-height: 1.35; margin-bottom: 5px; }
+.vidtitle a { color: var(--ink); }
+.vidnote { font-size: 13px; color: var(--faint); line-height: 1.6; }
+
+/* ═══ astrology ═══ */
+.glyph { color: var(--accent); margin-right: 4px; }
+.astrorow { font-size: 13px; line-height: 1.65; color: var(--faint); margin-top: 7px; }
+.astrorow .k { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-right: 6px; }
+
+.drawrow { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.drawrow input, .sel {
+  flex: 1; min-width: 140px; background: var(--paper); border: 1px solid var(--line);
+  border-radius: 4px; padding: 12px 14px; font-family: var(--sans);
+  font-size: 14px; color: var(--ink);
+}
+
+/* ═══ streak line ═══ */
+.streakline {
+  text-align: center; font-family: var(--serif); font-style: italic;
+  font-size: 15px; color: var(--faint); margin-bottom: 14px;
+}
+
+/* ═══ toast ═══
+   For storage failures. The artifact would tell you a thing was kept when the write
+   had thrown; this is the surface that tells the truth instead. */
+#toast {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: max(18px, env(safe-area-inset-bottom)); z-index: 60;
+  max-width: min(520px, calc(100vw - 32px));
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--accent); border-left-width: 3px; border-radius: 4px;
+  padding: 12px 16px; font-size: 13.5px; line-height: 1.55;
+  box-shadow: 0 6px 24px rgba(0,0,0,.14);
+  opacity: 0; pointer-events: none; transition: opacity .25s;
+}
+#toast.on { opacity: 1; pointer-events: auto; }
+
+/* ═══ the chart wheel ═══
+   non-scaling-stroke keeps hairlines at 1px however far the viewBox is scaled down;
+   without it the whole drawing thickens into mud on a phone. */
+.wheel { width: 100%; max-width: 560px; height: auto; display: block; margin: 8px auto 0; }
+.wheel line, .wheel circle { vector-effect: non-scaling-stroke; }
+.w-ring { fill: none; stroke: var(--line); stroke-width: 1; }
+.w-div  { stroke: var(--line); stroke-width: 1; }
+.w-tick { stroke: var(--line); stroke-width: 1; opacity: .6; }
+.w-tick-major { stroke: var(--faint); opacity: .9; }
+.w-cusp { stroke: var(--line); stroke-width: 1; }
+.w-cusp-angular { stroke: var(--accent); stroke-width: 2; }
+.w-ptick { stroke: var(--accent); stroke-width: 2; }
+.w-lead { stroke: var(--faint); stroke-width: 1; opacity: .55; }
+.w-sign   { font-size: 34px; fill: var(--accent); font-family: var(--serif); }
+.w-house  { font-size: 20px; fill: var(--faint); font-family: var(--sans); }
+.w-angle  { font-size: 22px; fill: var(--accent); font-family: var(--sans); letter-spacing: .05em; }
+.w-planet { font-size: 36px; fill: var(--ink); font-family: var(--serif); }
+.w-minor  { fill: var(--faint); font-size: 30px; }
+.w-retro  { font-size: 17px; fill: var(--faint); font-family: var(--serif); }
+/* Dash pattern per aspect kind, not colour alone: the palette moves through the day
+   and a good share of readers cannot rely on hue anyway. */
+.w-asp { stroke-width: 1.5; fill: none; }
+.w-asp-major { stroke: var(--ink); }
+.w-asp-soft  { stroke: var(--accent-2); stroke-dasharray: 6 5; }
+.w-asp-hard  { stroke: var(--accent); stroke-dasharray: 2 4; }
+@media (max-width: 480px) {
+  .w-planet { font-size: 44px; }
+  .w-minor  { font-size: 36px; }
+  .w-sign   { font-size: 40px; }
+  .w-house  { font-size: 24px; }
+}
+
+.tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.charttable { width: 100%; border-collapse: collapse; font-size: 14px; }
+.charttable th {
+  text-align: left; font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--faint); font-weight: 400; padding: 6px 10px 6px 0; border-bottom: 1px solid var(--line);
+}
+.charttable td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); }
+.charttable .ct-g { font-family: var(--serif); font-size: 19px; color: var(--accent); width: 1.6em; }
+
+/* ═══ the journal ═══ */
+.jbox {
+  width: 100%; background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
+  padding: 14px 16px; font-family: var(--serif); font-size: 17px; line-height: 1.65;
+  color: var(--ink); resize: vertical; min-height: 96px;
+}
+.jbox::placeholder { color: var(--faint); font-style: italic; opacity: .8; }
+.jstate {
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--accent); min-height: 14px; margin-top: 5px; text-align: right;
+}
+.jtext { font-family: var(--serif); font-size: 17px; line-height: 1.7; margin: 6px 0 0; white-space: pre-wrap; }
+
+/* ═══ the guided morning ═══ */
+.steprow { display: flex; justify-content: center; gap: 6px; margin: 14px 0 0; }
+/* The BUTTON is a 25px touch target; the dot it draws stays 9px. Painting the
+   dot on ::before keeps the quiet look while giving fingers something real:
+   9px dots were the wing's only failing touch-target audit. Adopted upstream. */
+.stepdot {
+  width: 25px; height: 25px; border-radius: 50%; padding: 0; cursor: pointer;
+  border: none; background: transparent; position: relative;
+}
+.stepdot::before {
+  content: ''; position: absolute; inset: 8px; border-radius: 50%;
+  border: 1px solid var(--line); background: transparent;
+}
+.stepdot.past::before { background: var(--line); border-color: var(--line); }
+.stepdot.on::before { background: var(--accent); border-color: var(--accent); transform: scale(1.25); }
+
+/* ═══ search ═══ */
+input[type="search"] {
+  flex: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
+  padding: 13px 15px; font-family: var(--sans); font-size: 15px; color: var(--ink);
+}
+mark { background: transparent; color: var(--accent); font-weight: 600; }
+
+/* ═══ the year at a glance ═══
+   366 cells. On a 375px screen that is a 20-column grid at 13px a side, which is the
+   smallest a tap target can be and still be aimed at. */
+.heat {
+  display: grid; grid-template-columns: repeat(24, 1fr); gap: 3px;
+  margin: 18px 0 10px; max-width: 560px; margin-left: auto; margin-right: auto;
+}
+.heatkey { display: flex; align-items: center; justify-content: center; gap: 3px; margin-bottom: 8px; }
+.cell {
+  display: block; aspect-ratio: 1; border-radius: 2px;
+  background: var(--line); opacity: .45;
+}
+.heatkey .cell { width: 13px; height: 13px; }
+.cell.l1 { background: var(--accent); opacity: .3; }
+.cell.l2 { background: var(--accent); opacity: .52; }
+.cell.l3 { background: var(--accent); opacity: .76; }
+.cell.l4 { background: var(--accent); opacity: 1; }
+.cell.skip { outline: 1px dashed var(--faint); outline-offset: -1px; opacity: .25; }
+@media (max-width: 480px) { .heat { grid-template-columns: repeat(18, 1fr); } }
+
+footer {
+  text-align: center; margin-top: 64px; font-size: 11px;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--faint);
+}
+.hide { display: none; }
+
+/* ═══ narrow screens ═══ */
+@media (max-width: 480px) {
+  h1 { font-size: 31px; }
+  .qt { font-size: 20px; }
+  nav { gap: 14px; }
+  .col { padding-top: max(24px, env(safe-area-inset-top)); }
+}
+
+/* ═══ the practice engine ═══ */
+.pacerbox {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 240px; margin-top: 10px;
+}
+.pacer-disc {
+  width: 170px; height: 170px; border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, var(--disc-a) 0%, var(--disc-b) 45%, var(--disc-c) 100%);
+  /* No CSS transition: the pacer sets scale every frame from the wall clock, and a
+     transition would fight it and lag the rhythm the reader is breathing to. */
+  transform: scale(1);
+}
+.pacer-label {
+  margin-top: 20px; font-family: var(--serif); font-size: 21px; color: var(--ink);
+}
+.seqtime {
+  font-family: var(--serif); font-size: 42px; text-align: center;
+  margin: 14px 0 8px; color: var(--accent); font-variant-numeric: tabular-nums;
+}
+.seqtrack { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.seqbar { height: 100%; width: 0; background: var(--accent); }
+@media (prefers-reduced-motion: reduce) {
+  /* The disc still resizes, that IS the instrument, not decoration, but nothing
+     else in the app animates, and the numeral carries the same information. */
+  .pacer-disc { transition: none !important; }
+}
+
+/* ═══ provenance ═══
+   Shown under a quotation whose citation needed correcting: a line is a loose
+   modern rendering, or is not the named author's at all. Set quietly and small:
+   the reader came for the voice, not the apparatus, but the truth is on the page
+   rather than buried in a commit message. */
+.prov {
+  font-size: 12.5px; line-height: 1.55; color: var(--faint);
+  border-left: 2px solid var(--line); padding-left: 10px;
+  margin: 10px 0 4px; max-width: 52em;
+}
+
+/* ═══ reading progress ═══ */
+.progtrack { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; margin-top: 8px; }
+.progbar { height: 100%; width: 0; background: var(--accent); transition: width .4s ease; }
+.tick {
+  background: none; border: 1px solid var(--line); border-radius: 999px; cursor: pointer;
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--faint); padding: 4px 11px; font-family: var(--sans); margin-top: 6px;
+}
+.tick:hover { border-color: var(--accent); color: var(--accent); }
+.tick.on { border-color: var(--accent); color: var(--accent); background: var(--paper); }
+/* A finished day recedes rather than disappearing: the year should look walked,
+   not emptied. */
+.dayrow.done .dq { opacity: .58; }

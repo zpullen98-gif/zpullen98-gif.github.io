@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.CV_fFSEz.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BRudWspQ.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DIdSjA7X.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.CTuQs3Jd.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.BDKJzSZV.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/1n9Euyu4.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BttsuRUD.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/LWMqHn7K.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/C2FuqdG1.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/nc6GVsGi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DNJjSNMP.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Bqqn4epD.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DEkrWLsl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/21.DYfS2dF3.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BdOUBD0X.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CnIlT4YR.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/PvQQTLZ4.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/zkCCN76P.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CSR7rlBf.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/LhhV_GIh.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/rcgfH6Am.js" rel="modulepreload">
+		<!--12qhfyh--><!--[0--><link rel="manifest" href="/manifest.webmanifest"/><!--]--> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-status-bar-style" content="black"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1844 recipes across 171 chapters, a 479-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--131j3h6--><meta name="description" content="Leads with richness that coats and comforts, acid holding everything up to the light, on a slow, honest burn."/><!----><title>Tarte au Citron · The World Table</title>
+		<link href="/table/_app/immutable/assets/0.BOpAsM7z.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/Ornament.D4liLlNF.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/RecipeDetailView.DX-iU9nr.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: recipes, lexicon and study</p></div></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" aria-current="page" href="/table/recipes">Library<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/menu">Menu<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service"><span class="svcglyph" aria-hidden="true">☀</span><span class="svcword svelte-12qhfyh">Day service</span></button></div></nav> <!--[-1--><!--]--> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><article class="shell sheet svelte-131j3h6"><nav class="crumbs svelte-131j3h6" data-print="hide"><a href="/table/recipes" class="svelte-131j3h6">All chapters</a> <span aria-hidden="true">›</span> <a href="/table/chapter/dessert-atlas" class="svelte-131j3h6">Dessert Atlas</a></nav> <header class="head svelte-131j3h6"><p class="eyebrow">Dessert Atlas · Dessert</p> <h1 class="svelte-131j3h6">Tarte au Citron</h1> <ul class="stats svelte-131j3h6"><li class="svelte-131j3h6">Advanced</li> <li class="svelte-131j3h6">2 h 30 m</li> <!--[-1--><!--]--> <!--[-1--><!--]--> <li title="Rough cost, derived from the ingredients" class="svelte-131j3h6"><span aria-hidden="true">$$</span> <span class="sr svelte-131j3h6">roughly 2 of 4 for cost</span></li> <!--[0--><li class="veg svelte-131j3h6">Vegetarian</li><!--]--> <!--[-1--><!--]--> <!--[-1--><!--]--></ul> <p class="palate svelte-131j3h6"><span class="tags svelte-131j3h6">rich · bright · silky · fiery</span> <span class="sentence svelte-131j3h6">Leads with richness that coats and comforts, acid holding everything up to the light, on a slow, honest burn.</span></p></header> <div class="tools svelte-131j3h6" data-print="hide"><div class="group svelte-131j3h6" role="group" aria-label="Scale the recipe"><!--[--><button aria-pressed="false" class="svelte-131j3h6">×½</button><button aria-pressed="true" class="svelte-131j3h6 on">×1</button><button aria-pressed="false" class="svelte-131j3h6">×2</button><button aria-pressed="false" class="svelte-131j3h6">×3</button><!--]--></div> <div class="group svelte-131j3h6" role="group" aria-label="Units"><button aria-pressed="true" class="svelte-131j3h6 on">Metric</button> <button aria-pressed="false" class="svelte-131j3h6">US</button></div> <button class="chip svelte-131j3h6">Cook mode ▸</button> <button class="chip pin svelte-131j3h6" aria-pressed="false">📌 Add to menu</button> <button class="chip svelte-131j3h6">Print</button></div> <div class="cols svelte-131j3h6"><section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Ingredients</h2> <ul class="ingredients svelte-131j3h6"><!--[--><!--[-1--><li class="item svelte-131j3h6"><span>Pâte sucrée: 250g flour, 100g icing sugar, 125g cold butter, 1 egg, pinch salt; blind-baked to full biscuit gold</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>The cream: zest of 3 lemons rubbed into 180g sugar (the perfume step), 160ml lemon juice, 4 eggs + 2 yolks</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>200g butter, cubed, whisked in off the heat: the French curd method; silk is the target</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>Optional crown: nothing (Paris), or Italian meringue torched (the tarte au citron meringuée faction)</span> <!--[-1--><!--]--></li><!--]--><!--[-1--><li class="item svelte-131j3h6"><span>A 24cm tart ring; a microplane; conviction about sourness</span> <!--[-1--><!--]--></li><!--]--><!--]--></ul> <!--[0--><h2 class="sec svelte-131j3h6">Equipment</h2> <p class="equip svelte-131j3h6">Torch · Bain-marie · Grater / zester</p><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The skills inside</h2> <p class="skills svelte-131j3h6"><!--[--><a href="/table/technique/whipping-a-meringue" class="svelte-131j3h6">Whipping a meringue</a><a href="/table/technique/the-water-bath" class="svelte-131j3h6">The water bath</a><a href="/table/technique/pie-crust-and-blind-baking" class="svelte-131j3h6">Pie crust &amp; blind baking</a><!--]--></p><!--]--> <!--[0--><h2 class="sec svelte-131j3h6">The words inside</h2> <p class="skills words svelte-131j3h6"><!--[--><a href="/table/lexicon#microplane-graters-and-the-zest-doctrine" class="svelte-131j3h6">Microplane, Graters &amp; the Zest Doctrine</a><a href="/table/lexicon#citrus-zest-juice-and-pith" class="svelte-131j3h6">Citrus: Zest, Juice &amp; Pith</a><a href="/table/lexicon#meringues-french-swiss-italian" class="svelte-131j3h6">Meringues: French, Swiss, Italian</a><!--]--></p><!--]--> <h2 class="sec svelte-131j3h6">Allergen screen</h2> <p class="equip svelte-131j3h6"><!--[0--><b>Found:</b> gluten · dairy · egg<!--]--></p> <p class="screened svelte-131j3h6">Screened for: gluten, dairy, egg, nuts, peanuts, fish, shellfish, molluscs, soy, sesame, celery, mustard, lupin, alcohol. <b>Not screened:</b> sulphites.</p> <!--[-1--><p class="screened derived svelte-131j3h6">Screened by keyword from the ingredient list, not reviewed by a person; check every
+					label for what the list cannot show.</p><!--]--></section> <section class="svelte-131j3h6"><h2 class="sec svelte-131j3h6">Method</h2> <ol class="steps svelte-131j3h6"><!--[--><li class="step svelte-131j3h6">Rub zest into sugar until it looks like wet sand and smells like a grove; whisk with juice, eggs and yolks. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Cook over a bain-marie, whisking, to 82°C: thick ribbons, spoon-coating; strain immediately. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Whisk in the cold butter piece by piece off the heat until the curd turns to lemon silk; pour into the fully baked shell. <!--[-1--><!--]--></li><li class="step svelte-131j3h6">Bake 130°C just 8–10 min to set the surface (or simply chill 4 h for the no-bake-set school). The top should be mirror-flat. Slice with a hot knife; the cut face should stand glossy and clean. <!--[0--><span class="dur svelte-131j3h6">10 min</span><!--]--></li><!--]--></ol></section></div> <!--[0--><section class="standard svelte-131j3h6"><h2 class="sec svelte-131j3h6">How it should come out</h2> <!--[-1--><!--]--> <ul class="marks svelte-131j3h6"><!--[--><li class="svelte-131j3h6">The surface is mirror-flat and one even deep yellow: no bubbles risen through it, no crazed or wrinkled skin, no browned rim where the curd met the pastry.</li><li class="svelte-131j3h6">Lift a slice on the knife: the base carries its own weight without drooping, and the underside is an even biscuit brown right to the centre with no pale, damp patch.</li><li class="svelte-131j3h6">A hot knife leaves a clean vertical cut face, glossy and square, and it has not crept or slumped after five minutes on the plate.</li><li class="svelte-131j3h6">The curd is silk on the tongue (no grain, no thread of cooked egg, no specks of zest caught in it), and the cut face is glossy rather than dull and matte.</li><li class="svelte-131j3h6">Sour arrives before sweet and the swallow makes the mouth water. If the sugar lands first, it does not go out.</li><!--]--></ul> <p class="fault svelte-131j3h6"><span class="faultlabel svelte-131j3h6">Where it goes wrong</span> The curd is pushed past 82°C, or cooked over direct heat instead of the bain-marie: it scrambles at the pan wall, and even strained it sets dull and grainy and weeps a thin syrup onto the surface overnight.</p></section><!--]--> <aside class="note recipe-note svelte-131j3h6"><p class="eyebrow">From the pass</p> <p class="notebody svelte-131j3h6">The great tarte au citron is an argument between sugar and acid that acid must narrowly win: a polite lemon tart is a failed one, per every French pastry chef who ever scored one. The zest-into-sugar rub extracts the oils no juice contains, and the late cold butter is what turns curd into cream. Fully bake the shell before filling: a pale, soggy base under perfect curd is the most common heartbreak in the genre.</p></aside> <section class="pairing svelte-131j3h6"><div class="orn svelte-1dnahwc" aria-hidden="true" style="font-size:15px"><span class="rule svelte-1dnahwc"></span> <span class="mark svelte-1dnahwc">✽</span> <span class="rule svelte-1dnahwc"></span></div><!----> <h2 class="sec centered svelte-131j3h6">At the Table</h2> <dl class="svelte-131j3h6"><div class="svelte-131j3h6"><dt class="svelte-131j3h6">The Pour</dt><dd class="svelte-131j3h6">Moscato d’Asti</dd></div> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Also Right</dt><dd class="svelte-131j3h6">Late-harvest Riesling</dd></div> <!--[0--><div class="svelte-131j3h6"><dt class="svelte-131j3h6">From the Taps</dt><dd class="svelte-131j3h6">Witbier</dd></div><!--]--> <div class="svelte-131j3h6"><dt class="svelte-131j3h6">Zero-Proof</dt><dd class="svelte-131j3h6">Sparkling elderflower</dd></div></dl> <p class="why svelte-131j3h6">Citrus desserts need a wine sweeter than they are, with acid enough to keep up: light, frothy, and low-proof wins.</p></section> <section class="notes svelte-131j3h6" data-print="hide"><label for="famnotes" class="sec svelte-131j3h6">Family notes</label> <p class="hint svelte-131j3h6">Saved on this device and kept across visits: export from My Menu to move them.</p> <textarea id="famnotes" rows="4" placeholder="Your adjustments, stains, and marginalia…" class="svelte-131j3h6"></textarea></section> <!--[-1--><!--]--> <section class="films svelte-131j3h6" data-print="hide"><h2 class="sec svelte-131j3h6">Film school</h2> <!--[-1--><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Tarte%20au%20Citron%20recipe" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">This dish, cooked on camera</span> <span class="vsub svelte-131j3h6">Search films of Tarte au Citron</span></a> <!--[--><a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=how%20to%20whip%20meringue%20stiff%20peaks%20technique" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Technique: Whipping a meringue</span><span class="vsub svelte-131j3h6">The skill inside this recipe</span></a><a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=bain%20marie%20water%20bath%20baking%20technique" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Technique: The water bath</span><span class="vsub svelte-131j3h6">The skill inside this recipe</span></a><!--]--> <a class="vrow svelte-131j3h6" href="https://www.youtube.com/results?search_query=Claire%20Saffitz%20Tarte%20au%20Citron" target="_blank" rel="noopener"><span class="vlbl svelte-131j3h6">Search YouTube: Claire Saffitz on Tarte au Citron</span> <span class="vsub svelte-131j3h6">A YouTube search for Claire Saffitz and this dish. No affiliation.</span></a></section></article><!--]--><!----></main> <div class="dock svelte-12qhfyh" data-print="hide"><!--[-1--><!--]--><!----> <div class="bar svelte-1ly0s1a" role="status" aria-label="Kitchen timers" data-print="hide"><!--[-1--><!--]--> <!--[-1--><button class="addbtn svelte-1ly0s1a" aria-label="Start a timer">+ Timer</button><!--]--></div><!----></div> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1844 recipes · 171 chapters · Chef’s Lexicon: 479 terms <!--[0--><span class="legal">· <a href="/privacy.html" rel="external">Privacy</a> · <a href="/terms.html" rel="external">Terms</a></span><!--]--></div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_wihv31 = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.CV_fFSEz.js"),
+						import("/table/_app/immutable/entry/app.CTuQs3Jd.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 21],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+<script src="/shared/oot-config.js?v=25"></script>
+<script src="/shared/oot-profiles.js?v=25"></script>
+<script src="/shared/oot-home.js?v=25"></script>
+<script src="/shared/oot-auth.js?v=25"></script>
+<script src="/shared/oot-gate.js?v=25"></script>
+<script src="/shared/oot-locks.js?v=25"></script>
+<script src="/shared/oot-pass.js?v=25"></script>
+<script src="/shared/oot-log.js?v=25"></script>
+<script src="/shared/oot-bar.js?v=25"></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+/* ============ The Concourse, as the plate itself ============
+   The artwork is the page. Five transparent anchors sit over the five painted
+   cards, positioned in PERCENTAGES of the image box, so they stay locked to
+   those cards at every width without a media query or a magic number.
+
+   The rectangles were measured off the image rather than guessed: the card
+   borders are a distinct warm gold on a near-black ground, so a scan for gold
+   pixels found every card edge to the pixel. Eyeballing hit areas is how they
+   end up half a card out on somebody else's screen.
+
+   The image carries its own type, which a screen reader cannot read, so each
+   anchor carries its wing's name as an accessible name and the image carries a
+   description. Nothing is printed outside the frame: the painting is the page,
+   so the focus ring on a hotspot is the only way a keyboard user sees which
+   door they are on, and it is drawn to be seen.
+   ============ */
+
+/* Cinzel, bundled (SIL Open Font License, shared/licenses/OFL.txt): the same
+   two files the Codex ships, so no font request leaves the device. */
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:400 900;font-display:swap;src:url('fonts/cinzel-normal-400-900-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:400 900;font-display:swap;src:url('fonts/cinzel-normal-400-900-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root {
+  --gild: #c9a86a;
+  --gild-hi: #e6cf9c;
+  --plate: #0b0908;
+  --ash-dim: rgba(217, 210, 196, 0.6);
+  --hair-firm: rgba(201, 168, 106, 0.5);
+}
+
+body { background: var(--plate); margin: 0; }
+
+/* The masthead is painted into the artwork. The DOM one stays for screen
+   readers and search engines, and comes out of the flow. */
+header.top { padding: 0; }
+/* GATED ON .plate-live, which hub-plate.js sets only after the artwork is
+   actually in the document. Ungated, this hid the masthead and the doors for
+   every reader whose plate never arrived: JavaScript off, a stale or 404'd
+   hub-plate.js, a missing config, and the hub rendered as an empty page
+   with its fallback links clipped to one pixel. The fallbacks are the whole
+   point of keeping this markup; they must be visible by default. */
+.plate-live header.top .wrap > :not(.acct):not(.acct-form) {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---- the plate, which is the picture, which is the page ----------------
+
+   The artwork is 1024x1536, half again as tall as it is wide, so on a laptop
+   the height of the window is the only budget there is. The rule that stood
+   here capped the width by that height and set 108px aside for what sits
+   underneath. What sits underneath measures 214px, so the page overflowed by
+   exactly 107px at every laptop size while the picture was being shrunk to buy
+   a fold nobody was getting. Correcting 108 to 214 would have fitted the page
+   and taken another 71px off the picture, which is the opposite of what was
+   asked for.
+
+   So the shape of the screen decides, and there are two answers.
+
+   Wider than it is tall, there is a wide empty band down each side: 428px a
+   side on a 1366 by 768 laptop. The download glyph and the two legal links,
+   the only things allowed outside the frame at all, go and stand in the bottom
+   corners of those bands. They leave the vertical flow, the reserve becomes
+   two pixels, and the picture takes the whole height of the window: 511 of a
+   possible 512 at 1366 by 768, against 440 before.
+
+   Taller than it is wide there is no band, so the furniture stays under the
+   picture and the height it really occupies comes off, this time by counting
+   it rather than estimating it.
+
+   Both answers cap the WIDTH and let the image supply the height. The five
+   hotspots are percentages of this box, so the box has to stay exactly the
+   shape of the image or every door moves. Nothing here sets a height, a
+   max-height, an aspect-ratio or an object-fit, and line-height:0 stays,
+   because it is what removes the inline-image baseline gap that would
+   otherwise make the box a few pixels taller than 1.5 times its width.
+
+   WHY THE RESERVE IS WRITTEN OUT RATHER THAN HELD IN A CUSTOM PROPERTY. Each
+   cap is written twice so a browser missing the newer unit keeps the first
+   line. That works only because the second declaration is thrown away at
+   PARSE time. A declaration containing var() skips parse-time validation: it
+   wins the cascade, fails later at computed-value time, and max-width then
+   falls back to its initial value, which is none, NOT to the line above it. A
+   var() here would hand an older engine a plate 1366 wide and 2049 tall.
+
+   THE RESERVE, COUNTED RATHER THAN ESTIMATED, because estimating it is what
+   broke this page. 14px of air over the glyph (trimmed from 40, below), the
+   glyph's own 58 (14 of padding, a 22px arrow, a 7px gap, a 1px progress
+   hairline, 14 of padding), the footer's 1px rule, 10 above its links and 12
+   below, and 13 of padding over and under each link so the tap target stays
+   past 44. That is 121px of fixed pixels, carried as 125 to leave four of
+   slack. Only the single line of .82rem text at the body's 1.55 line height
+   grows when a reader enlarges their default text, so it alone is in rem.
+
+   THE UPRIGHT CAP MEASURES AGAINST 100vh, NOT 100svh, and that is deliberate.
+   On a phone the width binds long before the height does: 1.5 times a 390px
+   screen is 585, well inside 844. Subtracting the whole reserve from the SMALL
+   viewport instead drops the cap to 320 and starts it binding, which would
+   hand an iPhone a 320px picture where it has 390 today. svh is the right unit
+   for promising no scroll and the wrong one for a picture whose own width is
+   already the limit. The cost is that a phone with its toolbars showing
+   scrolls a little, which is the gesture that retracts them.
+   ---- */
+.plate {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  flex: none;             /* a column flex container must never squeeze the ratio */
+  margin: 0 auto;
+  line-height: 0;         /* removes the inline-image baseline gap */
+  max-width: min(1024px, max(320px, calc((100vh - 125px - 1.35rem) / 1.5)));
+  max-width: min(1024px, max(320px, calc((100vh - 125px - 1.35rem - env(safe-area-inset-bottom, 0px)) / 1.5)));
+}
+.plate img { display: block; width: 100%; height: auto; }
+
+/* The page becomes a column so the leftover height is handed out on purpose:
+   the picture and its glyph sit in the middle of what is left and the footer
+   keeps the floor. Gated on .plate-live like everything else here, because an
+   ungated layout rule is what once left the fallback page blank. Three shipped
+   scripts append to body, the shared bar, the paywall and a download anchor,
+   and all three are position:fixed or display:none, so not one of them becomes
+   a flex item that could disturb this column. */
+.plate-live body {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+.plate-live main {
+  flex: 1 0 auto;         /* grows into the slack, never squeezes the picture */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* The masthead is clipped to a pixel under .plate-live, but its bottom rule
+   was still drawing a hairline across the top of the page and still costing a
+   pixel of height. There is nothing above the picture to divide. */
+.plate-live header.top { border-bottom: 0; }
+
+/* The air over the glyph and around the footer was set for a page with prose
+   on it. This is a page with one picture on it, and every 3px taken back here
+   is 2px of picture. The tap targets are untouched: the glyph keeps its 14px
+   of padding around a 22px arrow, the links keep their 13px over and under. */
+.plate-live .keep-offline { margin: 14px 0 0; }
+.plate-live footer.foot { padding: 10px 0 12px; }
+
+/* ---- wider than it is tall, so there are bands to stand things in ------
+   The gate is 5/4 rather than 1/1 because a band has to be wide enough to hold
+   the word Privacy without crowding the painting, and 480px because under that
+   a window is a phone and there is no band worth using. Every laptop, every
+   desktop, every tablet held sideways and every phone held sideways lands
+   here. */
+@media (min-width: 480px) and (min-aspect-ratio: 5/4) {
+
+  .plate-live body { justify-content: center; position: relative; }
+  .plate-live main { flex: 0 0 auto; display: block; }
+
+  /* Nothing is left in the flow but the picture, so the whole window is its
+     height. The 2px is a guard: the plate is meant to land a pixel short of
+     the window rather than a pixel over, because a pixel over is a scrollbar.
+
+     THE 320px FLOOR STAYS HERE, and that is a correction rather than a detail.
+     Dropping it to fit a phone held sideways would also catch browser zoom: a
+     1366 by 768 laptop at 200% is a 683 by 384 window and lands in this branch,
+     so a reader who asked for magnification would be handed a smaller picture
+     than a reader who did not. The cost is that a phone held sideways still
+     scrolls to reach the bottom row of doors, but it scrolls about 90px rather
+     than the 305 it scrolls today, because the glyph and the footer are no
+     longer stacked underneath. */
+  .plate-live .plate {
+    max-width: min(1024px, max(320px, calc((100vh  - 2px) / 1.5)));
+    max-width: min(1024px, max(320px, calc((100svh - env(safe-area-inset-bottom, 0px) - 2px) / 1.5)));
+  }
+
+  /* The two things the owner allows outside the frame, standing in the bottom
+     corners of the empty bands: the wordless glyph on the left, Privacy and
+     Terms on the right, both out of the flow so they cost the picture nothing.
+
+     Absolute rather than fixed, deliberately. Absolute puts them at the bottom
+     of the DOCUMENT, so in the rare case where this branch does scroll, at deep
+     zoom or in a very short window, they scroll away with it instead of
+     hovering over the painting.
+
+     The cap is the true half band, derived from the same expression the plate
+     is capped by, floor and ceiling included, so it cannot disagree with the
+     picture actually on the screen the way a re-typed formula would. It is a
+     percentage of body's padding box rather than 100vw, so it also excludes a
+     classic Windows scrollbar. Where the band is tight the two links wrap onto
+     two lines rather than crowd the painting. The footer's rule comes off
+     because a hairline across an empty corner divides nothing.
+
+     They are lifted 12px clear of the bottom edge because .glyph:focus-visible
+     draws its ring at outline-offset 6px, and that ring is the only signpost a
+     keyboard user has. Drawn off the screen, it is gone. */
+  .plate-live .keep-offline,
+  .plate-live footer.foot {
+    position: absolute;
+    bottom: 12px;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    max-width: calc((100% - min(1024px, max(320px, (100vh  - 2px) / 1.5))) / 2);
+    max-width: calc((100% - min(1024px, max(320px, (100svh - env(safe-area-inset-bottom, 0px) - 2px) / 1.5))) / 2);
+  }
+  /* Anchored at the edge of the glass with the notch carried as padding INSIDE
+     the half-band cap, rather than as an offset that would push the box toward
+     the painting. On a phone held sideways the outer corners are exactly where
+     the rounded glass eats a control. */
+  .plate-live .keep-offline { left: 0;  padding-left:  env(safe-area-inset-left,  0px); }
+  .plate-live footer.foot   { right: 0; padding-right: env(safe-area-inset-right, 0px); }
+
+  /* .wrap is a 1000px centring box with 20px of gutter, built for a page with a
+     column of text on it. In a band that gutter is 40px of the room the two
+     links need. */
+  .plate-live footer.foot .wrap { max-width: none; padding: 0 8px; }
+}
+
+/* ---- sideways on a phone, or a laptop magnified ------------------------
+   These are the only two windows left that do not fit: 844 by 390 held
+   sideways scrolled 91px, and a 1366 by 768 laptop at 200% zoom, which is a
+   683 by 384 window, scrolled 97px. Both because the 320px floor makes the
+   picture 480 tall in a window under 400.
+
+   The floor is there so a reader who magnifies is never handed a thumbnail,
+   and that is right in CSS pixels and wrong in the ones the eye receives. At
+   200% a 320px plate is painted 640 device pixels wide, already wider than
+   the 511 an unmagnified reader gets on the same laptop. Letting it fall to
+   255 here paints 510, the same picture that reader sees, and it buys the
+   whole poster with no scroll.
+
+   Under 520 tall is below any laptop and above nothing but these two. It only
+   bites under 482, because above that the height term has already passed 320
+   and the floor is doing nothing. At the smallest it produces, the narrowest
+   door is 71 by 99, comfortably past the 44 a thumb needs.
+
+   The furniture in the bands keeps the 320 floor in its own cap, so in these
+   windows it reads the band a little narrower than it truly is. That is the
+   safe direction: a narrower cap can only hold the glyph and the links
+   further from the painting, never nearer. */
+@media (min-width: 480px) and (min-aspect-ratio: 5/4) and (max-height: 520px) {
+  .plate-live .plate {
+    max-width: min(1024px, max(240px, calc((100vh  - 2px) / 1.5)));
+    max-width: min(1024px, max(240px, calc((100svh - env(safe-area-inset-bottom, 0px) - 2px) / 1.5)));
+  }
+}
+
+/* A reader who has asked their system for a forced palette loses backgrounds,
+   and the picture then meets the edge of the glass with no boundary at all. An
+   outline costs no layout, so it moves no hotspot. */
+@media (forced-colors: active) {
+  .plate img { outline: 1px solid CanvasText; }
+}
+
+/* Each hotspot is a real anchor with a real href, so middle-click, right-click
+   and the status bar all behave the way anyone expects. */
+.spot {
+  position: absolute;
+  display: block;
+  border-radius: 22px 22px 8px 8px / 30px 30px 8px 8px;
+  background: rgba(201, 168, 106, 0);
+  outline: 1px solid transparent;
+  transition: box-shadow .22s ease, background-color .22s ease;
+  -webkit-tap-highlight-color: rgba(201, 168, 106, .25);
+}
+.spot:hover, .spot:focus-visible {
+  background: rgba(201, 168, 106, .10);
+  box-shadow: 0 0 0 1px rgba(230, 207, 156, .8), 0 0 26px rgba(201, 168, 106, .35);
+}
+/* The only signpost a keyboard user gets, since no names are printed outside
+   the frame: a filled card and a ring that reads at arm's length. */
+.spot:focus-visible {
+  outline: 3px solid var(--gild-hi); outline-offset: 3px;
+  background: rgba(201, 168, 106, .16);
+}
+.spot:active { background: rgba(201, 168, 106, .18); }
+@media (prefers-reduced-motion: reduce) { .spot { transition: none; } }
+
+/* Measured off the 1024x1536 artwork. */
+.spot-table   { left:  5.57%; top: 38.87%; width: 28.32%; height: 30.14%; }
+.spot-ledger  { left: 35.74%; top: 38.87%; width: 27.93%; height: 30.14%; }
+.spot-codex   { left: 65.33%; top: 38.87%; width: 28.22%; height: 30.14%; }
+.spot-light   { left: 15.72%; top: 69.47%; width: 33.20%; height: 25.85%; }
+.spot-almanac { left: 50.78%; top: 69.47%; width: 33.11%; height: 25.85%; }
+
+
+.acct { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 24px auto 0; padding: 0 16px; }
+.acct-form { margin-left: auto; margin-right: auto; text-align: center; }
+
+/* The doors list is what the plate replaces. It stays in the DOM as the
+   fallback when the artwork cannot load. hub-plate.js marks it inert at the
+   same moment it adds .plate-live, so it is out of the tab order and the
+   accessibility tree: the hotspots and the index row already name every
+   wing. min-height:0 overrides the CLS reservation in index.html, without
+   which the clipped box stayed a viewport tall and scrolled past the footer. */
+.plate-live #pillars { position: absolute; width: 1px; height: 1px; min-height: 0; overflow: hidden; clip: rect(0 0 0 0); }
+/* the artwork loaded and then failed: show everything again */
+.plate-failed #pillars { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
+.plate-failed header.top .wrap > * { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; }
+.plate-failed .plate { display: none; }
+
+.venue-note { text-align: center; }

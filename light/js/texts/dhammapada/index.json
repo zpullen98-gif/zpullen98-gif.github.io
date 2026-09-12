@@ -1,0 +1,113 @@
+{
+ "title": "The Dhammapada",
+ "translation": "F. Max Müller, 1881",
+ "license": "Public domain",
+ "source": "Project Gutenberg",
+ "whole": true,
+ "chapters": [
+  {
+   "title": "The Twin-Verses",
+   "verses": 20
+  },
+  {
+   "title": "On Earnestness",
+   "verses": 12
+  },
+  {
+   "title": "Thought",
+   "verses": 11
+  },
+  {
+   "title": "Flowers",
+   "verses": 15
+  },
+  {
+   "title": "The Fool",
+   "verses": 16
+  },
+  {
+   "title": "The Wise Man (Pandita)",
+   "verses": 13
+  },
+  {
+   "title": "The Venerable (Arhat)",
+   "verses": 10
+  },
+  {
+   "title": "The Thousands",
+   "verses": 15
+  },
+  {
+   "title": "Evil",
+   "verses": 13
+  },
+  {
+   "title": "Punishment",
+   "verses": 17
+  },
+  {
+   "title": "Old Age",
+   "verses": 10
+  },
+  {
+   "title": "Self",
+   "verses": 10
+  },
+  {
+   "title": "The World",
+   "verses": 12
+  },
+  {
+   "title": "The Buddha (The Awakened)",
+   "verses": 17
+  },
+  {
+   "title": "Happiness",
+   "verses": 12
+  },
+  {
+   "title": "Pleasure",
+   "verses": 12
+  },
+  {
+   "title": "Anger",
+   "verses": 13
+  },
+  {
+   "title": "Impurity",
+   "verses": 21
+  },
+  {
+   "title": "The Just",
+   "verses": 14
+  },
+  {
+   "title": "The Way",
+   "verses": 17
+  },
+  {
+   "title": "Miscellaneous",
+   "verses": 16
+  },
+  {
+   "title": "The Downward Course",
+   "verses": 14
+  },
+  {
+   "title": "The Elephant",
+   "verses": 14
+  },
+  {
+   "title": "Thirst",
+   "verses": 26
+  },
+  {
+   "title": "The Bhikshu (Mendicant)",
+   "verses": 23
+  },
+  {
+   "title": "The Brahmana (Arhat)",
+   "verses": 41
+  }
+ ]
+}
