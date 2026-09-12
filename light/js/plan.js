@@ -205,7 +205,15 @@ function canonState(id) {
 /* Which slot of the plan is "today" for this reader. */
 function canonDoy(id) {
   var st = canonState(id);
-  if (!st.start) return doyToday();
+  /* Following the shared calendar. A year-long plan maps the day of the year
+     straight onto the plan; a short read has fewer days than the year has, so
+     the calendar day wraps into it. Everybody following the calendar is still
+     on the same chapter on the same date, which is the point of following it. */
+  if (!st.start) {
+    var len0 = planLength(id);
+    var d0 = doyToday();
+    return len0 >= 366 ? d0 : ((d0 - 1) % len0) + 1;
+  }
   /* start was stamped with the shift-aware flToday(), so "days since" must be
      measured against the same clock, or a plan begun after midnight skips
      Day 1 forever. Math.round, not floor: two local midnights across a DST
@@ -214,15 +222,91 @@ function canonDoy(id) {
   var start = new Date(st.start + 'T00:00:00');
   var days = Math.round((new Date(n.getFullYear(), n.getMonth(), n.getDate()).getTime() - start.getTime()) / 86400000);
   if (days < 0) days = 0;
-  return (days % 366) + 1;      // wraps, so a second year through is a second year, not an overrun
+  return (days % planLength(id)) + 1;   // wraps, so a second time through is a second time, not an overrun
 }
 function canonProgress(id) {
   var done = canonState(id).done, n = 0;
   for (var k in done) if (Object.prototype.hasOwnProperty.call(done, k)) n++;
-  return { done: n, total: 366, pct: Math.round(n / 366 * 100) };
+  var total = planLength(id);
+  return { done: n, total: total, pct: Math.round(n / total * 100) };
 }
 function canonMarkRead(id, doy, on) {
   var st = canonState(id);
   if (on === false) delete st.done[doy]; else st.done[doy] = 1;
   flSave();
 }
+
+
+/* ═══════════════ the short reads ═══════════════
+
+   Five works that do not need a year. The Tao Te Ching has eighty-one chapters
+   and reading one a day is the oldest way anybody has read it; the Gita has
+   eighteen; the Analects twenty books; the Zhuangzi thirty-three chapters; the
+   Upanishads three. A plan should fit its work rather than stretch to a
+   calendar, so these run at their own length and finish. Finishing is the
+   point: the five canons above are a discipline, and these are a book you can
+   actually get to the end of.
+
+   Units are chapter numbers, one day per chapter, taken from the library's own
+   index so a re-bake cannot leave the plan pointing at chapters that moved. */
+
+var SHORT_READS = [
+  { id: 'gita',       work: 'gita',       unit: 'Chapter' },
+  { id: 'tao',        work: 'tao',        unit: 'Chapter' },
+  { id: 'analects',   work: 'analects',   unit: 'Book' },
+  { id: 'zhuangzi',   work: 'zhuangzi',   unit: 'Chapter' },
+  { id: 'upanishads', work: 'upanishads', unit: '' }
+];
+
+var SHORT_UNITS = {};   /* id -> [[chapterNumber], …] one entry per day */
+var SHORT_LABEL = {};   /* id -> ['Chapter 1', …] the row the plan page shows */
+
+(function () {
+  if (typeof FL_LIBRARY === 'undefined') return;
+  SHORT_READS.forEach(function (r) {
+    var L = FL_LIBRARY[r.work];
+    if (!L || !L.chapters || !L.chapters.length) return;
+    SHORT_UNITS[r.id] = L.chapters.map(function (c, i) { return [c.n || (i + 1)]; });
+    SHORT_LABEL[r.id] = L.chapters.map(function (c, i) {
+      var n = c.n || (i + 1);
+      if (c.title) return r.unit ? r.unit + ' ' + n + ' · ' + c.title : c.title;
+      return (r.unit || 'Chapter') + ' ' + n;
+    });
+  });
+})();
+
+/* How many days this plan runs. The five canons are a year; a short read is as
+   long as the work. Everything that used to hard-code 366 asks this instead. */
+function planLength(id) {
+  return SHORT_UNITS[id] ? SHORT_UNITS[id].length : 366;
+}
+
+/* Appended rather than written inline above, so the five canons keep their
+   place at the head of the shelf and nothing reorders under a reader. */
+HALL_YEARS = HALL_YEARS.concat([
+  ['gita', 'The Bhagavad Gita', 'Krishna and Arjuna, on the field',
+   'Eighteen chapters, one a day, the whole dialogue in under three weeks.', SHORT_LABEL.gita || [],
+   'On action alone be thy interest, never on its fruits.', 'Bhagavad Gita 2:47',
+   'A soldier refuses to fight and is answered with the longest argument in Hinduism about duty, action and the self.',
+   'Dharma · Karma yoga · Detachment · The eternal Self'],
+  ['tao', 'The Tao Te Ching', 'The way, and its power',
+   'Eighty-one chapters, one a day. Short enough to read twice and sit with.', SHORT_LABEL.tao || [],
+   'The Tao that can be trodden is not the enduring and unchanging Tao.', 'Tao Te Ching 1',
+   'Eighty-one short chapters on yielding, emptiness and the strength of water, and the root text of Taoism.',
+   'Wu wei · Yielding · The uncarved block · Simplicity'],
+  ['analects', 'The Analects', 'Confucius, as his students remembered him',
+   'Twenty books, one a day. Three weeks with the most quoted teacher in history.', SHORT_LABEL.analects || [],
+   'Is it not pleasant to learn with a constant perseverance and application?', 'Analects 1:1',
+   'Not a treatise but a record: what Confucius said, to whom, and on what occasion, gathered by the people who heard it.',
+   'Ren · Li · The gentleman · Filial piety · Rectification of names'],
+  ['zhuangzi', 'The Zhuangzi', 'The other Taoist master',
+   'Thirty-three chapters, one a day, of the strangest and funniest book in the canon.', SHORT_LABEL.zhuangzi || [],
+   'Once upon a time, I dreamt I was a butterfly.', 'Zhuangzi 2',
+   'Parables, jokes and arguments against certainty, from a writer who thought Confucius earnest and the Tao Te Ching too solemn.',
+   'Spontaneity · The useless tree · Perspective · Free and easy wandering'],
+  ['upanishads', 'Three Upanishads', 'Isa, Katha and Kena',
+   'Three days, one Upanishad each. The shortest way into the Vedanta.', SHORT_LABEL.upanishads || [],
+   'The Self is not to be known through study, nor through the intellect.', 'Katha Upanishad',
+   'The end of the Vedas, where ritual gives way to the question of what the Self actually is.',
+   'Atman · Brahman · The two selves · Death as teacher']
+]);

@@ -17,7 +17,9 @@
      pali     [verse, …]                → one part; verses may be pair-spans
      veda     [[mandala, hymn], …]      → one part per mandala */
 
-var CANON_WORK = { bible: 'bible', tanakh: 'tanakh', quran: 'quran', pali: 'dhammapada', veda: 'rigveda' };
+var CANON_WORK = { bible: 'bible', tanakh: 'tanakh', quran: 'quran', pali: 'dhammapada', veda: 'rigveda',
+  /* the short reads: each ships whole, and its plan id is its work id */
+  gita: 'gita', tao: 'tao', analects: 'analects', zhuangzi: 'zhuangzi', upanishads: 'upanishads' };
 
 /* Book name → part id, built once from the library index. The plans name books and
    the library files them by number, and nothing else knows how to bridge that. */
@@ -162,6 +164,9 @@ function readRender(canonId, doy) {
              (hy.deity ? ' · ' + esc(hy.deity) : '') + '</div>' +
              readVerses(hy.v.map(function (t, i) { return [i + 1, t]; }));
     }).join('');
+
+  } else if (typeof SHORT_UNITS !== 'undefined' && SHORT_UNITS[canonId]) {
+    out = readShort(canonId, doy);
   }
 
   if (!out) return '<p class="loadnote">That passage could not be assembled.</p>';
@@ -190,3 +195,42 @@ function readSaveCanon(canonId, onProgress) {
   var parts = FL_LIBRARY[w].parts.map(function (p) { return p.part || 'all'; });
   return FLTextLoadMany(w, parts, onProgress);
 }
+
+
+/* ═══════════════ the short reads ═══════════════
+   Each ships whole, so the part is always 'all' and readPartsFor's default
+   branch already covers them. All that is needed here is the rendering, and
+   the block helper the library uses for prose that keeps its line breaks. */
+
+function readBlock(lines) {
+  return '<p class="passage">' + lines.map(esc).join('<br>') + '</p>';
+}
+
+function readShort(canonId, doy) {
+  var w = readWorkOf(canonId);
+  var arr = FL_TEXT[w] && FL_TEXT[w].all;
+  if (!arr) return '';
+  var units = (SHORT_UNITS[canonId] || [])[doy - 1] || [];
+  return units.map(function (n) {
+    var c = null;
+    for (var i = 0; i < arr.length; i++) if ((arr[i].n || (i + 1)) === n) { c = arr[i]; break; }
+    if (!c) return '';
+    var head = c.title ? esc(c.title) : ((canonId === 'analects' ? 'Book ' : 'Chapter ') + n);
+    /* the Analects nest a second level: book, then numbered chapters */
+    if (c.ch) {
+      return '<div class="chaphead">Book ' + n + (c.title ? ' · ' + esc(c.title) : '') + '</div>' +
+        c.ch.map(function (sub) {
+          return '<div class="ds" style="margin:12px 0 4px">Chapter ' + sub.n + '</div>' +
+                 (sub.b || []).map(readBlock).join('');
+        }).join('');
+    }
+    return '<div class="chaphead">' + head + '</div>' + (c.b || []).map(readBlock).join('');
+  }).join('');
+}
+
+/* Which plan reads a given work, for the door the Library puts on a work's
+   contents page. The inverse of CANON_WORK, built once. */
+var PLAN_OF_WORK = {};
+(function () {
+  for (var id in CANON_WORK) if (Object.prototype.hasOwnProperty.call(CANON_WORK, id)) PLAN_OF_WORK[CANON_WORK[id]] = id;
+})();

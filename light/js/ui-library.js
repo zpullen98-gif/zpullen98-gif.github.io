@@ -155,6 +155,18 @@ function libContents(workId) {
     '<h1>' + esc(L.title) + '</h1>' +
     '<p class="note">' + esc(L.license) + ' · via ' + esc(L.source) + ' · ' + FLBytes(L.bytes) + '</p>';
 
+  /* Every work now has a daily plan, and every work can be taken away as a
+     text file. Both doors sit above the contents, because they are what a
+     reader who has decided to read this book is looking for. */
+  var planId = (typeof PLAN_OF_WORK !== 'undefined') && PLAN_OF_WORK[workId];
+  var doors = '<div class="drawrow" style="margin-bottom:18px">' +
+    (planId ? '<a class="btn" href="#/hall/' + planId + '">Read it daily</a>' : '') +
+    '<a class="keep" href="#/library/read/' + workId + '/' +
+      (L.parts && L.parts.length > 1 ? L.parts[0].part : 'all') + '">Read it through</a>' +
+    '<button class="keep" data-act="libDownload" data-work="' + workId + '">Download as text</button>' +
+    '</div>' +
+    '<p class="loadnote" id="lib-dl" hidden></p>';
+
   /* Multi-file works (Bible, Tanakh, Rig Veda) list their books. Single-file works
      list chapters straight away. */
   if (L.parts && L.parts.length > 1) {
@@ -164,7 +176,7 @@ function libContents(workId) {
       if (!sections[s]) { sections[s] = []; order.push(s); }
       sections[s].push(p);
     });
-    return head + order.map(function (s) {
+    return head + doors + order.map(function (s) {
       return (s ? '<div class="label">' + esc(s) + '</div>' : '<div class="label">Books</div>') +
         '<div class="months" style="justify-content:flex-start">' +
         sections[s].map(function (p) {
@@ -174,8 +186,12 @@ function libContents(workId) {
     }).join('');
   }
 
-  return head + '<div class="label">Open it</div>' +
-    '<a class="btn" href="#/library/read/' + workId + '/all">Read</a>';
+  return head + doors + '<div class="label">What is in it</div>' +
+    '<div class="months" style="justify-content:flex-start">' +
+    (L.chapters || L.surahs || []).map(function (c, i) {
+      var n = c.n || (i + 1);
+      return '<span class="mchip">' + esc(c.title || c.name || String(n)) + '</span>';
+    }).join('') + '</div>';
 }
 
 /* --- the reader --- */
@@ -191,7 +207,7 @@ function libReader(workId, part) {
       '<p class="note">' + esc(L.translation) + '</p>' +
       data.ch.map(function (verses, i) {
         return '<div class="chaphead">' + esc(data.book) + ' ' + (i + 1) + '</div>' + libVerses(verses);
-      }).join('') + libCredit(L);
+      }).join('') + libCredit(L) + libNextPrev(workId, part);
   }
 
   /* rigveda: {mandala, hymns:[{h, deity, v:[…]}]} */
@@ -207,7 +223,7 @@ function libReader(workId, part) {
                  : '<p class="loadnote">Not translated here. ' +
                    (hy.note ? esc(hy.note) : 'Griffith omitted this hymn from the main text.') +
                    '</p>');
-      }).join('') + libCredit(L);
+      }).join('') + libCredit(L) + libNextPrev(workId, part);
   }
 
   /* quran: [{n,name,tr,ar,rev,v:[…]}] */
@@ -217,7 +233,7 @@ function libReader(workId, part) {
       data.map(function (s) {
         return '<div class="chaphead">' + s.n + '. ' + esc(s.name) + ': ' + esc(s.tr) +
                ' <span class="ds">' + esc(s.rev) + '</span></div>' + libVerses(s.v);
-      }).join('') + libCredit(L);
+      }).join('') + libCredit(L) + libNextPrev(workId, part);
   }
 
   /* dhammapada: [{title, v:[[num, text],…]}] */
@@ -229,7 +245,7 @@ function libReader(workId, part) {
           c.v.map(function (v) {
             return '<span class="vnum">' + esc(String(v[0])) + '</span>' + esc(v[1]) + ' ';
           }).join('') + '</p>';
-      }).join('') + libCredit(L);
+      }).join('') + libCredit(L) + libNextPrev(workId, part);
   }
 
   /* analects: [{n,title,ch:[{n,b:[[line,…],…]}]}] */
@@ -242,7 +258,7 @@ function libReader(workId, part) {
             return '<div class="ds" style="margin:12px 0 4px">Chapter ' + c.n + '</div>' +
                    c.b.map(libBlock).join('');
           }).join('');
-      }).join('') + libCredit(L);
+      }).join('') + libCredit(L) + libNextPrev(workId, part);
   }
 
   /* gita / tao / zhuangzi / upanishads: [{n, title?, b:[[line,…],…]}]
@@ -254,8 +270,166 @@ function libReader(workId, part) {
     data.map(function (c) {
       var head = c.title ? esc(c.title) : ((workId === 'gita' ? 'Chapter ' : '') + c.n);
       return '<div class="chaphead">' + head + '</div>' + c.b.map(libBlock).join('');
-    }).join('') + libCredit(L);
+    }).join('') + libCredit(L) + libNextPrev(workId, part);
 }
+
+/* The foot of a book in a multi-book work. Without this the Bible could only
+   be read sixty-six separate times, each ending in a dead end and a tap back
+   to the contents. With it, Genesis runs into Exodus and a reader can go from
+   the first page to the last without leaving the reader. */
+function libNextPrev(workId, part) {
+  var L = FL_LIBRARY[workId];
+  if (!L.parts || L.parts.length < 2) return '';
+  var i = -1;
+  for (var k = 0; k < L.parts.length; k++) if (L.parts[k].part === part) { i = k; break; }
+  if (i < 0) return '';
+  var nameOf = function (p) { return p.book || ('Mandala ' + p.mandala); };
+  var prev = i > 0 ? L.parts[i - 1] : null;
+  var next = i < L.parts.length - 1 ? L.parts[i + 1] : null;
+  return '<div class="drawrow" style="margin-top:26px;justify-content:space-between">' +
+    (prev ? '<a class="keep" href="#/library/read/' + workId + '/' + prev.part + '">← ' + esc(nameOf(prev)) + '</a>' : '<span></span>') +
+    (next ? '<a class="btn" href="#/library/read/' + workId + '/' + next.part + '">' + esc(nameOf(next)) + ' →</a>'
+          : '<span class="ds">The end of ' + esc(L.title) + '</span>') +
+    '</div>';
+}
+
+/* ═══════════════ taking a book away ═══════════════
+
+   Plain text, not JSON and not a zip: a file a reader can open in anything,
+   print, put on an e-reader, or keep after this app is gone. The whole work,
+   with its chapter headings and its credit line, in reading order.
+
+   A multi-book work has to be loaded first, one file at a time, which is why
+   this reports progress rather than appearing to hang on four megabytes. */
+
+function libLines(b) { return b.join('\n'); }
+
+function libTextOf(workId) {
+  var L = FL_LIBRARY[workId], out = [];
+  out.push(L.title);
+  out.push(L.translation);
+  out.push(L.license + ' · via ' + L.source);
+  out.push('');
+  out.push('');
+
+  var parts = (L.parts || [{ part: 'all' }]).map(function (p) { return p.part; });
+  parts.forEach(function (part) {
+    var d = FL_TEXT[workId] && FL_TEXT[workId][part];
+    if (!d) return;
+
+    /* bible / tanakh: {book, ch:[[verse, …], …]} */
+    if (d.ch) {
+      out.push(d.book.toUpperCase());
+      out.push('');
+      d.ch.forEach(function (verses, i) {
+        out.push(d.book + ' ' + (i + 1));
+        verses.forEach(function (t, j) { out.push((j + 1) + '  ' + t); });
+        out.push('');
+      });
+      return;
+    }
+
+    /* rigveda: {mandala, hymns:[{h, deity, v:[…], note?}]} */
+    if (d.hymns) {
+      out.push('MANDALA ' + d.mandala);
+      out.push('');
+      d.hymns.forEach(function (hy) {
+        out.push('Hymn ' + hy.h + (hy.deity ? ' · ' + hy.deity : ''));
+        if (hy.v.length) hy.v.forEach(function (t, j) { out.push((j + 1) + '  ' + t); });
+        else out.push('[Not translated here. ' + (hy.note || 'Griffith omitted this hymn from the main text.') + ']');
+        out.push('');
+      });
+      return;
+    }
+
+    /* the whole-file works, each an array of chapters */
+    d.forEach(function (c, i) {
+      var n = c.n || (i + 1);
+      if (workId === 'quran') {
+        out.push(n + '. ' + c.name + ' — ' + c.tr + '  (' + c.rev + ')');
+        out.push('');
+        c.v.forEach(function (t, j) { out.push((j + 1) + '  ' + t); });
+      } else if (workId === 'dhammapada') {
+        out.push((i + 1) + '. ' + c.title);
+        out.push('');
+        c.v.forEach(function (v) { out.push(v[0] + '  ' + v[1]); });
+      } else if (c.ch) {                       /* analects */
+        out.push('BOOK ' + n + (c.title ? ' · ' + c.title : ''));
+        out.push('');
+        c.ch.forEach(function (sub) {
+          out.push('Chapter ' + sub.n);
+          (sub.b || []).forEach(function (b) { out.push(libLines(b)); out.push(''); });
+        });
+      } else {                                  /* gita, tao, zhuangzi, upanishads */
+        out.push(c.title ? c.title : ('Chapter ' + n));
+        out.push('');
+        (c.b || []).forEach(function (b) { out.push(libLines(b)); out.push(''); });
+      }
+      out.push('');
+    });
+  });
+
+  out.push('');
+  out.push(L.translation + ' · ' + L.license + ' · via ' + L.source);
+  out.push('Taken from First Light.');
+  return out.join('\n');
+}
+
+/* The same shape as the record export in Settings: a Blob, an anchor, and a
+   revoke on a timer long enough for a slow phone to have finished writing. */
+function libSaveFile(text, name) {
+  try {
+    var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 30000);
+    return true;
+  } catch (e) { return false; }
+}
+
+var libDownloading = false;
+
+FL_ACTS.libDownload = function (el) {
+  if (libDownloading) return;
+  var workId = el.getAttribute('data-work');
+  var L = FL_LIBRARY[workId];
+  if (!L) return;
+  var note = document.getElementById('lib-dl');
+  var say = function (t) { if (note) { note.hidden = false; note.textContent = t; } };
+  var parts = (L.parts || [{ part: 'all' }]).map(function (p) { return p.part; });
+
+  libDownloading = true;
+  el.disabled = true;
+  say(parts.length > 1 ? 'Gathering ' + parts.length + ' books…' : 'Opening the text…');
+
+  FLTextLoadMany(workId, parts, function (done, total) {
+    say('Gathering ' + done + ' of ' + total + '…');
+  }).then(function (r) {
+    libDownloading = false;
+    el.disabled = false;
+    if (r.failed && r.failed.length === parts.length) {
+      say('Nothing could be loaded. This book needs a connection the first time.');
+      return;
+    }
+    var text = libTextOf(workId);
+    var name = L.title.replace(/[^A-Za-z0-9]+/g, '-').replace(/^-|-$/g, '') + '.txt';
+    if (libSaveFile(text, name)) {
+      say('Saved as ' + name + ', ' + FLBytes(text.length) +
+        (r.failed && r.failed.length ? '. ' + r.failed.length + ' book(s) could not be loaded and are missing from it.' : '.'));
+      announce('Downloaded ' + L.title + '.');
+    } else {
+      say('This browser would not save the file.');
+    }
+  }).catch(function () {
+    libDownloading = false;
+    el.disabled = false;
+    say('That did not work. A connection is needed the first time a book is opened.');
+  });
+};
 
 function libCredit(L) {
   return '<div class="apicredit">' + esc(L.translation) + ' · ' + esc(L.license) +

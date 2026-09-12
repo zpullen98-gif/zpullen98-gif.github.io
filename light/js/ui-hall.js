@@ -1,6 +1,7 @@
 /* First Light: the year's readings.
 
-   The practice half of the Library: five canons, each read through in 366 days.
+   The practice half of the Library: every work, divided into daily portions.
+   Five canons run 366 days; five short reads run the length of the work.
    The Library is for wandering; this is for the discipline of a book a day.
 
    Reachable at #/hall and from the Library, but hidden from the top nav: one door
@@ -66,7 +67,7 @@ FL_ACTS.markRead = function (el) {
     if (bar) bar.style.width = prog.pct + '%';
     var row2 = line.previousElementSibling;
     if (row2 && row2.classList.contains('astrorow')) {
-      row2.innerHTML = '<span class="k">Read</span> ' + prog.done + ' of 366 · ' + prog.pct + '%';
+      row2.innerHTML = '<span class="k">Read</span> ' + prog.done + ' of ' + prog.total + ' · ' + prog.pct + '%';
     }
   }
   announce(now ? 'Marked read.' : 'Unmarked.');
@@ -151,9 +152,9 @@ FL_VIEWS.hall = {
     hallOpen = null;   /* every render rebuilds all boxes hidden; state follows */
     if (!canonId || !hallById(canonId)) {
       return '<a class="keep" style="margin-bottom:20px" href="#/library">← The Library</a>' +
-        '<div class="kick">Five canons, one year each</div>' +
-        '<h1>The Year’s Readings</h1>' +
-        '<p class="note">A book a day, straight through, for three hundred and sixty-six days. The Library is for wandering; this is the discipline.</p>' +
+        '<div class="kick">Ten works, a portion a day</div>' +
+        '<h1>The Daily Readings</h1>' +
+        '<p class="note">Every work in the Library, divided into daily portions. Five of them run a year; the other five are short enough to finish. The Library is for wandering; this is the discipline.</p>' +
         HALL_YEARS.map(function (h) {
           var ready = readWorkReady(h[0]);
           return '<div class="canon"><p class="pt">' + esc(h[1]) + '</p>' +
@@ -174,7 +175,10 @@ FL_VIEWS.hall = {
        days-since-they-began if they started it themselves. */
     var doy = canonDoy(canonId);
     var prog = canonProgress(canonId);
-    var verse = POOLS[canonId][(now.getDate() - 1) % 31];
+    /* the five canons carry a verse pool; the short reads do not, and a plan
+       without one simply shows no verse of the day rather than throwing. */
+    var pool = POOLS[canonId];
+    var verse = pool ? pool[(now.getDate() - 1) % 31] : null;
     var ready = readWorkReady(canonId);
 
     var dayLabel = st.start
@@ -183,7 +187,7 @@ FL_VIEWS.hall = {
 
     var modeCard =
       '<div class="card" style="margin-top:14px">' +
-        '<div class="astrorow"><span class="k">Read</span> ' + prog.done + ' of 366 · ' + prog.pct + '%</div>' +
+        '<div class="astrorow"><span class="k">Read</span> ' + prog.done + ' of ' + prog.total + ' · ' + prog.pct + '%</div>' +
         '<div class="progtrack"><div class="progbar" style="width:' + prog.pct + '%"></div></div>' +
         (st.start
           ? '<p class="px" style="margin-top:12px">Begun ' + esc(jPrettyDate(st.start)) + '. ' +
@@ -225,7 +229,7 @@ FL_VIEWS.hall = {
     }
 
     return '' +
-      '<a class="keep" style="margin-bottom:20px" href="#/hall">← All five</a>' +
+      '<a class="keep" style="margin-bottom:20px" href="#/hall">← All the readings</a>' +
       '<div class="canon"><p class="pt">' + esc(h[1]) + '</p><div class="ds">' + esc(h[2]) + '</div>' +
         '<p class="cep">“' + esc(h[5]) + '”</p><div class="ds">' + esc(h[6]) + '</div>' +
         '<p class="ct" style="margin-top:10px"><span style="color:var(--accent)">Core teachings:</span> ' + esc(h[8]) + '</p>' +
@@ -239,8 +243,8 @@ FL_VIEWS.hall = {
             (st.done[doy] ? '✓ Read' : 'Mark read') + '</button>'
           : '<p class="loadnote">This text is still being prepared.</p>') +
         '<div class="readbox hide" id="read-top"></div>' +
-        '<div class="label" style="margin-top:18px">Verse of the day</div>' +
-        '<p class="cep">“' + esc(verse[0]) + '”</p><div class="ds">' + esc(verse[1]) + '</div>' +
+        (verse ? '<div class="label" style="margin-top:18px">Verse of the day</div>' +
+          '<p class="cep">“' + esc(verse[0]) + '”</p><div class="ds">' + esc(verse[1]) + '</div>' : '') +
       '</div>' +
       modeCard +
       (ready ? '<div class="card" id="canon-store-' + canonId + '"><p class="loadnote" id="save-' + canonId + '">Checking what is on this device…</p></div>' : '') +
