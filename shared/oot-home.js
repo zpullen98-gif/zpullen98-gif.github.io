@@ -63,6 +63,9 @@
   function todayCard(o) {
     o = o || {};
     var due = o.due | 0, fresh = o.fresh | 0;
+    /* Has this device ever been used? A wing may answer for itself with
+       o.started; otherwise the shared record is the evidence. */
+    var started = (o.started != null) ? !!o.started : hasHistory();
     var line;
 
     if (o.line) {
@@ -73,16 +76,25 @@
         (due === 1 ? 'review due' : 'reviews due'));
       if (fresh) bits.push('<span class="oot-today-n">' + fresh + '</span> new');
       line = bits.join(' and ');
-    } else {
+    } else if (started) {
       line = 'Nothing owed. You are current.';
+    } else {
+      /* NEVER STARTED IS NOT THE SAME AS CAUGHT UP, and one branch served
+         both. A reader opening this for the first time was congratulated for
+         owing nothing, told to come back tomorrow, and offered a button
+         reading "Study anyway": three sentences that assume a history the
+         device does not have, in the panel at the top of the page. */
+      line = 'Nothing recorded yet.';
     }
 
     var sub = o.sub != null ? esc(o.sub)
       : (due || fresh)
         ? (o.mins ? 'About ' + (o.mins | 0) + ' minutes.' : '')
-        : 'Study anyway if you have ten minutes, or come back tomorrow.';
+        : started
+          ? 'Study anyway if you have ten minutes, or come back tomorrow.'
+          : 'Ten minutes is a start, and the first ten questions tell you where you stand.';
 
-    var label = o.cta || ((due || fresh) ? 'Start' : 'Study anyway');
+    var label = o.cta || ((due || fresh) ? 'Start' : (started ? 'Study anyway' : 'Begin'));
     var btn = '<button class="' + esc(o.btnClass || 'btn') + ' oot-today-go"' +
       (o.act ? ' ' + o.act : '') + '>' + esc(label) + '</button>';
 

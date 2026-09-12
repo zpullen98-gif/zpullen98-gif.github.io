@@ -18,8 +18,16 @@ render();
         });
       });
     }).catch(function(){});
+    /* A FIRST VISIT MUST NOT RELOAD. sw.js claims the page in activate, so on a
+       device with no previous worker the very first install fires
+       controllerchange and this reloaded the page out from under somebody who
+       had been reading it for four seconds. A reload is only right when an OLD
+       worker is being replaced, which is what having a controller already
+       means. First Light guards it the same way. */
+    var hadController=!!navigator.serviceWorker.controller;
     let reloaded=false;
     navigator.serviceWorker.addEventListener('controllerchange',function(){
+      if(!hadController){ hadController=true; return; }
       if(reloaded)return; reloaded=true; location.reload();
     });
   });

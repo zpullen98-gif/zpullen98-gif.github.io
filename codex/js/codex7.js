@@ -76,7 +76,16 @@ function applyLevel(lvl,skipRender){
 (function(){
   var stored=null;
   try{stored=localStorage.getItem((window.OOT&&OOT.profiles)?OOT.profiles.key('codexLevel'):'codexLevel')}catch(e){}
-  if(stored&&LEVELS[stored]&&stored!=='certified')applyLevel(stored,true);
+  if(stored&&LEVELS[stored]&&stored!=='certified'){ applyLevel(stored,true); return; }
+  if(stored) return;   /* chose Village once, and that choice stands */
+  /* NEVER CHOSEN: begin at the beginning. activeLevel is declared 'certified'
+     because certified stat keys are deliberately unprefixed and every existing
+     record depends on that, so the declaration cannot move. What moves is what
+     a device that has never chosen lands on: the second of four ranks framed
+     the entire home screen, down to "0 of 1283 questions met", for somebody
+     who had not started the first. ootFreshDevice() is the test this app
+     already uses to ask exactly this question. */
+  try{ if(typeof ootFreshDevice==='function'&&ootFreshDevice()&&LEVELS.intro) applyLevel('intro',true); }catch(e){}
 })();
 
 /* ---- per-level mock config (codex3's wrapper hard-codes 45/38min when S._simN is falsy) ---- */
