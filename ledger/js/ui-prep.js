@@ -324,10 +324,18 @@ function renderPrep(){
 }
 
 /* ---------------- WATCH IT MADE: VIDEO LINKS ----------------
-   Design note: these are SEARCH links, not hardcoded video IDs.
-   A pinned video ID rots: channels delete, privatize, and re-upload,
-   and a study guide full of dead links is worse than none. A search
-   URL is permanently stable and always returns current results. */
+   Design note: everything in THIS file builds a SEARCH link rather than a
+   hardcoded video id, and across 365 drinks that is still the right default.
+   A pinned id rots: channels delete, privatize and re-upload, and a study
+   guide full of dead links is worse than one with none.
+
+   Coffee & Tea is the one exception, and it earns it by being checked rather
+   than by being special. js/data-coffee-films.js pins a film to some of its
+   lessons; every title and channel in it came back from YouTube in the run
+   that wrote it, tools/films-add.mjs is the only thing that can write one,
+   and tools/check-films.mjs asks YouTube again before each release. Every
+   pinned card still carries a search link beside it, so a film that dies
+   between releases costs the reader one extra tap and nothing more. */
 
 const CHANNELS = [
   { id:'anders', name:'Anders Erickson', handle:'@AndersErickson',
@@ -448,8 +456,14 @@ function videoQuery(d, mode){
   // cocktail list contains a few spirit-free drinks and a couple of shots.
   const isShot = d.src==='Shots' || /\bshot\b/i.test(n) || /\bshooter\b/i.test(n);
   const isNA = d.src==='Zero Proof' || d.spirit==='Spirit-free';
+  /* Without this arm an unknown source falls into the cocktail branch below,
+     and every beer card's Watch it made row searched for
+     "Hefeweizen cocktail recipe how to make bartender". */
+  const isTap = d.src==='On Tap';
 
-  if(isShot){
+  if(isTap){
+    q += ' beer style guide what it tastes like';
+  } else if(isShot){
     if(!has('shot')) q += ' shot';
     q += ' recipe';
     if(needsQualifier(n)) q += ' bartender';
@@ -603,7 +617,7 @@ function channelDirectoryHTML(){
     + '<div class="small dim lh" style="padding:0 4px">Seven channels worth your time. Watching a drink built is the fastest way to fix technique a written spec can’t teach: how hard a proper shake actually is, what a correct expressed peel looks like, how a julep gets swizzled.</div>'
     + rows
     + '<div class="panel p4"><div class="tiny dim lh"><span class="brass2 bold">Why search links, not fixed videos: </span>'
-    + 'every video button in this guide opens a YouTube search rather than one pinned video. Pinned links rot (creators delete, privatize, and re-upload constantly) and a study guide full of dead links is worse than one with none. A search always returns what currently exists, and lets you compare several bartenders\' takes on the same drink, which is better practice anyway.</div></div>'
+    + 'almost every video button in this guide opens a YouTube search rather than one pinned video. Pinned links rot, because creators delete, privatize and re-upload constantly, and a study guide full of dead links is worse than one with none. A search always returns what currently exists, and lets you compare several bartenders\' takes on the same drink, which is better practice anyway. Coffee &amp; Tea is the exception: those films are pinned, every one of them is checked against YouTube before a release, and each card still carries a search link beside it for the day the film stops playing.</div></div>'
     + '</div>';
 }
 

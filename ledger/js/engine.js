@@ -136,7 +136,19 @@ const state = {
   tools:{ view:'batch', drink:3, serv:8, dilute:false, shelf:[],
           convVal:1, convFrom:'oz', bottlePrice:30, bottleMl:750, targetPour:20, dilPct:25 },
   prep:{ cat:'Syrups', open:null, listOpen:null, safeOpen:null },
-  svc:{ dom:'beer', rowOpen:null, refOpen:null },
+  /* 'wine', not 'beer': the beer section left for the On Tap tab. Left at
+     'beer' this does not throw, because renderService falls back to its
+     first section. It paints Wine while currentRoute writes #/service/beer
+     into the address bar, which is a wrong URL that looks right, generated
+     by the app itself and ready to be shared. */
+  svc:{ dom:'wine', rowOpen:null, refOpen:null },
+  ontap:{ sec:'pour', rowOpen:null, refOpen:null },
+  /* Paired with the applyRoute arm in ui-new.js and never added without it.
+     check.mjs gates the arm and gates nothing here, and a missing slice is
+     not a wrong render, it is Object.assign on undefined inside the router
+     at boot, before renderNav has run: a masthead with nothing under it,
+     and the hash survives the reload that would have cleared it. */
+  coffee:{ sec:'machine', rowOpen:null, refOpen:null },
   prod:{ cat:'All', open:null, primerOpen:null },
   practice:{ view:'drills', flightOpen:null, methodOpen:null, noteOpen:null, subjects:{}, timers:{}, rail:null },
   tast:{ cat:'Whiskey', label:'', appearance:null, nose:[], palate:{}, finish:null, notes:'' },
@@ -535,7 +547,7 @@ const SHELF_PRESETS = [
      other half of the bug that had those drinks requiring a lager and hard
      cider: the rows were wrong AND the station that exists to pour them did
      not carry them. */
-  ['Zero-proof station', ['lemon','lime','gfj','oj','pine','cran','simple','honey','ginger','mint','soda','tonic','gb','ga','cola','tomato','coco','espresso','brewedcoffee','cream','milk','agave','maple',
+  ['Zero-proof station', ['lemon','lime','gfj','oj','pine','cran','simple','honey','ginger','mint','soda','tonic','gb','ga','cola','tomato','coco','espresso','brewedcoffee','tea','cream','milk','agave','maple',
     'naaperitivo','nabitters','naspirit','navermouth',
     'rootbeer','applecider','nasparkling','naredwine','nalager','naelder','nacoffeeliq','gentiansyrup','narum']],
 ];

@@ -90,7 +90,7 @@ KNOWLEDGE.push(
   { q:"Standard aromatic bitters (like Angostura) are approximately what ABV?",
     options:["0%: they're a flavoring","About 5%","About 45%","About 20%"],
     a:2, explain:"Angostura runs 44.7%, stronger than the whiskey it seasons. The 0% answer tempts because bitters sit on a grocery shelf with no ID check, but in the US that reflects a non-beverage flavoring classification, not the strength of the liquid. Trace amounts don't matter to most guests; for someone in recovery they do, so keep NA bitters on hand." },
-  { q:"By law, a drink labeled 'non-alcoholic' beer or wine may contain up to…", topic:"beerwine",
+  { q:"By law, a drink labeled 'non-alcoholic' beer or wine may contain up to…", topic:"service",
     options:["0.0% ABV","0.5% ABV","1.5% ABV","2% ABV"],
     a:1, explain:"Under US federal labeling, 'non-alcoholic' means up to 0.5% ABV, not zero. 0.0% is the tempting answer because that's what the guest hears, and it's a separate claim printed on a separate set of cans. State rules can differ, so read the label rather than trusting the category, and say so if a guest signals total avoidance matters." },
   { q:"What is the single most common flaw in zero-proof drinks?",
@@ -181,7 +181,7 @@ STUDY.push({ title:"Watch It Made: The Channels", rows:[
   ["The Educated Barfly","Encyclopedic recipe library plus opinionated bottle recommendations, good for building a shopping brain."],
   ["How to Drink","Funny and historically curious, strong on the why behind a drink rather than just the build."],
   ["Behind the Bar","Melbourne. A working bar manager's view: service reality and menu thinking from someone who makes these for money."],
-  ["Why the links are searches, not fixed videos","Every video button in this guide opens a YouTube search rather than one pinned video. Pinned links rot (creators delete, privatize, and re-upload constantly) and a guide full of dead links is worse than one with none. A search always returns what currently exists, and lets you compare three bartenders' takes on the same drink, which is better practice anyway."],
+  ["Why the links are mostly searches","Almost every video button in this guide opens a YouTube search rather than one pinned video. Pinned links rot, because creators delete, privatize and re-upload constantly, and a guide full of dead links is worse than one with none. A search always returns what currently exists, and lets you compare three bartenders' takes on the same drink, which is better practice anyway. Coffee and Tea is the exception, and only because its films are checked against YouTube before every release and each one still carries a search link beside it."],
 ]});
 
 STUDY.push({ title:"Where to Go Deeper", rows:[

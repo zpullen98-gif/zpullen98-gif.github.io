@@ -749,7 +749,7 @@ const KNOWLEDGE = [
   { q:"Which bitters define the Sazerac?",
     options:["Angostura","Orange bitters","Peychaud's","Mole bitters"],
     a:2, explain:"Peychaud's: anise and cherry, lighter and sweeter than Angostura, born in a New Orleans pharmacy a few blocks from the drink. Angostura is the tempting swap; it makes a perfectly good rye cocktail, just not this one. The Vieux Carré is where both bottles share a glass." },
-  { q:"How should you store vermouth after opening?", topic:"beerwine",
+  { q:"How should you store vermouth after opening?", topic:"wine",
     options:["Room temperature on the back bar, like port","Refrigerated, used within about a month","In the freezer, where it keeps indefinitely","It doesn't matter: fortification stops spoilage"],
     a:1, explain:"Vermouth is fortified wine, not a spirit: it oxidizes the moment the cork comes out. Refrigerate, date it, replace monthly. The freezer is tempting: it slows that clock but doesn't stop it, and 'indefinitely' is how a bar ends up building Manhattans on a bottle that died two months ago." },
   { q:"What is the purpose of a dry shake?",

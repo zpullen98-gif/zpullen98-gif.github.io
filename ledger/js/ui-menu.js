@@ -439,8 +439,11 @@ function menuStockHTML(){
       + '<div class="tiny dim lh">Tap one to put it back on. The list clears itself after the shift.</div></div>'
     : '';
 
-  /* the ready report, measured against the venue’s own list by default */
-  const sources = deckSources();
+  /* the ready report, measured against the venue’s own list by default.
+     pourSources, not deckSources: On Tap is drillable and is not pourable,
+     and a record with no spec requires nothing, so every beer style would
+     report as ready off an empty shelf. */
+  const sources = pourSources();
   const src = sources.indexOf(state.menu.src) >= 0 ? state.menu.src : 'Cocktails';
   const srcChips = sources.map(function(s){
     return '<button class="chip'+(src===s?' on':'')+'" aria-pressed="'+(src===s?'true':'false')+'" data-act="stock-src" data-s="'+esc(s)+'">'+esc(srcLabel(s))+'</button>';

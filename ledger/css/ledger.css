@@ -352,3 +352,20 @@ details.story[open] summary{ margin-bottom:6px; }
 @media (min-width: 640px){ button.chip, a.chip{ min-height:26px; } }
 
 @media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation:none !important; } }
+
+/* ---- the pinned film, Coffee & Tea only ----
+   A thumbnail until it is tapped, so nothing reaches YouTube for a lesson the
+   reader never opened. An img rather than a background-image because an img
+   gives a real error event to hang the offline state on, and this codebase has
+   no inline on* handlers anywhere. */
+.vid-card{ margin:10px 0 14px; border:1px solid var(--line,rgba(201,162,39,.18)); border-radius:4px; overflow:hidden }
+.vid-frame{ position:relative; width:100%; aspect-ratio:16/9; background:rgba(0,0,0,.28) }
+.vid-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0 }
+.vid-thumb{ position:absolute; inset:0; width:100%; height:100%; padding:0; border:0;
+  background:none; cursor:pointer; display:grid; place-items:center }
+.vid-thumb img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
+.vid-play{ position:relative; width:54px; height:38px; border-radius:8px; display:grid;
+  place-items:center; background:rgba(20,32,28,.78); color:var(--brass-2,#e8c56a); font-size:15px }
+.vid-thumb:hover .vid-play,.vid-thumb:focus-visible .vid-play{ background:var(--brass,#c9a227); color:#14201c }
+.vid-off{ position:absolute; inset:0; padding:14px; display:grid; align-content:center }
+.vid-meta{ padding:12px 14px }

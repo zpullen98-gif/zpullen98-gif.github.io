@@ -82,11 +82,19 @@
      backup and restore, and locking somebody out of their own study history
      when their card expires is not a paywall, it is a hostage. The calculators
      that sit alongside it are not worth the trade. */
-  /* mybar is the venue's own menu: entry and viewing are own-data, free at
-     every tier. The DRILLS built from it need no listing here: they live on
-     the flashcards/quiz/practice tabs, which stay gated below. */
-  var LEDGER_FREE_TABS = ['home', 'mybar', 'families', 'library', 'shots', 'na',
-                          'service', 'producers', 'prep', 'riffs', 'notes', 'tools'];
+  /* The venue's own menu is own-data: entry and viewing are free at every
+     tier. The DRILLS built from it need no listing here, because they live on
+     the flashcards/quiz/practice tabs, which stay gated below.
+
+     'menu' is the live key and 'mybar' is the one it was renamed from, kept
+     because it costs nothing and a stale key here is a paywall rather than a
+     404. Every reference tab is free, so 'ontap' and 'coffee' sit with the
+     rest of them. THIS LIST IS OUTSIDE ledger/ AND NO GATE READS IT: a tab
+     added to the Ledger and forgotten here is paid the day the free flag
+     flips, which is how all three of these came to be missing at once. */
+  var LEDGER_FREE_TABS = ['home', 'mybar', 'menu', 'families', 'library', 'shots', 'na',
+                          'service', 'ontap', 'coffee', 'producers', 'prep', 'riffs',
+                          'notes', 'tools'];
 
   /* Semester 1 of the Path of Study, plus the routes that sell the rest: the
      study index and the lexicon stay reachable so somebody can see the shape of
