@@ -27,14 +27,17 @@ const EIGHT_LIMBS=[
 
 /* title and author are the oEmbed answers as checked on 5 September 2026, baked
    in so the card paints without a connection; ui-body.js asks YouTube again when
-   it can and only repaints a title the creator has since changed. */
+   it can and only repaints a title the creator has since changed.
+   kind is what the morning page filters on: it deals only yoga and workout,
+   and the physio and technique films stay in this chapter where the trade
+   frames them. */
 const BODY_VIDEOS=[
-{id:"y87vSUoIMGU",title:"UNWIND 20 Min Full Body Stretch Routine | Caroline Girvan",author:"Caroline Girvan",frame:"Unwinding",note:"A full-body stretch to close a working day, or to stand alone on a rest day."},
-{id:"Z5DX8MYcl00",title:"1 hour bodyweight full body workout | Calisthenic clusters",author:"Caroline Girvan",frame:"The Practice",note:"Return to this one often enough that it stops feeling like a decision."},
-{id:"ZSSC9X_6wo4",title:"Bedtime Yoga To Relax & Unwind | Yoga For Ending Your Day Perfectly",author:"Boho Beautiful Yoga",start:119,frame:"The Session",note:"Begins a couple of minutes in, where the practice itself starts."},
-{id:"OJAo8QVkRq0",title:"Best 20 Min Yoga For Back Pain, Sciatica, Sore Hips, & Lower Body | Unlock RELIEF Fast & Feel GREAT",author:"Boho Beautiful Yoga",frame:"The Work",note:"For the days when capability, not calm, is what you are building."},
-{id:"ka9xQQ9o7H4",title:"30 Min Total Body Yoga | Morning Yoga Flow To Start Everyday Perfectly",author:"Boho Beautiful Yoga",frame:"The Steady Hour",note:"Moderate, repeatable, and meant to be come back to."},
-{id:"eAi7EAE6-cU",title:"30 Minute ABSolute ABS and Core Workout at Home | Caroline Girvan",author:"Caroline Girvan",start:1054,frame:"The Long Form",note:"Opens partway in, at the section worth returning to."}];
+{id:"y87vSUoIMGU",title:"UNWIND 20 Min Full Body Stretch Routine | Caroline Girvan",author:"Caroline Girvan",frame:"Unwinding",note:"A full-body stretch to close a working day, or to stand alone on a rest day.",kind:"workout"},
+{id:"Z5DX8MYcl00",title:"1 hour bodyweight full body workout | Calisthenic clusters",author:"Caroline Girvan",frame:"The Practice",note:"Return to this one often enough that it stops feeling like a decision.",kind:"workout"},
+{id:"ZSSC9X_6wo4",title:"Bedtime Yoga To Relax & Unwind | Yoga For Ending Your Day Perfectly",author:"Boho Beautiful Yoga",start:119,frame:"The Session",note:"Begins a couple of minutes in, where the practice itself starts.",kind:"yoga"},
+{id:"OJAo8QVkRq0",title:"Best 20 Min Yoga For Back Pain, Sciatica, Sore Hips, & Lower Body | Unlock RELIEF Fast & Feel GREAT",author:"Boho Beautiful Yoga",frame:"The Work",note:"For the days when capability, not calm, is what you are building.",kind:"yoga"},
+{id:"ka9xQQ9o7H4",title:"30 Min Total Body Yoga | Morning Yoga Flow To Start Everyday Perfectly",author:"Boho Beautiful Yoga",frame:"The Steady Hour",note:"Moderate, repeatable, and meant to be come back to.",kind:"yoga"},
+{id:"eAi7EAE6-cU",title:"30 Minute ABSolute ABS and Core Workout at Home | Caroline Girvan",author:"Caroline Girvan",start:1054,frame:"The Long Form",note:"Opens partway in, at the section worth returning to.",kind:"workout"}];
 
 /* The trade practices.
    The sequences in this chapter are the three minute, no network version of
@@ -45,16 +48,16 @@ const BODY_VIDEOS=[
    matching channel, and embedding left switched on, because this chapter
    plays the film inside the card. */
 const TRADE_VIDEOS=[
-{id:"q8N8jkmJP6o",title:"Legs Up The Wall for Better Sleep",author:"Yoga With Adriene",frame:"The Drain",note:"The pose the chapter names, taught slowly: fifteen minutes against a wall after a close."},
-{id:"5D86b45yJzU",title:"Plantar Fasciitis (Education | Myths | Stretching & Strengthening Exercises)",author:"E3 Rehab",frame:"The First Step",note:"A physiotherapist on the sole and the fascia, including why the first step of the morning is the worst one."},
-{id:"IEfyCfCtIJA",title:"Achilles Tendinitis - Exercises to Heal and Strengthen Your Tendon",author:"Rehab Science",frame:"The Calf Pump",note:"Calf and Achilles work you can do at the rail, and the reason the calf pump matters to a body that stands still."},
-{id:"Dn3GexXx228",title:"How to Hip Hinge (for Beginners) | Strength Training For Beginners Series",author:"Dr. Carl Baird",frame:"The Hinge",note:"Four minutes on the hip hinge, with no bar and no load: the pattern that saves backs on kegs and cases."},
-{id:"dn5C-quCNrA",title:"FAST RELIEF! Home Stretching Routine For Tight, Stiff Backs!",author:"Tone and Tighten",frame:"Setting Down",note:"Floor based low back relief from a physiotherapist, for the end of a long shift."},
-{id:"X3-gKPNyrTA",title:"Yoga For Neck, Shoulders, Upper Back  |  10-Minute Yoga Quickie",author:"Yoga With Adriene",frame:"Off The Shoulders",note:"Ten minutes for the neck and upper back, none of it on the floor, for the hunch of the pass and the bar."},
-{id:"ko5Kbb2PTEs",title:"BEST Wrist Forearm Stretches to Release Tightness and Pain- Beginner to Advanced",author:"Bob & Brad",frame:"The Overlooked Joint",note:"Wrists and forearms, graded from easy upward: the injury this trade earns and rarely treats."},
-{id:"yMNLa17g9uc",title:"15 Min. Leg Stretch | Flexibility Routine for Hamstrings, Butt & Hips | Post Run Stretch",author:"Mady Morrison",frame:"Standing Still",note:"Hips and hamstrings down through the shins, for legs that held one spot all night."},
-{id:"BgGGnLaZe_0",title:"Yoga For The Service Industry - Yoga With Adriene",author:"Yoga With Adriene",frame:"The Trade Itself",note:"A practice made for this industry, by name."},
-{id:"BsWMZrvls6k",title:"Yogic Sleep Yoga Nidra Meditation - 24 Minutes",author:"Ally Boothroyd | Sarovara Yoga",frame:"Yogic Sleep",note:"Yoga nidra, lying down: rest for the nights when sleep is fragmented rather than short."},
-{id:"UxWWfyE3fLc",title:"30 minute Yin Yoga to Relax & Unwind for Stress Relief | Sarah Beth Yoga",author:"SarahBethYoga",frame:"Coming Down",note:"Long passive holds with no sequence to keep up with, for a body still wired at four in the morning."},
-{id:"gH1Wx6byvUo",title:"5 min Morning Yoga Stretches in Bed",author:"Yoga with Kassandra",frame:"Before The Floor",note:"Five minutes done in bed, before any weight goes through the foot."}];
+{id:"q8N8jkmJP6o",title:"Legs Up The Wall for Better Sleep",author:"Yoga With Adriene",frame:"The Drain",note:"The pose the chapter names, taught slowly: fifteen minutes against a wall after a close.",kind:"yoga"},
+{id:"5D86b45yJzU",title:"Plantar Fasciitis (Education | Myths | Stretching & Strengthening Exercises)",author:"E3 Rehab",frame:"The First Step",note:"A physiotherapist on the sole and the fascia, including why the first step of the morning is the worst one.",kind:"physio"},
+{id:"IEfyCfCtIJA",title:"Achilles Tendinitis - Exercises to Heal and Strengthen Your Tendon",author:"Rehab Science",frame:"The Calf Pump",note:"Calf and Achilles work you can do at the rail, and the reason the calf pump matters to a body that stands still.",kind:"physio"},
+{id:"Dn3GexXx228",title:"How to Hip Hinge (for Beginners) | Strength Training For Beginners Series",author:"Dr. Carl Baird",frame:"The Hinge",note:"Four minutes on the hip hinge, with no bar and no load: the pattern that saves backs on kegs and cases.",kind:"technique"},
+{id:"dn5C-quCNrA",title:"FAST RELIEF! Home Stretching Routine For Tight, Stiff Backs!",author:"Tone and Tighten",frame:"Setting Down",note:"Floor based low back relief from a physiotherapist, for the end of a long shift.",kind:"physio"},
+{id:"X3-gKPNyrTA",title:"Yoga For Neck, Shoulders, Upper Back  |  10-Minute Yoga Quickie",author:"Yoga With Adriene",frame:"Off The Shoulders",note:"Ten minutes for the neck and upper back, none of it on the floor, for the hunch of the pass and the bar.",kind:"yoga"},
+{id:"ko5Kbb2PTEs",title:"BEST Wrist Forearm Stretches to Release Tightness and Pain- Beginner to Advanced",author:"Bob & Brad",frame:"The Overlooked Joint",note:"Wrists and forearms, graded from easy upward: the injury this trade earns and rarely treats.",kind:"physio"},
+{id:"yMNLa17g9uc",title:"15 Min. Leg Stretch | Flexibility Routine for Hamstrings, Butt & Hips | Post Run Stretch",author:"Mady Morrison",frame:"Standing Still",note:"Hips and hamstrings down through the shins, for legs that held one spot all night.",kind:"yoga"},
+{id:"BgGGnLaZe_0",title:"Yoga For The Service Industry - Yoga With Adriene",author:"Yoga With Adriene",frame:"The Trade Itself",note:"A practice made for this industry, by name.",kind:"yoga"},
+{id:"BsWMZrvls6k",title:"Yogic Sleep Yoga Nidra Meditation - 24 Minutes",author:"Ally Boothroyd | Sarovara Yoga",frame:"Yogic Sleep",note:"Yoga nidra, lying down: rest for the nights when sleep is fragmented rather than short.",kind:"yoga"},
+{id:"UxWWfyE3fLc",title:"30 minute Yin Yoga to Relax & Unwind for Stress Relief | Sarah Beth Yoga",author:"SarahBethYoga",frame:"Coming Down",note:"Long passive holds with no sequence to keep up with, for a body still wired at four in the morning.",kind:"yoga"},
+{id:"gH1Wx6byvUo",title:"5 min Morning Yoga Stretches in Bed",author:"Yoga with Kassandra",frame:"Before The Floor",note:"Five minutes done in bed, before any weight goes through the foot.",kind:"yoga"}];
 

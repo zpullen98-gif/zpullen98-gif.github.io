@@ -117,6 +117,29 @@ FL_ACTS.playVideo = function (el) {
     'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 };
 
+/* One card builder for every shelf, here and on the morning page. The key is
+   the DOM id the live title fetch writes into, so it has to be unique across
+   whatever is on screen: the Body passes an index (its trade group offset past
+   the end of the first list), the morning page passes the video id. */
+function vidCard(v, key) {
+  var startNote = v.start
+    ? '<div class="vidnote" style="color:var(--accent)">Starts at ' +
+      Math.floor(v.start / 60) + ':' + String(v.start % 60).padStart(2, '0') + '</div>'
+    : '';
+  return '<div class="vidcard">' +
+    '<div class="vidframe" id="vid-' + key + '">' +
+      '<button class="vidthumb" data-act="playVideo" data-id="' + esc(v.id) + '" data-start="' + (v.start || 0) + '" data-frame="' + esc(v.frame) + '"' +
+        ' style="background-image:url(https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg)"' +
+        ' aria-label="Play: ' + esc(v.frame) + '"><span class="playbtn" aria-hidden="true">▶</span></button>' +
+    '</div>' +
+    '<div class="vidmeta">' +
+      '<div class="vidframe-label">' + esc(v.frame) + '</div>' +
+      '<div class="vidtitle" id="vt-' + key + '">' +
+        (v.title ? esc(v.title) + (v.author ? '  ·  ' + esc(v.author) : '') : '…') + '</div>' +
+      '<div class="vidnote">' + esc(v.note) + '</div>' + startNote +
+    '</div></div>';
+}
+
 FL_VIEWS.body = {
   label: 'The Body',
   title: 'The Body',
@@ -132,28 +155,8 @@ FL_VIEWS.body = {
         '<div class="gt">' + esc(l[0]) + '</div><div class="gp">' + esc(l[1]) + '</div></div></div>';
     }).join('');
 
-    /* One card builder for both groups. The index is the DOM id the live title
-       fetch writes into, so it has to be unique across the two lists, not per
-       list: the trade group is offset past the end of the first. */
-    function vidCard(v, i) {
-      var startNote = v.start
-        ? '<div class="vidnote" style="color:var(--accent)">Starts at ' +
-          Math.floor(v.start / 60) + ':' + String(v.start % 60).padStart(2, '0') + '</div>'
-        : '';
-      return '<div class="vidcard">' +
-        '<div class="vidframe" id="vid-' + i + '">' +
-          '<button class="vidthumb" data-act="playVideo" data-id="' + esc(v.id) + '" data-start="' + (v.start || 0) + '" data-frame="' + esc(v.frame) + '"' +
-            ' style="background-image:url(https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg)"' +
-            ' aria-label="Play: ' + esc(v.frame) + '"><span class="playbtn" aria-hidden="true">▶</span></button>' +
-        '</div>' +
-        '<div class="vidmeta">' +
-          '<div class="vidframe-label">' + esc(v.frame) + '</div>' +
-          '<div class="vidtitle" id="vt-' + i + '">' +
-            (v.title ? esc(v.title) + (v.author ? '  ·  ' + esc(v.author) : '') : '…') + '</div>' +
-          '<div class="vidnote">' + esc(v.note) + '</div>' + startNote +
-        '</div></div>';
-    }
-
+    /* the index is the title fetch's DOM key; the trade group is offset past
+       the end of the first list so the two never collide */
     var vids = BODY_VIDEOS.map(vidCard).join('');
     var tradeVids = TRADE_VIDEOS.map(function (v, i) {
       return vidCard(v, i + BODY_VIDEOS.length);
@@ -168,17 +171,7 @@ FL_VIEWS.body = {
         '<div class="pacer-label" id="pacer-label">Ready</div>' +
         '<div class="ds" id="pacer-count"></div>' +
       '</div>' +
-      '<div class="months" style="margin-top:14px">' +
-        BREATH_PATTERNS.map(function (p) {
-          var isOn = !!(pacer.on && pacer.pattern && pacer.pattern.id === p.id);
-          return '<button class="mchip' + (isOn ? ' on' : '') +
-            '" data-act="pacer" data-id="' + p.id + '" aria-pressed="' + isOn + '">' + esc(p.name) + '</button>';
-        }).join('') +
-        '<button class="mchip" data-act="pacerStop">Stop</button>' +
-      '</div>' +
-      (pacer.on && pacer.pattern
-        ? '<p class="mintro" style="margin-top:12px">' + esc(pacer.pattern.note) + '</p>'
-        : '<p class="mintro" style="margin-top:12px">Five patterns. Start with the box.</p>');
+      pacerChips('Five patterns. Start with the box.');
 
     var seqUI;
     if (seq.on) {

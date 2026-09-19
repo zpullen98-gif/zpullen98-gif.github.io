@@ -13,29 +13,31 @@
    position the journal heatmap already took when it chose to report a steady
    month or a fallow month rather than a verdict.
 
-   WHAT IT DOES INSTEAD is give every morning the same shape. Four things, in
-   the same order, whether it is day two or day two hundred:
+   WHAT IT DOES INSTEAD is give every morning the same shape, in the same
+   order, whether it is day two or day two hundred:
 
-     Read      the voice, the lift, the teaching
-     Move      the day's session from the movement programme, run on this page
-     Breathe   ten slow breaths on the pacer
-     Reflect   the question, in the Reflection tab
+     Read      the voice, the turn, and two lines that lift
+     Breathe   five patterns on one disc; pick one, or start with the box
+     Watch     two films from the yoga and workout shelf, dealt by the date
+     then      the month's teaching, the day's movement, the practice, the
+               intent picker and the sorting drill
 
-   Three of the four tick themselves when the app can honestly know they are
-   done. All four can be tapped, because an app that will not let you say you
-   did it is worse than one that trusts you.
+   Nothing here is ticked, and nothing here points at Reflection. The writing
+   lives one tab over and the reader goes there when they choose to; the
+   morning page does not send them. It used to: a checklist of four things
+   with a Reflect row, a card at dusk that opened the examen, a link in the
+   footer, a button on the Examined Evening. The owner took all of it out.
 
    Two ways to read the page, remembered in FL.prefs.todayMode:
      page      one flowing page, the default
-     guided    the walk: voice, sit with it, the practice
-
-   At dusk the page does not become something else. It adds one card that opens
-   the examined evening in Reflection. */
+     guided    the walk: voice, sit with it, move, the practice */
 
 var todayStep = 0;
 var todayKeptFired = null;     // the day key the kept event last went out for
 var todayForceMode = null;     // 'guided' | 'page' | null (= the saved preference)
 var liftSeed = 0;              // "Another" deals a fresh pair for the session; nothing is recorded
+var vidSeed = 0;               // the same, for the two films
+var TODAY_FILM_KINDS = ['yoga', 'workout'];   // the shelf the morning deals from; never the rehab films
 
 /* Keyed by the track actually being read, not the raw preference: flActiveTrack()
    falls back to the Philosophers for a track that is unknown or unfinished, and
@@ -90,12 +92,6 @@ FL_ACTS.practiceDone = function () {
   render();
 };
 
-FL_ACTS.sitBreath = function () {
-  if (typeof pacer === 'undefined') return;
-  if (pacer.on) pacerStop(); else pacerStart('box');
-  render();
-};
-
 FL_ACTS.todayStep = function (el) {
   /* leaving the step should not leave a pacer breathing at nothing */
   if (typeof pacer !== 'undefined' && pacer.on) pacerStop();
@@ -108,13 +104,11 @@ FL_ACTS.todayStep = function (el) {
   window.scrollTo(0, 0);
 };
 
-/* 'page' and 'guided' are remembered; 'evening' is a door to Reflection, where
-   the examen lives now; 'morning' is the old name for the guided walk and is
-   kept so a stale button cannot do nothing. */
+/* 'page' and 'guided' are remembered; 'morning' is the old name for the
+   guided walk and is kept so a stale button cannot do nothing. */
 FL_ACTS.todayMode = function (el) {
   if (typeof pacer !== 'undefined' && pacer.on) pacerStop();
   var m = el.getAttribute('data-mode');
-  if (m === 'evening') { location.hash = '#/reflect'; return; }
   if (m === 'morning') m = 'guided';
   FL.prefs.todayMode = m; flSave();
   todayForceMode = null;
@@ -129,6 +123,12 @@ FL_ACTS.liftAgain = function () {
   announce('Two more lines.');
 };
 
+FL_ACTS.vidAgain = function () {
+  vidSeed++;
+  render();
+  announce('Two more films.');
+};
+
 /* FL.intents is the ONLY source of truth for the chosen intent: a session
    mirror made the chip need two taps to clear after a reload. */
 FL_ACTS.pickIntent = function (el) {
@@ -139,58 +139,6 @@ FL_ACTS.pickIntent = function (el) {
   flSave();
   render();
 };
-
-/* ═══════════════ this morning ═══════════════ */
-
-/* Whether anything at all was written for today, in either the morning's
-   question or either evening bank. This is the one item the app can know
-   about without being told, so it checks rather than asks. */
-function todayReflected() {
-  var k = flToday();
-  if (jText(jRef('day', k)).trim()) return true;
-  var banks = [['examen', EXAMEN_QUESTIONS], ['debrief', DEBRIEF_QUESTIONS]];
-  for (var i = 0; i < banks.length; i++) {
-    for (var j = 0; j < banks[i][1].length; j++) {
-      if (jText(jRef(banks[i][0], k + ':' + banks[i][1][j].key)).trim()) return true;
-    }
-  }
-  return false;
-}
-
-/* Anything the app can see for itself is ticked before the list is drawn, so
-   the record is the single source of truth and a tick survives a reload. */
-function todaySyncTicks() {
-  var done = flMorningOf();
-  if (!done.reflect && todayReflected()) flMorningTick('reflect');
-  if (!done.move && (FL.moves[flToday()] || 0) > 0) flMorningTick('move');
-}
-
-FL_ACTS.mornTick = function (el) {
-  var item = el.getAttribute('data-item');
-  if (flMorningOf()[item]) flMorningUntick(item); else flMorningTick(item);
-  render();
-};
-
-function todayMorningList() {
-  var done = flMorningOf();
-  var mv = moveToday();
-  var items = [
-    ['read', 'Read', 'The voice, a line to lift you, and the teaching for the month.'],
-    ['move', 'Move', mv.name + ', ' + mv.mins + ' minutes.'],
-    ['breathe', 'Breathe', 'Ten slow breaths, paced.'],
-    ['reflect', 'Reflect', 'One question, in your own words.']
-  ];
-  var rows = items.map(function (it) {
-    var on = !!done[it[0]];
-    return '<button class="mrow' + (on ? ' on' : '') + '" data-act="mornTick" data-item="' + it[0] + '"' +
-      ' aria-pressed="' + on + '">' +
-      '<span class="mbox" aria-hidden="true">' + (on ? '&#10003;' : '') + '</span>' +
-      '<span><span class="mname">' + esc(it[1]) + '</span>' +
-      '<span class="mwhat">' + esc(it[2]) + '</span></span></button>';
-  }).join('');
-  return '<div class="label">This morning</div>' +
-    '<div class="morn">' + rows + '</div>';
-}
 
 /* ═══════════════ the movement ═══════════════ */
 
@@ -241,6 +189,8 @@ function todayMove() {
 
 /* ═══════════════ the breath ═══════════════ */
 
+/* All five patterns, on the one disc. The chip row is practice.js's
+   pacerChips(), shared with The Body, so the pattern list has one home. */
 function todayBreath() {
   var on = (typeof pacer !== 'undefined' && pacer.on);
   return '<div class="label">The breath</div>' +
@@ -249,11 +199,39 @@ function todayBreath() {
       '<div class="pacer-label" id="pacer-label">' + (on ? '' : 'Ready') + '</div>' +
       '<div class="ds" id="pacer-count"></div>' +
     '</div>' +
-    '<p class="mintro">Follow the disc. In as it grows, out as it falls. Five full rounds is a morning’s worth, ' +
-    'and the day’s Breathe marks itself when you get there.</p>' +
-    '<div style="text-align:center;margin-top:10px">' +
-      '<button class="mchip' + (on ? ' on' : '') + '" data-act="sitBreath">' +
-      (on ? 'Let it fade' : 'Pace the breaths') + '</button></div>';
+    (typeof pacerChips === 'function'
+      ? pacerChips('Follow the disc. In as it grows, out as it falls. Five full rounds is a morning’s worth.')
+      : '');
+}
+
+/* ═══════════════ two films ═══════════════ */
+
+/* The morning deals only from the yoga and workout shelf. The physio and
+   technique films stay in The Body, where the trade chapter frames them. An
+   entry with no kind, or an unknown one, is simply never dealt. */
+function todayFilmPool() {
+  if (typeof BODY_VIDEOS === 'undefined') return [];
+  var all = BODY_VIDEOS.concat(typeof TRADE_VIDEOS === 'undefined' ? [] : TRADE_VIDEOS);
+  return all.filter(function (v) { return TODAY_FILM_KINDS.indexOf(v.kind) > -1; });
+}
+
+/* Two from the shelf, chosen by the day; "Another" walks the seed like the
+   lift does. The card builder is ui-body.js's vidCard, keyed here by the
+   video id so nothing collides with anything. No title refresh on this page:
+   the titles are baked, and a morning render should not cost a request. */
+function todayFilms(doy) {
+  var pool = todayFilmPool();
+  if (pool.length < 2 || typeof vidCard !== 'function') return '';
+  var n = pool.length;
+  var a = (doy + vidSeed * 5) % n;
+  var b = (doy * 3 + 1 + vidSeed * 7) % n;
+  if (b === a) b = (b + 1) % n;
+  return '<div class="label">Two films for the body</div>' +
+    '<p class="px" style="color:var(--faint);margin-bottom:10px">Dealt by the date from the yoga and workout shelf. ' +
+      'They belong to their creators and need a connection to play; ' +
+      '<a class="readmini" href="#/body">the whole shelf is in The Body</a>.</p>' +
+    vidCard(pool[a], pool[a].id) + vidCard(pool[b], pool[b].id) +
+    '<div style="text-align:center;margin-top:4px"><button class="keep" data-act="vidAgain">Another</button></div>';
 }
 
 /* --- pieces --- */
@@ -264,15 +242,26 @@ function todayVoice(m, d, e) {
     keepButton(m, d, true) + '</div>';
 }
 
-/* Two lines from the lift bank, chosen by the day; "Another" walks the seed. */
+/* THE LIFT POOL. Every line the morning can deal is assembled here and nowhere
+   else. Entries are [line, source, kind]. The philosophy and literature year
+   that is coming widens this one function: concat its entries here, mapped to
+   the same shape, and todayLift needs no change. Nothing is recorded per lift,
+   so the pool changing length, which shifts which line a given day lands on,
+   costs nobody anything. */
+function todayLiftPool() {
+  return (typeof UPLIFT === 'undefined') ? [] : UPLIFT;
+}
+
+/* Two lines from the pool, chosen by the day; "Another" walks the seed. */
 function todayLift(doy) {
-  if (typeof UPLIFT === 'undefined' || !UPLIFT.length) return '';
-  var n = UPLIFT.length;
+  var pool = todayLiftPool();
+  if (pool.length < 2) return '';
+  var n = pool.length;
   var a = (doy + liftSeed * 13) % n;
   var b = (doy * 7 + 3 + liftSeed * 17) % n;
   if (b === a) b = (b + 1) % n;
   var one = function (i) {
-    var u = UPLIFT[i];
+    var u = pool[i];
     return '<div class="lift"><p class="lq">“' + esc(u[0]) + '”</p>' +
       '<span class="ls">' + esc(u[1]) + '</span></div>';
   };
@@ -287,13 +276,6 @@ function todayTeaching(m, doy) {
   var t = set[doy % set.length];
   return '<div class="teach"><p class="pt">' + esc(trackMonths()[m - 1][1]) + '</p>' +
     '<p class="px">' + esc(t) + '</p></div>';
-}
-
-function todayEveningCard() {
-  if (!sunIsEvening()) return '';
-  return '<div class="card evecard" style="margin-bottom:18px"><p class="pt">The sun is down</p>' +
-    '<p class="px">The examined evening is waiting in Reflection: Seneca’s three questions, or the shift’s last call.</p>' +
-    '<a class="keep" href="#/reflect" style="text-decoration:none">Open the evening</a></div>';
 }
 
 function todayIntentPanel() {
@@ -316,11 +298,11 @@ function todayIntentPanel() {
 
 function todayPractice(p) {
   var done = !!FL.practice[flToday()];
-  /* the two practices the app can now actually run link to their rooms */
+  /* the one practice the app can run on the spot links to its room. The
+     Examined Evening used to link to Reflection; the morning page no longer
+     points there, and the practice itself says what to do tonight. */
   var door = '';
-  if (p[0] === 'The Examined Evening') {
-    door = ' <a class="keep" href="#/reflect" style="text-decoration:none">Hold it tonight</a>';
-  } else if (p[0] === 'Premeditatio Malorum') {
+  if (p[0] === 'Premeditatio Malorum') {
     door = ' <a class="keep" href="#/body" style="text-decoration:none">The Rehearsal: three minutes, timed</a>';
   }
   return '<div class="card"><p class="pt">' + esc(p[0]) + '</p><p class="px">' + esc(p[1]) + '</p>' +
@@ -436,16 +418,13 @@ function todayGuided(m, d, e, doy, p) {
       '<h1>The morning is kept</h1>' +
       '<p class="note">Whatever else today asks of you, this part is done.</p>' +
       '<div class="drawrow" style="justify-content:center;margin-top:24px">' +
-        '<a class="btn" href="#/reflect">Write your reflection</a>' +
+        '<button class="btn" data-act="todayMode" data-mode="page">See the whole page</button>' +
         '<button class="keep" data-act="todayStep" data-to="0">Walk it again</button>' +
-        '<button class="keep" data-act="todayMode" data-mode="page">See the whole page</button>' +
       '</div>' +
       todayTeaching(m, doy) +
       ready +
       '<p class="px" style="text-align:center;margin-top:10px"><a class="readmini" href="#/reset">' +
-        'Later, mid-shift: the Walk-In, ninety seconds</a></p>' +
-      (sunIsEvening() ? '<div class="drawrow" style="justify-content:center">' +
-        '<a class="btn" href="#/reflect">The evening examen</a></div>' : '');
+        'Later, mid-shift: the Walk-In, ninety seconds</a></p>';
   }
 
   var s = steps[todayStep];
@@ -478,20 +457,18 @@ function todayPage(m, d, e, doy, p) {
     '<h1>' + esc(trackMonths()[m - 1][1]) + '</h1>' +
     '<p class="note">' + esc(trackMonths()[m - 1][2]) + '</p>' +
     '<div class="flow">' +
-      todayEveningCard() +
-      todayMorningList() +
       todayVoice(m, d, e) +
       '<p class="refl" style="margin-top:10px">' + esc(TURN_PROMPTS[doy % TURN_PROMPTS.length]) + '</p>' +
       todayLift(doy) +
+      todayBreath() +
+      todayFilms(doy) +
       todayTeaching(m, doy) +
       todayMove() +
-      todayBreath() +
       '<div class="label">Today’s practice</div>' + todayPractice(p) +
       todayIntentPanel() +
       todaySortPanel() +
     '</div>' +
     '<div style="text-align:center;margin-top:26px">' +
-      '<a class="readmini" href="#/reflect">Write your reflection</a> ' +
       '<button class="readmini" data-act="todayMode" data-mode="guided">Walk it through instead</button> ' +
       '<a class="readmini" href="#/reset">The Walk-In: ninety seconds, mid-shift</a>' +
     '</div>';
@@ -509,8 +486,6 @@ FL_VIEWS.today = {
     var e = dayEntry(m, d);
     var doy = doyOf(m, d);
     var p = PRACTICES[(now.getDay() + 7 - (Number(FL.prefs.weekAnchor) || 0)) % 7];
-
-    todaySyncTicks();
 
     var mode = todayForceMode || (FL.prefs.todayMode === 'guided' ? 'guided' : 'page');
     if (mode === 'guided') return todayGuided(m, d, e, doy, p);

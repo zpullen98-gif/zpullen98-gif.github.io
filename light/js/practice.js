@@ -135,6 +135,23 @@ function pacerStop() {
   if (cnt) cnt.textContent = '';
 }
 
+/* The five patterns as a chip row, with the running pattern's note beneath it,
+   or the caller's own line when nothing is running. One function for the Body
+   and the morning page, so a pattern added above appears on both. The handlers
+   (FL_ACTS.pacer, FL_ACTS.pacerStop) live in ui-body.js and are looked up at
+   click time. esc() is app.js's, loaded long before any view renders. */
+function pacerChips(idleLine) {
+  var chips = BREATH_PATTERNS.map(function (p) {
+    var isOn = !!(pacer.on && pacer.pattern && pacer.pattern.id === p.id);
+    return '<button class="mchip' + (isOn ? ' on' : '') + '" data-act="pacer" data-id="' + p.id +
+      '" aria-pressed="' + isOn + '">' + esc(p.name) + '</button>';
+  }).join('');
+  return '<div class="months" style="margin-top:14px">' + chips +
+      '<button class="mchip" data-act="pacerStop">Stop</button></div>' +
+    '<p class="mintro" style="margin-top:12px">' +
+      esc(pacer.on && pacer.pattern ? pacer.pattern.note : idleLine) + '</p>';
+}
+
 function pacerTick() {
   if (!pacer.on) return;
   var p = pacer.pattern, total = pacerTotal(p);
