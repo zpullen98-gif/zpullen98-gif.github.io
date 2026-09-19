@@ -50,27 +50,18 @@
       return LEDGER_FREE_TABS.indexOf(key) > -1;
     },
 
-    /* key is location.pathname with /table stripped */
-    table: function (key) {
-      /* The 27 service-track modules (/service/srv-*) print 186 of the
-         lexicon's 479 definitions in clear, and their markup deliberately
-         carries none of the classes the tier mask blurs, so the route is the
-         only gate they have. Stated as a rule rather than left to the default
-         so a future "free by prefix" change cannot open them by accident.
-         /service itself, the hub page, stays free below. */
-      if (key.indexOf('/service/srv-') === 0) return false;
-      if (TABLE_FREE_ROUTES.indexOf(key) > -1) return true;
-      if (key.indexOf('/recipe/') === 0) return TABLE_FREE_RECIPES.indexOf(key.slice(8)) > -1;
-      if (key.indexOf('/chapter/') === 0) return true;   /* browsing the shelf is free */
-      if (key.indexOf('/family/') === 0) return true;    /* the visitor's own saved work */
-      return false;
-    },
-
     /* key is an FL_VIEWS id */
     light: function (key) { return LIGHT_FREE_VIEWS.indexOf(key) > -1; }
 
     /* almanac: deliberately absent. It is free in full, as the lead engine for
        Calendar For Life Voyages, so it registers no boundary and never gates. */
+
+    /* table: deliberately absent too. The World Table is free in full by the
+       owner's decision (19 Sep 2026): "no part of the World Table is ever
+       paid". It had a route boundary, a tier mask over the Lexicon and the
+       course, and a paywall line; all of it is gone rather than switched off,
+       so no future flag can quietly bring it back. terms.html already said
+       the Table is open in full; this makes the code agree. */
   };
 
   /* The Ledger's free surfaces. Gated: practice (the drills and the Ticket
@@ -95,93 +86,6 @@
   var LEDGER_FREE_TABS = ['home', 'mybar', 'menu', 'families', 'library', 'shots', 'na',
                           'service', 'ontap', 'coffee', 'producers', 'prep', 'riffs',
                           'notes', 'tools'];
-
-  /* Semester 1 of the Path of Study, plus the routes that sell the rest: the
-     study index and the lexicon stay reachable so somebody can see the shape of
-     what they would be buying. Their locked parts are masked in place (below)
-     rather than removed.
-
-     /family and /menu are the visitor's OWN saved work, not guide content, so
-     they are free at every tier on the same principle as the Ledger's tools and
-     First Light's vault. /pantry is the free matcher. There is no /about route
-     in this build; listing one would be a promise nothing keeps. */
-  var TABLE_FREE_ROUTES = ['', '/', '/study', '/lexicon', '/pantry',
-                           '/family', '/menu', '/menu/guest',
-                           /* Added 27 Aug 2026, when the Table's navigation was rebuilt
-                              around five tabs. BOUNDARIES.table is exact-match with
-                              `return false` as its default, so a route that is not
-                              listed here is PAID the day it ships, and four of the
-                              five new tabs would have locked on arrival, which would
-                              have delivered the new IA as a paywall.
-
-                              /recipes is the 970-card browse index, moved off the
-                              front door. It is free on the rule three lines above:
-                              browsing the shelf is free, and every /chapter/ page
-                              already is. Gating the index while leaving all 94
-                              chapters open protects nothing.
-
-                              /learn, /practise and /service are hub pages. They hold
-                              no guide content, each is a set of links and counts,
-                              and they are the pitch for what is behind them. Gate the
-                              CONTENT, not the tab that describes it.
-
-                              /repertoire is the visitor's own cooked log and nothing
-                              else: same principle as /family and /menu above. It is
-                              also where the mode bar's amber count points, and a
-                              count saying three of YOUR dishes are past their re-cook,
-                              followed by a paywall, is worse than no count at all.
-
-                              /safety carries the guide's two food-safety entries and
-                              writes nothing. Its own page states that it is free
-                              reference content; this is that claim made true. */
-                           '/recipes', '/learn', '/practise', '/service',
-                           '/repertoire', '/safety',
-                           /* Added 5 Sep 2026. Own data first, on the rule above
-                              that a visitor's own work is never gated:
-                              /menu/costing is the venue's typed prices, yields
-                              and covers; /menu/preps and /menu/prep-board are
-                              its own prep record and the plan built from it;
-                              /menu/waste is its own waste log, venue-wide and
-                              nameless by construction; /coverage reads only the
-                              session records on this device. /practise/firing
-                              drills the cook's own pinned menu through the same
-                              back-timing the worksheet uses (no authored
-                              questions), and /practise/calibrate is a tasting
-                              bench whose score goes to the cook's own log.
-                              /technique is the skills index, a list of links
-                              and counts like /learn: the pitch for the
-                              technique pages, which stay paid under /technique/.
-                              /menu/quiz and /service/drill stay paid: they are
-                              drills over the guide's own content. */
-                           '/coverage', '/menu/costing', '/menu/prep-board',
-                           '/menu/preps', '/menu/waste', '/practise/firing',
-                           '/practise/calibrate', '/technique',
-                           /* Added 19 Sep 2026, with the Floor Deck (a 300-card
-                              staff-training deck) and Producers in My Menu, on the
-                              rules above and nothing new. /service/deck is the
-                              deck's landing: sections, counts and doors, a hub like
-                              /learn, so it is the pitch for what is behind it.
-                              /menu/producers is the venue's own suppliers, typed by
-                              the venue: own data, never gated.
-
-                              The four study modes are deliberately NOT listed, so
-                              they are paid exactly as /service/drill and /menu/quiz
-                              are: drills over the guide's own content
-                              (/service/deck/study, /test, /say, /lineup). Every
-                              card's answers also render as .flash .def, so the
-                              blur applies wherever a card is shown. To open them,
-                              add the four strings here; that is the owner's call. */
-                           '/service/deck', '/menu/producers'];
-
-  /* Semester 1, "Knife & Fire Foundations", from study.json. Five recipes and
-     four lexicon terms. Hardcoded because the wing ships as a built bundle with
-     no readable data file at a stable URL, so reading it at runtime would mean
-     depending on a content-hashed asset name that changes every build. If the
-     first semester's contents change, they change here too. */
-  var TABLE_FREE_RECIPES = ['the-french-omelette', 'cacio-e-pepe', 'ratatouille',
-                            'chicken-piccata', 'salade-nicoise'];
-  var TABLE_FREE_TERMS = ['mise-en-place', 'knife-cuts-the-classical-ladder',
-                          'sweat-vs-saute-vs-sear', 'deglaze-and-fond'];
 
   /* Free is the complement of what the brief actually sells: the Library, the
      practices and the chart (with the sky, the hall and the threads, which are
@@ -530,111 +434,6 @@
     quiz:     'The full quiz is part of the subscription'
   };
 
-  /* ---------------------------------------------------- the World Table --- */
-
-  function lockTable() {
-    /* Nothing here touches Svelte's DOM. The gate reads location.pathname and
-       appends a fixed-position node to <body>, outside the element the app
-       mounts into, so hydration never sees it. */
-    var BASE = '/table';
-
-    function route() {
-      var p = w.location.pathname;
-      if (p.indexOf(BASE) === 0) p = p.slice(BASE.length);
-      if (p.length > 1 && p.charAt(p.length - 1) === '/') p = p.slice(0, -1);
-      return p;
-    }
-
-    injectTableCss();
-
-    var settled = false;
-    var lastShown = null;
-
-    function evaluate() {
-      var r = route();
-      var el = w.document.documentElement;
-
-      /* TWO attributes, because they answer two different questions.
-
-         data-oot-tier="free" says who the visitor is, and is set on every route.
-         The partial masks (the study semesters, the lexicon definitions) live on
-         FREE routes: /study and /lexicon are both free, because seeing the
-         shape of what you would buy is the pitch. Scoping those masks to the
-         route verdict meant they only applied where the elements do not exist,
-         so every semester and all 479 definitions were delivered in clear.
-
-         data-oot-table="locked" says this particular route is gated, and hides
-         the sheet body. That one is per-route by nature. */
-      if (paid()) el.removeAttribute('data-oot-tier');
-      else el.setAttribute('data-oot-tier', 'free');
-
-      /* The blur is only the VISUAL half of the mask. Blur and pointer-events
-         leave every button in the tab order and every prompt in the
-         accessibility tree, so a keyboard or screen-reader user could operate
-         a blurred drill end to end. inert on the sheet removes it from both;
-         the attribute sits on a prerendered element Svelte does not manage,
-         and a route change replaces the element, so evaluate() re-applies on
-         every route where it matters. */
-      var sheet = w.document.querySelector('article.sheet');
-
-      var open = OOT.gate.paywallOpen();
-      if (paid() || OOT.gate.allow('table', r)) {
-        el.removeAttribute('data-oot-table');
-        if (sheet) sheet.removeAttribute('inert');
-        if (open && lastShown !== null) { OOT.gate.closePaywall(); lastShown = null; }
-        return;
-      }
-
-      /* Hide the content, not just the view of it. Recipe and technique pages
-         are prerendered static HTML, so the overlay alone gated nothing: Escape,
-         a backdrop click or the overlay's own "keep exploring" button left the
-         full ingredients and method sitting there. Masking first also covers the
-         window before the tier settles, when no overlay is raised at all. */
-      el.setAttribute('data-oot-table', 'locked');
-      if (sheet) sheet.setAttribute('inert', '');
-      if (!settled || open || lastShown === r) return;
-      lastShown = r;
-      OOT.gate.paywall({
-        what: TABLE_LABEL(r),
-        detail: 'Semester 1 of the Path of Study and a preview of the Lexicon stay free forever.',
-        onClose: function () { lastShown = null; }
-      });
-    }
-
-    var push = w.history.pushState;
-    var replace = w.history.replaceState;
-    /* Call through FIRST: location.pathname is only correct afterwards. */
-    w.history.pushState = function () {
-      var out = push.apply(w.history, arguments);
-      try { evaluate(); } catch (e) {}
-      return out;
-    };
-    w.history.replaceState = function () {
-      var out = replace.apply(w.history, arguments);
-      try { evaluate(); } catch (e) {}
-      return out;
-    };
-    w.addEventListener('popstate', function () { try { evaluate(); } catch (e) {} });
-
-    OOT.auth.ready.then(function () { settled = true; evaluate(); });
-    /* onChange fires immediately with the current tier; this wing has
-       just painted with it, so the first call is a wasted repaint (and in
-       the ledger a second full render at boot). Only later changes. */
-    var firstTier_table = true;
-    OOT.gate.onChange(function () {
-      if (firstTier_table) { firstTier_table = false; return; }
-      try { evaluate(); } catch (e) {}
-    });
-    evaluate();
-  }
-
-  function TABLE_LABEL(r) {
-    if (r.indexOf('/recipe/') === 0) return 'This recipe is part of the subscription';
-    if (r.indexOf('/technique/') === 0) return 'The techniques are part of the subscription';
-    if (r.indexOf('/service/') === 0) return 'The service track is part of the subscription';
-    return 'This is part of the subscription';
-  }
-
   /* ---------------------------------------------------- First Light --- */
 
   function lockLight() {
@@ -744,35 +543,7 @@
     );
   }
 
-  /* The World Table is masked, not emptied: the study index and the lexicon
-     stay on screen with their locked parts blurred, so the shape of what is
-     being sold is visible. Selectors match only authored class names from the
-     Svelte source, never generated ones. */
-  function injectTableCss() {
-    /* The four Semester 1 terms stay legible; the id is the slug, authored in
-       the Svelte source, so these selectors survive a rebuild. */
-    var free = TABLE_FREE_TERMS.map(function (slug) {
-      return 'html[data-oot-tier="free"] .lexcard#' + slug + ' .def{filter:none;user-select:auto}';
-    }).join('');
-    css(
-      /* Partial masks, on free routes, keyed to the TIER. */
-      'html[data-oot-tier="free"] ol.semesters > li.semester:nth-child(n+2){' +
-        'filter:blur(4px);pointer-events:none;user-select:none}' +
-      'html[data-oot-tier="free"] .lexcard .def,' +
-      'html[data-oot-tier="free"] .flash .def{filter:blur(3px);user-select:none}' +
-      free +
-      /* Whole-sheet mask, on gated routes, keyed to the ROUTE. The crumbs and
-         the title stay readable so the page still says what it is; the body is
-         what the subscription buys. */
-      'html[data-oot-table="locked"] article.sheet > *:not(h1):not(.crumbs):not(header){' +
-        'filter:blur(5px);pointer-events:none;user-select:none}' +
-      'html[data-oot-table="locked"] .ingredients,' +
-      'html[data-oot-table="locked"] .steps{filter:blur(5px);pointer-events:none;user-select:none}' +
-      '@media(prefers-reduced-motion:reduce){html[data-oot-table="locked"] *{transition:none}}'
-    );
-  }
-
-  var LOCKS = { codex: lockCodex, ledger: lockLedger, table: lockTable, light: lockLight };
+  var LOCKS = { codex: lockCodex, ledger: lockLedger, light: lockLight };
 
   function boot() {
     var fn = LOCKS[here];

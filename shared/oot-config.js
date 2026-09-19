@@ -110,10 +110,8 @@
                        reference, tools, My Bar
                  paid: 332 specs from Tier 3 on, the drills, Ticket Rail,
                        flashcards, quiz
-         table   free: Semester 1, a preview of the Lexicon, browsing the
-                       shelf, your menu, family notes, prep and costing sheets
-                 paid: the other 1,839 recipes, the techniques, semesters 2
-                       to 10, the rest of the Lexicon, the service track
+         table   free in full, by the owner's decision (19 Sep 2026); like the
+                 almanac it registers no boundary and never gates.
          light   free: Today's voice, the year, the goal ladder, journal,
                        Clear Mornings, the Line-Up, the Walk-In, Vault
                  paid: the Library, the practices, the chart, the sky, the
@@ -141,7 +139,7 @@
         short: 'World Table', motto: 'Cuisine · Culture · Connection',
         name: 'The World Table',
         line: 'A culinary field guide, 1,844 recipes deep.',
-        free: 'All 1,844 recipes, the techniques and the Path of Study',
+        free: 'All 1,844 recipes, the techniques, the Path of Study, the Lexicon and the Floor Deck',
         paid: null
       },
       {
