@@ -74,7 +74,7 @@ const UPLIFT = [
   ["Even miracles take a little time.", "The Fairy Godmother, Cinderella (1950)", "film"],
   ["Have courage and be kind.", "Ella's mother, Cinderella (2015)", "film"],
   ["This is perhaps the greatest risk that any of us will take: to be seen as we truly are.", "Cinderella (2015)", "film"],
-  ["Second star to the right and straight on till morning.", "Peter Pan, Peter Pan (1953)", "film"],
+  ["Second star to the right and straight on till morning.", "Peter Pan, Peter Pan (1953), after J. M. Barrie, Peter and Wendy (1911)", "film"],
   ["All it takes is faith and trust.", "Peter Pan, Peter Pan (1953)", "film"],
   ["Just because someone stumbles and loses their way, doesn't mean they're lost forever.", "Charles Xavier, X-Men: Days of Future Past (2014)", "film"],
   ["Not all treasure is silver and gold, mate.", "Jack Sparrow, Pirates of the Caribbean: The Curse of the Black Pearl (2003)", "film"],

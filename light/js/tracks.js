@@ -25,7 +25,13 @@ var FL_TRACKS = [
     label: 'The Makers',
     blurb: 'Writers, builders, athletes and organisers, people who made something and said something usable about the making of it.',
     months: function () { return MONTHS_MAKERS; },
-    q: function () { return Q_MAKERS; } }
+    q: function () { return Q_MAKERS; } },
+
+  { id: 'classics',
+    label: 'The Classics',
+    blurb: 'The famous lines of philosophy and literature: Homer to Woolf, Plato to Camus. The sentence a book is known by, with the book named.',
+    months: function () { return MONTHS_CLASSICS; },
+    q: function () { return Q_CLASSICS; } }
 ];
 
 var FL_TRACK_DEFAULT = 'philosophers';
@@ -68,6 +74,23 @@ function flActiveTrack() {
    built is better served than one who cannot tell whether it exists. */
 function flTracksOffered() {
   return FL_TRACKS.filter(flTrackComplete);
+}
+
+/* A door for reading a track before it is finished: ?preview=<id> on the URL,
+   honoured ONLY by the Year view, only for a track that is not yet complete,
+   and rendered there without keep buttons. Nothing else consults it, so no
+   reader can file a voice under an unfinished track's key by accident. It
+   exists so a month can be read in the app the day it lands. Documented
+   beside ?nosw in CLAUDE.md. */
+function flPreviewTrack() {
+  try {
+    /* "?preview=classics#/year" and "#/year?preview=classics" are the same door */
+    var hq = (location.hash || '').split('?')[1] || '';
+    var id = new URLSearchParams(location.search).get('preview') ||
+             new URLSearchParams(hq).get('preview');
+    var t = id ? flTrackById(id) : null;
+    return (t && !flTrackComplete(t)) ? t : null;
+  } catch (e) { return null; }
 }
 
 function trackQ() { return flActiveTrack().q(); }

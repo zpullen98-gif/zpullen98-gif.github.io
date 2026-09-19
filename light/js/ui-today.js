@@ -243,22 +243,40 @@ function todayVoice(m, d, e) {
 }
 
 /* THE LIFT POOL. Every line the morning can deal is assembled here and nowhere
-   else. Entries are [line, source, kind]. The philosophy and literature year
-   that is coming widens this one function: concat its entries here, mapped to
-   the same shape, and todayLift needs no change. Nothing is recorded per lift,
-   so the pool changing length, which shifts which line a given day lands on,
-   costs nobody anything. */
+   else. Entries are [line, source, kind, m?, d?]. Nothing is recorded per
+   lift, so the pool changing length, which shifts which line a given day
+   lands on, costs nobody anything.
+
+   The Classics ride in month by month as they land: every verified line,
+   mapped to the lift's shape and read DIRECTLY rather than through trackQ(),
+   so the lifts draw from that year whatever year the reader is on. The month
+   and day travel in slots 3 and 4 so the day's own voice is never also dealt
+   as a lift (todayLift below). */
 function todayLiftPool() {
-  return (typeof UPLIFT === 'undefined') ? [] : UPLIFT;
+  var pool = (typeof UPLIFT === 'undefined') ? [] : UPLIFT.slice();
+  if (typeof Q_CLASSICS !== 'undefined' && Q_CLASSICS) {
+    for (var m = 1; m <= 12; m++) {
+      var arr = Q_CLASSICS[m] || [];
+      for (var i = 0; i < arr.length; i++) pool.push([arr[i][1], arr[i][2], 'classic', m, arr[i][0]]);
+    }
+  }
+  return pool;
 }
 
-/* Two lines from the pool, chosen by the day; "Another" walks the seed. */
+/* Two lines from the pool, chosen by the day; "Another" walks the seed. When
+   the reader is on The Classics, the day's own voice is stepped over, so the
+   same sentence is never on the page twice. */
 function todayLift(doy) {
   var pool = todayLiftPool();
-  if (pool.length < 2) return '';
+  if (pool.length < 3) return '';
   var n = pool.length;
   var a = (doy + liftSeed * 13) % n;
   var b = (doy * 7 + 3 + liftSeed * 17) % n;
+  var md = doyToMD(doy);
+  var own = flActiveTrack().id === 'classics';
+  var isVoice = function (i) { var u = pool[i]; return own && u[2] === 'classic' && u[3] === md[0] && u[4] === md[1]; };
+  if (isVoice(a)) a = (a + 1) % n;
+  if (b === a || isVoice(b)) b = (b + 1) % n;
   if (b === a) b = (b + 1) % n;
   var one = function (i) {
     var u = pool[i];

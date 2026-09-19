@@ -112,7 +112,7 @@ FL_VIEWS.vault = {
       var band = byheartBand(k);
       return '<div class="q"><p class="qt">“' + esc(e.q) + '”</p>' +
         '<span class="qs">' + esc(e.s) + '</span>' +
-        '<span class="qtr">' + esc(e.t) + ' · ' + esc(MONTHS[m - 1][0]) + ' ' + d +
+        '<span class="qtr">' + esc(e.t) + ' · ' + esc(trackMonths()[m - 1][0]) + ' ' + d +
         ' · <em>' + band + '</em></span>' +
         provNote(e.n) + '<br>' +
         '<button class="keep" data-act="rehearse" data-m="' + m + '" data-d="' + d + '">' +

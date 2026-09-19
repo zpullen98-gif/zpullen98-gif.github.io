@@ -61,6 +61,9 @@ function parseHash() {
      reader from the Library back to Today. */
   if (location.hash && location.hash.charAt(1) !== '/') return flRoute;
   var h = (location.hash || '').replace(/^#\/?/, '');
+  /* A query on the hash ("#/year?preview=classics") is not part of the view's
+     name; left on, it made the view unknown and the route fell back to Today. */
+  h = h.split('?')[0];
   var parts = h.split('/').filter(Boolean);
   var view = parts[0] || 'today';
   if (!FL_VIEWS[view]) view = 'today';

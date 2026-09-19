@@ -363,7 +363,7 @@ const Q={
 [17,"Remember that you must behave in life as if at a banquet. A dish is offered you; put out your hand and take a portion with moderation. Does it pass by you? Do not stop it.","Epictetus, Enchiridion 15","Stoic"],
 [18,"Man, you have been a citizen in this great city; what does it matter if for five years or a hundred?","Marcus Aurelius, Meditations 12.36","Stoic"],
 [19,"A grateful heart finds occasion for thanksgiving in every event.","Proverb","Wisdom"],
-[20,"Health is the greatest gift, contentment the greatest wealth, faithfulness the best relationship.","Proverb","Wisdom"],
+[20,"Health is the greatest gift, contentment the greatest wealth, faithfulness the best relationship.","After the Dhammapada 204","Wisdom","A modern compression of Dhammapada 204, not any one translator’s sentence. Müller (1881) reads: Health is the greatest of gifts, contentedness the best riches; trust is the best of relationships."],
 [21,"Gratitude turns the little we have into an abundance.","Proverb","Wisdom"],
 [22,"As physicians have always their instruments ready for cases which suddenly require their skill, have your principles ready.","Marcus Aurelius, Meditations 3.13","Stoic"],
 [23,"The fear of losing what we have often blinds us to the gladness of already having it.","Seneca, tradition","Stoic"],
