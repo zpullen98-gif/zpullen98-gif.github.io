@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.siQXmjTJ.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CJGFabCz.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CfQsg6pi.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.CcS9-Oj1.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BHivBCAy.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.C_AagmSk.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CZldjrzN.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Dy46hZjR.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/SzMENnUs.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/B0j221vE.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/z-T40r5r.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CknQZ0qt.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Bg6Kgj1u.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/d_THP3PX.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/30.743G9WwY.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CDOfq3D7.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Bz6LqKk8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Dmm_R8qV.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CYBJ8Ugx.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DlIhYa7A.js" rel="modulepreload">
+		<!--12qhfyh--><!--[0--><link rel="manifest" href="/manifest.webmanifest"/><!--]--> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-status-bar-style" content="black"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1844 recipes across 171 chapters, a 779-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--1dkdsiw--><!----><title>The World Table · Outside Of Time</title>
+		<link href="/table/_app/immutable/assets/0.AzajvH5F.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/FloorCard.8c8_EY5S.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/30.BXOogw5H.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: recipes, lexicon and study</p></div></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Today<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/learn">Learn<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/practise">Practise<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" aria-current="page" href="/table/service">Service<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/recipes">Library<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/menu">Menu<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service"><span class="svcglyph" aria-hidden="true">☀</span><span class="svcword svelte-12qhfyh">Day service</span></button></div></nav> <!--[-1--><!--]--> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><div class="shell view svelte-1dkdsiw"><nav class="crumbs svelte-1dkdsiw"><a href="/table/service" class="svelte-1dkdsiw">Service</a> · <a href="/table/service/deck" class="svelte-1dkdsiw">The Floor Deck</a></nav> <h1 class="svelte-1dkdsiw">Flip cards</h1> <article class="sheet"><p class="sr svelte-1dkdsiw" aria-live="polite"></p> <!--[1--><p class="empty svelte-1dkdsiw" aria-live="polite">Opening the deck…</p><!--]--></article></div><!--]--><!----></main> <div class="dock svelte-12qhfyh" data-print="hide"><!--[-1--><!--]--><!----> <!--[-1--><!--]--><!----></div> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1844 recipes · 171 chapters · Chef’s Lexicon: 779 terms <!--[0--><span class="legal">· <a href="/privacy.html" rel="external">Privacy</a> · <a href="/terms.html" rel="external">Terms</a></span><!--]--></div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_10kk68q = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.siQXmjTJ.js"),
+						import("/table/_app/immutable/entry/app.CcS9-Oj1.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 30],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=29"></script>
+<script src="/shared/oot-profiles.js?v=29"></script>
+<script src="/shared/oot-home.js?v=29"></script>
+<script src="/shared/oot-auth.js?v=29"></script>
+<script src="/shared/oot-gate.js?v=29"></script>
+<script src="/shared/oot-locks.js?v=29"></script>
+<script src="/shared/oot-pass.js?v=29"></script>
+<script src="/shared/oot-log.js?v=29"></script>
+<script src="/shared/oot-bar.js?v=29"></script>
+</body>
+</html>

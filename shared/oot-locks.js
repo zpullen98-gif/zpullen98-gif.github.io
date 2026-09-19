@@ -155,7 +155,23 @@
                               drills over the guide's own content. */
                            '/coverage', '/menu/costing', '/menu/prep-board',
                            '/menu/preps', '/menu/waste', '/practise/firing',
-                           '/practise/calibrate', '/technique'];
+                           '/practise/calibrate', '/technique',
+                           /* Added 19 Sep 2026, with the Floor Deck (a 300-card
+                              staff-training deck) and Producers in My Menu, on the
+                              rules above and nothing new. /service/deck is the
+                              deck's landing: sections, counts and doors, a hub like
+                              /learn, so it is the pitch for what is behind it.
+                              /menu/producers is the venue's own suppliers, typed by
+                              the venue: own data, never gated.
+
+                              The four study modes are deliberately NOT listed, so
+                              they are paid exactly as /service/drill and /menu/quiz
+                              are: drills over the guide's own content
+                              (/service/deck/study, /test, /say, /lineup). Every
+                              card's answers also render as .flash .def, so the
+                              blur applies wherever a card is shown. To open them,
+                              add the four strings here; that is the owner's call. */
+                           '/service/deck', '/menu/producers'];
 
   /* Semester 1, "Knife & Fire Foundations", from study.json. Five recipes and
      four lexicon terms. Hardcoded because the wing ships as a built bundle with
