@@ -44,8 +44,11 @@ time you open each one, and the practice films need YouTube.
 ## Your work stays yours
 
 Every journal entry, quiz score, streak and note lives in the browser on the device it
-was written on. Nothing is uploaded, there is no account, and there is no server holding
-anyone's records. Sharing the link shares the app, never your work.
+was written on. Nothing is uploaded on its own, there is no account, and there is no server
+holding anyone's records. There is one door out, and it is yours to open: the Maître d' reads
+a menu for you only if you add your own Anthropic key, and sends only what you hand her, when
+you press a button that says what it sends. The key stays on your device and never rides in
+an export. Sharing the link shares the app, never your work.
 
 If two people share a device, each can tap *Add your name* on a wing's home page and keep
 a separate record from then on.

@@ -10,12 +10,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Outside Of Time">
 <title>Outside Of Time Hospitality: the complete life of the hospitality professional</title>
-<meta name="description" content="Five free study apps for hospitality, offline and on the device in your hand: no account, no signal needed, nothing sent anywhere. The Sommelier’s Codex (four examinations, 4,357 questions), The Bartender’s Ledger (365 cocktails), The World Table (1,844 recipes), First Light (two years of mornings) and Calendar For Life (an illuminated almanac of festivals).">
+<meta name="description" content="Five free study apps for hospitality, offline and on the device in your hand: no account, no signal needed, nothing sent anywhere unless you bring your own key. The Sommelier’s Codex (four examinations, 4,357 questions), The Bartender’s Ledger (365 cocktails), The World Table (1,844 recipes), First Light (two years of mornings) and Calendar For Life (an illuminated almanac of festivals).">
 <meta name="theme-color" content="#0b0908">
 <link rel="canonical" href="https://zpullen98-gif.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Outside Of Time Hospitality">
-<meta property="og:description" content="Five free study apps for hospitality, offline and on the device in your hand: no account, no signal needed, nothing sent anywhere. The Sommelier’s Codex (four examinations, 4,357 questions), The Bartender’s Ledger (365 cocktails), The World Table (1,844 recipes), First Light (two years of mornings) and Calendar For Life (an illuminated almanac of festivals).">
+<meta property="og:description" content="Five free study apps for hospitality, offline and on the device in your hand: no account, no signal needed, nothing sent anywhere unless you bring your own key. The Sommelier’s Codex (four examinations, 4,357 questions), The Bartender’s Ledger (365 cocktails), The World Table (1,844 recipes), First Light (two years of mornings) and Calendar For Life (an illuminated almanac of festivals).">
 <meta property="og:url" content="https://zpullen98-gif.github.io/">
 <meta property="og:image" content="https://zpullen98-gif.github.io/assets/hub-card.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -266,9 +266,21 @@ footer.foot a span{border-bottom:1px solid var(--line-2)}
 footer.foot a:hover{color:var(--brass-hi)}
 /* No stacked opacity here: --dim on --ink is 6.5:1, but multiplying it by .75
    dropped this paragraph to 4.17:1, under the 4.5:1 minimum for 12px text. */
-.legal{margin-top:1em;font-size:.76rem;max-width:52ch;margin-inline:auto}
+.legal{margin:1em auto 0;font-size:.76rem;max-width:52ch}
+/* The dated notice the privacy and terms pages promise before a material
+   change lives here, beside Privacy and Terms, because the footer is the one
+   place the hub still shows words to a sighted reader once the plate is live:
+   hub-poster.css clips the whole masthead to a pixel under .plate-live and the
+   artwork carries no text, so a line in the header would be read only by
+   assistive tech, search engines, zoomed readers and the plate-failed page.
+   In a window wider than it is tall the footer stands in the empty band beside
+   the picture and this costs the picture nothing; upright, hub-poster.css
+   counts it in the plate's reserve. A link in running prose is inline: the
+   44px padding on the two footer links would make a lump of it. */
+footer.foot .legal a{display:inline;margin:0;padding:0;border-bottom:1px solid var(--line-2)}
+footer.foot .legal a:hover{color:var(--brass-hi)}
 </style>
-<link rel="stylesheet" href="assets/hub-poster.css?v=11">
+<link rel="stylesheet" href="assets/hub-poster.css?v=12">
 </head>
 <body>
 
@@ -306,6 +318,7 @@ footer.foot a:hover{color:var(--brass-hi)}
 <footer class="foot">
   <div class="wrap">
     <a href="privacy.html"><span>Privacy</span></a><a href="terms.html"><span>Terms</span></a>
+    <p class="legal" id="notice">Soon, announced <time datetime="2026-09-25">25 September 2026</time>: an optional Maître d' can read a menu for you if you add your own Anthropic key. Nothing is sent without it. <a href="privacy.html">What she sends, and where</a>.</p>
   </div>
 </footer>
 

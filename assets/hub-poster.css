@@ -89,8 +89,13 @@ header.top { padding: 0; }
    hairline, 14 of padding), the footer's 1px rule, 10 above its links and 12
    below, and 13 of padding over and under each link so the tap target stays
    past 44. That is 121px of fixed pixels, carried as 125 to leave four of
-   slack. Only the single line of .82rem text at the body's 1.55 line height
-   grows when a reader enlarges their default text, so it alone is in rem.
+   slack. Only the text grows when a reader enlarges their default text, so
+   it alone is in rem: the single line of .82rem links at the body's 1.55
+   line height (1.35rem), and, under them, the dated notice the privacy and
+   terms pages promise before a material change, three lines of .76rem at the
+   same line height plus its 1em of margin (4.3rem, carried as 4.4). In the
+   landscape branch below the footer leaves the flow and the notice costs the
+   picture nothing.
 
    THE UPRIGHT CAP MEASURES AGAINST 100vh, NOT 100svh, and that is deliberate.
    On a phone the width binds long before the height does: 1.5 times a 390px
@@ -109,8 +114,8 @@ header.top { padding: 0; }
   flex: none;             /* a column flex container must never squeeze the ratio */
   margin: 0 auto;
   line-height: 0;         /* removes the inline-image baseline gap */
-  max-width: min(1024px, max(320px, calc((100vh - 125px - 1.35rem) / 1.5)));
-  max-width: min(1024px, max(320px, calc((100vh - 125px - 1.35rem - env(safe-area-inset-bottom, 0px)) / 1.5)));
+  max-width: min(1024px, max(320px, calc((100vh - 125px - 5.75rem) / 1.5)));
+  max-width: min(1024px, max(320px, calc((100vh - 125px - 5.75rem - env(safe-area-inset-bottom, 0px)) / 1.5)));
 }
 .plate img { display: block; width: 100%; height: auto; }
 
