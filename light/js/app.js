@@ -80,44 +80,54 @@ function go(view, arg) {
 var flRoute = { view: 'today', arg: null };
 var flRendered = false;   // true once the first navigate() has painted a view
 
-/* Five clusters, because eleven equal items is not a menu, it is a list, and
-   on a 375px screen it wrapped to three ragged rows with the Vault orphaned on
-   its own line. The clusters follow what a reader is actually doing:
+/* The nav, rebuilt on the owner's request of 26 September 2026: open on Today,
+   four tabs across the top, and the whole trove filed under them. Six clusters
+   had grown into a menu a reader had to learn; four words are one they already
+   know. Three tiers, top to bottom:
 
-     Today          the daily loop: one tap, no sub-row
-     Reflection     the writing: the morning's question and the evening's examen
-     The Practice   the work: the body, the Vault's rehearsal room, the ladder
-     The Book       the reading: the 366 and the sky
-     Prayer         the scripture: seven traditions, the reading plans, the threads
-     The Desk       the instruments: writing, finding, the record, the workings
+     the home line   "First Light" on the left goes home to Today; Search and
+                     Settings sit small on the right. They are utilities, not
+                     tabs, so none of the three lights a tab.
+     the four tabs   Mind, Body, Heart, Soul
+     the sub-row     the rooms of whichever tab is open
 
-   The top row names the five; a second row appears only when the active
-   cluster holds more than one room. Each cluster remembers the room you were
-   last in for the session, so 'The Book' goes back to the chapter you left.
-   Hidden rooms light their home cluster for orientation, except Clear
-   Mornings, which deliberately lights nothing: no trace is part of that
-   room's contract.
+     Mind    the reading and the thinking: the 366, the Vault's kept words,
+             the floor book's reframes, the sky (and the natal chart, which
+             lights Mind without a slot of its own)
+     Body    the practice: the chapter, every film on one shelf, the Walk-In
+     Heart   the writing and the life: the morning's question and the evening's
+             examen, the journal, the goal ladder, the record
+     Soul    the scripture and only the scripture: seven traditions, the
+             reading plans, the threads
 
-   THE LIBRARY IS ITS OWN CLUSTER ON PURPOSE. It used to sit inside 'The Book'
-   between the secular 366 and the sky, which made scripture look like one more
-   chapter of the same book rather than a room the reader chooses to enter. It
-   is now a door of its own, standing beside the others and entered only by
-   someone who meant to. Nothing here is hidden and nothing is pushed: the
+   Each tab remembers the room you were last in for the session, so 'Mind'
+   goes back to the chapter you left. Clear Mornings and the Line-Up light
+   nothing and are listed nowhere: the Line-Up belongs to a shared screen,
+   and leaving no trace is part of Clear Mornings' contract.
+
+   SOUL HOLDS THE RELIGIOUS MATERIAL AND NOTHING ELSE, ON PURPOSE. The Library
+   once sat inside a secular cluster between the 366 and the sky, which made
+   scripture look like one more chapter of the same book rather than a room
+   the reader chooses to enter. It is a door of its own, standing beside the
+   others and entered only by someone who meant to; astrology is secular and
+   lives under Mind. Nothing here is hidden and nothing is pushed: the
    religious material is one tap away for a reader who wants it and appears
    nowhere in the morning for a reader who does not. */
 var NAV_CLUSTERS = [
-  ['today',    'Today',        ['today']],
-  ['reflect',  'Reflection',   ['reflect']],
-  ['practice', 'The Practice', ['body', 'vault', 'life']],
-  ['book',     'The Book',     ['year', 'astro']],
-  ['canon',    'Prayer',       ['library']],
-  ['desk',     'The Desk',     ['journal', 'search', 'stats', 'settings']]
+  ['mind',  'Mind',  ['year', 'vault', 'floor', 'astro']],
+  ['body',  'Body',  ['body', 'videos', 'reset']],
+  ['heart', 'Heart', ['reflect', 'journal', 'life', 'stats']],
+  ['soul',  'Soul',  ['library', 'hall', 'threads']]
 ];
-/* hidden views borrow a cluster so the reader stays oriented. The reading plans
-   and the threads are religious rooms reached from the Library, so they light
-   the Library rather than the Book they used to sit under. */
-var NAV_HOMES = { hall: 'canon', threads: 'canon', chart: 'book', reset: 'practice', floor: 'practice' };
-var flLastSub = {};   // cluster id -> last visited view, session-only
+/* the home line's small links; Today is the name on the left */
+var NAV_UTILS = ['search', 'settings'];
+/* rooms that light a tab without a slot in its sub-row */
+var NAV_HOMES = { chart: 'mind' };
+/* rooms that never appear in the nav and light nothing */
+var NAV_UNLISTED = ['lineup', 'clear'];
+/* sub-row labels that differ from the view's own */
+var NAV_LABELS = { vault: 'The Vault', hall: 'The Readings', threads: 'The Threads' };
+var flLastSub = {};   // tab id -> last visited view, session-only
 
 function navClusterOf(view) {
   for (var i = 0; i < NAV_CLUSTERS.length; i++) {
@@ -130,47 +140,52 @@ function navLink(k) {
   var v = FL_VIEWS[k];
   if (!v) return '';
   return '<a href="#/' + k + '"' + (k === flRoute.view ? ' aria-current="page"' : '') +
-         '>' + esc(v.label) + '</a>';
+         '>' + esc(NAV_LABELS[k] || v.label) + '</a>';
 }
 
 function renderNav() {
   var nav = document.getElementById('nav');
-  var active = navClusterOf(flRoute.view);
-  if (NAV_CLUSTERS.some(function (c) { return c[2].indexOf(flRoute.view) > -1; })) {
-    flLastSub[active] = flRoute.view;
+  var here = flRoute.view;
+  var active = navClusterOf(here);
+  if (NAV_CLUSTERS.some(function (c) { return c[2].indexOf(here) > -1; })) {
+    flLastSub[active] = here;
   }
 
-  var top = NAV_CLUSTERS.map(function (c) {
+  /* Anything registered but unlisted still appears, at the end of the home
+     line's utilities, so adding a view can never make it silently unreachable. */
+  var known = ['today'].concat(NAV_UTILS, NAV_UNLISTED, Object.keys(NAV_HOMES));
+  NAV_CLUSTERS.forEach(function (c) { known = known.concat(c[2]); });
+  var stray = Object.keys(FL_VIEWS).filter(function (k) {
+    return !FL_VIEWS[k].hidden && known.indexOf(k) === -1;
+  });
+
+  /* the visible text starts the accessible name: "First Light, today" */
+  var home = '<div class="nav-home">' +
+    '<a class="nav-name" href="#/today"' + (here === 'today' ? ' aria-current="page"' : '') +
+      '>First Light<span class="sr-only">, today</span></a>' +
+    '<div class="nav-utils">' + NAV_UTILS.concat(stray).map(navLink).join('') + '</div>' +
+  '</div>';
+
+  var tabs = NAV_CLUSTERS.map(function (c) {
     var dest = flLastSub[c[0]] || c[2][0];
     return '<a href="#/' + dest + '"' + (active === c[0] ? ' aria-current="true" class="on"' : '') +
            '>' + esc(c[1]) + '</a>';
   }).join('');
 
-  /* Anything registered but unlisted still appears, so adding a view can never
-     make it silently unreachable. */
-  var known = [];
-  NAV_CLUSTERS.forEach(function (c) { known = known.concat(c[2]); });
-  var stray = Object.keys(FL_VIEWS).filter(function (k) {
-    return !FL_VIEWS[k].hidden && known.indexOf(k) === -1;
-  });
-  top += stray.map(navLink).join('');
+  var tab = null;
+  for (var i = 0; i < NAV_CLUSTERS.length; i++) if (NAV_CLUSTERS[i][0] === active) tab = NAV_CLUSTERS[i];
+  var sub = tab ? '<div class="nav-tools">' + tab[2].map(navLink).join('') + '</div>' : '';
 
-  var cluster = null;
-  for (var i = 0; i < NAV_CLUSTERS.length; i++) if (NAV_CLUSTERS[i][0] === active) cluster = NAV_CLUSTERS[i];
-  var sub = (cluster && cluster[2].length > 1)
-    ? '<div class="nav-tools">' + cluster[2].map(navLink).join('') + '</div>'
-    : '';
-
-  nav.innerHTML = '<div class="nav-places">' + top + '</div>' + sub;
+  nav.innerHTML = home + '<div class="nav-places">' + tabs + '</div>' + sub;
 }
 
-/* Number keys walk the clusters; the slash opens search, never while typing. */
+/* Number keys 1 to 4 open the four tabs; the slash opens search. Never while typing. */
 document.addEventListener('keydown', function (e) {
   if (e.ctrlKey || e.metaKey || e.altKey) return;
   var t = e.target;
   if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;
   if (e.key === '/') { location.hash = '#/search'; e.preventDefault(); return; }
-  if (/^[1-6]$/.test(e.key)) {
+  if (/^[1-4]$/.test(e.key)) {
     var c = NAV_CLUSTERS[Number(e.key) - 1];
     location.hash = '#/' + (flLastSub[c[0]] || c[2][0]);
     e.preventDefault();

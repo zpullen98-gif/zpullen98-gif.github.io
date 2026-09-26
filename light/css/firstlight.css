@@ -162,23 +162,32 @@ a { color: var(--accent); }
 }
 
 /* ═══ navigation ═══ */
-/* Two tiers: four clusters, then the rooms of whichever cluster is open. */
+/* Three tiers: the home line (the name, which goes to Today, with Search and
+   Settings small on the right), the four tabs, then the rooms of whichever
+   tab is open. */
 nav { margin-bottom: 40px; }
+.nav-home {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 0 12px; margin-bottom: 18px;
+}
+.nav-utils { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0 14px; }
 .nav-places, .nav-tools { display: flex; justify-content: center; flex-wrap: wrap; }
-.nav-places { gap: 20px; }
+.nav-places { gap: 28px; }
 .nav-tools {
   gap: 16px; margin-top: 12px; padding-top: 11px;
   border-top: 1px solid var(--line);
-  /* Narrower than the section row so the hairline reads as a division rather than
-     a box, and the eye still lands on the book first. */
-  max-width: 340px; margin-left: auto; margin-right: auto;
+  /* Narrower than the tab row's column so the hairline reads as a division
+     rather than a box, and the eye still lands on the tabs first. */
+  max-width: 460px; margin-left: auto; margin-right: auto;
 }
 /* Hierarchy by COLOR, not opacity: the .82 opacity quietly blended --faint
    back below the 4.5:1 line the palette block above fought for (measured
    3.24 in the day theme). --faint alone passes in every theme by design.
    Adopted from the light/ wing's accessibility audit. */
-.nav-tools a { font-size: 10px; color: var(--faint); }
-.nav-tools a:hover, .nav-tools a[aria-current="page"] { color: var(--ink); }
+.nav-tools a, .nav-utils a { font-size: 10px; color: var(--faint); }
+.nav-utils a { letter-spacing: .14em; }
+.nav-tools a:hover, .nav-tools a[aria-current="page"],
+.nav-utils a:hover, .nav-utils a[aria-current="page"] { color: var(--ink); }
 nav a {
   background: none; border: none; cursor: pointer; text-decoration: none;
   font-family: var(--sans); font-size: 11px; letter-spacing: .2em;
@@ -187,25 +196,48 @@ nav a {
 }
 nav a:hover { color: var(--ink); }
 nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
-/* the open cluster carries the ink without the accent; the accent belongs to
-   the room you are actually in, one tier down */
-.nav-places a.on { color: var(--ink); border-bottom-color: var(--line); }
+/* the four tabs are the one tier set a size up */
+.nav-places a { font-size: 13px; letter-spacing: .22em; }
+/* the open tab carries the ink without the accent; the accent belongs to
+   the room you are actually in, one tier down. Its hairline is --faint, not
+   --line: --line measured 1.16 to 1.36:1 on --bg, which is no line at all and
+   left colour alone to mark the tab. --faint is 4.51 to 5.83:1 in all four
+   palettes, past the 3:1 a non-text indicator needs. */
+.nav-places a.on { color: var(--ink); border-bottom-color: var(--faint); }
 /* The touch floor, for the nav this time. At 375px every link was a 21px strip
    of 10px caps, the very target the .keep pills below were lifted from: the
    padding, not the type, makes the 44px, and the hairline indicator moves to
-   the foot of the taller box. The second tier keeps its hierarchy by colour
-   (--faint against --ink) and comes up to 11px so it is never the smallest
-   type on the page. The gaps close because the padding now holds the space,
-   and the 340px cap comes off so nine rooms wrap into three rows, not four.
+   the foot of the taller box. The sub-row and the home line's Search and
+   Settings keep their hierarchy by colour (--faint against --ink) and come up
+   to 11px so neither is ever the smallest type on the page (measured in Karla,
+   the home line then takes about 234px of the 276px column at 320px wide).
+   The gaps close because the padding now holds the space, and the width cap
+   comes off so a four-room tab wraps into two rows, not three. The four tabs
+   step down to 12px so all four hold one row at 320px, and the home line
+   keeps its name and both utilities on one line there.
    Applied by width and by pointer, so a tablet in a wide window gets it too. */
-@media (max-width: 480px), (pointer: coarse) {
+@media (max-width: 600px), (pointer: coarse) {
+  .nav-home { margin-bottom: 6px; gap: 0 4px; }
+  .nav-utils { gap: 0 2px; }
   .nav-places { gap: 0 4px; }
   .nav-tools { gap: 0 2px; max-width: none; margin-top: 8px; padding-top: 6px; }
   nav a {
     padding: 12px 8px; min-height: 44px;
     display: inline-flex; align-items: center;
   }
-  .nav-tools a { font-size: 11px; }
+  .nav-home a { padding: 12px 6px; }
+  .nav-places a { font-size: 12px; letter-spacing: .18em; padding: 12px 7px; }
+  .nav-tools a, .nav-utils a { font-size: 11px; }
+}
+/* Forced colours (Windows high contrast) force border-color, so the
+   transparent hairline under every nav link would show as a line in the link
+   colour and the open tab would look like every other link. Canvas is a
+   system colour and is kept, so it hides the idle lines; only the open tab and
+   the current room or page keep one. Every nav line is 2px here so marking the
+   current one moves nothing. */
+@media (forced-colors: active) {
+  nav a { border-bottom-width: 2px; border-bottom-color: Canvas; }
+  .nav-places a.on, nav a[aria-current="page"] { border-bottom-color: LinkText; }
 }
 
 /* the day's movement, run in place */

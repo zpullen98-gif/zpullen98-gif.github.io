@@ -8,11 +8,13 @@
    and it is the only arithmetic allowed in the room.
 
    PRIVACY IS STRUCTURAL, decided here and enforced at the surfaces: the room
-   is hidden from the nav (the hall pattern), its door is one quiet line in
-   Settings, its notes are excluded from the Journal view and from search
-   (see the 'clear:' filters in ui-journal.js and search.js), and the mark
-   appears in no stat, heatmap, or export summary. What happens in this room
-   renders only in this room. */
+   is listed nowhere and lights no tab (it is in NAV_UNLISTED in app.js and in
+   no NAV_CLUSTERS entry, and must stay so: hidden:true alone no longer keeps
+   a room out of a tab's sub-row), its door is one quiet line in Settings, its
+   notes are excluded from the Journal view and from search (see the 'clear:'
+   filters in ui-journal.js and search.js), and the mark appears in no stat,
+   heatmap, or export summary. What happens in this room renders only in this
+   room. */
 
 const CLEAR_SECTIONS = [
   ["What this room is",

@@ -1,10 +1,11 @@
 /* First Light: Reflection.
 
-   Everything that asks the reader to write lives here, in its own tab, and
-   nowhere on the morning page. The morning's reflection question with its
-   field, and the evening examen (the day, or the shift) with its four. The
-   refs are the ones the journal has always used (day:, examen:, debrief:), so
-   every entry a reader has already written appears exactly where it did.
+   Everything that asks the reader to write lives here, in its own room under
+   Heart, and nowhere on the morning page. The morning's reflection question
+   with its field, and the evening examen (the day, or the shift) with its
+   four. The refs are the ones the journal has always used (day:, examen:,
+   debrief:), so every entry a reader has already written appears exactly
+   where it did, and the Journal's links for them lead here (jHref).
 
    The page reads by the sun: in the evening the examen comes first and the
    morning question sits beneath it; by day the order is the other way. Both

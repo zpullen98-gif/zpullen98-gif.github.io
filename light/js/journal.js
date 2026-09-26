@@ -174,12 +174,14 @@ function jPrettyDate(key) {
   return d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
 }
 
-/* Where a ref points, so an entry in the journal can take you back to it. */
+/* Where a ref points, so an entry in the journal can take you back to it.
+   The morning's answer and the evening examen (day:, examen:, debrief:) are
+   written in Reflection, under Heart; Today holds no field, so they lead
+   there. Today is only the fallback for a ref this list does not know. */
 function jHref(ref) {
-  var p0 = String(ref).split(':')[0];
-  if (p0 === 'clear') return '#/clear';
-  if (p0 === 'debrief') return '#/today';
   var p = String(ref).split(':');
+  if (p[0] === 'clear') return '#/clear';
+  if (p[0] === 'day' || p[0] === 'examen' || p[0] === 'debrief') return '#/reflect';
   if (p[0] === 'passage') return '#/hall/' + p[1];
   if (p[0] === 'voice') return '#/vault';
   return '#/today';

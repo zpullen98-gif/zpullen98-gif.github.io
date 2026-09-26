@@ -295,14 +295,14 @@ FL_VIEWS.settings = {
         '</select>' +
       '</div>' +
 
-      '<div class="label">Prayer, elsewhere in the app</div>' +
+      '<div class="label">Scripture, elsewhere in the app</div>' +
       '<div class="card">' +
         '<p class="px" style="margin-bottom:10px">First Light includes scripture and reading plans across ' +
-        'seven traditions, in the Prayer tab. Your morning page never shows any of it, whatever you choose ' +
+        'seven traditions, in the Soul tab. Your morning page never shows any of it, whatever you choose ' +
         'here. This decides the two other places it could reach you: whether the goal ladder quotes ' +
         'scripture or its secular alternates, and whether searching finds the traditions and threads.</p>' +
-        '<select class="sel" data-change="setCanonLines" aria-label="Scripture outside the Prayer tab">' +
-          '<option value="off"' + (FL.prefs.canonLines === 'on' ? '' : ' selected') + '>Keep it all in Prayer</option>' +
+        '<select class="sel" data-change="setCanonLines" aria-label="Scripture outside the Soul tab">' +
+          '<option value="off"' + (FL.prefs.canonLines === 'on' ? '' : ' selected') + '>Keep it all in Soul</option>' +
           '<option value="on"' + (FL.prefs.canonLines === 'on' ? ' selected' : '') + '>Let it into the ladder and search</option>' +
         '</select>' +
       '</div>' +

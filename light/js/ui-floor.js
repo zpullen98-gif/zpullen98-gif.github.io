@@ -69,7 +69,7 @@ const FLOOR_CARDS = [
 FL_VIEWS.floor = {
   label: 'The Floor Book',
   title: 'The Floor Book',
-  hidden: true,   // reached from Today's sorting card; content, not a destination
+  hidden: true,   // listed under Mind; also reached from Today's sorting card
   render: function () {
     var open = FL_VIEWS.floor._open;
     var cards = FLOOR_CARDS.map(function (c, i) {

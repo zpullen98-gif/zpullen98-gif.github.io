@@ -62,7 +62,7 @@ FL_ACTS.resetEnd = function () {
 FL_VIEWS.reset = {
   label: 'The Walk-In',
   title: 'The Walk-In',
-  hidden: true,   // reached from Today and the Body; a refuge needs no nav slot
+  hidden: true,   // listed under Body; also reached from Today and the Body
   render: function () {
     var line = RESET_LINES[Math.floor(Date.now() / 60000) % RESET_LINES.length];
     if (resetState.done) {
@@ -115,11 +115,16 @@ FL_ACTS.playVideo = function (el) {
   var src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0' + (start ? '&start=' + start : '');
   host.innerHTML = '<iframe src="' + src + '" title="Practice video: ' + esc(el.getAttribute('data-frame') || '') + '" frameborder="0" ' +
     'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+  /* The Play button just went with the old innerHTML. Put focus on the player
+     it started, so a keyboard or screen-reader user lands there instead of
+     being sent back to the top of the page by app.js's focus restore. */
+  var fr = host.querySelector('iframe');
+  if (fr) fr.focus({ preventScroll: true });
 };
 
 /* One card builder for every shelf, here and on the morning page. The key is
    the DOM id the live title fetch writes into, so it has to be unique across
-   whatever is on screen: the Body passes an index (its trade group offset past
+   whatever is on screen: the Videos room passes an index (its trade group offset past
    the end of the first list), the morning page passes the video id. */
 function vidCard(v, key) {
   var startNote = v.start
@@ -153,13 +158,6 @@ FL_VIEWS.body = {
     var limbs = EIGHT_LIMBS.map(function (l, i) {
       return '<div class="limb"><div class="limbn">' + (i + 1) + '</div><div>' +
         '<div class="gt">' + esc(l[0]) + '</div><div class="gp">' + esc(l[1]) + '</div></div></div>';
-    }).join('');
-
-    /* the index is the title fetch's DOM key; the trade group is offset past
-       the end of the first list so the two never collide */
-    var vids = BODY_VIDEOS.map(vidCard).join('');
-    var tradeVids = TRADE_VIDEOS.map(function (v, i) {
-      return vidCard(v, i + BODY_VIDEOS.length);
     }).join('');
 
     /* --- the practice engine --- */
@@ -207,16 +205,45 @@ FL_VIEWS.body = {
       '<div class="label">The eight limbs of yoga</div>' +
       '<p class="px" style="color:var(--faint);margin-bottom:16px">Patañjali’s <em>Yoga Sūtras</em> set out eight limbs, <em>ashtanga</em>, of which the postures are only the third. The sequence matters: ethics first, then the body, then the breath, then the mind.</p>' +
       limbs +
+      /* the films moved to their own room under Body; one door stands where
+         the two shelves were, so a reader who scrolls the chapter loses nothing */
+      '<div style="text-align:center;margin-top:30px">' +
+        '<a class="keep" href="#/videos">All ' + (BODY_VIDEOS.length + TRADE_VIDEOS.length) + ' films, in Videos</a></div>' +
+      '<p class="mintro" style="margin-top:30px">Move within your own limits. Pain is information, not weakness, and none of this is medical advice.</p>';
+  },
+
+  _programme: true
+};
+
+/* ---- THE VIDEOS (#/videos) ----
+   Every film on one shelf, under Body, so a reader can find all of them in one
+   place and tap one to play it in its card. The practices first, then the
+   trade's long versions, each list exactly once. The index is the title
+   fetch's DOM key; the trade group is offset past the end of the first list
+   so the two never collide. */
+FL_VIEWS.videos = {
+  label: 'Videos',
+  title: 'The Videos',
+  render: function () {
+    var total = BODY_VIDEOS.length + TRADE_VIDEOS.length;
+    var vids = BODY_VIDEOS.map(vidCard).join('');
+    var tradeVids = TRADE_VIDEOS.map(function (v, i) {
+      return vidCard(v, i + BODY_VIDEOS.length);
+    }).join('');
+
+    return '' +
+      '<div class="kick">Body</div>' +
+      '<h1>The Videos</h1>' +
+      '<p class="note">' + total + ' films on one shelf: the practices first, then the long versions for the trade. Each plays here, in its card, and needs a connection.</p>' +
       '<div class="label">The practices</div>' +
       '<p class="px" style="color:var(--faint);margin-bottom:16px">Tap any practice to open it. The videos belong to their creators; the titles were checked against YouTube and are refreshed when there is a connection.</p>' +
       vids +
       '<div class="label">For the body this trade builds</div>' +
-      '<p class="px" style="color:var(--faint);margin-bottom:16px">The sequences above are the three minute version of this ground, and they run with no connection at all. These are the long version, taught by people who teach it for a living: the sole and the fascia, the calf pump, the hinge that saves a back on a keg, and the wind down for a night that ends at sunrise.</p>' +
+      '<p class="px" style="color:var(--faint);margin-bottom:16px">The sequences in <a href="#/body">The Body</a> are the three minute version of this ground, and they run with no connection at all. These are the long version, taught by people who teach it for a living: the sole and the fascia, the calf pump, the hinge that saves a back on a keg, and the wind down for a night that ends at sunrise.</p>' +
       tradeVids +
       '<p class="mintro" style="margin-top:30px">Move within your own limits. Pain is information, not weakness, and none of this is medical advice.</p>';
   },
 
-  _programme: true,
   after: function () {
     BODY_VIDEOS.concat(TRADE_VIDEOS).forEach(function (v, i) {
       fetchYouTubeTitle(v.id).then(function (info) {

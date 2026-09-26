@@ -2,8 +2,8 @@
 
    The morning page. Two rules govern it.
 
-   IT ASKS THE READER TO WRITE NOTHING. Every field lives in Reflection, one
-   tab over.
+   IT ASKS THE READER TO WRITE NOTHING. Every field lives in Reflection, under
+   Heart.
 
    IT NEVER COUNTS AT THEM. No streak, no day number, no notice about how long
    it has been. A streak punishes hardest exactly when somebody is already
@@ -23,7 +23,7 @@
                intent picker and the sorting drill
 
    Nothing here is ticked, and nothing here points at Reflection. The writing
-   lives one tab over and the reader goes there when they choose to; the
+   lives under Heart and the reader goes there when they choose to; the
    morning page does not send them. It used to: a checklist of four things
    with a Reflect row, a card at dusk that opened the examen, a link in the
    footer, a button on the Examined Evening. The owner took all of it out.
@@ -207,8 +207,8 @@ function todayBreath() {
 /* ═══════════════ two films ═══════════════ */
 
 /* The morning deals only from the yoga and workout shelf. The physio and
-   technique films stay in The Body, where the trade chapter frames them. An
-   entry with no kind, or an unknown one, is simply never dealt. */
+   technique films stay in Videos, under Body, where the trade group frames
+   them. An entry with no kind, or an unknown one, is simply never dealt. */
 function todayFilmPool() {
   if (typeof BODY_VIDEOS === 'undefined') return [];
   var all = BODY_VIDEOS.concat(typeof TRADE_VIDEOS === 'undefined' ? [] : TRADE_VIDEOS);
@@ -229,7 +229,7 @@ function todayFilms(doy) {
   return '<div class="label">Two films for the body</div>' +
     '<p class="px" style="color:var(--faint);margin-bottom:10px">Dealt by the date from the yoga and workout shelf. ' +
       'They belong to their creators and need a connection to play; ' +
-      '<a class="readmini" href="#/body">the whole shelf is in The Body</a>.</p>' +
+      'the whole shelf is in <a class="readmini" href="#/videos">Videos</a>, under Body.</p>' +
     vidCard(pool[a], pool[a].id) + vidCard(pool[b], pool[b].id) +
     '<div style="text-align:center;margin-top:4px"><button class="keep" data-act="vidAgain">Another</button></div>';
 }
@@ -379,7 +379,7 @@ function todaySortPanel() {
 }
 
 /* Kept, and still read by the goal ladder and by search: those are the two
-   places outside Prayer where scripture can still appear, and the preference is
+   places outside Soul where scripture can still appear, and the preference is
    what decides it. Nothing on the morning page consults it. */
 function todayCanonOn() { return FL.prefs.canonLines === 'on'; }
 

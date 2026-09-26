@@ -4,9 +4,10 @@
    Five canons run 366 days; five short reads run the length of the work.
    The Library is for wandering; this is for the discipline of a book a day.
 
-   Reachable at #/hall and from the Library, but hidden from the top nav: one door
-   to the religious section, not two. Everything it renders now comes from the local
-   text via reading.js; nothing here touches the network. */
+   Reachable at #/hall, from the Library, and from Soul's sub-row as The Readings.
+   The religious section still has one door, the Soul tab, which holds the religious
+   rooms and nothing else. Everything it renders now comes from the local text via
+   reading.js; nothing here touches the network. */
 
 var hallMonth = 0;   // 0 = no explicit pick; each render defaults to the shifted month
 var hallOpen = null;      // { box, btn } currently expanded; reset every render
@@ -147,7 +148,8 @@ FL_ACTS.forgetCanon = function (el) {
 FL_VIEWS.hall = {
   label: 'The year’s readings',
   title: 'The Year’s Readings',
-  hidden: true,        // reached from the Library; the nav has one religious door
+  hidden: true,        // listed under Soul as The Readings; also reached from the Library.
+                       // Soul is the one religious door; its sub-row appears only inside it
   render: function (canonId) {
     hallOpen = null;   /* every render rebuilds all boxes hidden; state follows */
     if (!canonId || !hallById(canonId)) {
