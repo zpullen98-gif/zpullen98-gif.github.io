@@ -11,7 +11,8 @@
    WHAT THE HOME IS, EXACTLY. `#view` holds two things and nothing else:
 
      <section class="levels" aria-label="Levels">   four button.level cards,
-        data-level 1 to 4, ids lv-1 to lv-4, each lv-num, lv-name, lv-stat;
+        data-level 1 to 4, ids lv-1 to lv-4, each lv-name, lv-stat (no numeral
+        on sight since 26 Sep 2026: "Level I" stays as sr-only text);
         the current one carries class "on", aria-pressed="true" and the words
         "Your level", so the state is never carried by colour alone
      <nav class="quiet" aria-label="Doors">          four doors, ids door-today,
@@ -824,7 +825,7 @@ function v25HomeHtml() {
     var stat = locked ? 'Locked' : v25LevelStat(L.key).word;
     return '<button class="level' + (on ? ' on' : '') + (locked ? ' locked' : '') + '" type="button"' +
       ' id="lv-' + L.n + '" data-level="' + L.n + '" aria-pressed="' + (on ? 'true' : 'false') + '">' +
-      '<span class="lv-num">' + L.num + '</span>' +
+      '<span class="sr-only">Level ' + L.num + '</span>' +
       '<span class="lv-name">' + v25Esc(L.name) + '</span>' +
       '<span class="lv-stat">' + v25Esc(stat) + '</span>' +
       (on ? '<span class="lv-here">Your level</span>' : '') +
@@ -1524,7 +1525,6 @@ render = function () {
     '  box-shadow:inset 0 0 0 3px var(--bg2),inset 0 0 0 4px rgba(201,162,39,.18)}',
     '.level:hover{border-color:var(--gold)}',
     '.level:focus-visible{outline:2px solid var(--gold-hi);outline-offset:2px}',
-    '.level .lv-num{font-family:\'Cinzel\',Georgia,serif;font-weight:700;font-size:26px;line-height:1;color:var(--claret);letter-spacing:1px}',
     '.level .lv-name{font-family:\'Cinzel\',Georgia,serif;font-weight:600;font-size:16px;letter-spacing:.5px;color:var(--ink);line-height:1.25}',
     '.level .lv-stat{font-family:\'EB Garamond\',Georgia,serif;font-size:15.5px;color:var(--ink-soft)}',
     '.level .lv-here{font-family:\'EB Garamond\',Georgia,serif;font-variant:small-caps;letter-spacing:1.2px;font-size:14px;',

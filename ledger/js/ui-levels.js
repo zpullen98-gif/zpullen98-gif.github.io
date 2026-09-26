@@ -3,7 +3,7 @@
    apps share (the World Table, the Codex and the Ledger read as one family;
    only the CSS is each app's own):
 
-     section.levels   four button.level, each .lv-num .lv-name .lv-stat, the
+     section.levels   four button.level, each .lv-name .lv-stat, the
                       current one .on with aria-current and "Your level"
      nav.quiet        four button.door: Today, Library, Record, Mine · My Bar
 
@@ -20,7 +20,9 @@ function homeLevelsHTML(){
   return '<section class="levels" aria-label="Levels">' + LEVELS.map(function(l){
     const on = l.n === cur;
     return '<button class="level'+(on?' on':'')+'" data-act="level-open" data-n="'+l.n+'" data-level="'+l.n+'"'+(on?' aria-current="step"':'')+'>'
-      + '<span class="lv-num">'+l.num+'</span>'
+      /* no numeral on the card (the owner, 26 Sep 2026); the words stay for a
+         screen reader, since the Today door and the level page say "Level I" */
+      + '<span class="sr-only">Level '+l.num+'</span>'
       + '<span class="lv-name">'+esc(l.name)+'</span>'
       + '<span class="lv-stat">'+esc(levelProgress(l.n).label)+'</span>'
       + (on ? '<span class="lv-here">Your level</span>' : '')
