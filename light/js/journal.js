@@ -158,9 +158,16 @@ function jLabel(ref) {
     return 'On a kept voice';
   }
   if (p[0] === 'passage') {
+    /* "passage:<plan>:<n>" was written under the old calendar plans, so n is
+       an old day: it is named through prior.legacy, the atoms that day
+       covered, and keeps naming what was actually read. */
     var h = hallById(p[1]);
-    var doy = +p[2];
-    if (h && doy) return 'On ' + h[1] + ': ' + h[4][doy - 1];
+    var n = +p[2];
+    var P = (typeof planDef === 'function') ? planDef(p[1]) : null;
+    var lg = P && P.prior && P.prior.legacy;
+    var what = (lg && n >= 1 && n === Math.floor(n) && n * 2 <= lg.length) ? planLabelRange(p[1], lg[2 * n - 2], lg[2 * n - 1]) : '';
+    if (h && what) return 'On ' + h[1] + ': ' + what;
+    if (h) return 'On ' + h[1];
     return 'On a passage';
   }
   return 'A note';

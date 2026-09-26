@@ -392,16 +392,39 @@ h1 {
 .months a.mchip { text-decoration: none; }
 .vnum { font-family: var(--sans); font-size: 10px; color: var(--faint); vertical-align: super; margin-right: 2px; }
 .loadnote { font-size: 13px; color: var(--faint); font-style: italic; margin: 0; }
-/* One glyph per row saying whether that day's text is already on the device.
-   The artifact had no such signal, which is how a completely dead Rig Veda path
-   went unnoticed through a year of use. */
-.heldot {
-  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-  margin-right: 8px; vertical-align: middle;
-  border: 1px solid var(--line); background: transparent;
-}
-.heldot.on { background: var(--accent); border-color: var(--accent); }
 .apicredit { font-size: 10px; color: var(--faint); margin-top: 10px; text-align: right; }
+
+/* ═══ the Readings ═══ */
+/* A paragraph's or saying's number (Zhuangzi 2.14, Analects 7.17, Katha
+   1.2.13), set before its text in the small sans of the verse numbers, so
+   the passage can be checked against its label. Text, not a mark. */
+.pnum { font-family: var(--sans); font-size: 10.5px; letter-spacing: .06em; color: var(--faint); margin-right: 8px; }
+.uphead { font-family: var(--serif); font-size: 15px; color: var(--accent); margin: 14px 0 4px; }
+.uphead.ds { font-family: var(--sans); font-size: 10.5px; color: var(--faint); }
+.speaker { margin: 12px 0 2px; }
+.dtoday { font-weight: 600; margin: 4px 0 2px; }
+/* A plan's or a course's title is its page's one h1, kept in the card title's look */
+.canon h1.pt { text-align: left; line-height: inherit; }
+.dbody { flex: 1; min-width: 0; }
+.dlabel { font-family: var(--sans); font-size: 14px; line-height: 1.5; margin: 0 0 2px; }
+.dayrow.done .dlabel { opacity: .72; }
+/* The day groups of a long plan: a chip is a button, 44px tall everywhere,
+   and the one showing says so in its aria-pressed and its outline. */
+.mchip.daygroup { min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; }
+.daygroups { justify-content: flex-start; margin: 4px 0 10px; }
+/* a work's or a tradition's name on the Readings list is a link, and a thumb's
+   target at phone width */
+@media (max-width: 600px) { .canon .pt a.hallname { display: inline-flex; align-items: center; min-height: 44px; } }
+/* The day's teaching and a course's line: the key verse in the reader's own
+   type, its reference under it, then the one sentence. It takes the look of
+   Today's month card (.teach) and adds its own class, .rteach, so nothing
+   here restyles Today. */
+.rteach .tkey { font-family: var(--serif); font-size: 18px; line-height: 1.6; color: var(--ink); margin: 6px 0 4px; }
+.rteach .ts { margin-top: 10px; }
+@media (max-width: 600px) {
+  .daygroups .daygroup { padding: 8px 12px; }
+  .rteach { padding: 18px 16px; }
+}
 
 /* ═══ the body ═══ */
 .vidcard { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; margin-bottom: 16px; }

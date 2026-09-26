@@ -60,7 +60,8 @@ var FL = {
   intents: {},       // "YYYY-MM-DD"       -> "Grief"  a named need, when one was named
   journal: {},       // id -> {d, ref, text, t}        writing; ref ties it to a day/quote/passage
   examen: {},        // "YYYY-MM-DD"       -> {well, short, tomorrow}
-  canon: {},         // canonId -> {start:"YYYY-MM-DD", done:{<doy>:1}}
+  canon: {},         // canonId -> {start:"YYYY-MM-DD", done:{<doy>:1}}   the old calendar plans; read to carry ticks over, never written
+  readings: {},      // planId | "course-<tr>" -> {start, read:{<day>:1}, div, carried:{<oldDay>:1}, rounds:[{start,end,n}]}
   prefs: {}          // theme, track, house system, coordinates, and so on
 };
 
@@ -344,6 +345,15 @@ function flBootMigrate() {
      device. An undefined pref is a pref the reader has not chosen yet. */
   if (FL.prefs.clearOpened !== undefined) { delete FL.prefs.clearOpened; changed = true; }
 
+  /* The Readings: carry the calendar plans' ticks (FL.canon, old day numbers)
+     into FL.readings under the current division, and convert any record kept
+     under an earlier one. Idempotent, and it never reticks a day the reader
+     unticked; FL.canon itself is left exactly as it was. */
+  if (typeof planCarryAll === 'function') {
+    try { if (planCarryAll() > 0) changed = true; }
+    catch (e) { console.warn('First Light: the readings could not be carried over.', e); }
+  }
+
   if (changed) flSave(true);
   return changed;
 }
@@ -440,6 +450,26 @@ function flImport(text) {
     if (theirs.start && (!mine.start || theirs.start < mine.start)) mine.start = theirs.start;
     if (theirs.done) Object.keys(theirs.done).forEach(function (d) { mine.done[d] = 1; });
   });
+
+  /* The Readings merge through planImport (plan.js): days read join as a
+     union within the same read-through, a backup from a read-through
+     already closed here brings no days, a record kept under another
+     division is converted first, and the two sides' carried calendar ticks
+     are joined so a day only both together cover is marked. Then the carry
+     runs, so old calendar ticks the backup brought in (FL.canon above)
+     reach the plans; days already carried are not carried again. */
+  if (rec.readings && typeof rec.readings === 'object') {
+    if (!FL.readings || typeof FL.readings !== 'object') FL.readings = {};
+    Object.keys(rec.readings).forEach(function (id) {
+      var theirs = rec.readings[id];
+      if (!theirs || typeof theirs !== 'object') return;
+      if (typeof planImport === 'function') planImport(id, theirs);
+      else if (!FL.readings[id]) FL.readings[id] = theirs;
+    });
+  }
+  if (typeof planCarryAll === 'function') {
+    try { planCarryAll(); } catch (e) { console.warn('First Light: the readings could not be carried over.', e); }
+  }
 
   if (rec.prefs) Object.keys(rec.prefs).forEach(function (k) {
     if (k === 'clearOpened') return;   /* a scrubbed trace never rides back in */

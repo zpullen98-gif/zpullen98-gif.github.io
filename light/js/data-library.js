@@ -6,7 +6,7 @@
    Small on purpose: this is precached with the app shell so the Library can show
    every work, book and chapter offline, before any scripture is loaded. The text
    itself lives in js/texts/<work>/<part>.js and loads only when a passage is opened.
-   Total library on disk: 10.57 MB. */
+   Total library on disk: 10.67 MB. */
 
 var FL_LIBRARY = {
  "rigveda": {
@@ -1178,6 +1178,110 @@ var FL_LIBRARY = {
    {
     "n": 18,
     "blocks": 69
+   }
+  ]
+ },
+ "gita-besant": {
+  "title": "The Bhagavad Gita, verse by verse",
+  "translation": "Annie Besant, fourth edition, 1922",
+  "license": "Public domain",
+  "source": "Wikisource",
+  "bytes": 109257,
+  "parts": [
+   {
+    "part": "all"
+   }
+  ],
+  "chapters": [
+   {
+    "n": 1,
+    "title": "The Despondency of Arjuna",
+    "verses": 47
+   },
+   {
+    "n": 2,
+    "title": "Yoga by the Sankhya",
+    "verses": 72
+   },
+   {
+    "n": 3,
+    "title": "The Yoga of Action",
+    "verses": 43
+   },
+   {
+    "n": 4,
+    "title": "The Yoga of Wisdom",
+    "verses": 42
+   },
+   {
+    "n": 5,
+    "title": "The Yoga of the Renunciation of Action",
+    "verses": 29
+   },
+   {
+    "n": 6,
+    "title": "The Yoga of Self-subdual",
+    "verses": 47
+   },
+   {
+    "n": 7,
+    "title": "The Yoga of Discriminative Knowledge",
+    "verses": 30
+   },
+   {
+    "n": 8,
+    "title": "The Yoga of the Indestructible Supreme Eternal",
+    "verses": 28
+   },
+   {
+    "n": 9,
+    "title": "The Yoga of the Kingly Science and the Kingly Secret",
+    "verses": 34
+   },
+   {
+    "n": 10,
+    "title": "The Yoga of Sovereignty",
+    "verses": 42
+   },
+   {
+    "n": 11,
+    "title": "The Yoga of the Vision of the Universal Form",
+    "verses": 55
+   },
+   {
+    "n": 12,
+    "title": "The Yoga of Devotion",
+    "verses": 20
+   },
+   {
+    "n": 13,
+    "title": "The Yoga of the Distinction Between the Field and the Knower of the Field",
+    "verses": 34
+   },
+   {
+    "n": 14,
+    "title": "The Yoga of Separation From the Three Qualities",
+    "verses": 27
+   },
+   {
+    "n": 15,
+    "title": "The Yoga of Attaining the Supreme Spirit",
+    "verses": 20
+   },
+   {
+    "n": 16,
+    "title": "The Yoga of Division Between the Divine and the Demoniacal",
+    "verses": 24
+   },
+   {
+    "n": 17,
+    "title": "The Yoga of the Division of Threefold Faith",
+    "verses": 28
+   },
+   {
+    "n": 18,
+    "title": "The Yoga of Liberation by Renunciation",
+    "verses": 78
    }
   ]
  },

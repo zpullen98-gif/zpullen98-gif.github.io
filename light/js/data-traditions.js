@@ -18,7 +18,7 @@
 var FL_TRADITIONS = [
 
 { id: 'hindu', name: 'Hinduism', also: 'Sanātana Dharma: the eternal way',
-  works: ['rigveda', 'upanishads', 'gita'],
+  works: ['rigveda', 'upanishads', 'gita', 'gita-besant'],
   era: 'Hymns composed c. 1500–1200 BCE; the tradition continuous since',
   where: 'India and Nepal, and a diaspora on every continent',
   epigraph: ['Truth is one; the wise call it by many names.', 'Rig Veda 1.164.46'],

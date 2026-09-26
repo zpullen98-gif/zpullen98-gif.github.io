@@ -42,8 +42,8 @@ FL_ACTS.setCanonLines = function (el) {
   flSave(true);
   render();
   toast(el.value === 'on'
-    ? 'Today’s readings will appear on the morning page.'
-    : 'The readings stay behind the Library’s own door.');
+    ? 'Scripture now reaches the goal ladder and search. Your morning page still shows none of it.'
+    : 'Scripture stays behind the Soul tab.');
 };
 
 FL_ACTS.setTheme = function (el) {

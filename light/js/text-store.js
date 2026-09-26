@@ -32,7 +32,11 @@ function FLTextHas(work, part) {
   return !!(FL_TEXT[work] && FL_TEXT[work][part]);
 }
 
-function FLTextLoad(work, part) {
+/* ver is the ?v= the file is asked for under. Library texts use FL_TEXT_V,
+   which moves only when a text is re-baked; a teaching or course file passes
+   its own hash, so a new set replaces a cached one without touching the
+   library. */
+function FLTextLoad(work, part, ver) {
   if (FLTextHas(work, part)) return Promise.resolve(FL_TEXT[work][part]);
 
   var key = work + '/' + part;
@@ -44,7 +48,7 @@ function FLTextLoad(work, part) {
     entry.reject = reject;
 
     var s = document.createElement('script');
-    s.src = 'js/texts/' + work + '/' + part + '.js?v=' + FL_TEXT_V;
+    s.src = 'js/texts/' + work + '/' + part + '.js?v=' + encodeURIComponent(ver === undefined || ver === null ? FL_TEXT_V : ver);
     s.async = true;
 
     s.onerror = function () {
