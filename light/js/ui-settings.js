@@ -201,8 +201,8 @@ function trackCard() {
   }).join('');
 
   return '<div class="card">' +
-    '<p class="px" style="margin-bottom:10px">Two years of voices, one per day, on the same twelve monthly ' +
-    'themes, so switching lands you on the same subject rather than the same sentence. What you keep is ' +
+    '<p class="px" style="margin-bottom:10px">Every year here gives each day its own voice, on the same twelve ' +
+    'monthly themes, so switching lands you on the same subject rather than the same sentence. What you keep is ' +
     'held separately for each, and nothing you saved is lost by moving between them.</p>' +
     '<select class="sel" data-change="setTrack" aria-label="Which year you are reading">' + opts + '</select>' +
     '<p class="vidnote" style="margin-top:10px">' + esc(active.blurb) + '</p>' +
