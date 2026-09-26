@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.JfE-JQqX.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/D2eLk5qE.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CtZLHLQ2.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.LgSkkojW.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BHivBCAy.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0.BxlN3wY5.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/B_7R6Wdn.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Do_buYhl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CWhi-lRq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Pd4fdmUI.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CU3FfQQR.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/ZPqcaiXT.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DBYXWDRF.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DGNjVPF-.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/8.CMyi2Lwe.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DY5a9ev7.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/D1vfuOAL.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DQHYlXAW.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/B6g712_F.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/ULbwcDNM.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CwweGGPE.js" rel="modulepreload">
+		<!--12qhfyh--><!--[0--><link rel="manifest" href="/manifest.webmanifest"/><!--]--> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-status-bar-style" content="black"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1844 recipes across 171 chapters, a 779-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--dmespy--><!----><title>Level IV, Chef · The World Table</title>
+		<link href="/table/_app/immutable/assets/0.AzajvH5F.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/8.BN-wd-XN.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: recipes, lexicon and study</p></div></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Home<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" aria-current="page" href="/table/level">Levels<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/recipes">Library<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/menu">Mine<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service"><span class="svcglyph" aria-hidden="true">☀</span><span class="svcword svelte-12qhfyh">Day service</span></button></div></nav> <!--[-1--><!--]--> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><div class="shell view"><nav class="crumbs svelte-dmespy"><a href="/table/" class="svelte-dmespy">Home</a></nav> <h1 class="svelte-dmespy"><span class="lv-num svelte-dmespy">IV</span> Chef</h1> <p class="lede svelte-dmespy">Owning the menu: the rare and the deeply classical, the techniques nobody drills by accident and the finance behind the room.</p> <p class="stat svelte-dmespy" aria-live="polite"><!--[-1-->Reading your record…<!--]--><!--[-1--><!--]--></p> <ol class="subsections svelte-dmespy"><!--[--><li class="subsection svelte-dmespy" id="dishes"><h2 class="svelte-dmespy">Dishes</h2> <p class="line svelte-dmespy">6 at this level <!--[-1--><!--]--></p> <!--[-1--><!--]--> <div class="doors svelte-dmespy"><!--[0--><a class="train svelte-dmespy" href="/table/study">Read the semester</a> <!--[-1--><!--]--> <a class="train svelte-dmespy" href="/table/recipes?diff=3">The library at this level</a><!--]--></div></li><li class="subsection svelte-dmespy" id="techniques"><h2 class="svelte-dmespy">Techniques</h2> <p class="line svelte-dmespy">8 at this level <!--[-1--><!--]--></p> <!--[-1--><!--]--> <div class="doors svelte-dmespy"><!--[1--><a class="train svelte-dmespy" href="/table/technique?level=4">Read the techniques</a> <!--[-1--><!--]--><!--]--></div></li><li class="subsection svelte-dmespy" id="lexicon"><h2 class="svelte-dmespy">The Lexicon</h2> <p class="line svelte-dmespy">39 at this level <!--[-1--><!--]--></p> <!--[-1--><!--]--> <div class="doors svelte-dmespy"><!--[2--><a class="train svelte-dmespy" href="/table/lexicon?level=4">Read the terms</a> <a class="train svelte-dmespy" href="/table/lexicon?level=4&amp;start=flash">Flashcards</a> <a class="train svelte-dmespy" href="/table/lexicon?level=4&amp;start=quiz">Quiz</a><!--]--></div></li><li class="subsection svelte-dmespy" id="deck"><h2 class="svelte-dmespy">The Floor Deck</h2> <p class="line svelte-dmespy">14 at this level <!--[-1--><!--]--></p> <!--[-1--><!--]--> <div class="doors svelte-dmespy"><!--[3--><a class="train svelte-dmespy" href="/table/service/deck/study?level=4">Flip cards</a> <a class="train svelte-dmespy" href="/table/service/deck/test?level=4">The written test</a> <a class="train svelte-dmespy" href="/table/service/deck/say?level=4">Say it back</a> <a class="train svelte-dmespy" href="/table/service/deck">The deck</a><!--]--></div></li><li class="subsection svelte-dmespy" id="palate"><h2 class="svelte-dmespy">The Palate</h2> <p class="line svelte-dmespy">2 at this level <!--[-1--><!--]--></p> <!--[-1--><!--]--> <div class="doors svelte-dmespy"><!--[4--><a class="train svelte-dmespy" href="/table/palate">The repair table</a> <a class="train svelte-dmespy" href="/table/practise/calibrate">Calibrate</a><!--]--></div></li><li class="subsection svelte-dmespy" id="safety"><h2 class="svelte-dmespy">Food Safety</h2> <p class="line svelte-dmespy">6 at this level <!--[0-->· Read, never graded<!--]--></p> <!--[-1--><!--]--> <div class="doors svelte-dmespy"><!--[5--><a class="train svelte-dmespy" href="/table/safety">Read</a> <a class="train svelte-dmespy" href="/table/safety">The whole page</a><!--]--></div></li><li class="subsection svelte-dmespy" id="service"><h2 class="svelte-dmespy">Service</h2> <p class="line svelte-dmespy">31 at this level <!--[-1--><!--]--></p> <!--[-1--><!--]--> <div class="doors svelte-dmespy"><!--[6--><!--[-1--><!--]--> <a class="train svelte-dmespy" href="/table/service">The track</a> <a class="train svelte-dmespy" href="/table/service/drill?level=4">Drill</a><!--]--></div></li><!--]--></ol> <a class="leveltest svelte-dmespy" href="/table/level/4/test">The Level IV test</a></div><!--]--><!----></main> <div class="dock svelte-12qhfyh" data-print="hide"><!--[-1--><!--]--><!----> <!--[-1--><!--]--><!----></div> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1844 recipes · 171 chapters · Chef’s Lexicon: 779 terms <!--[0--><span class="legal">· <a href="/privacy.html" rel="external">Privacy</a> · <a href="/terms.html" rel="external">Terms</a></span><!--]--></div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_tnhu3h = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.JfE-JQqX.js"),
+						import("/table/_app/immutable/entry/app.LgSkkojW.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 8],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=32"></script>
+<script src="/shared/oot-profiles.js?v=32"></script>
+<script src="/shared/oot-home.js?v=32"></script>
+<script src="/shared/oot-auth.js?v=32"></script>
+<script src="/shared/oot-gate.js?v=32"></script>
+<script src="/shared/oot-locks.js?v=32"></script>
+<script src="/shared/oot-pass.js?v=32"></script>
+<script src="/shared/oot-log.js?v=32"></script>
+<script src="/shared/oot-bar.js?v=32"></script>
+</body>
+</html>

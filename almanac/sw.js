@@ -6,7 +6,7 @@
    clients refresh on next load.
    ============================================================ */
 
-const CACHE_VERSION = 'oot-cfl-v104';
+const CACHE_VERSION = 'oot-cfl-v105';
 const APP_CACHE     = `${CACHE_VERSION}-app`;
 // The fonts live in their own cache, deliberately NOT keyed to CACHE_VERSION:
 // a version bump used to reap them, so every deploy cost the reader a fresh

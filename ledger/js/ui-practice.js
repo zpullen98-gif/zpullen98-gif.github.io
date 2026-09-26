@@ -459,6 +459,8 @@ function renderPractice(){
   }
 
   const tonight = (typeof tonightDrill === 'function') ? tonightDrill().id : null;
+  /* a level page's Hands on door names one drill: its panel is marked once */
+  const jump = p.jump; p.jump = null;
   const ordered = DRILLS.filter(d => !d.hidden).sort((a,b) => (a.id===tonight?-1:0) - (b.id===tonight?-1:0));
   const panels = ordered.map(d => {
     const log = (progress.practice && progress.practice[d.id]) || [];
@@ -481,7 +483,7 @@ function renderPractice(){
     const timed = d.unit.indexOf('sec') >= 0;
     const timerHTML = timed
       ? '<button class="btn btn-ghost" data-act="pr-timer" data-id="'+d.id+'" id="pr-timer-'+d.id+'">Start</button>' : '';
-    return '<div class="panel p4 col-sm"'+(d.id===tonight?' style="border-color:var(--brass)"':'')+'>'
+    return '<div class="panel p4 col-sm"'+(d.id===tonight?' style="border-color:var(--brass)"':'')+(d.id===jump?' data-open="1"':'')+'>'
       + '<div class="row between"><span class="bold">'+esc(d.name)+(d.id===tonight?' <span class="chip brass">tonight</span>':'')+'</span>'
       + '<span class="tiny font-tix dim">best <span class="brass2">'+bestStr+'</span> · last '+lastStr+'</span></div>'
       + '<div class="small dim lh">'+esc(d.desc)+'</div>'

@@ -150,7 +150,7 @@ const state = {
      and the hash survives the reload that would have cleared it. */
   coffee:{ sec:'machine', rowOpen:null, refOpen:null },
   prod:{ cat:'All', open:null, primerOpen:null },
-  practice:{ view:'drills', flightOpen:null, methodOpen:null, noteOpen:null, subjects:{}, timers:{}, rail:null },
+  practice:{ view:'drills', flightOpen:null, methodOpen:null, noteOpen:null, subjects:{}, timers:{}, rail:null, jump:null },
   tast:{ cat:'Whiskey', label:'', appearance:null, nose:[], palate:{}, finish:null, notes:'' },
   /* The Menu tab. `view` is which of the three sub-views is showing;
      `pane` is which chip is open inside an expanded drink; `src` is what
@@ -165,6 +165,12 @@ const state = {
   na:{ view:'list', cat:'All', open:null, pOpen:null, tOpen:null, sOpen:null, drill:false, order:[], idx:0, revealed:false },
   shots:{ view:'board', cat:'All', open:null, svc:null, drill:false, order:[], idx:0, revealed:false,
           rDrink:0, rCount:6, lay:null },
+  /* the four levels: which level's page is open (null is the reader's own,
+     derived, never stored), the level test while one is being sat, and
+     where Mine should open */
+  level:{ n:null },
+  lt:null,
+  mine:{ at:null },
   famOpen: Object.keys(FAMILIES)[0],
   noteOpen: STUDY[0].title,
 };
@@ -483,29 +489,29 @@ function dealRiff(){
 
 /* ---------------- PRACTICE DRILLS (the hands-on correction) ---------------- */
 const DRILLS = [
-  { id:'consistency', name:'Consistency Test', unit:'g spread', dir:'low',
+  { id:'consistency', name:'Consistency Test', unit:'g spread', dir:'low', ready:{ op:'lt', v:8 },
     desc:'Make the same Daiquiri three times in a row. Weigh each finished drink on a scale. Log the spread in grams between your heaviest and lightest. Under 8g is tight; under 4g is machine-like.' },
-  { id:'pour', name:'Free-Pour Calibration', unit:'accurate of 10', dir:'high',
-    desc:'Pour 1 oz, 1.5 oz, and 2 oz ten times each with a speed pourer, checking every pour against a jigger. Log how many of 10 landed within an eighth of an ounce. Re-run weekly: counts drift.' },
-  { id:'speed', name:'Speed Round', unit:'seconds', dir:'low', pick:4,
+  { id:'pour', name:'Free-Pour Calibration', unit:'accurate of 10', dir:'high', ready:{ op:'ge', v:8 },
+    desc:'Pour 1 oz, 1.5 oz, and 2 oz ten times each with a speed pourer, checking every pour against a jigger. Log how many of 10 landed within an eighth of an ounce. Re-run weekly: counts drift. 8 of 10 is ready for service.' },
+  { id:'speed', name:'Speed Round', unit:'seconds', dir:'low', pick:4, ready:{ op:'lt', v:360 },
     desc:'Four different cocktails from four different families, clean station at the end or it doesn\u2019t count. The drill deals them; picking your own four is how you quietly practise what you already know. Log total seconds. Under 360 is service-ready; under 240 is Saturday-night ready.' },
-  { id:'blind', name:'Blind Tasting', unit:'correct of 3', dir:'high',
-    desc:'Three spirits from one category, poured blind by a friend. Nose, sip, add water, sip again, write notes, then identify. Log how many of 3 you called. Your palate is a muscle.' },
-  { id:'foam', name:'Dry-Shake Discipline', unit:'sec foam holds', dir:'high',
-    desc:'Whiskey Sour with egg white: dry shake, shake, strain up. Log how many seconds the foam holds a straw upright. Under 5 means your dry shake is lazy; 15+ is meringue.' },
-  { id:'garnish', name:'Garnish Prep Speed', unit:'sec for 20 twists + 10 wheels', dir:'low',
+  { id:'blind', name:'Blind Tasting', unit:'correct of 3', dir:'high', ready:{ op:'ge', v:2 },
+    desc:'Three spirits from one category, poured blind by a friend. Nose, sip, add water, sip again, write notes, then identify. Log how many of 3 you called. Your palate is a muscle. 2 of 3 is a palate you can trust on the floor.' },
+  { id:'foam', name:'Dry-Shake Discipline', unit:'sec foam holds', dir:'high', ready:{ op:'ge', v:10 },
+    desc:'Whiskey Sour with egg white: dry shake, shake, strain up. Log how many seconds the foam holds a straw upright. Under 5 means your dry shake is lazy; 15+ is meringue. 10 or more is ready for service.' },
+  { id:'garnish', name:'Garnish Prep Speed', unit:'sec for 20 twists + 10 wheels', dir:'low', ready:{ op:'lt', v:300 },
     desc:'Twenty lemon twists, no pith, and ten lime wheels slit for the rim: against the clock, into a clean caddy. This is where a slow bartender loses ten minutes of every prep hour, and it is the first thing a manager watches on a trail. Under 300 is respectable; under 180 is a professional.' },
-  { id:'mise', name:'Station Setup', unit:'sec to set the station', dir:'low',
-    desc:'From an empty rail: ice, tins, jiggers, strainers, bar spoon, muddler, juice, syrups, garnish caddy, towels: everything within a pivot, nothing you have to look for twice. Set it, time it, then stand in it and reach for six things blind. If you had to look, it is in the wrong place.' },
-  { id:'glassware', name:'Glass Call', unit:'correct of 10', dir:'high', pick:10,
-    desc:'The drill deals ten drinks. Say the glass out loud before you check: coupe or Nick & Nora, rocks or double rocks, Collins or highball. Glass choice is the first thing a guest sees and a standard interview question. Log how many of ten you called.' },
+  { id:'mise', name:'Station Setup', unit:'sec to set the station', dir:'low', ready:{ op:'lt', v:240 },
+    desc:'From an empty rail: ice, tins, jiggers, strainers, bar spoon, muddler, juice, syrups, garnish caddy, towels: everything within a pivot, nothing you have to look for twice. Set it, time it, then stand in it and reach for six things blind. If you had to look, it is in the wrong place. Under 240 is ready for a shift.' },
+  { id:'glassware', name:'Glass Call', unit:'correct of 10', dir:'high', pick:10, ready:{ op:'ge', v:9 },
+    desc:'The drill deals ten drinks. Say the glass out loud before you check: coupe or Nick & Nora, rocks or double rocks, Collins or highball. Glass choice is the first thing a guest sees and a standard interview question. Log how many of ten you called. 9 of 10 is ready for service.' },
   /* hidden: run from its own Ticket Rail view, but charted with the rest */
-  { id:'rail', name:'Ticket Rail', unit:'seconds', dir:'low', hidden:true,
-    desc:'A full rail of tickets, built in the right order, against the clock.' },
-  { id:'hold', name:'Hold the Round', hidden:true, unit:'correct of 5', dir:'high',
-    desc:'A server calls a round while your hands are full. Hold it, then prove you held it.' },
-  { id:'strain', name:'Double-Strain Discipline', unit:'sec, flecks-free', dir:'low',
-    desc:'A Gin Basil Smash or any herb-shaken sour, double-strained into a chilled coupe. The clock runs from tin-open to glass-down, and the run only counts if the surface is clean: one green fleck and it is a failed attempt, not a slow one.' },
+  { id:'rail', name:'Ticket Rail', unit:'seconds', dir:'low', hidden:true, ready:{ op:'order' },
+    desc:'A full rail of tickets, built in the right order, against the clock. It is ready when the order is right.' },
+  { id:'hold', name:'Hold the Round', hidden:true, unit:'correct of 5', dir:'high', ready:{ op:'whole' },
+    desc:'A server calls a round while your hands are full. Hold it, then prove you held it. It is ready when the whole round is held, every drink.' },
+  { id:'strain', name:'Double-Strain Discipline', unit:'sec, flecks-free', dir:'low', ready:{ op:'lt', v:45 },
+    desc:'A Gin Basil Smash or any herb-shaken sour, double-strained into a chilled coupe. The clock runs from tin-open to glass-down, and the run only counts if the surface is clean: one green fleck and it is a failed attempt, not a slow one. Under 45, with the surface clean, is ready for service.' },
 ];
 
 /* Served-strength bands, shared by the Tools strength panel and the

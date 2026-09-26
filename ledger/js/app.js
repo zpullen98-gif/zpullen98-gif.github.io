@@ -1,6 +1,6 @@
 /* ---------------- RENDER & EVENTS ---------------- */
 const prTicks = {};  /* one stopwatch interval per drill id */
-const TABS = [['home','Ledger'],['menu','Menu'],['families','Families'],['library','Library'],['shots','Shots'],['na','Zero Proof'],['service','Behind the Stick'],['ontap','On Tap'],['coffee','Coffee & Tea'],['prep','Prep'],['producers','Producers'],['notes','Notes'],['flashcards','Flashcards'],['quiz','Quiz'],['practice','Practice'],['riffs','Riffs'],['tools','Tools']];
+const TABS = [['home','Home'],['level','Levels'],['mine','Mine'],['menu','Menu'],['families','Families'],['library','Library'],['shots','Shots'],['na','Zero Proof'],['service','Behind the Stick'],['ontap','On Tap'],['coffee','Coffee & Tea'],['prep','Prep'],['producers','Producers'],['notes','Notes'],['flashcards','Flashcards'],['quiz','Quiz'],['practice','Practice'],['riffs','Riffs'],['tools','Tools']];
 /* Announce something to assistive tech. The region is outside #view so it
    survives the innerHTML swap below. */
 function say(msg){
@@ -39,9 +39,11 @@ function render(){
   const views = {home:renderHome, menu:renderMenu, families:renderFamilies, library:renderLibrary,
     shots:renderShots, na:renderNA, service:renderService, ontap:renderOnTap, coffee:renderCoffee, producers:renderProducers, prep:renderPrep,
     flashcards:renderFlashcards, quiz:renderQuiz, riffs:renderRiffs,
-    practice:renderPractice, tools:renderTools, notes:renderNotes};
+    practice:renderPractice, tools:renderTools, notes:renderNotes, level:renderLevel, mine:renderMine};
   if(!views[state.tab]) state.tab = 'home';
-  view.innerHTML = views[state.tab]();
+  /* the Library's shelf, or the one way back from a level's or Mine's tab:
+     what the sub-row did before the four levels */
+  view.innerHTML = clusterChromeHTML() + views[state.tab]();
   if(sig){
     let back = null;
     try{ back = document.querySelector(sig); }catch(e){}
@@ -55,7 +57,12 @@ function render(){
   }
   /* bring whatever the user just opened into sight */
   const opened = document.querySelector('[data-open="1"]');
-  if(opened && opened.scrollIntoView) opened.scrollIntoView({ block:'center' });
+  if(opened && opened.scrollIntoView){
+    /* a heading is a place to arrive (the Record door): its top, and focus,
+       so a screen reader starts there; anything else is centred */
+    if(/^H[1-6]$/.test(opened.tagName)){ opened.scrollIntoView({ block:'start' }); if(opened.focus) opened.focus(); }
+    else opened.scrollIntoView({ block:'center' });
+  }
   const tc = document.getElementById('tst-cat');
   if(tc) tc.addEventListener('change', e => {
     /* snapshot the typed fields BEFORE the render eats them: the click
@@ -99,7 +106,7 @@ function render(){
     const out = document.getElementById('batch-out');
     if(out) out.innerHTML = batchOutHTML();
   });
-  [['fc-family','fc','family'],['fc-spirit','fc','spirit'],['fc-tier','fc','tier'],['lib-tier','lib','tier']].forEach(([id,obj,key]) => {
+  [['fc-family','fc','family'],['fc-spirit','fc','spirit'],['fc-tier','fc','tier'],['lib-tier','lib','tier'],['lib-level','lib','level']].forEach(([id,obj,key]) => {
     const sel = document.getElementById(id);
     if(sel) sel.addEventListener('change', e => {
       state[obj][key] = e.target.value;
@@ -151,18 +158,12 @@ function navClick(e){
   if(cl){
     const ck = cl.dataset.cluster;
     const tabs = NAV_CLUSTERS.find(([k]) => k===ck)[2];
-    if(tabs.length === 1){ state.tab = tabs[0]; state.sheet = null; }
-    else if(window.matchMedia('(max-width: 639px)').matches){
-      if(state.sheet === ck){ closeSheet(); return; }
-      state.sheet = ck;
-      render();
-      const first = document.querySelector('#sheet .sheet-btn');
-      if(first && first.focus) first.focus();
-      return;
-    } else {
-      state.tab = clusterLanding(ck);
-      state.sheet = null;
-    }
+    /* the cluster's first tab, always: Home, the level you are on, the
+       Library, Mine. The sheet and the sub-row went with the four levels. */
+    state.tab = tabs[0]; state.sheet = null;
+    /* a test being sat resumes; otherwise the level you are on, worked out
+       again now, because the one last browsed is not the one you are on */
+    if(ck === 'levels'){ if(state.lt && !state.lt.done) state.level.n = state.lt.n; else { state.lt = null; state.level.n = firstUnmetLevel(); } }
     render(); return;
   }
   const b = e.target.closest('[data-tab]');
@@ -219,6 +220,20 @@ document.addEventListener('keydown', e => {
     if(e.key === 'ArrowRight'){ if(click('[data-act="fc-grade"][data-ok="1"]')) return; }
     if(e.key === 'ArrowLeft'){ if(click('[data-act="fc-grade"][data-ok="0"]')) return; }
   }
+  if(state.tab==='level' && state.lt && !state.lt.done && !state.lt.none){
+    if(/^[1-4]$/.test(e.key)){
+      const opts = document.querySelectorAll('[data-act="lt-pick"]');
+      const b = opts[Number(e.key)-1]; if(b) b.click();
+      e.preventDefault(); return;
+    }
+    if(e.key === 'Enter' || e.key === ' '){
+      const a = document.activeElement;
+      if(a && a.closest && a.closest('button')) return;
+      click('[data-act="lt-next"]');
+      e.preventDefault();
+    }
+    return;
+  }
   if(state.tab==='quiz' && state.quiz.stage==='run'){
     if(/^[1-4]$/.test(e.key)){
       const opts = document.querySelectorAll('[data-act="quiz-pick"]');
@@ -237,8 +252,10 @@ document.addEventListener('keydown', e => {
      cluster-deletion away from destructuring undefined, and the throw would
      be on a keypress nobody would think to report. */
   if(/^[1-9]$/.test(e.key) && NAV_CLUSTERS[Number(e.key)-1]){
-    state.tab = clusterLanding(NAV_CLUSTERS[Number(e.key)-1][0]);
+    const [ck,,tabs] = NAV_CLUSTERS[Number(e.key)-1];
+    state.tab = tabs[0];
     state.sheet = null;
+    if(ck === 'levels'){ if(state.lt && !state.lt.done) state.level.n = state.lt.n; else { state.lt = null; state.level.n = firstUnmetLevel(); } }
     render();
   }
 });
@@ -261,9 +278,29 @@ document.getElementById('view').addEventListener('click', e => {
     /* optional deep links, so "Quiz your list" opens the quiz ON the list
        instead of leaving the promise at the tab door */
     if(el.dataset.view) state.practice.view = el.dataset.view;
+    if(el.dataset.v && state.tab === 'tools') state.tools.view = el.dataset.v;
     if(el.dataset.mode){ state.quiz.mode = el.dataset.mode; state.quiz.stage = 'setup'; }
-    if(el.dataset.src){ state.fc.src = el.dataset.src; state.fc.family='All'; state.fc.spirit='All'; state.fc.tier='All'; state.fc.stage = 'setup'; }
+    if(el.dataset.src){ state.fc.src = el.dataset.src; state.fc.family='All'; state.fc.spirit='All'; state.fc.tier='All'; state.fc.stage = 'setup'; state.fc.level = null; state.fc.sub = null; }
+    /* the Library by a plain door is the whole Library; a level's Read door
+       comes through applyTarget and keeps its filter */
+    if(state.tab === 'library') state.lib.level = null;
   }
+  else if(act==='level-open'){ openLevel(Number(el.dataset.n)); }
+  else if(act==='door'){ openDoor(el.dataset.d); }
+  else if(act==='train'){
+    const t = trainTarget(el.dataset.m, Number(el.dataset.n), el.dataset.s);
+    if(!applyTarget(t)) return;
+    state.level.n = Number(el.dataset.n);
+  }
+  else if(act==='lt-start'){ const t = ltStart(Number(el.dataset.n)); state.level.n = t.n; state.tab = 'level'; }
+  else if(act==='lt-pick'){
+    const ok = ltPick(Number(el.dataset.i));
+    const q = state.lt && state.lt.qs[state.lt.idx];
+    if(q) say((ok ? 'Correct. ' : 'Not this time. The answer is ' + q.answer + '. ') + (q.explain || ''));
+  }
+  else if(act==='lt-next'){ ltNext(); if(state.lt && state.lt.done) say(state.lt.misses.length ? 'The test is done. What got away is below, with the right answers.' : 'The test is done. Nothing got away.'); }
+  else if(act==='lt-close'){ const n = state.lt ? state.lt.n : state.level.n; openLevel(n); }
+  else if(act==='fc-level-clear'){ state.fc.level = null; state.fc.sub = null; }
   else if(act==='fam-open'){ state.famOpen = state.famOpen===el.dataset.fam ? null : el.dataset.fam; }
   else if(act==='fam-goto'){ state.lib = { q:'', fam:el.dataset.fam, tier:'All', open:null }; state.tab='library'; }
   else if(act==='lib-fam'){ state.lib.fam = el.dataset.fam; state.lib.open=null; }
@@ -281,6 +318,8 @@ document.getElementById('view').addEventListener('click', e => {
     } }
   else if(act==='fc-src'){
     fc.src = el.dataset.s; fc.family = 'All'; fc.spirit = 'All';
+    /* choosing a source is choosing the deck: a level's filter ends here */
+    fc.level = null; fc.sub = null;
     if(fc.src!=='Cocktails' && fc.src!=='All') fc.tier = 'All'; }
   else if(act==='fc-board-src'){ fc.boardSrc = el.dataset.s; fc.boardOpen = null; }
   else if(act==='fc-special'){ fc.special = el.dataset.s; }
@@ -292,15 +331,18 @@ document.getElementById('view').addEventListener('click', e => {
       progress.cards = {}; saveProgress();
     } }
   else if(act==='fc-start'){
-    const pool = fcPool(); if(!pool.length) return;
+    /* only the cards the mode can ask: a beer card has no build to assemble */
+    const row = FC_MODES.find(function(x){ return x[0] === el.dataset.mode; });
+    const pool = fcPool().filter(row ? row[3] : function(){ return true; }); if(!pool.length) return;
     const deck = fc.smart ? pool.slice().sort(function(a,b){ return weakScore(cardKey(b))-weakScore(cardKey(a)); }) : shuffle(pool);
     Object.assign(fc, { stage:'run', mode:el.dataset.mode, deck:deck, idx:0, right:0, wrong:0, missed:[] });
     prepCard(); }
   else if(act==='fc-rerun-miss'){
     const all = allDrinks();
+    const row = FC_MODES.find(function(x){ return x[0] === fc.mode; });
     const deck = shuffle(fc.missed.map(function(k){
       return all.filter(function(d){ return cardKey(d)===k; })[0];
-    }).filter(Boolean));
+    }).filter(Boolean).filter(row ? row[3] : function(){ return true; }));
     if(!deck.length) return;
     Object.assign(fc, { stage:'run', deck:deck, idx:0, right:0, wrong:0, missed:[] });
     prepCard(); }
@@ -377,6 +419,8 @@ document.getElementById('view').addEventListener('click', e => {
     z.picked = Number(el.dataset.i);
     const q = z.round[z.idx];
     const right = q.options[z.picked]===q.answer;
+    /* a bank question answered right is met at its level (js/levels.js) */
+    if(q.qkey && typeof qaRecord === 'function') qaRecord(q.qkey, right);
     if(right) z.score++;
     else z.missedQ.push(q);
     say((right ? 'Correct. ' : 'Not quite. The answer is ' + q.answer + '. ') + (q.explain||'')); }
@@ -994,6 +1038,8 @@ function captureLiveInputs(){
   if(!progress.cards) progress.cards = {};
   if(!progress.quizzes) progress.quizzes = [];
   if(!progress.practice) progress.practice = {};
+  if(!progress.qa) progress.qa = {};
+  if(!progress.levels) progress.levels = {};
   if(!progress.tastings) progress.tastings = [];
   if(!progress.vidPrefs) progress.vidPrefs = { channel:'auto', longform:false };
   if(!progress.bar) progress.bar = [];

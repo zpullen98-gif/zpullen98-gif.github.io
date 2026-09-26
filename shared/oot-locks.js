@@ -82,8 +82,11 @@
      404. Every reference tab is free, so 'ontap' and 'coffee' sit with the
      rest of them. THIS LIST IS OUTSIDE ledger/ AND NO GATE READS IT: a tab
      added to the Ledger and forgotten here is paid the day the free flag
-     flips, which is how all three of these came to be missing at once. */
-  var LEDGER_FREE_TABS = ['home', 'mybar', 'menu', 'families', 'library', 'shots', 'na',
+     flips, which is how all three of these came to be missing at once.
+     'level' and 'mine' are the four levels' own pages (a level's page and
+     Mine with the record): hubs whose doors lead on, so they are free, and
+     whatever they open is gated by its own tab as before. */
+  var LEDGER_FREE_TABS = ['home', 'level', 'mine', 'mybar', 'menu', 'families', 'library', 'shots', 'na',
                           'service', 'ontap', 'coffee', 'producers', 'prep', 'riffs',
                           'notes', 'tools'];
 

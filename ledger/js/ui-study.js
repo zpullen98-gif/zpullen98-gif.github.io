@@ -1,176 +1,12 @@
 /* ---------------- HOME ---------------- */
 function renderHome(){
-  const stats = progress.cards || {};
-  /* cards, so never a draft: a menu record with no spec cannot be drilled,
-     and "0 of 642" with one of them in the total is a promise the deck
-     cannot keep */
-  const deckCards = allDrinks().filter(function(d){ return !d.draft; });
-  const mastered = deckCards.filter(function(d){ return isMastered(cardKey(d)); }).length;
-  const totalCards = deckCards.length;
-  const studied = Object.keys(stats).length;
-  const quizzes = progress.quizzes || [];
-  const full = quizzes.filter(q => (q.total||10)===10);
-  const best = full.length ? Math.max(...full.map(q=>q.score)) : null;
-  const tastings = (progress.tastings || []).length;
-  const drillLogs = Object.values(progress.practice || {}).reduce(function(n,a){ return n + (a?a.length:0); }, 0);
-  /* volume is flattering and useless: what needs action is what is overdue and
-     what keeps collapsing, so surface both */
-  const overdue = (typeof srsDueKeys === 'function') ? srsDueKeys().length : 0;
-  const weakest = Object.keys(progress.cards || {})
-    .map(function(k){ const s2 = progress.cards[k];
-      return { k:k, score:(s2.w||0)*2 + (s2.lapses||0)*1.5 - (s2.r||0) }; })
-    .filter(function(x){ return x.score > 0; })
-    .sort(function(a,b){ return b.score - a.score; })
-    .slice(0,5)
-    .map(function(x){ return '<button class="chip" data-act="fc-drill-weak" data-k="'+esc(x.k)+'">'+esc(x.k)+'</button>'; })
-    .join(' ');
-  const famBars = Object.keys(FAMILIES).map(f => {
-    const mem = COCKTAILS.filter(c => c.family===f);
-    const m = mem.filter(function(c){ return isMastered(c.name); }).length;
-    const pct = mem.length ? Math.round(m/mem.length*100) : 0;
-    return '<div class="row" style="gap:10px"><span class="tiny dim" style="width:130px;flex-shrink:0">'+esc(f)+'</span>'
-      + '<div style="flex:1;height:6px;background:var(--felt-3);border-radius:3px;overflow:hidden">'
-      + '<div style="width:'+pct+'%;height:100%;background:var(--brass)"></div></div>'
-      + '<span class="tiny font-tix" style="color:var(--brass-2);width:38px;text-align:right">'+m+'/'+mem.length+'</span></div>';
-  }).join('');
-  /* The bands are shared with the other wings (shared/oot-home.js). A tile
-     moves band by moving one line here; nothing else knows the difference. */
-  const TILE_BANDS = [
-    ['Learn', 'Read it first, then drill what you read', [
-      ['families','The Families',FAMILIES ? Object.keys(FAMILIES).length+' templates unlock the whole canon, each with the marks that say a pour went right. Start here; this is the map.' : ''],
-      ['library','The Library','All '+COCKTAILS.length+' specs, one for every day of the year, on ledger tickets with balance breakdowns.'],
-      ['prep','The Prep Room','Syrups, infusions, cordials, juice and garnish specs, plus opening and closing checklists.'],
-      ['producers','The Producers','Benchmark houses across nine categories: how they actually make it, and why it matters.'],
-      ['na','Zero Proof','85 spirit-free drinks across nine families, the pantry behind them, and the ethics of sober service.'],
-      ['shots','The Shot Board','75 calls, a round-batching builder, the layering density drill, and the service craft.'],
-      ['service','Behind the Stick','Wine service, the legal floor, the register, conflict and glassware: the half of the job that is not a cocktail.'],
-      ['ontap','On Tap','The draught system end to end, sixty-three beer styles, the fault board, how beer is made, then cider, perry, sake and mead.'],
-      ['coffee','Coffee & Tea','Espresso and the machine, milk and latte art, filter and cold brew, tea, matcha and chai, with the films that teach the pours.'],
-      ['notes','Study Notes','Spirits, technique, syrups, hospitality, sober service, and history.']
-    ]],
-    ['Practise', 'Until the spec comes without thinking', [
-      ['flashcards','Flashcards',FC_MODES.length+' drill modes across every cocktail, shot, zero-proof drink, beer style, cider, sake and mead in the ledger.'],
-      ['quiz','Quiz Rounds','Families, blind tickets, bar knowledge, real-service scenarios, and the dealer’s-choice call.'],
-      ['practice','Practice & Tasting','Nine hands-on drills, the Ticket Rail, the Hold-the-Round memory test, the free-pour bench, tasting scorecards, and twelve guided flights.'],
-      ['riffs','Riff Builder','Improvise on the templates: the difference between knowing 50 drinks and 500.'],
-      ['menu','Menu','The list you actually pour, what the bar stocks tonight, and what you can still put up when something runs out.'],
-      ['tools','Bar Tools','Batching, strength estimates, pour costing with the bottle book, the spill log, open-bottle dating, unit conversion, and your backups.']
-    ]]
-  ];
-  const tileGrid = (rows) => '<div class="card-grid">'
-    + rows.map(([k,t,d]) => '<button class="panel click p4'+(tabLocked(k)?' oot-locked':'')+'" data-act="go" data-tab="'+k+'"'+(tabLocked(k)?' aria-disabled="true"':'')+'>'
-      + '<div class="bold brass2">'+t+'</div><div class="small dim mt1 lh">'+d+'</div></button>').join('')
-    + '</div>';
-  const OH = (window.OOT && OOT.home) || null;
-  /* This wing’s masthead is its only h1, so a band heading straight under it
-     must be h2 or the outline skips a level. The shared emitter takes the
-     level (2 is its default now); the h3 rewrite stays for a device whose
-     service worker still holds the older oot-home.js, which wrote h3 and
-     ignores the argument. The rewrite is anchored to the band head so an h3
-     inside a band’s own content is never touched. shared/oot-home.css styles
-     :is(h2, h3) identically, so nothing moves on screen. */
-  const band = (name, blurb, inner) => OH ? OH.section(name, blurb, inner, 2)
-      .replace(/^<section class="oot-sec"><div class="oot-sec-head"><h3>([^<]*)<\/h3>/, '<section class="oot-sec"><div class="oot-sec-head"><h2>$1</h2>')
-    : '<div class="panel p5"><div class="eyebrow mb2">'+name+'</div>'+inner+'</div>';
-  /* No name row and no manager strip. Both are the same unbuilt feature: The
-     Pass counts named people, and there is no way to name one here any more.
-     Leaving the strip would have printed "ask each person to tap Studying,
-     then add their name" over a control this wing no longer has. */
-  /* The induction sits at the top of Learn until it is finished, then it stops
-     taking up room. */
-  const firstPath = (function(){
-    /* OP is no longer part of this: the checklist ticks against this device’s
-       own record, so it works for whoever is standing at the bar. */
-    if(!OH || typeof FIRST_PATH === 'undefined') return '';
-    const done = {};
-    FIRST_PATH.forEach(function(st){ if(progress.path && progress.path[st.id]) done[st.id] = 1; });
-    const rows = OH.firstPath(FIRST_PATH.map(function(st){
-      return { id: st.id, t: st.t, mins: st.mins, act: 'data-oot-step="'+st.id+'"' };
-    }), done);
-    return rows ? '<div class="oot-today-sub" style="margin:0 0 8px">Your first week. '
-      + 'Finish it and you have been over the ground a new bartender is expected to know.</div>' + rows : '';
-  })();
-  /* First run: a stats panel of zeros, eight 0% bars and three empty donuts is
-     a terrible first impression. Until there’s anything to report, say what the
-     ledger is and point at the one button that starts everything. */
-  const fresh = !studied && !quizzes.length && !tastings && !drillLogs;
-  /* what another room read and left for this bar: one line, only when
-     there is one, above everything else on either version of Home */
-  const desk = (typeof deskWaitingHTML === 'function') ? deskWaitingHTML('home') : '';
-  if(fresh){
-    return '<div class="col">'
-      + band('Today', 'The whole routine, about ten minutes', sessionPanelHTML())
-      + desk
-      + '<div class="panel p5 col" style="gap:12px">'
-      + '<div class="eyebrow">Start here</div>'
-      + '<div class="small dim lh" style="max-width:520px">This is a working bartender’s study ledger, not a recipe app. '
-      + 'It holds '+COCKTAILS.length+' cocktails with the history behind each one, '+SHOTS.length+' shots, '+NA_DRINKS.length+' zero-proof drinks, '
-      + PREPS.length+' prep sheets and a full behind-the-bar curriculum, and it drills you, offline, for as long as you keep showing up.</div>'
-      + '<div class="small dim lh" style="max-width:520px"><span class="brass2">Pour tonight’s session</span> above is the whole routine: '
-      + 'a handful of cards in canon order, a ten-question round, then a drill you do with your hands. '
-      + 'Ten minutes. Come back tomorrow and it deals what you’re about to forget.</div>'
-      + '<div class="tiny dim lh" style="max-width:520px">Your records live in this browser and go nowhere else, unless you bring in '
-      + 'the Maître d’ with a key of your own, and then only the menu you hand her goes to Anthropic. '
-      + 'Back it up now and then from Tools → My Data.</div>'
-      + '</div>'
-      + '<div class="panel p4 col-sm">'
-      + '<div class="eyebrow">Or just look around</div>'
-      + '<div class="row" style="gap:6px">'
-      + '<button class="chip brass" data-act="go" data-tab="families">The '+Object.keys(FAMILIES).length+' families</button>'
-      + '<button class="chip" data-act="go" data-tab="library">The library</button>'
-      + '<button class="chip" data-act="go" data-tab="service">Behind the stick</button>'
-      + '<button class="chip" data-act="go" data-tab="ontap">On tap</button>'
-      + '<button class="chip" data-act="go" data-tab="practice">The drills</button>'
-      + '<button class="chip" data-search="1">Search anything</button></div>'
-      + '<div class="tiny dim mt1">Press <span class="font-tix brass2">/</span> anywhere to search all '
-      + ((SEARCH_INDEX || (SEARCH_INDEX = buildSearchIndex())).length)+' entries.</div>'
-      + '</div>'
-      + TILE_BANDS.map(function(b){ return band(b[0], b[1],
-          (b[0]==='Learn' ? firstPath : '') + tileGrid(b[2])); }).join('')
-      + '</div>';
-  }
-  return '<div class="col">'
-    + band('Today', 'The whole routine, about ten minutes', sessionPanelHTML())
-    + desk
-    + TILE_BANDS.map(function(b){ return band(b[0], b[1],
-        (b[0]==='Learn' ? firstPath : '') + tileGrid(b[2])); }).join('')
-    + '<section class="oot-sec"><div class="oot-sec-head"><h2>Record</h2><span>What you have done, and where it lives</span></div>'
-    + '<div class="panel p5"><div class="eyebrow mb2">Your standing at the bar</div>'
-    + '<div class="stat-grid">'
-    + '<div><div class="stat-num">'+mastered+'<span class="small dim">/'+totalCards+'</span></div><div class="tiny dim mt1">mastered, including self-graded cards</div></div>'
-    + '<div><div class="stat-num">'+studied+'</div><div class="tiny dim mt1">cards drilled</div></div>'
-    + '<div><div class="stat-num"'+(overdue?' style="color:var(--oxblood-text)"':'')+'>'+overdue+'</div><div class="tiny dim mt1">reviews overdue</div></div>'
-    + '</div>'
-    + '<div class="eyebrow mt3 mb2">Mastery by family</div>'
-    + '<div class="col-sm" style="gap:6px">'+famBars+'</div>'
-    + (weakest ? '<div class="eyebrow mt3 mb1">Where you are weakest</div>'
-        + '<div class="small dim lh mb2">The five cards costing you the most. Tap one to drill just these.</div>'
-        + '<div class="row" style="gap:6px">'+weakest+'</div>' : '')
-    + '</div>'
-    + dashboardHTML()
-    + '<div class="panel p5">'
-    + '<div class="eyebrow mt3 mb2">In the ledger</div>'
-    + '<div class="row" style="gap:6px">'
-    + '<span class="chip">'+COCKTAILS.length+' cocktails</span>'
-    + '<span class="chip">'+SHOTS.length+' shots</span>'
-    + '<span class="chip">'+NA_DRINKS.length+' zero-proof</span>'
-    + '<span class="chip">'+PREPS.length+' prep sheets</span>'
-    + '<span class="chip">'+PRODUCERS.length+' producers</span>'
-    + '<span class="chip">'+FLIGHTS.length+' tasting flights</span>'
-    + '<span class="chip">'+SERVICE_STUDY.reduce((n,x)=>n+x.rows.length,0)+' service lessons</span>'
-      + '<span class="chip">'+ONTAP_STUDY.reduce((n,x)=>n+x.rows.length,0)+' draught lessons</span>'
-    + '<span class="chip">'+KNOWLEDGE.length+' quiz questions</span></div>'
-    + (tastings ? '<div class="tiny dim mt2">'+tastings+' tasting note'+(tastings===1?'':'s')+' logged'
-        + (drillLogs ? ' · '+drillLogs+' practice result'+(drillLogs===1?'':'s')+' recorded' : '')+'</div>'
-        : '<div class="tiny dim mt2">No tasting notes yet; the Practice tab has scorecards and twelve guided flights.</div>')
-    + '</div>'
-    + '<div class="panel p5"><div class="eyebrow mb2">The four pillars</div><div class="small dim lh">'
-    + '<span style="color:var(--cream)">Craft</span> from the Bar-Tender’s Guide of 1862: precision and pride in execution. '
-    + '<span style="color:var(--cream)">Structure</span> from The Joy of Mixology (2003): learn the template, know a hundred drinks. '
-    + '<span style="color:var(--cream)">Ingredients &amp; theater</span> from the Rainbow Room revival: fresh juice and the flamed peel. '
-    + '<span style="color:var(--cream)">Hospitality</span> from PDT and the speakeasy era: the drink is only half the job.'
-    + '</div></div>'
-    + '</section></div>';
+  /* The four levels and four doors, and nothing else (the owner's decision,
+     26 September 2026): the three apps share this contract. What used to
+     stand here, the session panel, the tiles, the standing, the dashboard
+     and the pillars, lives behind the Today door and in Mine's record
+     (js/ui-levels.js). A function declaration still, because the suite's
+     wing wraps renderHome by name. */
+  return homeHTML();
 }
 
 
@@ -198,11 +34,13 @@ function renderFamilies(){
 /* ---------------- LIBRARY ---------------- */
 function libList(){
   const {q,fam,tier} = state.lib;
+  const lv = Number(state.lib.level) || 0;
   const sorted = COCKTAILS.map((c,i)=>({c,i})).sort((a,b) =>
     a.c.tier===b.c.tier ? a.c.name.localeCompare(b.c.name) : a.c.tier-b.c.tier);
   return sorted.filter(({c}) => {
     if(fam!=='All' && c.family!==fam) return false;
     if(tier!=='All' && c.tier!==Number(tier)) return false;
+    if(lv && levelOf(c.name) !== lv) return false;
     if(q && !(c.name+' '+c.spirit+' '+c.family+' '+c.spec.join(' ')+' '+c.method+' '+c.glass+' '+c.garnish+' '+(c.note||'')).toLowerCase().includes(q.toLowerCase())) return false;
     return true;
   });
@@ -244,10 +82,16 @@ function renderLibrary(){
   const fams = ['All', ...Object.keys(FAMILIES)];
   const famChips = fams.map(f => '<button class="chip'+(state.lib.fam===f?' on':'')+'" aria-pressed="'+(state.lib.fam===f?'true':'false')+'" data-act="lib-fam" data-fam="'+esc(f)+'">'+esc(f)+'</button>').join(' ');
   const tierSel = '<select class="input" id="lib-tier" aria-label="Filter by tier" style="max-width:340px;flex:1">'+tierOptions(state.lib.tier)+'</select>';
+  const lvCur = String(state.lib.level || 'All');
+  const levelSel = '<select class="input" id="lib-level" aria-label="Filter by level" style="max-width:240px;flex:1">'
+    + ['All'].concat(LEVELS.map(function(l){ return String(l.n); })).map(function(v){
+      const l = v === 'All' ? null : levelInfo(Number(v));
+      return '<option value="'+v+'"'+(lvCur===v?' selected':'')+'>'+(l ? 'Level '+l.num+', '+esc(l.name) : 'Every level')+'</option>';
+    }).join('') + '</select>';
   return '<div class="col">'
     + '<input class="input" id="lib-search" aria-label="Search the library" placeholder="Search by name, spirit, or ingredient…" value="'+esc(state.lib.q)+'">'
     + '<div class="row">'+famChips+'</div>'
-    + '<div class="row">'+tierSel
+    + '<div class="row">'+levelSel+tierSel
     + '<button class="chip" data-act="lib-print" title="Print the currently filtered specs as ticket cards">Print cards</button>'
     + '<span class="tiny dim push" id="lib-count">'+libList().length+' drinks</span></div>'
     + '<div class="col-sm" id="lib-list">'+libListHTML()+'</div></div>';
@@ -271,13 +115,13 @@ function renderLibrary(){
    each hit.
 
    The label lives here rather than in the view because five files print it. */
-const DECK_SOURCES = ['Cocktails','My Bar','Shots','Zero Proof','On Tap'];
+const DECK_SOURCES = ['Cocktails','My Bar','Shots','Zero Proof','On Tap','Coffee'];
 /* 'On Tap' maps to itself, which is a no-op at run time and the point at
    edit time: the tab will be renamed one day, exactly as My Bar became
    Menu, and cardKey bakes this literal into every SRS record and every
    backup ever exported. The rename is then a one-line change at a site
    that already exists, and grep lands here. */
-const SRC_LABEL = { 'My Bar': 'Menu', 'On Tap': 'On Tap' };
+const SRC_LABEL = { 'My Bar': 'Menu', 'On Tap': 'On Tap', 'Coffee': 'Coffee & Tea' };
 function srcLabel(s){ return SRC_LABEL[s] || s; }
 /* the venue’s own list earns its chips only once something is on it: an empty
    source is zero noise everywhere it would appear */
@@ -288,7 +132,9 @@ function deckSources(){ return DECK_SOURCES.filter(s => s !== 'My Bar' || (progr
    no bottles at all. That is the same false YES the ingredient vocabulary
    was built to kill, arriving through a different door. The Stock view asks
    what you can POUR, so it asks this list instead. */
-const FACT_SOURCES = ['On Tap'];
+/* Coffee & Tea joined with the four levels: a coffee card is a fact card
+   like a beer style, drillable and never poured. */
+const FACT_SOURCES = ['On Tap','Coffee'];
 /* and a menu of nothing but DRAFTS is not pourable either: a draft has no
    spec, and missingFor fails closed on it, so a list of drafts would report
    nothing ready and nothing close, which is true and useless. The source
@@ -336,6 +182,13 @@ function allDrinks(){
     out.push({ src:'On Tap', name:x.name, spec:[], method:null, glass:null,
       garnish:null, note:x.note, group:x.cat, spirit:'-', tier:null, ref:x });
   });
+  /* Coffee and tea, the same shape as a beer card: facts, no spec. A deck
+     source since the four levels, so the Coffee and Tea subsection has
+     something to meet. */
+  if(typeof COFFEE_REF !== 'undefined') COFFEE_REF.forEach(function(x){
+    out.push({ src:'Coffee', name:x.name, spec:[], method:null, glass:null,
+      garnish:null, note:x.note, group:x.cat, spirit:'-', tier:null, ref:x });
+  });
   allDrinks._c = out;
   return out;
 }
@@ -346,7 +199,7 @@ function cardTicket(d, hideName){
   /* before the fallthrough, which reads d.ref.spec and would throw. The
      mastery board, the weakest-area drill and the empty-session fallback
      all arrive here. */
-  if(d.src==='On Tap') return tapTicketHTML(d.ref, hideName);
+  if(d.src==='On Tap' || d.src==='Coffee') return tapTicketHTML(d.ref, hideName);
   return naTicketHTML(d.ref, hideName);
 }
 function groupsFor(src){
@@ -355,6 +208,7 @@ function groupsFor(src){
   if(src==='Shots') return SHOT_CATS;
   if(src==='Zero Proof') return NA_CATS;
   if(src==='On Tap') return typeof ONTAP_REF === 'undefined' ? [] : [...new Set(ONTAP_REF.map(x => x.cat))];
+  if(src==='Coffee') return typeof COFFEE_REF === 'undefined' ? [] : [...new Set(COFFEE_REF.map(x => x.cat))];
   return [];
 }
 
@@ -407,6 +261,11 @@ function fcPool(){
     /* a draft has no spec, and Name to Spec would deal an empty ticket and
        ask the learner to grade themselves against nothing */
     if(d.draft) return false;
+    /* a level page's Flashcards door: the cards of one level, one subsection */
+    if(f.level){
+      if(levelOf(cardKey(d)) !== f.level) return false;
+      if(f.sub && subOf(cardKey(d)) !== f.sub) return false;
+    }
     if(f.src!=='All' && d.src!==f.src) return false;
     if(f.tier!=='All'){ if(d.src!=='Cocktails' || d.tier!==Number(f.tier)) return false; }
     if(f.family!=='All' && d.group!==f.family) return false;
@@ -497,13 +356,19 @@ function prepCard(){
     fc.svc = { fields, opts, keyed, picked:{} };
   }
 }
-function recordCard(ok){
-  const fc=state.fc; const name=cardKey(fc.deck[fc.idx]);
+/* One card's evidence, by key: the deck, the level test and anything else
+   that grades a card go through here, so the scheduler sees one kind of
+   answer. The suite's wing wraps it by name to mark the day studied. */
+function gradeCardKey(name, ok){
   const s=progress.cards[name]||{r:0,w:0};
   const rec={ ...s, r:s.r+(ok?1:0), w:s.w+(ok?0:1) };
   scheduleCard(rec, ok);
   progress.cards[name]=rec;
   saveProgress();
+}
+function recordCard(ok){
+  const fc=state.fc; const name=cardKey(fc.deck[fc.idx]);
+  gradeCardKey(name, ok);
   if(ok) fc.right++; else { fc.wrong++; if(fc.missed.indexOf(name)<0) fc.missed.push(name); }
 }
 function clozeTicketHTML(c, hideIdx){
@@ -569,6 +434,8 @@ function renderFlashcards(){
     return '<div class="col">'
       + '<div class="panel p5 col" style="gap:14px">'
       + '<div class="eyebrow">Build your deck</div>'
+      + (fc.level ? '<div class="row" style="gap:8px;align-items:center"><span class="small">Dealing from Level '+roman(fc.level)+(fc.sub ? ', '+esc(levelSubTitle(fc.sub)) : '')+'.</span>'
+        + '<button class="chip" data-act="fc-level-clear">Every card</button></div>' : '')
       + '<div class="row">'+srcChips+'</div>'
       + (tierSel ? '<div class="row">'+tierSel+'</div>' : '')
       + '<div class="row" style="gap:10px"><select class="input" id="fc-family" aria-label="Filter by '+(fc.src==='Shots'?'shot category':fc.src==='Zero Proof'?'zero-proof family':'family')+'" style="flex:1;min-width:150px">'+famOpts+'</select>'
@@ -651,10 +518,20 @@ function renderFlashcards(){
 
   if(fc.mode==='name2spec' || fc.mode==='spec2name'){
     if(!fc.flipped){
+      /* a beer style or a coffee is asked for, and a fault is found in the
+         glass or the cup: neither is an order with a build to recite */
+      const isFact = FACT_SOURCES.indexOf(c.src)>=0;
+      const isFault = isFact && c.ref && c.ref.dom==='faults';
+      const ask = isFault ? (c.src==='Coffee' ? 'The fault in the cup:' : 'The fault in the glass:')
+        : isFact ? 'The guest asks for:' : 'The order comes in:';
+      const cue = isFault ? 'Say the cause, the tell and the fix.'
+        : c.src==='On Tap' ? 'Say the strength, the glass, the serving temperature and what it tastes like.'
+        : c.src==='Coffee' ? 'Say how it is made, the cup, and what it tastes like.'
+        : 'Say the spec, method, glass, and garnish out loud.';
       const face = fc.mode==='name2spec'
-        ? '<div class="eyebrow">'+(c.src==='On Tap'?'The guest asks for a':'The order comes in:')+'</div><div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div><div class="small dim">'
-          + (c.src==='On Tap' ? 'Say the strength, the glass, the serving temperature and what it tastes like.' : 'Say the spec, method, glass, and garnish out loud.')+'</div>'
-        : '<div class="eyebrow">Read the ticket. Call the drink.</div>'+cardTicket(c,true);
+        ? '<div class="eyebrow">'+ask+'</div><div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div><div class="small dim">'
+          + cue+'</div>'
+        : '<div class="eyebrow">'+(isFact ? 'Read the card. Name it.' : 'Read the ticket. Call the drink.')+'</div>'+cardTicket(c,true);
       return '<div class="col">'+head+'<div class="panel p5 col tc" style="align-items:center">'+face
         + '<button class="btn btn-brass" data-act="fc-flip">Flip the card</button></div></div>';
     }
@@ -775,6 +652,8 @@ const QUIZ_MODES = [
    because the wine pool is where the surviving mode lives. */
 var MODE_WAS = { beerwine: 'wine' };
 function modeLabel(m){
+  var lv = (typeof levelModeLabel === 'function') ? levelModeLabel(m) : null;
+  if(lv) return lv;
   var k = MODE_WAS[m] || m;
   var row = QUIZ_MODES.find(function(x){ return x[0] === k; });
   return row ? row[1] : k;
@@ -854,9 +733,19 @@ function knowledgeByTopic(t){
   const pool = KNOWLEDGE.filter(k => topicOf(k) === t);
   return pool.length ? pool : KNOWLEDGE;
 }
+/* A bank question's identity: the bank has no ids, and its stems are unique
+   to sixty-four slug characters (tools/check-levels.mjs holds it). What
+   progress.qa is keyed on, and what the level placement names. */
+function qKey(k){
+  /* the wing renamed five questions (it names nobody): one key for both, so
+     an answer counts the same in either and a backup carries between them */
+  const key = 'q:' + slugify(k.q).slice(0, 64);
+  return (typeof LEVEL_KEY_ALIAS !== 'undefined' && LEVEL_KEY_ALIAS[key]) || key;
+}
 /* options MUST be shuffled: 68 of the authored entries put the answer second */
 function qKnowledge(k){
-  return { prompt:k.q, options:shuffle(k.options), answer:k.options[k.a], explain:k.explain, topic:topicOf(k) };
+  /* qkey: an answer in any round is evidence toward the question's level */
+  return { prompt:k.q, options:shuffle(k.options), answer:k.options[k.a], explain:k.explain, topic:topicOf(k), qkey:qKey(k) };
 }
 function qFamily(c){
   const wrong = sample(Object.keys(FAMILIES).filter(f=>f!==c.family),3);
@@ -927,6 +816,8 @@ function spreadKnowledge(n){
 
 function buildRound(mode, pool){
   mode = mode || 'mixed';
+  /* a level page's Quiz door: Deal another round comes back through here */
+  if(/^level-/.test(mode) && typeof levelRoundFromMode === 'function') return levelRoundFromMode(mode);
   /* the session passes the deck it just drilled, so the quiz reinforces
      tonight’s drinks rather than quizzing tier 9 at a tier 2 learner */
   const drinkPool = (pool && pool.length >= 8)
@@ -1027,7 +918,7 @@ function renderQuiz(){
     const missPanel = z.missedQ.length
       ? '<div class="panel p4 col-sm" style="width:100%"><div class="eyebrow mb1">Where the round got away from you</div>'
         + z.missedQ.map(q => '<div class="small lh" style="border-bottom:1px solid var(--felt-3);padding:8px 0">'
-          + '<span class="dim">'+esc(q.prompt)+(q.ticket? ' ['+esc(q.ticket.name)+']':'')+'</span><br>'
+          + '<span class="dim">'+esc(q.prompt)+(q.ticket? ' ['+esc(q.ticket.name)+']':'')+(q.factCard? ' ['+esc(q.factCard.name)+']':'')+'</span><br>'
           + '<span class="brass2">→ '+esc(q.answer)+'</span>'
           /* the explanation is the whole point of reviewing a miss */
           + (q.explain ? '<br><span class="tiny dim">'+esc(q.explain)+'</span>' : '')
@@ -1066,6 +957,9 @@ function renderQuiz(){
     + '<button class="chip" data-act="quiz-quit">Quit round</button></div>'
     + '<div class="panel p5 col"><div class="bold lh">'+esc(q.prompt)+'</div>'
     + (q.ticket ? (q.ticketType==='shot' ? shotTicketHTML(q.ticket,true) : q.ticketType==='na' ? naTicketHTML(q.ticket,true) : q.ticketType==='mybar' ? ticketHTML(q.ticket,true) : ticketHTML(q.ticket,true)) : '')
+    /* a level's Quiz door deals beer and coffee cards blind: the question
+       is the card, so without it the reader is guessing */
+    + (q.factCard ? tapTicketHTML(q.factCard, true) : '')
     + '<div class="col-sm">'+opts+'</div>'+after+'</div></div>';
 }
 

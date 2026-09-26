@@ -541,6 +541,9 @@ function videoLinksFor(d){
   };
 }
 function videoRowHTML(d){
+  /* Coffee & Tea carries its own films on its own tab, and the bartending
+     channels below teach none of it: no row beats a row of wrong searches */
+  if(d && d.src==='Coffee') return '';
   const v = videoLinksFor(d);
   return '<div class="col-sm" style="gap:6px;max-width:440px">'
     + '<div class="eyebrow">Watch it made</div>'

@@ -6,17 +6,18 @@
    on the owner's call: they belong to a manager mode that has not been built,
    and asking a bartender who they are before the app will keep their work is a
    toll gate with nothing behind it. The Ledger keeps one record per device
-   again, exactly as it did before names, and the first-week induction ticks
-   into that record rather than onto a person.
+   again, exactly as it did before names.
 
-   1. The first week: one click handler for the induction steps. #view is
-      replaced wholesale on every render(), so the listener goes on a container
-      that survives.
+   The first week (the induction checklist and its click handler, with
+   js/data-firstpath.js) went with the four levels on 26 September 2026: the
+   home is the four levels and four doors and nothing else, and Level I is
+   the first week now. progress.path stays in the backup as data, with its
+   merge clause, so a restore from before keeps what it held.
 
-   2. What this bar is weakest at, published for The Pass. A wing figure, never
+   1. What this bar is weakest at, published for The Pass. A wing figure, never
       a person's, read from the device's one ledger.
 
-   3. The cross-wing streak, wired but dormant: with no profile to mark it does
+   2. The cross-wing streak, wired but dormant: with no profile to mark it does
       nothing, and it is the seam that lights up when manager mode arrives.
 
    Loaded last, after the wing's own scripts, so every global it wraps exists.
@@ -27,55 +28,7 @@
 
   if (!window.OOT || !OOT.profiles) return;
 
-  /* ---- 1. the first week ----------------------------------------------
-     There is no profile switcher here any more, and no manager strip to bind:
-     naming a person came out of this wing and goes back in with the manager
-     mode it belongs to. .wrap survives every render; #view does not, so the
-     one listener still goes here. */
-  function bind() {
-    var host = document.querySelector('.wrap') || document.body;
-
-    /* A first-path step marks itself done and opens the tab it points at.
-       Marking on the way IN rather than on the way out is deliberate: there is
-       no honest signal for "read that properly", and a checklist that never
-       ticks is worse than a generous one. */
-    host.addEventListener('click', function (e) {
-      var b = e.target.closest && e.target.closest('[data-oot-step]');
-      if (!b || typeof FIRST_PATH === 'undefined') return;
-      var id = b.getAttribute('data-oot-step');
-      var step = FIRST_PATH.filter(function (s) { return s.id === id; })[0];
-      /* Ticked in this device's own ledger rather than on a person. */
-      if (typeof progress !== 'undefined') {
-        progress.path = progress.path || {};
-        if (!progress.path[id]) {
-          progress.path[id] = Date.now();
-          if (typeof saveProgress === 'function') saveProgress();
-        }
-      }
-      if (step && typeof state !== 'undefined') {
-        if (step.go) state.tab = step.go;
-        /* the optional deep links: a step lands on the thing its title
-           promises, not at the tab door. "Shake, stir, build" opens the
-           technique note; "Your first ten cards" deals those ten cards. */
-        if (step.open) { state.noteOpen = step.open; state.noteJump = true; }
-        if (step.deal === 'first-ten' && typeof allDrinks === 'function' && typeof prepCard === 'function') {
-          var deck = allDrinks().filter(function (d) { return d.src === 'Cocktails' && d.tier === 1; }).slice(0, 10);
-          if (deck.length) {
-            Object.assign(state.fc, { stage: 'run', mode: 'name2spec', deck: deck, idx: 0, right: 0, wrong: 0, missed: [] });
-            prepCard();
-          }
-        }
-      }
-      render();
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bind);
-  } else {
-    bind();
-  }
-
-  /* ---- 2. the shared streak (dormant) ---------------------------------
+  /* ---- 1. the shared streak (dormant) ---------------------------------
      Nobody can be named in this wing now, so markStudied has no profile to
      mark and does nothing. It is left wired rather than deleted because the
      day manager mode arrives this is the seam that lights up, and a streak
@@ -85,8 +38,11 @@
      replacing it: the Ledger's `hands` streak means something this file has no
      business flattening.
 
-     Also hooked to card recording, because a bartender who drilled twenty cards
-     and did not finish a whole session has still studied today. */
+     Also hooked to every graded card, because a bartender who drilled twenty
+     cards and did not finish a whole session has still studied today.
+     gradeCardKey is the one door every card answer goes through since the four
+     levels (the deck's recordCard calls it by name, and so does the level
+     test), so wrapping it here covers both. */
   if (typeof recordSessionComplete === 'function') {
     var _rsc = recordSessionComplete;
     recordSessionComplete = function () {
@@ -95,15 +51,15 @@
     };
   }
 
-  if (typeof recordCard === 'function') {
-    var _rc = recordCard;
-    recordCard = function () {
+  if (typeof gradeCardKey === 'function') {
+    var _gk = gradeCardKey;
+    gradeCardKey = function () {
       try { OOT.profiles.markStudied(); OOT.profiles.touch(); } catch (e) {}
-      return _rc.apply(this, arguments);
+      return _gk.apply(this, arguments);
     };
   }
 
-  /* ---- 3. what the team is weakest at ---------------------------------
+  /* ---- 2. what the team is weakest at ---------------------------------
      Ranked by family, because that is how this wing organises the canon and
      how a bar manager would set a pre-shift. Summed across every profile on the
      device, read straight from their namespaced stores so nobody has to be
