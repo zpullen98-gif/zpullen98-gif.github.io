@@ -511,8 +511,18 @@ function tonightDrill(){
   return pool[day % pool.length];
 }
 
+/* The cards a session can deal: every drink but a draft. A draft (a menu
+   record with no spec yet) is a ticket with zero lines to grade against,
+   and the venue's list deals FIRST in the ladder below, so an unfiltered
+   pool made a spec-less draft the first new card every single night. One
+   seam for the deck, the empty-deck fallback and the dashboard's count, so
+   the number promised and the card dealt cannot disagree. */
+function sessionCardPool(){
+  return allDrinks().filter(d => !d.draft);
+}
+
 function sessionDeckParts(){
-  const all = allDrinks();
+  const all = sessionCardPool();
   const due = [], fresh = [];
   all.forEach(d => {
     const s = progress.cards[cardKey(d)];
@@ -552,7 +562,9 @@ function sessionDeckParts(){
 function startSession(){
   const { dueDeck, newDeck } = sessionDeckParts();
   let deck = [...dueDeck, ...newDeck];
-  if(!deck.length) deck = shuffle(allDrinks()).slice(0, 10);
+  /* the same pool as the parts above: a night with nothing due and nothing
+     fresh still deals no draft */
+  if(!deck.length) deck = shuffle(sessionCardPool()).slice(0, 10);
   state.sess = { active: true, step: 'cards', night: dateKey(0), dueN: dueDeck.length, newN: newDeck.length };
   state.tab = 'flashcards';
   Object.assign(state.fc, { stage:'run', mode:'name2spec', deck:deck, idx:0, right:0, wrong:0, missed:[] });
@@ -676,7 +688,7 @@ function dataToolHTML(){
   return '<div class="col">'
     + '<div class="panel p5 col" style="gap:12px">'
     + '<div class="eyebrow">Back up the ledger</div>'
-    + '<div class="small dim lh">Everything you’ve earned (mastery records, quiz history, tasting notes, practice logs, your menu and what the bar stocks) lives in this browser and goes nowhere else. Export a copy now and then; paper burns and browsers forget.</div>'
+    + '<div class="small dim lh">Everything you’ve earned (mastery records, quiz history, tasting notes, practice logs, your menu and what the bar stocks) lives only in this browser and goes nowhere else, unless you bring in the Maître d’ with a key of your own, and then only the menu you hand her goes to Anthropic. The key itself never rides in this export. Export a copy now and then; paper burns and browsers forget.</div>'
     + '<div class="tiny font-tix dim">'+progressSummaryHTML()+'</div>'
     + '<div class="row" style="gap:8px"><button class="btn btn-brass" data-act="data-export">Export my records</button>'
     + (canShareBackup() ? '<button class="btn btn-ghost" data-act="data-share">Share the backup…</button>' : '')
@@ -799,6 +811,28 @@ function bestCard(mine, theirs){
     ['ef','ivl','reps','due','last','lapses'].forEach(f => { winner[f] = loser[f]; });
   }
   return winner;
+}
+
+/* Two records' Maître d' blocks as one: the winner's marks, and the kept
+   chat notes of both, unioned on ts|q, oldest first. Pure, so the gate can
+   pin it; null when neither side has anything, so a record without marks has
+   no `maitre` key. Through normalizeMaitre on the way out, because a backup
+   is a file somebody may have edited by hand. */
+function mergeMaitre(winner, loser){
+  const w = (typeof normalizeMaitre === 'function') ? normalizeMaitre(winner) : winner;
+  const l = (typeof normalizeMaitre === 'function') ? normalizeMaitre(loser) : loser;
+  if(!w && !l) return null;
+  const out = Object.assign({}, w || {});
+  const kept = [];
+  const seen = new Set();
+  [].concat((w && w.kept) || [], (l && l.kept) || []).forEach(k => {
+    const key = (k.ts || 0) + '|' + (k.q || '');
+    if(seen.has(key)) return;
+    seen.add(key); kept.push(k);
+  });
+  kept.sort((a, b) => (a.ts || 0) - (b.ts || 0));
+  if(kept.length) out.kept = kept; else delete out.kept;
+  return Object.keys(out).length ? out : null;
 }
 
 function dataImport(file){
@@ -990,14 +1024,32 @@ function dataImport(file){
       }
       if(Array.isArray(p.bar)){
         progress.bar = progress.bar || [];
-        p.bar.forEach(b => {
-          if(!b || !b.name) return;
+        /* Through the shape pass FIRST, the one boot runs: a backup is a file
+           somebody may have edited by hand, or an older build's export, and a
+           record with a name and no spec pushed as it stands carried no
+           `draft` flag. missingFor's floor reads that flag; with none, an
+           empty spec requires nothing and the Stock view filed the record as
+           ready to pour off an empty shelf from "Merged." until the next
+           reload. The pass drops a nameless row, stamps `draft` and cleans
+           `maitre`, so every clause below merges a record in the shape
+           every engine expects. */
+        normalizeBarRecords(p.bar).bar.forEach(b => {
           /* case-insensitive, matching saveBarRecord’s own uniqueness rule, and
              when the kept record’s name differs in case, its card record rides
              along to the new key instead of stranding */
           const i = progress.bar.findIndex(x => (b.id && x.id === b.id) || x.name.toLowerCase() === b.name.toLowerCase());
-          if(i < 0) progress.bar.push(b);
-          else if((b.ts || 0) > (progress.bar[i].ts || 0)){
+          if(i < 0){ progress.bar.push(b); return; }
+          /* Her marks: the newer record's block wins whole (a line kept on
+             one device and discarded on the other is the newer decision),
+             and the kept chat notes are UNIONED on ts|q, because two devices'
+             kept answers are disjoint observations like two devices' pours.
+             Named here because every stored field needs its own clause: the
+             record loop below replaces whole, and an unnamed field on the
+             loser is gone. */
+          const mine = progress.bar[i];
+          const theirsNewer = (b.ts || 0) > (mine.ts || 0);
+          const merged = mergeMaitre(theirsNewer ? b.maitre : mine.maitre, theirsNewer ? mine.maitre : b.maitre);
+          if(theirsNewer){
             const oldKey = 'My Bar · ' + progress.bar[i].name, newKey = 'My Bar · ' + b.name;
             /* The record is being renamed, so its history has to move with it,
                and BOTH keys may already hold a card: the card loop above ran
@@ -1011,11 +1063,16 @@ function dataImport(file){
             }
             progress.bar[i] = b;
           }
+          if(merged) progress.bar[i].maitre = merged; else delete progress.bar[i].maitre;
         });
       }
     } else {
       if(!confirm('REPLACE everything in this browser with the backup?\nYour current records here will be gone for good.')){ status('Left everything as it was.'); return; }
       progress = p;
+      /* the backup's list as it stands, so the same shape pass as the merge
+         branch, for the same reason: a spec-less record with no flag is a
+         false "ready to pour" until the next boot runs it */
+      progress.bar = normalizeBarRecords(progress.bar).bar;
     }
     if(!progress.cards) progress.cards = {};
     if(!progress.quizzes) progress.quizzes = [];
@@ -1132,7 +1189,9 @@ function svgBars(values, labels, w, h){
 }
 
 function dashboardHTML(){
-  const all = allDrinks();
+  /* cards only, through the session's own seam: a draft is dealt by no
+     deck, so counting it here would promise a card the deck cannot deal */
+  const all = sessionCardPool();
   const donuts = deckSources().map(src => {
     const pool = all.filter(d => d.src === src);
     const m = pool.filter(d => isMastered(cardKey(d))).length;

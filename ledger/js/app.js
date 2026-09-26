@@ -114,6 +114,10 @@ function render(){
     impF.addEventListener('change', e => { if(e.target.files[0]) dataImport(e.target.files[0]); });
     fillStorageLine();
   }
+  /* the desk file another device downloaded: a picker, like the photo and
+     the backup, because a file input holds nothing a render can lose */
+  const deskF = document.getElementById('desk-file');
+  if(deskF) deskF.addEventListener('change', e => { if(e.target.files[0]) importDeskFile(e.target.files[0]); });
   /* Guarded on the element, not on state.tab, like every other post-paint
      hook in this function. It asks YouTube about the ONE film the reader
      opened, and nothing at all on any other tab. */
@@ -637,7 +641,81 @@ document.getElementById('view').addEventListener('click', e => {
     } else if(sessionDoneToday() && !handsDoneToday()){
       recordSessionComplete(true, (progress.streakData||{}).last);
     } }
-  else if(act==='tool-view'){ state.tools.view = el.dataset.v; }
+  else if(act==='tool-view'){ state.tools.view = el.dataset.v;
+    /* the Maître d' sub-tab IS her key screen when the client is here: the
+       dialog opens from the tap, never from inside render(), which repaints
+       on every act and would reopen it each time */
+    if(el.dataset.v === 'maitre' && typeof maitreHere === 'function' && maitreHere()) maitreHere().openSettings(); }
+  else if(act==='maitre-open'){
+    if(!maitreOpenSettings()) say(MAITRE_NOT_IN_BUILD + ' ' + MAITRE_FAMILY_LINE);
+    return; }
+  /* ---- the Menu Desk's own acts ------------------------------------------
+     desk-engine asks her to read the box (data-c="1" is the second tap her
+     cost line asks for); desk-kind sends a row back to the desk as a dish or
+     a wine; desk-open puts the desk's waiting share on the review list;
+     desk-download hands the desk file over as a file; desk-import-file opens
+     the picker. The three that end in `return` repaint nothing themselves:
+     a network call repaints when it lands, and a picker or a download is not
+     a change of state. */
+  else if(act==='desk-engine'){ importAskMaitre(el.dataset.c === '1'); return; }
+  else if(act==='desk-kind'){ importReKind(Number(el.dataset.k), el.dataset.d); }
+  else if(act==='desk-open'){ importOpenInbox(); }
+  else if(act==='desk-download'){
+    if(state.menu.imp && state.menu.imp.file) downloadDesk(state.menu.imp.file);
+    return; }
+  else if(act==='desk-import-file'){
+    const f = document.getElementById('desk-file'); if(f) f.click();
+    return; }
+  /* ---- her marks on a drink: Keep, Edit, Discard --------------------------
+     data-f names the mark, and 'guest' when absent. The guest line has no
+     plain field, so Keep and Edit make the MARK the person's (by:'person');
+     her method, glass and garnish have one each, so Keep writes the value
+     INTO the field through keepMaitreField and the mark goes. Until then a
+     mark is hers and reaches no drill. The two edit boxes' ids (mb-guest,
+     mb-hers) are in captureLiveInputs, so the render between typing and
+     Keep cannot eat the edit. */
+  else if(act==='lines-keep'){
+    const b = (progress.bar||[]).find(x => x.id===el.dataset.id);
+    const f = el.dataset.f || 'guest';
+    if(b && b.maitre && b.maitre[f]){
+      const ed = state.menu.lines && state.menu.lines.id === b.id && (state.menu.lines.f || 'guest') === f ? state.menu.lines : null;
+      /* The edit box is read HERE, the way the importer's boxes are read at
+         the head of this handler: captureLiveInputs runs AFTER the act, so
+         state still holds the words Edit opened with, and Keep read from
+         state alone filed her original line and threw the person's edit
+         away. The grab in captureLiveInputs still matters for every other
+         act, which is what keeps a half-typed edit alive across a repaint. */
+      if(ed){ const box = document.getElementById(f === 'guest' ? 'mb-guest' : 'mb-hers'); if(box) ed.text = box.value; }
+      const text = ed ? String(ed.text || '').trim() : String(b.maitre[f].value);
+      if(f !== 'guest'){
+        const out = keepMaitreField(b, f, text);
+        if(typeof out === 'string') say(out);
+        else { state.menu.lines = null; say('Kept. The ' + f + ' is the drink’s own now.'); }
+      }
+      else if(!text) say('Nothing to keep: the line is empty. Discard it instead.');
+      else {
+        b.maitre.guest = Object.assign({}, b.maitre.guest, { value: text, by: 'person', ts: Date.now() });
+        state.menu.lines = null; saveProgress();
+        say('Kept. The line is yours now and goes with the drink.');
+      }
+    } }
+  else if(act==='lines-edit'){
+    const b = (progress.bar||[]).find(x => x.id===el.dataset.id);
+    const f = el.dataset.f || 'guest';
+    if(b && b.maitre && b.maitre[f]) state.menu.lines = { id: b.id, f: f, text: String(b.maitre[f].value) }; }
+  else if(act==='lines-cancel'){ state.menu.lines = null; }
+  else if(act==='lines-discard'){
+    const b = (progress.bar||[]).find(x => x.id===el.dataset.id);
+    const f = el.dataset.f || 'guest';
+    if(b && b.maitre && b.maitre[f]){
+      delete b.maitre[f];
+      if(!Object.keys(b.maitre).length) delete b.maitre;
+      state.menu.lines = null; saveProgress();
+      /* honest about what remains: the other marks and her kept notes are
+         still on the record, so "nothing of hers" is true only when the
+         block is gone */
+      say('Discarded.' + (b.maitre ? ' What else she left is still here to look at.' : ' Nothing of hers stays on the drink.'));
+    } }
   else if(act==='data-export'){ dataExport(); return; }
   else if(act==='data-share'){ dataShare(); return; }
   else if(act==='data-copy'){ dataCopy(); return; }
@@ -736,16 +814,18 @@ document.getElementById('view').addEventListener('click', e => {
     progress.vidPrefs.longform = el.dataset.v==='long'; saveProgress(); }
   else if(act==='imp-door'){ state.menu.imp.door = el.dataset.d; state.menu.imp.err = ''; state.menu.imp.openUrl = null;
     if(el.dataset.d === 'hand'){ state.menu.form = blankBarForm(); state.menu.editing = null; state.menu.imp.open = null; } }
-  else if(act==='imp-read'){ importFromText(state.menu.imp.text); }
+  else if(act==='imp-read'){ importFromText(state.menu.imp.text, 'paste'); }
+  else if(act==='imp-again'){ importFromText(state.menu.imp.text, 'paste', { again:true }); }
   else if(act==='imp-link'){ importLink(state.menu.imp.url); return; }
   else if(act==='imp-clear'){ state.menu.imp = blankImport(); state.menu.form = null; }
   else if(act==='imp-open'){
     const k = Number(el.dataset.k), d = state.menu.imp.drafts[k];
     if(d){ state.menu.imp.open = k; state.menu.editing = null; state.menu.err = null;
-      /* a COPY, so abandoning the row leaves the draft as it was read */
+      /* a COPY, so abandoning the row leaves the draft as it was read; her
+         marks ride on the copy so saveBarRecord carries them */
       state.menu.form = { name:d.rec.name, spec:d.rec.spec.length ? d.rec.spec.slice() : ['',''],
         method:d.rec.method, glass:d.rec.glass, garnish:d.rec.garnish, note:d.rec.note,
-        family:d.rec.family, spirit:d.rec.spirit, price:d.rec.price }; } }
+        family:d.rec.family, spirit:d.rec.spirit, price:d.rec.price, maitre:d.rec.maitre }; } }
   else if(act==='imp-canon'){
     const offer = menuCanonMeasures(state.menu.form);
     /* the book's lines replace the menu's, because the book's carry measures
@@ -754,10 +834,15 @@ document.getElementById('view').addEventListener('click', e => {
   else if(act==='imp-file'){ importFileRow(Number(el.dataset.k)); }
   else if(act==='imp-drop'){
     state.menu.imp.drafts.splice(Number(el.dataset.k), 1);
-    state.menu.imp.dropped++; state.menu.imp.open = null; state.menu.form = null; }
+    state.menu.imp.dropped++; state.menu.imp.open = null; state.menu.form = null;
+    importMaybeTaken(false); }
   else if(act==='imp-file-sure'){
-    /* only the rows that read cleanly and are not already on the list. Every
-       other row still has to be looked at, which is the point of the screen. */
+    /* only the rows that read cleanly: high confidence, a spec of two or
+       more parts, not already on the list, and a kind the desk was sure of
+       (importReadCleanly is the one rule). Every other row still has to be
+       looked at, which is the point of the screen. The names are confirmed
+       first, because a bulk add is the one tap on this screen that files
+       more than a person has read. */
     /* If a row is OPEN, the form holds the user's edits and the draft does
        not. Fold them back before filing, or 'Add the N that read cleanly'
        silently throws away what they just typed and leaves the form behind
@@ -767,11 +852,15 @@ document.getElementById('view').addEventListener('click', e => {
       if(open) open.rec = Object.assign({}, open.rec, state.menu.form);
       state.menu.form = null; state.menu.editing = null; state.menu.imp.open = null;
     }
-    for(let k = state.menu.imp.drafts.length - 1; k >= 0; k--){
-      const d = state.menu.imp.drafts[k];
-      if(d.confidence === 'high' && !d.existing) importFileRow(k, true);
-    }
-    say(state.menu.imp.filed + ' added to your menu.'); }
+    const sure = state.menu.imp.drafts.filter(importReadCleanly);
+    if(sure.length && confirm('Add these ' + sure.length + ' to your menu, as they were read?\n\n' + sure.map(d => d.rec.name).join('\n'))){
+      const before = state.menu.imp.filed;
+      for(let k = state.menu.imp.drafts.length - 1; k >= 0; k--){
+        if(importReadCleanly(state.menu.imp.drafts[k])) importFileRow(k, true);
+      }
+      say((state.menu.imp.filed - before) + ' added to your menu.');
+      importMaybeTaken(true);
+    } }
   else if(act==='menu-view'){ state.menu.view = el.dataset.v; state.menu.err = null;
     /* leaving the review list by any route closes whichever row was open, or
        menu-save keeps taking the importer branch for an ordinary edit and
@@ -819,6 +908,7 @@ document.getElementById('view').addEventListener('click', e => {
       state.menu.imp.filed++; state.menu.imp.open = null;
       state.menu.form = null; state.menu.editing = null; state.menu.err = null;
       say('Added to the menu.');
+      importMaybeTaken(false);
     }
     else {
       state.menu.form = null; state.menu.editing = null; state.menu.err = null;
@@ -878,6 +968,9 @@ function captureLiveInputs(){
   grab('ob-days',    state.tools, 'obDays');
   grab('pour-oz',    state.practice, 'pourOz');
   grab('cost-bottle-name', state.tools, 'bottleName');
+  /* her marks under Edit on the Build pane: one box at a time, the guest
+     line's textarea or a field mark's input, both into the same slot */
+  if(state.menu && state.menu.lines){ grab('mb-guest', state.menu.lines, 'text'); grab('mb-hers', state.menu.lines, 'text'); }
   /* every drill result field, by prefix: on the Ticket Rail an intervening
      act (revealing the order) is REQUIRED between typing and logging, so the
      render in between ate the seconds every single time */
@@ -903,9 +996,11 @@ function captureLiveInputs(){
   if(!progress.practice) progress.practice = {};
   if(!progress.tastings) progress.tastings = [];
   if(!progress.vidPrefs) progress.vidPrefs = { channel:'auto', longform:false };
-  /* the same shape pass the import runs: a record saved with the older dash
-     placeholder, or a store edited by hand, is read here before anything
-     deals it. Unreadable records are dropped; they had no name or no spec. */
+  if(!progress.bar) progress.bar = [];
+  /* the same shape pass the save runs: a record saved with the older dash
+     placeholder, a store edited by hand, or a draft filed with no spec is
+     read here before anything deals it. A record with no name is dropped;
+     one with no spec is a draft, marked so. */
   progress.bar = normalizeBarRecords(progress.bar).bar;
   /* A shelf stored before the vocabulary may hold ids that have since split,
      and twelve of them did. migrateShelf is idempotent and never subtractive:

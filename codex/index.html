@@ -14,17 +14,19 @@
 <meta name="apple-mobile-web-app-title" content="Outside Of Time">
 <link rel="preload" href="fonts/ebgaramond-normal-400-800-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/cinzel-normal-400-900-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../shared/oot-home.css?v=30">
-<link rel="stylesheet" href="css/codex.css?v=27">
+<link rel="stylesheet" href="../shared/oot-home.css?v=31">
+<link rel="stylesheet" href="css/codex.css?v=28">
 <style>.skip{position:absolute;right:8px;top:-60px;z-index:50;background:var(--parch);color:var(--ink);border:1px solid var(--gold);padding:12px 16px;border-radius:3px;font-size:13px;font-family:'EB Garamond',Georgia,serif;text-decoration:none;transition:top .15s}.skip:focus{top:8px}</style>
 </head>
 <body>
 <a class="skip" href="#view">Skip to content</a>
 <noscript><p style="padding:3em 1em;text-align:center;font-family:Georgia,serif">The Sommelier’s Codex needs JavaScript to pour.</p></noscript>
 <div class="wrap" id="app"></div>
-<script src="../shared/oot-config.js?v=30"></script>
-<script src="../shared/oot-profiles.js?v=30"></script>
-<script src="../shared/oot-home.js?v=30"></script>
+<!-- The screen reader's voice: outside #app so no render() empties it. codex24's say() writes here. -->
+<div id="live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+<script src="../shared/oot-config.js?v=31"></script>
+<script src="../shared/oot-profiles.js?v=31"></script>
+<script src="../shared/oot-home.js?v=31"></script>
 <script src="js/data-questions.js?v=5"></script>
 <script src="js/reference.js?v=3"></script>
 <script src="js/core.js?v=17"></script>
@@ -55,8 +57,8 @@
 <script src="js/codex14.js?v=12"></script>
 <script src="js/codex15.js?v=2"></script>
 <script src="js/data-producers.js?v=1"></script>
-<script src="js/wine-parse.js?v=2"></script>
-<script src="js/wine-rows.js?v=2"></script>
+<script src="js/menu-desk.js?v=1"></script>
+<script src="js/wine-rows.js?v=3"></script>
 <script src="js/codex16.js?v=4"></script>
 <script src="js/codex17.js?v=2"></script>
 <script src="js/codex18.js?v=1"></script>
@@ -65,12 +67,13 @@
 <script src="js/codex21.js?v=1"></script>
 <script src="js/codex22.js?v=2"></script>
 <script src="js/codex23.js?v=2"></script>
+<script src="js/codex24.js?v=2"></script>
 <script src="js/boot.js?v=5"></script>
-<script src="../shared/oot-auth.js?v=30"></script>
-<script src="../shared/oot-gate.js?v=30"></script>
-<script src="../shared/oot-locks.js?v=30"></script>
-<script src="../shared/oot-pass.js?v=30"></script>
-<script src="../shared/oot-log.js?v=30"></script>
-<script src="../shared/oot-bar.js?v=30"></script>
+<script src="../shared/oot-auth.js?v=31"></script>
+<script src="../shared/oot-gate.js?v=31"></script>
+<script src="../shared/oot-locks.js?v=31"></script>
+<script src="../shared/oot-pass.js?v=31"></script>
+<script src="../shared/oot-log.js?v=31"></script>
+<script src="../shared/oot-bar.js?v=31"></script>
 </body>
 </html>

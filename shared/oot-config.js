@@ -161,4 +161,68 @@
     ]
   };
 
+  /* ---- the loader for a shared script that is NOT on every page ----------
+     This file is the first shared script on every surface (the hub, The
+     Pass and the four vanilla wings by hand, the World Table by the
+     injector), so it is the one place that knows its own src, stamp and
+     all: "/shared/oot-config.js?v=31" in the table, "../shared/oot-config.js?v=31"
+     everywhere else. OOT.loadShared(name) appends a script tag for a sibling
+     file at that same src with the name swapped in, so the ?v= rides along
+     and the lockstep bump (SHARED_V, every surface's stamps, every worker's
+     cache) keeps a lazily loaded file exactly as fresh as the nine that load
+     on every page. A tag built any other way would wear no stamp, and an
+     installed visitor would keep the first copy they ever fetched.
+
+     Built for the Maître d' client, shared/oot-maitre.js, which is loaded
+     only when a door is pressed and the device is online. It is deliberately
+     not in the injector's SHARED list, not in the World Table's OOT_SHARED
+     warm-up, not in any wing's ASSETS and not in the table's precache: a
+     device that never presses the door never fetches it, and no wing breaks
+     offline for want of it.
+
+     Captured at load, not at call. document.currentScript is null once this
+     tag has finished running, so the src is read here, synchronously, while
+     the browser is still inside it. The fallback finds the tag by name for a
+     page that ran this file some other way (a test harness, an inline copy);
+     an empty string means the loader refuses rather than appending a tag
+     with no path.
+
+     One tag per name. The promise is kept while a load is pending and after
+     it succeeds, so two doors pressed together share one request and a
+     second press never appends a second copy. A FAILED load is forgotten and
+     its tag removed, so the next press tries afresh: a tag that failed once
+     and stayed would turn every later press into a no-op with nothing on
+     screen. The rejection is Error('offline'), because on a site that never
+     blocks its own files that is what a failed request for one means. */
+  OOT.sharedSrc = (function () {
+    var s = document.currentScript;
+    if (s && s.src) return s.src;
+    var tags = document.getElementsByTagName('script');
+    for (var i = 0; i < tags.length; i++) {
+      if (/oot-config\.js/.test(tags[i].src || '')) return tags[i].src;
+    }
+    return '';
+  })();
+  var loads = {};
+  OOT.loadShared = function (name) {
+    if (loads[name]) return loads[name];
+    loads[name] = new Promise(function (resolve, reject) {
+      if (!/oot-config\.js/.test(OOT.sharedSrc || '')) {
+        reject(new Error('offline'));
+        return;
+      }
+      var s = document.createElement('script');
+      s.src = OOT.sharedSrc.replace(/oot-config\.js/, name);
+      s.async = true;
+      s.onload = function () { resolve(); };
+      s.onerror = function () {
+        s.remove();
+        delete loads[name];
+        reject(new Error('offline'));
+      };
+      document.head.appendChild(s);
+    });
+    return loads[name];
+  };
+
 })(window);

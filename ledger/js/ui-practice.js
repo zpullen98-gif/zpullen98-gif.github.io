@@ -1057,9 +1057,41 @@ const SHELF_GROUPS = [
   ['juice','Juice & citrus'],['syrup','Syrups & sweet'],['mixer','Mixers'],
   ['dairy','Dairy & egg'],['produce','Produce'],['pantry','Larder']
 ];
+/* The Maître d' under Tools: the door to her key screen, which is drawn by
+   the shared client (shared/oot-maitre.js) and not by this app, so one slot,
+   one price table and one ledger serve all three apps. This sub-tab says
+   which of three states this device is in and offers the one door that
+   works in it. The key screen itself opens from the tool-view act, because a
+   dialog opened from inside render() would reopen on every repaint. */
+function maitreToolHTML(){
+  const m = (typeof maitreHere === 'function') ? maitreHere() : null;
+  const can = m || ((typeof maitreLoadable === 'function') && maitreLoadable());
+  let state2;
+  if(m && m.settings.hasKey()){
+    let spend = '';
+    try { spend = m.money(m.ledger.total()) + ' of ' + m.money(m.settings.get().capUsd) + ' used this month.'; } catch(e){}
+    state2 = '<div class="small lh">A key is on this device. ' + esc(spend) + '</div>'
+      + '<div class="row"><button class="btn btn-brass" data-act="maitre-open">Her key, models, cap and ledger</button></div>';
+  } else if(can){
+    state2 = '<div class="small lh">' + esc(MAITRE_NAME + ' is not here yet. ' + MAITRE_FAMILY_LINE) + '</div>'
+      + '<div class="row"><button class="btn btn-brass" data-act="maitre-open">Bring her in</button></div>';
+  } else {
+    state2 = '<div class="small lh">' + esc(MAITRE_NOT_IN_BUILD + ' ' + MAITRE_FAMILY_LINE) + '</div>'
+      + '<div class="tiny dim lh">She lives in the suite at zpullen98-gif.github.io, where the Ledger, the Codex and the World Table share one desk. This copy reads menus on the device, free, and sends nothing anywhere.</div>';
+  }
+  return '<div class="panel p5 col" style="gap:12px">'
+    + '<div class="eyebrow">Optional · Online · Your own key</div>'
+    + '<h2 class="eyebrow" style="font-size:1rem;letter-spacing:0.04em;text-transform:none">' + esc(MAITRE_NAME) + '</h2>'
+    + '<div class="small dim lh">She reads a menu into the desk, writes the line you say at the table, and answers a question about the house. '
+    + 'She runs on your own Anthropic key, kept on this device, sent only to Anthropic, only when you press a button that says what it sends, and never in an export. '
+    + 'Nothing she writes is kept until you keep it.</div>'
+    + state2
+    + '</div>';
+}
+
 function renderTools(){
   const t = state.tools;
-  const nav = [['batch','Batching'],['dates','Open Bottles'],['strength','Strength'],['cost','Pour Cost'],['spills','Spill Log'],['convert','Convert'],['data','My Data']]
+  const nav = [['batch','Batching'],['dates','Open Bottles'],['strength','Strength'],['cost','Pour Cost'],['spills','Spill Log'],['convert','Convert'],['maitre',"The Maître d'"],['data','My Data']]
     .map(function(o){ return '<button class="tab-btn'+(t.view===o[0]?' active':'')+'"'+(t.view===o[0]?' aria-current="true"':'')+' data-act="tool-view" data-v="'+o[0]+'">'+o[1]+'</button>'; }).join('');
   const wrap = function(inner){ return '<div class="col"><nav class="tabs" aria-label="Tool views" style="margin-bottom:4px">'+nav+'</nav>'+inner+'</div>'; };
   const drinkSel = function(id){
@@ -1067,6 +1099,7 @@ function renderTools(){
     return '<select class="input" id="'+id+'" style="flex:2;min-width:170px">'+opts+'</select>';
   };
 
+  if(t.view==='maitre') return wrap(maitreToolHTML());
   if(t.view==='data') return wrap(dataToolHTML());
   if(t.view==='spills') return wrap(spillHTML());
   if(t.view==='dates') return wrap(obHTML());

@@ -599,6 +599,13 @@ function reqsOf(c){
    one-argument call site is unchanged; eightySixReport passes a shelf with
    one bottle removed, which is the only honest way to ask what dies. */
 function missingFor(c, shelf){
+  /* A DRAFT (a menu record filed with a name and no spec) requires nothing,
+     and "requires nothing" would read as "ready to pour" off an empty shelf.
+     That is the false YES the ingredient vocabulary was built to kill, so a
+     draft fails closed the same way an unreadable line does: with a sentinel
+     no shelf can satisfy. The screens filter drafts out before they ask;
+     this is the floor under any screen that forgets. */
+  if(c && c.draft) return ['?no spec yet'];
   shelf = shelf || state.tools.shelf;
   const have = function(id){ return stockSatisfies(shelf, id); };
   return reqsOf(c).filter(function(r){

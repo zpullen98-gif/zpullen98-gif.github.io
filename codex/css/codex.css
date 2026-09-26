@@ -607,3 +607,29 @@ input[type=date].sainput{font-family:'EB Garamond',Georgia,serif;color:var(--ink
 .rdy-none{color:#e08585}
 .rdyverdict{font-size:13px;font-style:italic;color:var(--parch);opacity:.8;margin-top:5px}
 @media(max-width:560px){.rdyrow{flex-direction:column;gap:0}.rdyname{min-width:0}}
+
+
+/* ------- Codex XXIV: the Menu Desk, the Maître d' ------- */
+/* A live region the screen reader hears and nobody sees. Positioned off the
+   canvas rather than display:none, which would silence it. */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* The band on home and on the list while a share is waiting: dark-page palette. */
+.deskband{margin:14px 0 4px;padding:12px 14px;border:1px solid var(--line);background:rgba(201,162,39,.07);display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;justify-content:space-between}
+.deskband-t{font-size:15px;line-height:1.5}
+.deskband b{color:var(--gold-soft);font-weight:600}
+/* Every control on the desk is a finger's width, whatever size class it wears. */
+.desk .btn,.deskband .btn,.mline .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.desk .sarow{margin-top:8px}
+.desk textarea.sainput{width:100%;min-height:220px;font-family:inherit;line-height:1.5}
+.desk-engines{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+@media(max-width:640px){.desk-engines{grid-template-columns:1fr}}
+.desk-engine{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.desk-note{font-size:14px;opacity:.78;line-height:1.5}
+.desk-elsewhere{margin-top:10px}
+.desk-counts{font-size:16px;color:var(--gold-soft);margin:10px 0 4px}
+.deskrow.dim{opacity:.62}
+.deskrow .why{font-size:13px;font-style:italic;opacity:.66;margin-top:4px;line-height:1.45}
+.deskrow .pagewords{font-size:13px;opacity:.7;margin-top:3px}
+/* Her two lines on a bottle: an eyebrow says whose they are until kept. */
+.mline{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:14px;margin-top:6px}
+.mline-eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft)}

@@ -14,9 +14,13 @@
    off the photo and paste it, which both phone platforms do.
 
    NO CORS PROXY, EVER. The Ledger's own copy says the venue's list lives in
-   this browser and goes nowhere else. Bouncing a bar's address off a
-   stranger's server to fix a convenience would make that false. A refusal is
-   the ordinary ending here rather than a fault, and the screen says so.
+   this browser and goes nowhere else, with one exception a person presses
+   for themselves: ask the Maître d' to read it, and the address goes to
+   Anthropic on their own key, fetched there by Anthropic's own tool, and
+   nowhere else. There is no relay of ours. Bouncing a bar's address off a
+   stranger's server to fix a convenience would make the promise false. A
+   refusal is the ordinary ending here rather than a fault, and the screen
+   says so.
 
    Wrapped, and the four names that come out are ocrPlan, imageToText,
    htmlToMenuText and linkToText. */
@@ -240,7 +244,10 @@ var ocrPlan, imageToText, htmlToMenuText, linkToText;
 	 * Most venue sites do not. The usual workaround is to bounce the request
 	 * off a public proxy, and that is exactly what this file must never do: it
 	 * would hand the venue's address to a stranger to fix a convenience, and this
-	 * app tells people their bar never leaves their device.
+	 * app tells people their bar never leaves their device. The one exception is
+	 * not in this file and not a relay of ours: a person may ask the Maître d'
+	 * to read the page, and then the address goes to Anthropic on their own key
+	 * and nowhere else, only when they press the button that says so.
 	 *
 	 * So the fetch is attempted, and when it fails the failure is the feature.
 	 * `reason` says what happened in a sentence a bartender can act on, and `openUrl`

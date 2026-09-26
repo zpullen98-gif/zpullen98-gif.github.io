@@ -1,8 +1,12 @@
 /* ---------------- HOME ---------------- */
 function renderHome(){
   const stats = progress.cards || {};
-  const mastered = allDrinks().filter(function(d){ return isMastered(cardKey(d)); }).length;
-  const totalCards = allDrinks().length;
+  /* cards, so never a draft: a menu record with no spec cannot be drilled,
+     and "0 of 642" with one of them in the total is a promise the deck
+     cannot keep */
+  const deckCards = allDrinks().filter(function(d){ return !d.draft; });
+  const mastered = deckCards.filter(function(d){ return isMastered(cardKey(d)); }).length;
+  const totalCards = deckCards.length;
   const studied = Object.keys(stats).length;
   const quizzes = progress.quizzes || [];
   const full = quizzes.filter(q => (q.total||10)===10);
@@ -90,9 +94,13 @@ function renderHome(){
      a terrible first impression. Until there’s anything to report, say what the
      ledger is and point at the one button that starts everything. */
   const fresh = !studied && !quizzes.length && !tastings && !drillLogs;
+  /* what another room read and left for this bar: one line, only when
+     there is one, above everything else on either version of Home */
+  const desk = (typeof deskWaitingHTML === 'function') ? deskWaitingHTML('home') : '';
   if(fresh){
     return '<div class="col">'
       + band('Today', 'The whole routine, about ten minutes', sessionPanelHTML())
+      + desk
       + '<div class="panel p5 col" style="gap:12px">'
       + '<div class="eyebrow">Start here</div>'
       + '<div class="small dim lh" style="max-width:520px">This is a working bartender’s study ledger, not a recipe app. '
@@ -101,7 +109,8 @@ function renderHome(){
       + '<div class="small dim lh" style="max-width:520px"><span class="brass2">Pour tonight’s session</span> above is the whole routine: '
       + 'a handful of cards in canon order, a ten-question round, then a drill you do with your hands. '
       + 'Ten minutes. Come back tomorrow and it deals what you’re about to forget.</div>'
-      + '<div class="tiny dim lh" style="max-width:520px">Your records live in this browser and go nowhere else. '
+      + '<div class="tiny dim lh" style="max-width:520px">Your records live in this browser and go nowhere else, unless you bring in '
+      + 'the Maître d’ with a key of your own, and then only the menu you hand her goes to Anthropic. '
       + 'Back it up now and then from Tools → My Data.</div>'
       + '</div>'
       + '<div class="panel p4 col-sm">'
@@ -122,6 +131,7 @@ function renderHome(){
   }
   return '<div class="col">'
     + band('Today', 'The whole routine, about ten minutes', sessionPanelHTML())
+    + desk
     + TILE_BANDS.map(function(b){ return band(b[0], b[1],
         (b[0]==='Learn' ? firstPath : '') + tileGrid(b[2])); }).join('')
     + '<section class="oot-sec"><div class="oot-sec-head"><h2>Record</h2><span>What you have done, and where it lives</span></div>'
@@ -279,10 +289,23 @@ function deckSources(){ return DECK_SOURCES.filter(s => s !== 'My Bar' || (progr
    was built to kill, arriving through a different door. The Stock view asks
    what you can POUR, so it asks this list instead. */
 const FACT_SOURCES = ['On Tap'];
-function pourSources(){ return deckSources().filter(s => FACT_SOURCES.indexOf(s) < 0); }
+/* and a menu of nothing but DRAFTS is not pourable either: a draft has no
+   spec, and missingFor fails closed on it, so a list of drafts would report
+   nothing ready and nothing close, which is true and useless. The source
+   earns its chip once one drink on it has a line. */
+function pourSources(){
+  return deckSources().filter(s => FACT_SOURCES.indexOf(s) < 0
+    && (s !== 'My Bar' || (progress.bar||[]).some(b => !b.draft)));
+}
 /* counted rather than typed, because the enumeration in the mastery blurb
    went stale the moment this source existed and the total beside it did not. */
 function tapCount(){ return allDrinks().filter(d => d.src === 'On Tap').length; }
+/* The menu drinks that are CARDS. A draft (a name the menu printed with no
+   spec yet) is on the list to remember and is dealt by no deck, no round and
+   no rail, because a ticket with no lines is not a question anybody can get
+   right; so every count that promises a card, and the four-drink floor on
+   the Menu quiz round, counts through here rather than progress.bar.length. */
+function menuCardCount(){ return (progress.bar||[]).filter(b => !b.draft).length; }
 function allDrinks(){
   if(allDrinks._c) return allDrinks._c;
   const out = [];
@@ -291,8 +314,11 @@ function allDrinks(){
       garnish:c.garnish, note:c.note, group:c.family, spirit:c.spirit, tier:c.tier, ref:c });
   });
   (progress.bar||[]).forEach(function(b){
+    /* draft rides along so the stock report can leave a spec-less record
+       out; spec is [] on one, which already fails closed in fcPool and
+       decoyLines the way an On Tap card does */
     out.push({ src:'My Bar', name:b.name, spec:b.spec, method:b.method, glass:b.glass,
-      garnish:b.garnish, note:b.note, group:b.family, spirit:b.spirit, tier:null, ref:b });
+      garnish:b.garnish, note:b.note, group:b.family, spirit:b.spirit, tier:null, ref:b, draft:!!b.draft });
   });
   SHOTS.forEach(function(s){
     out.push({ src:'Shots', name:s.name, spec:s.spec, method:s.method, glass:'Shot glass',
@@ -378,6 +404,9 @@ function weakScore(name){ const s=progress.cards[name]; return s ? (s.w*2 + (s.l
 function fcPool(){
   const f = state.fc;
   return allDrinks().filter(function(d){
+    /* a draft has no spec, and Name to Spec would deal an empty ticket and
+       ask the learner to grade themselves against nothing */
+    if(d.draft) return false;
     if(f.src!=='All' && d.src!==f.src) return false;
     if(f.tier!=='All'){ if(d.src!=='Cocktails' || d.tier!==Number(f.tier)) return false; }
     if(f.family!=='All' && d.group!==f.family) return false;
@@ -439,7 +468,8 @@ function prepCard(){
     fc.opts = shuffle([ans, ...sample(picked, 3)]);
   }
   if(fc.mode==='service'){
-    const pool = allDrinks();
+    /* a draft has no glass, garnish or method to offer as an option */
+    const pool = allDrinks().filter(function(d){ return !d.draft; });
     /* Grade the CATEGORY, not the prose. There are ~100 distinct glass strings
        and ~260 method strings across the deck, so sampling raw text offered
        "Coupe" against a correct answer of "Coupe or Nick & Nora" and scored it
@@ -512,7 +542,8 @@ function renderFlashcards(){
   /* -------- setup -------- */
   if(fc.stage==='setup'){
     const srcChips = ['All'].concat(deckSources()).map(function(s){
-      const n = allDrinks().filter(function(d){ return s==='All' || d.src===s; }).length;
+      /* never a draft: the chip promises what the deck will deal */
+      const n = allDrinks().filter(function(d){ return !d.draft && (s==='All' || d.src===s); }).length;
       return '<button class="chip'+(fc.src===s?' on':'')+'" aria-pressed="'+(fc.src===s?'true':'false')+'" data-act="fc-src" data-s="'+esc(s)+'">'+(s==='All'?'Everything':esc(srcLabel(s)))+' <span class="font-tix">'+n+'</span></button>';
     }).join(' ');
     const isCocktail = fc.src==='Cocktails' || fc.src==='All';
@@ -549,13 +580,14 @@ function renderFlashcards(){
       + '<div class="col-sm">'+modeBtns+'</div>'
       + '</div>'
       + '<div class="row center"><button class="btn btn-ghost" data-act="fc-board">Mastery board →</button></div>'
-      + '<div class="tiny dim lh" style="padding:0 4px">Every drink in the ledger is drillable: all '+COCKTAILS.length+' cocktails, '+SHOTS.length+' shots, '+NA_DRINKS.length+' zero-proof drinks, '+((progress.bar||[]).length ? tapCount()+' beer, cider, sake and mead cards, and your '+progress.bar.length+' menu drink'+(progress.bar.length===1?'':'s') : 'and '+tapCount()+' beer, cider, sake and mead cards')+', '+allDrinks().length+' cards in total. Path to mastery: run <span class="brass2">Name \u2192 Spec</span> until clean, prove it in <span class="brass2">Assemble the Ticket</span>, then keep <span class="brass2">Trouble cards</span> + <span class="brass2">Weakest first</span> in rotation. Three honest wins with a winning record masters a card.</div>'
+      + '<div class="tiny dim lh" style="padding:0 4px">Every drink in the ledger is drillable: all '+COCKTAILS.length+' cocktails, '+SHOTS.length+' shots, '+NA_DRINKS.length+' zero-proof drinks, '+(menuCardCount() ? tapCount()+' beer, cider, sake and mead cards, and your '+menuCardCount()+' menu drink'+(menuCardCount()===1?'':'s') : 'and '+tapCount()+' beer, cider, sake and mead cards')+', '+allDrinks().filter(d => !d.draft).length+' cards in total. Path to mastery: run <span class="brass2">Name \u2192 Spec</span> until clean, prove it in <span class="brass2">Assemble the Ticket</span>, then keep <span class="brass2">Trouble cards</span> + <span class="brass2">Weakest first</span> in rotation. Three honest wins with a winning record masters a card.</div>'
       + '</div>';
   }
 
   /* -------- mastery board -------- */
   if(fc.stage==='board'){
-    const all = allDrinks();
+    /* the board is cards and their standing; a draft is neither yet */
+    const all = allDrinks().filter(function(d){ return !d.draft; });
     const shown = all.map(function(d,i){ return {d:d,i:i}; })
       .filter(function(o){ return fc.boardSrc==='All' || o.d.src===fc.boardSrc; })
       .sort(function(a,b){ return a.d.name.localeCompare(b.d.name); });
@@ -904,8 +936,11 @@ function buildRound(mode, pool){
   const qs = [];
   if(mode === 'mybar'){
     /* the whole round off the venue’s own list: up to three question shapes
-       per drink, sliced to ten. The setup chip guards the <4-drink case. */
-    shuffle((progress.bar||[]).slice()).forEach(b => {
+       per drink, sliced to ten. The setup chip guards the <4-drink case, and
+       counts the way this deals: a DRAFT (a name with no spec yet) is left
+       out, because "name this drink" over a ticket with no lines is not a
+       question anybody can get right. */
+    shuffle((progress.bar||[]).filter(b => !b.draft)).forEach(b => {
       qs.push(qMyBarTicket(b));
       if(b.glass && b.glass !== '-') qs.push(qMyBarGlass(b));
       if((b.spec||[]).length) qs.push(qMyBarSpecLine(b));
@@ -943,7 +978,7 @@ function buildRound(mode, pool){
   /* one question from the venue’s own list rides every mixed round, and so
      rides Tonight’s Session, whose quiz step deals a mixed round over the
      deck it just drilled */
-  const bar = (pool || allDrinks()).filter(d => d.src === 'My Bar');
+  const bar = (pool || allDrinks()).filter(d => d.src === 'My Bar' && !d.draft);
   if(bar.length) qs.push(qMyBarTicket(sample(bar,1)[0].ref));
   spreadKnowledge(10 - qs.length).forEach(q => qs.push(q));
   return shuffle(qs).slice(0,10);
@@ -951,7 +986,9 @@ function buildRound(mode, pool){
 function renderQuiz(){
   const z = state.quiz;
   if(z.stage==='setup'){
-    const barN = (progress.bar||[]).length;
+    /* drinks WITH a spec: a draft deals no question, so it cannot open the
+       round either, or four names would open a round of nothing */
+    const barN = menuCardCount();
     /* the mode can outlive the list that justified it: drinks deleted below
        the floor drop the round back to mixed rather than dealing a thin one */
     if(z.mode==='mybar' && barN < 4) z.mode = 'mixed';
@@ -963,7 +1000,7 @@ function renderQuiz(){
     const hist = (progress.quizzes||[]).slice(-5).reverse()
       .map(h => '<div class="hist-row"><span>'+esc(h.date)+(h.mode&&h.mode!=='mixed'?' · '+esc(modeLabel(h.mode)):'')+'</span><span class="font-tix brass2">'+h.score+'/'+(h.total||10)+'</span></div>').join('');
     const chips = QUIZ_MODES.map(([k,l]) => {
-      if(k==='mybar' && barN < 4) return '<button class="chip" disabled title="Add four drinks to your menu and this round opens">'+esc(l)+' <span class="font-tix">'+barN+'/4</span></button>';
+      if(k==='mybar' && barN < 4) return '<button class="chip" disabled title="Add four drinks with a spec to your menu and this round opens">'+esc(l)+' <span class="font-tix">'+barN+'/4</span></button>';
       return '<button class="chip'+(mode===k?' on':'')+'" aria-pressed="'+(mode===k?'true':'false')+'" data-act="quiz-mode" data-m="'+k+'">'+esc(l)+'</button>';
     }).join(' ');
     const blurb = (QUIZ_MODES.find(([k]) => k===mode) || QUIZ_MODES[0])[2];

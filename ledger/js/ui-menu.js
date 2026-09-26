@@ -28,31 +28,73 @@ function mintBarId(){
   return s;
 }
 
-/* One shape for a bar record, wherever it came from: the form, a backup from
-   this app, a backup from the standalone Bartender’s Ledger (whose empty
-   glass and garnish were a long dash), or a hand-edited file. Empty is '',
-   and ticketHTML draws the dash at display time; a record with no usable
-   name or spec is dropped and counted, so an import can say so instead of
-   throwing halfway through a merge. Runs on every import and at boot.
+/* ---- the record's shape, in one place ----------------------------------
+   A bar record is rebuilt field by field in exactly one function, so a field
+   that is not named here does not survive a save. That is the point and the
+   trap: `maitre` (her marks) and `draft` (no spec yet) are named below, and
+   every future field has to be, or the first edit after an import silently
+   drops it. The backup merge in ui-new.js has its own clause for each.
 
-   It moved here with the tab rather than staying behind, because it is the
-   gate every record passes through and it belongs beside saveBarRecord,
-   which now files through it. */
+   One shape wherever the record came from: the form, a backup from this app,
+   a backup from the standalone Bartender’s Ledger (whose empty glass and
+   garnish were a long dash), or a hand-edited file. Empty is '', and
+   ticketHTML draws the dash at display time. Runs on every import, at boot,
+   and (in this wing) under saveBarRecord, which files through it rather than
+   rebuilding the record beside it. */
 function barText(v){
   if(v === undefined || v === null) return '';
   const s = String(v).trim();
+  /* the older dash placeholder for an empty glass or garnish (a hyphen, an
+     en dash or an em dash), read as empty; the two dashes are escapes so no
+     literal em dash spends the suite's dash headroom */
   return /^(?:-|\u2013|\u2014)$/.test(s) ? '' : s;
 }
+
+/* Her marks on a record: { field: { value, by:'maitre'|'person', ts, model? } }
+   plus `kept`, the chat answers a person kept, [{ q, a, ts, model? }]. Only
+   the fields the plan names survive, so a stray key cannot ride in through a
+   hand-edited backup, and NO field about allergens exists to carry. Returns
+   null when nothing is left, so a record without marks has no `maitre` key. */
+var MAITRE_FIELDS = ['guest', 'say', 'why', 'pairs', 'origin', 'method', 'glass', 'garnish', 'ingredientsNamed'];
+function normalizeMaitre(m){
+  if(!m || typeof m !== 'object' || Array.isArray(m)) return null;
+  const out = {};
+  MAITRE_FIELDS.forEach(function(f){
+    const mark = m[f];
+    if(!mark || typeof mark !== 'object') return;
+    const value = Array.isArray(mark.value) ? mark.value.map(barText).filter(Boolean) : barText(mark.value);
+    if(!value || (Array.isArray(value) && !value.length)) return;
+    const clean = { value: value, by: mark.by === 'person' ? 'person' : 'maitre', ts: Number(mark.ts) || 0 };
+    if(mark.model) clean.model = barText(mark.model);
+    out[f] = clean;
+  });
+  if(Array.isArray(m.kept)){
+    const kept = m.kept.filter(function(k){ return k && typeof k === 'object' && barText(k.a); })
+      .map(function(k){ const c = { q: barText(k.q), a: barText(k.a), ts: Number(k.ts) || 0 }; if(k.model) c.model = barText(k.model); return c; });
+    if(kept.length) out.kept = kept;
+  }
+  return Object.keys(out).length ? out : null;
+}
+
+/* One record, read into the shape every engine expects. Null for a record
+   with no name, which is nothing at all. A record with a name and NO spec is
+   a DRAFT: the importer files one when the menu printed a name and nothing
+   else, and `draft:true` is what keeps it out of the stock report, the rail
+   and the spec quiz until a person gives it a line. */
 function normalizeBarRecord(b){
   if(!b || typeof b !== 'object' || Array.isArray(b)) return null;
   const name = barText(b.name);
   const raw = Array.isArray(b.spec) ? b.spec : (typeof b.spec === 'string' ? b.spec.split(/\r?\n/) : []);
   const spec = raw.map(barText).filter(Boolean);
-  if(!name || !spec.length) return null;
-  return { id: barText(b.id) || mintBarId(), name:name, spec:spec,
+  if(!name) return null;
+  const rec = { id: barText(b.id) || mintBarId(), name:name, spec:spec,
     method: barText(b.method), glass: barText(b.glass), garnish: barText(b.garnish), note: barText(b.note),
     family: barText(b.family) || 'Other', spirit: barText(b.spirit) || 'Other',
     price: barText(b.price), ts: Number(b.ts) || 0 };
+  if(!spec.length) rec.draft = true;
+  const maitre = normalizeMaitre(b.maitre);
+  if(maitre) rec.maitre = maitre;
+  return rec;
 }
 function normalizeBarRecords(list){
   const out = { bar:[], skipped:0 };
@@ -87,28 +129,55 @@ function barChanged(){
   SEARCH_INDEX = null;
 }
 
-/* One door for filing a record, so the form and, later, the importer both
-   arrive the same way. Returns the record, or a string explaining the refusal.
-   The caller decides what to do with the refusal, because the form shows it
-   inline and a bulk import counts it. */
-function saveBarRecord(f, editingId){
+/* One door for filing a record, so the form and the importer both arrive the
+   same way. Returns the record, or a string explaining the refusal. The
+   caller decides what to do with the refusal, because the form shows it
+   inline and a bulk import counts it.
+
+   opts.allowEmptySpec is the importer's licence and nobody else's. A menu
+   prints 'Negroni 13' and nothing else, and refusing that row meant the
+   importer refused half of every real cocktail list. Filed with no spec it
+   is a DRAFT, stamped draft:true, shown on the list as "needs a spec", and
+   skipped by every engine that would read a blank spec as a fact (the stock
+   report, the rail, the spec quiz). The form never passes the licence, so a
+   person typing a drink in still has to give it a line; and a draft that is
+   edited and given one stops being a draft, because the flag is derived from
+   the spec here rather than carried. */
+function saveBarRecord(f, editingId, opts){
+  opts = opts || {};
   const name = (f.name||'').trim();
   const spec = (f.spec||[]).map(x => (x||'').trim()).filter(Boolean);
   if(!name) return 'Give the drink a name.';
-  if(!spec.length) return 'A drink needs at least one line of spec.';
+  if(!spec.length && !opts.allowEmptySpec) return 'A drink needs at least one line of spec.';
   /* case-insensitive, because a menu that lists both 'Paloma' and 'paloma' is
      a typo rather than two drinks, and the SRS key would not tell them apart */
   const clash = (progress.bar||[]).find(x =>
     x.name.toLowerCase() === name.toLowerCase() && x.id !== editingId);
   if(clash) return 'Your list already has a ' + clash.name + '.';
-  /* through the normaliser rather than beside it: one function decides what
-     a bar record looks like, and the form is not a special case. */
-  const rec = normalizeBarRecord({ id: editingId || mintBarId(), name: name, spec: spec,
-    method: f.method, glass: f.glass, garnish: f.garnish, note: f.note,
-    family: f.family, spirit: f.spirit, price: f.price, ts: Date.now() });
-  if(!rec) return 'A drink needs a name and at least one line of spec.';
   progress.bar = progress.bar || [];
   const i = editingId ? progress.bar.findIndex(x => x.id === editingId) : -1;
+  const prev = i >= 0 ? progress.bar[i] : null;
+  /* Her marks ride with the record: from the form when the importer or the
+     lines pane put them there, else from the record being edited, because
+     the edit form carries no marks and an edit that dropped every kept line
+     would be a bug nobody could see until the next shift. The test is
+     whether the form CARRIES a block, not whether the block has anything
+     in it: Keep on her last mark hands over an empty block, and reading
+     that as "no block, keep the record's" would put the mark straight
+     back on the record it was just kept off. */
+  const maitre = f.maitre !== undefined ? normalizeMaitre(f.maitre) : (prev ? normalizeMaitre(prev.maitre) : null);
+  /* through the normaliser rather than beside it: one function decides what
+     a bar record looks like, and the form is not a special case. It is the
+     normaliser that stamps `draft` on an empty spec and reads `maitre` back
+     through normalizeMaitre (a second pass over a block already cleaned,
+     which changes nothing), so the form cannot file a shape the boot pass
+     would then rewrite. The wing keeps '' for an empty glass or garnish and
+     lets ticketHTML draw the dash at display time; the standalone writes the
+     dash into the record, and that is the one place the two disagree. */
+  const rec = normalizeBarRecord({ id: editingId || mintBarId(), name: name, spec: spec,
+    method: f.method, glass: f.glass, garnish: f.garnish, note: f.note,
+    family: f.family, spirit: f.spirit, price: f.price, ts: Date.now(), maitre: maitre });
+  if(!rec) return 'Give the drink a name.';
   /* An edit whose record has gone is not an add. Falling through to push()
      RESURRECTED a drink the bartender had already deleted, keeping its old
      id and losing the practice record the delete confirm promised to take
@@ -239,6 +308,8 @@ function menuBalanceWords(b){
    things earn a mark: it died tonight, or the bar never carried the bottle. */
 function menuStatus(b){
   if(!state.tools.shelf.length) return null;
+  /* a draft has no spec to match, and the list already says "needs a spec" */
+  if(b.draft) return null;
   const out = outFor(b);
   const miss = missingFor(b);
   if(!out.length && !miss.length) return null;
@@ -250,6 +321,100 @@ function menuStatus(b){
   if(out.length) bits.push('86: no ' + out.map(reqLabel).join(', ').toLowerCase());
   if(miss.length) bits.push((miss.length > 2 ? miss.length + ' short' : 'short: ' + miss.map(reqLabel).join(', ').toLowerCase()));
   return { cls: out.length ? 'brass' : '', text: bits.join(' · ') };
+}
+
+/* ---- what to tell the guest: her line, kept or not ----------------------
+   Shown on the Build pane whenever the record carries a guest line. Hers
+   until a person keeps it (Keep and Edit both set by:'person'); an unkept
+   line is marked so in words and reaches no drill, no rail and no deck. The
+   textarea exists only while Edit is open, one at a time, and its id is in
+   captureLiveInputs so a repaint cannot eat the edit. */
+function menuGuestHTML(b){
+  const m = b.maitre && b.maitre.guest;
+  if(!m) return '';
+  const kept = m.by === 'person';
+  /* one edit box at a time across every mark on the drink, so an open edit
+     on her glass must not open this textarea too */
+  const ed = state.menu.lines && state.menu.lines.id === b.id && (state.menu.lines.f || 'guest') === 'guest' ? state.menu.lines : null;
+  const chip = '<span class="chip tiny">' + (kept ? 'Kept' : 'Hers, not yet kept') + '</span>';
+  const body = ed
+    ? '<textarea class="input" id="mb-guest" rows="3" aria-label="What to tell the guest">' + esc(ed.text) + '</textarea>'
+    : '<div class="small lh">' + esc(m.value) + '</div>';
+  const chips = ed
+    ? '<button class="chip" data-act="lines-keep" data-id="'+esc(b.id)+'">Keep</button>'
+      + '<button class="chip" data-act="lines-cancel" data-id="'+esc(b.id)+'">Cancel</button>'
+    : (kept ? '' : '<button class="chip" data-act="lines-keep" data-id="'+esc(b.id)+'">Keep</button>')
+      + '<button class="chip" data-act="lines-edit" data-id="'+esc(b.id)+'">Edit</button>'
+      + '<button class="chip" data-act="lines-discard" data-id="'+esc(b.id)+'">Discard</button>';
+  return '<div class="panel p4 col-sm" style="gap:8px">'
+    + '<div class="row between" style="flex-wrap:wrap;gap:6px"><div class="eyebrow">What to tell the guest</div>' + chip + '</div>'
+    + body
+    + (kept ? '' : '<div class="tiny dim lh">Written by the Maître d’, not yet yours. Keep it as it stands, edit it into your own words, or discard it. Until you keep it, it is shown here and nowhere else.</div>')
+    + '<div class="row" style="gap:6px;flex-wrap:wrap">' + chips + '</div>'
+    + '</div>';
+}
+
+/* ---- her method, glass and garnish: a mark each, kept INTO the field ----
+   A menu prints none of the three, so the desk reads none; when she reads a
+   menu they arrive as marks beside the row (importAskMaitre) and reach the
+   record as rec.maitre.method, .glass and .garnish, never the plain fields.
+   This block is the one door by which they can. Keep writes the value into
+   the plain field through saveBarRecord, the door every record passes, and
+   drops the mark: the field is the decision now, and an export carries it
+   plain like anything typed. Edit does the same with the person's words.
+   Discard drops the mark. Until Keep, the ticket above shows the field
+   empty and the mark shows here and on no ticket, rail or card. The guest
+   line is not here because it has no plain field to be kept into: it stays
+   a mark, kept by its `by`. */
+var MAITRE_PLAIN_FIELDS = ['method', 'glass', 'garnish'];
+function menuFieldMarksHTML(b){
+  const m = b.maitre; if(!m) return '';
+  const fields = MAITRE_PLAIN_FIELDS.filter(function(f){ return m[f]; });
+  if(!fields.length) return '';
+  const ed = state.menu.lines && state.menu.lines.id === b.id ? state.menu.lines : null;
+  const rows = fields.map(function(f){
+    const mark = m[f];
+    const editing = !!(ed && ed.f === f);
+    const label = f.charAt(0).toUpperCase() + f.slice(1);
+    /* a word, not a colour: a foreign backup can carry one of these already
+       marked as a person's, which is theirs but still not on the drink */
+    const chip = '<span class="chip tiny">' + (mark.by === 'person' ? 'Yours, not yet on the drink' : 'Hers, not yet kept') + '</span>';
+    const body = editing
+      ? '<input class="input" id="mb-hers" aria-label="' + esc(label) + ', as she read it" value="' + esc(ed.text) + '">'
+      : '<div class="small lh">' + esc(String(mark.value)) + '</div>';
+    const chips = editing
+      ? '<button class="chip" data-act="lines-keep" data-id="'+esc(b.id)+'" data-f="'+f+'">Keep</button>'
+        + '<button class="chip" data-act="lines-cancel" data-id="'+esc(b.id)+'">Cancel</button>'
+      : '<button class="chip" data-act="lines-keep" data-id="'+esc(b.id)+'" data-f="'+f+'">Keep</button>'
+        + '<button class="chip" data-act="lines-edit" data-id="'+esc(b.id)+'" data-f="'+f+'">Edit</button>'
+        + '<button class="chip" data-act="lines-discard" data-id="'+esc(b.id)+'" data-f="'+f+'">Discard</button>';
+    return '<div class="col-sm" style="gap:6px">'
+      + '<div class="row between" style="flex-wrap:wrap;gap:6px"><div class="tiny dim">' + esc(label) + '</div>' + chip + '</div>'
+      + body
+      + '<div class="row" style="gap:6px;flex-wrap:wrap">' + chips + '</div></div>';
+  }).join('');
+  return '<div class="panel p4 col-sm" style="gap:10px">'
+    + '<div class="eyebrow">Her method, glass and garnish</div>'
+    + rows
+    + '<div class="tiny dim lh">Read by the Maître d’, not printed on the menu. Keep one and it becomes the drink’s own field; until then it is shown here and on no ticket, rail or card.</div>'
+    + '</div>';
+}
+
+/* Keep for one of the three: the value into the field through saveBarRecord
+   and the mark off the block, in one save. A draft keeps the importer's
+   licence here, because Keep changes no spec: the draft was filed under it
+   and stays a draft, and refusing to keep her glass on a draft until
+   somebody typed a spec would be a door that only says no. Returns the
+   record, or the refusal sentence, the way saveBarRecord does. */
+function keepMaitreField(b, f, text){
+  if(!b || MAITRE_PLAIN_FIELDS.indexOf(f) < 0 || !b.maitre || !b.maitre[f]) return 'Nothing of hers is on that field.';
+  const value = barText(text);
+  if(!value) return 'Nothing to keep: the line is empty. Discard it instead.';
+  const block = Object.assign({}, b.maitre); delete block[f];
+  const form = { name:b.name, spec:(b.spec||[]).slice(), method:barText(b.method), glass:barText(b.glass), garnish:barText(b.garnish),
+    note:barText(b.note), family:b.family||'Other', spirit:b.spirit||'Other', price:barText(b.price), maitre:block };
+  form[f] = value;
+  return saveBarRecord(form, b.id, { allowEmptySpec: !!b.draft });
 }
 
 /* ---- the four panes inside an open drink ------------------------------- */
@@ -356,7 +521,12 @@ function menuPaneHTML(b, pane){
       + 'Set them once and every drink on the menu is costed against the same numbers.</div>'
       + '</div>';
   }
-  return ticketHTML(b);
+  return (b.draft
+      ? '<div class="small lh" style="padding:0 4px 8px">Needs a spec. The menu printed a name and nothing else, so this is a draft: '
+        + 'it is on your list to remember, and out of the stock report, the rail and the spec quiz until you give it a line. '
+        + 'Edit the drink and put the ingredients in, measures if you know them.</div>'
+      : '')
+    + ticketHTML(b) + menuGuestHTML(b) + menuFieldMarksHTML(b);
 }
 
 /* ---- sub-view 1: the menu ---------------------------------------------- */
@@ -369,10 +539,14 @@ function menuListHTML(){
       + '<button class="btn btn-brass" data-act="menu-view" data-v="add">Add the first drink</button></div>';
   }
   const stocked = state.tools.shelf.length;
-  const pourable = stocked ? bar.filter(b => !missingFor(b, liveShelf()).length).length : 0;
+  /* drafts are not pourable: they have no spec to match, and missingFor
+     fails closed on them rather than reading a blank spec as "needs nothing" */
+  const pourable = stocked ? bar.filter(b => !b.draft && !missingFor(b, liveShelf()).length).length : 0;
+  const drafts = bar.filter(b => b.draft).length;
   const out86 = (progress.eightySix || []).length;
   const standing = '<div class="row between" style="padding:0 4px;flex-wrap:wrap;gap:6px">'
-    + '<span class="eyebrow">'+bar.length+' drink'+(bar.length===1?'':'s')+' on the list</span>'
+    + '<span class="eyebrow">'+bar.length+' drink'+(bar.length===1?'':'s')+' on the list'
+    + (drafts ? ' · '+drafts+' need'+(drafts===1?'s':'')+' a spec' : '')+'</span>'
     + (stocked
         ? '<span class="tiny dim">'+pourable+' pourable right now'
           + (out86 ? ' · '+out86+' ingredient'+(out86===1?'':'s')+' 86’d' : '')+'</span>'
@@ -385,7 +559,8 @@ function menuListHTML(){
       + '<span class="bold">'+esc(b.name)+'</span>'
       + '<span class="tiny dim"> · '+esc(b.family||'')+(b.spirit && b.spirit!=='Other' ? ' · '+esc(b.spirit) : '')
       + (b.price ? ' · '+esc(b.price) : '')+'</span>'
-      + (st ? '<span class="chip '+st.cls+' tiny push">'+esc(st.text)+'</span>' : '')
+      + (b.draft ? '<span class="chip tiny push">needs a spec</span>' : '')
+      + (st ? '<span class="chip '+st.cls+' tiny'+(b.draft?'':' push')+'">'+esc(st.text)+'</span>' : '')
       + '</button>';
     if(!open) return '<div class="panel p4 col" style="gap:0">'+head+'</div>';
     const pane = state.menu.pane || 'build';
@@ -448,7 +623,10 @@ function menuStockHTML(){
   const srcChips = sources.map(function(s){
     return '<button class="chip'+(src===s?' on':'')+'" aria-pressed="'+(src===s?'true':'false')+'" data-act="stock-src" data-s="'+esc(s)+'">'+esc(srcLabel(s))+'</button>';
   }).join(' ');
-  const pool = allDrinks().filter(function(d){ return d.src===src; });
+  /* and never a draft: a record with no spec requires nothing, so it would
+     report as ready off an empty shelf, the same false YES On Tap is kept
+     out of this list for */
+  const pool = allDrinks().filter(function(d){ return d.src===src && !d.draft; });
   const live = liveShelf();
   let ready=[], close=[], dead86=[];
   if(t.shelf.length){
@@ -561,7 +739,8 @@ function renderMenu(){
       + 'every row shows the line it came from, nothing is saved until you say so, and no measure, method or '
       + 'glass is ever invented to fill a blank the menu left empty.</div>'
       + '<div class="tiny dim lh" style="max-width:560px">It lives in this browser and rides the Tools '
-      + '\u2192 My Data backup, like everything else you have earned. Nothing leaves the device.</div>'
+      + '\u2192 My Data backup, like everything else you have earned. Nothing leaves the device unless you '
+      + 'ask the Ma\u00eetre d\u2019 to read a menu, on your own key, and then only that menu goes to Anthropic.</div>'
       + '</div>'
       + renderImport()
       + (drilling
@@ -574,5 +753,8 @@ function renderMenu(){
           : '');
   }
   else inner = menuListHTML();
-  return '<div class="col"><nav class="tabs" style="margin-bottom:4px">'+nav+'</nav>'+inner+'</div>';
+  /* the desk's share, above every sub-view: what another room read and left
+     for this bar is the first thing to know on opening the Menu tab */
+  const waiting = (typeof deskWaitingHTML === 'function') ? deskWaitingHTML('menu') : '';
+  return '<div class="col"><nav class="tabs" style="margin-bottom:4px">'+nav+'</nav>'+waiting+inner+'</div>';
 }
