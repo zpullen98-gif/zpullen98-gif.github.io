@@ -1,6 +1,6 @@
 /* The Sommelier's Codex: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-codex-v104';
+const CACHE = 'oot-codex-v107';
 
 /* The world maps (maps/*.jpg) are deliberately NOT in ASSETS above.
 
@@ -32,6 +32,10 @@ const ASSETS = [
   './index.html',
   '../manifest.webmanifest',
   './css/codex.css',
+  './css/house.css',
+  './css/house-surfaces.css',
+  './css/house-study.css',
+  './assets/codex-library-v1.webp',
   './js/data-questions.js',
   './js/reference.js',
   './js/core.js',
@@ -74,6 +78,7 @@ const ASSETS = [
   './js/data-firstpath.js',
   './js/codex24.js',
   './js/codex25.js',
+  './js/codex26.js',
   './js/boot.js',
   './fonts/cinzel-normal-400-900-latin.woff2',
   './fonts/cinzel-normal-400-900-latin-ext.woff2',

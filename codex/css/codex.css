@@ -609,6 +609,97 @@ input[type=date].sainput{font-family:'EB Garamond',Georgia,serif;color:var(--ink
 @media(max-width:560px){.rdyrow{flex-direction:column;gap:0}.rdyname{min-width:0}}
 
 
+/* ------- Codex XXV: the salon home, in the house palette -------
+   A restrained ink-and-brass frame gives the landing page the same sense of
+   ceremony as the hub without adding imagery or changing any destinations. */
+.wrap .appnav{
+  gap:8px;
+  margin-top:16px;
+  padding-top:14px;
+  border-top:3px double rgba(201,162,39,.3)
+}
+.wrap .appnav .navword{
+  background:linear-gradient(180deg,rgba(201,162,39,.075),rgba(201,162,39,.015));
+  border-color:rgba(201,162,39,.28);
+  letter-spacing:1.6px;
+  transition:background .18s ease,border-color .18s ease,color .18s ease
+}
+.wrap .appnav .navword:hover{
+  background:linear-gradient(180deg,rgba(201,162,39,.16),rgba(201,162,39,.045));
+  border-color:var(--gold)
+}
+.wrap .appnav .navword[aria-current="page"]{
+  background:linear-gradient(180deg,rgba(201,162,39,.18),rgba(201,162,39,.055));
+  border-color:var(--gold);
+  box-shadow:inset 0 -3px 0 var(--gold),inset 0 0 18px rgba(201,162,39,.06)
+}
+.wrap .levels{
+  gap:14px;
+  margin-top:20px
+}
+.wrap .levels .level{
+  min-height:112px;
+  padding:19px 18px 17px;
+  background:linear-gradient(150deg,#f0e5cb 0%,#dfd0ad 100%);
+  border-color:rgba(201,162,39,.66);
+  box-shadow:inset 0 0 0 3px var(--bg2),inset 0 0 0 4px rgba(201,162,39,.34),0 8px 22px rgba(0,0,0,.22);
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease
+}
+.wrap .levels .level:hover{
+  transform:translateY(-2px);
+  border-color:var(--gold);
+  box-shadow:inset 0 0 0 3px var(--bg2),inset 0 0 0 4px rgba(201,162,39,.52),0 12px 25px rgba(0,0,0,.3)
+}
+.wrap .levels .level.on{
+  border:2px solid var(--gold);
+  box-shadow:inset 0 0 0 3px var(--bg2),inset 0 0 0 4px rgba(201,162,39,.7),0 0 0 1px rgba(201,162,39,.26),0 9px 23px rgba(0,0,0,.25)
+}
+.wrap .levels .level.on .lv-here{
+  color:#72521b;
+  border-top-color:rgba(114,82,27,.48)
+}
+.wrap .levels .level:focus-visible{outline-color:var(--gold-hi)}
+.wrap .levels .level.on:hover{
+  box-shadow:inset 0 0 0 3px var(--bg2),inset 0 0 0 4px rgba(201,162,39,.8),0 0 0 1px rgba(201,162,39,.38),0 12px 25px rgba(0,0,0,.3)
+}
+.wrap .quiet{
+  gap:12px;
+  margin-top:25px;
+  padding-top:19px;
+  border-top:3px double rgba(201,162,39,.3)
+}
+.wrap .quiet .door{
+  position:relative;
+  padding:15px 17px;
+  background:linear-gradient(145deg,rgba(201,162,39,.07),rgba(0,0,0,.08));
+  border-color:rgba(201,162,39,.28);
+  box-shadow:inset 0 0 0 3px rgba(19,7,9,.55),inset 0 0 0 4px rgba(201,162,39,.12);
+  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease
+}
+.wrap .quiet .door:hover{
+  transform:translateY(-1px);
+  background:linear-gradient(145deg,rgba(201,162,39,.14),rgba(0,0,0,.08));
+  border-color:var(--gold);
+  box-shadow:inset 0 0 0 3px rgba(19,7,9,.55),inset 0 0 0 4px rgba(201,162,39,.28),0 8px 19px rgba(0,0,0,.2)
+}
+.wrap .quiet .door-name{
+  color:var(--gold-soft);
+  letter-spacing:1.4px
+}
+.wrap .quiet .door-line{line-height:1.4;opacity:.82}
+@media(max-width:599px){
+  .wrap .appnav{gap:5px;padding-top:11px}
+  .wrap .appnav .navword{letter-spacing:.7px}
+  .wrap .levels{gap:10px;margin-top:15px}
+  .wrap .levels .level{min-height:100px;padding:16px 14px 14px}
+  .wrap .quiet{gap:9px;margin-top:19px;padding-top:15px}
+  .wrap .quiet .door{padding:13px 14px}
+}
+@media(prefers-reduced-motion:reduce){
+  .wrap .appnav .navword,.wrap .levels .level,.wrap .quiet .door{transition:none}
+  .wrap .levels .level:hover,.wrap .quiet .door:hover{transform:none}
+}
+
 /* ------- Codex XXIV: the Menu Desk, the Maître d' ------- */
 /* A live region the screen reader hears and nobody sees. Positioned off the
    canvas rather than display:none, which would silence it. */
