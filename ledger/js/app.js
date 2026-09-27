@@ -41,6 +41,10 @@ function render(){
     flashcards:renderFlashcards, quiz:renderQuiz, riffs:renderRiffs,
     practice:renderPractice, tools:renderTools, notes:renderNotes, level:renderLevel, mine:renderMine};
   if(!views[state.tab]) state.tab = 'home';
+  /* One visual vocabulary, with a compact masthead inside the library.
+     Presentation only: routing and stored study records stay untouched. */
+  document.body.dataset.ledgerPage = state.tab;
+  view.dataset.tab = state.tab;
   /* the Library's shelf, or the one way back from a level's or Mine's tab:
      what the sub-row did before the four levels */
   view.innerHTML = clusterChromeHTML() + views[state.tab]();

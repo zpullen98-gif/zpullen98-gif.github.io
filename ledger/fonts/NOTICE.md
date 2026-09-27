@@ -1,6 +1,6 @@
 # Bundled fonts
 
-All three families are licensed under the **SIL Open Font License, Version 1.1**, which permits
+All bundled families are licensed under the **SIL Open Font License, Version 1.1**, which permits
 bundling and redistribution with this project. Full licence text:
 https://openfontlicense.org/open-font-license-official-text/
 
@@ -14,3 +14,11 @@ Files are the Latin subsets as served by Google Fonts. No modifications were mad
 
 Under the OFL these fonts may be used, studied, modified and redistributed freely, but must not be
 sold on their own, and any derivative font may not use the Reserved Font Names.
+
+
+House typography (27 September 2026): Cinzel and EB Garamond, copied from the existing Outside Of Time bundled font set. Distributed under the SIL Open Font License in house-OFL.txt. These are self-hosted and precached.
+
+- Cinzel: Copyright 2020 The Cinzel Project Authors (https://github.com/NDISCOVER/Cinzel).
+- EB Garamond: Copyright 2017 The EB Garamond Project Authors (https://github.com/octaviopardo/EBGaramond12).
+
+Copyright statements above are copied from the bundled files' name tables. Font data is unmodified.

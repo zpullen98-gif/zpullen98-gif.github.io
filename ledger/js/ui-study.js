@@ -465,7 +465,7 @@ function renderFlashcards(){
       + '<button class="chip'+(fc.smart?' on':'')+'" aria-pressed="'+(fc.smart?'true':'false')+'" data-act="fc-smart" title="Orders the deck so your weakest and unseen cards come first">'+(fc.smart?'✓ ':'')+'Weakest first</button></div>'
       + '<div class="tiny dim">'+pool.length+' cards in this deck · '+masteredIn+' already mastered'+(pool.length? '' : ': loosen a filter to deal')+'</div>'
       + '<div class="eyebrow" style="margin-top:4px">Choose your drill</div>'
-      + '<div class="col-sm">'+modeBtns+'</div>'
+      + '<div class="col-sm study-modes">'+modeBtns+'</div>'
       + '</div>'
       + '<div class="row center"><button class="btn btn-ghost" data-act="fc-board">Mastery board →</button></div>'
       + '<div class="tiny dim lh" style="padding:0 4px">Every drink in the ledger is drillable: all '+COCKTAILS.length+' cocktails, '+SHOTS.length+' shots, '+NA_DRINKS.length+' zero-proof drinks, '+(menuCardCount() ? tapCount()+' beer, cider, sake and mead cards, and your '+menuCardCount()+' menu drink'+(menuCardCount()===1?'':'s') : 'and '+tapCount()+' beer, cider, sake and mead cards')+', '+allDrinks().filter(d => !d.draft).length+' cards in total. Path to mastery: run <span class="brass2">Name \u2192 Spec</span> until clean, prove it in <span class="brass2">Assemble the Ticket</span>, then keep <span class="brass2">Trouble cards</span> + <span class="brass2">Weakest first</span> in rotation. Three honest wins with a winning record masters a card.</div>'
@@ -533,7 +533,7 @@ function renderFlashcards(){
 
   /* -------- running -------- */
   const c = fc.deck[fc.idx];
-  const head = '<div class="row between tiny dim"><span>Card '+(fc.idx+1)+' of '+fc.deck.length+'</span>'
+  const head = '<div class="row between tiny dim study-toolbar"><span>Card '+(fc.idx+1)+' of '+fc.deck.length+'</span>'
     + '<span>✓ '+fc.right+' &nbsp; ✗ '+fc.wrong+'</span>'
     + '<button class="chip" data-act="fc-quit">Quit deck</button></div>';
 
@@ -553,7 +553,7 @@ function renderFlashcards(){
         ? '<div class="eyebrow">'+ask+'</div><div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div><div class="small dim">'
           + cue+'</div>'
         : '<div class="eyebrow">'+(isFact ? 'Read the card. Name it.' : 'Read the ticket. Call the drink.')+'</div>'+cardTicket(c,true);
-      return '<div class="col">'+head+'<div class="panel p5 col tc" style="align-items:center">'+face
+      return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'+face
         + '<button class="btn btn-brass" data-act="fc-flip">Flip the card</button></div></div>';
     }
     const back = fc.mode==='name2spec'
@@ -561,7 +561,7 @@ function renderFlashcards(){
       : '<div class="font-display tc" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div>';
     const foot = (c.src==='Cocktails' && typeof loreFootnote==='function' && loreFootnote(c))
       ? '<div class="tiny dim italic tc lh" style="max-width:400px">❦ '+esc(loreFootnote(c))+'</div>' : '';
-    return '<div class="col">'+head+'<div class="panel p5 col" style="align-items:center">'+back+foot+videoRowHTML(c)
+    return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+back+foot+videoRowHTML(c)
       + '<div class="row center"><button class="btn btn-brass" data-act="fc-grade" data-ok="1">Nailed it</button>'
       + '<button class="btn btn-ox" data-act="fc-grade" data-ok="0">Missed it</button></div></div></div>';
   }
