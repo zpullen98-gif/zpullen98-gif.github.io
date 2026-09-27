@@ -295,7 +295,7 @@ function hallListPage() {
   /* The traditions in the chamber's own order, never ranked, each drawn
      only once its whole course has landed. */
   var courses = (typeof FL_TRADITIONS === 'undefined' ? [] : FL_TRADITIONS).filter(function (T) {
-    return courseReady(T.id);
+    return courseReady(T.id) || readCoursePreview(T.id);   // a course in preview shows only with ?preview=teachings
   }).map(function (T) {
     var id = 'course-' + T.id;
     return '<div class="canon"><p class="pt"><a class="hallname" href="#/hall/' + id + '">' + esc(T.name) + '</a></p>' +
@@ -397,7 +397,7 @@ FL_VIEWS.hall = {
     var tr = hallCourseOf(arg);
     if (hallHeld && hallHeld.id !== arg) hallHeld = null;
     if (hallOpenKey && hallOpenKey.split('|')[0] !== arg) hallOpenKey = null;
-    if (tr && courseReady(tr) && hallTradition(tr)) return hallCoursePage(tr);
+    if (tr && (courseReady(tr) || readCoursePreview(tr)) && hallTradition(tr)) return hallCoursePage(tr);
     if (arg && !tr && hallById(arg)) return hallPlanPage(arg);
     hallHeld = null;
     return hallListPage();
@@ -407,7 +407,7 @@ FL_VIEWS.hall = {
     var tr = hallCourseOf(arg);
     if (tr) {
       var ch = document.getElementById('hall-course');
-      if (!ch || !ch.classList.contains('hide') || !courseReady(tr)) return;
+      if (!ch || !ch.classList.contains('hide') || !(courseReady(tr) || readCoursePreview(tr))) return;
       var cd = +ch.getAttribute('data-day');
       readCourseLoad(tr).then(function () {
         var t = readCourseFor(tr, cd);
