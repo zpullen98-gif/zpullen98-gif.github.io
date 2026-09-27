@@ -10,7 +10,7 @@
 
    The first week (the induction checklist and its click handler, with
    js/data-firstpath.js) went with the four levels on 26 September 2026: the
-   home is the four levels and four doors and nothing else, and Level I is
+   home is the four levels and four doors and nothing else, and Barback is
    the first week now. progress.path stays in the backup as data, with its
    merge clause, so a restore from before keeps what it held.
 

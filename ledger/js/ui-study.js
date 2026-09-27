@@ -86,7 +86,7 @@ function renderLibrary(){
   const levelSel = '<select class="input" id="lib-level" aria-label="Filter by level" style="max-width:240px;flex:1">'
     + ['All'].concat(LEVELS.map(function(l){ return String(l.n); })).map(function(v){
       const l = v === 'All' ? null : levelInfo(Number(v));
-      return '<option value="'+v+'"'+(lvCur===v?' selected':'')+'>'+(l ? 'Level '+l.num+', '+esc(l.name) : 'Every level')+'</option>';
+      return '<option value="'+v+'"'+(lvCur===v?' selected':'')+'>'+(l ? esc(l.name) : 'Every level')+'</option>';
     }).join('') + '</select>';
   return '<div class="col">'
     + '<input class="input" id="lib-search" aria-label="Search the library" placeholder="Search by name, spirit, or ingredient…" value="'+esc(state.lib.q)+'">'
@@ -434,7 +434,7 @@ function renderFlashcards(){
     return '<div class="col">'
       + '<div class="panel p5 col" style="gap:14px">'
       + '<div class="eyebrow">Build your deck</div>'
-      + (fc.level ? '<div class="row" style="gap:8px;align-items:center"><span class="small">Dealing from Level '+roman(fc.level)+(fc.sub ? ', '+esc(levelSubTitle(fc.sub)) : '')+'.</span>'
+      + (fc.level ? '<div class="row" style="gap:8px;align-items:center"><span class="small">Dealing from '+esc(levelInfo(fc.level).name)+(fc.sub ? ', '+esc(levelSubTitle(fc.sub)) : '')+'.</span>'
         + '<button class="chip" data-act="fc-level-clear">Every card</button></div>' : '')
       + '<div class="row">'+srcChips+'</div>'
       + (tierSel ? '<div class="row">'+tierSel+'</div>' : '')

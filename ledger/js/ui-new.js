@@ -575,7 +575,7 @@ function sessionDeckParts(){
   for(let t = 1; t <= 12 && !pool.length; t++) pool = atLevel.filter(d => d.src === 'Cocktails' && d.tier === t);
   if(!pool.length) pool = atLevel.filter(d => d.src === 'Shots' || d.src === 'Zero Proof' || d.src === 'Coffee');
   /* the wall's cards at the level, and whether they are all it has left:
-     then every seat is the wall's, so the door's "Level N" stays true */
+     then every seat is the wall's, so the level the door names stays true */
   const tapAll = fresh.filter(d => d.src === 'On Tap');
   const tapLevel = lv ? tapAll.filter(d => levelOf(cardKey(d)) === lv) : [];
   const tapOnly = !pool.length && tapLevel.length > 0;

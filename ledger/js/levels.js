@@ -1,9 +1,14 @@
 /* ---------------- THE FOUR LEVELS ----------------
    The Ledger's ladder, shared in shape with the World Table and the Codex by
-   the owner's decision of 26 September 2026: four levels (I Barback, II
-   Bartender, III Head Bartender, IV Bar Manager), each the same eight
-   subsections at that level's difficulty, training from there. Nothing is
-   locked: a level guides, it never bars.
+   the owner's decision of 26 September 2026: four levels (Barback,
+   Bartender, Head Bartender, Bar Manager), each the same eight subsections
+   at that level's difficulty, training from there. Nothing is locked: a
+   level guides, it never bars.
+
+   A level is shown and spoken by its name and never by a numeral (the
+   owner, 27 September 2026: anyone who works a bar knows the ladder by
+   those names). `n`, 1 to 4, is the key in data, routes and storage, and
+   nothing on screen prints it.
 
    What each level holds is js/data-levels.js (LEVEL_ITEMS), machine written
    from tools/levels/placements.json, where every item carries the reason it
@@ -29,13 +34,13 @@
    reads LEVEL_TEST_SHAPE out of this file in a bare sandbox. */
 
 const LEVELS = [
-  { n:1, num:'I', name:'Barback', slug:'barback',
+  { n:1, name:'Barback', slug:'barback',
     blurb:'The well, the glass and the station: the Core Dozen and the Classics Canon by heart, the families they belong to, the pour, the prep list, and the legal floor under all of it.' },
-  { n:2, num:'II', name:'Bartender', slug:'bartender',
+  { n:2, name:'Bartender', slug:'bartender',
     blurb:'A full shift behind the stick: the extended canon and the house calls, the shots and the zero-proof list, the draught system, wine by the glass and the register, and drills timed to service.' },
-  { n:3, num:'III', name:'Head Bartender', slug:'head-bartender',
+  { n:3, name:'Head Bartender', slug:'head-bartender',
     blurb:'The bar at speed and in depth: the themed books of the canon, the styles and faults on the wall, sake and the producers behind the bottles, conflict and safety on the floor, and the standards a trail is judged by.' },
-  { n:4, num:'IV', name:'Bar Manager', slug:'bar-manager',
+  { n:4, name:'Bar Manager', slug:'bar-manager',
     blurb:'The whole house: the obscure and the frozen, cellar and condition, the money and the law in full, coffee and tea done properly, and the judgement that tells a good pour from a lucky one.' },
 ];
 
@@ -74,7 +79,6 @@ const LEVEL_TEST_SHAPE = [
 const LEVEL_UNTOUCHED = 'Untouched';
 const LEVEL_MET = 'Met';
 
-function roman(n){ return ['', 'I', 'II', 'III', 'IV'][n] || String(n); }
 function levelInfo(n){ return LEVELS.find(function(l){ return l.n === n; }) || LEVELS[0]; }
 function levelSubTitle(key){ const s = LEVEL_SUBS.find(function(x){ return x.key === key; }); return s ? s.title : key; }
 
@@ -187,7 +191,8 @@ function levelProgress(n){
   const all = counted.length > 0 && counted.every(function(s){ return s.met >= s.total; });
   return { n:n, subs:subs, met:met, total:total, share:share, label: all ? LEVEL_MET : progressWord(met, total, share) };
 }
-/* The lowest level not yet met. Never null: IV once every level is. */
+/* The lowest level not yet met. Never null: 4, the Bar Manager, once every
+   level is. */
 function firstUnmetLevel(){
   for(let n = 1; n <= 4; n++) if(levelProgress(n).label !== LEVEL_MET) return n;
   return 4;
@@ -360,7 +365,7 @@ function levelRoundFromMode(mode){
 }
 function levelModeLabel(mode){
   const m = String(mode || '').match(/^level-(\d)-(\w+)$/);
-  return m ? 'Level ' + roman(Number(m[1])) + ' · ' + levelSubTitle(m[2]) : null;
+  return m ? levelInfo(Number(m[1])).name + ' · ' + levelSubTitle(m[2]) : null;
 }
 
 /* ---- the level test ----

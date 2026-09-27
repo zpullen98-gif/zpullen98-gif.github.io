@@ -20,9 +20,8 @@ function homeLevelsHTML(){
   return '<section class="levels" aria-label="Levels">' + LEVELS.map(function(l){
     const on = l.n === cur;
     return '<button class="level'+(on?' on':'')+'" data-act="level-open" data-n="'+l.n+'" data-level="'+l.n+'"'+(on?' aria-current="step"':'')+'>'
-      /* no numeral on the card (the owner, 26 Sep 2026); the words stay for a
-         screen reader, since the Today door and the level page say "Level I" */
-      + '<span class="sr-only">Level '+l.num+'</span>'
+      /* the name is the whole label, on sight and to a screen reader: a level
+         carries no numeral anywhere (the owner, 26 and 27 Sep 2026) */
       + '<span class="lv-name">'+esc(l.name)+'</span>'
       + '<span class="lv-stat">'+esc(levelProgress(l.n).label)+'</span>'
       + (on ? '<span class="lv-here">Your level</span>' : '')
@@ -37,8 +36,8 @@ function todayDoor(){
   /* what tonight's hand actually deals: the menu leads while it holds a
      card never seen, and a night of reviews deals from no level at all */
   const deals = !parts.newDeck.length ? 'Reviews only tonight.'
-    : parts.newDeck.some(function(d){ return d.src === 'My Bar'; }) ? 'Today deals from your menu, then Level ' + roman(lv) + '.'
-    : 'Today deals from Level ' + roman(lv) + '.';
+    : parts.newDeck.some(function(d){ return d.src === 'My Bar'; }) ? 'Today deals from your menu, then ' + levelInfo(lv).name + '.'
+    : 'Today deals from ' + levelInfo(lv).name + '.';
   const drill = tonightDrill();
   if(state.sess && state.sess.active && !sessionDoneToday()){
     const where = state.sess.step==='cards' ? 'the cards' : state.sess.step==='quiz' ? 'the quiz round' : drill.name;
@@ -149,7 +148,7 @@ function renderLevel(){
   const p = levelProgress(n);
   const here = firstUnmetLevel() === n;
   const switcher = '<nav class="lv-switch" aria-label="The four levels">' + LEVELS.map(function(l){
-    return '<button class="chip'+(l.n===n?' on':'')+'" data-act="level-open" data-n="'+l.n+'"'+(l.n===n?' aria-current="page"':'')+' aria-label="Level '+l.num+', '+esc(l.name)+'">'+l.num+'</button>';
+    return '<button class="chip'+(l.n===n?' on':'')+'" data-act="level-open" data-n="'+l.n+'"'+(l.n===n?' aria-current="page"':'')+'>'+esc(l.name)+'</button>';
   }).join('') + '</nav>';
   const subs = p.subs.map(function(s){
     const note = s.sub === 'cocktails' ? familyNoteFor(n) : '';
@@ -162,12 +161,12 @@ function renderLevel(){
   }).join('');
   return '<div class="col level-page">'
     + switcher
-    + '<h2 class="lv-title"><span class="lv-num">'+info.num+'</span> '+esc(info.name)+'</h2>'
+    + '<h2 class="lv-title">'+esc(info.name)+'</h2>'
     + '<p class="lv-blurb">'+esc(info.blurb)+'</p>'
     + '<p class="lv-statline">'+esc(p.label)+(here ? ' · <span class="lv-here">Your level</span>' : '')+'</p>'
     + '<ol class="subsections">'+subs+'</ol>'
-    + '<button class="btn btn-brass leveltest" data-act="lt-start" data-n="'+n+'">The Level '+info.num+' test</button>'
-    + '<p class="tiny dim lh tc">Seventeen questions across the eight subsections of Level '+info.num+'. No clock. It ends on what got away, with the right answers.</p>'
+    + '<button class="btn btn-brass leveltest" data-act="lt-start" data-n="'+n+'">The '+esc(info.name)+' test</button>'
+    + '<p class="tiny dim lh tc">Seventeen questions across the eight subsections of '+esc(info.name)+'. No clock. It ends on what got away, with the right answers.</p>'
     + '</div>';
 }
 
@@ -181,11 +180,11 @@ function ltQuestionBodyHTML(q){
 function renderLevelTest(){
   const t = state.lt;
   const info = levelInfo(t.n);
-  const head = '<h2 class="lv-title">The Level '+info.num+' test</h2>';
+  const head = '<h2 class="lv-title">The '+esc(info.name)+' test</h2>';
   if(t.none){
     return '<div class="col level-page">'+head
       + '<div class="panel p5 small dim lh">This level cannot deal its test yet.</div>'
-      + '<div class="row center"><button class="btn btn-ghost" data-act="lt-close">Back to Level '+info.num+'</button></div></div>';
+      + '<div class="row center"><button class="btn btn-ghost" data-act="lt-close">Back to '+esc(info.name)+'</button></div></div>';
   }
   if(t.done){
     const rows = t.misses.map(function(m){
@@ -202,7 +201,7 @@ function renderLevelTest(){
       + (t.misses.length
         ? '<div class="panel p5 col"><div class="eyebrow">What got away, with the right answers.</div><ul class="lt-misses">'+rows+'</ul></div>'
         : '<div class="panel p5 tc"><div class="font-display brass2" style="font-size:1.3rem">Nothing got away.</div></div>')
-      + '<div class="row center"><button class="btn btn-brass" data-act="lt-close">Back to Level '+info.num+'</button>'
+      + '<div class="row center"><button class="btn btn-brass" data-act="lt-close">Back to '+esc(info.name)+'</button>'
       + '<button class="btn btn-ghost" data-act="lt-start" data-n="'+t.n+'">Take it again</button></div></div>';
   }
   const q = t.qs[t.idx];
@@ -230,7 +229,7 @@ function levelTestsHTML(){
   const rows = LEVELS.filter(function(l){ return (L[l.n] || []).length; }).map(function(l){
     const arr = L[l.n], last = arr[arr.length - 1];
     const when = new Date(last.ts).toLocaleDateString(undefined, { day:'numeric', month:'short' });
-    return '<div class="hist-row"><span>Level '+l.num+' · '+esc(l.name)+'</span><span class="tiny dim">'+times(arr.length)+' · last '+esc(when)+'</span></div>';
+    return '<div class="hist-row"><span>'+esc(l.name)+'</span><span class="tiny dim">'+times(arr.length)+' · last '+esc(when)+'</span></div>';
   }).join('');
   return '<div class="panel p5"><div class="eyebrow mb2">The level tests</div>'
     + (rows || '<div class="small dim lh">None sat yet. Every level page ends on its test.</div>') + '</div>';
@@ -334,7 +333,7 @@ function clusterChromeHTML(){
   }
   if(cl === 'levels' && state.tab !== 'level'){
     const n = state.level.n || firstUnmetLevel();
-    return '<div class="crumb"><button class="chip" data-act="level-open" data-n="'+n+'">Back to Level '+roman(n)+'</button></div>';
+    return '<div class="crumb"><button class="chip" data-act="level-open" data-n="'+n+'">Back to '+esc(levelInfo(n).name)+'</button></div>';
   }
   if(cl === 'mine' && state.tab !== 'mine'){
     return '<div class="crumb"><button class="chip" data-act="go" data-tab="mine">Back to Mine</button></div>';

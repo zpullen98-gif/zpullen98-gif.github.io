@@ -11,8 +11,8 @@
    WHAT THE HOME IS, EXACTLY. `#view` holds two things and nothing else:
 
      <section class="levels" aria-label="Levels">   four button.level cards,
-        data-level 1 to 4, ids lv-1 to lv-4, each lv-name, lv-stat (no numeral
-        on sight since 26 Sep 2026: "Level I" stays as sr-only text);
+        data-level 1 to 4, ids lv-1 to lv-4, each lv-name and lv-stat, the
+        name its own label (no numeral, seen or hidden: see the levels below);
         the current one carries class "on", aria-pressed="true" and the words
         "Your level", so the state is never carried by colour alone
      <nav class="quiet" aria-label="Doors">          four doors, ids door-today,
@@ -69,22 +69,27 @@
    control at least 44px; the same file byte for byte in the standalone and in
    the Outside Of Time wing, with every wing global feature-detected. */
 
-/* =========== the levels =========== */
+/* =========== the levels ===========
+   Named, never numbered: the owner's rule of 27 Sep 2026, because anyone in
+   hospitality knows the four by their names. No I to IV is drawn or read
+   aloud anywhere, not even as hidden text: a card, a heading, a line, the
+   test and the way back all say the name. n (1 to 4) stays the integer that
+   data-level and the ids carry, and key the stored rank. */
 
 var V25_LEVELS = [
-  { n: 1, key: 'intro', num: 'I', name: 'Régionale',
+  { n: 1, key: 'intro', name: 'Régionale',
     blurb: 'The whole district in one glass: the foundations, the world map and the classics, all of it multiple choice, and speed and certainty win it.' },
-  { n: 2, key: 'certified', num: 'II', name: 'Village',
+  { n: 2, key: 'certified', name: 'Village',
     blurb: 'Narrowing to a village means naming what you are given: multiple choice, matching and short answer, so you produce the answer rather than pick it.' },
-  { n: 3, key: 'advanced', num: 'III', name: 'Premier Cru',
+  { n: 3, key: 'advanced', name: 'Premier Cru',
     blurb: 'A named parcel is claimed, not guessed: short answer deep in appellation law, producers and vintages, produced cold, because recognition is no longer enough.' },
-  { n: 4, key: 'master', num: 'IV', name: 'Grand Cru',
+  { n: 4, key: 'master', name: 'Grand Cru',
     blurb: 'Grand cru needs no qualifier and neither may you: every answer from memory with nothing to lean on, in your own words, graded on your honour.' }
 ];
 
 var V25_NONAFFIL = 'An independent study tool. Not affiliated with, endorsed by, or connected to the Court of Master Sommeliers.';
 
-/* Level I's chapters are HTML bodies keyed by their own id and carry no
+/* Régionale's chapters are HTML bodies keyed by their own id and carry no
    category, so a section's Chapter door is found through this map. A section
    with no chapter of its own simply has no Chapter door. Where a category
    spans several chapters, the door opens the first and the chapter's own
@@ -327,8 +332,9 @@ function v25Choose() {
 /* codex7 writes codexLevel even when it only defaulted, so the stored rank
    cannot say whether anybody chose it. The flag can. A device with answers
    and no flag chose by studying, and keeps the level it has; a device with
-   neither opens on the lowest level not yet met, so "Today deals from Level
-   N" is true by construction: the daily round reads the rebound QUESTIONS.
+   neither opens on the lowest level not yet met, so "Today deals from
+   Régionale" is true by construction: the daily round reads the rebound
+   QUESTIONS.
    Grandfathering writes nothing: codex7 restores the level on every load, and
    after a reset has emptied ST.q the device is a fresh one again. */
 (function () {
@@ -498,7 +504,7 @@ var V25_LIBRARY = [
     show: function () { return typeof primerList === 'function'; },
     line: function () {
       var n = (typeof PRIMERS !== 'undefined' && PRIMERS) ? PRIMERS.length : 0;
-      return v25Plural(n, 'chapter', 'chapters') + ' at Level ' + v25Here().num;
+      return v25Plural(n, 'chapter', 'chapters') + ' at ' + v25Here().name;
     },
     go: function () { S.view = 'primers'; render(); } },
   { key: 'videos', name: 'Video Scriptorium',
@@ -532,7 +538,7 @@ function v25Flags() {
 var V25_RECORD = [
   { key: 'dash', name: 'Dashboard',
     show: function () { return typeof dashView === 'function'; },
-    line: function () { return 'accuracy, coverage and readiness at Level ' + v25Here().num; },
+    line: function () { return 'accuracy, coverage and readiness at ' + v25Here().name; },
     go: function () { S.view = 'dash'; render(); } },
   { key: 'hall', name: 'Hall of Fame',
     show: function () { return typeof hallView === 'function'; },
@@ -564,7 +570,7 @@ var V25_RECORD = [
     } },
   { key: 'flagged', name: 'Bookmark Review',
     show: function () { return typeof startFlagged === 'function' && v25Flags() > 0; },
-    line: function () { return v25Flags() + ' bookmarked at Level ' + v25Here().num; },
+    line: function () { return v25Flags() + ' bookmarked at ' + v25Here().name; },
     go: function () { startFlagged(); } },
   { key: 'exams', name: 'Examination record',
     show: function () { return typeof examHallView === 'function'; },
@@ -785,7 +791,7 @@ function v25FirstWeek() {
 /* What the Today door deals, and from which level: the daily round is the
    due reviews first, topped up to twenty with questions never seen. */
 function v25TodayLine() {
-  var line = 'Today deals from Level ' + v25Here().num;
+  var line = 'Today deals from ' + v25Here().name;
   var due = v25Due();
   var fresh = due < 20 ? Math.min(20 - due, v25Unseen()) : 0;
   if (due) line += ' · ' + due + ' due';
@@ -825,7 +831,6 @@ function v25HomeHtml() {
     var stat = locked ? 'Locked' : v25LevelStat(L.key).word;
     return '<button class="level' + (on ? ' on' : '') + (locked ? ' locked' : '') + '" type="button"' +
       ' id="lv-' + L.n + '" data-level="' + L.n + '" aria-pressed="' + (on ? 'true' : 'false') + '">' +
-      '<span class="sr-only">Level ' + L.num + '</span>' +
       '<span class="lv-name">' + v25Esc(L.name) + '</span>' +
       '<span class="lv-stat">' + v25Esc(stat) + '</span>' +
       (on ? '<span class="lv-here">Your level</span>' : '') +
@@ -901,11 +906,11 @@ function v25LevelHtml(lv) {
   var L = v25Level(lv);
   if (!L) return '';
   var subs = v25Subs(lv);
-  return '<h1 class="lv-h1"><span class="lv-num">' + L.num + '</span> ' + v25Esc(L.name) + '</h1>' +
+  return '<h1 class="lv-h1">' + v25Esc(L.name) + '</h1>' +
     '<p class="lv-blurb">' + v25Esc(L.blurb) + '</p>' +
     '<ol class="subsections">' + subs.map(function (s) { return v25SubHtml(s, lv); }).join('') + '</ol>' +
-    '<div class="lt-wrap"><button class="btn gold leveltest" type="button" data-go="leveltest">The Level ' +
-      L.num + ' test</button><p class="lt-line">' + v25Esc(v25TestLine(lv)) + '</p></div>';
+    '<div class="lt-wrap"><button class="btn gold leveltest" type="button" data-go="leveltest">' +
+      v25Esc(v25TestName(L)) + '</button><p class="lt-line">' + v25Esc(v25TestLine(lv)) + '</p></div>';
 }
 
 /* The summary says whether it is open in words, because the marker a
@@ -1064,7 +1069,7 @@ function v25TodayHtml() {
         'have been over the ground a new hire is expected to know.</div>' + html;
     }
   }
-  return '<div class="v25page">' + v25Head('Today', 'Today deals from Level ' + L.num + ': ' + L.name + '.') +
+  return '<div class="v25page">' + v25Head('Today', 'Today deals from ' + L.name + '.') +
     card + path + '</div>';
 }
 
@@ -1072,7 +1077,9 @@ function v25TodayView() { return v25Build(v25TodayHtml()); }
 
 /* =========== the level test: the Finals, made scoreless =========== */
 
-function v25TestName() { return 'The Level ' + v25Here().num + ' test'; }
+/* "The Régionale test": the level test by its level's name, the current
+   level's unless another is given. */
+function v25TestName(L) { return 'The ' + (L || v25Here()).name + ' test'; }
 
 function v25InTest(phase) {
   return !!(S._v25lt && S._fin && (!phase || S._fin.phase === phase));
@@ -1240,7 +1247,7 @@ function v25TestReportHtml() {
   var t = S._v25lt || { theory: [], grid: [], floor: [], gridSat: false, floorSat: false };
   var L = v25Level(t.lv) || v25Here();
   var html = '<div class="v25page lt-report">' +
-    '<div class="viewhead"><h2>The Level ' + L.num + ' test</h2>' +
+    '<div class="viewhead"><h2>' + v25Esc(v25TestName(L)) + '</h2>' +
     '<div class="sub">What you missed, with the right answers. No score.</div></div>';
 
   html += '<section class="lt-group">' +
@@ -1310,7 +1317,7 @@ function v25TestReportHtml() {
   var drills = order.filter(function (c) { return byCat[c] >= 2; });
   html += '<div class="trains lt-doors">' +
     drills.map(function (c) { return v25Train('drill', c, 'Drill ' + c); }).join('') +
-    v25Train('backlevel', null, 'Back to Level ' + L.num) +
+    v25Train('backlevel', null, 'Back to ' + L.name) +
     '<button class="btn ghost train" type="button" data-go="home">Home</button>' +
     '</div></div>';
   return html;
@@ -1425,7 +1432,7 @@ var V25_VIEWS = {
    the floor is an answer choice: inside the level test that reads a possible
    answer out as the page's name. */
 function v25MainName() {
-  if (S.view === 'level') { var L = v25Here(); return 'Level ' + L.num + ', ' + L.name; }
+  if (S.view === 'level') return v25Here().name;
   if (S.view === 'finalsreport') return v25TestName();
   var name = {
     library: 'Library', record: 'Record', mine: 'Mine', today: 'Today',
@@ -1543,7 +1550,6 @@ render = function () {
     '.door-line{font-family:\'EB Garamond\',Georgia,serif;font-size:15px;line-height:1.4;color:var(--parch)}',
 
     '.lv-h1{font-family:\'Cinzel\',Georgia,serif;font-weight:600;font-size:27px;letter-spacing:.8px;color:var(--gold-soft);margin:4px 0 6px;line-height:1.2}',
-    '.lv-h1 .lv-num{color:var(--gold);margin-right:4px}',
     '.lv-blurb{font-family:\'EB Garamond\',Georgia,serif;font-style:italic;font-size:17px;line-height:1.5;color:var(--parch);max-width:62ch;margin:0 0 14px}',
     '.subsections{list-style:none;margin:0;padding:0}',
     '.subsection{border-top:1px solid var(--line);padding:16px 0 14px}',
