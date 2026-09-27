@@ -1,0 +1,221 @@
+/* First Light: the almanac, library and observatory.
+   Every colour follows the solar palette. Route markers keep these reading
+   treatments out of Today, the private rooms, and the practice engine. */
+@media screen {
+  /* Shared reading-room measures and controls. */
+  #view:is([data-house-view="year"], [data-house-view="vault"], [data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"], [data-house-view="astro"], [data-house-view="chart"], [data-house-view="videos"], [data-house-view="search"]) {
+    --library-measure: 44rem;
+  }
+  #view:is([data-house-view="year"], [data-house-view="vault"], [data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"], [data-house-view="astro"], [data-house-view="chart"], [data-house-view="videos"], [data-house-view="search"]) :is(.keep, .readmini, .tick, .mchip) {
+    min-height: 44px; max-width: 100%; line-height: 1.5;
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"], [data-house-view="astro"], [data-house-view="chart"]) .label {
+    margin-top: 36px; margin-bottom: 17px; padding-bottom: 0;
+    color: var(--accent); font-size: 13px;
+    letter-spacing: .13em; line-height: 1.6;
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"], [data-house-view="astro"], [data-house-view="chart"]) :is(.px, .gp) {
+    font-size: 16px; line-height: 1.85;
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"], [data-house-view="astro"], [data-house-view="chart"]) .ds {
+    font-size: 12px; line-height: 1.65; letter-spacing: .075em;
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"], [data-house-view="astro"]) .mintro {
+    max-width: 34rem; margin: 24px auto; color: var(--faint); font-size: 24px; line-height: 1.65;
+  }
+
+  /* The Year: a dated almanac with generous space around every voice. */
+  #view[data-house-view="year"] .months { gap: 9px; margin: 28px 0 18px; }
+  #view[data-house-view="year"] .mchip { min-width: 56px; padding: 10px 13px; border-radius: 3px; font-size: 12px; letter-spacing: .07em; }
+  #view[data-house-view="year"] .mchip.on { border-color: var(--accent); box-shadow: inset 0 -2px 0 var(--accent); }
+  #view[data-house-view="year"] .mintro {
+    max-width: none; padding: 23px 27px; margin: 20px 0 15px; border: 1px solid var(--line);
+    border-radius: 3px; background: var(--paper); color: var(--ink); font-size: 24px; line-height: 1.6;
+    box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--line);
+  }
+  #view[data-house-view="year"] .dayrow { gap: 22px; padding: 27px 7px; border-bottom-color: var(--line); }
+  #view[data-house-view="year"] .dayrow > div:last-child { min-width: 0; }
+  #view[data-house-view="year"] .dn { font-family: 'Cinzel', Georgia, serif; min-width: 33px; font-size: 16px; line-height: 1.6; }
+  #view[data-house-view="year"] .dq { color: var(--ink); font-size: 25px; line-height: 1.6; margin-bottom: 13px; }
+  #view[data-house-view="year"] .ds { font-size: 12px; line-height: 1.7; letter-spacing: .07em; }
+  #view[data-house-view="year"] .prov { font-size: 13px; line-height: 1.75; margin-top: 9px; }
+  #view[data-house-view="year"] .keep { margin-top: 14px; }
+
+  /* The Vault: kept quotations and the full-height memory rehearsal. */
+  #view[data-house-view="vault"] .months { margin: 26px 0 20px; gap: 10px; }
+  #view[data-house-view="vault"] .q {
+    margin: 24px 0; padding: 30px; border: 1px solid var(--line); border-radius: 3px;
+    background: var(--paper); color: var(--ink);
+    box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--line), var(--shadow);
+  }
+  #view[data-house-view="vault"] .qt { font-size: clamp(25px, 3.8vw, 31px); line-height: 1.65; margin-bottom: 20px; overflow-wrap: break-word; }
+  #view[data-house-view="vault"] .qs { font-size: 12px; line-height: 1.7; letter-spacing: .1em; }
+  #view[data-house-view="vault"] .qtr { display: block; margin: 9px 0 0; color: var(--accent); font-size: 12px; line-height: 1.75; letter-spacing: .065em; }
+  #view[data-house-view="vault"] .prov { font-size: 13px; line-height: 1.7; margin-top: 12px; }
+  #view[data-house-view="vault"] .q .keep { margin-top: 18px; }
+  #view[data-house-view="vault"] .drawrow { gap: 12px; }
+
+  /* Soul's shelves: equal treatment for every tradition, work and thread. */
+  #view:is([data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"]) .canon {
+    padding: 29px 31px; margin: 22px 0; border: 1px solid var(--line); border-radius: 3px;
+    background: var(--paper); color: var(--ink);
+    box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--line), var(--shadow);
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"]) .canon .pt {
+    font-family: 'Cinzel', Georgia, serif; color: var(--ink); font-size: 22px;
+    font-weight: 500; line-height: 1.5; letter-spacing: .01em; margin-bottom: 11px; overflow-wrap: break-word;
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"]) .canon .pt a {
+    display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; border-bottom-color: var(--line);
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .canon .cep {
+    font-size: 25px; line-height: 1.65; margin: 19px 0 12px;
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"]) .canon .ct {
+    color: var(--faint); font-size: 16px; line-height: 1.8;
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .canon .readmini { margin-top: 10px; }
+  #view[data-house-view="hall"] .canon h1.pt { font-size: clamp(24px, 3.8vw, 31px); line-height: 1.4; }
+  #view[data-house-view="library"] .limb { gap: 18px; padding: 21px 5px; border-bottom-color: var(--line); }
+  #view[data-house-view="library"] .limb .gt { color: var(--ink); font-family: var(--serif); font-size: 25px; line-height: 1.4; margin-bottom: 6px; }
+  #view[data-house-view="library"] .limb .gt a { display: inline-flex; align-items: center; min-height: 44px; }
+  #view[data-house-view="library"] .limb .gp { color: var(--faint); }
+  #view[data-house-view="library"] .months { gap: 10px; margin-top: 14px; margin-bottom: 22px; }
+  #view[data-house-view="library"] .months .mchip { padding: 11px 14px; border-radius: 3px; font-size: 12px; line-height: 1.6; letter-spacing: .06em; }
+  #view[data-house-view="threads"] .q { margin: 26px 0; padding: 20px 24px; border: 0; border-left: 2px solid var(--accent); background: var(--paper); color: var(--ink); }
+  #view[data-house-view="threads"] .qtr { font-family: 'Cinzel', Georgia, serif; font-size: 13px; line-height: 1.6; letter-spacing: .05em; }
+  #view[data-house-view="threads"] .qt { margin-bottom: 14px; font-size: 27px; line-height: 1.7; }
+  #view[data-house-view="threads"] .q .ds { color: var(--faint); }
+
+  /* Long-form scripture: natural paragraph height, translator lineation,
+     numbered references and loading/credit text all remain intact. */
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .readbox {
+    padding: 28px 26px; margin-top: 21px; border: 1px solid var(--line); border-radius: 3px;
+    background: var(--paper); color: var(--ink);
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .passage {
+    max-width: var(--library-measure); margin: 0 auto 24px; color: var(--ink);
+    font-family: var(--serif); font-size: 23px; font-weight: 400; line-height: 1.85;
+    overflow-wrap: break-word;
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .passage.verse { line-height: 1.75; }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .chaphead {
+    max-width: var(--library-measure); margin: 32px auto 15px; padding-top: 17px;
+    border-top: 1px solid var(--line); font-family: 'Cinzel', Georgia, serif;
+    color: var(--accent); font-size: 18px; font-weight: 500; line-height: 1.6; letter-spacing: .02em;
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .chaphead:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) :is(.vnum, .pnum) {
+    font-size: 12px; color: var(--faint); line-height: 1.5; font-weight: 500;
+  }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .vnum { margin-right: 5px; }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .uphead { max-width: var(--library-measure); margin: 22px auto 9px; color: var(--accent); font-size: 22px; line-height: 1.5; }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .uphead.ds { color: var(--faint); font-size: 12px; }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .speaker { max-width: var(--library-measure); margin: 20px auto 7px; color: var(--accent); font-size: 20px; line-height: 1.5; }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .loadnote { font-size: 15px; line-height: 1.75; color: var(--faint); }
+  #view:is([data-house-view="library"], [data-house-view="hall"]) .apicredit { margin-top: 24px; padding-top: 15px; border-top: 1px solid var(--line); color: var(--faint); font-size: 12px; line-height: 1.75; }
+
+  /* Daily reading plans: the passage stays with its day when expanded. */
+  #view[data-house-view="hall"] .dtoday { font-family: var(--serif); color: var(--ink); font-size: 24px; line-height: 1.55; margin: 10px 0; }
+  #view[data-house-view="hall"] .daygroups { gap: 10px; margin: 16px 0 12px; }
+  #view[data-house-view="hall"] .daygroup { border-radius: 3px; font-size: 12px; letter-spacing: .06em; }
+  #view[data-house-view="hall"] .dayrow { padding: 22px 0; gap: 19px; align-items: baseline; }
+  #view[data-house-view="hall"] .dn { color: var(--accent); min-width: 31px; font-family: 'Cinzel', Georgia, serif; font-size: 15px; line-height: 1.7; }
+  #view[data-house-view="hall"] .dlabel { margin: 6px 0 11px; font-size: 16px; line-height: 1.7; color: var(--ink); }
+  #view[data-house-view="hall"] .dayrow.done .dlabel { opacity: 1; color: var(--faint); }
+  #view[data-house-view="hall"] .dayrow.done .tick.on { border-color: var(--accent); box-shadow: inset 0 -2px 0 var(--accent); }
+  #view[data-house-view="hall"] .progtrack { height: 6px; margin-top: 13px; border-radius: 2px; }
+  #view[data-house-view="hall"] .rteach { margin: 22px 0; padding: 26px; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 3px; background: var(--paper); color: var(--ink); }
+  #view[data-house-view="hall"] .rteach .tkey { color: var(--ink); font-size: 25px; line-height: 1.75; margin: 9px 0 12px; }
+  #view[data-house-view="hall"] .rteach .ts { margin-top: 17px; }
+
+  /* The observatory: reference rows and calculated tables surround the
+     chart without altering its positions, glyphs or aspect dash patterns. */
+  #view[data-house-view="astro"] .q { padding: 25px 0; }
+  #view[data-house-view="astro"] .q .pt { font-family: 'Cinzel', Georgia, serif; font-size: 20px; line-height: 1.5; color: var(--accent); margin-bottom: 12px; }
+  #view[data-house-view="astro"] .limb { gap: 18px; padding: 21px 4px; border-bottom-color: var(--line); }
+  #view[data-house-view="astro"] .limb > div:last-child { min-width: 0; }
+  #view[data-house-view="astro"] .limbn { min-width: 28px; font-size: 25px; line-height: 1.3; }
+  #view[data-house-view="astro"] .gt { font-family: var(--serif); font-size: 25px; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
+  #view[data-house-view="astro"] .card .pt { font-size: 28px; line-height: 1.45; margin-bottom: 10px; }
+  #view:is([data-house-view="astro"], [data-house-view="chart"], [data-house-view="hall"]) .astrorow { color: var(--faint); font-size: 15px; line-height: 1.8; margin-top: 13px; overflow-wrap: break-word; }
+  #view:is([data-house-view="astro"], [data-house-view="chart"], [data-house-view="hall"]) .astrorow .k { color: var(--accent); font-size: 11px; letter-spacing: .075em; margin-right: 8px; }
+  #view:is([data-house-view="astro"], [data-house-view="chart"]) .drawrow { gap: 12px; }
+  #view:is([data-house-view="astro"], [data-house-view="chart"]) .drawrow :is(input, select) { min-width: min(160px, 100%); max-width: 100%; min-height: 48px; border-radius: 3px; font-size: 16px; }
+  #view[data-house-view="chart"] #city-hits { gap: 10px; margin: 14px 0; }
+  #view[data-house-view="chart"] #city-hits .mchip { white-space: normal; text-align: left; line-height: 1.6; }
+  #view[data-house-view="chart"] #city-hits .ds { padding-left: 6px; }
+  #view[data-house-view="chart"] .wheel { margin-top: 20px; margin-bottom: 20px; background: var(--paper); border: 1px solid var(--line); border-radius: 3px; }
+  #view[data-house-view="chart"] .wheel :is(.w-ring, .w-div, .w-cusp:not(.w-cusp-angular)) { stroke: var(--field-line); }
+  #view:is([data-house-view="astro"], [data-house-view="chart"]) .tablewrap { margin: 15px 0 24px; padding: 0 12px; border: 1px solid var(--line); border-radius: 3px; background: var(--paper); }
+  #view:is([data-house-view="astro"], [data-house-view="chart"]) .charttable { font-size: 15px; line-height: 1.55; }
+  #view:is([data-house-view="astro"], [data-house-view="chart"]) .charttable th { padding: 15px 12px 12px 0; color: var(--accent); font-size: 11px; font-weight: 500; line-height: 1.6; letter-spacing: .075em; }
+  #view:is([data-house-view="astro"], [data-house-view="chart"]) .charttable td { padding: 13px 12px 13px 0; color: var(--ink); vertical-align: top; }
+  #view:is([data-house-view="astro"], [data-house-view="chart"]) .charttable tr:last-child td { border-bottom: 0; }
+  #view:is([data-house-view="astro"], [data-house-view="chart"]) .charttable .ct-g { font-size: 23px; color: var(--accent); }
+
+  /* The film shelf: preserve the original aspect ratio and player controls. */
+  .col .vidthumb:hover .playbtn { background: var(--ink); color: var(--paper); }
+  #view[data-house-view="videos"] .vidcard { margin: 23px 0; border-color: var(--line); border-radius: 3px; background: var(--paper); color: var(--ink); box-shadow: var(--shadow); }
+  #view[data-house-view="videos"] .vidmeta { padding: 24px 27px; border-top: 1px solid var(--line); }
+  #view[data-house-view="videos"] .vidframe-label { color: var(--accent); font-size: 11px; line-height: 1.65; letter-spacing: .1em; margin-bottom: 12px; }
+  #view[data-house-view="videos"] .vidtitle { font-family: var(--serif); color: var(--ink); font-size: 28px; line-height: 1.5; margin-bottom: 11px; }
+  #view[data-house-view="videos"] .vidtitle a { display: inline-block; min-height: 44px; color: var(--ink); text-underline-offset: 4px; }
+  #view[data-house-view="videos"] .vidnote { font-size: 15px; line-height: 1.8; color: var(--faint); }
+
+  /* Search remains a compact, scannable index with visible matching words. */
+  #view[data-house-view="search"] #q { min-width: 0; width: 100%; min-height: 54px; border-color: var(--field-line); border-radius: 3px; background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.6; padding: 15px 17px; }
+  #view[data-house-view="search"] #q::placeholder { color: var(--faint); opacity: 1; }
+  #view[data-house-view="search"] #sresults .label { margin-top: 32px; color: var(--accent); font-size: 13px; line-height: 1.6; letter-spacing: .13em; }
+  #view[data-house-view="search"] #sresults .q { margin: 9px 0; border-bottom-color: var(--line); }
+  #view[data-house-view="search"] #sresults .gt { font-family: var(--serif); color: var(--ink); font-size: 25px; line-height: 1.45; }
+  #view[data-house-view="search"] #sresults .gt a { display: inline-flex; min-height: 44px; align-items: center; color: var(--ink); border-bottom-color: var(--line); }
+  #view[data-house-view="search"] #sresults .px { font-size: 16px; line-height: 1.8; }
+  #view[data-house-view="search"] #sresults .ds { color: var(--faint); font-size: 12px; line-height: 1.7; letter-spacing: .07em; }
+  #view[data-house-view="search"] #sresults mark { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; font-weight: 600; }
+
+  @media (max-width: 600px) {
+    #view[data-house-view="year"] .dayrow { padding: 22px 0; gap: 14px; }
+    #view[data-house-view="year"] .dn { min-width: 24px; font-size: 14px; }
+    #view[data-house-view="year"] .dq { font-size: 23px; }
+    #view[data-house-view="year"] .mintro { padding: 22px 19px; font-size: 23px; }
+    #view[data-house-view="year"] .months { gap: 7px; }
+    #view[data-house-view="year"] .mchip { min-width: 48px; padding: 9px 10px; }
+    #view[data-house-view="vault"] .q { padding: 25px 20px; }
+    #view[data-house-view="vault"] .qt { font-size: 25px; }
+    #view:is([data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"]) .canon { padding: 25px 20px; }
+    #view:is([data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"]) .canon .pt { font-size: 20px; }
+    #view:is([data-house-view="library"], [data-house-view="hall"]) .canon .cep { font-size: 23px; }
+    #view:is([data-house-view="library"], [data-house-view="hall"]) .passage { font-size: 21px; line-height: 1.8; }
+    #view:is([data-house-view="library"], [data-house-view="hall"]) .chaphead { font-size: 16px; }
+    #view:is([data-house-view="library"], [data-house-view="hall"]) .readbox { padding: 20px 16px; }
+    #view[data-house-view="hall"] .dayrow { gap: 11px; flex-wrap: wrap; }
+    #view[data-house-view="hall"] .dayrow .dbody { flex-basis: calc(100% - 43px); }
+    #view[data-house-view="hall"] .rteach { padding: 22px 18px; }
+    #view[data-house-view="hall"] .rteach .tkey { font-size: 23px; }
+    #view[data-house-view="threads"] .q { padding: 19px 18px; }
+    #view[data-house-view="threads"] .qt { font-size: 25px; }
+    #view:is([data-house-view="astro"], [data-house-view="chart"]) .charttable { font-size: 14px; }
+    #view:is([data-house-view="astro"], [data-house-view="chart"]) .tablewrap { padding: 0 9px; }
+    #view:is([data-house-view="astro"], [data-house-view="chart"]) .charttable :is(th, td) { padding-right: 9px; }
+    #view[data-house-view="videos"] .vidmeta { padding: 22px 20px; }
+    #view[data-house-view="videos"] .vidtitle { font-size: 25px; }
+  }
+  @media (max-width: 380px) {
+    #view[data-house-view="vault"] .q,
+    #view:is([data-house-view="library"], [data-house-view="hall"], [data-house-view="threads"]) .canon { padding: 22px 16px; }
+    #view[data-house-view="hall"] .dayrow .dn { min-width: 0; width: 100%; }
+    #view[data-house-view="hall"] .dayrow .dbody { flex-basis: 100%; }
+    #view:is([data-house-view="library"], [data-house-view="hall"]) .readbox { padding: 17px 12px; }
+    #view:is([data-house-view="library"], [data-house-view="hall"]) .passage { font-size: 20px; }
+    #view[data-house-view="year"] .dq { font-size: 22px; }
+    #view[data-house-view="vault"] .q .keep + .keep { margin-left: 0; margin-right: 7px; }
+  }
+  /* An expanded passage inside a framed plan needs only one small gutter.
+     Auto width expands into the plan's padding while retaining its frame. */
+  @media (max-width: 480px) {
+    #view:is([data-house-view="library"], [data-house-view="hall"]) .canon .readbox {
+      margin-inline: -10px; padding-inline: 12px;
+    }
+  }
+}

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>First Light · Outside Of Time</title>
 <meta name="description" content="Three years of mornings: 1,098 voices on three tracks, five canons read through, a practice for the body, and a record of your own.">
-<meta name="theme-color" content="#EDEFEC">
+<meta name="theme-color" content="#ebe3d2">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
@@ -47,11 +47,14 @@ try {
      bright bar over a dark page until sun.js catches up. */
   var flMeta = document.querySelector('meta[name="theme-color"]');
   if (flMeta) flMeta.setAttribute('content',
-    { night: '#14161A', firstlight: '#F1ECE4', day: '#EDEFEC', dusk: '#E5E4E7' }[flPhase] || '#EDEFEC');
+    { night: '#081510', firstlight: '#eadeca', day: '#ebe3d2', dusk: '#13241f' }[flPhase] || '#ebe3d2');
 } catch (e) { document.documentElement.setAttribute('data-phase', 'day'); }
 </script>
 
 <link rel="stylesheet" href="css/firstlight.css?v=34">
+<link rel="stylesheet" href="css/house.css?v=1">
+<link rel="stylesheet" href="css/house-library.css?v=1">
+<link rel="stylesheet" href="css/house-practice.css?v=1">
 <!-- The shared streak band at the top of Today. oot-home.css carries no colour of
      its own: it reads the --oot- tokens below, so the band takes the phase palette
      like everything else, and it sits on the column's centre line as Today does. -->
@@ -66,6 +69,12 @@ try {
 <a class="skip" href="#view">Skip to content</a>
 
 <div class="col">
+  <header class="house-masthead">
+    <picture class="house-art" aria-hidden="true"><img src="assets/first-light-dawn-v1.webp" alt="" width="1536" height="1024" fetchpriority="high" decoding="async"></picture>
+    <p class="house-signature">Outside Of Time Hospitality</p>
+    <p class="house-title"><a href="#/today">First Light</a></p>
+    <p class="house-subtitle">A quiet beginning. A world to discover.</p>
+  </header>
   <nav id="nav" aria-label="Sections"></nav>
   <main id="view" tabindex="-1"></main>
   <footer>First Light · Three Years of Mornings · Outside Of Time</footer>
@@ -129,6 +138,7 @@ try {
 
 <!-- ═══ boot last ═══ -->
 <script src="js/app.js?v=37"></script>
+<script src="js/house.js?v=1"></script>
 <script src="js/oot-light.js?v=2"></script>
 <script src="../shared/oot-auth.js?v=32"></script>
 <script src="../shared/oot-gate.js?v=32"></script>
