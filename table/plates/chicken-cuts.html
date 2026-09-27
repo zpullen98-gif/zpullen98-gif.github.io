@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.BObY9Nsm.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Cr1NKJ_f.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CtZLHLQ2.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.CZSDEQIl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BHivBCAy.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0._nSBvDUB.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/tknCqt8r.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BtsOrZEq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CWhi-lRq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Pd4fdmUI.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CU3FfQQR.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/ZPqcaiXT.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DBYXWDRF.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DGNjVPF-.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/23.Ia4Rf4DU.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DY5a9ev7.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/D1vfuOAL.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DQHYlXAW.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/B6g712_F.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/_RZBBzgq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/G0WyDOsR.js" rel="modulepreload">
+		<!--12qhfyh--><!--[0--><link rel="manifest" href="/manifest.webmanifest"/><!--]--> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-status-bar-style" content="black"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1844 recipes across 171 chapters, a 782-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--nc2xuw--><!----><title>Chicken Cuts · The Plates · The World Table</title>
+		<link href="/table/_app/immutable/assets/0.AzajvH5F.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/23.BvyL39W5.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: recipes, lexicon and study</p></div></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Home<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" aria-current="page" href="/table/level">Levels<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/recipes">Library<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/menu">Mine<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service"><span class="svcglyph" aria-hidden="true">☀</span><span class="svcword svelte-12qhfyh">Day service</span></button></div></nav> <!--[-1--><!--]--> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><div class="shell view svelte-nc2xuw"><nav class="crumbs svelte-nc2xuw"><a href="/table/" class="svelte-nc2xuw">Home</a> · <a href="/table/plates" class="svelte-nc2xuw">The Plates</a></nav> <p class="eyebrow svelte-nc2xuw">The cuts<!--[0-->· Level I, Commis<!--]--></p> <h1 class="svelte-nc2xuw">Chicken Cuts</h1> <!--[0--><p class="lede svelte-nc2xuw">Quality meat, timeless tradition. The anatomy of chicken.</p><!--]--> <p class="stat svelte-nc2xuw">12 on the plate · read, never graded</p> <figure class="plate svelte-nc2xuw"><span class="box svelte-nc2xuw" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/chicken-cuts.webp" alt="Chicken Cuts: an illustrated reference plate. Its full text is transcribed below." width="1312" height="1199" decoding="async" class="svelte-nc2xuw"/></span> <figcaption class="svelte-nc2xuw"><a href="/table/plates/chicken-cuts.webp" target="_blank" rel="noopener" class="svelte-nc2xuw">Open the plate at full size</a> <span class="muted svelte-nc2xuw">for the small print. Pinch to zoom on a phone.</span></figcaption></figure> <!--[0--><section class="corrections svelte-nc2xuw" aria-labelledby="corr-h"><h2 id="corr-h" class="svelte-nc2xuw">What the plate gets wrong</h2> <p class="secnote svelte-nc2xuw">The picture was generated, and these are its errors of fact, checked against the kitchen and
+				the Lexicon. Read the plate with them.</p> <ul class="svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><strong>Neck</strong> <span class="says svelte-nc2xuw">prints “Neck (Bone-in), with a photo of thick marbled slabs”.</span> Trust the words on the card and not the picture, because a chicken neck is a slender skin-on cylinder about the width of a finger, while the photo shows chop-thick marbled pieces that look like pork neck bones. <span class="why svelte-nc2xuw">Chicken necks are long and thin with almost no marbling, and the pictured pieces have the thickness and intramuscular fat of pork neck bones.</span></li><li class="svelte-nc2xuw"><strong>Thigh</strong> <span class="says svelte-nc2xuw">prints “Thigh (Boneless or Bone-in); Bone-in Thigh; Boneless Thigh”.</span> Read the three thigh cards as one cut sold two ways, bone-in or boneless, not as three different cuts. <span class="why svelte-nc2xuw">Bone-in and boneless thighs are the same muscle group with or without the bone, and the right-column Thigh card already names both forms before the bottom row repeats them.</span></li><li class="svelte-nc2xuw"><strong>Liver &amp; Gizzard</strong> <span class="says svelte-nc2xuw">prints “Sauté, Braise”.</span> Sauté the liver quickly and braise or simmer the gizzard, because the two organs need opposite treatment and the shared line does not say which method belongs to which. <span class="why svelte-nc2xuw">The liver has almost no connective tissue and turns grainy when overcooked, while the gizzard is a tough working muscle whose connective tissue only softens with long moist cooking.</span></li><!--]--></ul></section><!--]--> <section class="text svelte-nc2xuw" aria-labelledby="text-h"><h2 id="text-h" class="svelte-nc2xuw">On the plate</h2> <!--[--><!--[0--><h3 class="svelte-nc2xuw">Neck</h3> <!--[0--><p class="gnote svelte-nc2xuw">Rich flavor, great for soups &amp; stock</p><!--]--><!--]--> <ul class="items svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><span class="name svelte-nc2xuw">Neck<!--[0--><span class="sub svelte-nc2xuw">(Bone-in)</span><!--]--> <!--[-1--><!--]--></span> <!--[-1--><!--]--> <!--[-1--><!--]--></li><!--]--></ul><!--[0--><h3 class="svelte-nc2xuw">Breast</h3> <!--[0--><p class="gnote svelte-nc2xuw">Lean, mild flavor, versatile</p><!--]--><!--]--> <ul class="items svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><span class="name svelte-nc2xuw">Boneless Skinless Breast<!--[-1--><!--]--> <!--[-1--><!--]--></span> <!--[0--><span class="facts svelte-nc2xuw"><!--[--><span class="fact svelte-nc2xuw"><span class="flabel svelte-nc2xuw">Cook</span> Grill, Bake, Sauté</span><!--]--></span><!--]--> <!--[-1--><!--]--></li><!--]--></ul><!--[0--><h3 class="svelte-nc2xuw">Wing</h3> <!--[0--><p class="gnote svelte-nc2xuw">Juicy, flavorful, great for appetizers</p><!--]--><!--]--> <ul class="items svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><span class="name svelte-nc2xuw">Wing<!--[-1--><!--]--> <!--[-1--><!--]--></span> <!--[0--><span class="facts svelte-nc2xuw"><!--[--><span class="fact svelte-nc2xuw"><span class="flabel svelte-nc2xuw">Cook</span> Fry, Grill, Bake</span><!--]--></span><!--]--> <!--[-1--><!--]--></li><!--]--></ul><!--[0--><h3 class="svelte-nc2xuw">Tail</h3> <!--[0--><p class="gnote svelte-nc2xuw">Rich flavor, ideal for stock</p><!--]--><!--]--> <ul class="items svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><span class="name svelte-nc2xuw">Tail<!--[-1--><!--]--> <!--[-1--><!--]--></span> <!--[0--><span class="facts svelte-nc2xuw"><!--[--><span class="fact svelte-nc2xuw"><span class="flabel svelte-nc2xuw">Cook</span> Stock</span><!--]--></span><!--]--> <!--[-1--><!--]--></li><!--]--></ul><!--[0--><h3 class="svelte-nc2xuw">Thigh</h3> <!--[0--><p class="gnote svelte-nc2xuw">Moist, rich, full of flavor</p><!--]--><!--]--> <ul class="items svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><span class="name svelte-nc2xuw">Thigh<!--[0--><span class="sub svelte-nc2xuw">(Boneless or Bone-in)</span><!--]--> <!--[-1--><!--]--></span> <!--[-1--><!--]--> <!--[-1--><!--]--></li><!--]--></ul><!--[0--><h3 class="svelte-nc2xuw">Drumstick</h3> <!--[0--><p class="gnote svelte-nc2xuw">Flavorful, juicy, great for grilling</p><!--]--><!--]--> <ul class="items svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><span class="name svelte-nc2xuw">Drumstick<!--[-1--><!--]--> <!--[-1--><!--]--></span> <!--[0--><span class="facts svelte-nc2xuw"><!--[--><span class="fact svelte-nc2xuw"><span class="flabel svelte-nc2xuw">Cook</span> Grill, Bake, Fry</span><!--]--></span><!--]--> <!--[-1--><!--]--></li><!--]--></ul><!--[0--><h3 class="svelte-nc2xuw">Bone-in Thigh</h3> <!--[0--><p class="gnote svelte-nc2xuw">Rich, juicy, flavorful</p><!--]--><!--]--> <ul class="items svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><span class="name svelte-nc2xuw">Bone-in Thigh<!--[-1--><!--]--> <!--[-1--><!--]--></span> <!--[0--><span class="facts svelte-nc2xuw"><!--[--><span class="fact svelte-nc2xuw"><span class="flabel svelte-nc2xuw">Cook</span> Roast, Grill, Braise</span><!--]--></span><!--]--> <!--[-1--><!--]--></li><!--]--></ul><!--[0--><h3 class="svelte-nc2xuw">Boneless Thigh</h3> <!--[0--><p class="gnote svelte-nc2xuw">Rich, tender, versatile</p><!--]--><!--]--> <ul class="items svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><span class="name svelte-nc2xuw">Boneless Thigh<!--[-1--><!--]--> <!--[-1--><!--]--></span> <!--[0--><span class="facts svelte-nc2xuw"><!--[--><span class="fact svelte-nc2xuw"><span class="flabel svelte-nc2xuw">Cook</span> Sauté, Stir-fry, Grill</span><!--]--></span><!--]--> <!--[-1--><!--]--></li><!--]--></ul><!--[0--><h3 class="svelte-nc2xuw">Chicken Tenderloin</h3> <!--[0--><p class="gnote svelte-nc2xuw">Lean, tender, quick cooking</p><!--]--><!--]--> <ul class="items svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><span class="name svelte-nc2xuw">Tenderloin<!--[-1--><!--]--> <!--[-1--><!--]--></span> <!--[0--><span class="facts svelte-nc2xuw"><!--[--><span class="fact svelte-nc2xuw"><span class="flabel svelte-nc2xuw">Cook</span> Sauté, Grill, Bake</span><!--]--></span><!--]--> <!--[-1--><!--]--></li><!--]--></ul><!--[0--><h3 class="svelte-nc2xuw">Chicken Cutlet</h3> <!--[0--><p class="gnote svelte-nc2xuw">Lean, even cooking, great for milanesa</p><!--]--><!--]--> <ul class="items svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><span class="name svelte-nc2xuw">Cutlet<!--[-1--><!--]--> <!--[-1--><!--]--></span> <!--[0--><span class="facts svelte-nc2xuw"><!--[--><span class="fact svelte-nc2xuw"><span class="flabel svelte-nc2xuw">Cook</span> Pan-fry, Bake</span><!--]--></span><!--]--> <!--[-1--><!--]--></li><!--]--></ul><!--[0--><h3 class="svelte-nc2xuw">Whole Legs</h3> <!--[0--><p class="gnote svelte-nc2xuw">Thigh &amp; drumstick</p><!--]--><!--]--> <ul class="items svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><span class="name svelte-nc2xuw">Leg<!--[-1--><!--]--> <!--[-1--><!--]--></span> <!--[0--><span class="facts svelte-nc2xuw"><!--[--><span class="fact svelte-nc2xuw"><span class="flabel svelte-nc2xuw">Cook</span> Roast, Grill, Braise</span><!--]--></span><!--]--> <!--[-1--><!--]--></li><!--]--></ul><!--[0--><h3 class="svelte-nc2xuw">Liver &amp; Gizzard</h3> <!--[0--><p class="gnote svelte-nc2xuw">Bold flavor, traditional</p><!--]--><!--]--> <ul class="items svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw"><span class="name svelte-nc2xuw">Liver &amp; Gizzard<!--[-1--><!--]--> <!--[-1--><!--]--></span> <!--[0--><span class="facts svelte-nc2xuw"><!--[--><span class="fact svelte-nc2xuw"><span class="flabel svelte-nc2xuw">Cook</span> Sauté, Braise</span><!--]--></span><!--]--> <!--[-1--><!--]--></li><!--]--></ul><!--]--></section> <!--[0--><section class="panels svelte-nc2xuw" aria-labelledby="panels-h"><h2 id="panels-h" class="svelte-nc2xuw">Also on the plate</h2> <!--[--><h3 class="svelte-nc2xuw">On the animal</h3> <ul class="svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw">Neck</li><li class="svelte-nc2xuw">Breast</li><li class="svelte-nc2xuw">Wing</li><li class="svelte-nc2xuw">Drumstick</li><li class="svelte-nc2xuw">Thigh</li><li class="svelte-nc2xuw">Tail</li><!--]--></ul><h3 class="svelte-nc2xuw">Cooking methods</h3> <ul class="svelte-nc2xuw"><!--[--><li class="svelte-nc2xuw">Grill</li><li class="svelte-nc2xuw">Roast</li><li class="svelte-nc2xuw">Bake</li><li class="svelte-nc2xuw">Sauté</li><li class="svelte-nc2xuw">Fry</li><li class="svelte-nc2xuw">Braise</li><li class="svelte-nc2xuw">Stir-fry</li><!--]--></ul><!--]--></section><!--]--> <section class="quiz svelte-nc2xuw" aria-labelledby="quiz-h"><h2 id="quiz-h" class="svelte-nc2xuw">Quiz yourself</h2> <p class="secnote svelte-nc2xuw">Up to 8 questions drawn from the plate, answers and all. Nothing is recorded:
+			the plate is a reference, and the deck and the Lexicon are where a word is graded.</p> <p class="live svelte-nc2xuw" aria-live="polite"></p> <!--[-1--><button class="chip go start svelte-nc2xuw">Ask me about this plate</button><!--]--></section> <!--[0--><p class="edge svelte-nc2xuw">Printed around the edge: Quality meat, timeless tradition. The anatomy of chicken. · Good Food Comes From Great Cuts · Better ingredients, better meals, a richer life</p><!--]--> <nav class="neighbours svelte-nc2xuw" aria-label="Other plates"><!--[-1--><!--]--> <a href="/table/plates" class="svelte-nc2xuw">The wall</a> <!--[0--><a href="/table/plates/pork-cuts" class="svelte-nc2xuw">Next: Pork Cuts</a><!--]--></nav></div><!--]--><!----></main> <div class="dock svelte-12qhfyh" data-print="hide"><!--[-1--><!--]--><!----> <!--[-1--><!--]--><!----></div> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1844 recipes · 171 chapters · Chef’s Lexicon: 782 terms <!--[0--><span class="legal">· <a href="/privacy.html" rel="external">Privacy</a> · <a href="/terms.html" rel="external">Terms</a></span><!--]--></div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_nlud7f = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.BObY9Nsm.js"),
+						import("/table/_app/immutable/entry/app.CZSDEQIl.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 23],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=32"></script>
+<script src="/shared/oot-profiles.js?v=32"></script>
+<script src="/shared/oot-home.js?v=32"></script>
+<script src="/shared/oot-auth.js?v=32"></script>
+<script src="/shared/oot-gate.js?v=32"></script>
+<script src="/shared/oot-locks.js?v=32"></script>
+<script src="/shared/oot-pass.js?v=32"></script>
+<script src="/shared/oot-log.js?v=32"></script>
+<script src="/shared/oot-bar.js?v=32"></script>
+</body>
+</html>

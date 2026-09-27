@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link rel="icon" href="/table/favicon.svg" />
+		<meta name="theme-color" content="#191612" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#fefdf8" media="(prefers-color-scheme: light)" />
+		<script>
+			/**
+			 * Service (day/night) is read synchronously, before first paint.
+			 *
+			 * This is the single reason preferences live in localStorage rather than
+			 * in the IndexedDB store with everything else: IndexedDB is async, so a
+			 * theme kept there paints the default service first and corrects itself
+			 * a frame later, a flash of the wrong page on every cold load.
+			 */
+			try {
+				var p = JSON.parse(localStorage.getItem('wt.prefs.v1') || '{}');
+				if (p.service === 'day' || p.service === 'night') {
+					document.documentElement.dataset.service = p.service;
+				}
+			} catch (e) {
+				/* corrupt or unavailable storage: fall through to prefers-color-scheme */
+			}
+		</script>
+		<link rel="stylesheet" href="/table/shared/oot-home.css">
+		<link href="/table/_app/immutable/entry/start.BObY9Nsm.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Cr1NKJ_f.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CtZLHLQ2.js" rel="modulepreload">
+		<link href="/table/_app/immutable/entry/app.CZSDEQIl.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/HclGiUj8.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BHivBCAy.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/0._nSBvDUB.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/tknCqt8r.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/BtsOrZEq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CWhi-lRq.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/Pd4fdmUI.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/CU3FfQQR.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/ZPqcaiXT.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DDxZ1s1m.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DBYXWDRF.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DGNjVPF-.js" rel="modulepreload">
+		<link href="/table/_app/immutable/nodes/22.C-AwZT_x.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DY5a9ev7.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/D1vfuOAL.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/DQHYlXAW.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/B6g712_F.js" rel="modulepreload">
+		<link href="/table/_app/immutable/chunks/G0WyDOsR.js" rel="modulepreload">
+		<!--12qhfyh--><!--[0--><link rel="manifest" href="/manifest.webmanifest"/><!--]--> <meta name="apple-mobile-web-app-capable" content="yes"/> <meta name="apple-mobile-web-app-status-bar-style" content="black"/> <meta name="apple-mobile-web-app-title" content="Outside Of Time"/> <meta name="description" content="An interactive culinary compendium: 1844 recipes across 171 chapters, a 782-term chef’s lexicon, pantry matching and a ten-semester path of study."/><!----><!--ysc8yq--><!----><title>The Plates · The World Table</title>
+		<link href="/table/_app/immutable/assets/0.AzajvH5F.css" rel="stylesheet">
+		<link href="/table/_app/immutable/assets/22.Dw8s1IwM.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <header class="svelte-12qhfyh"><div class="shell head-inner svelte-12qhfyh"><div class="brand svelte-12qhfyh"><!----><p class="brandline svelte-12qhfyh"><a href="/table" class="svelte-12qhfyh">The World <em class="svelte-12qhfyh">Table</em></a><!----></p><!----> <p class="eyebrow svelte-12qhfyh">An interactive culinary compendium: recipes, lexicon and study</p></div></div></header> <nav class="modebar svelte-12qhfyh" data-print="hide" aria-label="Sections"><div class="shell modebar-inner svelte-12qhfyh"><!--[--><a class="modetab svelte-12qhfyh" href="/table/">Home<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh on" aria-current="page" href="/table/level">Levels<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/recipes">Library<!--[-1--><!--]--></a><a class="modetab svelte-12qhfyh" href="/table/menu">Mine<!--[-1--><!--]--></a><!--]--> <button class="service svelte-12qhfyh" aria-label="Switch between day and night service"><span class="svcglyph" aria-hidden="true">☀</span><span class="svcword svelte-12qhfyh">Day service</span></button></div></nav> <!--[-1--><!--]--> <main id="main" tabindex="-1" class="svelte-12qhfyh"><!--[--><div class="shell view svelte-ysc8yq"><nav class="crumbs svelte-ysc8yq"><a href="/table/" class="svelte-ysc8yq">Home</a></nav> <h1 class="svelte-ysc8yq">The Plates</h1> <p class="lede svelte-ysc8yq">Twenty reference plates to read before the deck and beside it: the cuts, the fish case, the
+		larder of five regions, the pantry and the board. Each is a picture and its full text, so it
+		reads, searches and quizzes with or without the picture. Where a plate gets a fact wrong, the
+		correction is printed under it.</p> <p class="note svelte-ysc8yq">20 plates · read, never graded. A plate opens its picture when you open it,
+		and keeps it for next time.</p> <!--[--><section class="kind svelte-ysc8yq"><h2 class="svelte-ysc8yq">The cuts</h2> <p class="secnote svelte-ysc8yq">Where on the animal a cut comes from, and how that decides the cooking.</p> <ul class="wall svelte-ysc8yq"><!--[--><li><a href="/table/plates/chicken-cuts" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/chicken-cuts.thumb.webp" alt="" loading="lazy" decoding="async" width="1312" height="1199" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Chicken Cuts</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level I, Commis ·<!--]-->12 on the plate<!--[0-->· 3 corrections<!--]--></span></a></li><li><a href="/table/plates/pork-cuts" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1536 / 1024"><img src="/table/plates/pork-cuts.thumb.webp" alt="" loading="lazy" decoding="async" width="1536" height="1024" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Pork Cuts</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->32 on the plate<!--[0-->· 9 corrections<!--]--></span></a></li><li><a href="/table/plates/beef-cuts" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1536 / 1024"><img src="/table/plates/beef-cuts.thumb.webp" alt="" loading="lazy" decoding="async" width="1536" height="1024" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Beef Cuts</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->28 on the plate<!--[0-->· 3 corrections<!--]--></span></a></li><!--]--></ul></section><section class="kind svelte-ysc8yq"><h2 class="svelte-ysc8yq">The fish case</h2> <p class="secnote svelte-ysc8yq">Three waters, the fish that come out of each, how they are cut and how they eat.</p> <ul class="wall svelte-ysc8yq"><!--[--><li><a href="/table/plates/pacific-fish" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1536 / 1024"><img src="/table/plates/pacific-fish.thumb.webp" alt="" loading="lazy" decoding="async" width="1536" height="1024" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Pacific Fish</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->18 on the plate<!--[0-->· 9 corrections<!--]--></span></a></li><li><a href="/table/plates/atlantic-fish" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1536 / 1024"><img src="/table/plates/atlantic-fish.thumb.webp" alt="" loading="lazy" decoding="async" width="1536" height="1024" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Atlantic Fish</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->16 on the plate<!--[0-->· 10 corrections<!--]--></span></a></li><li><a href="/table/plates/gulf-coast-fish" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1536 / 1024"><img src="/table/plates/gulf-coast-fish.thumb.webp" alt="" loading="lazy" decoding="async" width="1536" height="1024" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Gulf Coast Fish Cuts &amp; Flavor Profiles</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->12 on the plate<!--[0-->· 4 corrections<!--]--></span></a></li><!--]--></ul></section><section class="kind svelte-ysc8yq"><h2 class="svelte-ysc8yq">The larder by region</h2> <p class="secnote svelte-ysc8yq">What grows where and when: five regions, a vegetable plate and a fruit plate each.</p> <ul class="wall svelte-ysc8yq"><!--[--><li><a href="/table/plates/northwest-vegetables" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/northwest-vegetables.thumb.webp" alt="" loading="lazy" decoding="async" width="1312" height="1199" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Northwest Vegetables</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->29 on the plate<!--[0-->· 5 corrections<!--]--></span></a></li><li><a href="/table/plates/northwest-fruits" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/northwest-fruits.thumb.webp" alt="" loading="lazy" decoding="async" width="1312" height="1199" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Northwest Fruits</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->25 on the plate<!--[0-->· 11 corrections<!--]--></span></a></li><li><a href="/table/plates/southwest-vegetables" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/southwest-vegetables.thumb.webp" alt="" loading="lazy" decoding="async" width="1312" height="1199" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Southwest Vegetables</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->24 on the plate<!--[0-->· 3 corrections<!--]--></span></a></li><li><a href="/table/plates/southwest-fruits" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/southwest-fruits.thumb.webp" alt="" loading="lazy" decoding="async" width="1312" height="1199" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Southwest Fruits</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->24 on the plate<!--[0-->· 12 corrections<!--]--></span></a></li><li><a href="/table/plates/midwest-vegetables" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/midwest-vegetables.thumb.webp" alt="" loading="lazy" decoding="async" width="1312" height="1199" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Midwest Vegetables</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->28 on the plate<!--[0-->· 5 corrections<!--]--></span></a></li><li><a href="/table/plates/midwest-fruits" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/midwest-fruits.thumb.webp" alt="" loading="lazy" decoding="async" width="1312" height="1199" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Midwest Fruits</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->25 on the plate<!--[0-->· 3 corrections<!--]--></span></a></li><li><a href="/table/plates/northeastern-vegetables" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/northeastern-vegetables.thumb.webp" alt="" loading="lazy" decoding="async" width="1312" height="1199" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Northeastern Vegetables</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->26 on the plate<!--[0-->· 7 corrections<!--]--></span></a></li><li><a href="/table/plates/northeastern-fruits" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/northeastern-fruits.thumb.webp" alt="" loading="lazy" decoding="async" width="1312" height="1199" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Northeastern Fruits</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->21 on the plate<!--[0-->· 9 corrections<!--]--></span></a></li><li><a href="/table/plates/southeastern-vegetables" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/southeastern-vegetables.thumb.webp" alt="" loading="lazy" decoding="async" width="1312" height="1199" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Southeastern Vegetables</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->19 on the plate<!--[0-->· 2 corrections<!--]--></span></a></li><li><a href="/table/plates/southeastern-fruits" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/southeastern-fruits.thumb.webp" alt="" loading="lazy" decoding="async" width="1312" height="1199" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Southeastern Fruits</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->24 on the plate<!--[0-->· 8 corrections<!--]--></span></a></li><!--]--></ul></section><section class="kind svelte-ysc8yq"><h2 class="svelte-ysc8yq">The pantry</h2> <p class="secnote svelte-ysc8yq">The spice rack and the mushroom basket, with what each one tastes of and where it goes.</p> <ul class="wall svelte-ysc8yq"><!--[--><li><a href="/table/plates/culinary-spices" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1312 / 1199"><img src="/table/plates/culinary-spices.thumb.webp" alt="" loading="lazy" decoding="async" width="1312" height="1199" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">Culinary Spices</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level I, Commis ·<!--]-->40 on the plate<!--[0-->· 5 corrections<!--]--></span></a></li><li><a href="/table/plates/culinary-mushrooms" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1224 / 1285"><img src="/table/plates/culinary-mushrooms.thumb.webp" alt="" loading="lazy" decoding="async" width="1224" height="1285" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">The World of Culinary Mushrooms</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level I, Commis ·<!--]-->18 on the plate<!--[0-->· 5 corrections<!--]--></span></a></li><!--]--></ul></section><section class="kind svelte-ysc8yq"><h2 class="svelte-ysc8yq">The board</h2> <p class="secnote svelte-ysc8yq">The cheese board and the charcuterie board by name, country and character.</p> <ul class="wall svelte-ysc8yq"><!--[--><li><a href="/table/plates/great-cheeses" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1024 / 1536"><img src="/table/plates/great-cheeses.thumb.webp" alt="" loading="lazy" decoding="async" width="1024" height="1536" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">The World's Great Cheeses</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level II, Chef de Partie ·<!--]-->24 on the plate<!--[0-->· 4 corrections<!--]--></span></a></li><li><a href="/table/plates/charcuterie" class="svelte-ysc8yq"><span class="thumb svelte-ysc8yq" style="aspect-ratio: 1024 / 1536"><img src="/table/plates/charcuterie.thumb.webp" alt="" loading="lazy" decoding="async" width="1024" height="1536" class="svelte-ysc8yq"/></span> <span class="ptitle svelte-ysc8yq">The World of Charcuterie &amp; Dried Meats</span> <span class="pmeta svelte-ysc8yq"><!--[0-->Level III, Sous Chef ·<!--]-->18 on the plate<!--[0-->· 5 corrections<!--]--></span></a></li><!--]--></ul></section><!--]--></div><!--]--><!----></main> <div class="dock svelte-12qhfyh" data-print="hide"><!--[-1--><!--]--><!----> <!--[-1--><!--]--><!----></div> <footer class="svelte-12qhfyh"><div class="shell">The World Table · 1844 recipes · 171 chapters · Chef’s Lexicon: 782 terms <!--[0--><span class="legal">· <a href="/privacy.html" rel="external">Privacy</a> · <a href="/terms.html" rel="external">Terms</a></span><!--]--></div></footer><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_nlud7f = {
+						base: "/table",
+						assets: "/table"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/table/_app/immutable/entry/start.BObY9Nsm.js"),
+						import("/table/_app/immutable/entry/app.CZSDEQIl.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 22],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	<script src="/shared/oot-config.js?v=32"></script>
+<script src="/shared/oot-profiles.js?v=32"></script>
+<script src="/shared/oot-home.js?v=32"></script>
+<script src="/shared/oot-auth.js?v=32"></script>
+<script src="/shared/oot-gate.js?v=32"></script>
+<script src="/shared/oot-locks.js?v=32"></script>
+<script src="/shared/oot-pass.js?v=32"></script>
+<script src="/shared/oot-log.js?v=32"></script>
+<script src="/shared/oot-bar.js?v=32"></script>
+</body>
+</html>
