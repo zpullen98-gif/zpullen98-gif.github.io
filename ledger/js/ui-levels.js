@@ -135,6 +135,25 @@ function handsLabel(n, sub){
   if(t && t.drill){ const d = DRILLS.find(function(x){ return x.id === t.drill; }); if(d) return 'Hands on · ' + d.name; }
   return t && t.tab === 'riffs' ? 'Riff frames' : 'Hands on';
 }
+/* The books at a level, in book order, each a door into the Library at this
+   level and that book, with its count here; a book that runs on to a higher
+   level says where. This is how the twelve books sit inside the four
+   levels: The Core Dozen and The Classics Canon at Barback, the Obscura
+   mostly at Bar Manager, and never a book's number anywhere. */
+function levelBooksHTML(n){
+  const books = levelBooks(n);
+  if(!books.length) return '';
+  return '<div class="books" role="group" aria-label="The books at '+esc(levelInfo(n).name)+'">' + books.map(function(b){
+    const next = bookContinues(b.t, n);
+    return '<button class="book" data-act="book" data-n="'+n+'" data-t="'+b.t+'">'
+      /* the spaces keep the words apart in the door's accessible name; a
+         flex column never draws them */
+      + '<span class="book-name">'+esc(b.name)+'</span> '
+      + '<span class="book-count">'+b.n+' drink'+(b.n===1?'':'s')+'</span>'
+      + (next ? ' <span class="book-more">Continues at '+esc(levelInfo(next).name)+'</span>' : '')
+      + '</button>';
+  }).join('') + '</div>';
+}
 function trainDoorsHTML(n, sub){
   const doors = [['read', readLabel(n, sub)], ['cards', 'Flashcards'], ['quiz', 'Quiz'], ['hands', handsLabel(n, sub)]];
   return doors.filter(function(d){ return trainTarget(d[0], n, sub); })
@@ -156,6 +175,7 @@ function renderLevel(){
       + '<h3 class="sub-head">'+esc(s.title)+'</h3>'
       + '<p class="sub-line">'+s.total+' at this level · '+esc(s.label)+'</p>'
       + (note ? '<p class="sub-note">'+esc(note)+'</p>' : '')
+      + (s.sub === 'cocktails' ? levelBooksHTML(n) : '')
       + '<div class="trains">'+trainDoorsHTML(n, s.sub)+'</div>'
       + '</li>';
   }).join('');

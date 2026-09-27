@@ -32,11 +32,14 @@ function renderFamilies(){
 }
 
 /* ---------------- LIBRARY ---------------- */
+/* The Library reads as the levels climb: by level, then by book in book
+   order (BOOK_ORDER), then by name. A book is a shelf inside a level, never
+   a ladder of its own. */
 function libList(){
   const {q,fam,tier} = state.lib;
   const lv = Number(state.lib.level) || 0;
-  const sorted = COCKTAILS.map((c,i)=>({c,i})).sort((a,b) =>
-    a.c.tier===b.c.tier ? a.c.name.localeCompare(b.c.name) : a.c.tier-b.c.tier);
+  const sorted = COCKTAILS.map((c,i)=>({c,i,l:levelOf(c.name)||5,b:bookRank(c.tier)})).sort((a,b) =>
+    (a.l - b.l) || (a.b - b.b) || a.c.name.localeCompare(b.c.name));
   return sorted.filter(({c}) => {
     if(fam!=='All' && c.family!==fam) return false;
     if(tier!=='All' && c.tier!==Number(tier)) return false;
@@ -64,11 +67,23 @@ function libListHTML(){
       + '<span class="bold">'+esc(c.name)+'</span>'
       + '<span class="chip">'+esc(c.spirit)+'</span>'
       + '<span class="chip brass">'+esc(c.family)+'</span>'
-      + '<span class="chip">Tier '+c.tier+'</span>'
+      + '<span class="chip">'+esc(drinkPlace(c))+'</span>'
       + '<span class="plusminus">'+(isOpen?'−':'+')+'</span></button>'+body+'</div>';
   }).join('');
 }
+/* The book filter, the Library's and the flashcards': with a level (n), the
+   books that level holds, in book order, each with its count there; with
+   none, all twelve with their totals. The figure in brackets counts drinks;
+   a book is never numbered. */
+function bookOptions(cur, n){
+  return '<option value="All"'+(String(cur)==='All'?' selected':'')+'>Every book</option>'
+    + levelBooks(Number(n) || 0).map(function(b){
+      return '<option value="'+b.t+'"'+(String(cur)===String(b.t)?' selected':'')+'>'+esc(b.name)+' ('+b.n+')</option>';
+    }).join('');
+}
 function renderLibrary(){
+  /* a level chosen that does not hold the book chosen: Every book */
+  state.lib.tier = bookHeld(state.lib.level, state.lib.tier);
   if(state.lib.print){
     const list = libList();
     return '<div id="print-sheet">'
@@ -81,9 +96,11 @@ function renderLibrary(){
   }
   const fams = ['All', ...Object.keys(FAMILIES)];
   const famChips = fams.map(f => '<button class="chip'+(state.lib.fam===f?' on':'')+'" aria-pressed="'+(state.lib.fam===f?'true':'false')+'" data-act="lib-fam" data-fam="'+esc(f)+'">'+esc(f)+'</button>').join(' ');
-  const tierSel = '<select class="input" id="lib-tier" aria-label="Filter by tier" style="max-width:340px;flex:1">'+tierOptions(state.lib.tier)+'</select>';
+  /* the two filters on a row of their own, each keeping a width its words
+     fit in, so on a phone they stack rather than squeeze to a clipped word */
+  const bookSel = '<select class="input" id="lib-book" aria-label="Filter by book" style="max-width:340px;min-width:210px;flex:1">'+bookOptions(state.lib.tier, state.lib.level)+'</select>';
   const lvCur = String(state.lib.level || 'All');
-  const levelSel = '<select class="input" id="lib-level" aria-label="Filter by level" style="max-width:240px;flex:1">'
+  const levelSel = '<select class="input" id="lib-level" aria-label="Filter by level" style="max-width:240px;min-width:140px;flex:1">'
     + ['All'].concat(LEVELS.map(function(l){ return String(l.n); })).map(function(v){
       const l = v === 'All' ? null : levelInfo(Number(v));
       return '<option value="'+v+'"'+(lvCur===v?' selected':'')+'>'+(l ? esc(l.name) : 'Every level')+'</option>';
@@ -91,7 +108,7 @@ function renderLibrary(){
   return '<div class="col">'
     + '<input class="input" id="lib-search" aria-label="Search the library" placeholder="Search by name, spirit, or ingredient…" value="'+esc(state.lib.q)+'">'
     + '<div class="row">'+famChips+'</div>'
-    + '<div class="row">'+levelSel+tierSel
+    + '<div class="row">'+levelSel+bookSel+'</div><div class="row">'
     + '<button class="chip" data-act="lib-print" title="Print the currently filtered specs as ticket cards">Print cards</button>'
     + '<span class="tiny dim push" id="lib-count">'+libList().length+' drinks</span></div>'
     + '<div class="col-sm" id="lib-list">'+libListHTML()+'</div></div>';
@@ -412,14 +429,18 @@ function renderFlashcards(){
       return '<button class="chip'+(fc.src===s?' on':'')+'" aria-pressed="'+(fc.src===s?'true':'false')+'" data-act="fc-src" data-s="'+esc(s)+'">'+(s==='All'?'Everything':esc(srcLabel(s)))+' <span class="font-tix">'+n+'</span></button>';
     }).join(' ');
     const isCocktail = fc.src==='Cocktails' || fc.src==='All';
-    const tierSel = isCocktail ? '<select class="input" id="fc-tier" aria-label="Filter by tier" style="max-width:380px">'+tierOptions(fc.tier)+'</select>' : '';
+    /* the books inside the level the deck deals from, as in the Library; a
+       level's other subsections hold no cocktail, so they draw no book */
+    const books = isCocktail && (!fc.sub || fc.sub === 'cocktails');
+    fc.tier = books ? bookHeld(fc.level, fc.tier) : 'All';
+    const bookSel = books ? '<select class="input" id="fc-book" aria-label="Filter by book" style="max-width:380px">'+bookOptions(fc.tier, fc.level)+'</select>' : '';
     const groupList = fc.src==='All' ? [].concat(Object.keys(FAMILIES), SHOT_CATS, NA_CATS) : groupsFor(fc.src);
     const groupLabel = fc.src==='Shots' ? 'All shot categories' : fc.src==='Zero Proof' ? 'All zero-proof families' : 'All families';
     const fams = ['All'].concat(groupList);
     const famOpts = fams.map(f => '<option value="'+esc(f)+'"'+(fc.family===f?' selected':'')+'>'+(f==='All'?groupLabel:esc(f))+'</option>').join('');
     const spirits = ['All'].concat([...new Set(COCKTAILS.map(c=>c.spirit))].sort());
     const spOpts = spirits.map(s => '<option value="'+esc(s)+'"'+(fc.spirit===s?' selected':'')+'>'+(s==='All'?'All spirits':esc(s))+'</option>').join('');
-    /* due count respects the current src/tier/family/spirit filters,
+    /* due count respects the current src/book/family/spirit filters,
        so the chip promises exactly what the deck will deal */
     const dueN = (function(){ const s = fc.special; fc.special = 'due'; const n = fcPool().length; fc.special = s; return n; })();
     const specials = [['All','Full deck'],['unmastered','Unmastered only'],['trouble','Trouble cards'],['due','Due for review'+(dueN?' · '+dueN:'')]]
@@ -437,7 +458,7 @@ function renderFlashcards(){
       + (fc.level ? '<div class="row" style="gap:8px;align-items:center"><span class="small">Dealing from '+esc(levelInfo(fc.level).name)+(fc.sub ? ', '+esc(levelSubTitle(fc.sub)) : '')+'.</span>'
         + '<button class="chip" data-act="fc-level-clear">Every card</button></div>' : '')
       + '<div class="row">'+srcChips+'</div>'
-      + (tierSel ? '<div class="row">'+tierSel+'</div>' : '')
+      + (bookSel ? '<div class="row">'+bookSel+'</div>' : '')
       + '<div class="row" style="gap:10px"><select class="input" id="fc-family" aria-label="Filter by '+(fc.src==='Shots'?'shot category':fc.src==='Zero Proof'?'zero-proof family':'family')+'" style="flex:1;min-width:150px">'+famOpts+'</select>'
       + (isCocktail ? '<select class="input" id="fc-spirit" aria-label="Filter by base spirit" style="flex:1;min-width:150px">'+spOpts+'</select>' : '')+'</div>'
       + '<div class="row">'+specials
@@ -819,7 +840,7 @@ function buildRound(mode, pool){
   /* a level page's Quiz door: Deal another round comes back through here */
   if(/^level-/.test(mode) && typeof levelRoundFromMode === 'function') return levelRoundFromMode(mode);
   /* the session passes the deck it just drilled, so the quiz reinforces
-     tonight’s drinks rather than quizzing tier 9 at a tier 2 learner */
+     tonight’s drinks rather than quizzing the Obscura at a Barback */
   const drinkPool = (pool && pool.length >= 8)
     ? COCKTAILS.filter(c => pool.some(d => d.src === 'Cocktails' && d.name === c.name))
     : COCKTAILS;

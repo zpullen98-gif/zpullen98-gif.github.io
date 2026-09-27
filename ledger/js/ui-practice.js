@@ -170,7 +170,10 @@ function railResolve(e){
   return COCKTAILS.find(c => c.name === name) || null;
 }
 function railDeal(){
-  const pool = COCKTAILS.filter(c => c.tier <= 6);
+  /* the everyday drinks, placed at Barback or Bartender (everydayCocktails
+     in js/levels.js): the tickets a shift is actually fired, every station
+     type among them */
+  const pool = everydayCocktails();
   const picks = [];
   /* one from each station type where possible, so a rail is never four sours */
   RAIL_STAGES.forEach(s => {

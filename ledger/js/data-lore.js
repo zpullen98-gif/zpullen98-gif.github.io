@@ -1,10 +1,10 @@
-/* ---------------- THE STORY: LORE FOR THE CANON (tiers 1–3) ----------------
+/* ---------------- THE STORY: LORE FOR THE CANON, BOOK BY BOOK ----------------
    Keyed by exact cocktail name. Rendered as "The Story" in the Library
    and as a footnote on flashcard backs. Drinks outside the canon simply
    have no story panel: the ledger stays honest about what it knows. */
 
 const LORE = {
-  /* ---- Tier 1: The Core Dozen ---- */
+  /* ---- The Core Dozen ---- */
   "Old Fashioned":
     "When the word 'cocktail' was first defined in print in 1806, it meant exactly this: spirit, sugar, water, bitters. By the 1880s, bartenders drowning drinks in curaçao and absinthe prompted customers to ask for one made 'the old-fashioned way', and the protest became the name. The Pendennis Club in Louisville claims it; the truth is it was everywhere. It survived Prohibition, a mid-century dark age of muddled fruit salad, and returned as the bedrock drink of the craft revival. If you can make this well, slowly, you understand the whole book.",
   "Manhattan":
@@ -30,7 +30,7 @@ const LORE = {
   "Espresso Martini":
     "London, 1983: a young model asked the bartender at the Soho Brasserie for something to 'wake me up'; the answer was vodka, fresh espresso and coffee liqueur, shaken violently. It went out as the Vodka Espresso, the 1990s renamed it, and after a couple of dormant decades it returned as the defining drink of the 2020s. The crema on fresh espresso is what builds the foam, and the three beans on top are traditional: health, wealth and happiness. Shake it like you mean it or serve it flat and thin.",
 
-  /* ---- Tier 2: The Classics Canon ---- */
+  /* ---- The Classics Canon ---- */
   "Sazerac":
     "New Orleans in a glass, and by some arguments America's first branded cocktail, named for the Sazerac de Forge cognac it was originally built on. When phylloxera devoured France's vineyards in the 1870s, the city, so the story goes, switched to rye and never switched back. The absinthe rinse, the Peychaud's bitters (invented by a local apothecary), the lemon peel expressed and discarded: every gesture is ritual, and the ritual is the point. Served without ice, cold from the stir, in a chilled rocks glass. There is no garnish to hide behind.",
   "Sidecar":
@@ -116,14 +116,14 @@ const LORE = {
   "Gin Fizz":
     "The fizz is the sour's effervescent child, a New Orleans specialty by the 1870s–80s: shake gin, lemon and sugar, strain into a small glass with no ice, and fill with soda so the drink foams to the rim. Drunk fast and cold in two or three swallows, morning or afternoon: the espresso shot of its era. At its peak, New Orleans bars employed relay teams of shaker boys just to keep up with fizz demand. Add egg white and it's a Silver Fizz; add yolk, Golden; the whole egg, Royal. Keep the glass small: a fizz that sits goes flat, and a flat fizz is just a weak Collins.",
 
-  /* ---- Tier 3 canon: zero-proof standards ---- */
+  /* ---- The Extended Canon: the zero-proof standards ---- */
   "Nojito":
     "The Mojito's sober twin, and the proof that the template (mint, lime, sugar, bubbles, crushed ice) never needed the rum to make its argument. Build it with the same care you'd give the original: press the mint, don't shred it, and let the soda lift the aromatics. A splash of chilled green tea in place of the spirit adds the tannic grip that rum's absence leaves behind.",
   "Cinderella":
     "A soda-fountain classic from the golden age of the American 'temperance drink': orange, pineapple and lemon shaken bright, a blush of grenadine, and lengthened with soda or ginger ale depending on the house. It has been on hotel menus for a century because it solves a real problem: a guest who wants something bright, adult and celebratory in a tall glass. Fresh juice or nothing; from concentrate, the drink turns into punch-bowl regret.",
   "Shirley Temple":
     "Invented in the 1930s, Hollywood legend says at Chasen's, for the child star herself, who reportedly found it too sweet and spent her life ordering plain ginger ale. Grenadine and ginger ale with a cherry: the first 'cocktail' most Americans ever order. Made with real pomegranate grenadine instead of dyed corn syrup, it is genuinely good: tart, rosy, and worth the maraschino flourish. She went to court to stop bottled versions trading on her name; respect the woman, pour the good grenadine.",
-  /* ---- Tier 4: Modern Craft Classics ---- */
+  /* ---- Modern Craft Classics ---- */
   "Gold Rush":
     "Built at Milk & Honey around 2001 by asking what a Whiskey Sour would taste like with honey doing the sugar's job: the answer launched a dynasty (the Penicillin is its direct descendant). Three ingredients, no garnish debate, and one of the modern era's first proofs that a two-minute tweak to a template can outlive the bar that made it.",
   "Oaxaca Old Fashioned":
@@ -215,7 +215,7 @@ const LORE = {
   "Bitter Mai Tai":
     "A tiki-amaro handshake from the early 2010s: a Mai Tai where Campari joins funky Jamaican rum at the base. It reads like a dare and drinks like an inevitability, the Jungle Bird's ambitious nephew.",
 
-  /* ---- Tier 5: Tiki & Tropical ---- */
+  /* ---- Tiki & Tropical ---- */
   "Zombie":
     "Don the Beachcomber's 1934 flagship: three rums, falernum, grenadine, lime, absinthe and the coded 'Don's Mix', so potent the menu limited guests to two. The bar kept the recipe in cipher to foil poaching bartenders; a modern historian spent years decoding it, and tiki archaeology was born.",
   "Painkiller":
@@ -288,9 +288,9 @@ const LORE = {
     "The modern-tiki minimalist statement: overproof Jamaican rum, coconut cream, lime: a Daiquiri that went feral on a desert island. Three ingredients, no garnish parade, all engine.",
 };
 
-/* extend LORE in place: tiers 6–12 continue below */
+/* extend LORE in place: the Golden Age and the books after it continue below */
 Object.assign(LORE, {
-  /* ---- Tier 6: The Golden Age & Prohibition ---- */
+  /* ---- The Golden Age & Prohibition ---- */
   "Bijou":
     "An 1890s jewel box out of the great bar manuals, built on gin, sweet vermouth and green Chartreuse, each standing for a gem: diamond, ruby, emerald. The rare survivor of the era's liqueur-heavy style that modern palates still forgive, because the Chartreuse earns it.",
   "Tuxedo":
@@ -372,7 +372,7 @@ Object.assign(LORE, {
   "Fourth Degree":
     "A heavier Martini variant (gin, both vermouths, absinthe) named in the Masonic style of the era's clubland. The fourth degree, appropriately, is where the initiations stop being gentle.",
 
-  /* ---- Tier 7: Highballs, Spritzes & Party Calls ---- */
+  /* ---- Highballs, Spritzes & Party Calls ---- */
   "Cuba Libre":
     "Havana, circa 1900, as the story goes: an American soldier toasted 'Por Cuba libre!' with the occupation's two imports, Coca-Cola and rum, over ice with lime. History's most successful three-ingredient diplomacy; the lime is what separates it from a mere rum and Coke.",
   "Greyhound":
@@ -466,7 +466,7 @@ Object.assign(LORE, {
   "Adios":
     "Also answering to AMF: the Long Island's electric-blue cousin: four white spirits and blue curaçao under lemon-lime soda. The name is the drink's honest assessment of your evening.",
 
-  /* ---- Tier 8: Dessert, Hot & After-Dinner ---- */
+  /* ---- Dessert, Hot & After-Dinner ---- */
   "Grasshopper":
     "Tujague's, New Orleans. Family lore says it was built for a 1918 New York cocktail contest and took second place: green crème de menthe, white cacao, cream. It became the after-dinner drink of the American mid-century and never left the Gulf South's banquet halls.",
   "Golden Cadillac":
@@ -534,7 +534,7 @@ Object.assign(LORE, {
   "Brave Bull":
     "Tequila under coffee liqueur: a Black Russian gone to Jalisco, on record since the 1950s. Add cream and it's a White Bull; add nothing and respect the name.",
 
-  /* ---- Tier 9: Drinks of the World ---- */
+  /* ---- Drinks of the World ---- */
   "Caesar":
     "Calgary Inn, 1969: commissioned for an Italian restaurant opening, with the bar mashing the clams into tomato juice by hand; Clamato wouldn't reach Canadian shelves until months later. Canada drinks hundreds of millions a year; the country has formally celebrated Caesar Day. The celery-salt rim is non-negotiable.",
   "Toronto":
@@ -616,7 +616,7 @@ Object.assign(LORE, {
   "Chuflay":
     "Bolivia's national highball: singani, the country's aromatic grape brandy, with ginger ale and lime. The name allegedly descends from railway-era English 'short flight'; the drink outlasted the railways.",
 
-  /* ---- Tier 10: The Bartender's Obscura ---- */
+  /* ---- The Bartender's Obscura ---- */
   "Blue Blazer":
     "An 1862 showpiece: flaming whisky thrown between two silver mugs in a blazing arc, performed, legend insists, for President-elect and gold-rush barons alike. Its inventor reportedly refused to make it unless the thermometer or the customer demanded it. The first celebrity-bartender signature move.",
   "Absinthe Frappé":
@@ -694,7 +694,7 @@ Object.assign(LORE, {
   "Bishop":
     "Mulled port with roasted orange and clove: the Victorian Christmas standard A Christmas Carol names outright ('a Christmas bowl of smoking bishop, Bob!' says Scrooge, reformed). The Bar-Tender's Guide printed American versions; December justifies them still.",
 
-  /* ---- Tier 11: The Martini Book ---- */
+  /* ---- The Martini Book ---- */
   "Vesper":
     "Casino Royale put it in print in 1953: gin AND vodka with Kina Lillet, shaken, named for the double agent who breaks Bond's heart. Kina Lillet is extinct; modern bars fake the quinine bite with Cocchi Americano or a bitters dash. Order it stirred and watch the bartender relax.",
   "Gibson":
@@ -732,7 +732,7 @@ Object.assign(LORE, {
   "Pomegranate Martini":
     "The POM-juice era's contribution, mid-2000s: vodka, pomegranate and citrus in a Martini glass, antioxidant marketing's finest cocktail hour. Fresh juice and real measurement redeem it completely.",
 
-  /* ---- Tier 12: Frozen & Blended ---- */
+  /* ---- Frozen & Blended ---- */
   "Frozen Margarita":
     "Dallas, 1971: frustrated by inconsistent blender output, a restaurateur converted a soft-serve ice-cream machine to pour margaritas; the machine now sits in the Smithsonian. Texas's greatest contribution to industrial engineering.",
   "Frozen Daiquiri":

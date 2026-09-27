@@ -106,7 +106,9 @@ function render(){
     const out = document.getElementById('batch-out');
     if(out) out.innerHTML = batchOutHTML();
   });
-  [['fc-family','fc','family'],['fc-spirit','fc','spirit'],['fc-tier','fc','tier'],['lib-tier','lib','tier'],['lib-level','lib','level']].forEach(([id,obj,key]) => {
+  /* a book's key is still `tier` in state; the render drops a book the
+     chosen level does not hold (bookHeld) */
+  [['fc-family','fc','family'],['fc-spirit','fc','spirit'],['fc-book','fc','tier'],['lib-book','lib','tier'],['lib-level','lib','level']].forEach(([id,obj,key]) => {
     const sel = document.getElementById(id);
     if(sel) sel.addEventListener('change', e => {
       state[obj][key] = e.target.value;
@@ -290,6 +292,11 @@ document.getElementById('view').addEventListener('click', e => {
   else if(act==='train'){
     const t = trainTarget(el.dataset.m, Number(el.dataset.n), el.dataset.s);
     if(!applyTarget(t)) return;
+    state.level.n = Number(el.dataset.n);
+  }
+  /* a book on a level page: the Library at that level and that book */
+  else if(act==='book'){
+    if(!applyTarget(bookTarget(Number(el.dataset.n), Number(el.dataset.t)))) return;
     state.level.n = Number(el.dataset.n);
   }
   else if(act==='lt-start'){ const t = ltStart(Number(el.dataset.n)); state.level.n = t.n; state.tab = 'level'; }
@@ -617,13 +624,16 @@ document.getElementById('view').addEventListener('click', e => {
     const id = el.dataset.id;
     const d = DRILLS.find(x => x.id===id);
     if(d && d.pick){
-      /* one per family first, so a Speed Round can't be four sours you like */
+      /* one per family first, so a Speed Round can't be four sours you like.
+         The pool is the everyday drinks, placed at Barback or Bartender
+         (everydayCocktails), where a book's key once stood in for them */
+      const everyday = everydayCocktails();
       const byFam = {};
-      shuffle(COCKTAILS.filter(c => c.tier<=4)).forEach(c => { if(!byFam[c.family]) byFam[c.family]=c; });
+      shuffle(everyday).forEach(c => { if(!byFam[c.family]) byFam[c.family]=c; });
       const spread = shuffle(Object.values(byFam));
       const picks = spread.slice(0, d.pick);
       while(picks.length < d.pick){
-        const extra = sample(COCKTAILS.filter(c => c.tier<=4 && !picks.some(p=>p.name===c.name)),1)[0];
+        const extra = sample(everyday.filter(c => !picks.some(p=>p.name===c.name)),1)[0];
         if(!extra) break;
         picks.push(extra);
       }

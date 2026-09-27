@@ -1,7 +1,7 @@
 /* ---------------- DATA: THE FIFTY ---------------- */
 
 const COCKTAILS = [
-  // TIER 1
+  // THE CORE DOZEN (tier:1)
   { name:"Old Fashioned", tier:1, family:"Old Fashioned", spirit:"Whiskey",
     spec:["2 oz bourbon or rye","1/4 oz simple (or 1 sugar cube)","2–3 dashes Angostura bitters"],
     method:"Stir over ice", glass:"Rocks, large cube", garnish:"Expressed orange peel",
@@ -51,7 +51,7 @@ const COCKTAILS = [
     method:"Shake hard, double strain up", glass:"Coupe", garnish:"3 coffee beans",
     note:"Fresh espresso's crema builds the foam. Shake like you mean it." },
 
-  // TIER 2
+  // THE CLASSICS CANON (tier:2)
   { name:"Sazerac", tier:2, family:"Old Fashioned", spirit:"Whiskey",
     spec:["2 oz rye whiskey","1 sugar cube","3 dashes Peychaud's bitters","absinthe rinse"],
     method:"Stir, strain into rinsed glass, no ice", glass:"Chilled rocks glass", garnish:"Lemon peel, expressed & traditionally discarded",
@@ -133,7 +133,7 @@ const COCKTAILS = [
     method:"Build hot, float cream over a spoon", glass:"Pre-heated Irish coffee glass", garnish:"The cream IS the garnish",
     note:"Drink the hot coffee through the cool cream, never stir." },
 
-  // TIER 3
+  // THE EXTENDED CANON (tier:3)
   { name:"Martinez", tier:3, family:"Spirit & Vermouth", spirit:"Gin",
     spec:["1.5 oz Old Tom gin","1.5 oz sweet vermouth","1/4 oz maraschino","2 dashes orange bitters"],
     method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist",
@@ -230,7 +230,7 @@ const COCKTAILS = [
     spec:["4 oz ginger ale","1/2 oz grenadine","squeeze of lime (optional)"],
     method:"Build over ice", glass:"Highball", garnish:"Two cherries, always two",
     note:"Use real pomegranate grenadine and it stops being a kids' drink and becomes hospitality." },
-  /* ===== TIER 4: MODERN CRAFT CLASSICS ===== */
+  /* ===== MODERN CRAFT CLASSICS (tier:4) ===== */
   { name:"Gold Rush", tier:4, family:"Sour", spirit:"Whiskey", spec:["2 oz bourbon","3/4 oz lemon juice","3/4 oz honey syrup"], method:"Shake, strain over a large cube", glass:"Rocks", garnish:"None", note:"Milk & Honey, New York: the Bee's Knees goes to Kentucky." },
   { name:"Oaxaca Old Fashioned", tier:4, family:"Old Fashioned", spirit:"Tequila", spec:["1.5 oz reposado tequila","1/2 oz mezcal","1 tsp agave nectar","2 dashes Angostura bitters"], method:"Stir over ice", glass:"Rocks, large cube", garnish:"Flamed orange peel", note:"The agave landmark out of Death & Co." },
   { name:"Naked & Famous", tier:4, family:"Sour", spirit:"Mezcal", spec:["3/4 oz mezcal","3/4 oz yellow Chartreuse","3/4 oz Aperol","3/4 oz lime juice"], method:"Shake, double strain up", glass:"Coupe", garnish:"None", note:"Child of the Last Word and the Paper Plane." },
@@ -267,7 +267,7 @@ const COCKTAILS = [
   { name:"Benton's Old Fashioned", tier:4, family:"Old Fashioned", spirit:"Whiskey", spec:["2 oz bacon fat-washed bourbon","1/4 oz maple syrup","2 dashes Angostura"], method:"Stir over ice", glass:"Rocks, large cube", garnish:"Orange twist", note:"PDT, New York: the fat-wash that launched a thousand infusions." },
   { name:"Conference", tier:4, family:"Old Fashioned", spirit:"Whiskey", spec:["1/2 oz each: rye, bourbon, cognac, calvados","1 tsp demerara syrup","2 dashes Angostura + 1 dash mole bitters"], method:"Stir over ice", glass:"Rocks, large cube", garnish:"Lemon + orange twists", note:"Death & Co, New York: four brown spirits, one table." },
 
-  /* ===== TIER 5: TIKI & TROPICAL ===== */
+  /* ===== TIKI & TROPICAL (tier:5) ===== */
   { name:"Zombie", tier:5, family:"Tiki", spirit:"Rum", spec:["1.5 oz gold Puerto Rican rum","1.5 oz aged Jamaican rum","1 oz 151 demerara rum","3/4 oz lime juice","1/2 oz falernum","1/2 oz grapefruit juice","1/4 oz cinnamon syrup","1 tsp grenadine","1 dash Angostura","6 drops absinthe"], method:"Whip shake, pour over crushed ice", glass:"Tiki mug or tall", garnish:"Mint bouquet", note:"Don the Beachcomber, 1934. Limit two per customer, a house rule for a reason." },
   { name:"Painkiller", tier:5, family:"Tiki", spirit:"Rum", spec:["2 oz dark rum","4 oz pineapple juice","1 oz orange juice","1 oz coconut cream"], method:"Shake, pour over crushed ice", glass:"Hurricane", garnish:"Grated nutmeg + pineapple", note:"Soggy Dollar Bar, BVI: Pusser's holds the trademark." },
   { name:"Hurricane", tier:5, family:"Tiki", spirit:"Rum", spec:["2 oz dark rum","1 oz white rum","1 oz lime juice","1 oz passion fruit syrup","1/2 oz simple syrup"], method:"Shake, strain over crushed ice", glass:"Hurricane", garnish:"Orange + cherry", note:"Pat O'Brien's, New Orleans, 1940s." },
@@ -303,7 +303,7 @@ const COCKTAILS = [
   { name:"Yellow Bird", tier:5, family:"Sour", spirit:"Rum", spec:["1.5 oz white rum","1/2 oz Galliano","1/2 oz triple sec","3/4 oz lime juice"], method:"Shake, strain up or over ice", glass:"Coupe or rocks", garnish:"Lime wheel", note:"Caribbean cruise-era standard, named for the calypso song." },
   { name:"Goombay Smash", tier:5, family:"Tiki", spirit:"Rum", spec:["1.5 oz gold rum","1 oz coconut rum","1/2 oz apricot liqueur","2 oz pineapple juice","1/2 oz lemon juice"], method:"Shake, strain over ice", glass:"Rocks or hurricane", garnish:"Pineapple + cherry", note:"Miss Emily's Blue Bee Bar, Green Turtle Cay, Bahamas." },
   { name:"Coconaut", tier:5, family:"Tiki", spirit:"Rum", spec:["2 oz aged rum","3/4 oz lime juice","1 oz coconut cream"], method:"Shake, strain over crushed ice", glass:"Rocks", garnish:"Lime wheel", note:"Smuggler's Cove: the daiquiri in a coconut spacesuit." },
-  /* ===== TIER 6: THE GOLDEN AGE & PROHIBITION ===== */
+  /* ===== THE GOLDEN AGE & PROHIBITION (tier:6) ===== */
   { name:"Bijou", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["1 oz gin","1 oz green Chartreuse","1 oz sweet vermouth","1 dash orange bitters"], method:"Stir, strain up", glass:"Coupe", garnish:"Cherry + lemon twist", note:"'Jewel': gin for diamond, Chartreuse for emerald, vermouth for ruby." },
   { name:"Tuxedo", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["1.5 oz gin","1.5 oz dry vermouth","1/4 oz maraschino","2 dashes orange bitters","absinthe rinse"], method:"Stir, strain into rinsed glass", glass:"Coupe", garnish:"Cherry + lemon twist", note:"The Martini in formal wear: maraschino, absinthe, and bitters all at once." },
   { name:"Alaska", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["2.25 oz gin","3/4 oz yellow Chartreuse","1 dash orange bitters"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"The Savoy Cocktail Book: 'presumably it was first thought of in South Carolina.'" },
@@ -340,7 +340,7 @@ const COCKTAILS = [
   { name:"Satan's Whiskers", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["1/2 oz each: gin, sweet vermouth, dry vermouth, orange juice","1/4 oz Grand Marnier","1 dash orange bitters"], method:"Shake, strain up", glass:"Coupe", garnish:"Orange twist", note:"'Straight' with Grand Marnier, 'curled' with orange curaçao." },
   { name:"Old Pal", tier:6, family:"Spirit & Vermouth", spirit:"Whiskey", spec:["1 oz rye","1 oz dry vermouth","1 oz Campari"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"The Boulevardier's drier Parisian cousin." },
 
-  /* ===== TIER 7: HIGHBALLS, SPRITZES & PARTY CALLS ===== */
+  /* ===== HIGHBALLS, SPRITZES & PARTY CALLS (tier:7) ===== */
   { name:"Cuba Libre", tier:7, family:"Highball", spirit:"Rum", spec:["2 oz white rum","1/2 oz lime juice","4 oz cola"], method:"Build over ice", glass:"Highball", garnish:"Lime wedge", note:"Born with Cuban independence, c. 1900: the lime is what separates it from rum and coke." },
   { name:"Greyhound", tier:7, family:"Highball", spirit:"Vodka", spec:["2 oz vodka","4 oz grapefruit juice"], method:"Build over ice", glass:"Highball", garnish:"Grapefruit wedge", note:"Two ingredients, so the grapefruit must be fresh: bottled juice is what gives this drink its bad reputation." },
   { name:"Salty Dog", tier:7, family:"Highball", spirit:"Vodka", spec:["2 oz vodka (or gin)","4 oz grapefruit juice","salt rim"], method:"Build over ice in rimmed glass", glass:"Highball, salt rim", garnish:"Grapefruit wedge", note:"A Greyhound that learned about salt and grapefruit's friendship." },
@@ -375,7 +375,7 @@ const COCKTAILS = [
   { name:"Kamikaze", tier:7, family:"Sour", spirit:"Vodka", spec:["3/4 oz vodka","3/4 oz triple sec","3/4 oz lime juice"], method:"Shake, strain into shot glass or up", glass:"Shot or coupe", garnish:"Lime wedge", note:"The 1970s shooter that is secretly a tiny, decent sour. Also on the Shot Board: it is ordered both ways, and the full-size version deserves fresh lime." },
   { name:"Lemon Drop", tier:7, family:"Sour", spirit:"Vodka", spec:["2 oz vodka","1/2 oz triple sec","3/4 oz lemon juice","1/2 oz simple syrup"], method:"Shake, strain into sugar-rimmed glass", glass:"Coupe, sugar rim", garnish:"Lemon twist", note:"San Francisco, 1970s, a vodka Sidecar in a party dress. Also on the Shot Board; the cocktail version is the better drink." },
   { name:"Green Tea Shot", tier:7, family:"Sour", spirit:"Whiskey", spec:["1/2 oz Irish whiskey","1/2 oz peach schnapps","1/2 oz lemon juice","1/2 oz simple syrup","splash lemon-lime soda"], method:"Shake everything but the soda, strain into shot glasses, splash", glass:"Shot", garnish:"None", note:"Contains no tea. Named for the color. Bartenders sell hundreds on Saturdays." },
-  /* ===== TIER 8: DESSERT, HOT & AFTER-DINNER ===== */
+  /* ===== DESSERT, HOT & AFTER-DINNER (tier:8) ===== */
   { name:"Grasshopper", tier:8, family:"Egg & Cream", spirit:"Liqueur", spec:["1 oz green crème de menthe","1 oz white crème de cacao","1 oz cream"], method:"Shake hard, strain up", glass:"Coupe", garnish:"Mint leaf or shaved chocolate", note:"New Orleans, c. 1918, mint chip ice cream's older, boozier sibling." },
   { name:"Golden Cadillac", tier:8, family:"Egg & Cream", spirit:"Liqueur", spec:["1 oz Galliano","1 oz white crème de cacao","1 oz cream"], method:"Shake hard, strain up", glass:"Coupe", garnish:"None", note:"Poor Red's, California, 1952." },
   { name:"Pink Squirrel", tier:8, family:"Egg & Cream", spirit:"Liqueur", spec:["1 oz crème de noyaux (or amaretto)","1 oz white crème de cacao","1 oz cream"], method:"Shake hard, strain up", glass:"Coupe", garnish:"None", note:"Wisconsin supper-club royalty: often blended with ice cream there." },
@@ -410,7 +410,7 @@ const COCKTAILS = [
   { name:"Ferrari", tier:8, family:"Duo & Trio", spirit:"Aperitivo", spec:["1 oz Fernet-Branca","1 oz Campari"], method:"Stir briefly over ice or serve as a chilled shot", glass:"Rocks or shot", garnish:"None", note:"Fernet + Campari = the industry handshake, named for the F and C badge. Also on the Shot Board: poured over ice as a drink, or straight as a shot." },
   { name:"Brave Bull", tier:8, family:"Duo & Trio", spirit:"Tequila", spec:["2 oz blanco tequila","1 oz coffee liqueur"], method:"Build over ice, stir", glass:"Rocks", garnish:"None", note:"The Black Russian goes to Jalisco." },
 
-  /* ===== TIER 9: DRINKS OF THE WORLD ===== */
+  /* ===== DRINKS OF THE WORLD (tier:9) ===== */
   { name:"Caesar", tier:9, family:"Highball", spirit:"Vodka", spec:["1.5 oz vodka","4 oz Clamato","2 dashes hot sauce","2 dashes Worcestershire","pinch celery salt"], method:"Roll or build over ice in rimmed glass", glass:"Highball, celery-salt rim", garnish:"Celery + lime (Canadians go maximalist)", note:"Calgary, 1969: Canada's national cocktail, 350 million a year." },
   { name:"Toronto", tier:9, family:"Old Fashioned", spirit:"Whiskey", spec:["2 oz Canadian rye","1/4 oz Fernet-Branca","1/4 oz demerara syrup","2 dashes Angostura"], method:"Stir, strain over large cube or up", glass:"Rocks or coupe", garnish:"Orange twist", note:"The Fernet Old Fashioned: Canada's great contribution to the amaro canon." },
   { name:"Brandy Old Fashioned", tier:9, family:"Old Fashioned", spirit:"Brandy", spec:["2 oz brandy","1 sugar cube + 2 dashes Angostura","muddled orange slice + cherry","2 oz lemon-lime soda (sweet) or grapefruit soda / sour mix (sour)"], method:"Muddle, build over ice, top", glass:"Rocks", garnish:"Orange + cherry", note:"Wisconsin drinks more brandy per capita than anywhere; 'sweet or sour?' is the state's password. A 'press' is half lemon-lime, half seltzer; plain 'soda' means seltzer alone." },
@@ -446,7 +446,7 @@ const COCKTAILS = [
   { name:"Tatanka", tier:9, family:"Highball", spirit:"Vodka", spec:["2 oz bison grass vodka (Żubrówka)","4 oz cloudy apple juice"], method:"Build over ice, stir", glass:"Highball", garnish:"Apple slice", note:"Poland's szarlotka: tastes uncannily of apple pie." },
   { name:"Bombardino", tier:9, family:"Hot", spirit:"Liqueur", spec:["1.5 oz advocaat (or Vov)","1 oz brandy","heated gently","whipped cream on top"], method:"Warm the mix, crown with cream", glass:"Small mug", garnish:"Cinnamon dust", note:"Italian ski-lodge rocket fuel, 'the bomb' after a cold run." },
   { name:"Caffè Corretto", tier:9, family:"Duo & Trio", spirit:"Liqueur", spec:["1 shot hot espresso","1/2 oz grappa or sambuca"], method:"Pour the spirit into the espresso: 'corrected' coffee", glass:"Demitasse", garnish:"None", note:"Italy's breakfast confession: some pour the grappa into the empty cup after (the resentin)." },
-  /* ===== TIER 10: THE BARTENDER'S OBSCURA ===== */
+  /* ===== THE BARTENDER'S OBSCURA (tier:10) ===== */
   { name:"Blue Blazer", tier:10, family:"Hot", spirit:"Whiskey", spec:["2 oz cask-strength scotch","2 oz boiling water","1 tsp demerara sugar"], method:"Ignite and throw flaming between two mugs in a long arc", glass:"Pre-heated mug", garnish:"Lemon twist", note:"The 1862 guide's signature stunt: 'a blazing stream of liquid fire.' Practice with cold water first. Seriously." },
   { name:"Absinthe Frappé", tier:10, family:"Julep & Smash", spirit:"Absinthe", spec:["1.5 oz absinthe","1/2 oz simple syrup","2 oz soda water"], method:"Swizzle with crushed ice until arctic", glass:"Rocks or absinthe glass", garnish:"Mint sprig", note:"Old Absinthe House, New Orleans, 1874: the Green Fairy's morning constitutional." },
   { name:"Roffignac", tier:10, family:"Highball", spirit:"Brandy", spec:["2 oz cognac","3/4 oz raspberry shrub","3 oz soda water"], method:"Build over ice", glass:"Highball", garnish:"None", note:"Lost NOLA classic named for a mayor; revived by the modern shrub movement." },
@@ -485,7 +485,7 @@ const COCKTAILS = [
   /* ===== CANON REPAIR: core drink that belonged all along ===== */
   { name:"Gin Fizz", tier:2, family:"Sour", spirit:"Gin", spec:["2 oz gin","3/4 oz lemon juice","3/4 oz simple syrup","1 egg white (optional: with it, a Silver Fizz)","2 oz soda water"], method:"Dry shake if egg, then shake with ice, strain, top with soda slowly", glass:"Highball, no ice", garnish:"None: the foam is the point", note:"Plain, it's the bar-call fizz. The egg white makes it a Silver, a yolk a Golden, both a Royal. Serve it fast: the foam waits for no one." },
 
-  /* ===== TIER 4 ADDITIONS: modern craft ===== */
+  /* ===== MORE MODERN CRAFT CLASSICS (tier:4) ===== */
   { name:"Gin Gin Mule", tier:4, family:"Highball", spirit:"Gin", spec:["1.75 oz gin","3/4 oz lime juice","3/4 oz simple syrup","1 oz homemade ginger beer","6 mint leaves"], method:"Muddle mint, shake, strain over ice, top", glass:"Highball", garnish:"Mint bouquet + candied ginger", note:"Pegu Club, New York: a Mojito, a Moscow Mule, and a Southside walked into a bar. Arguably the most influential modern gin drink." },
   { name:"Cable Car", tier:4, family:"Sour", spirit:"Rum", spec:["2 oz spiced rum","3/4 oz lemon juice","1/2 oz orange curaçao","1/4 oz simple syrup"], method:"Shake, strain into a cinnamon-sugar rimmed glass", glass:"Coupe, cinnamon-sugar rim", garnish:"Orange twist", note:"The Starlight Room, San Francisco, 1996: a Sidecar that rode the hill." },
   { name:"Bourbon Renewal", tier:4, family:"Sour", spirit:"Whiskey", spec:["2 oz bourbon","1/2 oz crème de cassis","3/4 oz lemon juice","1/2 oz simple syrup","2 dashes Angostura"], method:"Shake, strain over a large cube", glass:"Rocks", garnish:"Lemon wheel", note:"Cassis gives a bourbon sour depth and a bruised-plum color." },
@@ -497,14 +497,14 @@ const COCKTAILS = [
 
   { name:"Cynar Julep", tier:4, family:"Julep & Smash", spirit:"Aperitivo", spec:["2 oz Cynar","1/2 oz lime juice","1/4 oz simple syrup","10 mint leaves"], method:"Lightly press mint, build over crushed ice, swizzle until frosted", glass:"Julep cup or rocks", garnish:"Big mint bouquet", note:"A PDT creation: a low-proof julep built on artichoke amaro that converts Cynar skeptics on the first sip." },
   { name:"Bitter Mai Tai", tier:4, family:"Tiki", spirit:"Rum", spec:["1.5 oz Campari","3/4 oz Jamaican rum","3/4 oz lime juice","1/2 oz orgeat","1/4 oz orange curaçao"], method:"Whip shake, pour over crushed ice", glass:"Rocks", garnish:"Mint sprig + spent lime shell", note:"Dram, Brooklyn: Campari takes the base spirit's chair and the orgeat keeps it from turning astringent. Contains tree nuts." },
-  /* ===== TIER 6 ADDITIONS: golden age ===== */
+  /* ===== MORE OF THE GOLDEN AGE & PROHIBITION (tier:6) ===== */
   { name:"Pink Lady", tier:6, family:"Egg & Cream", spirit:"Gin", spec:["1.5 oz gin","1/2 oz applejack","1/2 oz lemon juice","1/2 oz grenadine","1 egg white"], method:"Dry shake, shake with ice, strain up", glass:"Coupe", garnish:"Brandied cherry", note:"Unfairly mocked for decades as a 'lady's drink'; it's a well-built applejack sour and it's excellent." },
   { name:"Corpse Reviver #1", tier:6, family:"Spirit & Vermouth", spirit:"Brandy", spec:["1.5 oz cognac","3/4 oz calvados","3/4 oz sweet vermouth"], method:"Stir, strain up", glass:"Coupe", garnish:"Apple slice or orange twist", note:"The spirit-forward original, all orchard and oak; the shaken #2 gets the fame, but this one is the better nightcap." },
   { name:"Casino", tier:6, family:"Sour", spirit:"Gin", spec:["2 oz Old Tom gin","1/2 oz maraschino","1/2 oz lemon juice","2 dashes orange bitters"], method:"Shake, double strain up", glass:"Coupe", garnish:"Brandied cherry + lemon twist", note:"The Aviation's drier ancestor: no violette, just maraschino doing all the work." },
   { name:"Delmonico", tier:6, family:"Spirit & Vermouth", spirit:"Brandy", spec:["1 oz cognac","1/2 oz gin","1/2 oz dry vermouth","1/2 oz sweet vermouth","1 dash Angostura"], method:"Stir, strain up", glass:"Coupe", garnish:"Orange twist", note:"From New York's first great restaurant, a perfect Manhattan that couldn't choose a base spirit." },
   { name:"Fourth Degree", tier:6, family:"Spirit & Vermouth", spirit:"Gin", spec:["1 oz gin","1 oz dry vermouth","1 oz sweet vermouth","4 dashes absinthe"], method:"Stir, strain up", glass:"Coupe", garnish:"Lemon twist", note:"A Perfect Martini that walked past the absinthe bottle and thought better of restraint." },
 
-  /* ===== TIER 7 ADDITIONS: the calls you'll actually hear ===== */
+  /* ===== MORE HIGHBALLS, SPRITZES & PARTY CALLS (tier:7): the calls you'll actually hear ===== */
   { name:"Sex on the Beach", tier:7, family:"Highball", spirit:"Vodka", spec:["1.5 oz vodka","1/2 oz peach schnapps","2 oz cranberry juice","2 oz orange juice"], method:"Shake or build over ice", glass:"Highball", garnish:"Orange slice + cherry", note:"Mock it all you like: it's balanced, it sells, and a version made with fresh orange juice is genuinely good." },
   { name:"Fuzzy Navel", tier:7, family:"Highball", spirit:"Liqueur", spec:["2 oz peach schnapps","4 oz orange juice"], method:"Build over ice", glass:"Highball", garnish:"Orange slice", note:"'Fuzzy' for the peach, 'navel' for the orange. Add vodka and it becomes a Hairy Navel." },
   { name:"Blue Lagoon", tier:7, family:"Highball", spirit:"Vodka", spec:["1.5 oz vodka","1 oz blue curaçao","4 oz lemonade"], method:"Build over ice", glass:"Highball", garnish:"Lemon wheel + cherry", note:"Harry's New York Bar, Paris. Blue curaçao is just orange liqueur wearing a costume." },
@@ -518,19 +518,19 @@ const COCKTAILS = [
   { name:"Chelada", tier:7, family:"Highball", spirit:"Beer", spec:["12 oz Mexican lager","3/4 oz lime juice","salt rim"], method:"Build in a salt-rimmed glass over ice", glass:"Pint, salt rim", garnish:"Lime wedge", note:"Beer, lime, salt: the Michelada's stripped-down sibling, and the better hot-afternoon drink." },
   { name:"Adios", tier:7, family:"Highball", spirit:"Vodka", spec:["1/2 oz each: vodka, gin, white rum, blanco tequila","1/2 oz blue curaçao","3/4 oz lemon juice","3/4 oz simple syrup","2 oz lemon-lime soda"], method:"Shake spirits and citrus, strain over ice, top", glass:"Collins", garnish:"Lemon wheel", note:"The Long Island's blue cousin. Same warning applies: count it as the four-plus drinks it actually is." },
 
-  /* ===== TIER 9 ADDITIONS: the world ===== */
+  /* ===== MORE DRINKS OF THE WORLD (tier:9) ===== */
   { name:"Rosita", tier:9, family:"Spirit & Vermouth", spirit:"Tequila", spec:["1.5 oz reposado tequila","1/2 oz Campari","1/2 oz sweet vermouth","1/2 oz dry vermouth","1 dash Angostura"], method:"Stir over ice", glass:"Rocks", garnish:"Lemon twist", note:"Printed in Mexico's own bar books and pulled back into print in the 1990s: the tequila Negroni that predates the trend by decades." },
   { name:"Bloody Maria", tier:9, family:"Highball", spirit:"Tequila", spec:["2 oz blanco tequila","4 oz tomato juice","1/2 oz lime juice","hot sauce, Worcestershire, salt, pepper"], method:"Roll between tins", glass:"Highball, chile-salt rim", garnish:"Lime, pickled jalapeño, celery", note:"Tequila's vegetal edge suits tomato better than vodka does. Mezcal makes it a Smoky Maria." },
   { name:"Charro Negro", tier:9, family:"Highball", spirit:"Tequila", spec:["2 oz blanco tequila","1/2 oz lime juice","4 oz cola","pinch salt"], method:"Build over ice", glass:"Highball, salt rim", garnish:"Lime wedge", note:"Mexico's 'black cowboy': the Batanga's cousin, and proof that tequila and cola belong together." },
   { name:"Rossini", tier:9, family:"Highball", spirit:"Sparkling wine", spec:["2 oz fresh strawberry purée","4 oz prosecco"], method:"Purée first, pour bubbles gently", glass:"Flute", garnish:"None", note:"Venice names its bubbles for artists: Bellini (peach), Rossini (strawberry), Tintoretto (pomegranate), Puccini (mandarin)." },
   { name:"Chuflay", tier:9, family:"Highball", spirit:"Brandy", spec:["2 oz singani","4 oz ginger ale","squeeze of lime"], method:"Build over ice", glass:"Highball", garnish:"Lime wheel", note:"Bolivia's national highball, built on singani, a high-altitude muscat brandy that drinks like pisco's floral cousin." },
 
-  /* ===== TIER 10 ADDITIONS: deeper cuts ===== */
+  /* ===== MORE OF THE BARTENDER'S OBSCURA (tier:10): deeper cuts ===== */
   { name:"Twelve Mile Limit", tier:10, family:"Sour", spirit:"Rum", spec:["1 oz white rum","1/2 oz rye","1/2 oz cognac","1/2 oz lemon juice","1/2 oz grenadine"], method:"Shake, double strain up", glass:"Coupe", garnish:"Lemon twist", note:"Named for the 1924 extension of US territorial waters, the distance rum-runners had to sail to be legal." },
   { name:"Hop Toad", tier:10, family:"Sour", spirit:"Brandy", spec:["1.5 oz apricot brandy","3/4 oz lime juice","1 dash Angostura"], method:"Shake, double strain up", glass:"Coupe", garnish:"Lime wheel", note:"1860s-era; two ingredients and better than it deserves to be." },
   { name:"Bishop", tier:10, family:"Punch", spirit:"Fortified wine", spec:["3 oz ruby port","1 oz dark rum","3/4 oz lemon juice","1/2 oz simple syrup"], method:"Shake, pour over crushed ice", glass:"Wine glass or goblet", garnish:"Orange wheel + nutmeg", note:"A 19th-century port punch, the drink Bob Cratchit's family toasts in A Christmas Carol." },
 
-  /* ===== TIER 11: THE MARTINI BOOK ===== */
+  /* ===== THE MARTINI BOOK (tier:11) ===== */
   { name:"Vesper", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["3 oz gin","1 oz vodka","1/2 oz Lillet Blanc"], method:"Bond says shake; every bartender says stir. Stir it.", glass:"Coupe or Nick & Nora", garnish:"Large lemon peel, expressed", note:"Written into Casino Royale in 1953 and named for its character Vesper Lynd. The original Kina Lillet was more bitter: a dash of quinine or Cocchi Americano gets you closer." },
   { name:"Gibson", tier:11, family:"Spirit & Vermouth", spirit:"Gin", spec:["2.5 oz gin","1/2 oz dry vermouth"], method:"Stir, strain up", glass:"Nick & Nora", garnish:"Cocktail onion (or three)", note:"Identical to a Martini until the garnish, which changes everything. The onion's savory bite makes it a different drink entirely." },
   { name:"Dirty Martini", tier:11, family:"Spirit & Vermouth", spirit:"Vodka", spec:["2.5 oz vodka or gin","1/2 oz dry vermouth","1/2 oz olive brine"], method:"Shake or stir per the guest's preference", glass:"Coupe or Nick & Nora", garnish:"Three olives on a pick", note:"'Extra dirty' means more brine, not more olives; always confirm which they mean. Good brine from good olives is the whole difference." },
@@ -550,7 +550,7 @@ const COCKTAILS = [
   { name:"Lychee Martini", tier:11, family:"Sour", spirit:"Vodka", spec:["2 oz vodka","3/4 oz lychee liqueur","1 oz lychee syrup from the can","1/4 oz lime juice"], method:"Shake, double strain up", glass:"Coupe", garnish:"A single lychee", note:"The canned syrup is not a shortcut: it's the correct ingredient, and fresh lychee alone tastes thinner." },
   { name:"Pomegranate Martini", tier:11, family:"Sour", spirit:"Vodka", spec:["2 oz vodka","1 oz pomegranate juice","1/2 oz Cointreau","1/2 oz lime juice","1/4 oz simple syrup"], method:"Shake, double strain up", glass:"Coupe", garnish:"Pomegranate seeds", note:"Essentially a Cosmopolitan that swapped cranberry for pomegranate: deeper, more tannic, less pink." },
 
-  /* ===== TIER 12: FROZEN & BLENDED ===== */
+  /* ===== FROZEN & BLENDED (tier:12) ===== */
   { name:"Frozen Margarita", tier:12, family:"Sour", spirit:"Tequila", spec:["2 oz blanco tequila","1 oz lime juice","3/4 oz orange liqueur","1/2 oz agave syrup","1.5 cups ice"], method:"Blend until smooth, no chunks", glass:"Coupe or margarita glass, salt rim", garnish:"Lime wheel", note:"A soft-serve machine adapted in Dallas, 1971, changed American drinking. Blended drinks need MORE sugar and acid, because cold mutes both." },
   { name:"Frozen Daiquiri", tier:12, family:"Sour", spirit:"Rum", spec:["2 oz white rum","1 oz lime juice","3/4 oz simple syrup","1/4 oz maraschino (optional)","1.5 cups ice"], method:"Blend until smooth and pourable", glass:"Coupe", garnish:"Lime wheel", note:"El Floridita's house style, and the bar poured a sugar-free double version of it too." },
   { name:"Strawberry Daiquiri", tier:12, family:"Sour", spirit:"Rum", spec:["2 oz white rum","5 fresh strawberries","3/4 oz lime juice","3/4 oz simple syrup","1 cup ice"], method:"Blend until smooth", glass:"Hurricane or coupe", garnish:"Strawberry on the rim", note:"Fresh berries, never the neon mix; the difference is the entire drink." },
@@ -718,6 +718,13 @@ const FAMILIES = {
   },
 };
 
+/* THE TWELVE BOOKS. The cocktails were once a second ladder of twelve
+   numbered tiers beside the four levels; they are books now, read by name
+   inside the levels and never numbered anywhere a reader sees or hears one
+   (the owner, 27 September 2026, the rule the levels already keep). `c.tier`
+   stays each drink's key into this map, in the data and in state
+   (state.lib.tier, state.fc.tier), so no record, backup or stored filter
+   changes; only what is shown does. */
 const TIER_NAMES = {
   1:'The Core Dozen', 2:'The Classics Canon', 3:'The Extended Canon',
   4:'Modern Craft Classics', 5:'Tiki & Tropical', 6:'The Golden Age & Prohibition',
@@ -725,14 +732,17 @@ const TIER_NAMES = {
   9:'Drinks of the World', 10:"The Bartender's Obscura",
   11:'The Martini Book', 12:'Frozen & Blended',
 };
-function tierOptions(cur){
-  let h = '<option value="All"'+(String(cur)==='All'?' selected':'')+'>All tiers</option>';
-  for(let t=1;t<=12;t++){
-    const n = COCKTAILS.filter(c=>c.tier===t).length;
-    h += '<option value="'+t+'"'+(String(cur)===String(t)?' selected':'')+'>Tier '+t+' · '+TIER_NAMES[t]+' ('+n+')</option>';
-  }
-  return h;
-}
+/* The order the books are read in, which is the order the levels climb:
+   a book's place is the mean level of its drinks in
+   tools/levels/placements.json, a tie kept in key order. The Core Dozen and
+   the Classics Canon are Barback, every drink; the Extended Canon and the
+   highballs are Bartender, every drink; the rest climb through the upper
+   three to the Obscura, mostly Bar Manager. Every place that lists, sorts
+   or deals the cocktails by book reads this, never the key's own order, and
+   tools/check-levels.mjs fails when a placement moves a book out of it. */
+const BOOK_ORDER = [1, 2, 3, 7, 4, 11, 5, 9, 12, 8, 6, 10];
+function bookName(t){ return TIER_NAMES[t] || ''; }
+function bookRank(t){ const i = BOOK_ORDER.indexOf(Number(t)); return i < 0 ? BOOK_ORDER.length : i; }
 
 /* ---------------- DATA: KNOWLEDGE QUESTIONS ---------------- */
 

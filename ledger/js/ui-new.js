@@ -186,7 +186,8 @@ function syncRoute(){
 let SEARCH_INDEX = null;
 function buildSearchIndex(){
   const ix = [];
-  COCKTAILS.forEach(c => ix.push({ t:c.name, s:c.family+' · '+c.spirit+' · Tier '+c.tier,
+  /* the book by its name: a book is never numbered where a reader sees it */
+  COCKTAILS.forEach(c => ix.push({ t:c.name, s:c.family+' · '+c.spirit+' · '+bookName(c.tier),
     body:(c.spec.join(' ')+' '+c.method+' '+c.garnish).toLowerCase(), h:'#/library/'+slugify(c.name) }));
   /* NOT the card key, though it is byte-identical to one: this is the
      subtitle under a search result. Grep for the string and you find both;
@@ -564,15 +565,16 @@ function sessionDeckParts(){
   }).slice(0, 20);
   /* the venue’s own list outranks the canon: a fresh menu card is the drink
      someone will actually order tonight, so it deals first. After that, new
-     cards come from the lowest tier that still has unseen cocktails, so the
-     canon is learned in order; shots/NA join once cocktails run dry */
+     cards come from the first book, in book order (BOOK_ORDER), that still
+     has unseen cocktails, so the canon is learned in order; shots/NA join
+     once cocktails run dry */
   let pool = fresh.filter(d => d.src === 'My Bar');
   /* then the level: the lowest unmet level that still holds a card never
-     seen (todayLevel), its cocktails in tier order, then its shots, zero
-     proof and coffee. The Today door says which level this is. */
+     seen (todayLevel), its cocktails book by book in book order, then its
+     shots, zero proof and coffee. The Today door says which level this is. */
   const lv = (typeof todayLevel === 'function') ? todayLevel() : null;
   const atLevel = lv ? fresh.filter(d => levelOf(cardKey(d)) === lv) : [];
-  for(let t = 1; t <= 12 && !pool.length; t++) pool = atLevel.filter(d => d.src === 'Cocktails' && d.tier === t);
+  for(let i = 0; i < BOOK_ORDER.length && !pool.length; i++) pool = atLevel.filter(d => d.src === 'Cocktails' && d.tier === BOOK_ORDER[i]);
   if(!pool.length) pool = atLevel.filter(d => d.src === 'Shots' || d.src === 'Zero Proof' || d.src === 'Coffee');
   /* the wall's cards at the level, and whether they are all it has left:
      then every seat is the wall's, so the level the door names stays true */
@@ -580,14 +582,14 @@ function sessionDeckParts(){
   const tapLevel = lv ? tapAll.filter(d => levelOf(cardKey(d)) === lv) : [];
   const tapOnly = !pool.length && tapLevel.length > 0;
   if(!tapOnly){
-    for(let t = 1; t <= 12 && !pool.length; t++) pool = fresh.filter(d => d.src === 'Cocktails' && d.tier === t);
+    for(let i = 0; i < BOOK_ORDER.length && !pool.length; i++) pool = fresh.filter(d => d.src === 'Cocktails' && d.tier === BOOK_ORDER[i]);
     if(!pool.length) pool = fresh;
   }
   /* stop pouring new cards into a deep hole: dig out first */
   const newCount = dueAll > 50 ? 0 : (dueDeck.length ? 5 : 8);
   /* One seat in every hand of new cards belongs to the wall. The ladder
-     above is a STRICT ordering, so anything below cocktail tier 12 is
-     unreachable until all 365 have been seen: at five to eight new cards a
+     above is a STRICT ordering, so anything below the last book of cocktails
+     is unreachable until all 365 have been seen: at five to eight new cards a
      night that is two months away, which is why shots and zero-proof have
      never been dealt as new cards either. A fixed minority seat deals the
      styles out over a month without ever letting them crowd the canon, and

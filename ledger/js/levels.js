@@ -210,13 +210,58 @@ function todayLevel(){
   }
   return firstUnmetLevel();
 }
-/* A level's fresh cards for the session, cocktails in tier order first. */
+/* A level's fresh cards for the session: its cocktails first, in book order
+   (BOOK_ORDER, the order the levels climb), then the rest of the eight in
+   the order a level page lists them. */
 function levelFreshCards(n){
   const cards = levelCards(), out = [];
   LEVEL_SUBS.forEach(function(s){
-    levelKeys(n, s.key).forEach(function(k){ const d = cards[k]; if(d && !d.draft && !progress.cards[k]) out.push(d); });
+    const fresh = [];
+    levelKeys(n, s.key).forEach(function(k){ const d = cards[k]; if(d && !d.draft && !progress.cards[k]) fresh.push(d); });
+    fresh.sort(function(a, b){ return bookRank(a.tier) - bookRank(b.tier); });
+    out.push.apply(out, fresh);
   });
   return out;
+}
+
+/* ---- the books inside the levels ----
+   The twelve books (TIER_NAMES and BOOK_ORDER in js/data-core.js) are not a
+   ladder of their own: a level holds the books that have drinks placed at
+   it, in book order, each with its count there, and a book that spans
+   levels shows at every level it touches. A book is shown by its name and
+   never by a number; `t`, its key, is c.tier. n falsy is every level: all
+   twelve, with their totals. */
+function levelBooks(n){
+  const count = {};
+  COCKTAILS.forEach(function(c){ if(!n || levelOf(c.name) === n) count[c.tier] = (count[c.tier] || 0) + 1; });
+  return BOOK_ORDER.filter(function(t){ return count[t]; }).map(function(t){ return { t:t, name:bookName(t), n:count[t] }; });
+}
+/* The next level above n that holds drinks of book t, or null: where the
+   book continues, so the page can say so. */
+function bookContinues(t, n){
+  for(let m = n + 1; m <= 4; m++){
+    if(COCKTAILS.some(function(c){ return c.tier === t && levelOf(c.name) === m; })) return m;
+  }
+  return null;
+}
+/* A book filter as a level holds it: the key, or 'All' when the level (n,
+   falsy for every level) holds no drink of that book. Choosing a level never
+   leaves a book filter the level cannot fill. */
+function bookHeld(n, t){
+  if(t === undefined || t === null || t === 'All') return 'All';
+  return levelBooks(Number(n) || 0).some(function(b){ return b.t === Number(t); }) ? String(t) : 'All';
+}
+/* The level a drink sits at and the book it is in, by name, for its chip. */
+function drinkPlace(c){
+  const n = levelOf(c.name);
+  return (n ? levelInfo(n).name + ' · ' : '') + bookName(c.tier);
+}
+/* The everyday drinks, for the drills that deal from them (the Ticket Rail,
+   the picked drills): every cocktail placed at Barback or Bartender, the
+   drinks a good bar pours weekly by the level standard. The pools were once
+   the first four or six books by key, and a key orders nothing any more. */
+function everydayCocktails(){
+  return COCKTAILS.filter(function(c){ const n = levelOf(c.name); return n === 1 || n === 2; });
 }
 
 /* ---- the doors on a level page ----
@@ -270,6 +315,12 @@ function trainTarget(m, n, sub){
   }
   return null;
 }
+/* A book's door on a level page: the Library at that level and that book.
+   Null when the level holds no drink of the book, and a null door is never
+   drawn. */
+function bookTarget(n, t){
+  return bookHeld(n, t) === 'All' ? null : { tab:'library', libLevel:n, libBook:Number(t) };
+}
 /* Put the app where a door points. The one place a descriptor becomes state. */
 function applyTarget(t){
   if(!t) return false;
@@ -283,7 +334,7 @@ function applyTarget(t){
   if(t.view) state.practice.view = t.view;
   /* the drill's panel carries data-open once, so render() brings it into sight */
   if(t.drill) state.practice.jump = t.drill;
-  if(t.libLevel){ state.lib = { q:'', fam:'All', tier:'All', open:null, level:t.libLevel }; }
+  if(t.libLevel){ state.lib = { q:'', fam:'All', tier: t.libBook ? String(t.libBook) : 'All', open:null, level:t.libLevel }; }
   if(t.fcLevel){ Object.assign(state.fc, { stage:'setup', src:'All', family:'All', spirit:'All', tier:'All', special:'All', level:t.fcLevel, sub:t.fcSub || null }); }
   if(t.quiz){
     const round = levelRoundFromMode(t.quiz);

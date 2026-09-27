@@ -409,6 +409,16 @@ nav.quiet{ display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1f
   color:var(--cream); background:transparent; border:1px solid var(--felt-3); border-radius:4px;
   padding:8px 12px; min-height:36px; cursor:pointer; font-family:inherit; transition:all .15s; text-align:left; }
 .train:hover{ color:var(--brass-2); border-color:var(--brass); }
+/* the books at a level: doors into the Library at the level and the book,
+   44px at every width, words and never a glyph */
+.books{ display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:8px; margin-top:10px; }
+.book{ display:flex; flex-direction:column; align-items:flex-start; gap:2px; min-height:44px; text-align:left;
+  background:transparent; color:var(--cream); border:1px solid var(--felt-3); border-radius:4px;
+  padding:8px 12px; cursor:pointer; font-family:inherit; transition:border-color .15s; }
+.book:hover{ border-color:var(--brass); }
+.book-name{ font-size:0.88rem; line-height:1.3; }
+.book-count{ font-family:'Courier Prime','Courier New',monospace; font-size:0.75rem; color:var(--cream-dim); }
+.book-more{ font-size:0.72rem; line-height:1.35; color:var(--brass); }
 .leveltest{ width:100%; min-height:48px; font-size:0.9rem; }
 .lt-misses{ list-style:none; margin:0; padding:0; }
 .lt-miss{ display:flex; flex-direction:column; gap:3px; padding:10px 0; border-bottom:1px solid var(--felt-3); }
@@ -422,5 +432,5 @@ nav.quiet{ display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1f
 }
 @media (forced-colors: active){
   .level.on{ outline:3px solid CanvasText; outline-offset:-4px; }
-  .level, .door, .train, .subsection{ border:1px solid CanvasText; }
+  .level, .door, .train, .book, .subsection{ border:1px solid CanvasText; }
 }
