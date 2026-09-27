@@ -354,16 +354,30 @@ function readSaveCanon(canonId, onProgress) {
    is complete and validated (check-plans.js), and loaded under its own hash:
    a teaching file stamped with FL_TEXT_V would never update once cached. */
 
-function readTeachReady(canonId) {
+function readTeachListed(canonId) {
   return !!(typeof FL_PLANS !== 'undefined' && FL_PLANS && FL_PLANS.teach && FL_PLANS.teach[canonId] && planDef(canonId));
 }
+/* ?preview=teachings in the address: a set still being written, read from
+   js/texts/teachings/_preview/<planId>.js, which git ignores, so only the
+   machine that builds it ever has it. A listed set always wins. */
+function readTeachPreview(canonId) {
+  var q = '';
+  try { q = location.search || ''; } catch (e) { /* no location outside a page */ }
+  return !readTeachListed(canonId) && !!planDef(canonId) && /[?&]preview=teachings(&|$)/.test(q);
+}
+function readTeachReady(canonId) {
+  return readTeachListed(canonId) || readTeachPreview(canonId);
+}
 function readTeachLoad(canonId) {
-  if (!readTeachReady(canonId)) return Promise.reject(new Error('no-teachings'));
-  return FLTextLoad('teachings', canonId, FL_PLANS.teach[canonId].v);
+  if (readTeachListed(canonId)) return FLTextLoad('teachings', canonId, FL_PLANS.teach[canonId].v);
+  if (readTeachPreview(canonId)) return FLTextLoad('teachings', '_preview/' + canonId, 'p' + Date.now());
+  return Promise.reject(new Error('no-teachings'));
 }
 /* A teaching belongs to one division; a set written against another is never shown. */
 function readTeachFor(canonId, d) {
-  var T = FL_TEXT.teachings && FL_TEXT.teachings[canonId], P = planDef(canonId);
+  var all = FL_TEXT.teachings || {};
+  var T = readTeachListed(canonId) ? all[canonId] : (readTeachPreview(canonId) ? all['_preview/' + canonId] : null);
+  var P = planDef(canonId);
   if (!T || !P || T.div !== P.div || !T.days) return null;
   var t = T.days[d - 1];
   return t && t.d === d ? t : null;
