@@ -1,0 +1,61 @@
+/* Calendar For Life: the explorer's atlas. Presentation only. */
+@font-face{font-family:'House Cinzel';font-style:normal;font-weight:400 900;font-display:swap;src:url('../fonts/cinzel-latin.woff2') format('woff2')}
+@media screen{
+  :root{--house-dark:#081510;--house-gold:#d5b16c;--house-display:'House Cinzel','Cinzel',Georgia,serif;--ink:#26352b;--ink-soft:#435041;--parchment:#f4e8ce;--parchment-2:#e9d9b7;--parchment-3:#dac495;--vellum:#faf2df;--gold:#bd9859;--gold-light:#e2c58b;--gold-deep:#81632d;--gold-ink:#755421;--crimson:#645125;--crimson-dk:#423c24;--field-line:#ad945f;--field-line-paper:#8e784d}
+  html{background:var(--house-dark);padding:0;scroll-padding-top:115px}
+  body{background:radial-gradient(ellipse at 50% 0,#203829,#081510 75%) !important;color:var(--parchment);padding:0;line-height:1.65;font-size:17px}
+  body::after{display:none}
+  .house-masthead{position:relative;isolation:isolate;overflow:hidden;max-width:1280px;min-height:185px;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:36px 28px 28px;background:#081510;border-inline:1px solid #6c583666;border-bottom:1px solid #997b47}
+  .house-art{position:absolute;inset:0;z-index:-2}
+  .house-art img{height:100%;width:100%;object-fit:cover;object-position:50% 49%;filter:brightness(.42)}
+  .house-masthead::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#05100c66,#05100c22,#081510bb)}
+  .house-signature{font-family:var(--house-display);font-size:10px;letter-spacing:.25em;color:#f7dba4;margin:0 0 10px}
+  .house-title{font-family:var(--house-display);font-size:34px;font-weight:500;letter-spacing:.04em;line-height:1.2;margin:0;color:#ffe5b0;text-shadow:0 2px 12px #000}
+  .house-title button{font:inherit;color:inherit;letter-spacing:inherit;line-height:inherit;text-shadow:inherit;cursor:pointer;border:0;background:none;min-height:44px;padding:4px 8px}
+  .house-subtitle,.house-caption{display:none}
+  .house-atlas-home .house-masthead{height:585px;justify-content:flex-start;padding-top:49px}
+  .house-atlas-home .house-art img{filter:none;object-position:50% 61%}
+  .house-atlas-home .house-masthead::before{background:linear-gradient(180deg,#06100caa,#06100c55 30%,transparent 55%,#06100c99)}
+  .house-atlas-home .house-title{font-size:clamp(42px,5.7vw,74px);font-weight:500;letter-spacing:.035em}
+  .house-atlas-home .house-signature{margin-bottom:17px;font-size:11px}
+  .house-atlas-home .house-subtitle{display:block;font-size:25px;line-height:1.4;font-style:italic;margin:13px 0 0;color:#fff0cf;text-shadow:0 2px 8px #000}
+  .house-atlas-home .house-caption{display:block;margin:auto 0 0;font-family:var(--house-display);font-size:11px;letter-spacing:.23em;color:#ffe2a8;text-shadow:0 1px 6px #000}
+  #almanac,#pilgrimages{max-width:1280px;margin:0 auto;padding-bottom:calc(50px + env(safe-area-inset-bottom));min-height:60vh}
+  .top-rail{background:#0c1d15f5;border-bottom:1px solid #8e764b66;box-shadow:0 4px 24px #0002;padding:16px max(26px,env(safe-area-inset-right)) 16px max(26px,env(safe-area-inset-left));backdrop-filter:blur(10px)}
+  .top-rail-inner{max-width:1152px;justify-content:space-between;gap:16px;padding-left:38px}
+  .top-rail .brand{display:inline-flex;align-items:center;min-height:44px;max-width:100%;flex-shrink:1}
+  .top-rail .brand-text{font-family:var(--house-display);font-size:15px;line-height:1.5;letter-spacing:.08em;color:#ead3a2;font-weight:500}
+  .search-wrap{max-width:490px;min-width:0;flex:1}
+  .search-input{min-height:48px;background:#12291f;border:1px solid #a28d60;color:#fff1d1;border-radius:3px;font-size:17px;line-height:1.5;padding:10px 16px}
+  .search-input::placeholder{color:#cfc4ab;opacity:1}
+  .search-input:focus{background:#172f23}
+  .flag-rail{max-width:1180px;margin:0 auto;padding:23px 24px 16px;gap:10px;justify-content:center}
+  .flag-rail button,.flag-chip{min-height:48px;border:1px solid #947a46;border-radius:3px;box-shadow:inset 0 0 0 3px #102219,inset 0 0 0 4px #92754444;background:#102219;color:#ebd29a;font-family:var(--house-display);font-weight:500;font-size:12px;line-height:1.5;letter-spacing:.1em;padding:12px 23px;justify-content:center;text-align:center;white-space:normal}
+  .flag-rail button:hover,.flag-chip:hover{background:#233c2a;border-color:#e4c385;color:#fff0cd;transform:none;box-shadow:inset 0 0 0 3px #233c2a,inset 0 0 0 4px #c4a36788}
+  .flag-rail button.is-active,.flag-chip.active{background:#d4b477;color:#19271d;border-color:#edd59d;box-shadow:inset 0 0 0 3px #d4b477,inset 0 0 0 4px #725727}
+  .myvoy-count{background:#dfc387;color:#18271c;border-radius:50%;font-size:12px;min-width:23px;line-height:23px}
+  .flag-rail button.is-active .myvoy-count{background:#253d2c;color:#fff0cd}
+  .almanac-who{max-width:1152px;margin:10px auto 0;padding-left:38px;--oot-ink:#f3e2bc;--oot-dim:#c2b594;--oot-line:#87774f;--oot-accent:#e5c486}
+  .almanac-who .oot-chip{min-height:44px;padding:8px 14px}
+  .house-section-intro{max-width:720px;margin:25px auto 20px;padding:0 24px;text-align:center}
+  .house-section-intro h2{font-family:var(--house-display);font-size:27px;font-weight:500;letter-spacing:.08em;color:#ecd1a0;margin:0 0 9px}
+  .house-section-intro p{font-size:18px;line-height:1.6;color:#cbbc9a;margin:0}
+  .back-link{min-height:44px;display:flex;align-items:center;width:fit-content;max-width:calc(100% - 48px);margin:24px 24px 0;padding:10px 16px;border:1px solid #8f7648;border-radius:3px;background:transparent;color:#e9ce95;font-family:var(--house-display);font-size:12px;letter-spacing:.06em;line-height:1.6;cursor:pointer}
+  .back-link:hover{color:#fff1d0;background:#1d3425}
+  .page-fineprint{margin:32px auto 0;color:#c8b999;text-align:center}
+  .page-fineprint a{display:inline-flex;align-items:center;min-height:44px;color:#d9c18f;padding:8px 16px}
+  :is(button,a,input,select,textarea,[role='button']):focus-visible{outline:3px solid #e4c384;outline-offset:4px}
+  .skip:focus{z-index:12000;background:#f4e8ce;color:#183021}
+  @media(max-width:760px){
+    .house-atlas-home .house-masthead{height:520px;padding-top:57px}.house-atlas-home .house-title{font-size:53px;max-width:660px}.house-atlas-home .house-subtitle{font-size:23px}.house-atlas-home .house-art img{object-position:52% 65%}
+    .top-rail-inner{gap:12px}.top-rail .brand-text{font-size:13px}.top-rail{padding:14px 20px}.flag-rail{padding:20px 20px 10px;gap:8px}.flag-rail button{font-size:11px;padding:11px 17px}.almanac-who{padding-left:38px}
+  }
+  @media(max-width:520px){
+    html{scroll-padding-top:150px}.house-masthead{min-height:174px;padding:60px 22px 23px}.house-title{font-size:28px;letter-spacing:.025em}.house-signature{font-size:9px;letter-spacing:.15em}
+    .house-atlas-home .house-masthead{height:455px;padding:63px 22px 22px}.house-atlas-home .house-signature{font-size:9px;letter-spacing:.14em;margin-bottom:10px}.house-atlas-home .house-title{font-size:44px;max-width:370px}.house-atlas-home .house-subtitle{font-size:21px;max-width:260px;margin-top:10px}.house-atlas-home .house-caption{font-size:9px;letter-spacing:.16em}.house-atlas-home .house-art img{object-position:52% 50%}
+    .top-rail{padding:11px max(18px,env(safe-area-inset-right)) 13px max(18px,env(safe-area-inset-left))}.top-rail-inner{flex-wrap:wrap;gap:6px;padding-left:0}.top-rail .brand{padding-left:48px;min-height:44px}.top-rail .brand-text{font-size:13px;letter-spacing:.06em}.search-wrap{flex-basis:100%;max-width:none}.search-input{min-height:46px;font-size:17px;padding:10px 13px}.almanac-who{padding-left:0}
+    .flag-rail{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:18px 18px 10px}.flag-rail .pilgrim-chip{grid-column:1/-1}.flag-rail button{font-size:11px;padding:11px 8px;min-height:47px;letter-spacing:.06em}.house-section-intro{margin-top:22px}.house-section-intro h2{font-size:24px;letter-spacing:.04em}.house-section-intro p{font-size:17px}.back-link{margin:18px 18px 0;max-width:calc(100% - 36px);font-size:11px;padding:10px 12px}
+  }
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}}
+}
+@media print{.house-masthead,.house-section-intro{display:none !important}}

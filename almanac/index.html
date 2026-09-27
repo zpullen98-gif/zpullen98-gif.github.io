@@ -6,7 +6,7 @@
 <title>Calendar For Life · Outside Of Time</title>
 <meta name="description" content="Charts &amp; Bearings For The Years Ahead. An illuminated almanac of 799 entries in five Books: 365 voyages across twelve charts, 32 living pages, 52 other worlds, 60 days of yore, and 29 pilgrimages with 290 stops.">
 <meta name="author" content="Calendar For Life">
-<meta name="theme-color" content="#1a1410">
+<meta name="theme-color" content="#081510">
 
 <!-- PWA / installable app -->
 <link rel="manifest" href="/manifest.webmanifest">
@@ -2271,9 +2271,19 @@
   }
 
 </style>
+<link rel="stylesheet" href="css/house.css">
+<link rel="stylesheet" href="css/house-cards.css">
+<link rel="stylesheet" href="css/house-overlays.css">
 </head>
-<body>
+<body class="house-atlas-home">
 <a class="skip" id="skip-link" href="#charts-home">Skip to content</a>
+<header class="house-masthead" aria-label="Calendar For Life">
+  <div class="house-art" aria-hidden="true"><img src="images/atlas-library.webp" alt="" width="1536" height="1024" fetchpriority="high"></div>
+  <p class="house-signature">Outside Of Time Hospitality</p>
+  <h1 class="house-title"><button type="button" id="house-home" aria-label="Calendar For Life">Calendar For Life</button></h1>
+  <p class="house-subtitle">Charts &amp; bearings for the years ahead</p>
+  <p class="house-caption">An almanac for the curious</p>
+</header>
 
 <!-- ============================================================
      THE COVER IS RETIRED. Nobody should have to click through a door to
@@ -2290,7 +2300,7 @@
   <header class="top-rail">
     <div class="top-rail-inner">
       <div class="brand" id="brand">
-        <h1 class="brand-text">Calendar For Life</h1>
+        <span class="brand-text">Calendar For Life</span>
       </div>
 
       <div class="search-wrap">
@@ -2311,6 +2321,7 @@
          the whole argument for installing it, so it sits above the charts. -->
     <section class="today-masthead" id="today-masthead" aria-label="Today in the almanac" hidden></section>
 
+    <div class="house-section-intro"><h2>The Twelve Charts</h2><p>A year of gatherings, stories and places worth finding. Choose a month and follow your curiosity.</p></div>
     <div class="charts-grid" id="charts-grid">
       <!-- populated by JS -->
     </div>
@@ -2353,13 +2364,15 @@
   <header class="top-rail">
     <div class="top-rail-inner">
       <div class="brand" id="brand-pilgrim">
-        <h1 class="brand-text">Pilgrimages Of Humanity</h1>
+        <span class="brand-text">Pilgrimages Of Humanity</span>
       </div>
       <div class="search-wrap">
         <input type="text" class="search-input" id="pilgrim-search" aria-label="Search the pilgrimage trails, stops, and places" placeholder="Search trails, stops, places...">
       </div>
     </div>
   </header>
+
+  <button type="button" class="back-link" id="house-return">Back to the Twelve Charts</button>
 
   <!-- 29 PILGRIMAGE CARDS -->
   <div id="pilgrim-home">
@@ -2408,24 +2421,24 @@
      ============================================================ -->
 <div class="scroll-overlay" id="scroll-overlay" role="dialog" aria-modal="true" aria-label="Voyage details">
   <article class="scroll-paper" id="scroll-paper">
-    <button class="scroll-close" id="scroll-close" aria-label="Close">✕</button>
+    <button class="scroll-close" id="scroll-close" aria-label="Close">Close</button>
     <button class="scroll-bookmark" id="scroll-bookmark" type="button" aria-label="Bookmark this scroll" aria-pressed="false" title="Bookmark this scroll">
       <svg viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
         <path class="ribbon" d="M3 2 L21 2 L21 30 L12 23 L3 30 Z"/>
-      </svg>
+      </svg><span class="house-control-label">Save</span>
     </button>
     <button class="scroll-print" id="scroll-print" type="button" aria-label="Print this scroll" title="Print this scroll">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round">
         <rect x="6" y="3" width="12" height="6"/>
         <path d="M4 9 L20 9 L20 17 L17 17 M7 17 L4 17 L4 9"/>
         <rect x="7" y="14" width="10" height="7"/>
-      </svg>
+      </svg><span class="house-control-label">Print</span>
     </button>
     <button class="scroll-share" id="scroll-share" type="button" aria-label="Share a link to this scroll" title="Share this scroll">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round">
         <circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/>
         <path d="M8.3 10.7 L15.7 6.3 M8.3 13.3 L15.7 17.7"/>
-      </svg>
+      </svg><span class="house-control-label">Share</span>
     </button>
 
     <svg class="scroll-corner tl" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
@@ -2460,14 +2473,14 @@
      ============================================================ -->
 <div class="journal-overlay" id="journal-overlay" role="dialog" aria-modal="true" aria-labelledby="journal-page-title">
   <article class="journal-paper">
-    <button class="journal-page-close" id="journal-page-close" type="button" aria-label="Close journal">✕</button>
+    <button class="journal-page-close" id="journal-page-close" type="button" aria-label="Close journal">Close</button>
     <header class="journal-page-header">
       <div class="journal-page-eyebrow">Journal</div>
       <h2 class="journal-page-title" id="journal-page-title"></h2>
       <div class="journal-page-sub" id="journal-page-sub"></div>
       <div class="scroll-divider"><div class="line"></div><div class="line"></div></div>
     </header>
-    <textarea class="journal-page-textarea" id="journal-page-textarea" placeholder="Write about your trip..."></textarea>
+    <textarea class="journal-page-textarea" id="journal-page-textarea" aria-label="Your travel journal" placeholder="Write about your trip..."></textarea>
     <div class="journal-page-foot">
       <span class="journal-page-count" id="journal-page-count"></span>
       <span class="journal-page-status" id="journal-page-status"></span>
@@ -2480,7 +2493,7 @@
      ============================================================ -->
 <div class="fnb-overlay" id="fnb-overlay" role="dialog" aria-modal="true" aria-labelledby="fnb-page-title">
   <article class="fnb-paper">
-    <button class="fnb-page-close" id="fnb-page-close" type="button" aria-label="Close Food &amp; Beverage">✕</button>
+    <button class="fnb-page-close" id="fnb-page-close" type="button" aria-label="Close Food &amp; Beverage">Close</button>
     <header class="fnb-page-header">
       <div class="fnb-page-eyebrow">Food &amp; Beverage</div>
       <h2 class="fnb-page-title" id="fnb-page-title"></h2>
@@ -4238,13 +4251,13 @@
       <div class="fnb-item-form" data-form-id="${id}">
         <div class="fnb-form-row">
           <label>Kind</label>
-          <select class="fnb-form-type">${optHtml}</select>
+          <select class="fnb-form-type" aria-label="Kind of galley note">${optHtml}</select>
         </div>
         <div class="fnb-form-row">
           <label>Name</label>
-          <input type="text" class="fnb-form-name" placeholder="e.g. Cape Malay bobotie" value="${name}">
+          <input type="text" class="fnb-form-name" aria-label="Name of recipe, drink or wine" placeholder="e.g. Cape Malay bobotie" value="${name}">
         </div>
-        <textarea class="fnb-form-notes" placeholder="How it tasted, where you had it, the recipe, the bottle...">${notes}</textarea>
+        <textarea class="fnb-form-notes" aria-label="Tasting notes or recipe" placeholder="How it tasted, where you had it, the recipe, the bottle...">${notes}</textarea>
         <div class="fnb-form-actions">
           <button type="button" class="fnb-cancel-btn" data-action="fnb-cancel">Cancel</button>
           <button type="button" class="fnb-save-btn" data-action="fnb-save" disabled>Save</button>
@@ -4474,7 +4487,7 @@
     if (total === 0) {
       resultsList.innerHTML = `
         <div class="empty-state" style="grid-column:1/-1">
-          No bookmarks yet. Open any voyage or pilgrim stop and tap the ribbon to save it here.
+          No bookmarks yet. Open any voyage or pilgrim stop and tap Save to keep it here.
         </div>`;
     } else {
       const voyHtml = voyageItems.map(v => voyageCardHtml(v, true)).join('');
@@ -5165,7 +5178,7 @@
         </div>
       </div>
 
-      <div class="scroll-ribbon-hint">Tap the ribbon to keep this voyage and open its journal and galley notes.</div>
+      <div class="scroll-ribbon-hint">Tap Save to keep this voyage and open its journal and galley notes.</div>
 
       <div class="scroll-body">${escapeHtml(v.desc)}</div>
 
@@ -5596,7 +5609,7 @@
         </div>` : ''}
       </div>
 
-      <div class="scroll-ribbon-hint">Tap the ribbon to keep this voyage and open its journal and galley notes.</div>
+      <div class="scroll-ribbon-hint">Tap Save to keep this voyage and open its journal and galley notes.</div>
 
       <div class="scroll-body">${escapeHtml(s.desc)}</div>
 
@@ -5878,7 +5891,7 @@
     btn.type = 'button';
     btn.textContent = 'A new edition is ready \u00b7 tap to refresh';
     btn.style.cssText = 'font:inherit;font-size:0.85rem;line-height:1.3;cursor:pointer;' +
-      'padding:10px 18px;border-radius:999px;border:1px solid var(--parchment-dk, #b59c6a);' +
+      'padding:12px 18px;border-radius:3px;border:1px solid var(--parchment-dk, #b59c6a);' +
       'background:var(--ink, #1a1410);color:var(--parchment, #f3e6c8);' +
       'box-shadow:0 6px 20px rgba(0,0,0,0.35)';
     btn.addEventListener('click', function () { location.reload(); });
@@ -5920,5 +5933,6 @@
 <script src="../shared/oot-locks.js?v=32"></script>
 <script src="../shared/oot-pass.js?v=32"></script>
 <script src="../shared/oot-bar.js?v=32"></script>
+<script src="house.js"></script>
 </body>
 </html>

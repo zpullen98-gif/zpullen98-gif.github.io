@@ -1,0 +1,172 @@
+/* Calendar For Life: the atlas shelves and the traveller's reading cards.
+   Screen-only presentation. Cards grow with their complete text; the shared
+   atlas image is an illustration, never a replacement for a name or quotation. */
+@media screen {
+  /* Twelve charts and twenty-nine trails: bound volumes with a small art strip. */
+  :is(#almanac, #pilgrimages) .charts-grid {
+    max-width: 1280px; padding: 0 32px; margin: 30px auto 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 23px; align-items: stretch;
+  }
+  :is(#almanac, #pilgrimages) .chart-card {
+    display: flex; flex-direction: column; min-width: 0; min-height: 330px;
+    height: auto; aspect-ratio: auto; overflow: hidden; border: 1px solid #9a7d48;
+    border-radius: 3px; background: linear-gradient(145deg, #1d3224, #0d1e16 85%);
+    color: #f6ecd5; box-shadow: 0 12px 30px #0004;
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  }
+  :is(#almanac, #pilgrimages) .chart-card::before {
+    content: ''; display: block; position: relative; inset: auto; flex: 0 0 76px;
+    width: 100%; height: 76px; opacity: 1; mix-blend-mode: normal;
+    background-image: linear-gradient(180deg, #06110c14, #06110c77), url('../images/atlas-library.webp');
+    background-size: cover; background-position: center 59%; border-bottom: 1px solid #9a7d48;
+  }
+  :is(#almanac, #pilgrimages) .chart-card:nth-child(3n + 2)::before { background-position: 30% 68%; }
+  :is(#almanac, #pilgrimages) .chart-card:nth-child(3n)::before { background-position: 73% 48%; }
+  :is(#almanac, #pilgrimages) .chart-card::after { inset: 7px; border: 1px solid #d5b16c66; border-radius: 1px; z-index: 3; }
+  :is(#almanac, #pilgrimages) .chart-card:hover {
+    transform: translateY(-3px); border-color: #ead19b; box-shadow: 0 16px 35px #0005;
+  }
+  :is(#almanac, #pilgrimages) .chart-card:focus-visible { outline: 3px solid #f1d89e; outline-offset: 4px; }
+  :is(#almanac, #pilgrimages) .chart-card-inner {
+    height: auto; flex: 1 1 auto; padding: 24px 25px; min-width: 0;
+    justify-content: center; align-items: center; color: #f6ecd5;
+  }
+  :is(#almanac, #pilgrimages) .chart-card .roman {
+    color: #e1c28b; font-size: 12px; line-height: 1.5; letter-spacing: .15em;
+    font-weight: 500; margin-bottom: 9px;
+  }
+  :is(#almanac, #pilgrimages) .chart-card .month-name {
+    color: #f0d49b; font-family: 'Cinzel', Georgia, serif; font-weight: 500;
+    font-size: 27px; line-height: 1.35; letter-spacing: .025em; margin: 0;
+    padding: 0; overflow-wrap: break-word;
+  }
+  :is(#almanac, #pilgrimages) .chart-card .month-divider { width: 68px; margin: 15px 0 0; }
+  :is(#almanac, #pilgrimages) .chart-card .month-divider .line { background: #b4965b; }
+  :is(#almanac, #pilgrimages) .chart-card .month-quote {
+    flex: 0 1 auto; padding: 0; margin: 15px 0 0; color: #eee2c8;
+    font-size: 17px; line-height: 1.6; justify-content: flex-start; overflow-wrap: break-word;
+  }
+  :is(#almanac, #pilgrimages) .chart-card .month-quote .quote-author {
+    color: #d8bd89; font-size: 11px; line-height: 1.6; letter-spacing: .1em; margin-top: 11px;
+  }
+  :is(#almanac, #pilgrimages) .chart-card .month-quote.empty { color: #d8bd89; }
+  :is(#almanac, #pilgrimages) .chart-card .seal {
+    top: 17px; right: 17px; bottom: auto; width: 35px; height: 35px;
+    color: #f1d89e; background: #10271de8; border: 1px solid #d5b16c;
+    font-size: 12px; font-weight: 500; box-shadow: 0 2px 8px #0006; text-shadow: none;
+  }
+  #pilgrimages .chart-card.pilgrim-card { min-height: 355px; }
+  #pilgrimages .chart-card.pilgrim-card .month-name { font-size: 23px; line-height: 1.4; }
+  #pilgrimages .chart-card.pilgrim-card .pilgrim-card-sub { margin-top: 14px; font-size: 17px; line-height: 1.6; color: #eee2c8; opacity: 1; }
+  #pilgrimages .chart-card.pilgrim-card .pilgrim-card-cat { color: #d8bd89; opacity: 1; font-size: 11px; line-height: 1.6; letter-spacing: .1em; }
+  #pilgrimages .chart-card .voyage-count { margin-top: 18px; font-size: 16px; line-height: 1.5; color: #eee2c8; }
+  #pilgrimages .chart-card .voyage-count strong { color: #f0d49b; font-size: 15px; font-weight: 500; }
+
+  /* Open chapters: calm introductions to a month or a pilgrimage. */
+  #almanac #chart-view, #pilgrimages #pilgrim-view {
+    max-width: 1280px; margin: 0 auto; padding: 30px 32px 48px;
+  }
+  :is(#almanac, #pilgrimages) .chart-header {
+    margin: 8px 0 31px; padding: 31px 30px; color: #f6ecd5;
+    border: 1px solid #75633d; border-radius: 3px;
+    background: linear-gradient(145deg, #15291d, #0b1b13);
+    box-shadow: inset 0 0 0 5px #102119, inset 0 0 0 6px #79633c66;
+  }
+  :is(#almanac, #pilgrimages) .chart-header .chart-no-large { color: #d5b16c; font-size: 12px; line-height: 1.6; letter-spacing: .18em; margin-bottom: 12px; }
+  :is(#almanac, #pilgrimages) .chart-header .month-display {
+    font-family: 'Cinzel', Georgia, serif; color: #f1d89e; font-weight: 500;
+    font-size: clamp(30px, 4.8vw, 52px); line-height: 1.25; letter-spacing: .02em;
+    text-shadow: none; overflow-wrap: break-word;
+  }
+  :is(#almanac, #pilgrimages) .chart-header .divider { margin-top: 19px; }
+  :is(#almanac, #pilgrimages) .chart-header .divider .line { flex-basis: 70px; background: linear-gradient(90deg, transparent, #d5b16c, transparent); }
+  :is(#almanac, #pilgrimages) .chart-header .month-sub { margin-top: 16px; color: #e0d2b6; font-size: 18px; line-height: 1.6; letter-spacing: 0; }
+  :is(#almanac, #pilgrimages) .chart-header .chart-quote { max-width: 38rem; color: #eee2c8; font-size: 22px; line-height: 1.7; margin-top: 23px; }
+  :is(#almanac, #pilgrimages) .chart-header .chart-quote .quote-author { color: #d8bd89; font-size: 12px; line-height: 1.6; letter-spacing: .1em; margin-top: 12px; }
+  #pilgrimages .pilgrim-intro { max-width: 850px; padding: 38px 28px 20px; }
+  #pilgrimages .pilgrim-intro .pilgrim-eyebrow { color: #d5b16c; font-size: 12px; line-height: 1.7; letter-spacing: .14em; opacity: 1; margin-bottom: 15px; }
+  #pilgrimages .pilgrim-intro .pilgrim-title { color: #f1d89e; font-weight: 500; font-size: clamp(31px, 4.5vw, 48px); line-height: 1.3; letter-spacing: .025em; text-shadow: none; }
+  #pilgrimages .pilgrim-intro .pilgrim-sub { color: #e0d2b6; font-size: 21px; line-height: 1.6; letter-spacing: 0; margin: 16px 0 21px; }
+  #pilgrimages .pilgrim-intro .pilgrim-credo { color: #eee2c8; font-size: 19px; line-height: 1.8; opacity: 1; max-width: 660px; }
+  #pilgrimages .pilgrim-intro .pilgrim-credo strong { color: #e1c28b; }
+  #pilgrimages .chart-header .pilgrim-credo { color: #f6ecd5; font-size: 20px; }
+
+  /* Voyage and stop cards: parchment pages with clearly named locations,
+     dates and category flags. No excerpts are clamped or hidden. */
+  :is(#almanac, #pilgrimages) .voyages-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px;
+    align-items: stretch; padding-inline: 0;
+  }
+  :is(#almanac, #pilgrimages) .voyage-card {
+    min-width: 0; min-height: 240px; padding: 27px 25px; border: 1px solid #b89a61;
+    border-radius: 3px; background: linear-gradient(145deg, #f9f0dc, #eadbb8);
+    color: #27352b; box-shadow: inset 0 0 0 4px #f6ecd5, inset 0 0 0 5px #b59a6a80, 0 10px 25px #0003;
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  }
+  :is(#almanac, #pilgrimages) .voyage-card::before { content: none; }
+  :is(#almanac, #pilgrimages) .voyage-card:hover { transform: translateY(-2px); border-color: #e2c48b; box-shadow: inset 0 0 0 4px #f6ecd5, inset 0 0 0 5px #9a7d4880, 0 14px 28px #0004; }
+  :is(#almanac, #pilgrimages) .voyage-card:focus-visible { outline: 3px solid #f1d89e; outline-offset: 4px; }
+  :is(#almanac, #pilgrimages) .voyage-card .voyage-meta { flex-wrap: wrap; align-items: flex-start; gap: 11px 9px; color: #715624; font-size: 11px; line-height: 1.55; letter-spacing: .09em; margin-bottom: 19px; }
+  :is(#almanac, #pilgrimages) .voyage-card .voyage-meta > span:first-child { min-width: 0; }
+  :is(#almanac, #pilgrimages) .voyage-card .flags { flex-wrap: wrap; gap: 5px; }
+  :is(#almanac, #pilgrimages) .voyage-card .flag-glyph { font-size: 10px; line-height: 1.4; letter-spacing: .06em; padding: 5px 7px; }
+  :is(#almanac, #pilgrimages) .voyage-card .voyage-name { font-family: 'Cinzel', Georgia, serif; color: #273d2e; font-size: 23px; font-weight: 600; line-height: 1.4; letter-spacing: 0; margin-bottom: 12px; overflow-wrap: break-word; }
+  :is(#almanac, #pilgrimages) .voyage-card .voyage-port { color: #4e5947; font-size: 18px; line-height: 1.6; margin-bottom: 9px; overflow-wrap: break-word; }
+  :is(#almanac, #pilgrimages) .voyage-card .voyage-date { color: #27352b; font-size: 16px; line-height: 1.65; letter-spacing: .025em; padding-top: 14px; margin-top: 16px; border-top: 1px solid #b59a6a; }
+  :is(#almanac, #pilgrimages) .voyage-card .voyage-quote { color: #4e5947; font-size: 18px; line-height: 1.7; text-align: left; margin-top: 17px; padding: 16px 0 0; border-top: 1px solid #b59a6a80; overflow-wrap: break-word; }
+  :is(#almanac, #pilgrimages) .voyage-card .voyage-quote .quote-author { color: #715624; font-size: 11px; line-height: 1.65; letter-spacing: .08em; margin-top: 12px; }
+
+  /* Results, saved journeys and quiet end-of-chapter states. */
+  #almanac #results-view, #pilgrimages #pilgrim-results-view { max-width: 1280px; margin: 0 auto; padding: 30px 32px 48px; }
+  :is(#almanac, #pilgrimages) .filter-results { max-width: none; margin: 25px 0 0; padding: 0; }
+  :is(#almanac, #pilgrimages) .results-banner { max-width: none; margin: 8px 0 22px; padding: 22px 20px; color: #e0d2b6; font-size: 21px; line-height: 1.65; border: 1px solid #75633d; border-radius: 3px; background: #102119; }
+  :is(#almanac, #pilgrimages) .results-banner strong { color: #f1d89e; font-size: .84em; letter-spacing: .035em; }
+  :is(#almanac, #pilgrimages) .empty-state { padding: 40px 26px; margin: 5px 0; color: #f6ecd5; border: 1px solid #75633d; border-radius: 3px; background: linear-gradient(145deg, #172b20, #0b1b13); font-size: 22px; line-height: 1.75; }
+  :is(#almanac, #pilgrimages) .empty-state em { color: #e1c28b; }
+  :is(#almanac, #pilgrimages) .closing-flourish { max-width: 740px; margin: 45px auto 24px; padding: 26px 20px 0; border-top: 1px solid #75633d; }
+  :is(#almanac, #pilgrimages) .closing-flourish .creed { color: #e0d2b6; font-size: 20px; line-height: 1.75; letter-spacing: 0; }
+  :is(#almanac, #pilgrimages) .closing-flourish .creed strong { color: #f1d89e; font-size: 15px; line-height: 1.7; letter-spacing: .08em; margin-top: 17px; }
+
+  /* Responsive shelves use fewer generous columns, with natural card height. */
+  @media (max-width: 1050px) {
+    :is(#almanac, #pilgrimages) .charts-grid,
+    :is(#almanac, #pilgrimages) .voyages-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 21px; }
+    :is(#almanac, #pilgrimages) .chart-card-inner { padding: 23px; }
+    :is(#almanac, #pilgrimages) .voyage-card { padding: 26px 23px; }
+  }
+  @media (max-width: 620px) {
+    :is(#almanac, #pilgrimages) .charts-grid { padding: 0 18px; margin-top: 23px; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    :is(#almanac, #pilgrimages) .chart-card { min-height: 310px; }
+    :is(#almanac, #pilgrimages) .chart-card::before { flex-basis: 70px; height: 70px; }
+    :is(#almanac, #pilgrimages) .chart-card-inner { padding: 23px; }
+    :is(#almanac, #pilgrimages) .chart-card .month-name { font-size: 27px; }
+    :is(#almanac, #pilgrimages) .chart-card .month-quote { font-size: 18px; }
+    #pilgrimages .chart-card.pilgrim-card { min-height: 330px; }
+    #pilgrimages .chart-card.pilgrim-card .month-name { font-size: 23px; }
+    #almanac #chart-view, #almanac #results-view, #pilgrimages #pilgrim-view, #pilgrimages #pilgrim-results-view { padding: 23px 18px 32px; }
+    :is(#almanac, #pilgrimages) .chart-header { padding: 27px 20px; margin-bottom: 23px; }
+    :is(#almanac, #pilgrimages) .chart-header .month-display { font-size: 31px; }
+    :is(#almanac, #pilgrimages) .chart-header .chart-quote { font-size: 21px; }
+    #pilgrimages .pilgrim-intro { padding: 28px 22px 13px; }
+    #pilgrimages .pilgrim-intro .pilgrim-title { font-size: 31px; }
+    #pilgrimages .pilgrim-intro .pilgrim-credo { font-size: 18px; }
+    :is(#almanac, #pilgrimages) .voyages-list { grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 0; }
+    :is(#almanac, #pilgrimages) .voyage-card { min-height: 0; padding: 25px 22px; }
+    :is(#almanac, #pilgrimages) .voyage-card .voyage-name { font-size: 22px; }
+    :is(#almanac, #pilgrimages) .voyage-card .voyage-meta { margin-bottom: 16px; }
+    :is(#almanac, #pilgrimages) .results-banner { padding: 20px 17px; font-size: 20px; }
+    :is(#almanac, #pilgrimages) .empty-state { padding: 30px 21px; font-size: 21px; }
+    :is(#almanac, #pilgrimages) .closing-flourish { margin-top: 33px; padding-inline: 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :is(#almanac, #pilgrimages) :is(.chart-card, .voyage-card) { transition: none; }
+    :is(#almanac, #pilgrimages) :is(.chart-card, .voyage-card):hover { transform: none; }
+    #almanac #chart-view.is-open, #pilgrimages #pilgrim-view.is-open { animation: none; }
+  }
+  @media (forced-colors: active) {
+    :is(#almanac, #pilgrimages) :is(.chart-card, .voyage-card, .chart-header, .results-banner, .empty-state) { background: Canvas; color: CanvasText; box-shadow: none; border-color: CanvasText; }
+    :is(#almanac, #pilgrimages) .chart-card::before { background-image: none; }
+    :is(#almanac, #pilgrimages) .chart-card::after { border-color: CanvasText; }
+    :is(#almanac, #pilgrimages) :is(.chart-card, .voyage-card):focus-visible { outline-color: Highlight; }
+  }
+}

@@ -1,0 +1,342 @@
+/* Calendar For Life: the open atlas, personal journal and galley.
+   Screen-only styling keeps the existing bookmarked print mirrors intact. */
+@media screen {
+  .scroll-overlay, .journal-overlay, .fnb-overlay, .crew-kit, .myvoy-tools, #sw-toast {
+    --folio-paper: #f6ecd5; --folio-raised: #fff8e9;
+    --folio-ink: #27352b; --folio-muted: #5d604d;
+    --folio-forest: #081510; --folio-brass: #d5b16c;
+    --folio-accent: #765923; --folio-line: #b79f71;
+    --folio-field: #877657; --folio-danger: #7b342e;
+    --folio-display: 'Cinzel', Georgia, serif;
+    --folio-reading: 'IM Fell English', Georgia, serif;
+  }
+  .scroll-overlay, .journal-overlay, .fnb-overlay {
+    background: rgba(4, 14, 9, .9); backdrop-filter: blur(6px);
+    padding: max(24px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right))
+      max(30px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left));
+    overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  }
+  .scroll-paper, .journal-paper, .fnb-paper {
+    color-scheme: light; background: var(--folio-paper); color: var(--folio-ink);
+    border: 1px solid var(--folio-line); border-radius: 3px;
+    box-shadow: 0 24px 80px #0008, inset 0 0 0 6px var(--folio-paper), inset 0 0 0 7px #b79f7170;
+    width: 100%; max-width: 880px; min-width: 0; min-height: 0;
+    padding: 28px 44px 42px; overflow-wrap: anywhere;
+  }
+  .scroll-paper {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px 10px; margin: 0 auto; animation: none;
+  }
+  .scroll-paper::before { background: none; opacity: 0; }
+  .scroll-paper::after { inset: 13px; border-color: #b79f7180; }
+  .scroll-paper > #scroll-content { grid-column: 1 / -1; min-width: 0; }
+  #scroll-content::before {
+    content: ''; display: block; height: 128px; margin: 0 0 28px;
+    border: 1px solid var(--folio-line); border-radius: 3px;
+    background: linear-gradient(180deg, #08151012, #08151035),
+      url('../images/atlas-library.webp') center 61% / cover;
+  }
+  .scroll-paper .scroll-corner { display: none; }
+
+  /* Controls occupy their own row, so words never overlap a long place name. */
+  .scroll-paper > .scroll-close,
+  .scroll-paper > .scroll-bookmark,
+  .scroll-paper > .scroll-print,
+  .scroll-paper > .scroll-share {
+    position: relative; inset: auto; top: auto; right: auto;
+    width: 100%; height: auto; min-width: 0; min-height: 46px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 10px 9px; border: 1px solid var(--folio-field); border-radius: 3px;
+    background: var(--folio-raised); color: var(--folio-ink);
+    font-family: var(--folio-display); font-size: 12px; font-weight: 500;
+    line-height: 1.5; letter-spacing: .035em; transform: none;
+    grid-row: 1;
+  }
+  .scroll-paper > .scroll-bookmark { grid-column: 1; }
+  .scroll-paper > .scroll-print { grid-column: 2; }
+  .scroll-paper > .scroll-share { grid-column: 3; }
+  .scroll-paper > .scroll-close { grid-column: 4; }
+  .scroll-paper > .scroll-bookmark.is-bookmarked {
+    background: var(--folio-forest); color: var(--folio-brass);
+    border-color: var(--folio-forest);
+  }
+  .scroll-paper > :is(.scroll-close,.scroll-bookmark,.scroll-print,.scroll-share):hover {
+    background: #e8ddc4; color: var(--folio-ink); border-color: var(--folio-accent);
+    transform: none; box-shadow: none;
+  }
+  .scroll-paper > .scroll-bookmark.is-bookmarked:hover { background: #1d3526; color: var(--folio-paper); }
+  .scroll-paper > :is(.scroll-bookmark,.scroll-print,.scroll-share) svg {
+    flex: 0 0 19px; width: 19px; height: 21px;
+  }
+  :is(.scroll-paper,.journal-paper,.fnb-paper) .house-control-label {
+    font-family: var(--folio-display); font-size: 12px; font-weight: 500;
+    line-height: 1.5; letter-spacing: .025em; overflow-wrap: normal;
+  }
+  :is(.scroll-paper,.journal-paper,.fnb-paper) :focus-visible {
+    outline: 3px solid var(--folio-accent); outline-offset: 4px;
+  }
+  .scroll-paper .scroll-toast {
+    position: relative; inset: auto; grid-column: 1 / -1;
+    width: 100%; max-width: 100%; padding: 12px 16px; border-radius: 3px;
+    background: var(--folio-forest); color: var(--folio-paper);
+    border: 1px solid var(--folio-brass); font-size: 17px; line-height: 1.55;
+  }
+
+  /* Readable pages: quiet type for prose and restrained brass for headings. */
+  .scroll-paper .scroll-chart-line {
+    color: var(--folio-accent); font-family: var(--folio-display);
+    font-size: 12px; line-height: 1.7; letter-spacing: .1em; margin-bottom: 18px;
+  }
+  .scroll-paper .scroll-name {
+    color: var(--folio-ink); font-family: var(--folio-display); font-weight: 500;
+    font-size: clamp(29px, 4.4vw, 44px); line-height: 1.25; letter-spacing: .005em;
+    text-shadow: none; text-wrap: balance; margin-bottom: 22px;
+  }
+  .scroll-paper .scroll-flags { gap: 8px; margin-bottom: 20px; }
+  .scroll-paper .scroll-flags .flag-glyph { border-radius: 3px; font-size: 11px; line-height: 1.5; letter-spacing: .06em; }
+  :is(.scroll-paper,.journal-paper,.fnb-paper) .scroll-divider { gap: 0; margin: 24px 0; }
+  :is(.scroll-paper,.journal-paper,.fnb-paper) .scroll-divider .line {
+    flex: 0 1 110px; background: var(--folio-line);
+  }
+  .scroll-paper .scroll-meta-block {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 26px;
+    padding: 20px 0; margin: 0 0 20px;
+    border-block: 1px solid var(--folio-line);
+  }
+  .scroll-paper .scroll-meta-block .label {
+    color: var(--folio-accent); font-size: 11px; line-height: 1.7;
+    letter-spacing: .09em; margin-bottom: 6px;
+  }
+  .scroll-paper .scroll-meta-block .value { color: var(--folio-ink); font-size: 20px; line-height: 1.55; }
+  .scroll-paper .scroll-ribbon-hint {
+    opacity: 1; color: var(--folio-muted); font-size: 16px; line-height: 1.6;
+    margin: 0 0 25px;
+  }
+  .scroll-paper .scroll-body {
+    color: var(--folio-ink); font-size: 21px; line-height: 1.8;
+    text-align: left; margin: 0 0 30px;
+  }
+  .scroll-paper .scroll-body::first-letter {
+    font-family: var(--folio-display); font-size: 47px; font-weight: 500;
+    color: var(--folio-accent); line-height: 1; padding: 5px 9px 0 0;
+  }
+  .scroll-paper .scroll-section { margin: 30px 0; }
+  .scroll-paper .scroll-section .section-title {
+    color: var(--folio-accent); font-size: 14px; font-weight: 500;
+    line-height: 1.6; letter-spacing: .1em; text-align: left;
+    border-bottom: 1px solid var(--folio-line); padding-bottom: 10px; margin-bottom: 16px;
+  }
+  .scroll-paper .scroll-section .section-body { color: var(--folio-ink); font-size: 20px; line-height: 1.8; }
+  .scroll-paper .bearings-list { gap: 18px; }
+  .scroll-paper .bearing-entry {
+    padding: 21px 23px; background: var(--folio-raised); border: 1px solid var(--folio-line);
+    border-left: 3px solid var(--folio-accent); border-radius: 3px;
+  }
+  .scroll-paper .bearing-name { color: var(--folio-ink); font-size: 19px; font-weight: 500; line-height: 1.45; letter-spacing: 0; }
+  .scroll-paper .bearing-loc { color: var(--folio-accent); font-size: 12px; line-height: 1.65; letter-spacing: .06em; margin: 8px 0 12px; }
+  .scroll-paper .bearing-desc { color: var(--folio-muted); font-size: 19px; line-height: 1.75; }
+  .scroll-paper .scroll-quote { border-color: var(--folio-line); margin-top: 34px; padding: 25px 12px 0; }
+  .scroll-paper .scroll-quote .quote-text {
+    font-family: var(--folio-reading); font-style: italic; font-size: 27px;
+    line-height: 1.55; color: var(--folio-ink); margin-bottom: 14px;
+  }
+  .scroll-paper .scroll-quote .quote-author { color: var(--folio-muted); font-size: 14px; letter-spacing: .07em; line-height: 1.65; }
+
+  /* Footage is another library door, with its source named underneath. */
+  .scroll-paper .lantern-link,
+  .scroll-paper .lantern-more {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 48px; max-width: 100%; padding: 12px 19px; border-radius: 3px;
+    background: var(--folio-forest); color: var(--folio-brass);
+    border: 1px solid var(--folio-forest); box-shadow: none;
+    font-family: var(--folio-display); font-size: 13px; font-weight: 500;
+    line-height: 1.6; letter-spacing: .045em; text-align: center; text-decoration: none;
+    white-space: normal; transform: none;
+  }
+  .scroll-paper .lantern-link:hover,
+  .scroll-paper .lantern-more:hover {
+    background: #1d3526; color: var(--folio-paper); border-color: #1d3526;
+    box-shadow: none; transform: none;
+  }
+  .scroll-paper .lantern-glyph,
+  .scroll-paper .lantern-link:hover .lantern-glyph { color: inherit; }
+  .scroll-paper .lantern-title { min-width: 0; line-height: 1.6; letter-spacing: .025em; overflow-wrap: anywhere; }
+  .scroll-paper .lantern-channel { margin-top: 12px; color: var(--folio-muted); font-size: 17px; line-height: 1.65; }
+  .scroll-paper .lantern-more { margin-top: 14px; min-height: 44px; padding: 10px 16px; font-size: 12px; }
+
+  /* The existing bookmark gate still decides whether these doors are shown. */
+  .scroll-paper .scroll-journal { margin-top: 30px; padding-top: 25px; border-top: 1px solid var(--folio-line); }
+  .scroll-paper .scroll-fnb { margin-top: 20px; }
+  .scroll-paper .journal-open-btn,
+  .scroll-paper .fnb-open-btn {
+    min-height: 48px; max-width: 100%; justify-content: center; gap: 10px;
+    padding: 13px 20px; border: 1px solid var(--folio-forest); border-radius: 3px;
+    background: var(--folio-forest); color: var(--folio-paper);
+    font-size: 13px; font-weight: 500; line-height: 1.6; letter-spacing: .075em;
+    box-shadow: none; white-space: normal; text-align: center;
+  }
+  .scroll-paper .journal-open-btn:hover,
+  .scroll-paper .fnb-open-btn:hover { background: #1d3526; border-color: #1d3526; color: var(--folio-paper); box-shadow: none; transform: none; }
+  .scroll-paper .journal-open-btn .journal-open-glyph,
+  .scroll-paper .fnb-open-btn .fnb-open-glyph { display: none; }
+  .scroll-paper .journal-open-meta,
+  .scroll-paper .fnb-open-meta { color: var(--folio-muted); font-size: 16px; line-height: 1.6; margin-top: 10px; }
+
+  /* Personal writing pages sit above the open atlas without hiding controls. */
+  .journal-paper, .fnb-paper { margin: 0 auto; gap: 0; }
+  .journal-paper .journal-page-close,
+  .fnb-paper .fnb-page-close {
+    position: relative; inset: auto; top: auto; right: auto; align-self: flex-end;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-width: 90px; width: auto; min-height: 46px; height: auto; padding: 10px 15px;
+    margin-bottom: 22px; border: 1px solid var(--folio-field); border-radius: 3px;
+    background: var(--folio-raised); color: var(--folio-ink); line-height: 1.5;
+    font-family: var(--folio-display); font-size: 12px; transform: none;
+  }
+  .journal-paper .journal-page-close:hover,
+  .fnb-paper .fnb-page-close:hover { background: #e8ddc4; border-color: var(--folio-accent); color: var(--folio-ink); }
+  .journal-page-header, .fnb-page-header { margin-bottom: 25px; }
+  .journal-paper .journal-page-eyebrow,
+  .fnb-paper .fnb-page-eyebrow { color: var(--folio-accent); font-size: 12px; line-height: 1.65; letter-spacing: .12em; margin-bottom: 14px; }
+  .journal-paper .journal-page-title,
+  .fnb-paper .fnb-page-title { color: var(--folio-ink); font-size: clamp(25px, 3.8vw, 35px); font-weight: 500; line-height: 1.35; letter-spacing: 0; text-wrap: balance; margin-bottom: 12px; }
+  .journal-paper .journal-page-sub,
+  .fnb-paper .fnb-page-sub { color: var(--folio-muted); font-size: 19px; line-height: 1.6; }
+  .journal-paper .journal-page-textarea {
+    flex: none; width: 100%; max-width: 100%; min-width: 0;
+    min-height: clamp(280px, 48svh, 540px); padding: 22px 24px; border-radius: 3px;
+    background: var(--folio-raised); border: 1px solid var(--folio-field);
+    color: var(--folio-ink); caret-color: var(--folio-accent);
+    font-size: 21px; line-height: 1.8; resize: vertical;
+  }
+  .journal-paper .journal-page-textarea::placeholder { color: var(--folio-muted); opacity: 1; }
+  .journal-paper .journal-page-foot,
+  .fnb-paper .fnb-page-foot {
+    flex-wrap: wrap; gap: 10px 20px; margin-top: 16px;
+    color: var(--folio-muted); font-size: 16px; line-height: 1.6;
+  }
+
+  /* The galley: clear field boundaries, comfortable prose, readable save state. */
+  .fnb-paper .fnb-add-bar { gap: 12px; margin-bottom: 24px; }
+  .fnb-paper .fnb-add-btn,
+  .fnb-paper .fnb-item-actions button,
+  .fnb-paper .fnb-form-actions button {
+    min-height: 44px; max-width: 100%; padding: 10px 16px;
+    border: 1px solid var(--folio-field); border-radius: 3px;
+    background: var(--folio-raised); color: var(--folio-ink);
+    font-size: 12px; line-height: 1.6; font-weight: 500; letter-spacing: .06em;
+    white-space: normal;
+  }
+  .fnb-paper .fnb-add-btn:hover,
+  .fnb-paper .fnb-item-actions button:hover,
+  .fnb-paper .fnb-form-actions button:hover { background: #e8ddc4; color: var(--folio-ink); border-color: var(--folio-accent); }
+  .fnb-paper .fnb-add-btn[data-add-type="wine"],
+  .fnb-paper .fnb-item[data-type="wine"] .fnb-item-type { color: var(--folio-danger); }
+  .fnb-paper .fnb-list { gap: 20px; }
+  .fnb-paper .fnb-empty { padding: 28px 22px; border: 1px dashed var(--folio-line); border-radius: 3px; color: var(--folio-muted); font-size: 20px; line-height: 1.7; }
+  .fnb-paper .fnb-item,
+  .fnb-paper .fnb-item-form { min-width: 0; padding: 25px; background: var(--folio-raised); border: 1px solid var(--folio-line); border-radius: 3px; }
+  .fnb-paper .fnb-item-type { color: var(--folio-accent); font-size: 11px; line-height: 1.6; letter-spacing: .1em; margin-bottom: 10px; }
+  .fnb-paper .fnb-item-name { color: var(--folio-ink); font-size: 22px; font-weight: 500; line-height: 1.4; margin-bottom: 12px; }
+  .fnb-paper .fnb-item-notes { color: var(--folio-ink); font-size: 20px; line-height: 1.75; overflow-wrap: anywhere; }
+  .fnb-paper .fnb-item-actions,
+  .fnb-paper .fnb-form-actions { flex-wrap: wrap; gap: 10px; margin-top: 19px; }
+  .fnb-paper .fnb-item-actions .fnb-delete-btn { color: var(--folio-danger); border-color: var(--folio-danger); }
+  .fnb-paper .fnb-item-actions .fnb-delete-btn:hover { color: var(--folio-danger); border-color: var(--folio-danger); background: #f1e2d5; }
+  .fnb-paper .fnb-item-form { gap: 17px; border-color: var(--folio-field); }
+  .fnb-paper .fnb-form-row { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 12px 16px; align-items: center; }
+  .fnb-paper .fnb-form-row label { width: auto; color: var(--folio-accent); font-size: 12px; line-height: 1.65; letter-spacing: .075em; }
+  .fnb-paper .fnb-form-row input,
+  .fnb-paper .fnb-form-row select,
+  .fnb-paper .fnb-item-form textarea {
+    width: 100%; max-width: 100%; min-width: 0; min-height: 48px;
+    border: 1px solid var(--folio-field); border-radius: 3px;
+    background: var(--folio-paper); color: var(--folio-ink);
+    font-size: 19px; line-height: 1.65; padding: 12px 14px;
+  }
+  .fnb-paper .fnb-item-form textarea { min-height: 160px; resize: vertical; }
+  .fnb-paper .fnb-item-form :is(input,textarea)::placeholder { color: var(--folio-muted); opacity: 1; }
+  .journal-paper .journal-page-textarea:focus-visible,
+  .fnb-paper .fnb-item-form :is(input,select,textarea):focus-visible {
+    border-color: var(--folio-accent); outline: 3px solid var(--folio-accent);
+    outline-offset: 3px; box-shadow: none;
+  }
+  .fnb-paper .fnb-form-actions .fnb-save-btn {
+    background: var(--folio-forest); color: var(--folio-paper); border-color: var(--folio-forest);
+  }
+  .fnb-paper .fnb-form-actions .fnb-save-btn:hover:not(:disabled) { background: #1d3526; color: var(--folio-paper); border-color: #1d3526; }
+  .fnb-paper .fnb-form-actions .fnb-save-btn:disabled {
+    opacity: 1; background: #e6dfce; color: var(--folio-muted); border-color: var(--folio-line); cursor: not-allowed;
+  }
+
+  /* Crew Kit remains on the dark library shelf, above the bookmarked voyages. */
+  .crew-kit, .myvoy-tools {
+    background: linear-gradient(135deg, #182d20, var(--folio-forest)); color: var(--folio-paper);
+    padding: 26px 28px; border: 1px solid var(--folio-line); border-radius: 3px;
+    box-shadow: inset 0 0 0 4px #081510, inset 0 0 0 5px #b79f7150;
+  }
+  .crew-kit .section-title { color: var(--folio-brass); font-family: var(--folio-display); font-size: 18px; line-height: 1.5; letter-spacing: .06em; }
+  .crew-kit .crew-kit-lede { opacity: 1; font-size: 19px; line-height: 1.7; margin: 13px 0 20px; }
+  .crew-kit .crew-kit-actions, .myvoy-tools { gap: 12px; }
+  .crew-kit .crew-kit-btn, .myvoy-tools .myvoy-tool-btn {
+    min-height: 46px; max-width: 100%; padding: 11px 17px; border-radius: 3px;
+    border: 1px solid var(--folio-brass); color: var(--folio-paper);
+    font-size: 12px; line-height: 1.6; letter-spacing: .06em; white-space: normal;
+  }
+  .crew-kit .crew-kit-btn:hover, .myvoy-tools .myvoy-tool-btn:hover { background: #2c4430; color: var(--folio-paper); border-color: var(--folio-paper); }
+  .crew-kit .crew-kit-btn:focus-visible, .myvoy-tools .myvoy-tool-btn:focus-visible { outline: 3px solid var(--folio-brass); outline-offset: 4px; }
+  .crew-kit .crew-kit-status, .myvoy-tools .myvoy-tool-status { opacity: 1; color: var(--folio-paper); font-size: 17px; line-height: 1.6; margin-top: 17px; overflow-wrap: anywhere; }
+  .myvoy-tools { min-width: 0; align-items: stretch; }
+  #sw-toast button { min-height: 48px; max-width: 100%; white-space: normal; }
+  #sw-toast button:focus-visible { outline: 3px solid var(--folio-brass); outline-offset: 4px; }
+
+  @media (max-width: 700px) {
+    .scroll-overlay, .journal-overlay, .fnb-overlay {
+      padding: max(12px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right))
+        max(18px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+    }
+    .scroll-paper, .journal-paper, .fnb-paper { padding: 20px 25px 30px; min-height: 0; }
+    .scroll-paper::after { inset: 8px; }
+    .scroll-paper .scroll-meta-block { gap: 20px; }
+    .journal-paper .journal-page-textarea { padding: 18px; }
+  }
+  @media (max-width: 520px) {
+    .scroll-paper, .journal-paper, .fnb-paper { padding: 18px 18px 28px; }
+    .scroll-paper { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 10px; }
+    .scroll-paper > .scroll-bookmark { grid-column: 1; grid-row: 1; }
+    .scroll-paper > .scroll-close { grid-column: 2; grid-row: 1; }
+    .scroll-paper > .scroll-print { grid-column: 1; grid-row: 2; }
+    .scroll-paper > .scroll-share { grid-column: 2; grid-row: 2; }
+    #scroll-content::before { height: 105px; margin-bottom: 23px; }
+    .scroll-paper .scroll-name { font-size: 28px; line-height: 1.3; }
+    .scroll-paper .scroll-meta-block { grid-template-columns: minmax(0, 1fr); }
+    .scroll-paper .scroll-body,
+    .scroll-paper .scroll-section .section-body { font-size: 19px; line-height: 1.8; }
+    .scroll-paper .scroll-body::first-letter { float: none; font-family: inherit; font-size: inherit; color: inherit; padding: 0; line-height: inherit; }
+    .scroll-paper .bearing-entry { padding: 18px; }
+    .scroll-paper .bearing-name { font-size: 18px; }
+    .scroll-paper .scroll-quote { padding-inline: 0; }
+    .scroll-paper .scroll-quote .quote-text { font-size: 24px; }
+    .scroll-paper .journal-open-btn,
+    .scroll-paper .fnb-open-btn { width: 100%; padding-inline: 12px; letter-spacing: .04em; }
+    .journal-paper .journal-page-textarea { padding: 16px; font-size: 20px; min-height: 310px; }
+    .fnb-paper .fnb-add-bar { gap: 9px; }
+    .fnb-paper .fnb-add-btn { flex: 1 1 100px; padding-inline: 12px; }
+    .fnb-paper .fnb-item,
+    .fnb-paper .fnb-item-form { padding: 18px 16px; }
+    .fnb-paper .fnb-form-row { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .fnb-paper .fnb-form-actions button { flex: 1 1 90px; }
+    .crew-kit, .myvoy-tools { padding: 23px 20px; }
+    .crew-kit .crew-kit-btn, .myvoy-tools .myvoy-tool-btn { flex: 1 1 140px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-overlay.is-open, .scroll-paper { animation: none; }
+    :is(.scroll-paper,.journal-paper,.fnb-paper,.crew-kit,.myvoy-tools) :is(button,input,select,textarea,.lantern-link,.lantern-more) { transition: none; }
+  }
+  @media (forced-colors: active) {
+    #scroll-content::before, .scroll-paper::before, .scroll-paper::after { display: none; }
+    .scroll-paper, .journal-paper, .fnb-paper, .crew-kit, .myvoy-tools { background: Canvas; color: CanvasText; border-color: CanvasText; box-shadow: none; }
+    .scroll-paper > .scroll-bookmark.is-bookmarked { border: 3px double Highlight; }
+    .fnb-paper .fnb-form-actions .fnb-save-btn:disabled { color: GrayText; border-color: GrayText; }
+  }
+}
