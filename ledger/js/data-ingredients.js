@@ -422,6 +422,13 @@ const INGREDIENTS = [
 	   the sugar out of the balance. */
 	{ id: 'limecordial', label: 'Lime cordial', kind: 'syrup', abv: 0, bal: 'sweet', shelf: true,
 	  alias: ['lime cordial'] },
+	/* Fassionola is the red tropical-fruit syrup of the 1930s tiki bars
+	   (the Cobra's Fang's own), and blackcurrant cordial is the dash that
+	   makes a Snakebite & Black. Both alcohol-free, both bought by name. */
+	{ id: 'fassionola', label: 'Fassionola', kind: 'syrup', abv: 0, bal: 'sweet', shelf: true,
+	  alias: ['fassionola'] },
+	{ id: 'blackcurrantcordial', label: 'Blackcurrant cordial', kind: 'syrup', abv: 0, bal: 'sweet', shelf: true,
+	  alias: ['blackcurrant cordial', 'blackcurrant squash'] },
 	{ id: 'rasp', label: 'Raspberry syrup', kind: 'syrup', bal: 'sweet', shelf: true,
 	  alias: ['raspberry syrup', 'raspberry'] },
 	/* The syrup row owns the bare word 'raspberry', so it was swallowing

@@ -10,7 +10,7 @@ const LORE = {
   "Manhattan":
     "Born in New York in the early 1880s: the Manhattan Club took credit, though the story about a future British prime minister's mother hosting the launch party is a myth (she was in England, around his birth, at the time). Here is the first great marriage of American whiskey and Italian vermouth, and it taught bartenders the template that produced the Rob Roy and, by most tellings, the Martinez and eventually the Martini. Rye is the traditional call: its spice stands up to the vermouth's sweetness. Treat the vermouth as wine, because it is one: fresh bottle, refrigerated, or the drink is already dead.",
   "Martini":
-    "By the usual telling, the Martini descended from the sweeter Martinez sometime in the 1880s–90s, drying out decade by decade as gin got better and palates got drier. The original spec carried orange bitters; they vanished mid-century and the craft revival put them back. The 20th century turned it into an accessory (ever-drier, ever-colder, shaken by secret agents) but the drink underneath is simply gin and dry vermouth in honest proportion, stirred to silk. Ask twist or olive. Never assume; people are loyal to their answer in a way they are loyal to little else.",
+    "By the usual telling, the Martini descended from the sweeter Martinez sometime in the 1880s–90s, drying out decade by decade as gin got better and palates got drier. The early dry Martini carried orange bitters; they vanished mid-century and the craft revival put them back. The 20th century turned it into an accessory (ever-drier, ever-colder, shaken by secret agents) but the drink underneath is simply gin and dry vermouth in honest proportion, stirred to silk. Ask twist or olive. Never assume; people are loyal to their answer in a way they are loyal to little else.",
   "Daiquiri":
     "Named for a beach near Santiago de Cuba, standardized around 1900 by American mining engineers on the island, and perfected at Havana's El Floridita, where the house built a daiquiri empire and its most famous regular drank doubles. There is nowhere to hide in it: rum, lime, sugar, and your shake. That is why bartenders order it to test each other, the 'bartender's handshake.' If the frozen slushy version is the only one you know, this spec is the correction: bright, cold, bone-dry at the finish.",
   "Margarita":
@@ -20,7 +20,7 @@ const LORE = {
   "Negroni":
     "Florence, around 1919: a local count asked the bartender at his usual café to stiffen his Americano by swapping the soda for gin. The count got his own drink and the amaro world got its gateway. Equal parts gin, sweet vermouth and Campari is a spec you cannot misremember, which is part of its genius; it travels perfectly. It taught American drinkers to love bitterness, and its skeleton (spirit + vermouth + bitter liqueur) generates half of modern bartending: Boulevardier, Old Pal, White Negroni, Rosita.",
   "Mojito":
-    "Cuba's oldest drink, with roots in the 16th-century Draque: aguardiente, lime, sugar and mint, drunk as medicine by Elizabethan privateers. Refined in Havana's cantinas and made famous at La Bodeguita del Medio, it is the drink every new bartender learns to dread on a busy night and every good bartender learns to respect. The mint is the whole argument: press it gently to release oil, never shred it to chlorophyll. Made with care it is the best hot-weather drink in the canon; made carelessly it is a salad.",
+    "A Cuban classic with roots in the Draque: aguardiente, lime, sugar and mint, taken as medicine in 19th-century Havana. The tale that Elizabethan privateers drank it in 1586 is legend; nothing in the record supports it. Refined in Havana's cantinas and made famous at La Bodeguita del Medio, it is the drink every new bartender learns to dread on a busy night and every good bartender learns to respect. The mint is the whole argument: press it gently to release oil, never shred it to chlorophyll. Made with care it is the best hot-weather drink in the canon; made carelessly it is a salad.",
   "Moscow Mule":
     "Invented around 1941 at the Cock 'n' Bull in Hollywood by three people with inventory problems: a bar owner with unsold ginger beer, a spirits executive with unsold Smirnoff, and (as the story goes) a copper-mug salesman. The mug was marketing genius: photographed in Hollywood hands, it launched vodka from obscurity to the best-selling spirit in America. The drink itself is honest and self-balancing: spicy ginger, sharp lime, clean spirit, ice-cold copper. Few drinks owe more to their glassware.",
   "Gin & Tonic":
@@ -32,9 +32,9 @@ const LORE = {
 
   /* ---- The Classics Canon ---- */
   "Sazerac":
-    "New Orleans in a glass, and by some arguments America's first branded cocktail, named for the Sazerac de Forge cognac it was originally built on. When phylloxera devoured France's vineyards in the 1870s, the city, so the story goes, switched to rye and never switched back. The absinthe rinse, the Peychaud's bitters (invented by a local apothecary), the lemon peel expressed and discarded: every gesture is ritual, and the ritual is the point. Served without ice, cold from the stir, in a chilled rocks glass. There is no garnish to hide behind.",
+    "New Orleans in a glass, and by some arguments America's first branded cocktail, named, by way of the Sazerac House saloon, for the Sazerac-de-Forge cognac once imported there. Legend says the drink began on that cognac and switched to rye when phylloxera hit France in the 1870s; in print, from its first appearance in 1899, it is a rye drink. The absinthe rinse, the Peychaud's bitters (invented by a local apothecary), the lemon peel expressed and discarded: every gesture is ritual, and the ritual is the point. Served without ice, cold from the stir, in a chilled rocks glass. There is no garnish to hide behind.",
   "Sidecar":
-    "The great brandy sour of the Prohibition era, claimed by both Harry's New York Bar in Paris and the Ritz, allegedly named for an American army captain who arrived by motorcycle sidecar. It is the New Orleans sour template (spirit, citrus, orange liqueur) executed on cognac, and the direct ancestor of the Margarita and the White Lady. The sugared rim appeared early as a customer-side correction for tartness; a well-balanced Sidecar doesn't strictly need it, but tradition has its privileges.",
+    "The great brandy sour of the Prohibition era, first printed in 1922, in two books that both credited Buck's Club in London; Harry's New York Bar in Paris and the Ritz have both claimed it since, and the tale that it was named for an American army captain who arrived by motorcycle sidecar is legend. It is the New Orleans sour template (spirit, citrus, orange liqueur) executed on cognac, and the direct ancestor of the Margarita and the White Lady. The sugared rim appeared early as a customer-side correction for tartness; a well-balanced Sidecar doesn't strictly need it, but tradition has its privileges.",
   "Gimlet":
     "Royal Navy surgeons knew lime prevented scurvy; a Scottish shipping merchant patented preserved lime cordial in 1867; naval officers put it in their gin ration. The result is the only classic sour built on cordial instead of fresh juice: sharper-edged and rounder at once, allegedly named for the small tool used to tap the cordial casks. In The Long Goodbye it was Terry Lennox who told Philip Marlowe a real one is 'half gin and half Rose's lime juice and nothing else'; the craft era rebuilt it with fresh lime and rich syrup, or house-made cordial. Both schools are defensible. Pick one and make it cold.",
   "Cosmopolitan":
@@ -54,33 +54,33 @@ const LORE = {
   "Penicillin":
     "Milk & Honey, New York, 2005: a Gold Rush (whiskey-honey sour) rebuilt with ginger and finished with a float of smoky Islay scotch drifting over the top like weather. It is the most successful cocktail invented in the 21st century, a modern classic that reads as if it had always existed: honey and ginger say medicine, smoke says cure. The name closed the deal. Blended scotch in the body, the peated single malt only as perfume: invert that and the drink is a campfire.",
   "Paper Plane":
-    "The Milk & Honey school, 2007, named for the pop song playing that summer. Four ingredients, equal parts (bourbon, Aperol, Amaro Nonino, lemon) and nothing to adjust: the spec is the drink. It descends from the Last Word's equal-parts logic and proved that the format could carry the amaro shelf. It also became the modern bartender's handshake in half the world's craft bars. If a guest likes whiskey sours and you want to walk them one shelf deeper, this is the drink that does it.",
+    "The Milk & Honey school, 2008, built for The Violet Hour in Chicago and named for 'Paper Planes', the single on repeat that summer (the first version used Campari; Aperol came soon after). Four ingredients, equal parts (bourbon, Aperol, Amaro Nonino, lemon) and nothing to adjust: the spec is the drink. It descends from the Last Word's equal-parts logic and proved that the format could carry the amaro shelf. It also became the modern bartender's handshake in half the world's craft bars. If a guest likes whiskey sours and you want to walk them one shelf deeper, this is the drink that does it.",
   "Last Word":
-    "A Prohibition-era Detroit Athletic Club drink, sold at a steep 35 cents, that vanished for eighty years until Seattle's Zig Zag Café pulled it from an old book called Bottoms Up in 2004 and set the drink world on fire. Equal parts gin, green Chartreuse, maraschino, lime: a spec with no dials, herbal and sharp and strange. Its resurrection launched the equal-parts revival (Paper Plane, Naked & Famous) and made the case that cocktail archaeology was worth doing. That book credited the drink to a vaudeville monologist; nobody is sure of more.",
+    "A pre-Prohibition Detroit Athletic Club drink, on the club's 1916 menu at a steep 35 cents, that all but vanished until Seattle's Zig Zag Café pulled it from the 1951 book Bottoms Up around 2003 and set the drink world on fire. Equal parts gin, green Chartreuse, maraschino, lime: a spec with no dials, herbal and sharp and strange. Its resurrection launched the equal-parts revival (Paper Plane, Naked & Famous) and made the case that cocktail archaeology was worth doing. That book said a vaudeville monologist brought it east from the Detroit Athletic Club; who actually invented it, nobody knows.",
   "Corpse Reviver #2":
     "From a family of pre-Prohibition morning 'eye-opener' drinks, codified in The Savoy Cocktail Book (1930): equal parts gin, Cointreau, Lillet, lemon, with an absinthe rinse ghosting through. Its warning is the most quoted line in the book: 'four of these taken in swift succession will unrevive the corpse again.' The #1 is a brandy drink almost nobody orders; the #2 became the craft revival's favorite brunch flex. The absinthe is a seasoning, not an ingredient: rinse and dump.",
   "Aviation":
     "Hotel Wallick, New York, 1916: gin, lemon, maraschino, and a few drops of crème de violette to turn the drink the grey-lavender of sky at altitude, in the decade when flight was the most romantic idea on earth. The Savoy dropped the violette (likely a supply problem), and for seventy years the drink flew colorless. When violette returned to the US market in 2007, the original was restored. Go easy: at a quarter ounce it is dusk in a glass, at a half ounce it is grandmother's soap.",
   "Bee's Knees":
-    "Prohibition slang for 'the best,' and a drink built for its era: honey and lemon were exactly what you'd add to bathtub gin you didn't want to taste. The Paris Ritz published it in the 1930s. Better gin turned the disguise into the point: honey syrup rounds a citrus sour in a way plain sugar can't, all texture and floral weight. Make the syrup 3:1 honey to water; full-strength honey seizes in a cold shake and lines the tin instead of the drink.",
+    "Prohibition slang for 'the best,' and a drink of the Prohibition years, but born in Paris, not a speakeasy. The story that honey and lemon were there to hide bathtub gin is legend. The first records are both from 1929: Cocktails de Paris credits the bar at the Ritz, which claimed it again in The Artistry of Mixing Drinks in 1936, and a Brooklyn paper that spring called it the invention of a Denver socialite living in Paris. With good gin, the honey earns its place: honey syrup rounds a citrus sour in a way plain sugar can't, all texture and floral weight. Make the syrup 3:1 honey to water; full-strength honey seizes in a cold shake and lines the tin instead of the drink.",
   "Vieux Carré":
     "Built at the Hotel Monteleone's bar by 1937 and named for the French Quarter, the 'old square.' It is New Orleans's history in one glass: rye for the Americans, cognac for the French, sweet vermouth for the Italians, Bénédictine for the monks, and both Peychaud's and Angostura because the city never chose just one of anything. The Monteleone's bar has revolved on a carousel since 1949; the drink is engineered for slow sipping while the room turns. Stir it patiently: it carries five layers and wants the water.",
   "Ramos Gin Fizz":
     "New Orleans, 1888: a gin fizz driven through orange flower water, cream and egg white into something between a drink and a cloud. At its Carnival peak the bar employed thirty-five 'shaker boys' passing tins down a line, and still couldn't keep up. A Louisiana governor flew a New Orleans bartender to New York rather than go without. The legendary twelve-minute shake is myth-adjacent, but the dry shake must be violent and long, and the final soda pour through the center should raise the soufflé an inch above the rim. A drink you serve with a straw and an apology to whoever's next in line.",
   "Bloody Mary":
-    "Harry's New York Bar claimed the tomato-vodka original in the 1920s, and the recipe was salted and spiced properly when its bartender moved to the St. Regis (where propriety renamed it the Red Snapper). It is the only canonical cocktail that is genuinely a meal, the anchor of brunch, and the world's most personal spec: every bartender's mix is a fingerprint of heat, salt, acid and umami. Roll it between tins instead of shaking; shaken tomato juice aerates into pink foam. The celery stick arrived in 1960s Chicago when a garnish-less drink met an impatient guest and a relish tray.",
+    "Harry's New York Bar claimed the tomato-vodka original in the 1920s, and the recipe was salted and spiced properly when its bartender moved to the St. Regis (where propriety renamed it the Red Snapper). It is the only canonical cocktail that is genuinely a meal, the anchor of brunch, and the world's most personal spec: every bartender's mix is a fingerprint of heat, salt, acid and umami. Roll it between tins instead of shaking; shaken tomato juice aerates into pink foam. Legend says the celery stick started at Chicago's Pump Room, when a guest with no stirrer grabbed a stalk off the relish tray. Nobody has proved it, and celery was already stirring tomato juice drinks through the 1950s.",
   "Irish Coffee":
     "Foynes flying-boat terminal, Ireland, winter 1943: the terminal's chef spiked coffee with whiskey for passengers off a storm-turned flight, and answered 'is this Brazilian coffee?' with 'no, that's Irish coffee.' A travel writer carried it to the Buena Vista in San Francisco in 1952, where they cracked the physics (cream aged 48 hours, lightly whipped, floated over sweetened coffee) and have poured thousands a day since. The sugar isn't optional: it changes the coffee's density so the cream can sit. Drink the hot coffee through the cold cream; never stir.",
   "Martinez":
-    "The missing link between the Manhattan and the Martini, from the 1880s when American bartending ran sweet: Old Tom gin under sweet vermouth, a spoon of maraschino, a dash of bitters. Half a dozen California towns claim it (Martinez, CA has a plaque); the truth is lost. It drinks like a Manhattan that swapped its whiskey for perfume: rich, silky, faintly cherried. Order one and you are drinking the Martini's baby pictures.",
+    "The missing link between the Manhattan and the Martini, from the 1880s when American bartending ran sweet: Old Tom gin under sweet vermouth, a spoon of maraschino, a dash of bitters. Two stories claim it: Martinez, California, where a 1992 plaque says a local bartender served the first Martini in 1874, and the Occidental Hotel in San Francisco, where it was supposedly mixed for a traveler bound for Martinez. Neither is proven. The first printed mention is in The Modern Bartenders' Guide of 1884, followed by a full recipe in the 1887 edition of the Bar-Tender's Guide. It drinks like a Manhattan that swapped its whiskey for perfume: rich, silky, faintly cherried. Order one and you are drinking the Martini's baby pictures.",
   "Hanky Panky":
     "The American Bar at the Savoy was run for two decades by one of the first great female head bartenders. Around 1920, a West End actor asked her for 'something with a bit of punch in it'; the sweet Martini she laced with Fernet-Branca made him declare, 'By Jove! That is the real hanky-panky!' Two dashes of fernet seems like nothing and changes everything: menthol and bitter root under the gin and vermouth. It remains the best answer to a guest who says they want 'a Martini, but interesting.'",
   "Rob Roy":
-    "The Manhattan in a kilt: born at the Waldorf's bar in 1894, named for an operetta about the Scottish folk hero playing down the street. Scotch's malt-and-smoke replaces rye's spice, which is the whole conversation: a blended scotch keeps it silky, and even a whisper of peat will colonize the glass. Sweet vermouth is standard; ask for it 'perfect' (half sweet, half dry) and you're drinking the classiest version. One of the few classics that has never been fashionable and never disappeared.",
+    "The Manhattan in a kilt: credited by tradition to the Waldorf's bar in 1894 and named for the operetta about the Scottish folk hero that opened down the street that October. That is legend, not record: a New York bartender was already pouring a drink called the Rob Roy in 1873. Scotch's malt-and-smoke replaces rye's spice, which is the whole conversation: a blended scotch keeps it silky, and even a whisper of peat will colonize the glass. Sweet vermouth is standard; ask for it 'perfect' (half sweet, half dry) and you're drinking the classiest version. One of the few classics that has never been fashionable and never disappeared.",
   "Americano":
     "The senior member of the aperitivo family: Campari and sweet vermouth over ice with soda, born as the 'Milano-Torino' at the Campari café in Milan in the 1860s (Campari from Milan, sweet vermouth from Turin). The name honors, depending on who's telling it, the American tourists who adopted it, or an Italian heavyweight champion of the day. It is the drink James Bond orders in Casino Royale before the Vesper existed, and the direct parent of the Negroni. Low-proof, bitter, endlessly sessionable: the correct first drink of a long evening.",
   "Jungle Bird":
-    "Kuala Lumpur Hilton, mid-1970s: the welcome drink at the Aviary Bar. It sat unnoticed in a hotel recipe book until the tiki revival dug it out and realized what it was: the only classic tiki drink with an amaro in it. Campari's bitterness cuts through pineapple and blackstrap rum's molasses funk like a machete through canopy. The original was served in a porcelain bird. A later two-ounce-blackstrap spec is the modern standard, a tiki drink that amaro drinkers respect.",
+    "Kuala Lumpur Hilton, July 1973: the welcome drink for the hotel's opening, poured at its Aviary Bar (a few accounts place it later in the 1970s). It lived in obscurity until The New American Bartender's Guide printed it in 1989, and the tiki revival dug it out of that book for Intoxica! and realized what it was: the only classic tiki drink with an amaro in it. Campari's bitterness cuts through pineapple and blackstrap rum's molasses funk like a machete through canopy. The original was served in a porcelain bird. A later 1 1/2-oz blackstrap spec, with the pineapple cut from 4 oz to 1 1/2, is the modern standard, a tiki drink that amaro drinkers respect.",
   "Piña Colada":
     "Puerto Rico's national drink, claimed by two San Juan bartenders at the Caribe Hilton in 1954 (the hotel still celebrates its own claim) and by Barrachina downtown. Coco López, the sweetened cream of coconut invented on the island in 1948, is the enabling technology; without it there is no colada. Blend it with fresh pineapple and good rum and it is a genuinely great drink, not a guilty one. The 1979 pop song is about a failing marriage; the drink deserved better press.",
   "Caipirinha":
@@ -96,21 +96,21 @@ const LORE = {
   "Hemingway Daiquiri":
     "El Floridita, Havana, 1930s. The bar's most famous American regular tried the house daiquiri and pronounced: 'That's good, but I prefer it without sugar, and double rum.' The house built the Papa Doble to order, softening the ferocity with grapefruit and a whisper of maraschino. The menu version adds back a little sweetness because almost nobody actually wants the original ask (the man was reportedly diabetic and drank them by the dozen; both facts explain the drink). This is the Daiquiri for people who find the original too polite.",
   "White Lady":
-    "First sketched with crème de menthe in 1919, then perfected at Harry's New York Bar in 1929 with gin: a Sidecar rebuilt on juniper. The Savoy claimed it too, and shook them for the Prince of Wales. Gin, Cointreau, lemon, sometimes an egg white for silk: it is the cleanest expression of the New Orleans sour on gin, and the direct ancestor of half the 'floral gin sour' menu items of the last twenty years. Serve it up, very cold, and it justifies its name: pale, poised, quietly strong.",
+    "First sketched with crème de menthe in 1919, then perfected at Harry's New York Bar in 1929 with gin: a Sidecar rebuilt on juniper. The Savoy claimed it too, and printed the gin version in the 1930 Savoy Cocktail Book. Gin, Cointreau, lemon, sometimes an egg white for silk: it is the cleanest expression of the New Orleans sour on gin, and the direct ancestor of half the 'floral gin sour' menu items of the last twenty years. Serve it up, very cold, and it justifies its name: pale, poised, quietly strong.",
   "Airmail":
     "A Cuban celebration of the new airmail routes of the late 1920s: a honey daiquiri lengthened with champagne, first printed in Bacardi promotional material around 1930. It is the French 75's tropical pen pal, rum and honey where gin and sugar were, and one of the great under-ordered drinks of the canon. The honey has to be syrup (3:1) or it dies in the cold shake. Some old specs deliver it in a tall glass with a postage stamp stuck to the side; a coupe works, but the stamp was a better idea than most garnishes.",
   "Mint Julep":
     "Older than the cocktail itself: an 18th-century Virginia morning medicine ('julab', from the Persian for rosewater) of spirit, sugar and mint, taken before the heat of the day. It moved from medicinal dram to plantation-porch institution to the official drink of the Kentucky Derby, which now sells 120,000 every race weekend. The build is architecture: mint pressed gently in the bottom, bourbon, then crushed ice packed to a dome, swizzled until the pewter or silver cup frosts. You drink the meltwater as much as the whiskey; the cup's frost is the doneness indicator.",
   "Whiskey Smash":
-    "The Bar-Tender's Guide listed the smash as its own family in 1862: 'a julep on a small plan,' fruit and herb muddled under spirit over cracked ice. The 1990s Rainbow Room version (bourbon, lemon quarters muddled skin-and-all, mint) singlehandedly revived the format and became one of the most copied specs of the craft era. The lemon oils from the muddled peel are what separate it from a mere sour. It is the drink for the guest who says they don't like whiskey; it has converted thousands.",
+    "The Bar-Tender's Guide listed the smash as its own family in 1862: 'a julep on a small plan,' mint pressed in sugar and water as for a julep, then spirit over shaved ice, with no lemon at all (the brandy version got a little orange and berries laid on top). The 1990s Rainbow Room version (bourbon, lemon quarters muddled skin-and-all, mint) singlehandedly revived the format and became one of the most copied specs of the craft era. The lemon oils from the muddled peel are what separate it from a mere sour. It is the drink for the guest who says they don't like whiskey; it has converted thousands.",
   "Sherry Cobbler":
     "The most popular drink in 19th-century America, full stop: sherry, sugar and fresh fruit over crushed ice, drunk through a straw: a combination so novel that the cobbler is substantially responsible for popularizing both the drinking straw and the ice trade. Martin Chuzzlewit stops the plot to marvel at one. Low-proof, cold, fruit-perfumed, it is the great-grandparent of every spritz-and-session drink on a modern menu. Build it with a decent amontillado or oloroso and berries in season, and serve it looking like a jewelry box.",
   "Hot Toddy":
     "Whisky, hot water, sugar: the toddy (the name likely from an Indian palm liquor via Scots usage) predates the cocktail and was prescribed by actual physicians well into the 20th century. Lemon and clove entered as the drink migrated from Scottish firesides to everywhere with a kettle and a cold. The craft is restraint and temperature: hot water, not boiling, or the alcohol steams off the top; sugar slightly under, since heat amplifies sweetness; and a pre-warmed glass so it doesn't crack or go lukewarm in a minute. It won't cure anything, and it absolutely helps.",
   "Champagne Cocktail":
-    "In print by 1855 and codified in the Bar-Tender's Guide of 1862: a sugar cube soaked in Angostura, dropped in a flute, champagne over, lemon oils on top. The cube is theater and engineering at once: a nucleation site that pulls a steady thread of bubbles and meters bitterness into the wine as it dissolves, so the drink evolves from dry to spiced as you sip. It appears in Casablanca more than once. When someone wants champagne but also wants a cocktail, this is the 170-year-old answer.",
+    "In print by 1855 and set down in the Bar-Tender's Guide of 1862 as loose sugar, a dash or two of bitters and a piece of lemon peel in a tumbler one-third full of broken ice, filled with champagne and shaken. The flute with an Angostura-soaked cube and lemon oils on top came later, and that is the drink we pour now. The cube is theater and engineering at once: a nucleation site that pulls a steady thread of bubbles and meters bitterness into the wine as it dissolves, so the drink evolves from dry to spiced as you sip. It appears in Casablanca more than once. When someone wants champagne but also wants a cocktail, this is the 170-year-old answer.",
   "Brandy Alexander":
-    "The gin original ('Alexander') appeared around 1915; cognac took over by the 1930s and improved the argument: brandy, dark crème de cacao and cream in equal parts, nutmeg grated over the top. It is dessert with a spine, the drink a famous Beatle fell for (he called it a milkshake) during his Lost Weekend. Fresh cream, real nutmeg, and honest measurement keep it a cocktail; carelessness turns it into melted ice cream. Serve it after dinner, up, and watch it convert whoever claims they don't like brandy.",
+    "The gin original ('Alexander') appeared around 1915; cognac took over by the 1930s and improved the argument: brandy, dark crème de cacao and cream (equal parts in the classic and IBA spec, though the spec here lets the brandy lead), nutmeg grated over the top. It is dessert with a spine, the drink a famous Beatle fell for (he called it a milkshake) during his Lost Weekend. Fresh cream, real nutmeg, and honest measurement keep it a cocktail; carelessness turns it into melted ice cream. Serve it after dinner, up, and watch it convert whoever claims they don't like brandy.",
   "White Russian":
     "The Black Russian, vodka and coffee liqueur, appeared in 1949 Brussels, named for the color and the spirit's supposed nationality. Cream landed on top by the 1960s, and the White Russian settled into shag-carpet obscurity until 1998, when The Big Lebowski made it the Dude's sacrament and single-handedly revived it. It survives fashion because it works: coffee bitterness, sweet liqueur, cold cream. Build it over ice, float the cream, and let the drinker marble it themselves. The Dude abides; so does the drink.",
   "Gin Fizz":
@@ -120,9 +120,9 @@ const LORE = {
   "Nojito":
     "The Mojito's sober twin, and the proof that the template (mint, lime, sugar, bubbles, crushed ice) never needed the rum to make its argument. Build it with the same care you'd give the original: press the mint, don't shred it, and let the soda lift the aromatics. A splash of chilled green tea in place of the spirit adds the tannic grip that rum's absence leaves behind.",
   "Cinderella":
-    "A soda-fountain classic from the golden age of the American 'temperance drink': orange, pineapple and lemon shaken bright, a blush of grenadine, and lengthened with soda or ginger ale depending on the house. It has been on hotel menus for a century because it solves a real problem: a guest who wants something bright, adult and celebratory in a tall glass. Fresh juice or nothing; from concentrate, the drink turns into punch-bowl regret.",
+    "A bar-book classic since at least 1937, when London's Café Royal Cocktail Book listed it among its non-alcoholic cocktails as equal parts lemon, pineapple and orange, shaken. Today's build keeps that trio shaken bright, adds a blush of grenadine, and lengthens it with soda or ginger ale depending on the house. It has been on hotel menus for nearly a century because it solves a real problem: a guest who wants something bright, adult and celebratory in a tall glass. Fresh juice or nothing; from concentrate, the drink turns into punch-bowl regret.",
   "Shirley Temple":
-    "Invented in the 1930s, Hollywood legend says at Chasen's, for the child star herself, who reportedly found it too sweet and spent her life ordering plain ginger ale. Grenadine and ginger ale with a cherry: the first 'cocktail' most Americans ever order. Made with real pomegranate grenadine instead of dyed corn syrup, it is genuinely good: tart, rosy, and worth the maraschino flourish. She went to court to stop bottled versions trading on her name; respect the woman, pour the good grenadine.",
+    "Invented in the 1930s, Hollywood legend says at Chasen's, for the child star herself, who reportedly found it too sweet and said she had nothing to do with it. Grenadine and ginger ale with a cherry: the first 'cocktail' most Americans ever order. Made with real pomegranate grenadine instead of dyed corn syrup, it is genuinely good: tart, rosy, and worth the maraschino flourish. She went to court to stop bottled versions trading on her name; respect the woman, pour the good grenadine.",
   /* ---- Modern Craft Classics ---- */
   "Gold Rush":
     "Built at Milk & Honey around 2001 by asking what a Whiskey Sour would taste like with honey doing the sugar's job: the answer launched a dynasty (the Penicillin is its direct descendant). Three ingredients, no garnish debate, and one of the modern era's first proofs that a two-minute tweak to a template can outlive the bar that made it.",
@@ -133,7 +133,7 @@ const LORE = {
   "Old Cuban":
     "An early-2000s masterstroke from the Pegu Club: a Mojito that went to finishing school: aged rum, mint and lime shaken instead of built, bitters for spine, champagne instead of soda. It drinks like the drink the Mojito always wanted to be after hours.",
   "Tommy's Margarita":
-    "Tommy's Mexican Restaurant in San Francisco, in the early 1990s, dropped the orange liqueur and sweetened with agave nectar instead: letting 100%-agave tequila carry the whole drink. It became the world's most-ordered modern margarita spec and a Trojan horse for good tequila.",
+    "Tommy's Mexican Restaurant in San Francisco, in the early 1990s, dropped the orange liqueur and sweetened with agave nectar instead: letting 100%-agave tequila carry the whole drink. It became one of the most widely copied modern margarita specs, with a place on the IBA list, and a Trojan horse for good tequila.",
   "Red Hook":
     "Milk & Honey, 2003: rye, Punt e Mes and maraschino, a Manhattan-Brooklyn hybrid that kicked off the great Brooklyn-neighborhood naming spree (Greenpoint, Bensonhurst, Bushwick all followed). Two bottles swapped, a whole family founded.",
   "Greenpoint":
@@ -143,7 +143,7 @@ const LORE = {
   "Black Manhattan":
     "San Francisco's Bourbon & Branch, around 2005, replaced the Manhattan's vermouth entirely with Averna. The amaro's cola-and-herb darkness made it the gateway riff of the amaro decade.",
   "Final Ward":
-    "A rye rewrite of the Last Word, lemon replacing lime to flatter the whiskey, named as a farewell drink on leaving Death & Co in 2008. The pun is the timestamp.",
+    "A rye rewrite of the Last Word, lemon replacing lime to flatter the whiskey, made around 2006 or 2007, at Pegu Club by its maker's own account, though it's often credited to Death & Co. The name is a pun on the Last Word and its maker's surname.",
   "White Negroni":
     "Bordeaux, 2001: a visiting bartender stuck without Campari or sweet vermouth rebuilt the Negroni from the French shelf: gin, Lillet Blanc, and gentian-bitter Suze. The accident became a modern standard and gave pale, floral bitterness its flagship.",
   "Trinidad Sour":
@@ -163,7 +163,7 @@ const LORE = {
   "Division Bell":
     "From the agave temple Mayahuel, 2009: mezcal, Aperol, maraschino, lime, a Last Word rewired for smoke. Named for the Pink Floyd record.",
   "Kentucky Buck":
-    "A strawberry-and-ginger bourbon buck out of San Francisco's Rickhouse, around 2010, a farmers-market drink with a whiskey backbone, and one of the most copied specs of the 2010s.",
+    "A strawberry-and-ginger bourbon buck created at San Francisco's Bourbon & Branch and brought to its new sister bar, Rickhouse, by 2009, a farmers-market drink with a whiskey backbone, and one of the most copied specs of the 2010s.",
   "Chartreuse Swizzle":
     "Early-2000s San Francisco put green Chartreuse (110 proof, 130 herbs) at the base of a crushed-ice swizzle with pineapple, lime and falernum. The monks' liqueur had waited 400 years for a tiki vacation.",
   "Left Hand":
@@ -199,7 +199,7 @@ const LORE = {
   "Cable Car":
     "The Starlight Room atop San Francisco's Sir Francis Drake, 1996: spiced rum, orange curaçao and lemon under a cinnamon-sugar rim: 'between the stars and the cable cars.' A Sidecar that moved west.",
   "Bourbon Renewal":
-    "Early 2000s Oregon: bourbon, lemon, and crème de cassis over cracked ice, a whiskey sour in blackcurrant velvet. Named like an urban-planning initiative, drinks like a porch swing.",
+    "Early 2000s Oregon: bourbon, lemon, and crème de cassis over fresh ice, a whiskey sour in blackcurrant velvet. Named like an urban-planning initiative, drinks like a porch swing.",
   "Eastside":
     "The Southside's cucumber cousin from the 2000s New York school (gin, mint, cucumber, lime), attribution as blurry as most bar inventions. It became the modern shorthand for 'refreshing gin drink' on menus everywhere.",
   "Nuclear Daiquiri":
@@ -223,7 +223,7 @@ const LORE = {
   "Hurricane":
     "Pat O'Brien's, New Orleans, 1940s: the story goes that wartime whiskey was scarce and distributors made bars buy surplus rum by the case, and this passion-fruit red giant, served in a hurricane-lamp glass, solved the inventory problem. Bourbon Street has never recovered.",
   "Navy Grog":
-    "Don the Beachcomber's tribute to the Royal Navy's daily rum ration, civilized with three rums, grapefruit, lime and honey, famously served with an ice cone frozen around the straw. Its best-documented devotee was an American president, who drank his at the Washington Trader Vic's.",
+    "Don the Beachcomber's tribute to the Royal Navy's daily rum ration, civilized with three rums, grapefruit, lime and honey, famously served with an ice cone frozen around the straw. An American president was reportedly a fan, but what he ordered at Trader Vic's was the house's own Navy Grog, a different drink built on four rums with allspice dram and falernum.",
   "Three Dots and a Dash":
     "Don the Beachcomber's WWII victory drink, the name is Morse code for V, built on rhum agricole and aged rum with falernum, allspice and honey, garnished with three cherries and a pineapple stick spelling out the signal. Patriotism, in crushed ice.",
   "Saturn":
@@ -237,13 +237,13 @@ const LORE = {
   "Queen's Park Swizzle":
     "The Queen's Park Hotel, Port of Spain, Trinidad, 1920s: demerara rum swizzled through crushed ice with mint and lime, then a heavy Angostura float staining the top like a storm front. Trader Vic's called it 'the most delightful form of anesthesia given out today.'",
   "Corn 'n' Oil":
-    "Barbados's black blend: blackstrap rum poured over falernum and lime until it sits dark and slick as motor oil: the name is the picture. Velvet Falernum is Bajan; so is the drink's unhurried attitude.",
+    "An old Barbados planters' drink: Bajan rum and falernum over ice, with bitters and often a little lime. The dark blackstrap float that gives it an oil-slick top is a modern bar touch, not how the island makes it. The name is usually traced to Deuteronomy's 'corn, wine and oil,' but that is the story, not a record. Velvet Falernum is Bajan; so is the drink's unhurried attitude.",
   "Hotel Nacional Special":
     "The house drink of Havana's grand Hotel Nacional, 1930s: golden rum with pineapple, lime and a kiss of apricot liqueur. The Gentleman's Companion collected it, which is how half the old Cuban canon survived.",
   "Beachcomber":
     "A Daiquiri that went on vacation: white rum, lime, triple sec and a bare spoon of maraschino, named for Don the Beachcomber's whole invented persona. Shake it hard and serve it colder than the story.",
   "Royal Bermuda Yacht Club":
-    "The club's namesake cocktail from the 1930s: Barbados rum, lime, falernum and a touch of orange liqueur, a Daiquiri in a blazer. Trader Vic's printed it; the club still pours it.",
+    "Named for the Hamilton club, where a Harper's Bazaar writer says she met it, and first printed in the Cocktail Guide and Ladies' Companion of 1941: Barbados rum, lime, falernum and a touch of orange liqueur, a Daiquiri in a blazer. Trader Vic's Bartender's Guide reprinted it in 1947, which is why the credit so often goes there.",
   "Test Pilot":
     "Don the Beachcomber's circa-1941 experiment (two rums, falernum, Cointreau, absinthe and bitters) that became tiki's most productive airframe: the Jet Pilot and half a dozen other drinks are direct modifications of this spec.",
   "Jet Pilot":
@@ -259,19 +259,19 @@ const LORE = {
   "Planter's Punch":
     "Jamaica's foundational rhyme ('one of sour, two of sweet, three of strong, four of weak'), old enough that its true origin is folklore. Every estate, hotel and grandmother has the correct version, and they all disagree.",
   "Bahama Mama":
-    "The cruise-port standard: two rums (one of them coconut), pineapple and orange under a grenadine sunset. Nobody owns it, everybody pours it, and on the right beach it is exactly perfect.",
+    "The cruise-port standard: two rums (one of them coconut), pineapple and orange, and a half ounce of coffee liqueur that nobody expects. Nobody owns it, everybody pours it, and on the right beach it is exactly perfect.",
   "Blue Hawaii":
-    "The Hilton Hawaiian Village, 1957: asked by a Bols salesman to use their blue curaçao, the head bartender built the drink that made 'blue' a flavor. The same bar claims to have invented putting the paper parasol and the orchid in drinks. A one-room garnish revolution.",
+    "The Hilton Hawaiian Village, 1957: asked by a Bols salesman to use their blue curaçao, the head bartender built the drink that made 'blue' a flavor. By the head bartender's own account, he started putting orchids in drinks to keep chewed sugarcane out of the ashtrays, and the bar often gets credit for the paper parasol too, though that one is disputed. A one-room garnish revolution.",
   "Rum Runner":
     "Holiday Isle Tiki Bar, Islamorada, Florida Keys, 1970s: legend says a surplus of banana liqueur and blackberry brandy needed moving, and the solution got named for the Prohibition boatmen who ran the same waters. Inventory management has rarely tasted better.",
   "Chi Chi":
-    "A Piña Colada with vodka in the rum's chair: the 1960s tourist circuit's answer for guests who wanted the beach without the molasses. The name is period slang for 'fancy.'",
+    "A Piña Colada with vodka in the rum's chair: the 1960s tourist circuit's answer for guests who wanted the beach without the molasses. Nobody knows for sure where the name came from. 'Chichi' is an old word for showy or fussy, but no record ties it to the drink.",
   "Doctor Funk":
     "Named for Samoa's actual physician (he attended the author of Treasure Island), whose 'medicinal' prescription of absinthe, lime and grenadine with soda became a South Seas legend the tiki temples embalmed in rum.",
   "Cobra's Fang":
-    "Don the Beachcomber, late 1930s: overproof and gold rums with falernum, fassionola and lime, served in a coiled-snake mug. One of the specs the revival had to reconstruct from ex-employees' notebooks: the fang had nearly bitten its last.",
+    "Don the Beachcomber, late 1930s: 151 demerara rum with falernum, fassionola, lime and orange (the later Don the Beachcomber recipe book adds dark Jamaican rum). A 1941 menu serves it in a tall curved glass; the coiled-snake mug is a later legend. One of the specs the revival had to reconstruct from ex-employees' notebooks: the fang had nearly bitten its last.",
   "151 Swizzle":
-    "Don the Beachcomber's deceptively small dose of 151-proof demerara, swizzled with falernum, lime and bitters into a frosted metal cup, dusted with nutmeg. Served short because anything taller would be irresponsible even by tiki standards.",
+    "Don the Beachcomber's deceptively small dose of 151-proof demerara, swizzled with lime, sugar syrup, bitters and a few drops of absinthe into a frosted metal cup, dusted with nutmeg. Served short because anything taller would be irresponsible even by tiki standards.",
   "Nui Nui":
     "Don the Beachcomber's spice cabinet in a glass: aged rum with cinnamon, allspice, vanilla and citrus. 'Nui' is Polynesian for 'big'; doubled, it's a promise the drink keeps quietly.",
   "Halekulani":
@@ -281,11 +281,11 @@ const LORE = {
   "Tradewinds":
     "A Caribbean cooler built on rum and coconut cream with apricot liqueur and lemon: obscure enough that sources argue over its home island, which is the most Caribbean provenance possible.",
   "Yellow Bird":
-    "Named for the calypso standard, a Jamaican beach-bar staple: rum, Galliano, triple sec and lime. The song was everywhere in 1961; the drink stayed on the beach where it belongs.",
+    "Rum, Galliano, triple sec and lime. Nobody knows for sure where the name comes from: maybe the song 'Yellow Bird,' a Haitian tune given English words in 1957 and a No. 4 hit on Billboard, maybe just the Galliano's color. One unproven story puts its birth at the Shell Bar in Waikiki's Hawaiian Village, where that hit record played. The song was everywhere in 1961; the drink stayed on the beach where it belongs.",
   "Goombay Smash":
     "Miss Emily's Blue Bee Bar, Green Turtle Cay, Bahamas: a teetotaler's tavern where the house's secret rum-coconut-pineapple-apricot smash became a pilgrimage drink. The family still guards the exact proportions.",
   "Coconaut":
-    "The modern-tiki minimalist statement: overproof Jamaican rum, coconut cream, lime: a Daiquiri that went feral on a desert island. Three ingredients, no garnish parade, all engine.",
+    "A minimalist statement from the Grog Log of 1998: dark Jamaican rum, coconut cream, lime: a Daiquiri that went feral on a desert island. Three ingredients, no garnish parade, all engine.",
 };
 
 /* extend LORE in place: the Golden Age and the books after it continue below */
@@ -296,9 +296,9 @@ Object.assign(LORE, {
   "Tuxedo":
     "The Tuxedo Club of Tuxedo Park, New York, the place that named the dinner jacket, also left a Martini variant dressed with maraschino, orange bitters and an absinthe whisper. Formal wear, liquid edition.",
   "Alaska":
-    "Gin and yellow Chartreuse, nothing else structural, a 'cocktail' by 1900s standards and a dare by ours. The Savoy Cocktail Book's note insisted it was no Eskimo staple but a South Carolina invention; the cold name stuck anyway.",
+    "Gin and yellow Chartreuse, nothing else structural, a 'cocktail' by 1900s standards and a dare by ours. The Savoy Cocktail Book's note joked that it was no Eskimo staple and was 'probably first thought of in South Carolina, hence its name.' Nobody knows where it really came from.",
   "Bronx":
-    "The Waldorf-Astoria's bar claimed it, allegedly named after a visit to the new Bronx Zoo because customers kept describing the strange animals they saw when drinking. A Perfect Martini with orange juice, it was once America's third-most-famous cocktail before fresh-juice logistics killed it.",
+    "The Waldorf-Astoria's bar claimed it, allegedly named after a visit to the new Bronx Zoo because customers kept describing the strange animals they saw when drinking. A Perfect Martini with orange juice, it was once America's third-most-famous cocktail before it fell hard from favor after Repeal.",
   "Income Tax":
     "A Bronx with bitters, named, with gallows humor, for the new American levy. The joke aged better than the drink's fame: you pay a little more, you get a little more.",
   "Ward 8":
@@ -312,11 +312,11 @@ Object.assign(LORE, {
   "Monkey Gland":
     "Harry's New York Bar's 1920s Paris headline-grab: gin, orange juice, grenadine and absinthe, named for the genuinely real monkey-gland rejuvenation surgeries then scandalizing Europe. The drink outlived the science, mercifully.",
   "Mary Pickford":
-    "Prohibition-era Havana, built for the silent-film star while Hollywood drank out its exile in Cuba: white rum, pineapple, grenadine, maraschino. Sweet, blushing, and stronger than it lets on, a fair portrait of the era's stardom.",
+    "Prohibition-era Havana, named for the silent-film star and first printed in 'When It's Cocktail Time in Cuba' (1928). The Sevilla Hotel's bar usually gets the credit, and the tale that she drank it there on a visit is legend, since no Cuba trip of hers is on record in those years. The build: white rum, pineapple, grenadine, maraschino. Sweet, blushing, and stronger than it lets on, a fair portrait of the era's stardom.",
   "El Presidente":
     "Havana's aristocrat of the 1920s, toasted to a succession of Cuban presidents: white rum, blanc vermouth, orange curaçao and a grenadine tint. The blanc vermouth is the secret most modern remakes miss; dry vermouth wrecks it.",
   "Between the Sheets":
-    "A Sidecar with white rum crashing the cognac's party, from Harry's New York Bar in the Paris of the 1920s. The name was the point: Prohibition-era drinking was flirtation by other means.",
+    "A Sidecar with white rum crashing the cognac's party, from the 1920s, though nobody can prove whose it is. Its earliest known printing (1929) uses gin instead of cognac, and the cognac-and-rum version we pour comes from the Savoy Cocktail Book in 1930. Harry's New York Bar in Paris, London's Berkeley Hotel and a New Rochelle speakeasy have all been credited with it, and none of those claims is proven. The name was the point: Prohibition-era drinking was flirtation by other means.",
   "Blood and Sand":
     "Named for a 1922 bullfighter film: scotch, sweet vermouth, cherry brandy and orange juice in equal parts: on paper a catastrophe, in the glass a strange velvet. One of the only classic cocktails built on scotch, and the best argument that rules are guidelines.",
   "Scofflaw":
@@ -324,17 +324,17 @@ Object.assign(LORE, {
   "Brooklyn":
     "The Manhattan's overshadowed sibling, circa 1908: rye, dry vermouth, maraschino and Amer Picon, the French bitter that vanished from America, orphaning the drink for decades. The craft revival rebuilt it with substitutes and then named half the borough's neighborhoods in apology.",
   "Algonquin":
-    "Named for the hotel whose Round Table drank through the 1920s: rye, dry vermouth and pineapple juice, an odd trio that reads like one of the Round Table's kinder reviews. Best very cold, like the wit.",
+    "Named, it's said, for the hotel of the famous Round Table, though the owner had closed its bar in 1917, so the wits did their drinking elsewhere and no record puts this drink at their table. The build: rye, dry vermouth and pineapple juice, an odd trio that reads like one of the Round Table's kinder reviews. Best very cold, like the wit.",
   "Chrysanthemum":
     "The Savoy's gentlest classic: dry vermouth led, Bénédictine following, absinthe perfuming, no base spirit at all. A low-proof drink from an age that didn't have the phrase, perfect for the first round or the last.",
   "Bamboo":
-    "Credited to Yokohama's Grand Hotel in the 1890s: sherry and dry vermouth with bitters, a cocktail with no spirit, built for a port city's long afternoons. Japan's first great contribution to the canon, a century before its bartenders conquered the craft.",
+    "Credited by a 1908 bar book to Yokohama's Grand Hotel, whose bar came under new management in 1889, though American papers were already calling it a new drink in New York barrooms in 1886, brought in by an unnamed Englishman. The build: sherry and dry vermouth with bitters, a cocktail with no spirit, built for a port city's long afternoons. Not a Japanese invention, then, but Yokohama made it famous, a century before Japan's own bartenders conquered the craft.",
   "Adonis":
     "Named for the 1884 Broadway musical that ran a then-record 603 performances: sweet vermouth and sherry with orange bitters, the Bamboo's rosier twin. Proof the 1880s understood session drinking better than we do.",
   "Coronation":
     "A family of drinks raised for royal occasions; the standard bearer is sherry and dry vermouth with maraschino and bitters. The empire made drinks the way it made stamps, commemoratively.",
   "Diamondback":
-    "Rye, applejack and yellow Chartreuse: a Baltimore hotel lounge special from the 1940s named for the local terrapin, revived by the craft era as one of the strongest stirred drinks in the book. Handle accordingly.",
+    "Rye, applejack and yellow Chartreuse: the house drink of the Diamondback Lounge in Baltimore's Lord Baltimore Hotel, first printed in Bottoms Up (1951), named for the local terrapin, revived by the craft era as one of the strongest stirred drinks in the book. Handle accordingly.",
   "Widow's Kiss":
     "New York, 1895: calvados, Bénédictine and yellow Chartreuse, autumn distilled, monastic and sweet, with a name straight out of a Victorian novel. The 19th century's best after-dinner drink, still barely improved upon.",
   "Japanese Cocktail":
@@ -352,9 +352,9 @@ Object.assign(LORE, {
   "Seelbach":
     "Louisville's 'lost 1917 hotel classic' (bourbon, Cointreau, two full teaspoons of bitters, champagne) was actually invented in 1995 by the hotel's restaurant director, who confessed the hoax in 2016 after decades in respected cocktail books. Now it's famous twice: once as history, once as the craft world's favorite con.",
   "Boothby":
-    "A San Francisco bartender crowned a Manhattan with a champagne float and modestly named it for himself, around 1900. Politician, author, bartender: the champagne was the least of his self-promotion.",
+    "A San Francisco bartender is credited with crowning a Manhattan with a champagne float around the turn of the century. It wears his name, but the recipe wasn't printed until 1934, four years after his death, as the 'Manhattan, Boothby'. Politician, author, bartender: the champagne was the least of his self-promotion.",
   "Deshler":
-    "A rye-and-Dubonnet curiosity from the early 1900s, named for a prizefighter, heavy on Peychaud's and orange peel. One of those drinks the craft revival keeps rediscovering and re-forgetting on a five-year cycle.",
+    "A rye-and-Dubonnet curiosity from the early 1900s, heavy on Peychaud's and orange peel. It's often said to be named for a lightweight boxer, but Recipes for Mixed Drinks (1916), where it first appears, never says so, and the Deshler Hotel in Columbus, tied to the owners of New York's Hotel Wallick, the bar behind that book, is just as likely. One of those drinks the craft revival keeps rediscovering and re-forgetting on a five-year cycle.",
   "Leap Year":
     "Built at the Savoy for February 29, 1928 (gin, Grand Marnier, sweet vermouth, lemon) and claimed to be 'responsible for more proposals than any other cocktail that has ever been mixed.' Order accordingly, or defensively.",
   "Satan's Whiskers":
@@ -370,17 +370,17 @@ Object.assign(LORE, {
   "Delmonico":
     "Named for the New York restaurant that invented American fine dining: gin and cognac splitting the base over both vermouths, a Perfect Martini with a brandy accent, as expense-account as its address.",
   "Fourth Degree":
-    "A heavier Martini variant (gin, both vermouths, absinthe) named in the Masonic style of the era's clubland. The fourth degree, appropriately, is where the initiations stop being gentle.",
+    "A heavier Martini variant (gin, both vermouths, absinthe) in print by the 1920s and in The Savoy Cocktail Book of 1930. Nobody wrote down why it's called the Fourth Degree; a nod to the Third Degree or to lodge-room degrees is a guess, not a fact.",
 
   /* ---- Highballs, Spritzes & Party Calls ---- */
   "Cuba Libre":
-    "Havana, circa 1900, as the story goes: an American soldier toasted 'Por Cuba libre!' with the occupation's two imports, Coca-Cola and rum, over ice with lime. History's most successful three-ingredient diplomacy; the lime is what separates it from a mere rum and Coke.",
+    "Havana, circa 1900, as the story goes: an American soldier toasted 'Por Cuba libre!' with Cuban Bacardi rum and the newly arrived American Coca-Cola over ice with lime. History's most successful three-ingredient diplomacy; the lime is what separates it from a mere rum and Coke.",
   "Greyhound":
-    "Vodka (originally gin) and grapefruit juice, on menus since the 1930s, allegedly named for the bus-terminal restaurants that served it. Cheap transit, honest drink.",
+    "Vodka (originally gin) and grapefruit juice, in print under this name by 1945, allegedly named for the bus-terminal restaurants that served it. Cheap transit, honest drink.",
   "Salty Dog":
     "A Greyhound with a salt rim, and the salt is doing real chemistry, taming grapefruit's bitterness rather than seasoning it. The rare garnish that's actually an ingredient.",
   "Sea Breeze":
-    "Vodka, cranberry and grapefruit: the flagship of the cranberry cooperative's brilliant postwar campaign to make juice a cocktail category. Ocean Spray did more for vodka highballs than any bartender.",
+    "Vodka, cranberry and grapefruit: a younger cousin of the Cape Codder. Ocean Spray's postwar push was the 1945 Red Devil, later the Harpoon and then the Cape Codder. The name had been used on an older gin drink. This version turned up in the 1960s, caught on in the 1970s and peaked with the 1990s vodka boom. Ocean Spray did more for vodka highballs than any bartender.",
   "Bay Breeze":
     "The Sea Breeze gone tropical: pineapple replacing grapefruit against the cranberry. Same beach, sweeter postcard.",
   "Cape Codder":
@@ -392,7 +392,7 @@ Object.assign(LORE, {
   "Harvey Wallbanger":
     "A Screwdriver with a Galliano float, pushed to fame by one of the great 1970s marketing campaigns: a sandal-wearing surfer mascot named Harvey banging into walls. The ad campaign is the origin story; anything earlier is legend.",
   "Tequila Sunrise":
-    "The modern grenadine-sinking version came from Sausalito's Trident in the early 1970s, went on tour with the Rolling Stones, and got an Eagles song, but the original 1930s Agua Caliente version ran on crème de cassis and soda. Two sunrises, same tequila.",
+    "The modern grenadine-sinking version came from Sausalito's Trident in the early 1970s, went on tour with the Rolling Stones, and got an Eagles song. The original 1930s Agua Caliente version was tequila, lime, grenadine and a touch of crème de cassis, lengthened with soda, with no orange juice at all. Two sunrises, same tequila.",
   "Long Island Iced Tea":
     "A bartender at the Oak Beach Inn on Long Island claims he invented it for a 1972 contest; a rival story credits a Tennessee community called Long Island in the 1920s. Either way: five white spirits conspiring to taste like iced tea, and the most efficient drink in the book at what it does.",
   "Whiskey Highball":
@@ -400,7 +400,7 @@ Object.assign(LORE, {
   "Presbyterian":
     "Whiskey with ginger ale AND soda splitting the top, drier than a ginger highball, named (the joke goes) for drinkers who wanted their whiskey with plausible moderation.",
   "Horse's Neck":
-    "The whole lemon peel cut in one unbroken spiral, hooked over the rim like its namesake. Originally a soft drink, whiskey climbed in around 1910. The garnish IS the drink's identity; everything else is bourbon and ginger ale.",
+    "The whole lemon peel cut in one unbroken spiral, hooked over the rim like its namesake. Originally a soft drink, whiskey climbed in around 1910. The garnish IS the drink's identity; everything else is brandy (or bourbon) and ginger ale.",
   "Mamie Taylor":
     "Scotch, lime and ginger beer, a smash hit of 1899 named for a Broadway soprano: briefly as famous as she was, then forgotten with her. The Moscow Mule is this drink wearing vodka's postwar suit.",
   "El Diablo":
@@ -416,7 +416,7 @@ Object.assign(LORE, {
   "Limoncello Spritz":
     "The Amalfi lemon liqueur lengthened with prosecco and soda, a spritz that tastes like the postcard looks. Serve it very cold; limoncello warm is a different and worse drink.",
   "Negroni Sbagliato":
-    "Bar Basso, Milan, 1972: a bartender reached for the gin and grabbed sparkling wine instead: 'sbagliato' means 'mistaken.' The error became the house drink, and fifty years later a viral video made it the world's mistake too.",
+    "Bar Basso, Milan, around 1970 (1972 is the usual date, some say 1968): the house story is that the bartender reached for the gin and grabbed sparkling wine instead. 'Sbagliato' means 'mistaken.' The bar's own family says it was no mistake, just a great name, so tell the accident as legend. Either way it became the house drink, and fifty years later a viral video made it the world's mistake too.",
   "Tinto de Verano":
     "Spain's actual summer drink while tourists order sangria: red wine and lemon soda over ice. 'Summer red wine': the name is the recipe, and the humility is the point.",
   "Kalimotxo":
@@ -430,7 +430,7 @@ Object.assign(LORE, {
   "Bellini":
     "Harry's Bar, Venice, 1948: white peach purée and prosecco, named for the painter whose saints wear that exact sunrise pink. Fresh white peaches or nothing: yellow peaches from a can are a different drink wearing the name.",
   "Mimosa":
-    "The Ritz Paris, 1920s, named for the yellow flower: champagne and orange juice, the Buck's Fizz of 1921 London made slightly more French and slightly less champagne-heavy. Brunch's load-bearing column.",
+    "Paris, in print by 1934 in The Artistry of Mixing Drinks, the Ritz bar's own book, as the Mimosa or Champagne Orange, named for the yellow flower. The story that it was invented there in 1925 is legend: the book marks the house's own creations, and this one isn't marked. Champagne and orange juice, the Buck's Fizz of 1921 London made slightly more French and slightly less champagne-heavy. Brunch's load-bearing column.",
   "Kir Royale":
     "Dijon's hero-priest mayor pushed his region's blackcurrant liqueur into white wine at every civic reception until the drink took his name; champagne promoted it to Royale. Politics has produced few better legacies.",
   "Death in the Afternoon":
@@ -440,13 +440,13 @@ Object.assign(LORE, {
   "Lemon Drop":
     "A fern-bar San Francisco creation of the 1970s: vodka, fresh lemon and sugar with a sugared rim, the sour rebuilt for the vodka age. The candy came later; the drink was always better than its reputation.",
   "Green Tea Shot":
-    "Contains no green tea: Jameson, peach schnapps, sour and a splash of lemon-lime, a 2000s whiskey-marketing triumph named for its color. The bar's most successful bait-and-switch since the Monkey Gland.",
+    "Contains no green tea: Jameson, peach schnapps, sour and a splash of lemon-lime, an American bar call that took off in the early 2010s, named for its color. It is poured with Jameson by habit, but no brand campaign is on record behind it. The bar's most successful bait-and-switch since the Monkey Gland.",
   "Sex on the Beach":
     "The peach-schnapps boom of the 1980s produced it (vodka, peach, orange and cranberry) and spring break named it. A drink engineered to be ordered out loud, which was always the actual product.",
   "Fuzzy Navel":
     "Peach schnapps and orange juice, coined in the mid-1980s when DeKuyper's Peachtree launched: the 'fuzzy' is the peach, the 'navel' the orange, and the name did more sales work than the recipe.",
   "Blue Lagoon":
-    "Harry's New York Bar in the 1960s, showcasing the new blue curaçao: vodka, lemon, and that swimming-pool color. The bar's second act went technicolor.",
+    "Harry's New York Bar in Paris, sometime in the 1960s or in 1972 (accounts differ), just as blue curaçao, bottled since the 1920s, was finally having its moment. The original is recorded as a frozen drink blended with ice; nobody claims the simple built vodka-and-lemonade version poured today. The bar's second act went technicolor.",
   "Midori Sour":
     "Midori launched at Studio 54 in 1978, the melon liqueur's electric green was disco lighting in a bottle, and the sour became its vehicle. Fresh lemon rescues it from the sour-mix decades; the color needs no rescue.",
   "Kentucky Mule":
@@ -458,7 +458,7 @@ Object.assign(LORE, {
   "Gin Buck":
     "The buck (spirit, citrus, ginger) predates the Mule by decades; the gin version was Prohibition's friend because ginger ale forgave bathtub gin almost anything. The Mule is just this drink with better postwar marketing.",
   "John Collins":
-    "The Tom Collins's whiskey brother: by most tellings the ORIGINAL Collins, named for a London headwaiter, before Old Tom gin stole the family name. Bourbon, lemon, sugar, soda: a sour with its collar open.",
+    "Today it's the Tom Collins's whiskey brother, but the name is the older one: the first Collins, credited to the headwaiter at Limmer's in London, was a gin drink, and whiskey took the name later in America. How John became Tom is disputed. Old Tom gin is one story, and the 1874 'Tom Collins' hoax in New York is another. Bourbon, lemon, sugar, soda: a sour with its collar open.",
   "Whiskey Ginger":
     "The two-ingredient handshake of every neighborhood bar: whiskey and ginger ale doing more work with less ceremony than half the canon. The upgrade path is real ginger beer and a real lime.",
   "Chelada":
@@ -468,7 +468,7 @@ Object.assign(LORE, {
 
   /* ---- Dessert, Hot & After-Dinner ---- */
   "Grasshopper":
-    "Tujague's, New Orleans. Family lore says it was built for a 1918 New York cocktail contest and took second place: green crème de menthe, white cacao, cream. It became the after-dinner drink of the American mid-century and never left the Gulf South's banquet halls.",
+    "Tujague's, New Orleans, says its owner created it and took second place with it at a New York cocktail contest around 1918, but no record of that contest has turned up. The name and the pairing are older: World's Drinks and How to Mix Them (1908) prints a layered Grasshopper of menthe and cacao, credited to San Francisco's Palace Hotel. Who first shook it with cream is unknown. Today's drink is green crème de menthe, white cacao and cream. It became the after-dinner drink of the American mid-century and never left the Gulf South's banquet halls.",
   "Golden Cadillac":
     "Poor Red's, a tiny gold-country roadhouse in El Dorado, California, 1952: legend says a couple celebrating a new gold Cadillac asked for a drink to match: Galliano, white cacao, cream. The bar still sells more Galliano than almost anywhere in America.",
   "Pink Squirrel":
@@ -484,7 +484,7 @@ Object.assign(LORE, {
   "Bushwacker":
     "Born at the Ship's Store & Sapphire Pub on St. Thomas in 1975, adopted so hard by Pensacola that the Florida panhandle now claims it: a frozen chocolate-coffee-rum milkshake that drinks like a beach vacation's last responsible decision.",
   "Stinger":
-    "Cognac and white crème de menthe: high society's nightcap from the 1910s through the Mad Men era, famously drunk by New York's railroad-fortune set as 'the only drink you can take after dinner.' Shaken, traditionally, in defiance of the no-citrus rule: the mint needs the violence.",
+    "Cognac and white crème de menthe: high society's nightcap from the 1910s through the Mad Men era, famously mixed by a New York railroad-fortune heir for his guests at home; a 1923 paper called it 'a short drink with a long reach.' Shaken, traditionally, in defiance of the no-citrus rule: the mint needs the violence.",
   "Rusty Nail":
     "Scotch and Drambuie, the honeyed liqueur allegedly born from a recipe a fugitive Stuart prince left behind. The drink knocked around under various names until the 1960s, when 21 Club patronage and Rat Pack thirst fixed the spec and the name.",
   "Godfather":
@@ -514,11 +514,11 @@ Object.assign(LORE, {
   "Mulled Wine":
     "Wine heated with spice and citrus: the Romans wrote recipes (conditum), the Victorians codified it, Scandinavia perfected it as glögg with almonds and raisins in the cup. Never boil it; you're warming a drink, not cooking off your investment.",
   "Café Brûlot":
-    "Antoine's, New Orleans, circa 1890: brandy, spices and a full orange peel studded with cloves, flamed table-side in a special bowl, then doused with coffee: the restaurant's Prohibition-friendly theater. The most dramatic legal thing you can order in the French Quarter.",
+    "Antoine's, New Orleans, circa 1890: brandy, spices and a full orange peel studded with cloves, flamed table-side in a special bowl, then doused with coffee: the restaurant's own theater, by the house's account. The story that it hid the brandy during Prohibition is legend: without the spirit there is nothing to flame. The most dramatic legal thing you can order in the French Quarter.",
   "Sherry Flip":
     "A whole egg shaken with sherry and sugar, nutmeg over, the flip family's gentlest member, once prescribed to invalids and now the bar's best-kept low-proof secret. Oloroso makes it taste like liquid flan.",
   "Porto Flip":
-    "The Bar-Tender's Guide printed it in 1862: port, a little brandy, a whole egg: dessert, protein shake and nightcap in one Victorian gesture. Ruby port for fruit, tawny for caramel; either way, grate the nutmeg fresh.",
+    "The Bar-Tender's Guide of 1887, published after its author's death, printed it as the Coffee Cocktail, named for its color since there's no coffee in it: port, a pony of brandy, a whole egg. The Porto Flip name came later. It's dessert, protein shake and nightcap in one Victorian gesture. Ruby port for fruit, tawny for caramel; either way, grate the nutmeg fresh.",
   "Alexander":
     "The original was GIN (cacao and cream over London dry, circa 1915) before brandy took the name and the fame. The gin version drinks like chocolate botanicals and deserves its slow rediscovery.",
   "Velvet Hammer":
@@ -536,7 +536,7 @@ Object.assign(LORE, {
 
   /* ---- Drinks of the World ---- */
   "Caesar":
-    "Calgary Inn, 1969: commissioned for an Italian restaurant opening, with the bar mashing the clams into tomato juice by hand; Clamato wouldn't reach Canadian shelves until months later. Canada drinks hundreds of millions a year; the country has formally celebrated Caesar Day. The celery-salt rim is non-negotiable.",
+    "Calgary Inn, 1969: commissioned for an Italian restaurant opening, with the bar mashing the clams into tomato juice by hand; Mott's had come up with its own clam-tomato juice, Clamato, at about the same time, but it barely sold until the Caesar caught on and made it a Canadian staple. Canada drinks hundreds of millions a year; the country has formally celebrated Caesar Day. The celery-salt rim is non-negotiable.",
   "Toronto":
     "Fernet-Branca and rye with sugar and bitters, recorded in a 1922 bar book as popular with 'the Canadians of Toronto.' The city took a century to notice it owns a classic; the fernet drinkers always knew.",
   "Brandy Old Fashioned":
@@ -576,7 +576,7 @@ Object.assign(LORE, {
   "Jamaican Rum Punch":
     "The island's standing rhyme made liquid (one of sour, two of sweet, three of strong, four of weak) with Wray & Nephew doing the strong's work and every bar's 'weak' a house secret. Punch as folk memory.",
   "Canchánchara":
-    "Trinidad, Cuba's independence-war field ration: aguardiente, honey, lime, drunk by mambí guerrillas, now served to visitors in clay cups in the town that claims it. History you can order.",
+    "Cuba's independence-war field ration, as tradition tells it: aguardiente, honey, lime, drunk by mambí guerrillas in the east. Now served to visitors in clay cups in Trinidad, the town that revived it and claims it. History you can order.",
   "Wray & Ting":
     "Jamaica's national shorthand: overproof Wray & Nephew white rum and Ting grapefruit soda. Two brand names, one drink, no recipe card required, the island's hi-hat in a glass.",
   "Chu-Hai":
@@ -588,7 +588,7 @@ Object.assign(LORE, {
   "Suze Tonic":
     "France's gentian aperitif, whose bottle a Cubist master once painted, lengthened with tonic: two kinds of bitterness agreeing beautifully. The alpine root does what Campari does, but in yellow and in French.",
   "Pastis":
-    "Marseille's anise ritual, born in 1932 when the Ricard house commercialized the post-absinthe-ban formula: one part pastis, five parts cold water, poured table-side as it louches to cloud. The dilution is the ceremony; the afternoon is the point.",
+    "Marseille's anise ritual, grown out of the anise drinks that filled the gap after the 1915 absinthe ban, and named in 1932 when the Ricard house sold its own as 'the real pastis of Marseille': one part pastis, five parts cold water, poured table-side as it louches to cloud. The dilution is the ceremony; the afternoon is the point.",
   "Lemon Sour":
     "The izakaya standard: shochu, fresh lemon, soda, Japan's working answer to the highball, often with a frozen lemon half in the glass. Tokyo bars compete on lemon prep the way New Orleans competes on Sazeracs.",
   "Porto Tónico":
@@ -608,13 +608,13 @@ Object.assign(LORE, {
   "Rosita":
     "The tequila Negroni with both vermouths and a bitters dash, an obscure 1970s spec pulled back into print in the 1990s, after which the craft era adopted it as agave's answer to the stirred-and-bitter question.",
   "Bloody Maria":
-    "The Bloody Mary's Mexican passport: tequila under the tomato, where the vegetal agave actually argues better with the spice than vodka ever did. Sangrita drinkers saw this coming centuries early.",
+    "The Bloody Mary's Mexican passport: tequila under the tomato, where the vegetal agave actually argues better with the spice than vodka ever did. Sangrita, the chile-spiked chaser from 1920s Lake Chapala, got there first.",
   "Charro Negro":
     "Tequila, Coke and lime with a salted rim: Mexico's black-clad horseman version of the Batanga family. The salt is what separates it from a mere mixed drink; small moves, real difference.",
   "Rossini":
     "The Bellini's strawberry sibling from the same Venetian family of sparklers named for Italian masters: purée and prosecco, this one for the man who wrote The Barber of Seville. Strawberries in season or don't bother.",
   "Chuflay":
-    "Bolivia's national highball: singani, the country's aromatic grape brandy, with ginger ale and lime. The name allegedly descends from railway-era English 'short flight'; the drink outlasted the railways.",
+    "Bolivia's national highball: singani, the country's aromatic grape brandy, with ginger ale and lime. The name allegedly descends from the English railway builders' 'short fly', slang for a temporary track laid around an obstacle; the drink outlasted the railways.",
 
   /* ---- The Bartender's Obscura ---- */
   "Blue Blazer":
@@ -640,13 +640,13 @@ Object.assign(LORE, {
   "Blinker":
     "Rye, grapefruit and grenadine from a 1934 bar manual, a Prohibition-exit spec that reads strange and drinks bright. The craft revival's favorite example of 'trust the old books.'",
   "Fish House Punch":
-    "The Schuylkill Fishing Company of Pennsylvania, a private angling club chartered in 1732, has served its rum-cognac-peach-brandy punch for near three centuries; a founding father is said to have gone quiet in his diary for days after a visit. America's oldest continuously-poured cocktail, and still a heavyweight.",
+    "The Schuylkill Fishing Company of Pennsylvania, a private angling club founded in 1732, has poured punch since its early days. Club tradition dates this rum-cognac-peach-brandy recipe to the founding, though the oldest written version is thought to date only to the 1790s. A founding father is said to have gone quiet in his diary for days after a visit. Very likely America's oldest punch still poured by the club that made it, and still a heavyweight.",
   "Chatham Artillery Punch":
     "Savannah's militia punch (rum, brandy, whiskey and champagne fortified in quantity) with a reputation for leveling visiting dignitaries that survives in newspaper accounts going back over a century. Approach as you would the artillery.",
   "Millionaire":
     "A name attached to several Prohibition-era drinks; the survivor is rye with orange liqueur, grenadine and an absinthe whisper, egg white optional, wealth as a color: sunset gold-pink, served up.",
   "Palmetto":
-    "The rum Manhattan: aged rum and sweet vermouth with bitters, named for the South's state tree around 1900. Rum drinkers' proof that their spirit sits in whiskey's chairs without adjusting a thing.",
+    "The rum Manhattan: aged rum and sweet vermouth with bitters, in print by 1930 in the Savoy, its name presumably taken from the palmetto palm (nobody recorded why). Rum drinkers' proof that their spirit sits in whiskey's chairs without adjusting a thing.",
   "Stone Fence":
     "Rum or whiskey in hard cider: the drink the Green Mountain Boys allegedly fortified themselves with before taking Fort Ticonderoga in 1775. America's oldest highball, older than America.",
   "Prescription Julep":
@@ -656,33 +656,33 @@ Object.assign(LORE, {
   "Angel Face":
     "The Savoy's equal-parts gamble: gin, apricot brandy, calvados, no citrus net, all fruit and nerve. It shouldn't balance; on the right cold night it does, angelically.",
   "Fancy Free":
-    "Bourbon washed with maraschino and both bitters over a big cube, an Old Fashioned that swapped sugar for cherry liqueur, from the 1940s. The name undersells the engineering.",
+    "Bourbon or rye stirred with maraschino and both bitters, an Old Fashioned that lets cherry liqueur do most of the sweetening, from the 1940s. The name undersells the engineering.",
   "Monte Carlo":
     "Rye with Bénédictine standing where vermouth would: the Manhattan's monastic cousin from the mid-century manuals. Two ingredients and bitters; wealth is simplicity.",
   "Tipperary":
     "Irish whiskey, sweet vermouth and green Chartreuse, printed in a New York recipe book in 1916, the year of the Rising, named for the marching song. Ireland and the Alps negotiating over vermouth.",
   "Bobby Burns":
-    "The Rob Roy sweetened with Bénédictine, served at the old Waldorf where, the bar book claimed, it was a favorite of Scots celebrating their poet. Address it on January 25th with a verse.",
+    "The Rob Roy with a Bénédictine accent. The Savoy Cocktail Book printed it that way in 1930 and called it a fast mover on St. Andrew's Day. The old Waldorf's version, the 'Robert Burns,' took absinthe and orange bitters instead. Its bar book allowed the name might honor the poet but bet on a cigar salesman who drank at the Old Bar. Address it on January 25th with a verse.",
   "Harvard":
     "Cognac and sweet vermouth with bitters: the Ivy League cocktail series' brandy chair, circa 1895. Crimson in color, clubby in temperament, better than its rivals (a Harvard opinion, but correct).",
   "Princeton":
-    "Gin and port in layers with orange bitters, the 1890s collegiate series' strangest member, drinking like a sunset in reverse. The port float is the diploma.",
+    "Old Tom gin and orange bitters with port. The old books poured the port in last so it sank to the bottom in a red layer, and the modern bar stirs it all together. Either way, the port is the diploma.",
   "Saratoga":
-    "An 1887 track-season special: cognac and rye splitting the base of a Manhattan-shaped drink, the sporting compromise of a town that bet on everything.",
+    "First printed in 1887, in the enlarged Bar-Tender's Guide published after its author's death, and named, by all appearances, for the Saratoga Springs resort: cognac and rye splitting the base of a Manhattan-shaped drink, the sporting compromise of a town that bet on everything.",
   "Gin Daisy":
-    "The daisy template (spirit, citrus, grenadine or cordial, soda splash) in its gin original, served over crushed ice with fruit. The Margarita is this drink's Spanish translation.",
+    "The daisy template (spirit, citrus, grenadine or cordial, soda splash) in its gin original, served over crushed ice with fruit. Margarita is Spanish for daisy, and the leading theory says the Margarita began as a tequila daisy. That is a theory, not settled fact: its origin is still argued, with rival claims from the 1930s and 1940s.",
   "Knickerbocker":
-    "1850s New York: rum with raspberry syrup, curaçao and lime over ice, the century-early prototype of tiki, complete with fruit garnish excess. The old Dutch name for the city, and the drink the city forgot it invented.",
+    "First printed in the Bar-Tender's Guide of 1862, and likely older: rum with raspberry syrup, curaçao and lime or lemon over crushed ice, the century-early prototype of tiki, complete with fruit garnish excess. The name is old slang for a New Yorker, so the drink is probably a New York one, but nobody wrote down who first made it.",
   "Coffee Cocktail":
     "Contains no coffee: port and cognac shaken with a whole egg until it pours coffee-colored, the name a Victorian visual joke printed with a shrug in the 1887 edition of the Bar-Tender's Guide. The best breakfast-adjacent drink no brunch menu dares list.",
   "Bensonhurst":
-    "A 2006 entry in the Brooklyn-neighborhood cycle: rye, dry vermouth, maraschino and a Cynar rinse, the Brooklyn rebuilt with the amaro era's toolkit. The family tree's newest strong branch.",
+    "A 2006 entry in the Brooklyn-neighborhood cycle: rye, dry vermouth, maraschino and a teaspoon of Cynar, the Brooklyn rebuilt with the amaro era's toolkit. The family tree's newest strong branch.",
   "Preakness":
     "Named for the Baltimore race in a 1936 contest: the Manhattan formula with a Bénédictine seam. The middle jewel of the Triple Crown got the middleweight classic.",
   "Fourth Regiment":
     "An 1889 spec revived from the old books: rye and sweet vermouth with THREE bitters (orange, celery, Peychaud's), each dash a different instrument. The celery bitters are the reason to bother; the drink is the argument for owning them.",
   "Metropole":
-    "The Hotel Metropole's Times Square nightcap from the 1900s: cognac and dry vermouth with two bitters, the Harvard's drier city cousin, drunk where Broadway's sporting crowd settled its evenings.",
+    "Named for New York's Hotel Metropole on Broadway near 42nd Street and printed in Modern American Drinks in 1895, before anyone called the corner Times Square: cognac and dry vermouth with two bitters, the Harvard's drier city cousin, drunk where Broadway's sporting crowd settled its evenings.",
   "Waldorf":
     "The hotel's namesake from the old bar book: rye, sweet vermouth and absinthe in earnest quantity, pre-Prohibition New York's heavier hand, when absinthe was an ingredient, not a rumor.",
   "Rock and Rye":
@@ -690,9 +690,9 @@ Object.assign(LORE, {
   "Twelve Mile Limit":
     "Prohibition arithmetic: when the dry law's reach extended from three miles offshore to twelve, the booze cruises sailed further and the drink got named: white rum, whiskey AND brandy under grenadine and lemon, because on a ship past the limit, why choose?",
   "Hop Toad":
-    "Apricot brandy, rum and lime from the old books: three ingredients, a silly name, and a surprisingly serious sour underneath. The apricot does the sugar's job; the name does the marketing's.",
+    "Apricot brandy and citrus from the old books (The Ideal Bartender's 1917 Leaping Frog, the Savoy's Hop Toad), with a dash of bitters here; the Old Waldorf-Astoria Bar Book of 1935 adds Jamaica rum. Three ingredients, a silly name, and a surprisingly serious sour underneath. The apricot does the sugar's job; the name does the marketing's.",
   "Bishop":
-    "Mulled port with roasted orange and clove: the Victorian Christmas standard A Christmas Carol names outright ('a Christmas bowl of smoking bishop, Bob!' says Scrooge, reformed). The Bar-Tender's Guide printed American versions; December justifies them still.",
+    "The cold, single-glass cousin of smoking bishop, the mulled port with roasted orange and clove that was the Victorian Christmas standard, the one A Christmas Carol names outright ('a Christmas bowl of smoking bishop, Bob!' says Scrooge, reformed). The Bar-Tender's Guide printed American versions; December justifies them still.",
 
   /* ---- The Martini Book ---- */
   "Vesper":
@@ -712,11 +712,11 @@ Object.assign(LORE, {
   "Dukes Martini":
     "The Dukes Hotel, London: frozen gin poured table-side from a trolley into a frozen glass over a vermouth rinse: no stirring, no dilution, a two-drink house limit that is enforced and earned. Casino Royale's author, the hotel swears, drank at Dukes; the trolley is the closest thing the Martini has to a shrine.",
   "Obituary Cocktail":
-    "Lafitte's Blacksmith Shop, New Orleans: a Martini with an absinthe shadow, two dashes darkening the gin like its namesake. The oldest bar building in the Quarter serves it by candlelight, which is the correct lighting for the name.",
+    "Lafitte's Blacksmith Shop, New Orleans: a Martini with an absinthe shadow, a quarter ounce clouding the gin, a fitting gloom. The oldest bar building in the Quarter serves it by candlelight, which is the correct lighting for the name.",
   "Blue Moon":
-    "The violette Martini of the 1910s (gin, dry vermouth, crème de violette) colored like its name and lost for the same decades as the Aviation, for the same supply reasons. The violette returns; the moon rises.",
+    "Two drinks share the name. The 1917 Blue Moon in Recipes for Mixed Drinks was a dry Martini with a dash each of Crème Yvette and orange bitters, topped with claret. The gin, violette and lemon sour poured here is the later one, printed in the Cocktail Guide and Ladies' Companion of 1941, colored like its name and lost for the same decades as the Aviation, for the same supply reasons. The violette returns; the moon rises.",
   "Turf Cocktail":
-    "The racing crowd's 1900s Martini variant: gin and dry vermouth with maraschino, absinthe and bitters, everything the era could dress a Martini in. Old Tom gin makes it historical; dry gin makes it drinkable.",
+    "A Martini variant printed in the Bartender's Manual of 1888 (the name points to the racetrack, but nobody recorded why): gin and dry vermouth with maraschino, absinthe and bitters, everything the era could dress a Martini in. Old Tom gin makes it historical; dry gin makes it drinkable.",
   "Astoria":
     "The Waldorf-Astoria's inverted Martini (vermouth leading gin, orange bitters seasoning) from the hotel's pre-Prohibition bar book. The hotel's other tower got the Waldorf cocktail; this is the better half.",
   "Bradford":
@@ -726,7 +726,7 @@ Object.assign(LORE, {
   "Breakfast Martini":
     "London's Library Bar, 1996: gin, orange marmalade, triple sec, lemon; invented, the story goes, after its creator's wife made him actually eat breakfast. A knowing revival of the Savoy's Marmalade Cocktail with better press.",
   "Appletini":
-    "Lola's, West Hollywood, 1997, born the 'Adam's Apple' and renamed by the decade that suffixed everything with -tini: vodka and sour-apple liqueur in electric green. The craft era's favorite punching bag, and still the best-selling drink at half the bars that mock it.",
+    "Lola's, West Hollywood, 1996, born the 'Adam's Apple' and renamed by the decade that suffixed everything with -tini: vodka and sour-apple liqueur in electric green. The craft era's favorite punching bag, and still the best-selling drink at half the bars that mock it.",
   "Lychee Martini":
     "The pan-Asian restaurant boom of 2000s New York produced it: vodka, lychee liqueur and syrup from the can, a Martini-glassed perfume that outlived every trend piece written against it.",
   "Pomegranate Martini":
@@ -742,7 +742,7 @@ Object.assign(LORE, {
   "Banana Daiquiri":
     "Claimed by the Mountain Top bar on St. Thomas, allegedly for a 1950s naval visit: rum, banana and lime blended to custard. The banana rounds the rum like butter; the view did the rest of the marketing.",
   "Frozen Piña Colada":
-    "The Caribe Hilton's creation in its blended, machine-age form, the version the world actually orders. Coco López, pineapple, rum, ice: the sound of a resort pool rendered in texture.",
+    "The Piña Colada the Caribe Hilton claims from 1954 (Barrachina in Old San Juan claims it too) in its blended, machine-age form, the version the world actually orders. Coco López, pineapple, rum, ice: the sound of a resort pool rendered in texture.",
   "Miami Vice":
     "Half frozen Piña Colada, half frozen Strawberry Daiquiri, layered white over red like the show's pastel blazers, the 1980s in a hurricane glass. Order one ironically; finish it sincerely.",
   "Lava Flow":
