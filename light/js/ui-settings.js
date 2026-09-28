@@ -10,7 +10,7 @@ FL_ACTS.setDayEnd = function (el) {
   FL.prefs.dayEnd = v;
   flSave(true);
   /* the day the reader is living under the NEW clock gets marked now:
-     without this the streak shows a hole until the next app-open */
+     without this the day it belongs to goes unmarked until the next app-open */
   if (flRoute.view !== 'lineup') flMarkDay();
   render();
   toast(v ? 'Your day now ends at ' + v + 'am: a night that runs past midnight still counts as tonight.'
@@ -234,8 +234,6 @@ FL_VIEWS.settings = {
         '</div><div class="astrorow"><span class="k">Sunset</span> ' + esc(sky.sunset) +
         '</div><div class="astrorow"><span class="k">Last light</span> ' + esc(sky.dusk) + '</div>';
 
-    var totalKept = Object.keys(FL.kept).length;
-    var totalChecks = Object.keys(FL.checks).length;
 
     return '' +
       '<div class="kick">The workings</div><h1>Settings</h1>' +
@@ -256,17 +254,12 @@ FL_VIEWS.settings = {
       '<div class="label">Where you are</div>' +
       '<div class="card">' + located +
         '<p class="vidnote" style="margin-top:10px">Used only on this device, only to compute the hour of the sun. ' +
-        'It never leaves this device. Only a count of mornings and your streak are kept alongside them.</p>' +
+        'It never leaves this device. Only the dates you open First Light are kept alongside them.</p>' +
       '</div>' +
 
       '<div class="label">Your record</div>' +
       '<div class="card">' +
-        '<div class="astrorow"><span class="k">Mornings</span> ' + FL.days.length + '</div>' +
-        '<div class="astrorow"><span class="k">Current streak</span> ' + flStreak() + '</div>' +
-        '<div class="astrorow"><span class="k">Longest streak</span> ' + flLongestStreak() + '</div>' +
-        '<div class="astrorow"><span class="k">Kept voices</span> ' + totalKept + '</div>' +
-        '<div class="astrorow"><span class="k">Goals checked</span> ' + totalChecks + '</div>' +
-        '<p class="px" style="margin:14px 0 10px;color:var(--faint)">Your words never leave this device. The count of mornings and your streak are kept here too. ' +
+        '<p class="px" style="margin:14px 0 10px;color:var(--faint)">Your words never leave this device. Nothing here counts at you. ' +
         'Anyone who opens this app on this device can read this room, so use your own phone for what is yours alone. ' +
         'Export before you change phones, clear your browser, or do anything you might regret.</p>' +
         '<button class="btn" data-act="exportRecord">Export</button> ' +
@@ -279,8 +272,8 @@ FL_VIEWS.settings = {
       '<div class="label">The shape of your day</div>' +
       '<div class="card">' +
         '<p class="px" style="margin-bottom:10px">If you close late, midnight is a fiction. Set the hour your ' +
-        'day actually ends and everything follows: the 2am examen lands on the night it examines, the streak ' +
-        'counts lived days, and the morning voice waits for your morning.</p>' +
+        'day actually ends and everything follows: the 2am examen lands on the night it examines, and ' +
+        'the morning voice waits for your morning.</p>' +
         '<select class="sel" data-change="setDayEnd" aria-label="When your day ends">' +
           [[0,'Midnight: the civil day'],[2,'2am'],[3,'3am'],[4,'4am'],[5,'5am'],[6,'6am']].map(function (o) {
             return '<option value="' + o[0] + '"' + ((Number(FL.prefs.dayEnd) || 0) === o[0] ? ' selected' : '') + '>' + o[1] + '</option>';
@@ -336,6 +329,6 @@ FL_VIEWS.settings = {
       '<p class="px" style="margin-top:26px;text-align:center;color:var(--faint)">' +
         '<a class="readmini" href="#/clear">For anyone thinking about their drinking: a room of its own.</a></p>' +
 
-      '<p class="mintro" style="margin-top:16px">Your words never leave this device. The count of mornings and your streak are kept here too.</p>';
+      '<p class="mintro" style="margin-top:16px">Your words never leave this device. Nothing here counts at you.</p>';
   }
 };

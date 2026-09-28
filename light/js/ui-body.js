@@ -269,7 +269,8 @@ FL_VIEWS.videos = {
 
 /* ═══════════════ the movement programme ═══════════════
 
-   The week, the level, and every session in the bank. Today's is marked. The
+   The week and every session in the bank. The level is kept but never shown
+   (27 Sep 2026: nothing in First Light counts at the reader). Today's is marked. The
    morning page runs the day's session in place; this is where a reader comes
    to see the shape of the thing, or to do a different day's work because
    their week is not the calendar's week.
@@ -287,15 +288,11 @@ FL_ACTS.moveRun = function (el) {
 function programme() {
   if (typeof MOVE_WEEK === 'undefined') return '';
   var lv = moveLevel();
-  var toNext = moveToNext();
-  var total = moveTotal();
   var todayFocus = moveFocusFor(flShiftedNow().getDay()).id;
 
   var head = '<div class="label">The programme</div>' +
     '<p class="px" style="color:var(--faint);margin-bottom:14px">Seven focuses, one a day, turning on your own rest day rather than the calendar\u2019s. ' +
-    'Three levels, and a level is reached by sessions finished, never by days in a row. Nothing here is lost by a week away.</p>' +
-    '<p class="movelevel" style="margin-bottom:16px">Level ' + lv + ' \u00b7 ' + total + ' ' + (total === 1 ? 'session' : 'sessions') + ' finished' +
-    (toNext === null ? ' \u00b7 the last level' : ' \u00b7 ' + toNext + ' more to level ' + (lv + 1)) + '</p>';
+    'The sessions deepen as you finish them, never by days in a row, and nothing here is lost by a week away.</p>';
 
   var rows = MOVE_WEEK.map(function (f) {
     var mv = moveFor(f.id, lv);
@@ -304,7 +301,7 @@ function programme() {
       '<div class="mfocus">' + esc(f.name) + (isToday ? ' \u00b7 today' : '') + '</div>' +
       '<p class="pt" style="margin-top:4px">' + esc(mv.name) + '</p>' +
       '<p class="px" style="color:var(--faint)">' + esc(f.line) + '</p>' +
-      '<div class="ds" style="margin-top:6px">' + mv.mins + ' minutes \u00b7 ' + mv.steps.length + ' steps \u00b7 level ' + mv.level + '</div>' +
+      '<div class="ds" style="margin-top:6px">' + mv.mins + ' minutes \u00b7 ' + mv.steps.length + ' steps</div>' +
       '<p class="px" style="margin-top:8px">' + esc(mv.why) + '</p>' +
       '<button class="keep" data-act="moveRun" data-id="' + esc(mv.id) + '" style="margin-top:10px">Begin</button>' +
       '</div>';

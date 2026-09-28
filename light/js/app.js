@@ -116,7 +116,7 @@ var flRendered = false;   // true once the first navigate() has painted a view
 var NAV_CLUSTERS = [
   ['mind',  'Mind',  ['year', 'vault', 'floor', 'astro']],
   ['body',  'Body',  ['body', 'videos', 'reset']],
-  ['heart', 'Heart', ['reflect', 'journal', 'life', 'stats']],
+  ['heart', 'Heart', ['reflect', 'journal', 'life']],
   ['soul',  'Soul',  ['library', 'hall', 'threads']]
 ];
 /* the home line's small links; Today is the name on the left */
@@ -198,7 +198,7 @@ document.addEventListener('keydown', function (e) {
 function flOnboardHTML() {
   return '<div class="kick">First Light</div>' +
     '<h1>Two minutes, most mornings</h1>' +
-    '<p class="note">Your words never leave this device. The count of mornings and your streak are kept here too. ' +
+    '<p class="note">Your words never leave this device. Nothing here counts at you. ' +
     'No manager, no feed: what you write stays in this browser, and exports to a file you own.</p>' +
     '<div class="pacerbox">' +
       '<div class="pacer-disc" id="pacer-disc" aria-hidden="true"></div>' +

@@ -33,13 +33,15 @@
   var SUFFIX = ' · Outside Of Time';
 
   /* ---- 1. the row at the top of Today ---------------------------------
+     No streak band: First Light counts nothing at the reader (owner,
+     27 Sep 2026), so the shared row is asked for without it.
      Today only, and on the onboarding door as much as on the day itself: a
      second person who tapped Add your name lands on that door with an empty
      record, and the chips are their way back if they tapped by mistake. */
   function topRow() {
     var html = '';
     try { if (OOT.pass && OOT.pass.strip) html += OOT.pass.strip(); } catch (e) {}
-    try { if (OOT.home && OOT.home.who) html += OOT.home.who(); } catch (e) {}
+    try { if (OOT.home && OOT.home.who) html += OOT.home.who({ streak: false }); } catch (e) {}
     return html;
   }
 

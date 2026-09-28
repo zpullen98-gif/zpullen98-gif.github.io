@@ -68,13 +68,13 @@ var FL = {
 /* --- date keys ---
    Always local, never UTC. `toISOString()` is the obvious way to build these and
    it is wrong: east of Greenwich it rolls the date over before local midnight, so
-   a 9pm entry lands on tomorrow and breaks the streak walk. */
+   a 9pm entry lands on tomorrow and lands on the wrong day. */
 function flDateKey(dt) {
   dt = dt || new Date();
   /* The shift clock. A bartender's Tuesday ends when they get home at 2am,
      not at midnight: with prefs.dayEnd set (2–6), any moment before that
      hour belongs to the previous calendar day. The examen written after
-     close lands on the day it examines, and the streak counts lived days.
+     close lands on the day it examines, and a day means a lived day.
      Default 0 keeps civil midnight, so nothing changes until chosen. */
   var edge = Number(FL.prefs.dayEnd) || 0;
   if (edge) dt = new Date(dt.getTime() - edge * 3600000);
@@ -164,51 +164,7 @@ document.addEventListener('visibilitychange', function () {
   if (document.visibilityState === 'hidden' && flSaveTimer) flWriteNow();
 });
 
-/* --- streak ---
-   Recovered from first-light.jsx, which had this right. The HTML rewrite replaced
-   it with `days.length`, a count of distinct days ever opened, displayed as
-   "Morning N of your record". That number never falls, so it measured nothing.
-   A streak is consecutive days ending today or yesterday; walk backwards. */
-function flStreak(days) {
-  var set = {}, i;
-  days = days || FL.days;
-  for (i = 0; i < days.length; i++) set[days[i]] = 1;
 
-  var cursor = new Date();
-  /* Grace: at 6am on a day not yet observed the streak is still alive; it ends
-     only once a full day has been missed. Without this the number reads zero every
-     morning until the reader opens the app, which is exactly when they see it. */
-  if (!set[flDateKey(cursor)]) cursor.setDate(cursor.getDate() - 1);
-
-  var n = 0;
-  while (set[flDateKey(cursor)]) { n++; cursor.setDate(cursor.getDate() - 1); }
-  return n;
-}
-
-/* Formats a Date WITHOUT the dayEnd shift. flDateKey is for real clock
-   moments only; a Date rebuilt from a stored key already carries the shift,
-   and running it through flDateKey again subtracted the hours twice,
-   which pinned the longest streak at 1 for every night worker. */
-function flCivilKey(dt) {
-  return dt.getFullYear() + '-' +
-         String(dt.getMonth() + 1).padStart(2, '0') + '-' +
-         String(dt.getDate()).padStart(2, '0');
-}
-
-function flLongestStreak(days) {
-  days = (days || FL.days).slice().sort();
-  var best = 0, run = 0, prev = null, i;
-  for (i = 0; i < days.length; i++) {
-    if (prev) {
-      var d = new Date(prev + 'T00:00:00');
-      d.setDate(d.getDate() + 1);
-      run = (flCivilKey(d) === days[i]) ? run + 1 : 1;
-    } else run = 1;
-    if (run > best) best = run;
-    prev = days[i];
-  }
-  return best;
-}
 
 /* Record that today was observed. Idempotent: safe to call on every render. */
 /* The four things a morning asks: read, move, breathe, reflect. Set once per

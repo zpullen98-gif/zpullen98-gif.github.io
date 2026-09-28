@@ -152,10 +152,6 @@ FL_ACTS.moveStop = function () { seqStop(); };
 function todayMove() {
   var mv = moveToday();
   var focus = moveFocusFor(flShiftedNow().getDay());
-  var lv = moveLevel();
-  var toNext = moveToNext();
-  var levelLine = 'Level ' + lv +
-    (toNext === null ? ', the last one' : ', ' + toNext + ' more ' + (toNext === 1 ? 'session' : 'sessions') + ' to level ' + (lv + 1));
 
   /* running: the engine writes into #seq-time and #seq-bar, so all this has to
      do is print them and the step it is on */
@@ -182,7 +178,6 @@ function todayMove() {
       '<div style="margin-top:14px">' +
         '<button class="btn" data-act="moveStart" data-id="' + esc(mv.id) + '">Begin, ' + mv.mins + ' minutes</button>' +
       '</div>' +
-      '<p class="movelevel" style="margin-top:12px">' + esc(levelLine) + '</p>' +
     '</div>' +
     '<p class="px" style="margin-top:6px"><a class="readmini" href="#/body">The whole programme, and the week</a></p>';
 }
@@ -385,14 +380,14 @@ function todayCanonOn() { return FL.prefs.canonLines === 'on'; }
 
 /* One event per day, the first time a morning renders. The shared layer in the
    suite listens for this rather than counting steps from outside, and the day
-   latch keeps re-renders from sending it twice. Nothing in this file displays
-   the streak it carries. */
+   latch keeps re-renders from sending it twice. It carries no streak:
+   First Light counts nothing at the reader. */
 function todayFireKept() {
   var keptDay = flToday();
   if (todayKeptFired === keptDay) return;
   todayKeptFired = keptDay;
   try {
-    window.dispatchEvent(new CustomEvent('fl:morning-kept', { detail: { day: FL.days.length, streak: flStreak() } }));
+    window.dispatchEvent(new CustomEvent('fl:morning-kept', { detail: { day: FL.days.length } }));
   } catch (e) {}
 }
 

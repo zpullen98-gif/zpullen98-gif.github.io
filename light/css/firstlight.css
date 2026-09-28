@@ -460,12 +460,6 @@ h1 {
   font-size: 14px; color: var(--ink);
 }
 
-/* ═══ streak line ═══ */
-.streakline {
-  text-align: center; font-family: var(--serif); font-style: italic;
-  font-size: 15px; color: var(--faint); margin-bottom: 14px;
-}
-
 /* ═══ toast ═══
    For storage failures. The artifact would tell you a thing was kept when the write
    had thrown; this is the surface that tells the truth instead. */
