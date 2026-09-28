@@ -1,7 +1,7 @@
 The World Table
-commit 75a38d9a8698153b2a4cb7045d662be972575a8b
-branch codex/worldtable-house-style
-built  2026-09-27T22:08:24.124Z
+commit f0788a943f5cd53e435781acaeaa363e1d5e95c6
+branch codex/worldtable-teaching-folios
+built  2026-09-28T00:57:48.171Z
 
 Written by tools/postbuild.mjs. The monorepo wing is a copy of this
 directory; this file is how a copy says where it came from.
