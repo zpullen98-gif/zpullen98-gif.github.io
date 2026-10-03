@@ -1,0 +1,13 @@
+{
+  "note": "U+2014 and its three entities and the spaced double hyphen, counted over every text file in the tree by check-publish.mjs. Measured, never typed; move it only with check-publish --set after reading the diff.",
+  "measuredOn": "2026-10-03",
+  "total": 874,
+  "perDir": {
+    "almanac": 2,
+    "codex": 1,
+    "ledger": 2,
+    "light": 861,
+    "shared": 2,
+    "table": 6
+  }
+}
