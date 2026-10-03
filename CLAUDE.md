@@ -68,9 +68,13 @@ a merge that would carry more dashes than the copy had.
 ## The tools, and the order
 
 `node tools/check-all.mjs` is the gate before every push. It runs check-mirror,
-check-publish, inject-shared --check, check-stamps and check-wings, in that order, each as
-a child process, stops at the first failure and prints a summary table; the list is one
-constant at the top of the file, where check-wake and check-pack will join it. The three
+check-publish, inject-shared --check, check-stamps, check-wings and check-wake, in that
+order, each as a child process, stops at the first failure and prints a summary table; the
+list is one constant at the top of the file, where check-pack will join it. check-wake
+loads the shipped shared/oot-house.js in a sandbox with no IndexedDB and proves the
+three-record wake (a dish, a cocktail and a wine through the engine's doors, each wing's
+rows read back, a newer row settling the house, a tombstone taking a row off and never
+without one) and the pack round trip onto a second device, with no wing code at all. The three
 tools that write are bump-shared --apply (the workers' cache names), sync-wing (a wing up
 to its source) and inject-shared --from (table/ replaced whole); run check-all again after
 any of them. Every tool runs from any directory, takes --help, exits 1 on failure with the

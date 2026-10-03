@@ -12,7 +12,7 @@
    noise until the first is fixed. It then prints a summary table, one line
    per gate with its verdict and its time, and exits 1 when any gate failed
    or could not run. The gates are one constant at the top, so a new gate
-   (check-wake and check-pack are coming) is one line here; a gate the list
+   (check-pack is coming) is one line here; a gate the list
    names and the folder lacks is a failure that names the file, never a
    stack trace. The order is cheapest and most upstream first: the mirror
    (what WorldTable published), the dash gate (what the tree carries), the
@@ -26,13 +26,14 @@ import { spawnSync } from 'node:child_process';
 import { ROOT } from './lib.mjs';
 
 /* The gates, in the order they run: a file under tools/ and the arguments
-   it takes. check-wake and check-pack join this list when they land. */
+   it takes. check-pack joins this list when it lands. */
 const GATES = [
   { file: 'check-mirror.mjs', args: [] },
   { file: 'check-publish.mjs', args: [] },
   { file: 'inject-shared.mjs', args: ['--check'] },
   { file: 'check-stamps.mjs', args: [] },
-  { file: 'check-wings.mjs', args: [] }
+  { file: 'check-wings.mjs', args: [] },
+  { file: 'check-wake.mjs', args: [] }
 ];
 
 /* A gate as the table names it (check-mirror, inject-shared --check) and as

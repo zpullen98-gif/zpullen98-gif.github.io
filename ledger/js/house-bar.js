@@ -186,8 +186,12 @@ function houseApplyChanges(out){
       if(ch.what === 'row-removed'){ removeBarRecord(ch.id); return; }
       const row = byId[ch.id];
       if(!row) return;
-      /* a spec-less house drink is a draft: the licence is the engine's */
-      if(ch.what === 'row-added') file(houseRowForm(row), null, row.id, row.ts);
+      /* a spec-less house drink is a draft: the licence is the engine's.
+         A row the list already holds under the engine's id (a wake that
+         crossed another, or a put whose answer the list filed first) is
+         that record edited in place, never a second one the door would
+         refuse by name. */
+      if(ch.what === 'row-added') file(houseRowForm(row), houseListHas(row.id) ? row.id : null, row.id, row.ts);
       /* re-keyed by the engine: the old id is the record being edited, so
          the 'My Bar · name' card moves with the name */
       else if(ch.what === 'renamed') file(houseRowForm(row), ch.from, row.id, row.ts);
@@ -198,20 +202,31 @@ function houseApplyChanges(out){
 }
 
 /* ---- the wake: the list and the current house brought into step --------- */
-/* One wake at a time. The boot and a storage event can ask together, and
-   two syncs over the same rows would both report the same row as added:
-   the second then files a drink the first already filed and the door
-   refuses it by name. So a wake in flight is waited for, and the next runs
-   over the list as the first left it, where the engine finds nothing to
-   change. */
+/* One wake at a time, and one projection, and never one beside the other.
+   The boot and a storage event can ask together, and two syncs over the
+   same rows would both report the same row as added: the second then files
+   a drink the first already filed and the door refuses it by name. So a
+   wake or a projection in flight is waited for, whatever became of it, and
+   the next runs over the list as the first left it, where the engine finds
+   nothing to change. houseSwitch and houseStorageDue go through these two
+   doors, so they wait by construction. */
 var houseWakeInFlight = null;
+function houseOneAtATime(run){
+  if(houseWakeInFlight){
+    const again = function(){ return houseOneAtATime(run); };
+    return houseWakeInFlight.then(again, again);
+  }
+  const done = function(){ houseWakeInFlight = null; };
+  return (houseWakeInFlight = run().then(function(out){ done(); return out; }, function(err){ done(); throw err; }));
+}
+function houseListHas(id){
+  return (progress.bar || []).some(function(b){ return b.id === id; });
+}
 function houseSyncIn(){
   const api = houseHere();
   if(!api) return Promise.resolve(null);
-  if(houseWakeInFlight) return houseWakeInFlight.then(function(){ return houseSyncIn(); });
   houseAttach();
-  const done = function(){ houseWakeInFlight = null; };
-  return (houseWakeInFlight = houseSyncInNow(api).then(function(out){ done(); return out; }, function(err){ done(); throw err; }));
+  return houseOneAtATime(function(){ return houseSyncInNow(api); });
 }
 function houseSyncInNow(api){
   return api.ready().then(function(){
@@ -235,6 +250,9 @@ function houseSyncInNow(api){
 function houseProject(){
   const api = houseHere();
   if(!api) return Promise.resolve(null);
+  return houseOneAtATime(function(){ return houseProjectNow(api); });
+}
+function houseProjectNow(api){
   return api.ready().then(function(){
     const cur = api.current();
     houseSyncedTo = api.currentId();
@@ -248,8 +266,7 @@ function houseProject(){
     try{
       prev.forEach(function(b){ if(!keep[b.id]) removeBarRecord(b.id, { keepCard: true }); });
       rows.forEach(function(row){
-        const here = (progress.bar || []).some(function(b){ return b.id === row.id; });
-        const res = saveBarRecord(houseRowForm(row), here ? row.id : null, { allowEmptySpec: true, id: row.id, ts: row.ts });
+        const res = saveBarRecord(houseRowForm(row), houseListHas(row.id) ? row.id : null, { allowEmptySpec: true, id: row.id, ts: row.ts });
         if(typeof res === 'string') said.push(res);
       });
     } finally { houseApplying = false; }
@@ -303,8 +320,13 @@ function houseStorageDue(){
   houseStorageTimer = null;
   const api = houseHere();
   if(!api) return;
-  const moved = api.currentId() !== houseSyncedTo;
-  (moved ? houseProject() : houseSyncIn()).then(function(){ houseRepaint(); }).catch(function(){});
+  houseAttach();
+  /* whether the pointer moved is read when this wake's turn comes, not
+     when it was asked for: a wake in flight may be the one that moved it */
+  houseOneAtATime(function(){
+    const moved = api.currentId() !== houseSyncedTo;
+    return moved ? houseProjectNow(api) : houseSyncInNow(api);
+  }).then(function(){ houseRepaint(); }).catch(function(){});
 }
 function houseOnStorage(e){
   const key = e && e.key;
