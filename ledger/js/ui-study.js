@@ -168,7 +168,9 @@ function tapCount(){ return allDrinks().filter(d => d.src === 'On Tap').length; 
    no rail, because a ticket with no lines is not a question anybody can get
    right; so every count that promises a card, and the four-drink floor on
    the Menu quiz round, counts through here rather than progress.bar.length. */
-function menuCardCount(){ return (progress.bar||[]).filter(b => !b.draft).length; }
+/* isHouseCard (js/house-bar.js): a spec, or a line a person kept on the
+   House for the drink, which the line modes deal and nothing else does. */
+function menuCardCount(){ return (progress.bar||[]).filter(isHouseCard).length; }
 function allDrinks(){
   if(allDrinks._c) return allDrinks._c;
   const out = [];
@@ -276,8 +278,10 @@ function fcPool(){
   const f = state.fc;
   return allDrinks().filter(function(d){
     /* a draft has no spec, and Name to Spec would deal an empty ticket and
-       ask the learner to grade themselves against nothing */
-    if(d.draft) return false;
+       ask the learner to grade themselves against nothing; a draft with a
+       kept line on the House is a card for the line modes alone, and every
+       mode that needs a ticket says so in its fourth element */
+    if(d.src === 'My Bar' ? !isHouseCard(d) : d.draft) return false;
     /* a level page's Flashcards door: the cards of one level, one subsection */
     if(f.level){
       if(levelOf(cardKey(d)) !== f.level) return false;
@@ -410,12 +414,22 @@ function clozeTicketHTML(c, hideIdx){
    and a shaker pint into the same answer and grades one as the other, which
    lands in the scheduler as a lapse. */
 const hasSpec = d => Array.isArray(d.spec) && d.spec.length;
+/* A fact card (On Tap, Coffee) has no spec and is still a name to call, so
+   the two name modes fit it; a house drink with no spec is not, so the two
+   fit a menu drink only on a spec. The three line modes fit on a line a
+   person kept on the House for the drink (js/house-bar.js), and nothing
+   else, so a kept line is a card and an unkept one is not. */
+const fitsName = d => FACT_SOURCES.indexOf(d.src) >= 0 || !!hasSpec(d);
+const fitsLine = key => d => typeof keptLineOf === 'function' && !!keptLineOf(d, key);
 const FC_MODES = [
-  ['name2spec','Name → Spec','The order comes in. Recite the whole build out loud, then flip and grade yourself.', d => true],
-  ['spec2name','Spec → Name','Read a blind ticket and call the drink, the service-printer skill.', d => true],
+  ['name2spec','Name → Spec','The order comes in. Recite the whole build out loud, then flip and grade yourself.', fitsName],
+  ['spec2name','Spec → Name','Read a blind ticket and call the drink, the service-printer skill.', fitsName],
   ['build','Assemble the Ticket','An ingredient bank with decoys mixed in. Select every line that belongs in the spec.', hasSpec],
   ['cloze','Fill the Missing Line','One line of the ticket is blanked. Pick the exact line that completes it.', hasSpec],
-  ['service','Service Details','Glass, garnish and method with no spec to lean on, the part the guest actually sees.', d => FACT_SOURCES.indexOf(d.src) < 0],
+  ['service','Service Details','Glass, garnish and method with no spec to lean on, the part the guest actually sees.', d => FACT_SOURCES.indexOf(d.src) < 0 && hasSpec(d)],
+  ['line10','The ten second line','A guest asks what it is. Say the line you kept for it in ten seconds, then flip.', fitsLine('s10')],
+  ['line20','The twenty second line','A guest wants to know more. Say the twenty second line you kept, then flip.', fitsLine('s20')],
+  ['line45','The forty five second line','A table has time. Say the whole line you kept, then flip and grade yourself.', fitsLine('s45')],
 ];
 
 function renderFlashcards(){
@@ -424,8 +438,9 @@ function renderFlashcards(){
   /* -------- setup -------- */
   if(fc.stage==='setup'){
     const srcChips = ['All'].concat(deckSources()).map(function(s){
-      /* never a draft: the chip promises what the deck will deal */
-      const n = allDrinks().filter(function(d){ return !d.draft && (s==='All' || d.src===s); }).length;
+      /* never a draft: the chip promises what the deck will deal, and a
+         house drink with a kept line is dealt by the line modes */
+      const n = allDrinks().filter(function(d){ return (d.src === 'My Bar' ? isHouseCard(d) : !d.draft) && (s==='All' || d.src===s); }).length;
       return '<button class="chip'+(fc.src===s?' on':'')+'" aria-pressed="'+(fc.src===s?'true':'false')+'" data-act="fc-src" data-s="'+esc(s)+'">'+(s==='All'?'Everything':esc(srcLabel(s)))+' <span class="font-tix">'+n+'</span></button>';
     }).join(' ');
     const isCocktail = fc.src==='Cocktails' || fc.src==='All';
@@ -536,6 +551,24 @@ function renderFlashcards(){
   const head = '<div class="row between tiny dim study-toolbar"><span>Card '+(fc.idx+1)+' of '+fc.deck.length+'</span>'
     + '<span>✓ '+fc.right+' &nbsp; ✗ '+fc.wrong+'</span>'
     + '<button class="chip" data-act="fc-quit">Quit deck</button></div>';
+
+  /* the three line modes: the drink's name on the face, the line a person
+     kept on the House on the back, graded the way a name card is */
+  if(typeof HOUSE_LINE_MODES !== 'undefined' && HOUSE_LINE_MODES[fc.mode]){
+    const key = HOUSE_LINE_MODES[fc.mode][0], secs = HOUSE_LINE_MODES[fc.mode][1];
+    const line = typeof keptLineOf === 'function' ? keptLineOf(c, key) : '';
+    if(!fc.flipped){
+      return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'
+        + '<div class="eyebrow">The guest asks about:</div><div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
+        + '<div class="small dim">Say it in '+secs+', out loud, then flip.</div>'
+        + '<button class="btn btn-brass" data-act="fc-flip">Flip the card</button></div></div>';
+    }
+    return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'
+      + '<div class="font-display tc" style="font-size:1.2rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
+      + '<div class="small lh tc" style="max-width:520px">'+esc(line)+'</div>'
+      + '<div class="row center"><button class="btn btn-brass" data-act="fc-grade" data-ok="1">Nailed it</button>'
+      + '<button class="btn btn-ox" data-act="fc-grade" data-ok="0">Missed it</button></div></div></div>';
+  }
 
   if(fc.mode==='name2spec' || fc.mode==='spec2name'){
     if(!fc.flipped){
@@ -852,10 +885,15 @@ function buildRound(mode, pool){
        counts the way this deals: a DRAFT (a name with no spec yet) is left
        out, because "name this drink" over a ticket with no lines is not a
        question anybody can get right. */
-    shuffle((progress.bar||[]).filter(b => !b.draft)).forEach(b => {
-      qs.push(qMyBarTicket(b));
-      if(b.glass && b.glass !== '-') qs.push(qMyBarGlass(b));
-      if((b.spec||[]).length) qs.push(qMyBarSpecLine(b));
+    shuffle((progress.bar||[]).filter(isHouseCard)).forEach(b => {
+      /* a drink with a kept line and no spec is a card for its line alone */
+      if(hasSpec(b)){
+        qs.push(qMyBarTicket(b));
+        if(barText(b.glass)) qs.push(qMyBarGlass(b));
+        qs.push(qMyBarSpecLine(b));
+      }
+      const ql = typeof qMyBarLine === 'function' ? qMyBarLine(b) : null;
+      if(ql) qs.push(ql);
     });
     return shuffle(qs).slice(0,10);
   }

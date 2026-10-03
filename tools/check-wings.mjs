@@ -118,7 +118,10 @@ const CARRIED = [
 const ACCEPTED = [
   { repo: 'ledger', script: 'tools/check-import.mjs',
     test: 'her method, glass and garnish are kept INTO the field one at a time, and a draft keeps its licence',
-    why: 'the source files U+2014 as the unkept placeholder and the gate pins it (expect(rec.glass).toBe(dash)); the site is dash-free, so the wing files the empty string and draws the dash at display time (ledger/js/ui-menu.js, barText)' }
+    why: 'the source files U+2014 as the unkept placeholder and the gate pins it (expect(rec.glass).toBe(dash)); the site is dash-free, so the wing files the empty string and draws the dash at display time (ledger/js/ui-menu.js, barText)' },
+  { repo: 'ledger', script: 'tools/check-import.mjs',
+    test: 'a person\u2019s save reaches the House through housePut, carries the house stamp back, and the placeholder glass never churns',
+    why: 'the same placeholder rule: the gate pins the glass the House hands back as U+2014, and the wing files the empty string for an empty glass (ledger/js/ui-menu.js, barText), so the row never churns there either' }
 ];
 
 /* A test that measures the machine's clock as well as the code. `clock` is

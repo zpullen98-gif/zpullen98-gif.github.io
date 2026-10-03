@@ -131,6 +131,13 @@ function render(){
      the backup, because a file input holds nothing a render can lose */
   const deskF = document.getElementById('desk-file');
   if(deskF) deskF.addEventListener('change', e => { if(e.target.files[0]) importDeskFile(e.target.files[0]); });
+  /* the House on Mine: the switch is a select, so its change is heard here
+     rather than in the click handler, and the pack file is a picker like
+     the desk file above (js/house-bar.js) */
+  const hs = document.getElementById('house-switch');
+  if(hs) hs.addEventListener('change', e => { houseSwitch(e.target.value); });
+  const hf = document.getElementById('house-file');
+  if(hf) hf.addEventListener('change', e => { if(e.target.files[0]) houseImportFile(e.target.files[0]); });
   /* Guarded on the element, not on state.tab, like every other post-paint
      hook in this function. It asks YouTube about the ONE film the reader
      opened, and nothing at all on any other tab. */
@@ -937,14 +944,27 @@ document.getElementById('view').addEventListener('click', e => {
   else if(act==='menu-del'){
     const b = (progress.bar||[]).find(x => x.id===el.dataset.id);
     if(b && confirm('Remove "'+b.name+'" from your menu? Its practice record goes with it.')){
-      progress.bar = progress.bar.filter(x => x.id!==b.id);
-      /* the confirm promises the record goes too: keep the promise, or the
-         orphaned key haunts the weakest list, the due counter and every
-         backup as a phantom that can never be reviewed */
-      delete progress.cards['My Bar · '+b.name];
-      if(state.menu.open===b.id) state.menu.open = null;
-      barChanged(); saveProgress(); say('Taken off the menu.');
+      /* the confirm promises the record goes too: removeBarRecord keeps the
+         promise, or the orphaned key haunts the weakest list, the due counter
+         and every backup as a phantom that can never be reviewed. Projection
+         first, House second: the tombstone is written after the list. */
+      removeBarRecord(b.id);
+      if(typeof houseRemove === 'function') houseRemove(b.id);
+      say('Taken off the menu.');
     } }
+  /* ---- the House on Mine (js/house-bar.js): every act here is a call into
+     that file, which repaints itself when its work is asynchronous, so the
+     branches that return skip the render at the foot of this handler ---- */
+  else if(act==='house-panel'){ houseOpenPanel(el.dataset.p); }
+  else if(act==='house-mint'){ houseMint(); return; }
+  else if(act==='house-rename-go'){ houseRenameGo(); return; }
+  else if(act==='house-export'){ houseExport(); return; }
+  else if(act==='house-import-file'){ const f = document.getElementById('house-file'); if(f) f.click(); return; }
+  else if(act==='house-fetch'){ houseFetch(); return; }
+  else if(act==='house-import-new'){ houseImportChoice('new'); return; }
+  else if(act==='house-import-merge'){ houseImportChoice('merge'); return; }
+  else if(act==='house-open-added'){ houseOpenAdded(); return; }
+  else if(act==='house-not-now'){ houseNotNow(); }
   else if(act==='menu-add-line'){ state.menu.form.spec.push(''); }
   else if(act==='menu-del-line'){
     state.menu.form.spec.splice(Number(el.dataset.i), 1);
@@ -1029,6 +1049,9 @@ function captureLiveInputs(){
   /* her marks under Edit on the Build pane: one box at a time, the guest
      line's textarea or a field mark's input, both into the same slot */
   if(state.menu && state.menu.lines){ grab('mb-guest', state.menu.lines, 'text'); grab('mb-hers', state.menu.lines, 'text'); }
+  /* the House's three boxes on Mine: a new house's name, the address a pack
+     is fetched from, and the name a house is renamed to (js/house-bar.js) */
+  if(state.house){ grab('house-name', state.house, 'name'); grab('house-url', state.house, 'address'); grab('house-rename', state.house, 'renameTo'); }
   /* every drill result field, by prefix: on the Ticket Rail an intervening
      act (revealing the order) is REQUIRED between typing and logging, so the
      render in between ate the seconds every single time */
@@ -1057,11 +1080,21 @@ function captureLiveInputs(){
   if(!progress.tastings) progress.tastings = [];
   if(!progress.vidPrefs) progress.vidPrefs = { channel:'auto', longform:false };
   if(!progress.bar) progress.bar = [];
+  /* the House drills' records, Say it back and Guest at the table, each a
+     list capped at a thousand (js/house-bar.js); named in both branches of
+     dataImport as every stored field is */
+  if(!progress.house) progress.house = { say: [], role: [] };
   /* the same shape pass the save runs: a record saved with the older dash
      placeholder, a store edited by hand, or a draft filed with no spec is
      read here before anything deals it. A record with no name is dropped;
      one with no spec is a draft, marked so. */
   progress.bar = normalizeBarRecords(progress.bar).bar;
+  /* the House, where its engine is loaded (the suite's wing shell loads it;
+     the standalone has no shared folder and this does nothing): the list
+     and the current house brought into step before anything is dealt, each
+     row written back through saveBarRecord and removeBarRecord, never
+     directly. A refusal is a sentence on Mine, never a thrown boot. */
+  if(typeof houseSyncIn === 'function'){ try{ await houseSyncIn(); }catch(e){} }
   /* A shelf stored before the vocabulary may hold ids that have since split,
      and twelve of them did. migrateShelf is idempotent and never subtractive:
      an id it does not know is kept, because an unknown id satisfies nothing

@@ -879,6 +879,39 @@ function mergeMaitre(winner, loser){
   return Object.keys(out).length ? out : null;
 }
 
+/* progress.house: the House drills' records, Say it back and Guest at the
+   table (js/house-bar.js), each a list of { ts, id, ... } entries. The shape
+   as every engine expects it: the two lists, each entry an object with a
+   stamp, and at most a thousand, the newest kept. Pure, so the gate can
+   call it; a union is a merge on ts|id, the way the level tests union. */
+var HOUSE_RECORD_CAP = 1000;
+var HOUSE_RECORD_KEYS = ['say', 'role'];
+function normalizeHouseRecords(h){
+  const src = h && typeof h === 'object' && !Array.isArray(h) ? h : {};
+  const out = {};
+  HOUSE_RECORD_KEYS.forEach(function(k){
+    const list = Array.isArray(src[k]) ? src[k].filter(function(x){ return x && typeof x === 'object' && !Array.isArray(x) && Number(x.ts); }) : [];
+    out[k] = list.length > HOUSE_RECORD_CAP ? list.slice(list.length - HOUSE_RECORD_CAP) : list;
+  });
+  return out;
+}
+function mergeHouseRecords(mine, theirs){
+  const a = normalizeHouseRecords(mine), b = normalizeHouseRecords(theirs);
+  const out = {};
+  HOUSE_RECORD_KEYS.forEach(function(k){
+    const seen = new Set();
+    const list = [];
+    a[k].concat(b[k]).forEach(function(x){
+      const key = Number(x.ts) + '|' + (x.id === undefined ? '' : String(x.id));
+      if(seen.has(key)) return;
+      seen.add(key); list.push(x);
+    });
+    list.sort(function(x, y){ return Number(x.ts) - Number(y.ts); });
+    out[k] = list.length > HOUSE_RECORD_CAP ? list.slice(list.length - HOUSE_RECORD_CAP) : list;
+  });
+  return out;
+}
+
 function dataImport(file){
   const status = msg => { const el = document.getElementById('data-import-status'); if(el) el.textContent = msg; };
   const reader = new FileReader();
@@ -1145,6 +1178,11 @@ function dataImport(file){
           if(merged) progress.bar[i].maitre = merged; else delete progress.bar[i].maitre;
         });
       }
+      /* the House drills' records: a union on ts|id per list, capped, named
+         here because an unnamed incoming store is silently ignored */
+      if(p.house && typeof p.house === 'object' && !Array.isArray(p.house)){
+        progress.house = mergeHouseRecords(progress.house, p.house);
+      }
     } else {
       if(!confirm('REPLACE everything in this browser with the backup?\nYour current records here will be gone for good.')){ status('Left everything as it was.'); return; }
       progress = p;
@@ -1152,7 +1190,10 @@ function dataImport(file){
          branch, for the same reason: a spec-less record with no flag is a
          false "ready to pour" until the next boot runs it */
       progress.bar = normalizeBarRecords(progress.bar).bar;
+      /* and the House drills' records in the shape every engine expects */
+      progress.house = normalizeHouseRecords(progress.house);
     }
+    if(!progress.house) progress.house = { say: [], role: [] };
     if(!progress.cards) progress.cards = {};
     if(!progress.quizzes) progress.quizzes = [];
     if(!progress.practice) progress.practice = {};
@@ -1171,6 +1212,10 @@ function dataImport(file){
        count forever. The rename/delete paths already keep cards consistent;
        imports now do too. */
     const barNames = new Set((progress.bar || []).map(b => 'My Bar · ' + b.name));
+    /* and a drink on ANY house on the device (js/house-bar.js): a switch of
+       house takes its rows off the list and leaves their cards for the day
+       the house comes back, so a backup read in between must not sweep them */
+    if(typeof houseNames === 'function') houseNames().forEach(n => barNames.add('My Bar · ' + n));
     Object.keys(progress.cards || {}).forEach(k => {
       if(k.indexOf('My Bar · ') === 0 && !barNames.has(k)) delete progress.cards[k];
     });
@@ -1192,6 +1237,12 @@ function dataImport(file){
     const el = document.getElementById('data-import-status');
     if(el) el.textContent = (merge ? 'Merged. The ledger remembers.' : 'Restored from backup.')
       + (barSkipped ? ' ' + barSkipped + ' My Bar record' + (barSkipped===1 ? '' : 's') + ' could not be read and ' + (barSkipped===1 ? 'was' : 'were') + ' skipped.' : '');
+    /* projection first, House second: the list is saved and on screen, and
+       now the House hears of every row the backup brought (js/house-bar.js).
+       The wake adopts a row with no house into the current one, and a row
+       the House already holds is settled by the newer stamp, so a backup
+       read twice costs nothing the second time. */
+    if(typeof houseSyncIn === 'function') houseSyncIn().then(function(){ if(typeof houseRepaint === 'function') houseRepaint(); }).catch(function(){});
   };
   reader.onerror = () => status('Could not read that file.');
   reader.readAsText(file);

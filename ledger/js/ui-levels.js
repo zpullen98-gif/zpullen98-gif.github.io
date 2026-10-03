@@ -325,6 +325,9 @@ function renderMine(){
   return '<div class="col mine">'
     + '<h2 class="lv-title">Mine</h2>'
     + (typeof deskWaitingHTML === 'function' ? deskWaitingHTML('home') : '')
+    /* the House the menu belongs to, with its doors (js/house-bar.js);
+       nothing at all where the engine is not loaded */
+    + (typeof houseLineHTML === 'function' ? houseLineHTML() : '')
     + '<nav class="quiet" aria-label="Your bar and your tools">'
     + door('data-act="go" data-tab="menu"', 'My Bar', 'The venue’s own list, the stock, and what can be poured tonight.')
     + door('data-act="go" data-tab="tools"', 'Tools', 'Batching, strength, pour cost, the spill log, open bottles, conversion.')

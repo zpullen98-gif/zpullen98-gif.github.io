@@ -94,6 +94,11 @@ function normalizeBarRecord(b){
   if(!spec.length) rec.draft = true;
   const maitre = normalizeMaitre(b.maitre);
   if(maitre) rec.maitre = maitre;
+  /* the House the record belongs to (js/house-bar.js), carried only when
+     set, the way `maitre` is: a record filed before any house existed, or
+     on a device with none, has no `house` key at all */
+  const house = barText(b.house);
+  if(house) rec.house = house;
   return rec;
 }
 function normalizeBarRecords(list){
@@ -142,7 +147,13 @@ function barChanged(){
    report, the rail, the spec quiz). The form never passes the licence, so a
    person typing a drink in still has to give it a line; and a draft that is
    edited and given one stops being a draft, because the flag is derived from
-   the spec here rather than carried. */
+   the spec here rather than carried.
+
+   opts.id and opts.ts are the House's licence (js/house-bar.js) and nobody
+   else's: a row the House hands back is filed under the item's own id, so
+   the two sides share one key, and with the stamp the two sides agreed on
+   rather than the clock, or every wake would make the row the newer side
+   and move the House once more for nothing. The form never passes either. */
 function saveBarRecord(f, editingId, opts){
   opts = opts || {};
   const name = (f.name||'').trim();
@@ -157,6 +168,9 @@ function saveBarRecord(f, editingId, opts){
   progress.bar = progress.bar || [];
   const i = editingId ? progress.bar.findIndex(x => x.id === editingId) : -1;
   const prev = i >= 0 ? progress.bar[i] : null;
+  /* The house rides the same way the marks do: from the form when it names
+     one, else from the record being edited, and never as an empty key. */
+  const house = f.house !== undefined ? barText(f.house) : (prev ? barText(prev.house) : '');
   /* Her marks ride with the record: from the form when the importer or the
      lines pane put them there, else from the record being edited, because
      the edit form carries no marks and an edit that dropped every kept line
@@ -174,9 +188,10 @@ function saveBarRecord(f, editingId, opts){
      would then rewrite. The wing keeps '' for an empty glass or garnish and
      lets ticketHTML draw the dash at display time; the standalone writes the
      dash into the record, and that is the one place the two disagree. */
-  const rec = normalizeBarRecord({ id: editingId || mintBarId(), name: name, spec: spec,
+  const rec = normalizeBarRecord({ id: barText(opts.id) || editingId || mintBarId(), name: name, spec: spec,
     method: f.method, glass: f.glass, garnish: f.garnish, note: f.note,
-    family: f.family, spirit: f.spirit, price: f.price, ts: Date.now(), maitre: maitre });
+    family: f.family, spirit: f.spirit, price: f.price, ts: Number(opts.ts) || Date.now(),
+    maitre: maitre, house: house });
   if(!rec) return 'Give the drink a name.';
   /* An edit whose record has gone is not an add. Falling through to push()
      RESURRECTED a drink the bartender had already deleted, keeping its old
@@ -202,7 +217,31 @@ function saveBarRecord(f, editingId, opts){
   } else progress.bar.push(rec);
   barChanged();
   saveProgress();
+  /* projection first, House second: the record is on the device before the
+     House hears of it, and the House hears only where its engine is loaded */
+  if(typeof housePut === 'function') housePut(rec);
   return rec;
+}
+
+/* The one door a record leaves by: the Remove chip on the Menu tab, and the
+   House's own wake when a tombstone newer than the record's last touch says
+   another wing or device took the drink off (js/house-bar.js). The practice
+   record goes with it, as the Remove confirm promises, unless opts.keepCard:
+   a switch of house is not a delete, and a card for a drink on another house
+   waits for the day that house comes back. Returns the record that left, or
+   null when the list had no such id. Writes nothing to the House: the Remove
+   act tells the House itself, after this, and the wake is the House telling
+   the list. */
+function removeBarRecord(id, opts){
+  opts = opts || {};
+  const b = (progress.bar||[]).find(x => x.id === id);
+  if(!b) return null;
+  progress.bar = progress.bar.filter(x => x.id !== id);
+  if(!opts.keepCard && progress.cards) delete progress.cards['My Bar · ' + b.name];
+  if(state.menu.open === id) state.menu.open = null;
+  barChanged();
+  saveProgress();
+  return b;
 }
 
 /* ---- quiz constructors ----
