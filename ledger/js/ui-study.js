@@ -168,8 +168,9 @@ function tapCount(){ return allDrinks().filter(d => d.src === 'On Tap').length; 
    no rail, because a ticket with no lines is not a question anybody can get
    right; so every count that promises a card, and the four-drink floor on
    the Menu quiz round, counts through here rather than progress.bar.length. */
-/* isHouseCard (js/house-bar.js): a spec, or a line a person kept on the
-   House for the drink, which the line modes deal and nothing else does. */
+/* isHouseCard (js/house-bar.js): a spec, or a line, the parts or the offers
+   a person kept on the House for the drink, which the modes that fit what
+   was kept deal and nothing else does. */
 function menuCardCount(){ return (progress.bar||[]).filter(isHouseCard).length; }
 function allDrinks(){
   if(allDrinks._c) return allDrinks._c;
@@ -421,6 +422,9 @@ const hasSpec = d => Array.isArray(d.spec) && d.spec.length;
    else, so a kept line is a card and an unkept one is not. */
 const fitsName = d => FACT_SOURCES.indexOf(d.src) >= 0 || !!hasSpec(d);
 const fitsLine = key => d => typeof keptLineOf === 'function' && !!keptLineOf(d, key);
+/* the parts and the upsell modes fit on a kept parts mark and a kept upsells
+   mark the same way (js/house-bar.js), and on nothing hers */
+const fitsHouse = mode => d => typeof houseCardFits === 'function' && !!houseCardFits(mode, d);
 const FC_MODES = [
   ['name2spec','Name → Spec','The order comes in. Recite the whole build out loud, then flip and grade yourself.', fitsName],
   ['spec2name','Spec → Name','Read a blind ticket and call the drink, the service-printer skill.', fitsName],
@@ -430,6 +434,8 @@ const FC_MODES = [
   ['line10','The ten second line','A guest asks what it is. Say the line you kept for it in ten seconds, then flip.', fitsLine('s10')],
   ['line20','The twenty second line','A guest wants to know more. Say the twenty second line you kept, then flip.', fitsLine('s20')],
   ['line45','The forty five second line','A table has time. Say the whole line you kept, then flip and grade yourself.', fitsLine('s45')],
+  ['parts','The five parts','A new starter asks what is in it. Say the five parts you kept for it, then flip.', fitsHouse('parts')],
+  ['upsell','What to offer next','The glass is empty. Say what you kept to offer after it, then flip.', fitsHouse('upsell')],
 ];
 
 function renderFlashcards(){
@@ -570,6 +576,22 @@ function renderFlashcards(){
       + '<button class="btn btn-ox" data-act="fc-grade" data-ok="0">Missed it</button></div></div></div>';
   }
 
+  /* the parts and the upsell modes: the drink's name on the face, the kept
+     parts or the kept upsells on the back, graded the way a name card is */
+  if(typeof HOUSE_CARD_MODES !== 'undefined' && HOUSE_CARD_MODES[fc.mode]){
+    if(!fc.flipped){
+      return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'
+        + '<div class="eyebrow">'+(fc.mode==='parts' ? 'What is in it?' : 'The glass is empty:')+'</div><div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
+        + '<div class="small dim">'+esc(HOUSE_CARD_MODES[fc.mode])+'</div>'
+        + '<button class="btn btn-brass" data-act="fc-flip">Flip the card</button></div></div>';
+    }
+    return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'
+      + '<div class="font-display tc" style="font-size:1.2rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
+      + houseCardBackHTML(fc.mode, c)
+      + '<div class="row center"><button class="btn btn-brass" data-act="fc-grade" data-ok="1">Nailed it</button>'
+      + '<button class="btn btn-ox" data-act="fc-grade" data-ok="0">Missed it</button></div></div></div>';
+  }
+
   if(fc.mode==='name2spec' || fc.mode==='spec2name'){
     if(!fc.flipped){
       /* a beer style or a coffee is asked for, and a fault is found in the
@@ -687,6 +709,9 @@ function renderFlashcards(){
 const QUIZ_MODES = [
   ['mixed','Mixed round','Families, blind tickets and bar knowledge, the shape of a shift.'],
   ['mybar','Menu','Your own list: name, glass and spec, straight off the menu.'],
+  /* the house's own pairings, dealt by the shared engine (js/house-bar.js);
+     the chip is drawn only where the house is ready for it */
+  ['housepair','Pair the menu','Which wine is the first pick with a dish, and which drink without alcohol, from the pairings kept on the house.'],
   ['service','Service & law','Guests, pacing, refusal, the register and the legal floor.'],
   ['ontap','On tap','The draught system, the fault trees, the styles, and cider, perry, sake and mead.'],
   ['wine','Wine','Varietal, fault, preservation, pour cost and the service sequence.'],
@@ -894,9 +919,17 @@ function buildRound(mode, pool){
       }
       const ql = typeof qMyBarLine === 'function' ? qMyBarLine(b) : null;
       if(ql) qs.push(ql);
+      /* the kept upsells and the kept parts, each a question only when the
+         house can supply four options (js/house-bar.js) */
+      const qu = typeof qMyBarUpsell === 'function' ? qMyBarUpsell(b) : null;
+      if(qu) qs.push(qu);
+      const qp = typeof qMyBarParts === 'function' ? qMyBarParts(b) : null;
+      if(qp) qs.push(qp);
     });
     return shuffle(qs).slice(0,10);
   }
+  /* Pair the menu: the engine's questions over the current house */
+  if(mode === 'housepair') return typeof houseQuizRound === 'function' ? houseQuizRound() : [];
   if(mode === 'tickets'){
     sample(cocktails,7).forEach(c => qs.push(qCocktailTicket(c)));
     for(let i=0;i<3;i++) qs.push(qBlindOther());
@@ -942,6 +975,10 @@ function renderQuiz(){
     /* the mode can outlive the list that justified it: drinks deleted below
        the floor drop the round back to mixed rather than dealing a thin one */
     if(z.mode==='mybar' && barN < 4) z.mode = 'mixed';
+    /* the pair round the same way: a house that lost its pairings, or no
+       house here at all, drops it back to mixed */
+    const pairOn = typeof housePairReady === 'function' && housePairReady().length > 0;
+    if(z.mode==='housepair' && !pairOn) z.mode = 'mixed';
     /* An unknown mode dealt a FULL-BANK round under a chip claiming a domain,
        because knowledgeByTopic falls back to the whole of KNOWLEDGE when a
        pool comes back empty. Nothing on screen said so. */
@@ -951,10 +988,11 @@ function renderQuiz(){
       .map(h => '<div class="hist-row"><span>'+esc(h.date)+(h.mode&&h.mode!=='mixed'?' · '+esc(modeLabel(h.mode)):'')+'</span><span class="font-tix brass2">'+h.score+'/'+(h.total||10)+'</span></div>').join('');
     const chips = QUIZ_MODES.map(([k,l]) => {
       if(k==='mybar' && barN < 4) return '<button class="chip" disabled title="Add four drinks with a spec to your menu and this round opens">'+esc(l)+' <span class="font-tix">'+barN+'/4</span></button>';
+      if(k==='housepair' && !pairOn) return '';
       return '<button class="chip'+(mode===k?' on':'')+'" aria-pressed="'+(mode===k?'true':'false')+'" data-act="quiz-mode" data-m="'+k+'">'+esc(l)+'</button>';
     }).join(' ');
     const blurb = (QUIZ_MODES.find(([k]) => k===mode) || QUIZ_MODES[0])[2];
-    const pool = mode==='mixed' || mode==='tickets' || mode==='mybar' ? null : knowledgeByTopic(mode);
+    const pool = mode==='mixed' || mode==='tickets' || mode==='mybar' || mode==='housepair' ? null : knowledgeByTopic(mode);
     const thin = pool && pool === KNOWLEDGE
       ? '<div class="tiny dim">Nothing written for this domain yet; you’ll get a mixed pool until there is.</div>' : '';
     return '<div class="col">'

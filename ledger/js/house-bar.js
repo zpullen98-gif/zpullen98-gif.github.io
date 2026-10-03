@@ -38,9 +38,20 @@
 
    KEPT MEANS by === 'person', here as on every wing. A kept lines mark on a
    house item (the ten, twenty and forty five second lines) is what makes a
-   spec-less house drink a card: isHouseCard(d) is hasSpec(d) ||
-   hasKeptLines(d), and the three line modes on the flashcards deal exactly
-   the drinks with a kept line. An unkept mark reaches no deck.
+   spec-less house drink a card, as a kept parts or upsells mark is:
+   isHouseCard(d) is hasSpec(d) || hasKeptLines(d) || hasKeptParts(d) ||
+   hasKeptUpsells(d), and the three line modes on the flashcards deal exactly
+   the drinks with a kept line, as the parts and the upsell modes deal the
+   drinks with a kept parts mark and a kept upsells mark. An unkept mark
+   reaches no deck and no question.
+
+   THE DRILLS ARE FREE AND COUNT TOWARD NOTHING. The Menu round's house
+   questions (qMyBarLine, qMyBarUpsell, qMyBarParts), the two card modes
+   and Pair the menu (the engine's firstPickFor and zeroProofFor, dealt by
+   OOT.houseLib.dealQuestion over the current house and drawn by the quiz)
+   stand behind no lock, write nothing to progress.levels or a level test,
+   and record nothing on progress.house; a card is graded through the deck
+   under 'My Bar · name' as every menu card is.
 
    NOBODY IS NAMED HERE, NO PROSE CARRIES A DASH, AND THE WORDS ARE BRITISH. */
 
@@ -104,43 +115,297 @@ function hasKeptLines(d){
   const lines = keptLinesOf(d);
   return !!(lines && ['s10','s20','s45'].some(function(k){ return typeof lines[k] === 'string' && lines[k].trim(); }));
 }
-/* A house drink is a card when it has a spec, or when a person kept a line
-   for it: a line-only draft is dealt by the line modes and by nothing that
-   needs a ticket. hasSpec is ui-study.js's own rule. */
+/* A house drink is a card when it has a spec, or when a person kept a line,
+   its parts or its offers: a draft with no spec is dealt by the modes that
+   fit what was kept and by nothing that needs a ticket, each mode's own fit
+   holding the rest back. hasSpec is ui-study.js's own rule. */
 function isHouseCard(d){
-  return !!(hasSpec(d) || hasKeptLines(d));
+  return !!(hasSpec(d) || hasKeptLines(d) || hasKeptParts(d) || hasKeptUpsells(d));
 }
 
 /* The line modes' labels and the second each asks for, keyed the way the
    mark keeps them, so a mode's key is the lines' key. */
 var HOUSE_LINE_MODES = { line10:['s10','ten seconds'], line20:['s20','twenty seconds'], line45:['s45','forty five seconds'] };
 
+/* ---- the kept parts and the kept upsells, read the way the lines are ----
+   Every read here is of a mark a person kept (by === 'person'); hers, not
+   yet kept, is nothing to a card and nothing to a question. */
+function keptMarkValueOf(d, field){
+  const b = d && d.ref ? d.ref : d;
+  if(!b || !b.id) return null;
+  const item = houseItemFor(b.id);
+  const m = item && item[field];
+  if(!m || m.by !== 'person' || m.value === undefined || m.value === null) return null;
+  return m.value;
+}
+/* the five parts a person kept, only the ones with words in them */
+function keptPartsOf(d){
+  const v = keptMarkValueOf(d, 'parts');
+  if(!v || typeof v !== 'object') return null;
+  const out = {};
+  let any = false;
+  ['main', 'technique', 'sauce', 'sides', 'taste'].forEach(function(k){
+    if(typeof v[k] === 'string' && v[k].trim()){ out[k] = v[k].trim(); any = true; }
+  });
+  return any ? out : null;
+}
+function hasKeptParts(d){ return !!keptPartsOf(d); }
+/* the kept upsells, by name: the ids resolved against the house's own
+   cocktails, so a drink since taken off the house names nothing */
+function keptUpsellsOf(d){
+  const v = keptMarkValueOf(d, 'upsells');
+  if(!Array.isArray(v) || !v.length) return null;
+  const b = d && d.ref ? d.ref : d;
+  const byId = {};
+  houseCocktailsNow().forEach(function(c){ byId[c.id] = c; });
+  const names = [];
+  v.forEach(function(id){
+    const c = byId[id];
+    if(c && c.id !== b.id && names.indexOf(c.name) < 0) names.push(c.name);
+  });
+  return names.length ? names : null;
+}
+function hasKeptUpsells(d){ return !!keptUpsellsOf(d); }
+/* the current house's named cocktails */
+function houseCocktailsNow(){
+  const api = houseHere();
+  const cur = api ? api.current() : null;
+  return cur ? (cur.cocktails || []).filter(function(c){ return c && c.id && typeof c.name === 'string' && c.name.trim(); }) : [];
+}
+/* lower case, whitespace collapsed: how two options are told apart and how
+   a stem is searched for its answer, the engine's own fold */
+function houseFold(s){ return String(s || '').trim().toLowerCase().replace(/\s+/g, ' '); }
+function houseDistinct(list){
+  const seen = {}; const out = [];
+  list.forEach(function(s){ const t = String(s || '').trim(); const f = houseFold(t); if(f && !seen[f]){ seen[f] = true; out.push(t); } });
+  return out;
+}
+/* the two card modes over the kept marks: what the face asks for */
+var HOUSE_CARD_MODES = { parts: 'Say its five parts, in your own words, then flip.', upsell: 'Say what you would offer after it, then flip.' };
+function houseCardFits(mode, d){
+  if(mode === 'parts') return hasKeptParts(d);
+  if(mode === 'upsell') return hasKeptUpsells(d);
+  return false;
+}
+/* the back of a card: the kept parts under the engine's labels, or the
+   kept upsells by name */
+function houseCardBackHTML(mode, c){
+  if(mode === 'parts'){
+    const parts = keptPartsOf(c) || {};
+    const labels = housePartLabels();
+    return '<div class="col-sm" style="gap:6px;max-width:520px;width:100%">' + Object.keys(parts).map(function(k){
+      return '<div class="small lh"><span class="tiny dim">' + esc(labels[k] || k) + '</span><br>' + esc(parts[k]) + '</div>';
+    }).join('') + '</div>';
+  }
+  if(mode === 'upsell'){
+    const names = keptUpsellsOf(c) || [];
+    return '<div class="col-sm" style="gap:6px;max-width:520px;width:100%"><span class="tiny dim">What you kept to offer next</span>'
+      + names.map(function(n){ return '<div class="small lh">' + esc(n) + '</div>'; }).join('') + '</div>';
+  }
+  return '';
+}
+
+/* The floor on the offer next question: four cocktails on the house, so
+   every option is a real drink of this house and the drink itself can
+   stand among the wrong answers. */
+var HOUSE_UPSELL_FLOOR = 4;
+function houseUpsellWhy(){
+  if(!houseHere()) return '';
+  const n = houseDistinct(houseCocktailsNow().map(function(c){ return c.name; })).length;
+  if(n < HOUSE_UPSELL_FLOOR) return 'The offer next question opens at four cocktails on the house: ' + n + ' here.';
+  const short = (progress.bar || []).filter(function(b){
+    return keptUpsellsOf(b) && houseUpsellOthers(b).length < 3;
+  }).map(function(b){ return b.name; });
+  if(!short.length) return '';
+  return 'The offer next question needs three cocktails on the house beyond the ones kept as offers: ' + short.join(', ') + (short.length === 1 ? ' has' : ' have') + ' fewer.';
+}
+/* the wrong answers an offer next question may draw for a drink: the
+   house's cocktails, this one among them, less every kept upsell */
+function houseUpsellOthers(b){
+  const kept = (keptUpsellsOf(b) || []).map(houseFold);
+  return houseDistinct(houseCocktailsNow().map(function(c){ return c.name; })).filter(function(n){ return kept.indexOf(houseFold(n)) < 0; });
+}
+/* A quiz question off the kept upsells: after this drink, which drink on
+   the house do you offer? Every option is a house cocktail; the wrong ones
+   are the house's other drinks, this one among them, and never another
+   kept upsell, which would be a second right answer. */
+function qMyBarUpsell(b){
+  const names = keptUpsellsOf(b);
+  if(!names) return null;
+  const all = houseDistinct(houseCocktailsNow().map(function(c){ return c.name; }));
+  if(all.length < HOUSE_UPSELL_FLOOR) return null;
+  const stem = 'A guest has finished the ' + b.name + '. Which drink on your menu do you offer next?';
+  const fit = names.filter(function(n){ return houseFold(stem).indexOf(houseFold(n)) < 0; });
+  if(!fit.length) return null;
+  const ans = sample(fit, 1)[0];
+  const others = houseUpsellOthers(b);
+  if(others.length < 3) return null;
+  return { prompt: stem, options: shuffle([ans].concat(sample(others, 3))), answer: ans,
+    explain: b.name + ', then ' + names.join(' or ') + '.' };
+}
+/* A quiz question off the kept parts: which modifiers and key flavours are
+   this drink's. Every option is the kept line of a drink on this house, so
+   four drinks with kept parts open it. */
+function qMyBarParts(b){
+  const parts = keptPartsOf(b);
+  if(!parts || !parts.sauce) return null;
+  const ans = parts.sauce;
+  const stem = 'Which are the ' + housePartLabels().sauce + ' of your ' + b.name + '?';
+  if(houseFold(stem).indexOf(houseFold(ans)) >= 0) return null;
+  const field = houseDistinct((progress.bar || []).map(function(x){
+    const p = x.id === b.id ? null : keptPartsOf(x);
+    return p ? p.sauce : '';
+  }).filter(function(t){ return t && houseFold(t) !== houseFold(ans); }));
+  if(field.length < 3) return null;
+  return { prompt: stem, options: shuffle([ans].concat(sample(field, 3))), answer: ans,
+    explain: b.name + ': ' + ans };
+}
+
+/* ---- Pair the menu: the engine's own questions, drawn by the quiz ----
+   firstPickFor and zeroProofFor are dealt by OOT.houseLib.dealQuestion over
+   the current house, the one dealer, and read into the quiz's own shape.
+   The engine reads kept pairings only and refuses a kind under its floor. */
+var HOUSE_PAIR_KINDS = ['firstPickFor', 'zeroProofFor'];
+function houseDrillLib(){
+  const lib = houseLibHere();
+  return lib && lib.drills && typeof lib.dealQuestion === 'function' && typeof lib.readyKinds === 'function' ? lib : null;
+}
+function housePairReady(){
+  const lib = houseDrillLib(); const api = houseHere();
+  const cur = api ? api.current() : null;
+  if(!lib || !cur) return [];
+  return lib.readyKinds(cur).filter(function(k){ return HOUSE_PAIR_KINDS.indexOf(k) >= 0; });
+}
+function housePairWhy(){
+  const lib = houseDrillLib(); const api = houseHere();
+  const cur = api ? api.current() : null;
+  if(!lib || !cur || typeof lib.drillableCounts !== 'function') return '';
+  const n = lib.drillableCounts(cur);
+  return 'Pair the menu opens at four dishes with a kept pairing: ' + n.firstPickFor + ' name a wine and ' + n.zeroProofFor + ' a drink without alcohol here.';
+}
+function houseQuestionOf(q, lib){
+  const label = (lib.drills.DRILL_LABELS && lib.drills.DRILL_LABELS[q.kind]) || 'Which?';
+  return { prompt: q.stem + '. ' + label, options: q.options.slice(), answer: q.answer,
+    explain: q.stem + ': ' + q.answer + '.', houseKind: q.kind };
+}
+/* up to ten, the two kinds in turn, no stem asked twice; empty when the
+   house is not ready for either */
+function houseQuizRound(){
+  const lib = houseDrillLib(); const api = houseHere();
+  const cur = api ? api.current() : null;
+  const kinds = housePairReady();
+  if(!lib || !cur || !kinds.length) return [];
+  const qs = []; const seen = {};
+  for(let i = 0; i < 40 && qs.length < 10; i++){
+    const q = lib.dealQuestion(cur, kinds[i % kinds.length], Math.random);
+    if(!q) continue;
+    const key = q.kind + '|' + houseFold(q.stem);
+    if(seen[key]) continue;
+    seen[key] = true;
+    qs.push(houseQuestionOf(q, lib));
+  }
+  return qs;
+}
+
+/* ---- the drill panel on the Menu tab, and the two doors it opens ----
+   Free in every wing: no lock stands here, and nothing a round records
+   reaches a level, a rank or a test. A card is graded through the deck as
+   every card is, under 'My Bar · name'. */
+function houseDrillModes(){
+  if(!houseHere() || typeof FC_MODES === 'undefined' || typeof fcPool !== 'function') return [];
+  const fc = state.fc;
+  const was = { src: fc.src, level: fc.level, sub: fc.sub, special: fc.special, family: fc.family, spirit: fc.spirit, tier: fc.tier };
+  Object.assign(fc, { src: 'My Bar', level: null, sub: null, special: 'All', family: 'All', spirit: 'All', tier: 'All' });
+  let pool;
+  try { pool = fcPool(); } finally { Object.assign(fc, was); }
+  const house = Object.keys(HOUSE_LINE_MODES).concat(Object.keys(HOUSE_CARD_MODES));
+  return FC_MODES.filter(function(row){ return house.indexOf(row[0]) >= 0; }).map(function(row){
+    return { mode: row[0], label: row[1], n: pool.filter(row[3]).length };
+  });
+}
+function houseDrillPanelHTML(){
+  if(!houseHere()) return '';
+  const modes = houseDrillModes();
+  const open = modes.filter(function(m){ return m.n > 0; });
+  const pair = housePairReady();
+  const btn = function(act, label, mode){ return '<button class="btn btn-ghost" data-act="' + act + '"' + (mode ? ' data-mode="' + mode + '"' : '') + '>' + esc(label) + '</button>'; };
+  const cards = open.map(function(m){ return btn('house-fc', m.label + ' (' + m.n + ')', m.mode); }).join('');
+  const pairBtn = pair.length ? btn('house-pair', 'Pair the menu') : '';
+  const why = [];
+  if(!open.length) why.push('Nothing kept yet: keep a line, the five parts or an offer on a drink\'s formula pane and its cards open here.');
+  const up = houseUpsellWhy(); if(up) why.push(up);
+  const lw = houseLineWhy(); if(lw) why.push(lw);
+  if(!pair.length){ const pw = housePairWhy(); if(pw) why.push(pw); }
+  return '<div class="col-sm" style="gap:8px"><div class="tiny dim">From the house, free, and counted toward no level.</div>'
+    + ((cards || pairBtn) ? '<div class="row" style="gap:8px;flex-wrap:wrap">' + cards + pairBtn + '</div>' : '')
+    + why.map(function(w){ return '<div class="tiny dim lh">' + esc(w) + '</div>'; }).join('')
+    + '</div>';
+}
+/* the deck of one house mode, over the menu alone, started as fc-start does */
+function houseStartCards(mode){
+  if(typeof FC_MODES === 'undefined' || typeof fcPool !== 'function') return false;
+  const row = FC_MODES.find(function(x){ return x[0] === mode; });
+  if(!row) return false;
+  const fc = state.fc;
+  Object.assign(fc, { src: 'My Bar', level: null, sub: null, special: 'All', family: 'All', spirit: 'All', tier: 'All' });
+  const pool = fcPool().filter(row[3] || function(){ return true; });
+  state.tab = 'flashcards';
+  if(!pool.length){ fc.stage = 'setup'; return false; }
+  Object.assign(fc, { stage: 'run', mode: mode, deck: shuffle(pool), idx: 0, right: 0, wrong: 0, missed: [] });
+  if(typeof prepCard === 'function') prepCard();
+  return true;
+}
+/* the pair round, dealt and opened on the quiz */
+function houseStartPair(){
+  const round = houseQuizRound();
+  state.tab = 'quiz';
+  if(!round.length){ state.quiz.stage = 'setup'; return false; }
+  Object.assign(state.quiz, { stage: 'run', mode: 'housepair', round: round, idx: 0, picked: null, score: 0, missedQ: [], replay: false });
+  return true;
+}
+
 /* A quiz question off a kept line: which of four lines is this drink's.
-   Decoys are other kept lines on the house first, then other drinks' notes
-   off the list and the canon; three are needed, or no question is dealt. */
-function qMyBarLine(b){
+   Every wrong answer is a line a person kept for another drink on this
+   house, so every option is a real item of the house; three are needed, or
+   no question is dealt and houseLineWhy says so on the Menu tab. */
+function houseLineKey(b){
   const lines = keptLinesOf(b);
-  if(!lines) return null;
-  const key = ['s10','s20','s45'].find(function(k){ return typeof lines[k] === 'string' && lines[k].trim(); });
-  if(!key) return null;
-  const ans = lines[key].trim();
-  const seen = { }; seen[ans] = true;
+  if(!lines) return '';
+  return ['s10','s20','s45'].find(function(k){ return typeof lines[k] === 'string' && lines[k].trim(); }) || '';
+}
+function houseLineDecoys(b, ans){
+  const seen = {}; seen[houseFold(ans)] = true;
   const pool = [];
-  const take = function(t){ t = (t || '').trim(); if(t && !seen[t]){ seen[t] = true; pool.push(t); } };
   (progress.bar || []).forEach(function(x){
     if(x.id === b.id) return;
     const l = keptLinesOf(x);
-    if(l) ['s10','s20','s45'].forEach(function(k){ take(l[k]); });
+    if(l) ['s10','s20','s45'].forEach(function(k){
+      const t = typeof l[k] === 'string' ? l[k].trim() : '';
+      if(t && !seen[houseFold(t)]){ seen[houseFold(t)] = true; pool.push(t); }
+    });
   });
-  const own = pool.slice();
-  (progress.bar || []).forEach(function(x){ if(x.id !== b.id) take(x.note); });
-  if(typeof COCKTAILS !== 'undefined') COCKTAILS.forEach(function(c){ take(c.note); });
-  const decoys = sample(own, 3).concat(sample(pool.filter(function(t){ return own.indexOf(t) < 0; }), 3)).slice(0, 3);
+  return pool;
+}
+function qMyBarLine(b){
+  const key = houseLineKey(b);
+  if(!key) return null;
+  const ans = keptLinesOf(b)[key].trim();
+  const decoys = houseLineDecoys(b, ans);
   if(decoys.length < 3) return null;
   const secs = { s10:'ten seconds', s20:'twenty seconds', s45:'forty five seconds' }[key];
   return { prompt:'Which is the line for ' + b.name + ' on your menu, said in ' + secs + '?',
-    options: shuffle([ans].concat(decoys)), answer: ans,
+    options: shuffle([ans].concat(sample(decoys, 3))), answer: ans,
     explain: b.name + ': ' + ans };
+}
+/* why a drink with a kept line deals no which line question */
+function houseLineWhy(){
+  if(!houseHere()) return '';
+  const short = (progress.bar || []).filter(function(b){
+    const key = houseLineKey(b);
+    return key && houseLineDecoys(b, keptLinesOf(b)[key]).length < 3;
+  }).map(function(b){ return b.name; });
+  if(!short.length) return '';
+  return 'The which line question needs three lines kept on the house\'s other drinks: ' + short.join(', ') + (short.length === 1 ? ' has' : ' have') + ' fewer.';
 }
 
 /* ---- the rows the engine reads, and the form it writes back ------------- */

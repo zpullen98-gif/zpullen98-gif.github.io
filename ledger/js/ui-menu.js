@@ -793,7 +793,11 @@ function renderMenu(){
             + '<button class="btn btn-ghost" data-act="go" data-tab="flashcards" data-src="My Bar">Drill the cards</button>'
             + '<button class="btn btn-ghost" data-act="go" data-tab="quiz" data-mode="mybar">Quiz your list</button>'
             + '<button class="btn btn-ghost" data-act="go" data-tab="practice" data-view="rail">The rail</button>'
-            + '</div></div>'
+            + '</div>'
+            /* the house modes and Pair the menu, only where the engine is
+               here (js/house-bar.js); nothing at all in the standalone */
+            + (typeof houseDrillPanelHTML === 'function' ? houseDrillPanelHTML() : '')
+            + '</div>'
           : '');
   }
   else inner = menuListHTML();

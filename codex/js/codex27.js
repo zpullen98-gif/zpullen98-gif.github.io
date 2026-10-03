@@ -8,7 +8,7 @@
    dishes, the Ledger the drinks, and this wing the wines; a pack carries
    the whole house from device to device with no key.
 
-   SIX THINGS THIS FILE DOES, and the rule each one keeps:
+   EIGHT THINGS THIS FILE DOES, and the rule each one keeps:
 
    1. THE SYNC. At load, when the engine is here, the list is brought into
       step with the current house through the engine's own codexWine
@@ -73,6 +73,28 @@
       chips) and the house view draws the shared read view under its doors,
       both through OOT.houseUI with this file's hooks. KEPT MEANS by ===
       'person', and only a kept mark reaches a guest screen or a drill.
+
+   8. THE HOUSE DRILLS, free and offline, and never counted. Every
+      question is dealt by the engine's one dealer, OOT.houseLib.dealQuestion,
+      which reads KEPT marks only (by === 'person'), offers four real items of
+      this house and never asks a stem that carries its answer. The wrapped
+      startCellarDrill adds, when the house holds a kept mark, the first
+      pick (firstPickFor over the dishes and the wines), the serve line and
+      the section of the list (the same dealer over a view of the house in
+      which the wine's kept serve, or its section, stands where the dealer
+      reads goesWith, or grapes) and goes with (wineGoesWith). Mine gains
+      Our list by heart (startHouseRecite: the region or the dish is
+      called and the person produces the bottle, a flip deck, nothing
+      graded and nothing recorded), Pair the menu (startHousePairDrill:
+      firstPickFor and zeroProofFor rounds through the Codex's own quiz
+      engine) and Say the pour (it needs the Maitre d', and opens nothing
+      yet). A graded house answer is recorded in ST.q under
+      'h-<itemId>-<kind>', and keyOwned is wrapped here so an h- key, under
+      any rank prefix, never reaches a level, a readiness figure or an
+      exam; the level's pace, the session history and the perfect round
+      are put back after a house question, so none of them moves either.
+      A house over her unkept lines alone deals nothing, and each row says
+      so. No lock is involved: every drill is free.
 
    NO OOT AT ALL is the standalone build and every Node gate: every read of
    OOT is behind typeof, the row's show() is false, the sync is a no-op, and
@@ -185,7 +207,7 @@ function v27Write(fn) {
    form is open on a bottle. The sync must not move the data under them. */
 function v27Busy() {
   if (S._cellarForm) return true;
-  return S.mode === 'drill' && S.section === 'Our List';
+  return S.mode === 'drill' && (S.section === 'Our List' || S.section === V27_PAIR_SECTION);
 }
 
 /* An ask kept while the list was busy, run once it is not. Called by the
@@ -208,6 +230,8 @@ function v27RekeyOne(k, from, to) {
   var cut = k.indexOf('|');
   var pre = cut > -1 ? k.slice(0, cut + 1) : '';
   var bare = cut > -1 ? k.slice(cut + 1) : k;
+  /* a house drill answer keyed on a wine's id follows it too: h-<id>-<kind> */
+  if (bare.indexOf('h-' + from + '-') === 0) return pre + 'h-' + to + bare.slice(2 + from.length);
   if (bare.indexOf(from + '-') !== 0) return null;
   return pre + to + bare.slice(from.length);
 }
@@ -1450,7 +1474,7 @@ function v27RedrawSoon() {
 var _v27Render = render;
 render = function () {
   var out;
-  var own = { house: v27HouseView, housereview: v27ReviewView };
+  var own = { house: v27HouseView, housereview: v27ReviewView, houserecite: v27ReciteView };
   if (own[S.view] && !(typeof V25_VIEWS !== 'undefined' && V25_VIEWS && V25_VIEWS[S.view])) {
     if (S.qT) { clearInterval(S.qT); S.qT = null; }
     var app = document.getElementById('app');
@@ -1467,8 +1491,506 @@ render = function () {
 var _v27ApplyLevel = (typeof applyLevel === 'function') ? applyLevel : null;
 if (_v27ApplyLevel) {
   applyLevel = function (lvl, skipRender) {
-    S._v27 = null;
+    S._v27 = null; S._v27hr = null;
     return _v27ApplyLevel(lvl, skipRender);
+  };
+}
+
+/* =========== 8. the house drills ===========
+
+   Free, offline and never counted. The ONE dealer is the engine's
+   dealQuestion: this file chooses which kind to ask it for, keeps a round
+   from asking one item twice, turns what it deals into the Codex's own
+   question literal (the shape startCellarDrill and startClassQuiz hand to
+   S.pool) and records nothing itself; the quiz engine records the answer
+   under the question's id, 'h-<itemId>-<kind>'.
+
+   Two of the cellar drill's four house kinds have no kind of their own in
+   the engine: the serve line and the section of the list. Both are asked
+   through the engine's dealer over a VIEW of the house, a shallow copy in
+   which each wine's kept serve mark stands where wineGoesWith reads
+   goesWith (the serve line is the stem, the four options are house wines)
+   or its section stands where wineGrapes reads grapes (the wine is the
+   stem, the four options are the sections the house's own list prints).
+   The engine's rules hold unchanged: its kept gate, its floor of four, its
+   four distinct options from the house and its refusal of a stem that
+   carries its answer. Nothing here shuffles an option or picks a
+   distractor. The house record itself is never touched. */
+
+var V27_PAIR_SECTION = 'Pair the menu';
+var V27_CELLAR_SECTION = 'Our List';
+var V27_ONLY_HERS = 'Nothing kept yet: her lines deal nothing until you keep them.';
+var V27_SAY_LINE = 'needs the Maître d’ to hear you; not open yet';
+var V27_SERVE_LABEL = 'Which wine is served this way?';
+var V27_SECTION_LABEL = 'Which section of the list is this wine on?';
+var V27_FALLBACK_LABELS = {
+  firstPickFor: 'Which wine is the first pick with this dish?',
+  zeroProofFor: 'Which drink without alcohol goes with this dish?',
+  wineGoesWith: 'Which wine goes with these?'
+};
+
+function v27Rand() { return Math.random(); }
+
+function v27Drills() {
+  var lib = v27Lib();
+  return lib && lib.drills && typeof lib.dealQuestion === 'function' ? lib.drills : null;
+}
+
+function v27DrillLabel(kind) {
+  var d = v27Drills();
+  return (d && d.DRILL_LABELS && d.DRILL_LABELS[kind]) || V27_FALLBACK_LABELS[kind] || '';
+}
+
+/* Does the house hold one mark a person kept, anywhere? A drill over her
+   unkept lines alone deals nothing, and the rows say so before a press. */
+function v27HasKept(h) {
+  if (!h) return false;
+  var hit = false;
+  Object.keys(V27_LIST_OF).forEach(function (kind) {
+    if (hit) return;
+    var list = h[V27_LIST_OF[kind]];
+    if (!Array.isArray(list)) return;
+    list.some(function (item) {
+      if (!item || typeof item !== 'object') return false;
+      hit = Object.keys(item).some(function (k) { return v27Kept(item[k]); });
+      return hit;
+    });
+  });
+  return hit;
+}
+
+/* The views the engine's dealer is asked over: a shallow copy of the house
+   with one field of each wine stood where the dealer reads. */
+function v27WinesView(h, fill) {
+  var out = {};
+  Object.keys(h).forEach(function (k) { out[k] = h[k]; });
+  out.wines = (Array.isArray(h.wines) ? h.wines : []).map(function (w) {
+    var c = {};
+    Object.keys(w || {}).forEach(function (k) { c[k] = w[k]; });
+    fill(c, w || {});
+    return c;
+  });
+  return out;
+}
+/* A kept serve line two wines share is as right for the one as for the
+   other, and the dealer leaves out only the answer's own wine when it picks
+   the wrong options: such twins are not asked about, so the engine's own
+   pool drops them and no question marks a right bottle wrong. */
+function v27ServeView(h) {
+  var n = {};
+  (Array.isArray(h.wines) ? h.wines : []).forEach(function (w) {
+    if (w && v27Kept(w.serve) && typeof w.serve.value === 'string') {
+      var f = v27Fold(w.serve.value);
+      n[f] = (n[f] || 0) + 1;
+    }
+  });
+  return v27WinesView(h, function (c, w) {
+    var twin = v27Kept(w.serve) && typeof w.serve.value === 'string' && n[v27Fold(w.serve.value)] > 1;
+    c.goesWith = twin ? null : w.serve;
+  });
+}
+function v27SectionView(h) {
+  return v27WinesView(h, function (c, w) { c.grapes = typeof w.section === 'string' && w.section.trim() ? [w.section] : []; });
+}
+
+/* What the cellar drill asks of the house, and how: the key each answer is
+   recorded under, the engine kind, the view it is dealt over, the label. */
+var V27_CELLAR_KINDS = [
+  { key: 'firstPickFor', kind: 'firstPickFor', view: null, label: function () { return v27DrillLabel('firstPickFor'); } },
+  { key: 'serve', kind: 'wineGoesWith', view: v27ServeView, label: function () { return V27_SERVE_LABEL; } },
+  { key: 'wineGoesWith', kind: 'wineGoesWith', view: null, label: function () { return v27DrillLabel('wineGoesWith'); } },
+  { key: 'section', kind: 'wineGrapes', view: v27SectionView, label: function () { return V27_SECTION_LABEL; } }
+];
+var V27_PAIR_KINDS = [
+  { key: 'firstPickFor', kind: 'firstPickFor', view: null, label: function () { return v27DrillLabel('firstPickFor'); } },
+  { key: 'zeroProofFor', kind: 'zeroProofFor', view: null, label: function () { return v27DrillLabel('zeroProofFor'); } }
+];
+
+/* Every item the kind can ask about once, each dealt by the engine: as many
+   deals as the kind has drillable items, a repeat item dealt again, and the
+   first null (the floor unmet, the options short) ends it. */
+function v27DealAll(house, kind, rand) {
+  var lib = v27Lib();
+  if (!lib || typeof lib.dealQuestion !== 'function' || typeof lib.drillableCounts !== 'function' || !house) return [];
+  var want = 0;
+  try { want = Number(lib.drillableCounts(house)[kind]) || 0; } catch (e) { return []; }
+  var seen = {};
+  var out = [];
+  for (var tries = 0; tries < want * 8 && out.length < want; tries++) {
+    var q = null;
+    try { q = lib.dealQuestion(house, kind, rand || v27Rand); } catch (e) { q = null; }
+    if (!q) break;
+    if (seen[q.itemId]) continue;
+    seen[q.itemId] = true;
+    out.push(q);
+  }
+  return out;
+}
+
+/* One dealt question as the Codex's question literal. The answer's index is
+   where the engine put it; every string is escaped at the sink, since a
+   house is user text. */
+function v27Question(dq, key, label, cat) {
+  if (!dq || !Array.isArray(dq.options) || dq.options.length !== 4) return null;
+  var a = dq.options.indexOf(dq.answer);
+  if (a < 0) return null;
+  return {
+    id: 'h-' + dq.itemId + '-' + key, cat: cat,
+    q: v27Esc(label) + '<br>' + v27Esc(dq.stem),
+    opts: dq.options.map(v27Esc), a: a,
+    exp: v27Esc(dq.stem) + ': ' + v27Esc(dq.answer) + '.'
+  };
+}
+
+/* The questions a set of kinds deals over the current house, or none when
+   there is no engine, no house, or no mark a person kept. */
+function v27HouseQs(kinds, cat, rand) {
+  var h = v27Current();
+  if (!h || !v27Drills() || !v27HasKept(h)) return [];
+  var out = [];
+  kinds.forEach(function (k) {
+    var house = k.view ? k.view(h) : h;
+    v27DealAll(house, k.kind, rand).forEach(function (dq) {
+      var q = v27Question(dq, k.key, k.label(), cat);
+      if (q) out.push(q);
+    });
+  });
+  return out;
+}
+
+function v27CellarHouseQs(rand) { return v27HouseQs(V27_CELLAR_KINDS, V27_CELLAR_SECTION, rand); }
+function v27PairQuestions(rand) { return v27HouseQs(V27_PAIR_KINDS, V27_PAIR_SECTION, rand); }
+
+/* A question this file dealt: its id, under any rank prefix, starts h-. */
+function v27IsHouseKey(k) {
+  if (typeof k !== 'string') return false;
+  var bare = k.indexOf('|') > -1 ? k.slice(k.indexOf('|') + 1) : k;
+  return bare.indexOf('h-') === 0;
+}
+function v27IsHouseQ(q) { return !!(q && typeof q.id === 'string' && q.id.indexOf('h-') === 0); }
+
+/* ---- the cellar drill, with the house's kinds ---- */
+
+var _v27StartCellarDrill = (typeof startCellarDrill === 'function') ? startCellarDrill : null;
+if (_v27StartCellarDrill) {
+  startCellarDrill = function () {
+    var extra = [];
+    try { extra = v27CellarHouseQs(); } catch (e) { extra = []; }
+    if (!extra.length) return _v27StartCellarDrill.apply(this, arguments);
+    var before = S.pool;
+    /* the list's own drill first, when the list can make one; it says why when it cannot */
+    if ((ST.cellar || []).length >= 3) _v27StartCellarDrill.apply(this, arguments);
+    var started = S.pool !== before && S.view === 'quiz' && S.section === V27_CELLAR_SECTION;
+    var all = shuffle((started ? S.pool : []).concat(extra));
+    var cut = (typeof cellarDrillLen === 'function') ? cellarDrillLen() : 15;
+    stopTimer();
+    S.mode = 'drill'; S.section = V27_CELLAR_SECTION;
+    S.pool = cut ? all.slice(0, cut) : all;
+    S.idx = 0; S.correct = 0; S.results = []; resetQ(); S.view = 'quiz'; render();
+  };
+}
+
+/* ---- Pair the menu ---- */
+
+/* The dish is shown and the four options are house wines: the kept
+   pairing's first pick is the answer. The rounds without alcohol offer the
+   house's drinks. Drawn by the Codex's own quiz engine, so the results
+   view, the stats and the misses all work as for any drill. Returns true
+   when a round started. */
+function startHousePairDrill() {
+  var qs = [];
+  try { qs = v27PairQuestions(); } catch (e) { qs = []; }
+  if (!qs.length) {
+    if (typeof toast === 'function') toast(v27PairLine());
+    return false;
+  }
+  stopTimer();
+  S.mode = 'drill'; S.section = V27_PAIR_SECTION;
+  S.pool = shuffle(qs); S.idx = 0; S.correct = 0; S.results = []; resetQ(); S.view = 'quiz'; render();
+  return true;
+}
+
+var V27_OLD_ENGINE = 'Your kept marks are here, but the engine in this build cannot deal this round yet.';
+
+/* The row's line: what the round asks, or what it still needs, in words. */
+function v27PairLine() {
+  var lib = v27Lib();
+  var h = v27Current();
+  if (!h) return V27_NO_HOUSE;
+  if (!v27HasKept(h)) return V27_ONLY_HERS;
+  if (!lib || typeof lib.readyKinds !== 'function') return V27_OLD_ENGINE;
+  var ready = [], counts = {};
+  try { ready = lib.readyKinds(h) || []; counts = lib.drillableCounts(h) || {}; } catch (e) { ready = []; }
+  var first = ready.indexOf('firstPickFor') >= 0, zero = ready.indexOf('zeroProofFor') >= 0;
+  if (!first && !zero) {
+    return 'needs four dishes with a kept pairing naming a house wine; '
+      + v27Plural(Number(counts.firstPickFor) || 0, 'dish has', 'dishes have') + ' one';
+  }
+  var bits = [];
+  if (first) bits.push(v27Plural(Number(counts.firstPickFor) || 0, 'dish', 'dishes') + ' to the first pick');
+  if (zero) bits.push(v27Plural(Number(counts.zeroProofFor) || 0, 'dish', 'dishes') + ' to a drink without alcohol');
+  return bits.join(' · ');
+}
+
+/* ---- Our list by heart ---- */
+
+function v27Fold(s) { return String(s == null ? '' : s).trim().toLowerCase().replace(/\s+/g, ' '); }
+
+/* The deck: a dish whose kept pairing (or a wine's kept first picks) names a
+   house wine is called and the bottle produced; so is the region of each
+   wine that carries a mark a person kept. A call that carries the bottle's
+   name is left out, as the dealer leaves out a stem that answers itself.
+   Over her unkept lines alone the deck is empty. */
+function v27ReciteDeck(h) {
+  if (!h || !v27HasKept(h)) return [];
+  var wines = {};
+  (Array.isArray(h.wines) ? h.wines : []).forEach(function (w) { if (w && w.id && w.name) wines[w.id] = w; });
+  var dishes = {};
+  (Array.isArray(h.dishes) ? h.dishes : []).forEach(function (d) { if (d && d.id && d.name) dishes[d.id] = d; });
+  var deck = [], seen = {};
+  var add = function (call, w, key) {
+    if (!w || seen[key]) return;
+    if (v27Fold(call).indexOf(v27Fold(w.name)) >= 0) return;
+    seen[key] = true;
+    deck.push({ call: call, wineId: w.id });
+  };
+  /* a call that names two bottles (two wines of one region, a dish two
+     wines claim as its first pick) has no one answer, and is left out */
+  var only = function () {
+    var to = {};
+    deck.forEach(function (c) {
+      var f = v27Fold(c.call);
+      (to[f] = to[f] || {})[c.wineId] = true;
+    });
+    return deck.filter(function (c) { return Object.keys(to[v27Fold(c.call)]).length === 1; });
+  };
+  Object.keys(dishes).forEach(function (id) {
+    var d = dishes[id];
+    var p = v27Kept(d.pairing) ? d.pairing.value : null;
+    if (p && wines[p.wineId]) add('With the ' + d.name + ', the first pick', wines[p.wineId], id + '>' + p.wineId);
+  });
+  Object.keys(wines).forEach(function (id) {
+    var w = wines[id];
+    if (v27Kept(w.firstPickIds) && Array.isArray(w.firstPickIds.value)) {
+      w.firstPickIds.value.forEach(function (did) {
+        if (dishes[did]) add('With the ' + dishes[did].name + ', the first pick', w, did + '>' + id);
+      });
+    }
+    var anyKept = Object.keys(w).some(function (k) { return v27Kept(w[k]); });
+    if (anyKept && typeof w.region === 'string' && w.region.trim()) add('The ' + w.region.trim() + ' pour', w, 'r>' + id);
+  });
+  return only();
+}
+
+function startHouseRecite() {
+  var deck = [];
+  try { deck = v27ReciteDeck(v27Current()); } catch (e) { deck = []; }
+  if (!deck.length) {
+    if (typeof toast === 'function') toast(v27ReciteLine());
+    return false;
+  }
+  S._v27hr = { deck: shuffle(deck), idx: 0, revealed: false };
+  S.view = 'houserecite'; render();
+  return true;
+}
+
+function v27ReciteLine() {
+  var h = v27Current();
+  if (!h) return V27_NO_HOUSE;
+  if (!v27HasKept(h)) return V27_ONLY_HERS;
+  var n = v27ReciteDeck(h).length;
+  return n ? v27Plural(n, 'call', 'calls') + ': the region or the dish is called, you produce the bottle'
+    : 'keep a pairing, or a line on a wine with its region, to make a call';
+}
+
+/* The card's back: the bottle, its glass price as printed, and what a
+   person kept on it about the serve and the profile. Nothing of hers. */
+function v27ReciteBack(w) {
+  var html = '<div class="mq">' + v27Esc(w.name) + '</div>';
+  var bits = [];
+  if (typeof w.glass === 'string' && w.glass) bits.push(v27Esc(w.glass) + ' glass');
+  if (typeof w.bottle === 'string' && w.bottle) bits.push(v27Esc(w.bottle) + ' bottle');
+  if (bits.length) html += '<div class="mu">' + bits.join(' · ') + '</div>';
+  if (v27Kept(w.serve) && typeof w.serve.value === 'string') html += '<div class="ma">' + v27Esc(w.serve.value) + '</div>';
+  if (v27Kept(w.profile) && typeof w.profile.value === 'string') html += '<div class="mexp">' + v27Esc(w.profile.value) + '</div>';
+  return html;
+}
+
+function v27ReciteHtml() {
+  var r = S._v27hr;
+  var head = '<div class="v25page"><div class="viewhead"><h2>Our list by heart</h2>';
+  if (!r || r.idx >= r.deck.length) {
+    return head + '<div class="sub">' + v27Plural(r ? r.deck.length : 0, 'call', 'calls')
+      + ' made. Nothing is graded and nothing is recorded: walk it again before service.</div></div>'
+      + '<div class="sarow"><button class="btn gold" type="button" id="hr-again">Walk it again</button>'
+      + '<button class="btn ghost" type="button" id="hr-back">Back to Mine</button></div></div>';
+  }
+  var card = r.deck[r.idx];
+  var w = v27Wine(card.wineId);
+  var html = head + '<div class="sub">Call ' + (r.idx + 1) + ' of ' + r.deck.length + '. Say the bottle out loud before you turn the card.</div></div>'
+    + '<div class="secgroup">' + v27Esc(card.call) + ': name the bottle.</div>';
+  if (r.revealed && w) {
+    html += '<div class="dispute" role="status">' + v27ReciteBack(w) + '</div>'
+      + '<div class="sarow"><button class="btn gold" type="button" id="hr-next">' + (r.idx + 1 >= r.deck.length ? 'Finish the walk' : 'Next call') + '</button></div>';
+  } else {
+    html += '<div class="sarow"><button class="btn gold" type="button" id="hr-flip">Turn the card</button>'
+      + '<button class="btn ghost" type="button" id="hr-skip">Skip</button></div>';
+  }
+  return html + '</div>';
+}
+
+function v27WireRecite(box) {
+  var r = S._v27hr;
+  var on = function (id, fn) { var b = box.querySelector('#' + id); if (b) b.onclick = fn; };
+  on('hr-flip', function () { if (r) { r.revealed = true; render(); } });
+  on('hr-skip', function () { if (r) { r.idx++; r.revealed = false; render(); } });
+  on('hr-next', function () { if (r) { r.idx++; r.revealed = false; render(); } });
+  on('hr-again', function () { startHouseRecite(); });
+  on('hr-back', function () { S._v27hr = null; S.view = 'mine'; render(); });
+}
+
+function v27ReciteView() {
+  if (typeof v25Build === 'function') return v25Build(v27ReciteHtml(), v27WireRecite);
+  var box = document.createElement('div');
+  box.innerHTML = v27ReciteHtml();
+  v27WireRecite(box);
+  return box;
+}
+
+/* ---- the three rows on Mine, after Recite our list ---- */
+
+var V27_DRILL_ROWS = [
+  { key: 'houserecite', name: 'Our list by heart',
+    show: function () { return !!v27Api(); },
+    line: function () { return v27ReciteLine(); },
+    go: function () { startHouseRecite(); } },
+  { key: 'housepair', name: 'Pair the menu',
+    show: function () { return !!v27Api(); },
+    line: function () { return v27PairLine(); },
+    go: function () { startHousePairDrill(); } },
+  { key: 'housesay', name: 'Say the pour',
+    show: function () { return !!v27Api(); },
+    line: function () { return V27_SAY_LINE; },
+    /* opens nothing in this piece: Say it back is graded by the Maitre d' */
+    go: function () { v27Say('Say the pour ' + V27_SAY_LINE + '.'); } }
+];
+(function () {
+  if (typeof V25_MINE === 'undefined' || !V25_MINE || typeof V25_MINE.splice !== 'function') return;
+  var at = -1;
+  V25_MINE.forEach(function (r, i) { if (r && r.key === 'cellarrecite') at = i; });
+  var where = at >= 0 ? at + 1 : V25_MINE.length;
+  V25_MINE.splice.apply(V25_MINE, [where, 0].concat(V27_DRILL_ROWS));
+  V27_DRILL_ROWS.forEach(function (r) {
+    if (typeof V25_GO !== 'undefined' && V25_GO) V25_GO[r.key] = r.go;
+    if (typeof V25_AREA !== 'undefined' && V25_AREA) V25_AREA[r.key] = 'mine';
+    if (typeof V25_HUB !== 'undefined' && V25_HUB) V25_HUB[r.key] = 'mine';
+  });
+  if (typeof V25_VIEWS !== 'undefined' && V25_VIEWS) V25_VIEWS.houserecite = v27ReciteView;
+})();
+
+/* ---- Redrill: the results screen asks startDrill(S.section) ---- */
+
+var _v27StartDrill = (typeof startDrill === 'function') ? startDrill : null;
+if (_v27StartDrill) {
+  startDrill = function (cat) {
+    if (cat === V27_PAIR_SECTION) return startHousePairDrill();
+    if (cat === V27_CELLAR_SECTION && typeof startCellarDrill === 'function') return startCellarDrill();
+    return _v27StartDrill.apply(this, arguments);
+  };
+}
+
+/* ---- never counted ----
+   keyOwned is the one chokepoint every rank aggregate walks: an h- key,
+   under any rank prefix, belongs to no level. The level's pace (codex8),
+   the session history (codex4) and the perfect round (codex3) are written
+   by the engine's plumbing on any answer and any finish; after a house
+   question each is put back as it was. */
+var _v27KeyOwned = (typeof keyOwned === 'function') ? keyOwned : null;
+if (_v27KeyOwned) {
+  keyOwned = function (k) {
+    if (v27IsHouseKey(k)) return false;
+    return _v27KeyOwned.apply(this, arguments);
+  };
+}
+
+/* codex7 and codex25 land a device that never chose a level on the lowest
+   one when ST.q is empty, and both read any key as a sign of study. House
+   answers belong to no level, so a device whose every answer is a house
+   answer (or another key keyOwned gives to no level) is still a fresh one,
+   and lands where a fresh device lands. */
+(function () {
+  try {
+    if (typeof LEVELS === 'undefined' || !LEVELS || typeof applyLevel !== 'function' || typeof keyOwned !== 'function') return;
+    if (typeof v25Chosen === 'function' && v25Chosen()) return;
+    var keys = (ST && ST.q) ? Object.keys(ST.q) : [];
+    if (!keys.length) return;
+    var levels = Object.keys(LEVELS);
+    var studied = keys.some(function (k) { return levels.some(function (lv) { return keyOwned(k, lv); }); });
+    if (studied) return;
+    var lv = (typeof v25FirstUnmet === 'function' ? v25FirstUnmet() : null) || (LEVELS.intro ? 'intro' : null);
+    if (lv && lv !== activeLevel && LEVELS[lv]) applyLevel(lv, true);
+  } catch (e) { /* the level the earlier layers restored stands */ }
+})();
+
+/* A house answer puts nothing into the daily review's rotation: dueList()
+   draws from QUESTIONS, which never holds a house question, so a record in
+   ST.srs could never be served and would only swell the In rotation figure,
+   as codex17 keeps producer calls out for the same reason. */
+var _v27SrsRecord = (typeof srsRecord === 'function') ? srsRecord : null;
+if (_v27SrsRecord) {
+  srsRecord = function (q) {
+    if (v27IsHouseQ(q)) return;
+    return _v27SrsRecord.apply(this, arguments);
+  };
+}
+(function () {
+  try {
+    if (!ST || !ST.srs) return;
+    var gone = 0;
+    Object.keys(ST.srs).forEach(function (k) { if (v27IsHouseKey(k)) { delete ST.srs[k]; gone++; } });
+    if (gone) stSave();
+  } catch (e) { }
+})();
+
+var _v27StatRecord = (typeof statRecord === 'function') ? statRecord : null;
+if (_v27StatRecord) {
+  statRecord = function (q) {
+    if (!v27IsHouseQ(q)) return _v27StatRecord.apply(this, arguments);
+    var lvl = (typeof activeLevel === 'string') ? activeLevel : 'certified';
+    var pace = ST.paceDays && ST.paceDays[lvl] ? JSON.stringify(ST.paceDays[lvl]) : null;
+    var out = _v27StatRecord.apply(this, arguments);
+    if (ST.paceDays) {
+      if (pace === null) delete ST.paceDays[lvl]; else ST.paceDays[lvl] = JSON.parse(pace);
+      stSave();
+    }
+    return out;
+  };
+}
+
+var _v27Finish = (typeof finish === 'function') ? finish : null;
+if (_v27Finish) {
+  finish = function () {
+    var ours = (S.results || []).some(function (r) { return r && v27IsHouseQ(r.q); });
+    if (!ours) return _v27Finish.apply(this, arguments);
+    var hist = Array.isArray(ST.hist) ? ST.hist.slice() : null;
+    var best = ST.best && typeof ST.best === 'object' ? ST.best : null;
+    var hadPerfect = !!best && Object.prototype.hasOwnProperty.call(best, 'perfect');
+    var wasPerfect = best ? best.perfect : undefined;
+    var out = _v27Finish.apply(this, arguments);
+    var wrote = Array.isArray(ST.hist) && hist && ST.hist.length > hist.length ? ST.hist[ST.hist.length - 1] : null;
+    if (hist) {
+      /* the bank's answers in a mixed session (Review Misses holds both)
+         are still a session, written as codex4 writes one; the house's are not */
+      var bank = (S.results || []).filter(function (r) { return r && !v27IsHouseQ(r.q); });
+      if (bank.length >= 5 && wrote) {
+        hist.push({ d: wrote.d, m: wrote.m, n: bank.length, c: bank.filter(function (r) { return r.ok; }).length });
+        if (hist.length > 300) hist = hist.slice(-300);
+      }
+      ST.hist = hist;
+    }
+    if (best && ST.best) { if (hadPerfect) ST.best.perfect = wasPerfect; else delete ST.best.perfect; }
+    stSave();
+    return out;
   };
 }
 

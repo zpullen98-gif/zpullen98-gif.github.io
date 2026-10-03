@@ -450,9 +450,14 @@ document.getElementById('view').addEventListener('click', e => {
       /* replays re-ask only the questions you already missed, so logging them
          as ordinary rounds inflates the dashboard trend most for the learner
          who is struggling most */
-      progress.quizzes = [...(progress.quizzes||[]), { date:new Date().toLocaleDateString(), ts:Date.now(),
-        score:z.score, total:z.round.length, mode:z.mode||'mixed', replay: !!z.replay }].slice(-20);
-      saveProgress();
+      /* a Pair the menu round is a house drill: it rides no quiz history,
+         no backup row and no dashboard trend (progress.house is its record,
+         and only from piece 10) */
+      if(z.mode !== 'housepair'){
+        progress.quizzes = [...(progress.quizzes||[]), { date:new Date().toLocaleDateString(), ts:Date.now(),
+          score:z.score, total:z.round.length, mode:z.mode||'mixed', replay: !!z.replay }].slice(-20);
+        saveProgress();
+      }
       /* cards + quiz banks the night even if the drill never happens: without
          this, closing the tab here loses the streak entirely */
       if(state.sess && state.sess.active && state.sess.step==='quiz') recordSessionComplete(false, state.sess.night);
@@ -969,6 +974,10 @@ document.getElementById('view').addEventListener('click', e => {
   else if(act==='house-open-added'){ houseOpenAdded(); return; }
   else if(act==='house-not-now'){ houseNotNow(); }
   else if(act==='house-step'){ houseStep(el.dataset.s); }
+  /* the Menu tab's drill panel: a house card mode over the menu, or the
+     pair round (js/house-bar.js); free, and counted toward no level */
+  else if(act==='house-fc'){ houseStartCards(el.dataset.mode); }
+  else if(act==='house-pair'){ houseStartPair(); }
   /* the formula pane's acts (js/house-bar.js): each reads its boxes itself,
      writes to the house and repaints when the house answers */
   else if(act.indexOf('hf-')===0){ houseFormulaAct(act, el.dataset); return; }
