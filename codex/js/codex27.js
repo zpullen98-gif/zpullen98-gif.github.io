@@ -8,7 +8,7 @@
    dishes, the Ledger the drinks, and this wing the wines; a pack carries
    the whole house from device to device with no key.
 
-   EIGHT THINGS THIS FILE DOES, and the rule each one keeps:
+   TEN THINGS THIS FILE DOES, and the rule each one keeps:
 
    1. THE SYNC. At load, when the engine is here, the list is brought into
       step with the current house through the engine's own codexWine
@@ -87,14 +87,32 @@
       called and the person produces the bottle, a flip deck, nothing
       graded and nothing recorded), Pair the menu (startHousePairDrill:
       firstPickFor and zeroProofFor rounds through the Codex's own quiz
-      engine) and Say the pour (it needs the Maitre d', and opens nothing
-      yet). A graded house answer is recorded in ST.q under
+      engine) and Say the pour and Guest at the table (part 10). A graded
+      house answer is recorded in ST.q under
       'h-<itemId>-<kind>', and keyOwned is wrapped here so an h- key, under
       any rank prefix, never reaches a level, a readiness figure or an
       exam; the level's pace, the session history and the perfect round
       are put back after a house question, so none of them moves either.
       A house over her unkept lines alone deals nothing, and each row says
       so. No lock is involved: every drill is free.
+
+   9. THE SHIPPED PACK AT BOOT. V27_DEFAULT_PACK, one constant, names the
+      Brennan's pack's same-origin path (an empty string turns it off for
+      another user). After the wake, the pack is fetched with cache
+      'no-cache' when online and handed to OOT.house.ensurePack through
+      the write queue, so it never races a sync; 'added' and current runs
+      v27Switch, 'refreshed' runs v27Sync, anything else writes nothing.
+      Offline or on any failure it is silent and never holds the boot. One
+      quiet line rides on the house line, drawn once.
+
+   10. SAY THE POUR AND GUEST AT THE TABLE, offline, no key. Say the pour
+      grades a typed or spoken pour of a wine with a KEPT timed line
+      through houseLib.drills.gradeSaid; Guest at the table deals the
+      kept scenarios that name a wine first, then the rest, then the
+      mix-ups as which is which asks, through gradeScenario. Each state is
+      a word; nothing is recorded until Record it, which writes ST.q
+      through the quiz engine's statRecord under 'h-<wineId>-say-<length>'
+      or 'h-<scenarioId>-guest', kept out of every level by keyOwned.
 
    NO OOT AT ALL is the standalone build and every Node gate: every read of
    OOT is behind typeof, the row's show() is false, the sync is a no-op, and
@@ -159,13 +177,17 @@ function v27Step(h) {
 /* The Mine row's line: the house and its next step, or the no-house line. */
 function v27Line() {
   var h = v27Current();
-  return h ? h.name + ' · ' + v27Step(h) : V27_NO_HOUSE;
+  var line = h ? h.name + ' · ' + v27Step(h) : V27_NO_HOUSE;
+  var note = v27TakeNote();
+  return note ? line + ' · ' + note : line;
 }
 
 /* The house view's own line. */
 function v27HouseLine() {
   var h = v27Current();
-  return h ? 'The house: ' + h.name + ' · ' + v27Step(h) : V27_NO_HOUSE;
+  var line = h ? 'The house: ' + h.name + ' · ' + v27Step(h) : V27_NO_HOUSE;
+  var note = v27TakeNote();
+  return note ? line + ' · ' + note : line;
 }
 
 /* =========== 2. the house on a bottle =========== */
@@ -213,7 +235,9 @@ function v27Busy() {
 /* An ask kept while the list was busy, run once it is not. Called by the
    wrapped render, which every end of a drill or a form goes through. */
 function v27Flush() {
-  if (!V27_PENDING || v27Busy()) return;
+  if (v27Busy()) return;
+  if (V27_AUTO_HELD) { var held = V27_AUTO_HELD; V27_AUTO_HELD = null; v27AutoApply(held); }
+  if (!V27_PENDING) return;
   V27_PENDING = false;
   v27Sync();
 }
@@ -1474,7 +1498,11 @@ function v27RedrawSoon() {
 var _v27Render = render;
 render = function () {
   var out;
-  var own = { house: v27HouseView, housereview: v27ReviewView, houserecite: v27ReciteView };
+  /* a render rebuilds the page, so a voice still listening would write into a box no longer drawn */
+  try { v27StopListening(); } catch (e) { }
+  /* the pack's one quiet line is drawn once: the render after the one that showed it clears it */
+  if (V27_AUTO_SHOWN) { V27_AUTO_NOTE = ''; V27_AUTO_SHOWN = false; }
+  var own = { house: v27HouseView, housereview: v27ReviewView, houserecite: v27ReciteView, housesay: function () { return v27SayView(); }, houseguest: function () { return v27GuestView(); } };
   if (own[S.view] && !(typeof V25_VIEWS !== 'undefined' && V25_VIEWS && V25_VIEWS[S.view])) {
     if (S.qT) { clearInterval(S.qT); S.qT = null; }
     var app = document.getElementById('app');
@@ -1491,7 +1519,7 @@ render = function () {
 var _v27ApplyLevel = (typeof applyLevel === 'function') ? applyLevel : null;
 if (_v27ApplyLevel) {
   applyLevel = function (lvl, skipRender) {
-    S._v27 = null; S._v27hr = null;
+    S._v27 = null; S._v27hr = null; S._v27say = null; S._v27guest = null;
     return _v27ApplyLevel(lvl, skipRender);
   };
 }
@@ -1520,7 +1548,6 @@ if (_v27ApplyLevel) {
 var V27_PAIR_SECTION = 'Pair the menu';
 var V27_CELLAR_SECTION = 'Our List';
 var V27_ONLY_HERS = 'Nothing kept yet: her lines deal nothing until you keep them.';
-var V27_SAY_LINE = 'needs the Maître d’ to hear you; not open yet';
 var V27_SERVE_LABEL = 'Which wine is served this way?';
 var V27_SECTION_LABEL = 'Which section of the list is this wine on?';
 var V27_FALLBACK_LABELS = {
@@ -1870,9 +1897,13 @@ var V27_DRILL_ROWS = [
     go: function () { startHousePairDrill(); } },
   { key: 'housesay', name: 'Say the pour',
     show: function () { return !!v27Api(); },
-    line: function () { return V27_SAY_LINE; },
-    /* opens nothing in this piece: Say it back is graded by the Maitre d' */
-    go: function () { v27Say('Say the pour ' + V27_SAY_LINE + '.'); } }
+    line: function () { return v27SayLine(); },
+    /* offline, graded here by the engine's gradeSaid: no key, no network */
+    go: function () { v27OpenSay(); } },
+  { key: 'houseguest', name: 'Guest at the table',
+    show: function () { return !!v27Api(); },
+    line: function () { return v27GuestLine(); },
+    go: function () { v27OpenGuest(); } }
 ];
 (function () {
   if (typeof V25_MINE === 'undefined' || !V25_MINE || typeof V25_MINE.splice !== 'function') return;
@@ -1885,7 +1916,11 @@ var V27_DRILL_ROWS = [
     if (typeof V25_AREA !== 'undefined' && V25_AREA) V25_AREA[r.key] = 'mine';
     if (typeof V25_HUB !== 'undefined' && V25_HUB) V25_HUB[r.key] = 'mine';
   });
-  if (typeof V25_VIEWS !== 'undefined' && V25_VIEWS) V25_VIEWS.houserecite = v27ReciteView;
+  if (typeof V25_VIEWS !== 'undefined' && V25_VIEWS) {
+    V25_VIEWS.houserecite = v27ReciteView;
+    V25_VIEWS.housesay = function () { return v27SayView(); };
+    V25_VIEWS.houseguest = function () { return v27GuestView(); };
+  }
 })();
 
 /* ---- Redrill: the results screen asks startDrill(S.section) ---- */
@@ -1994,12 +2029,752 @@ if (_v27Finish) {
   };
 }
 
+/* =========== 9. the shipped pack at boot ===========
+
+   This copy of the suite is the owner's, and the Brennan's pack loads
+   itself: V27_DEFAULT_PACK names the pack's same-origin path, and an empty
+   string turns the whole thing off for another user. At boot, after the
+   list's own record is read and the House wake (the first sync) is queued,
+   the pack is fetched once with cache 'no-cache' when the browser is
+   online; offline, or on any failure, nothing is said and nothing waits.
+   The text goes to OOT.house.ensurePack THROUGH THE WRITE QUEUE, so it runs
+   behind the wake and every write before it and never races a sync. Then
+   the list is brought into step through this file's own doors: on 'added'
+   with current, v27Switch (the list synced out, then replaced by the
+   house's wines through cellarSanitize, saved once); on 'refreshed',
+   v27Sync. 'current' and 'refused' write nothing, so a second boot over
+   the same edition touches neither the list nor the house. A pack that
+   lands while the list is busy is held for the render that ends the form
+   or the drill; the person's own bottles on a device with no house go to
+   a house of their own, never into the shipped one. One quiet line rides
+   on the house line, drawn once. */
+
+var V27_DEFAULT_PACK = '../shared/packs/brennans-new-orleans.v1.oothouse.json';
+var V27_AUTO_NOTE = '';
+var V27_AUTO_SHOWN = false;
+var V27_BOOT_PACK = null;
+
+function v27Online() {
+  try { return !(typeof navigator !== 'undefined' && navigator && navigator.onLine === false); }
+  catch (e) { return true; }
+}
+
+/* The quiet line: kept until a house line has drawn it, then gone on the next render. */
+function v27Note(text) {
+  V27_AUTO_NOTE = String(text || '');
+  V27_AUTO_SHOWN = false;
+  if (V27_AUTO_NOTE) v27RedrawSoon();
+}
+function v27TakeNote() {
+  if (!V27_AUTO_NOTE) return '';
+  V27_AUTO_SHOWN = true;
+  return V27_AUTO_NOTE;
+}
+
+/* The house as the pack carries it, read for its name and its counts only. */
+function v27PackSummary(text, id) {
+  var out = { name: '', dishes: 0, drinks: 0, wines: 0 };
+  try {
+    var house = JSON.parse(text).house || {};
+    out.name = typeof house.name === 'string' ? house.name : '';
+    out.dishes = Array.isArray(house.dishes) ? house.dishes.length : 0;
+    out.drinks = Array.isArray(house.cocktails) ? house.cocktails.length : 0;
+    out.wines = Array.isArray(house.wines) ? house.wines.length : 0;
+  } catch (e) { }
+  if (!out.name) {
+    v27List().some(function (s) { if (s && s.id === id) { out.name = s.name; return true; } return false; });
+  }
+  return out;
+}
+
+/* A pack that arrived while the list was busy (the cellar form open, an
+   Our List drill running), kept for the render that ends the form or the
+   drill: nothing of it is written and the pointer does not move until
+   then, so the list never changes under the person. Held as the pack's
+   text, or, when the form opened while the pack went in, as the switch
+   still to make ({ id, said }). */
+var V27_AUTO_HELD = null;
+var V27_OWN_NAME = 'My own bottles';
+
+/* The bottles on the list that no house holds yet. */
+function v27Unhoused() {
+  return (ST.cellar || []).filter(function (r) { return r && r.id && !r.house; });
+}
+
+function v27AutoLoad() {
+  var api = v27Api();
+  if (!api || typeof api.ensurePack !== 'function' || !V27_DEFAULT_PACK) return Promise.resolve(null);
+  if (typeof fetch !== 'function' || !v27Online()) return Promise.resolve(null);
+  var asked;
+  try { asked = fetch(V27_DEFAULT_PACK, { cache: 'no-cache' }); }
+  catch (e) { return Promise.resolve(null); }
+  return Promise.resolve(asked).then(function (res) {
+    if (!res || !res.ok || typeof res.text !== 'function') return null;
+    return res.text();
+  }).then(function (got) {
+    if (typeof got !== 'string' || !got) return null;
+    if (v27Busy()) { V27_AUTO_HELD = got; return { action: 'held' }; }
+    return v27AutoApply(got);
+  }).catch(function () { return null; });
+}
+
+/* The pack's text into the engine, and the list into step through the
+   wing's own doors. A device that holds the person's own bottles and no
+   house yet files them into a house of their own first, so the
+   restaurant's list never adopts them (they would ride out in its packs
+   and deal as its wines); the pack is then opened beside it, and the
+   person's bottles wait under The house. */
+function v27AutoSwitch(id, said) {
+  return v27Switch(id).then(function () {
+    var st = v27State();
+    st.live = ''; st.added = null;
+    v27Note(said);
+  });
+}
+
+function v27AutoApply(text) {
+  if (text && typeof text === 'object') return v27AutoSwitch(text.id, text.said);
+  var api = v27Api();
+  if (!api || typeof api.ensurePack !== 'function') return Promise.resolve(null);
+  var sum = v27PackSummary(text, '');
+  var packId = '';
+  try { packId = String((JSON.parse(text).house || {}).id || ''); } catch (e) { }
+  var keptOwn = false;
+  return v27Write(function () { return api.ready(); }).then(function () {
+    var onDevice = packId && v27List().some(function (s) { return s && s.id === packId; });
+    if (onDevice || api.currentId() || !v27Unhoused().length || typeof api.mintHouse !== 'function') return null;
+    return v27Write(function () { return api.mintHouse(V27_OWN_NAME, 'hand'); }).then(function (made) {
+      if (!made || api.currentId() !== made.id) return null;
+      return v27Sync().then(function () {
+        if (v27Unhoused().length) return null;
+        keptOwn = true;
+        return made;
+      });
+    });
+  }).then(function () {
+    /* behind the wake and every write before it; the chain never rejects */
+    return v27Write(function () { return api.ensurePack(text, keptOwn ? { makeCurrent: true } : {}); });
+  }).then(function (result) {
+    if (!result || !result.action) return null;
+    if (!sum.name) sum = v27PackSummary(text, result.id);
+    var name = sum.name || 'The house';
+    if (result.action === 'added') {
+      var said = name + ' is loaded: ' + v27Plural(sum.dishes, 'dish', 'dishes') + ', '
+        + v27Plural(sum.drinks, 'drink', 'drinks') + ', ' + v27Plural(sum.wines, 'wine', 'wines');
+      if (!result.current) { v27Note(said + '. Open it from The house'); return result; }
+      if (keptOwn) said += '. Your own bottles are kept as ' + V27_OWN_NAME + ', under The house';
+      /* the form or a drill opened while the pack went in: the switch waits for it */
+      if (v27Busy()) { V27_AUTO_HELD = { id: result.id, said: said }; return result; }
+      return v27AutoSwitch(result.id, said).then(function () { return result; });
+    }
+    if (result.action === 'refreshed') {
+      var n = result.counts && Number(result.counts.added) || 0;
+      return v27Sync().then(function () {
+        v27Note(name + ' updated: ' + n + ' new');
+        return result;
+      });
+    }
+    return result;
+  }).catch(function () { return null; });
+}
+
+/* =========== 10. Say the pour and Guest at the table ===========
+
+   Both offline, both free, neither asks for a key and neither touches the
+   network. Say the pour deals a wine of the house with a KEPT timed line
+   (the engine's sayable), a length, and a box for what the person would
+   say, typed or spoken (Speak shows only where the browser has speech
+   recognition, and says where the voice goes); Check hands it to the
+   engine's gradeSaid, which grades against the kept five parts the kept
+   line carries. Guest at the table deals the house's kept scenarios, those
+   that name a wine first, then the rest, then the mix-ups as which is
+   which asks (each graded through gradeScenario over a view in which the
+   mix-up stands as a scenario: the ask as the guest, the kept difference
+   as the answer); Check hands the answer to gradeScenario. Every state is
+   a word. NOTHING IS RECORDED until Record it is pressed: then the quiz
+   engine's own statRecord writes ST.q under 'h-<wineId>-say-<length>' or
+   'h-<scenarioId>-guest', and the wrapped keyOwned, statRecord and
+   srsRecord above keep it out of every level, the level's pace and the
+   daily review. A wine's own words for service sit under the fixed
+   eyebrow, and allergens are left to the kitchen. */
+
+var V27_SAY_SECTION = 'Say the pour';
+var V27_GUEST_SECTION = 'Guest at the table';
+var V27_SAY_KEYS = ['s10', 's20', 's45'];
+var V27_SAY_CHIPS = { s10: '10 seconds', s20: '20 seconds', s45: '45 seconds' };
+var V27_VERDICT_WORDS = { met: 'Met', close: 'Close', missed: 'Missed' };
+var V27_SPEECH_SAID = 'Your voice goes to your browser\'s speech service, not to Anthropic.';
+var V27_KITCHEN = 'Allergens are the kitchen\'s to answer: confirm at lineup.';
+var V27_NEVER_COUNTED = 'Nothing is recorded until you press Record it, and nothing here counts toward a level.';
+var V27_SAY_NONE = 'No wine in this house has a kept timed line yet. Keep one on Our Wine List, then say it back here.';
+var V27_GUEST_NONE = 'No guest yet: this house has no kept scenario and no kept mix-up to play.';
+var V27_GONE_ITEM = 'That is no longer in this house. Choose another.';
+
+function v27Grader() {
+  var d = v27Drills();
+  return d && typeof d.gradeSaid === 'function' && typeof d.gradeScenario === 'function'
+    && typeof d.sayable === 'function' && typeof d.roleable === 'function' ? d : null;
+}
+
+function v27CapName(len) {
+  var d = v27Drills();
+  var names = (d && d.CAP_NAMES) || { s10: 'ten second', s20: 'twenty second', s45: 'forty five second' };
+  return names[len] || 'twenty second';
+}
+
+function v27VerdictWord(v) { return V27_VERDICT_WORDS[v] || 'Missed'; }
+
+/* ---- the voice: Speak, only where the browser hears ---- */
+
+var V27_LISTEN = null;
+
+function v27SpeechCtor() {
+  try {
+    if (typeof window === 'undefined' || !window) return null;
+    return window.SpeechRecognition || window.webkitSpeechRecognition || null;
+  } catch (e) { return null; }
+}
+
+function v27StopListening() {
+  var rec = V27_LISTEN;
+  V27_LISTEN = null;
+  if (rec) { try { rec.stop(); } catch (e) { } }
+}
+
+function v27SpeakHtml(id) {
+  if (!v27SpeechCtor()) return '';
+  return '<div class="sarow"><button class="btn ghost" type="button" id="' + id + '" aria-pressed="false">Speak</button>'
+    + '<span class="lvltag" id="' + id + '-state" role="status">Not listening</span></div>'
+    + '<p class="sub">' + v27Esc(V27_SPEECH_SAID) + '</p>';
+}
+
+/* The press starts the browser's recogniser and writes what it hears into
+   the box after what is already typed; a second press stops it. */
+function v27WireSpeak(box, id, field, onText) {
+  var btn = box.querySelector('#' + id);
+  var Ctor = v27SpeechCtor();
+  if (!btn || !Ctor || !field) return;
+  var state = box.querySelector('#' + id + '-state');
+  var show = function (on) {
+    btn.textContent = on ? 'Stop listening' : 'Speak';
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    if (state) state.textContent = on ? 'Listening' : 'Not listening';
+  };
+  btn.onclick = function () {
+    if (V27_LISTEN) { v27StopListening(); show(false); return; }
+    var rec;
+    try { rec = new Ctor(); } catch (e) { return; }
+    var base = String(field.value || '').replace(/\s+$/, '');
+    if (base) base += ' ';
+    try { rec.lang = (typeof navigator !== 'undefined' && navigator && navigator.language) || 'en-US'; } catch (e) { }
+    rec.interimResults = true;
+    rec.continuous = true;
+    rec.onresult = function (e) {
+      var heard = '';
+      var list = e && e.results ? e.results : [];
+      for (var i = 0; i < list.length; i++) heard += (list[i] && list[i][0] ? list[i][0].transcript : '') + ' ';
+      field.value = base + heard.replace(/\s+/g, ' ').trim();
+      onText(field.value);
+    };
+    rec.onend = function () { if (V27_LISTEN === rec) V27_LISTEN = null; show(false); };
+    rec.onerror = rec.onend;
+    V27_LISTEN = rec;
+    show(true);
+    try { rec.start(); } catch (e) { rec.onend(); }
+  };
+}
+
+/* The wine's own words for service, under the fixed eyebrow, and the kitchen's line. */
+function v27KitchenHtml(note) {
+  var html = '<div class="secgroup">For the guest\'s questions</div>';
+  if (typeof note === 'string' && note.trim()) {
+    html += '<div class="mline"><span class="mline-eyebrow">' + V27_NOTE_EYEBROW + '</span></div>'
+      + '<div class="sub">' + v27Esc(note) + '</div>';
+  }
+  return html + '<p class="sub">' + v27Esc(V27_KITCHEN) + '</p>';
+}
+
+/* One graded part as a row of words: its label, Hit or Missed. */
+function v27PartRow(label, hit, extra) {
+  return '<li class="mline"><span class="lvltag">' + v27Esc(label) + '</span><span>' + (hit ? 'Hit' : 'Missed')
+    + (extra ? ', ' + v27Esc(extra) : '') + '</span></li>';
+}
+
+function v27NotesHtml(notes) {
+  if (!Array.isArray(notes) || !notes.length) return '';
+  return '<div class="secgroup">Notes</div><ul class="h27-notes">' + notes.map(function (n) {
+    return '<li>' + v27Esc(n) + '</li>';
+  }).join('') + '</ul>';
+}
+
+/* The record the quiz engine keeps: its own statRecord, under the question's
+   id, right only when the verdict is Met. Returns the key written. */
+function v27RecordHouse(id, cat, name, ok) {
+  if (typeof statRecord !== 'function') return null;
+  var q = { id: id, cat: cat, q: v27Esc(name) };
+  statRecord(q, !!ok);
+  return typeof qKey === 'function' ? qKey(q) : id;
+}
+
+/* ---- Say the pour ---- */
+
+/* S._v27say = { id, length, said, grade, recorded } */
+function v27SayItems() {
+  var h = v27Current();
+  var d = v27Grader();
+  if (!h || !d) return [];
+  try { return d.sayable(h, 'wine') || []; } catch (e) { return []; }
+}
+
+function v27SayState() {
+  var items = v27SayItems();
+  if (!S._v27say) S._v27say = { id: '', length: 's20', said: '', grade: null, recorded: false };
+  var st = S._v27say;
+  var item = null;
+  items.some(function (x) { if (x.id === st.id) { item = x; return true; } return false; });
+  if (!item && items.length) { item = items[0]; st.id = item.id; st.grade = null; st.recorded = false; }
+  if (item && item.lengths.indexOf(st.length) < 0) st.length = item.lengths.indexOf('s20') >= 0 ? 's20' : item.lengths[0];
+  return st;
+}
+
+function v27SayItem() {
+  var st = v27SayState();
+  var hit = null;
+  v27SayItems().some(function (x) { if (x.id === st.id) { hit = x; return true; } return false; });
+  return hit;
+}
+
+function v27OpenSay() {
+  v27StopListening();
+  S._v27say = null;
+  S.view = 'housesay';
+  render();
+  return true;
+}
+
+function v27SayLine() {
+  var h = v27Current();
+  if (!h) return V27_NO_HOUSE;
+  if (!v27Grader()) return V27_OLD_ENGINE;
+  var n = v27SayItems().length;
+  return n ? v27Plural(n, 'wine', 'wines') + ' with kept lines: say one back at ten, twenty or forty five seconds, graded here, offline'
+    : 'keep a timed line on a wine to say it back';
+}
+
+/* Pick a wine: an id from the list, or the next one at random (never the same twice running). */
+function v27SayPick(id) {
+  var st = v27SayState();
+  var items = v27SayItems();
+  if (!items.length) return null;
+  if (!id) {
+    var others = items.filter(function (x) { return x.id !== st.id; });
+    var from = others.length ? others : items;
+    id = from[Math.floor(v27Rand() * from.length) % from.length].id;
+  }
+  var hit = null;
+  items.some(function (x) { if (x.id === id) { hit = x; return true; } return false; });
+  if (!hit) return null;
+  st.id = hit.id; st.said = ''; st.grade = null; st.recorded = false;
+  v27SayState();
+  return hit.id;
+}
+
+function v27SayLength(len) {
+  var st = v27SayState();
+  var item = v27SayItem();
+  if (!item || item.lengths.indexOf(len) < 0) return false;
+  st.length = len; st.grade = null; st.recorded = false;
+  return true;
+}
+
+/* Check: the engine grades, nothing is written. */
+function v27SayCheck(said) {
+  var st = v27SayState();
+  var h = v27Current();
+  var d = v27Grader();
+  if (typeof said === 'string') st.said = said;
+  st.recorded = false;
+  st.grade = null;
+  if (!h || !d || !st.id) return null;
+  try { st.grade = d.gradeSaid(h, st.id, st.length, st.said) || null; } catch (e) { st.grade = null; }
+  return st.grade;
+}
+
+/* Record it: once per grade, through the quiz engine's own record. */
+function v27SayRecord() {
+  var st = v27SayState();
+  var g = st.grade;
+  if (!g || st.recorded) return null;
+  var key = v27RecordHouse('h-' + g.itemId + '-say-' + g.length, V27_SAY_SECTION, g.name, g.verdict === 'met');
+  st.recorded = true;
+  v27Say('Recorded: ' + v27VerdictWord(g.verdict) + ' on ' + g.name + '.');
+  return key;
+}
+
+function v27SayAgain() {
+  var st = v27SayState();
+  st.said = ''; st.grade = null; st.recorded = false;
+}
+
+function v27SayCount(text, cap) {
+  var n = v27Words(text);
+  return n + ' of ' + cap + ' words' + (n > cap ? '. Over the cap' : '');
+}
+
+function v27SayResultHtml(g, st) {
+  var graded = (g.parts || []).filter(function (p) { return p.terms && p.terms.length && p.inLine; });
+  var hits = graded.filter(function (p) { return p.hit; }).length;
+  var fromParts = (g.parts || []).some(function (p) { return V27_PART_KEYS.indexOf(p.key) >= 0; });
+  var html = '<div class="secgroup" role="status">Verdict: ' + v27VerdictWord(g.verdict) + '</div>'
+    + '<div class="sub">' + v27Esc(g.words + ' of ' + g.cap + ' words. ' + hits + ' of ' + graded.length
+      + (fromParts ? ' parts' : ' clauses') + ' the line carries were said. ' + (g.nameSaid ? 'The name was said.' : 'The name was not said.')) + '</div>'
+    + '<div class="secgroup">' + (fromParts ? 'The five parts' : 'The kept line, clause by clause') + '</div><ul class="h27-parts">'
+    + (g.parts || []).map(function (p) {
+      return v27PartRow(p.label, p.hit, p.inLine ? '' : 'not in this length\'s line');
+    }).join('') + '</ul>'
+    + v27NotesHtml(g.notes)
+    + '<div class="secgroup">Your kept line</div><div class="dispute">' + v27Esc(g.keptLine) + '</div>'
+    + '<div class="secgroup">What you said</div><div class="dispute">' + (v27Esc(st.said) || 'Nothing yet') + '</div>'
+    + '<div class="sarow" role="group" aria-label="What to do with this grade">';
+  html += st.recorded
+    ? '<span class="lvltag" role="status">Recorded</span>'
+    : '<button class="btn gold" type="button" id="hs-record">Record it</button>';
+  return html + '<button class="btn ghost" type="button" id="hs-again">Try again</button>'
+    + '<button class="btn ghost" type="button" id="hs-next2">Next wine</button></div>';
+}
+
+function v27SayHtml() {
+  var h = v27Current();
+  var d = v27Grader();
+  var html = '<div class="v25page h27"><div class="viewhead"><h2>Say the pour</h2>'
+    + '<div class="sub">' + v27Esc(v27HouseLine()) + '</div></div>';
+  var back = '<div class="sarow"><button class="btn ghost" type="button" id="hs-back">Back to Mine</button></div>';
+  if (!h) return html + '<div class="sub">' + V27_NO_HOUSE + '</div>' + back + '</div>';
+  if (!d) return html + '<div class="sub">' + V27_OLD_ENGINE + '</div>' + back + '</div>';
+  var items = v27SayItems();
+  if (!items.length) return html + '<div class="sub">' + V27_SAY_NONE + '</div>' + back + '</div>';
+  var st = v27SayState();
+  var item = v27SayItem();
+  var caps = v27Caps();
+  var wine = item ? v27Wine(item.id) : null;
+  html += '<p class="sub">Pick a wine and a length, say the pour aloud or type it, then Check. ' + V27_NEVER_COUNTED + '</p>';
+  /* the list, by the house's own sections */
+  var sections = [], by = {};
+  items.forEach(function (x) {
+    var s = x.section || 'The list';
+    if (!by[s]) { by[s] = []; sections.push(s); }
+    by[s].push(x);
+  });
+  html += '<div class="sarow"><label class="lvltag" for="hs-pick" style="min-width:86px;display:inline-block">Wine</label>'
+    + '<select class="sainput" id="hs-pick">' + sections.map(function (s) {
+      return '<optgroup label="' + v27Esc(s) + '">' + by[s].map(function (x) {
+        return '<option value="' + v27Esc(x.id) + '"' + (x.id === st.id ? ' selected' : '') + '>' + v27Esc(x.name) + '</option>';
+      }).join('') + '</optgroup>';
+    }).join('') + '</select>'
+    + '<button class="btn ghost" type="button" id="hs-next">Next wine</button></div>';
+  /* the length, chosen in words */
+  html += '<div class="sarow" role="group" aria-label="How long the pour runs">'
+    + '<span class="lvltag" style="min-width:86px;display:inline-block">Length</span>'
+    + V27_SAY_KEYS.filter(function (k) { return item && item.lengths.indexOf(k) >= 0; }).map(function (k) {
+      return '<button class="btn small ghost" type="button" data-hs-len="' + k + '" aria-pressed="' + (st.length === k ? 'true' : 'false') + '">'
+        + V27_SAY_CHIPS[k] + (st.length === k ? ', chosen' : '') + '</button>';
+    }).join('') + '</div>';
+  html += '<div class="secgroup">' + v27Esc(item ? item.name : '') + '</div>'
+    + '<div class="sub">' + v27Esc((item && item.section ? item.section + '. ' : '') + 'The ' + v27CapName(st.length)
+      + ' pour: at most ' + caps[st.length] + ' words.') + '</div>';
+  html += '<label class="lvltag" for="hs-said">What you would say at the table</label>'
+    + '<textarea class="sainput" id="hs-said" rows="4">' + v27Esc(st.said) + '</textarea>'
+    + '<div class="sub" id="hs-count" aria-live="polite">' + v27SayCount(st.said, caps[st.length]) + '</div>'
+    + v27SpeakHtml('hs-speak')
+    + '<div class="sarow"><button class="btn gold" type="button" id="hs-check">Check</button></div>';
+  if (st.grade) html += v27SayResultHtml(st.grade, st);
+  else if (st.id && !item) html += '<div class="sub" role="alert">' + V27_GONE_ITEM + '</div>';
+  html += v27KitchenHtml(wine ? wine.serviceNote : '');
+  return html + back + '</div>';
+}
+
+function v27WireSay(box) {
+  var on = function (id, fn) { var b = box.querySelector('#' + id); if (b) b.onclick = fn; };
+  var field = box.querySelector('#hs-said');
+  var caps = v27Caps();
+  var st = S._v27say;
+  var count = function (text) {
+    if (st) st.said = text;
+    var c = box.querySelector('#hs-count');
+    if (c && st) c.textContent = v27SayCount(text, caps[st.length]);
+  };
+  if (field && typeof field.addEventListener === 'function') field.addEventListener('input', function () { count(field.value); });
+  var pick = box.querySelector('#hs-pick');
+  if (pick) pick.onchange = function () { if (v27SayPick(pick.value)) render(); };
+  on('hs-next', function () { if (v27SayPick('')) render(); });
+  on('hs-next2', function () { if (v27SayPick('')) render(); });
+  Array.prototype.forEach.call(box.querySelectorAll('[data-hs-len]'), function (b) {
+    b.onclick = function () { if (st && field) st.said = field.value; if (v27SayLength(b.getAttribute('data-hs-len'))) render(); };
+  });
+  on('hs-check', function () { v27SayCheck(field ? field.value : ''); render(); });
+  on('hs-record', function () { v27SayRecord(); render(); });
+  on('hs-again', function () { v27SayAgain(); render(); });
+  on('hs-back', function () { v27StopListening(); S._v27say = null; S.view = 'mine'; render(); });
+  v27WireSpeak(box, 'hs-speak', field, count);
+}
+
+function v27SayView() {
+  if (typeof v25Build === 'function') return v25Build(v27SayHtml(), v27WireSay);
+  var box = document.createElement('div');
+  box.innerHTML = v27SayHtml();
+  v27WireSay(box);
+  return box;
+}
+
+/* ---- Guest at the table ---- */
+
+function v27NameOf(h, id) {
+  var hit = '';
+  ['dishes', 'wines', 'cocktails'].some(function (list) {
+    return (Array.isArray(h[list]) ? h[list] : []).some(function (x) {
+      if (x && x.id === id && typeof x.name === 'string') { hit = x.name; return true; }
+      return false;
+    });
+  });
+  return hit;
+}
+
+/* The mix-ups that can be asked: a kept ask and a kept difference, both items on the house. */
+function v27MixUps(h) {
+  return (h && Array.isArray(h.mixUps) ? h.mixUps : []).filter(function (m) {
+    return m && m.id && v27Kept(m.ask) && typeof m.ask.value === 'string' && m.ask.value.trim()
+      && v27Kept(m.difference) && typeof m.difference.value === 'string' && m.difference.value.trim()
+      && v27NameOf(h, m.aId) && v27NameOf(h, m.bId);
+  });
+}
+
+/* A mix-up as the grader reads a scenario: the ask is the guest, the kept difference the answer. */
+function v27MixView(h, m) {
+  var out = {};
+  Object.keys(h).forEach(function (k) { out[k] = h[k]; });
+  out.scenarios = [{ id: m.id, title: 'Which is which', guest: m.ask.value, you: m.difference, itemIds: [m.aId, m.bId], ts: m.ts || 0 }];
+  return out;
+}
+
+/* The deck in its order: scenarios that name a wine, mix-ups that name a
+   wine, then the other scenarios and the other mix-ups. Each entry is
+   { id, title, guest, mix, wine }. */
+function v27GuestDeck(h) {
+  var d = v27Grader();
+  if (!h || !d) return [];
+  var wines = {};
+  (Array.isArray(h.wines) ? h.wines : []).forEach(function (w) { if (w && w.id) wines[w.id] = true; });
+  var full = {};
+  (Array.isArray(h.scenarios) ? h.scenarios : []).forEach(function (s) { if (s && s.id) full[s.id] = s; });
+  var rs = [];
+  try { rs = d.roleable(h) || []; } catch (e) { rs = []; }
+  var scen = rs.map(function (r) {
+    var s = full[r.id] || {};
+    var wine = (Array.isArray(s.itemIds) ? s.itemIds : []).some(function (id) { return !!wines[id]; });
+    return { id: r.id, title: r.title, guest: r.guest, mix: false, wine: wine };
+  });
+  var mix = v27MixUps(h).map(function (m) {
+    return { id: m.id, title: 'Which is which: ' + v27NameOf(h, m.aId) + ' or ' + v27NameOf(h, m.bId), guest: m.ask.value,
+      mix: true, wine: !!(wines[m.aId] || wines[m.bId]) };
+  });
+  var pick = function (list, wine) { return list.filter(function (x) { return x.wine === wine; }); };
+  return [].concat(pick(scen, true), pick(mix, true), pick(scen, false), pick(mix, false));
+}
+
+/* The deck shuffled within each of its four groups, so the order holds and the round varies. */
+function v27DealGuests(h, rand) {
+  var deck = v27GuestDeck(h);
+  var r = rand || v27Rand;
+  var groups = [[], [], [], []];
+  deck.forEach(function (x) { groups[(x.wine ? 0 : 2) + (x.mix ? 1 : 0)].push(x); });
+  var out = [];
+  groups.forEach(function (g) {
+    for (var i = g.length - 1; i > 0; i--) {
+      var j = Math.floor(r() * (i + 1)) % (i + 1);
+      var t = g[i]; g[i] = g[j]; g[j] = t;
+    }
+    out = out.concat(g);
+  });
+  return out;
+}
+
+/* S._v27guest = { deck, idx, said, grade, recorded } */
+function v27GuestState() {
+  if (!S._v27guest) S._v27guest = { deck: v27DealGuests(v27Current()), idx: 0, said: '', grade: null, recorded: false };
+  return S._v27guest;
+}
+
+function v27GuestCard() {
+  var st = v27GuestState();
+  return st.deck.length ? st.deck[st.idx % st.deck.length] : null;
+}
+
+function v27OpenGuest() {
+  v27StopListening();
+  S._v27guest = null;
+  S.view = 'houseguest';
+  render();
+  return true;
+}
+
+function v27GuestLine() {
+  var h = v27Current();
+  if (!h) return V27_NO_HOUSE;
+  if (!v27Grader()) return V27_OLD_ENGINE;
+  var deck = v27GuestDeck(h);
+  if (!deck.length) return 'keep a scenario or a mix-up to play the guest';
+  var w = deck.filter(function (x) { return x.wine; }).length;
+  return v27Plural(deck.length, 'guest', 'guests') + (w ? ', ' + w + ' about the wine first' : '') + ': answer them, graded here, offline';
+}
+
+function v27GuestMove(step) {
+  var st = v27GuestState();
+  if (!st.deck.length) return null;
+  st.idx = ((st.idx + step) % st.deck.length + st.deck.length) % st.deck.length;
+  st.said = ''; st.grade = null; st.recorded = false;
+  return v27GuestCard();
+}
+
+function v27GuestPick(id) {
+  var st = v27GuestState();
+  var at = -1;
+  st.deck.some(function (x, i) { if (x.id === id) { at = i; return true; } return false; });
+  if (at < 0) return null;
+  st.idx = at; st.said = ''; st.grade = null; st.recorded = false;
+  return v27GuestCard();
+}
+
+/* Check: the engine grades the answer against the kept one, nothing is written. */
+function v27GuestCheck(said) {
+  var st = v27GuestState();
+  var h = v27Current();
+  var d = v27Grader();
+  var card = v27GuestCard();
+  if (typeof said === 'string') st.said = said;
+  st.grade = null; st.recorded = false;
+  if (!h || !d || !card) return null;
+  var house = h;
+  if (card.mix) {
+    var m = null;
+    v27MixUps(h).some(function (x) { if (x.id === card.id) { m = x; return true; } return false; });
+    if (!m) return null;
+    house = v27MixView(h, m);
+  }
+  try { st.grade = d.gradeScenario(house, card.id, st.said) || null; } catch (e) { st.grade = null; }
+  return st.grade;
+}
+
+function v27GuestRecord() {
+  var st = v27GuestState();
+  var g = st.grade;
+  var card = v27GuestCard();
+  if (!g || st.recorded || !card) return null;
+  var key = v27RecordHouse('h-' + g.scenarioId + '-guest', V27_GUEST_SECTION, card.title, g.verdict === 'met');
+  st.recorded = true;
+  v27Say('Recorded: ' + v27VerdictWord(g.verdict) + ' on ' + card.title + '.');
+  return key;
+}
+
+function v27GuestAgain() {
+  var st = v27GuestState();
+  st.said = ''; st.grade = null; st.recorded = false;
+}
+
+function v27GuestResultHtml(g, st) {
+  var hits = (g.clauses || []).filter(function (c) { return c.hit; }).length;
+  var html = '<div class="secgroup" role="status">Verdict: ' + v27VerdictWord(g.verdict) + '</div>'
+    + '<div class="sub">' + v27Esc(g.words + ' words. ' + hits + ' of ' + (g.clauses || []).length + ' clauses of the kept answer were said.') + '</div>'
+    + '<div class="secgroup">The kept answer, clause by clause</div><ul class="h27-parts">'
+    + (g.clauses || []).map(function (c) { return v27PartRow(c.label, c.hit, ''); }).join('') + '</ul>';
+  if ((g.items || []).length) {
+    html += '<div class="secgroup">What it names</div><ul class="h27-parts">' + g.items.map(function (it) {
+      return '<li class="mline"><span class="lvltag">' + v27Esc(it.name) + '</span><span>' + (it.named ? 'Named' : 'Not named') + '</span></li>';
+    }).join('') + '</ul>';
+  }
+  html += v27NotesHtml(g.notes)
+    + '<div class="secgroup">Your kept answer</div><div class="dispute">' + v27Esc(g.keptYou) + '</div>';
+  if (g.principle) html += '<div class="secgroup">The principle</div><div class="sub">' + v27Esc(g.principle) + '</div>';
+  html += '<div class="secgroup">What you said</div><div class="dispute">' + (v27Esc(st.said) || 'Nothing yet') + '</div>'
+    + '<div class="sarow" role="group" aria-label="What to do with this grade">';
+  html += st.recorded
+    ? '<span class="lvltag" role="status">Recorded</span>'
+    : '<button class="btn gold" type="button" id="hg-record">Record it</button>';
+  return html + '<button class="btn ghost" type="button" id="hg-again">Try again</button>'
+    + '<button class="btn ghost" type="button" id="hg-next2">Next guest</button></div>';
+}
+
+function v27GuestHtml() {
+  var h = v27Current();
+  var d = v27Grader();
+  var html = '<div class="v25page h27"><div class="viewhead"><h2>Guest at the table</h2>'
+    + '<div class="sub">' + v27Esc(v27HouseLine()) + '</div></div>';
+  var back = '<div class="sarow"><button class="btn ghost" type="button" id="hg-back">Back to Mine</button></div>';
+  if (!h) return html + '<div class="sub">' + V27_NO_HOUSE + '</div>' + back + '</div>';
+  if (!d) return html + '<div class="sub">' + V27_OLD_ENGINE + '</div>' + back + '</div>';
+  var st = v27GuestState();
+  var card = v27GuestCard();
+  if (!card) return html + '<div class="sub">' + V27_GUEST_NONE + '</div>' + back + '</div>';
+  html += '<p class="sub">The guest speaks; answer them aloud or type it, then Check. The guests who ask about the wine come first. '
+    + V27_NEVER_COUNTED + '</p>';
+  html += '<div class="sarow"><label class="lvltag" for="hg-pick" style="min-width:86px;display:inline-block">Guest</label>'
+    + '<select class="sainput" id="hg-pick">' + st.deck.map(function (x, i) {
+      return '<option value="' + v27Esc(x.id) + '"' + (i === st.idx % st.deck.length ? ' selected' : '') + '>' + v27Esc((i + 1) + '. ' + x.title) + '</option>';
+    }).join('') + '</select>'
+    + '<button class="btn ghost" type="button" id="hg-next">Next guest</button></div>';
+  html += '<div class="secgroup">' + v27Esc('Guest ' + ((st.idx % st.deck.length) + 1) + ' of ' + st.deck.length + ': ' + card.title) + '</div>'
+    + '<div class="lvltag">The guest says</div><div class="dispute">' + v27Esc(card.guest) + '</div>'
+    + '<label class="lvltag" for="hg-said">Your answer</label>'
+    + '<textarea class="sainput" id="hg-said" rows="4">' + v27Esc(st.said) + '</textarea>'
+    + '<div class="sub" id="hg-count" aria-live="polite">' + v27Plural(v27Words(st.said), 'word', 'words') + '</div>'
+    + v27SpeakHtml('hg-speak')
+    + '<div class="sarow"><button class="btn gold" type="button" id="hg-check">Check</button></div>';
+  if (st.grade) html += v27GuestResultHtml(st.grade, st);
+  html += v27KitchenHtml('');
+  return html + back + '</div>';
+}
+
+function v27WireGuest(box) {
+  var on = function (id, fn) { var b = box.querySelector('#' + id); if (b) b.onclick = fn; };
+  var field = box.querySelector('#hg-said');
+  var st = S._v27guest;
+  var count = function (text) {
+    if (st) st.said = text;
+    var c = box.querySelector('#hg-count');
+    if (c) c.textContent = v27Plural(v27Words(text), 'word', 'words');
+  };
+  if (field && typeof field.addEventListener === 'function') field.addEventListener('input', function () { count(field.value); });
+  var pick = box.querySelector('#hg-pick');
+  if (pick) pick.onchange = function () { if (v27GuestPick(pick.value)) render(); };
+  on('hg-next', function () { v27GuestMove(1); render(); });
+  on('hg-next2', function () { v27GuestMove(1); render(); });
+  on('hg-check', function () { v27GuestCheck(field ? field.value : ''); render(); });
+  on('hg-record', function () { v27GuestRecord(); render(); });
+  on('hg-again', function () { v27GuestAgain(); render(); });
+  on('hg-back', function () { v27StopListening(); S._v27guest = null; S.view = 'mine'; render(); });
+  v27WireSpeak(box, 'hg-speak', field, count);
+}
+
+function v27GuestView() {
+  if (typeof v25Build === 'function') return v25Build(v27GuestHtml(), v27WireGuest);
+  var box = document.createElement('div');
+  box.innerHTML = v27GuestHtml();
+  v27WireGuest(box);
+  return box;
+}
+
+/* Registered here as well as in the rows' block above, for a tree whose
+   codex25 registry arrived after it. */
+if (typeof V25_AREA !== 'undefined' && V25_AREA) { V25_AREA.housesay = 'mine'; V25_AREA.houseguest = 'mine'; }
+if (typeof V25_HUB !== 'undefined' && V25_HUB) { V25_HUB.housesay = 'mine'; V25_HUB.houseguest = 'mine'; }
+
 /* =========== the boot =========== */
 
 (function () {
   var api = v27Api();
   if (!api) return;
   V27_LAST = v27Sync();
+  /* the shipped pack, behind the wake; it never holds the boot */
+  V27_BOOT_PACK = v27AutoLoad();
   var key = api.HOUSE_INDEX_KEY || V27_INDEX_KEY;
   /* Another tab's write: the storage event on the house index runs the sync
      again. The engine listens to the same event and reloads its memory copy

@@ -19,7 +19,10 @@
    boot is ready for the house. window.OOT.houseLib carries every pure
    function and constant the modules export, so a wing and a Node check can
    call the normaliser, the validator, the merge, the sync, the pack reader
-   and the drills on their own.
+   and the drills on their own, the offline graders among them (gradeSaid
+   and gradeScenario, no model and no network). A wing hands the pack it
+   ships to OOT.house.ensurePack at boot: added when the device lacks it,
+   refreshed by a newer edition with every touch of a person kept.
 
    THE RULES TRAVEL WITH THE CODE. No allergen field exists on any shape and
    the normaliser drops any key the client would refuse, at every depth. A
@@ -3130,6 +3133,198 @@ async function importPack(storage, pack, choice, now, rand = Math.random) {
     }
     return { ok: true, added: house.id, current: becomesCurrent, problems: read.problems, said: house.name + ' added.' };
 }
+/** The most frequent of a list of stamps, the earlier on a tie; null for none. */
+function modeStamp(stamps) {
+    const seen = new Map();
+    for (const t of stamps)
+        if (Number.isFinite(t))
+            seen.set(t, (seen.get(t) || 0) + 1);
+    let best = null;
+    let count = 0;
+    for (const [t, n] of seen) {
+        if (n > count || (n === count && best !== null && t < best)) {
+            best = t;
+            count = n;
+        }
+    }
+    return best;
+}
+/** Every record of the ten lists, flat. */
+function editionRecords(house) {
+    const out = [];
+    for (const list of HOUSE_LISTS)
+        for (const r of house[list])
+            out.push(r);
+    return out;
+}
+/** The edition's mark stamp on a house: the most frequent ts over every mark on every record and the card's history. */
+function editionStamp(house) {
+    const stamps = [];
+    if (isMark(house.history))
+        stamps.push(house.history.ts);
+    for (const list of HOUSE_LISTS) {
+        const fields = MARK_FIELDS[list];
+        for (const r of house[list]) {
+            for (const f of fields) {
+                const m = r[f];
+                if (isMark(m))
+                    stamps.push(m.ts);
+            }
+        }
+    }
+    return modeStamp(stamps);
+}
+/** The edition's item stamp on a house: the most frequent ts over every record of the ten lists. */
+function editionItemStamp(house) {
+    return modeStamp(editionRecords(house).map((r) => r.ts));
+}
+/** When an edition was built, from its pack stamp; zero when it carries none or an unreadable one. */
+function editionBuiltAt(house) {
+    const t = house.pack ? Date.parse(house.pack.builtAt) : NaN;
+    return Number.isFinite(t) ? t : 0;
+}
+/**
+ * One record of the device copy refreshed by the shipped edition's twin.
+ * The plain fields come whole from the shipped record when the device
+ * record still carries the edition's item stamp, else the device's stand.
+ * Each mark: a device mark carrying any other stamp than the edition's was
+ * touched and stands (a mark of hers made on the device yields to a kept
+ * shipped one, by pickMark); otherwise the shipped mark takes the field, or
+ * the field goes when the new edition carries none. Kept notes union.
+ * Returns the record and whether a person's touch stood against a
+ * shipped value that differed.
+ */
+function refreshRecord(mine, theirs, marks, markStamp, itemStamp) {
+    const plainTouched = itemStamp === null || mine.ts !== itemStamp;
+    const out = plainTouched ? Object.assign({}, mine) : Object.assign(Object.assign({}, theirs), { id: mine.id });
+    let kept = false;
+    if (plainTouched) {
+        for (const k of Object.keys(theirs)) {
+            if (k === 'kept' || k === 'ts' || k === 'house' || marks.indexOf(k) >= 0)
+                continue;
+            if (!sameJson(mine[k], theirs[k]))
+                kept = true;
+        }
+    }
+    for (const f of marks) {
+        const m = isMark(mine[f]) ? mine[f] : undefined;
+        const t = isMark(theirs[f]) ? theirs[f] : undefined;
+        let pick;
+        if (m && (markStamp === null || m.ts !== markStamp)) {
+            pick = m.by === 'person' ? m : pickMark(m, t);
+            if (pick === m && t && !sameJson(m, t))
+                kept = true;
+        }
+        else
+            pick = t;
+        if (pick)
+            out[f] = pick;
+        else
+            delete out[f];
+    }
+    const notes = mergeKept(mine.kept, theirs.kept);
+    if (notes.length)
+        out.kept = notes;
+    else
+        delete out.kept;
+    return { rec: out, kept };
+}
+/**
+ * The device copy of a shipped house refreshed by a newer edition, by the
+ * edition rule, with nothing a person wrote, kept, edited or removed lost:
+ *
+ *   a record the shipped edition has and the device lacks is added, unless
+ *   a tombstone on the device is newer than the device copy's edition (a
+ *   person removed it; an older tombstone is lifted with the add);
+ *   a twin is refreshed by refreshRecord;
+ *   a record only the device holds stays (a person's own, or one the new
+ *   edition dropped, which a person may still be learning);
+ *   the card's history settles as a mark; the card's plain fields follow
+ *   the shipped edition, except the name, which a rename made the
+ *   person's and which the device keeps; sources union; each build step
+ *   keeps its latest stamp; tombstones union on the newer stamp;
+ *   the pack stamp becomes the shipped one; id, began and createdAt stay.
+ *
+ * Shipped records come first in the shipped order, then the device's own.
+ * Pure: the clock is the caller's, through the save.
+ */
+function refreshEdition(device, shipped) {
+    const counts = { added: 0, updated: 0, kept: 0 };
+    const markStamp = editionStamp(device);
+    const itemStamp = editionItemStamp(device);
+    const edition = Math.max(markStamp === null ? 0 : markStamp, itemStamp === null ? 0 : itemStamp, editionBuiltAt(device));
+    const removed = Object.assign({}, device.removed);
+    for (const id of Object.keys(shipped.removed)) {
+        const t = shipped.removed[id];
+        if (!(id in removed) || t > removed[id])
+            removed[id] = t;
+    }
+    const out = Object.assign({}, device);
+    for (const list of HOUSE_LISTS) {
+        const marks = MARK_FIELDS[list];
+        const mine = device[list];
+        const mineById = new Map();
+        for (const r of mine)
+            if (!mineById.has(r.id))
+                mineById.set(r.id, r);
+        const next = [];
+        const seen = new Set();
+        for (const raw of shipped[list]) {
+            if (seen.has(raw.id))
+                continue;
+            seen.add(raw.id);
+            const t = 'house' in raw ? Object.assign(Object.assign({}, raw), { house: device.id }) : raw;
+            const m = mineById.get(t.id);
+            if (!m) {
+                const tomb = device.removed[t.id];
+                if (typeof tomb === 'number' && tomb > edition)
+                    continue;
+                if (typeof tomb === 'number')
+                    delete removed[t.id];
+                next.push(t);
+                counts.added++;
+                continue;
+            }
+            const { rec, kept } = refreshRecord(m, t, marks, markStamp, itemStamp);
+            next.push(rec);
+            if (kept)
+                counts.kept++;
+            if (!sameJson(rec, m))
+                counts.updated++;
+        }
+        for (const m of mine) {
+            if (seen.has(m.id))
+                continue;
+            seen.add(m.id);
+            next.push(m);
+        }
+        out[list] = next;
+    }
+    for (const f of ['address', 'phone', 'site', 'meals', 'dressCode'])
+        out[f] = shipped[f];
+    out.menusReadOn = shipped.menusReadOn > device.menusReadOn ? shipped.menusReadOn : device.menusReadOn;
+    out.sources = mergeSources(shipped.sources, device.sources);
+    const hm = isMark(device.history) ? device.history : undefined;
+    const ht = isMark(shipped.history) ? shipped.history : undefined;
+    const history = hm && (markStamp === null || hm.ts !== markStamp) ? (hm.by === 'person' ? hm : pickMark(hm, ht)) : ht;
+    if (history)
+        out.history = history;
+    else
+        delete out.history;
+    const build = {};
+    for (const step of BUILD_STEPS) {
+        const a = device.build[step];
+        const b = shipped.build[step];
+        const best = a === undefined ? b : b === undefined ? a : Math.max(a, b);
+        if (best !== undefined)
+            build[step] = best;
+    }
+    out.build = build;
+    out.removed = removed;
+    if (shipped.pack)
+        out.pack = Object.assign({}, shipped.pack);
+    return { house: out, counts };
+}
 
 /* ==================== src/lib/house/house-drills.ts ==================== */
 /**
@@ -3161,6 +3356,11 @@ async function importPack(storage, pack, choice, now, rand = Math.random) {
  * for it (carry the kept mark it reads) AND the house can supply four
  * distinct options; otherwise the generator returns null and the screen
  * says what is still needed, from drillableCounts.
+ *
+ * SAID ALOUD, GRADED OFFLINE. gradeSaid and gradeScenario, at the foot of
+ * this file, grade what a person said (typed, or heard by the browser's own
+ * speech service) against what they KEPT, with no model and no network: the
+ * same words in, the same grade out, on every wing and with no key.
  *
  * NO QUESTION ANSWERS ITSELF. The stem of a question never carries its
  * answer: a kept line that names the dish, a wine named for its grape, a
@@ -3577,6 +3777,304 @@ function buildFlashcards(house) {
     }
     return out;
 }
+/** Coverage at or above this, within the cap, is met; at or above GRADE_CLOSE is close. */
+const GRADE_MET = 0.8;
+const GRADE_CLOSE = 0.5;
+/** The lengths as a trainer names their cap. */
+const CAP_NAMES = {
+    s10: 'ten second',
+    s20: 'twenty second',
+    s45: 'forty five second'
+};
+/**
+ * The words that carry nothing a guest needs: the short stop list, the few
+ * French, Italian and Spanish joining words a menu prints, and the filler a
+ * line uses around its content. Folded and stripped like every other word.
+ */
+const GRADE_STOP = new Set(('a an and or but nor the of in on at to for from by with without into onto over under than then so as is are was were be been being ' +
+    'it its this that these those there here we our ours you your yours i me my he she they them their his her ' +
+    'will would can could shall should may might must do does did have has had not no yes very just also too all any some ' +
+    'one two more most less much many little lot bit up out off about which who whom what when where how why ' +
+    'de la le les du des au aux et en di del della da y el los las ' +
+    'served serve serving made make comes come course dish plate house thing things way like well each per ' +
+    'main cook cooked cooking taste tastes tasting youd youll youre youve ive ill dont isnt wont cant').split(/\s+/).filter(Boolean));
+/** Folded: lower case, accents off, the curly apostrophe straight. */
+function gradeFold(s) {
+    return plainText(s)
+        .normalize('NFD')
+        .replace(/[\u0300-\u036F]/g, '')
+        .replace(/[\u2018\u2019\u02BC]/g, "'")
+        .toLowerCase();
+}
+/** The light suffix strip: one ending off a word of five letters or more, then a final e, so both sides meet. */
+function gradeStem(w) {
+    let t = w;
+    if (t.length >= 5) {
+        if (t.endsWith('ies'))
+            t = t.slice(0, -3) + 'y';
+        else if (t.endsWith('ing'))
+            t = t.slice(0, -3);
+        else if (t.endsWith('ed'))
+            t = t.slice(0, -2);
+        else if (t.endsWith('es'))
+            t = t.slice(0, -2);
+        else if (t.endsWith('ly'))
+            t = t.slice(0, -2);
+        else if (t.endsWith('s') && !t.endsWith('ss') && !t.endsWith('us'))
+            t = t.slice(0, -1);
+    }
+    if (t.length >= 4 && t.endsWith('e'))
+        t = t.slice(0, -1);
+    return t;
+}
+/** Every word of a text, folded, a possessive dropped, a hyphenated run split. */
+function gradeTokens(s) {
+    const found = gradeFold(s).match(/[a-z0-9']+/g) || [];
+    const out = [];
+    for (const raw of found) {
+        const w = raw.replace(/'s$/, '').replace(/'/g, '');
+        if (w)
+            out.push(w);
+    }
+    return out;
+}
+/** The content words of a text as stems, each once, in order: stop words and words under three letters left out. */
+function gradeTerms(s) {
+    const out = [];
+    for (const w of gradeTokens(s)) {
+        if (w.length < 3 && !/^[0-9]+$/.test(w))
+            continue;
+        if (GRADE_STOP.has(w))
+            continue;
+        const t = gradeStem(w);
+        if (t && !GRADE_STOP.has(t) && out.indexOf(t) < 0)
+            out.push(t);
+    }
+    return out;
+}
+/** Every word said, as a set of stems, stop words included (a name may carry one). */
+function saidStems(said) {
+    const out = new Set();
+    for (const w of gradeTokens(said))
+        out.add(gradeStem(w));
+    return out;
+}
+/** A share of the parts that carry terms, rounded to two places so a screen and a test read one number. */
+function shareOf(hit, of) {
+    return of ? Math.round((hit / of) * 100) / 100 : 0;
+}
+/**
+ * Whether a name was said: every content word of a name of one or two, and
+ * at least two words and half of a longer one, so the roast chicken names
+ * Lantern Roast Chicken and bananas foster names World Famous Bananas
+ * Foster, while one shared word (shrimp, eggs) names nothing.
+ */
+function nameWasSaid(name, said) {
+    const terms = gradeTerms(name);
+    if (!terms.length)
+        return false;
+    const hit = terms.filter((t) => said.has(t)).length;
+    return hit >= (terms.length <= 2 ? terms.length : Math.max(2, Math.ceil(terms.length / 2)));
+}
+const ONES = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+const TENS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+/** A whole number in words, the British way (one hundred and four), with no hyphen; digits beyond 9999. */
+function numberWords(n) {
+    const v = Math.floor(Math.abs(n));
+    if (v < 20)
+        return ONES[v];
+    if (v < 100)
+        return TENS[Math.floor(v / 10)] + (v % 10 ? ' ' + ONES[v % 10] : '');
+    if (v < 1000)
+        return ONES[Math.floor(v / 100)] + ' hundred' + (v % 100 ? ' and ' + numberWords(v % 100) : '');
+    if (v < 10000)
+        return numberWords(Math.floor(v / 1000)) + ' thousand' + (v % 1000 ? (v % 1000 < 100 ? ' and ' : ' ') + numberWords(v % 1000) : '');
+    return String(v);
+}
+function capitalFirst(s) {
+    return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+}
+/** A kept value as a trainer quotes it: its first clause, the closing stop off. */
+function firstClause(s) {
+    const t = plainText(s).split(/[.;:!?](?:\s|$)/)[0];
+    return plainText(t).replace(/[.,;:!?]+$/, '');
+}
+/** The note for a part that was missed, by its label: name the thing, or say how. */
+function partNote(label, value) {
+    const l = label.replace(/^the /, '');
+    const v = firstClause(value);
+    return /^(how|what)\b/.test(l) ? capitalFirst('say ' + l) + ': ' + v : 'Name the ' + l + ': ' + v;
+}
+/**
+ * A kept text as clauses: split at a stop, a semicolon, a colon or a comma,
+ * each clause with content words a part of its own, graded hit when at
+ * least a third of its words (and one at the least) were said.
+ */
+function clauseParts(text, said) {
+    const out = [];
+    for (const raw of plainText(text).split(/[.;:!?,](?:\s|$)/)) {
+        const clause = plainText(raw);
+        const terms = gradeTerms(clause);
+        if (!terms.length)
+            continue;
+        const matched = terms.filter((t) => said.has(t));
+        const hit = matched.length >= Math.max(1, Math.ceil(terms.length / 3));
+        out.push({ key: 'c' + (out.length + 1), label: clause, hit, terms, matched, inLine: true });
+    }
+    return out;
+}
+function verdictOf(coverage, over) {
+    if (coverage >= GRADE_MET && over <= 0)
+        return 'met';
+    if (coverage >= GRADE_CLOSE)
+        return 'close';
+    return 'missed';
+}
+function findItem(house, id) {
+    return itemsOf(house).find((i) => i.id === id);
+}
+/**
+ * What a person said against an item's kept line of one length. The parts
+ * are the item's KEPT five parts, each hit when any of its content words
+ * was said, and a part counts toward the coverage only when the kept line
+ * of this length carries it (a ten second line names three parts, not
+ * five, and saying your own kept line back always meets); with no kept
+ * parts, or none the line carries, the kept line's own clauses stand in. The
+ * verdict is met at a coverage of 0.8 within the cap, close at 0.5 (or met
+ * but over the cap), else missed. Null when the item is not on the house or
+ * carries no kept line of that length: her unkept line never grades.
+ */
+function gradeSaid(house, itemId, length, said) {
+    const item = findItem(house, plainText(itemId));
+    if (!item || !(length in LINE_CAPS))
+        return null;
+    const lines = keptValue(item.lines);
+    const keptLine = lines ? plainText(lines[length]) : '';
+    if (!keptLine)
+        return null;
+    const text = plainText(said);
+    const cap = LINE_CAPS[length];
+    const words = wordCount(text);
+    const over = Math.max(0, words - cap);
+    const stems = saidStems(text);
+    const name = nameOf(item);
+    const labels = partLabels(item.kind);
+    const keptParts = keptValue(item.parts);
+    const lineStems = saidStems(keptLine);
+    let parts = [];
+    if (keptParts) {
+        for (const key of KEYS.FormulaParts) {
+            const value = plainText(keptParts[key]);
+            const terms = gradeTerms(value);
+            const matched = terms.filter((t) => stems.has(t));
+            const inLine = terms.some((t) => lineStems.has(t));
+            parts.push({ key, label: labels[key], hit: matched.length > 0, terms, matched, inLine });
+        }
+    }
+    const fromParts = parts.some((p) => p.terms.length > 0 && p.inLine);
+    if (!fromParts)
+        parts = clauseParts(keptLine, stems);
+    const graded = parts.filter((p) => p.terms.length > 0 && p.inLine);
+    const coverage = shareOf(graded.filter((p) => p.hit).length, graded.length);
+    const nameSaid = nameWasSaid(name, stems);
+    const verdict = words ? verdictOf(coverage, over) : 'missed';
+    const notes = [];
+    if (!words)
+        notes.push('Nothing was said yet. Say the line aloud, or type it, then grade it.');
+    else {
+        for (const p of graded) {
+            if (p.hit)
+                continue;
+            if (fromParts && keptParts)
+                notes.push(partNote(p.label, keptParts[p.key]));
+            else
+                notes.push('You left out: ' + firstClause(p.label));
+        }
+        if (over > 0)
+            notes.push(capitalFirst(numberWords(over)) + (over === 1 ? ' word' : ' words') + ' over the ' + CAP_NAMES[length] + ' cap.');
+        if (!nameSaid && name)
+            notes.push('Say the name: ' + name + '.');
+        if (verdict !== 'met' && over === 0 && words * 2 < cap)
+            notes.push('There is room for more: the cap is ' + numberWords(cap) + ' words and you used ' + numberWords(words) + '.');
+        if (verdict === 'met')
+            notes.push(fromParts ? 'Every part is there, within the cap.' : 'Every clause is there, within the cap.');
+    }
+    return { itemId: item.id, kind: item.kind, name, length, cap, words, over, keptLine, parts, nameSaid, coverage, verdict, notes };
+}
+/**
+ * What a person said to a scenario's guest against the KEPT answer, clause
+ * by clause, with the house items the answer names and the ones said. The
+ * same verdict rule with no cap. Null when the scenario is not on the house
+ * or carries no kept answer.
+ */
+function gradeScenario(house, scenarioId, said) {
+    const sc = house.scenarios.find((s) => s.id === plainText(scenarioId));
+    if (!sc)
+        return null;
+    const keptYou = keptText(sc.you);
+    if (!keptYou)
+        return null;
+    const text = plainText(said);
+    const words = wordCount(text);
+    const stems = saidStems(text);
+    const terms = gradeTerms(keptYou);
+    const matched = terms.filter((t) => stems.has(t));
+    const clauses = clauseParts(keptYou, stems);
+    const coverage = shareOf(clauses.filter((c) => c.hit).length, clauses.length);
+    const youStems = saidStems(keptYou);
+    const byId = itemById(house);
+    const items = [];
+    for (const id of Array.isArray(sc.itemIds) ? sc.itemIds : []) {
+        const item = byId.get(plainText(id));
+        const name = nameOf(item);
+        if (item && name)
+            items.push({ id: item.id, name, named: nameWasSaid(name, stems) });
+    }
+    const itemsNamed = distinctText(itemsOf(house).map(nameOf).filter((n) => n && nameWasSaid(n, stems)));
+    const verdict = words ? verdictOf(coverage, 0) : 'missed';
+    const principle = keptText(sc.principle);
+    const notes = [];
+    if (!words)
+        notes.push('Nothing was said yet. Answer the guest aloud, or type it, then grade it.');
+    else {
+        for (const c of clauses)
+            if (!c.hit)
+                notes.push('You left out: ' + c.label);
+        for (const it of items)
+            if (!it.named && nameWasSaid(it.name, youStems))
+                notes.push('Name the ' + it.name + '.');
+        if (verdict !== 'met' && principle)
+            notes.push('The principle: ' + principle);
+        if (verdict === 'met')
+            notes.push('That answers the guest the way you kept it.');
+    }
+    return { scenarioId: sc.id, title: plainText(sc.title), guest: plainText(sc.guest), keptYou, principle, words, terms, matched, clauses, items, itemsNamed, coverage, verdict, notes };
+}
+/** The items that can be said back, of one kind or all, in the house's order: a kept lines mark with at least one line. */
+function sayable(house, kind) {
+    const out = [];
+    for (const item of itemsOf(house)) {
+        if (kind && item.kind !== kind)
+            continue;
+        const name = nameOf(item);
+        const lines = keptValue(item.lines);
+        if (!name || !lines)
+            continue;
+        const lengths = KEYS.Lines.filter((k) => plainText(lines[k]));
+        if (lengths.length)
+            out.push({ id: item.id, kind: item.kind, name, section: plainText(item.section), lengths });
+    }
+    return out;
+}
+/** The scenarios that can be played: a kept answer to grade against. */
+function roleable(house) {
+    const out = [];
+    for (const sc of house.scenarios) {
+        if (keptText(sc.you))
+            out.push({ id: sc.id, title: plainText(sc.title), guest: plainText(sc.guest) });
+    }
+    return out;
+}
 
 /* ==================== src/lib/house/house-api.ts ==================== */
 /**
@@ -3632,6 +4130,14 @@ function buildFlashcards(house) {
  * sync re-keys such a row before it enters (its rule 7), and an item that
  * still carries one is dropped without a tombstone rather than written as
  * a key that would make the record unsendable and the pack unimportable.
+ *
+ * THE SHIPPED PACK AT BOOT. ensurePack is the one door every wing calls
+ * with the text of the pack it ships: a house the device lacks is added
+ * (current when the device has none, or its current house is an empty hand
+ * house, or the caller asks); a newer edition refreshes the copy on the
+ * device by the edition rule in house-pack.ts, so whatever a person kept,
+ * edited or removed stands; the same or an older edition writes nothing.
+ * A refresh never moves the current pointer.
  *
  * ON THE DEVICE means deviceIds (house-store.ts), the index's houses and
  * any record the index does not list, wherever this file walks the device.
@@ -4133,6 +4639,70 @@ function createHouseApi(storage, opts = {}) {
             }
             return result;
         },
+        ensurePack: async (text, ensureOpts = {}) => {
+            await ready();
+            const read = readPack(text, { rand });
+            if (!read.ok)
+                return { action: 'refused', said: read.said };
+            const shipped = read.house;
+            const id = shipped.id;
+            const onDevice = new Set(await deviceIds(storage));
+            if (!onDevice.has(id)) {
+                /* The current house before the add: none, or a hand house with
+                   nothing in it, gives way to the pack, as does a caller's ask. */
+                const before = currentId(storage);
+                const was = before ? (house && house.id === before ? house : await loadHouse(storage, before)) : null;
+                const giveWay = !before || !was || (was.began === 'hand' && countItems(was) === 0) || !!ensureOpts.makeCurrent;
+                const result = await importPack(storage, text, { mode: 'new' }, now(), rand);
+                if (!result.ok)
+                    return { action: 'refused', said: result.said };
+                let current = result.current;
+                if (!current && giveWay) {
+                    try {
+                        switchTo(storage, result.added);
+                        current = true;
+                    }
+                    catch (_a) {
+                        current = false;
+                    }
+                }
+                await reload();
+                fire('import');
+                return { action: 'added', id: result.added, current };
+            }
+            const stored = house && house.id === id ? house : await loadHouse(storage, id);
+            if (!stored)
+                return { action: 'refused', said: 'The house this pack refreshes could not be read from this device.' };
+            if (!(editionBuiltAt(shipped) > editionBuiltAt(stored)))
+                return { action: 'current', id };
+            let counts = { added: 0, updated: 0, kept: 0 };
+            if (house && house.id === id) {
+                /* The current house: through the one write door, so a tab's own
+                   writes in flight land beside the refresh, never under it. */
+                const { saved, out } = await commit((base) => {
+                    if (!(editionBuiltAt(shipped) > editionBuiltAt(base)))
+                        return { next: base, out: null };
+                    const res = refreshEdition(base, shipped);
+                    return { next: res.house, out: res.counts };
+                }, 'import');
+                if (saved && !saved.ok)
+                    return { action: 'refused', said: saved.said };
+                if (!out)
+                    return { action: 'current', id };
+                counts = out;
+            }
+            else {
+                /* Another house on the device: saved on its own record, the current
+                   house and the pointer left exactly as they were. */
+                const res = refreshEdition(stored, shipped);
+                const saved = await saveHouse(storage, res.house, now());
+                if (!saved.ok)
+                    return { action: 'refused', said: saved.said };
+                counts = res.counts;
+                fire('import');
+            }
+            return { action: 'refreshed', id, counts };
+        },
         buildPack: (from) => {
             if (!house)
                 return null;
@@ -4205,10 +4775,19 @@ var ootHouseLib = {
 	mergeSaid: mergeSaid,
 	countItems: countItems,
 	restampHouse: restampHouse,
+	refreshEdition: refreshEdition,
+	editionStamp: editionStamp,
+	editionItemStamp: editionItemStamp,
+	editionBuiltAt: editionBuiltAt,
 	dealQuestion: dealQuestion,
 	drillableCounts: drillableCounts,
 	readyKinds: readyKinds,
 	buildFlashcards: buildFlashcards,
+	gradeSaid: gradeSaid,
+	gradeScenario: gradeScenario,
+	sayable: sayable,
+	roleable: roleable,
+	numberWords: numberWords,
 	mintId: mintId,
 	emptyHouse: emptyHouse,
 	isMark: isMark,
@@ -4243,13 +4822,21 @@ var ootHouseLib = {
 		wineGoesWith: wineGoesWith,
 		cocktailGlass: cocktailGlass,
 		cocktailSpec: cocktailSpec,
+		gradeSaid: gradeSaid,
+		gradeScenario: gradeScenario,
+		sayable: sayable,
+		roleable: roleable,
+		numberWords: numberWords,
 		DRILL_KINDS: DRILL_KINDS,
 		DRILL_LABELS: DRILL_LABELS,
 		DRILL_FLOORS: DRILL_FLOORS,
 		DRILL_FLOOR: DRILL_FLOOR,
 		OPTION_COUNT: OPTION_COUNT,
 		LINE_LABELS: LINE_LABELS,
-		FLASHCARD_KINDS: FLASHCARD_KINDS
+		FLASHCARD_KINDS: FLASHCARD_KINDS,
+		GRADE_MET: GRADE_MET,
+		GRADE_CLOSE: GRADE_CLOSE,
+		CAP_NAMES: CAP_NAMES
 	},
 	constants: {
 		HOUSE_FORMAT: HOUSE_FORMAT,

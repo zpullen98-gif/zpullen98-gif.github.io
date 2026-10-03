@@ -67,7 +67,12 @@ function houseBlankState(){
   return { panel:'', name:'', renameTo:'', address:'', err:'', live:'', pending:null, added:null, busy:false,
     /* the formula pane's one open editor, the service note being typed, the
        picker's choice, the review door's step and the pane's last sentence */
-    edit:null, note:null, pick:'', step:'formula', said:'' };
+    edit:null, note:null, pick:'', step:'formula', said:'',
+    /* Say it back and Guest at the table: which is open, each one's item,
+       box and grade, and the speech service's state */
+    drill:'', drillJump:false, listening:'', speech:'',
+    say:{ id:'', length:'s20', text:'', grade:null, recorded:false },
+    role:{ kind:'', id:'', text:'', grade:null, recorded:false } };
 }
 if(typeof state !== 'undefined' && state && !state.house) state.house = houseBlankState();
 
@@ -330,7 +335,7 @@ function houseDrillPanelHTML(){
   const pair = housePairReady();
   const btn = function(act, label, mode){ return '<button class="btn btn-ghost" data-act="' + act + '"' + (mode ? ' data-mode="' + mode + '"' : '') + '>' + esc(label) + '</button>'; };
   const cards = open.map(function(m){ return btn('house-fc', m.label + ' (' + m.n + ')', m.mode); }).join('');
-  const pairBtn = pair.length ? btn('house-pair', 'Pair the menu') : '';
+  const pairBtn = (pair.length ? btn('house-pair', 'Pair the menu') : '') + (typeof houseDrillDoorsHTML === 'function' ? houseDrillDoorsHTML() : '');
   const why = [];
   if(!open.length) why.push('Nothing kept yet: keep a line, the five parts or an offer on a drink\'s formula pane and its cards open here.');
   const up = houseUpsellWhy(); if(up) why.push(up);
@@ -546,6 +551,98 @@ function houseProjectNow(api){
   });
 }
 
+/* ---- the shipped pack, loaded at boot ------------------------------------
+   DEFAULT_PACK names the one pack this site ships, by its same-origin path;
+   an empty string turns the whole auto-load off, which is how another
+   person's copy of the site goes without it. At boot, after the wake, the
+   pack is fetched (cache 'no-cache', so a new edition is seen, and only
+   when the browser says it is online), handed to OOT.house.ensurePack, and
+   the list brought into step through the doors, inside houseOneAtATime so
+   it never runs beside a wake or a projection. Offline, a refused fetch, a
+   refused pack: nothing at all, quietly, and the boot never waits on it.
+   The house the device already holds stays whatever happens here.
+
+   ensurePack adds the house when the device lacks it (current when the
+   device had none, or only an empty hand house), refreshes the copy by the
+   edition rule when the shipped edition is newer (whatever a person kept,
+   edited or removed stands), and writes nothing when the copy is current.
+   So a second boot over the same pack writes nothing anywhere. */
+var DEFAULT_PACK = '../shared/packs/brennans-new-orleans.v1.oothouse.json';
+function housePlural(n, one, many){ return n + ' ' + (n === 1 ? one : (many || one + 's')); }
+function houseAutoLoad(){
+  const api = houseHere();
+  if(!api || !DEFAULT_PACK || typeof api.ensurePack !== 'function' || typeof fetch !== 'function') return Promise.resolve(null);
+  if(typeof navigator !== 'undefined' && navigator && navigator.onLine === false) return Promise.resolve(null);
+  let pending;
+  try{ pending = fetch(DEFAULT_PACK, { cache: 'no-cache' }); }catch(e){ return Promise.resolve(null); }
+  return Promise.resolve(pending).then(function(res){
+    return res && res.ok && typeof res.text === 'function' ? res.text() : null;
+  }, function(){ return null; }).then(function(text){
+    if(typeof text !== 'string' || !text) return null;
+    houseAttach();
+    return houseOneAtATime(function(){
+      return houseKeepLoose(api).then(function(clear){
+        if(!clear) return null;
+        return api.ensurePack(text);
+      }).then(function(res){
+        if(!res) return null;
+        if(res.action === 'added' && res.current){
+          /* a list holding rows of no house (typed in before any house was
+             on the device) is adopted by the wake rather than replaced, so
+             nothing typed here leaves the list; an empty list, or one of
+             house rows, takes the new house's rows whole */
+          return houseProjectNow(api).then(function(){ return res; });
+        }
+        if(res.action === 'refreshed') return houseSyncInNow(api).then(function(){ return res; });
+        return res;
+      });
+    });
+  }).then(function(res){ houseAutoLoadSaid(api, res); return res; }).catch(function(){ return null; });
+}
+/* Drinks typed in before any house was on the device are the person's own
+   and never the shipped house's: filed into it, a later pack export or a
+   merge on another device would carry them as that house's drinks. So when
+   the list holds rows of no house and no house is current, those rows are
+   kept under a hand house of their own first (the first house on a device
+   is current, and the wake files the rows into it); ensurePack then finds
+   a current house with drinks in it, adds the shipped house without
+   switching to it, and the house line offers 'Open it now?'. If that hand
+   house cannot be written, the auto-load stands aside this boot rather
+   than let the shipped house take the list. Resolves true when the
+   auto-load may go on. */
+var HOUSE_LOOSE_NAME = 'My drinks';
+function houseKeepLoose(api){
+  return api.ready().then(function(){
+    const loose = (progress.bar || []).some(function(b){ return !barText(b.house); });
+    if(!loose || api.current()) return true;
+    return api.mintHouse(HOUSE_LOOSE_NAME, 'hand').then(function(made){
+      if(!made || api.currentId() !== made.id) return false;
+      return houseSyncInNow(api).then(function(){
+        return !(progress.bar || []).some(function(b){ return !barText(b.house); });
+      });
+    });
+  }).catch(function(){ return false; });
+}
+/* the one quiet line on the house line, once, and only when something
+   happened: a house added, or an edition brought in */
+function houseAutoLoadSaid(api, res){
+  const h = state.house;
+  if(!res || !h) return;
+  const named = function(id){ const s = api.list().find(function(x){ return x.id === id; }); return s ? s.name : 'The house'; };
+  if(res.action === 'added' && res.current){
+    const cur = api.current();
+    if(!cur) return;
+    houseSaid(cur.name + ' is loaded: ' + housePlural((cur.dishes || []).length, 'dish', 'dishes') + ', '
+      + housePlural((cur.cocktails || []).length, 'drink') + ', ' + housePlural((cur.wines || []).length, 'wine') + '.');
+  } else if(res.action === 'added'){
+    h.added = { id: res.id, name: named(res.id) };
+    houseSaid(h.added.name + ' added. Open it now?');
+  } else if(res.action === 'refreshed'){
+    const c = res.counts || {};
+    houseSaid(named(res.id) + ' updated: ' + (Number(c.added) || 0) + ' new.');
+  }
+}
+
 /* ---- one record into the House, after the Ledger's own save ------------- */
 /* the last put's promise, so a check can wait for the House's side */
 var houseLastPut = null;
@@ -645,7 +742,8 @@ function houseLineHTML(){
     + chip('house-panel', 'Import a pack', 'import')
     + chip('house-export', 'Export', null, !cur)
     + chip('house-panel', 'Rename', 'rename', !cur)
-    + houseDoorsHTML(h, cur, busy);
+    + houseDoorsHTML(h, cur, busy)
+    + (cur ? houseDrillChipsHTML(h, busy) : '');
   let panel = '';
   if(h.panel === 'switch'){
     panel = '<label class="tiny dim" for="house-switch">Open another house on this device</label>'
@@ -689,7 +787,22 @@ function houseLineHTML(){
     + (h.err ? '<div class="small" style="color:var(--oxblood-text)">' + esc(h.err) + '</div>' : '')
     + (h.live ? '<div class="tiny dim">' + esc(h.live) + '</div>' : '')
     + (api.volatile ? '<div class="tiny dim lh">This browser offers no database, so the house lives only as long as the page. Export a pack before you leave.</div>' : '')
-    + '</section>';
+    + '</section>'
+    + (typeof houseDrillHTML === 'function' ? houseDrillHTML() : '');
+}
+/* Say it back and Guest at the table beside the house line, as chips that
+   open the screen under it; only where the graders are here and the house
+   has something kept to say or answer */
+function houseDrillChipsHTML(h, busy){
+  if(typeof houseDrillsLib !== 'function' || !houseDrillsLib()) return '';
+  const st = houseDrillState();
+  const one = function(mode, label, n){
+    if(!n) return '';
+    const open = st.drill === mode;
+    return '<button class="chip' + (open ? ' on' : '') + '" data-act="hd-open" data-mode="' + mode + '" aria-expanded="' + (open ? 'true' : 'false') + '"'
+      + (busy ? ' disabled' : '') + ' style="min-height:44px">' + label + '</button>';
+  };
+  return one('say', 'Say it back', houseSayItems().length) + one('role', 'Guest at the table', houseRoleDeck().length);
 }
 
 /* ---- the acts --------------------------------------------------------- */
@@ -1110,6 +1223,12 @@ function menuFormulaHTML(b){
 function houseOnInput(e){
   const t = e && e.target;
   const id = t && typeof t.id === 'string' ? t.id : '';
+  if(id === 'hs-said' || id === 'hr-said'){
+    const h = state.house;
+    const outS = document.getElementById(id === 'hs-said' ? 'hs-count' : 'hr-count');
+    if(outS && h) outS.textContent = id === 'hs-said' ? houseSayCountText(t.value || '', h.say ? h.say.length : 's20') : houseRoleCountText(t.value || '');
+    return;
+  }
   if(id.indexOf('hf-line-') !== 0) return;
   const key = id.slice(8);
   const out = document.getElementById('hf-count-' + key);
@@ -1348,4 +1467,423 @@ function housePackPanelHTML(){
     + '<div class="small dim lh">' + esc(cur.name) + ', with its ' + n + ' drink' + (n === 1 ? '' : 's') + ' and everything kept on them, as one pack file another device or another wing can import.</div>'
     + '<div class="row"><button class="btn btn-ghost" data-act="house-export">Export the house as a pack</button></div>'
     + '</div>';
+}
+
+/* ======================================================================
+   SAY IT BACK AND GUEST AT THE TABLE, OFFLINE, NO KEY.
+
+   Say it back: a drink of the house with a kept timed line, chosen from a
+   list by section or dealt at random by Next; a length (ten, twenty or
+   forty five seconds, only the ones kept on that drink); a box for what
+   was said, typed or heard by the browser's own speech service where it
+   offers one; a live word count against the cap. Check grades it through
+   the engine's own grader, OOT.houseLib.drills.gradeSaid, with no model
+   and no network, and shows the verdict as a word, every part as hit or
+   missed under its label, the grader's notes, and the kept line beside
+   what was said.
+
+   Guest at the table: a kept scenario dealt at random (what the guest
+   says, and the answer box), and the mix-ups as which is which asks, the
+   guest asking what tells the two apart; Check grades through
+   OOT.houseLib.drills.gradeScenario and shows the kept answer and the
+   principle. A mix-up is graded by the same grader over a copy of the
+   house holding one scenario made from it, so its kept difference is the
+   answer and its kept ask the principle; nothing of it is saved.
+
+   Nothing is recorded until Record it is pressed, and then only to
+   progress.house.say or progress.house.role, each entry { ts, id, kind,
+   length (Say it back only), verdict, coverage }, a list capped at a
+   thousand and named in both branches of dataImport. Neither counts toward
+   a level, a card or a test: nothing here touches progress.levels,
+   progress.qa or progress.cards. Only kept marks (by === 'person') are
+   dealt or graded, because the engine's sayable, roleable and graders read
+   kept marks alone. Nothing here shows or grades a service note, and
+   nothing here says what a guest may safely eat: that is the kitchen's
+   word, confirmed at lineup, and the screen says so in one fixed line.
+
+   The boxes (hs-said, hr-said) are in captureLiveInputs; every act below
+   reads them first, and writes state back into them before it repaints,
+   because the repaint captures again. The list (hs-item) is a select, heard
+   on change in render, like the house switch. */
+
+var HOUSE_SAY_CAP = 1000;
+var HOUSE_VERDICT_WORDS = { met: 'Met', close: 'Close', missed: 'Missed' };
+var HOUSE_SPEECH_SENTENCE = 'Your voice goes to your browser\'s speech service, not to Anthropic.';
+var HOUSE_TALL = ' style="min-height:44px"';
+var HOUSE_DRILL_KITCHEN = 'Allergens are the kitchen\'s: confirm at lineup.';
+
+function houseDrillsLib(){
+  const lib = houseLibHere();
+  const d = lib && lib.drills;
+  return d && typeof d.gradeSaid === 'function' && typeof d.gradeScenario === 'function' && typeof d.sayable === 'function' && typeof d.roleable === 'function' ? d : null;
+}
+function houseDrillState(){
+  const h = state.house || (state.house = houseBlankState());
+  if(!h.say) h.say = { id: '', length: 's20', text: '', grade: null, recorded: false };
+  if(!h.role) h.role = { kind: '', id: '', text: '', grade: null, recorded: false };
+  if(h.drill === undefined) h.drill = '';
+  return h;
+}
+/* the current house's drinks with a kept line, in the house's order */
+function houseSayItems(){
+  const d = houseDrillsLib(); const api = houseHere();
+  const cur = api ? api.current() : null;
+  return d && cur ? d.sayable(cur, 'cocktail') : [];
+}
+/* the mix-ups a guest can ask about: a kept difference and two named items */
+function houseMixUpsKept(cur){
+  if(!cur) return [];
+  const byId = {};
+  ['dishes', 'wines', 'cocktails'].forEach(function(l){ (cur[l] || []).forEach(function(it){ if(it && it.id) byId[it.id] = it; }); });
+  return (cur.mixUps || []).filter(function(m){
+    const dm = m && m.difference;
+    return dm && dm.by === 'person' && typeof dm.value === 'string' && dm.value.trim()
+      && byId[m.aId] && byId[m.bId] && byId[m.aId].name && byId[m.bId].name;
+  }).map(function(m){
+    const a = byId[m.aId].name, b = byId[m.bId].name;
+    const ask = m.ask && m.ask.by === 'person' && typeof m.ask.value === 'string' ? m.ask.value.trim() : '';
+    return { kind: 'mixup', id: m.id, title: 'Which is which: ' + a + ' or ' + b,
+      guest: 'What is the difference between the ' + a + ' and the ' + b + '?', ask: ask, aId: m.aId, bId: m.bId, difference: m.difference.value.trim() };
+  });
+}
+/* What the Ledger's deck leaves out. A guest's allergy or diet is the
+   kitchen's word, confirmed at lineup, so no scenario or mix-up that turns
+   on one is dealt or graded here: anything whose title, guest, kept answer
+   or principle carries an allergy or diet word stays off the deck. The
+   Ledger names nobody, so anything about a person (a founder, a dish named
+   for someone) stays off too. And this is the drinks wing: only what turns
+   on at least one of the house's drinks is dealt. */
+var HOUSE_DECK_KITCHEN_WORDS = /allerg|shellfish|crustacean|gluten|wheat|coeliac|celiac|tree nut|\bnuts?\b|peanut|vegan|vegetarian|dairy|lactose|\begg allerg|soy|sesame|kosher|halal|pregnan|diet/i;
+var HOUSE_DECK_PERSON_WORDS = /\bfound(?:ed|er|ers|ing)\b|\bnamed (?:for|after)\b|\bBrennan\b(?!['\u2019]s)|\b(?:Mr|Mrs|Ms|Miss|Chef)\.? [A-Z]/;
+function houseDeckClean(texts){
+  const t = texts.filter(function(x){ return typeof x === 'string'; }).join(' ');
+  return !HOUSE_DECK_KITCHEN_WORDS.test(t) && !HOUSE_DECK_PERSON_WORDS.test(t);
+}
+function houseMarkText(m){ return m && typeof m.value === 'string' ? m.value : ''; }
+/* everything a guest can put to you: the kept scenarios, then the mix-ups,
+   each about a drink and clear of the kitchen's word and of any person */
+function houseRoleDeck(){
+  const d = houseDrillsLib(); const api = houseHere();
+  const cur = api ? api.current() : null;
+  if(!d || !cur) return [];
+  const drinks = {};
+  (cur.cocktails || []).forEach(function(c){ if(c && c.id) drinks[c.id] = true; });
+  const byId = {};
+  (cur.scenarios || []).forEach(function(s){ if(s && s.id) byId[s.id] = s; });
+  const scenarios = d.roleable(cur).filter(function(r){
+    const s = byId[r.id];
+    if(!s || !(s.itemIds || []).some(function(i){ return drinks[i]; })) return false;
+    return houseDeckClean([r.title, r.guest, s.title, s.guest, houseMarkText(s.you), houseMarkText(s.principle)]);
+  }).map(function(s){ return { kind: 'scenario', id: s.id, title: s.title, guest: s.guest }; });
+  const mixUps = houseMixUpsKept(cur).filter(function(m){
+    return (drinks[m.aId] || drinks[m.bId]) && houseDeckClean([m.title, m.guest, m.difference, m.ask]);
+  });
+  return scenarios.concat(mixUps);
+}
+/* a mix-up graded as a scenario: a copy of the house with that one scenario */
+function houseGradeRole(entry, said){
+  const d = houseDrillsLib(); const api = houseHere();
+  const cur = api ? api.current() : null;
+  if(!d || !cur || !entry) return null;
+  if(entry.kind === 'scenario') return d.gradeScenario(cur, entry.id, said);
+  const mix = houseMixUpsKept(cur).find(function(m){ return m.id === entry.id; });
+  if(!mix) return null;
+  const stamp = Date.now();
+  const sc = { id: 's-' + String(mix.id).replace(/^m-/, ''), title: mix.title, guest: mix.guest, itemIds: [mix.aId, mix.bId], ts: stamp,
+    you: { value: mix.difference, by: 'person', ts: stamp } };
+  if(mix.ask) sc.principle = { value: 'Then ask the guest: ' + mix.ask, by: 'person', ts: stamp };
+  const copy = Object.assign({}, cur, { scenarios: [sc] });
+  const g = d.gradeScenario(copy, sc.id, said);
+  if(g) g.scenarioId = mix.id;
+  return g;
+}
+
+/* the door from the Menu tab and from Mine: the screen opens on Mine */
+function houseDrillOpen(mode){
+  const h = houseDrillState();
+  if(mode !== 'say' && mode !== 'role') return false;
+  h.drill = h.drill === mode && state.tab === 'mine' ? '' : mode;
+  h.drillJump = !!h.drill;
+  state.tab = 'mine';
+  if(h.drill === 'say'){
+    const items = houseSayItems();
+    if(!items.some(function(i){ return i.id === h.say.id; })) houseSayChoose(items.length ? items[Math.floor(Math.random() * items.length)].id : '');
+  }
+  if(h.drill === 'role' && !houseRoleDeck().some(function(e){ return e.kind === h.role.kind && e.id === h.role.id; })) houseRoleDeal();
+  return true;
+}
+function houseSayChoose(id){
+  const h = houseDrillState();
+  const item = houseSayItems().find(function(i){ return i.id === id; });
+  h.say.id = item ? item.id : '';
+  if(item && item.lengths.indexOf(h.say.length) < 0) h.say.length = item.lengths.indexOf('s20') >= 0 ? 's20' : item.lengths[0];
+  h.say.text = ''; h.say.grade = null; h.say.recorded = false;
+}
+function houseSayNext(){
+  const items = houseSayItems();
+  const h = houseDrillState();
+  if(!items.length){ houseSayChoose(''); return; }
+  const others = items.length > 1 ? items.filter(function(i){ return i.id !== h.say.id; }) : items;
+  houseSayChoose(others[Math.floor(Math.random() * others.length)].id);
+}
+function houseRoleDeal(){
+  const h = houseDrillState();
+  const deck = houseRoleDeck();
+  const others = deck.length > 1 ? deck.filter(function(e){ return !(e.kind === h.role.kind && e.id === h.role.id); }) : deck;
+  const pick = others.length ? others[Math.floor(Math.random() * others.length)] : null;
+  h.role = { kind: pick ? pick.kind : '', id: pick ? pick.id : '', text: '', grade: null, recorded: false };
+}
+/* state into the boxes, so the repaint's capture reads what state holds */
+function houseDrillBoxesOut(){
+  if(typeof document === 'undefined' || !document || typeof document.getElementById !== 'function') return;
+  const h = state.house;
+  const put = function(id, v){ const el = document.getElementById(id); if(el && el.value !== undefined) el.value = v; };
+  if(h && h.say) put('hs-said', h.say.text);
+  if(h && h.role) put('hr-said', h.role.text);
+}
+function houseRecordPush(list, entry){
+  if(!progress.house || typeof progress.house !== 'object') progress.house = { say: [], role: [] };
+  if(!Array.isArray(progress.house[list])) progress.house[list] = [];
+  progress.house[list].push(entry);
+  if(progress.house[list].length > HOUSE_SAY_CAP) progress.house[list] = progress.house[list].slice(progress.house[list].length - HOUSE_SAY_CAP);
+  saveProgress();
+}
+
+/* ---- speech, only where the browser offers it ---------------------------- */
+function houseSpeechCtor(){
+  if(typeof window === 'undefined' || !window) return null;
+  return window.SpeechRecognition || window.webkitSpeechRecognition || null;
+}
+var houseListener = null;
+function houseSpeak(which){
+  const Ctor = houseSpeechCtor();
+  const h = houseDrillState();
+  if(!Ctor) return false;
+  if(houseListener){ try{ houseListener.stop(); }catch(e){} return true; }
+  const slot = which === 'role' ? h.role : h.say;
+  let rec;
+  try{ rec = new Ctor(); }catch(e){ h.speech = 'This browser would not start listening.'; houseRepaint(); return false; }
+  rec.interimResults = false;
+  rec.continuous = false;
+  try{ rec.lang = (typeof navigator !== 'undefined' && navigator && navigator.language) || 'en-US'; }catch(e){}
+  rec.onresult = function(e){
+    let heard = '';
+    const res = e && e.results ? e.results : [];
+    for(let i = 0; i < res.length; i++){ if(res[i] && res[i][0] && res[i][0].transcript) heard += (heard ? ' ' : '') + res[i][0].transcript; }
+    if(heard){ slot.text = (slot.text ? slot.text.replace(/\s+$/, '') + ' ' : '') + heard.trim(); slot.grade = null; slot.recorded = false; }
+  };
+  rec.onerror = function(){ h.speech = 'Nothing was heard. Try again, or type it.'; };
+  rec.onend = function(){ houseListener = null; h.listening = ''; houseDrillBoxesOut(); houseRepaint(); };
+  h.speech = ''; h.listening = which;
+  houseListener = rec;
+  try{ rec.start(); }catch(e){ houseListener = null; h.listening = ''; h.speech = 'This browser would not start listening.'; }
+  houseRepaint();
+  return true;
+}
+function houseSpeakHTML(which){
+  const h = houseDrillState();
+  if(!houseSpeechCtor()) return '';
+  const on = h.listening === which;
+  return '<div class="row" style="gap:8px;flex-wrap:wrap;align-items:center">'
+    + '<button class="btn btn-ghost" data-act="hd-speak" data-w="' + which + '" aria-pressed="' + (on ? 'true' : 'false') + '"' + HOUSE_TALL + '>' + (on ? 'Stop listening' : 'Speak') + '</button>'
+    + (on ? '<span class="small" role="status">Listening</span>' : '')
+    + '</div>'
+    + '<div class="tiny dim lh">' + HOUSE_SPEECH_SENTENCE + '</div>'
+    + (h.speech ? '<div class="tiny dim lh">' + esc(h.speech) + '</div>' : '');
+}
+
+/* ---- the live count ------------------------------------------------------- */
+function houseSayCountText(text, length){
+  const caps = houseLineCaps();
+  const cap = caps[length] || 0;
+  const n = houseWordCount(text || '');
+  return n + ' of ' + cap + ' words' + (n > cap ? '. Over the cap' : '');
+}
+function houseRoleCountText(text){
+  const n = houseWordCount(text || '');
+  return n + (n === 1 ? ' word' : ' words');
+}
+
+/* ---- the two screens ------------------------------------------------------ */
+function houseGradePartsHTML(parts){
+  return '<ul class="col-sm" style="gap:6px;list-style:none;padding:0;margin:0">' + parts.map(function(p){
+    const counted = p.terms && p.terms.length && p.inLine;
+    const word = !(p.terms && p.terms.length) ? 'Nothing kept' : (p.hit ? 'Hit' : 'Missed');
+    return '<li class="small lh"><strong>' + word + '</strong> · ' + esc(p.label)
+      + (p.terms && p.terms.length && !counted ? ' <span class="tiny dim">(not in this line, so not counted)</span>' : '') + '</li>';
+  }).join('') + '</ul>';
+}
+function houseNotesHTML(notes){
+  if(!notes || !notes.length) return '';
+  return '<div class="col-sm" style="gap:4px"><div class="eyebrow">Notes</div>'
+    + notes.map(function(n){ return '<div class="small lh">' + esc(n) + '</div>'; }).join('') + '</div>';
+}
+function houseSayHTML(h){
+  const items = houseSayItems();
+  if(!items.length) return '<div class="small dim lh">No drink on this house has a kept timed line yet. Keep one on a drink\'s formula pane and it can be said back here.</div>';
+  const s = h.say;
+  const item = items.find(function(i){ return i.id === s.id; }) || null;
+  const sections = [];
+  items.forEach(function(i){ const sec = i.section || 'The rest of the list'; if(sections.indexOf(sec) < 0) sections.push(sec); });
+  const select = '<label class="tiny dim" for="hs-item">The drink</label>'
+    + '<div class="row" style="gap:8px;flex-wrap:wrap;align-items:center">'
+    + '<select class="input" id="hs-item" style="flex:1;min-width:200px;min-height:44px">'
+    + (item ? '' : '<option value="">Choose a drink</option>')
+    + sections.map(function(sec){
+      return '<optgroup label="' + esc(sec) + '">' + items.filter(function(i){ return (i.section || 'The rest of the list') === sec; }).map(function(i){
+        return '<option value="' + esc(i.id) + '"' + (i.id === s.id ? ' selected' : '') + '>' + esc(i.name) + '</option>';
+      }).join('') + '</optgroup>';
+    }).join('')
+    + '</select><button class="btn btn-ghost" data-act="hd-say-next"' + HOUSE_TALL + '>Next</button></div>';
+  if(!item) return select;
+  const lengths = '<div class="row" style="gap:8px;flex-wrap:wrap" role="group" aria-label="How long">'
+    + ['s10', 's20', 's45'].map(function(k){
+      const has = item.lengths.indexOf(k) >= 0;
+      const on = s.length === k;
+      return '<button class="chip' + (on ? ' on' : '') + '" data-act="hd-say-length" data-l="' + k + '" aria-pressed="' + (on ? 'true' : 'false') + '"'
+        + (has ? '' : ' disabled') + HOUSE_TALL + '>' + HOUSE_LINE_WORDS[k] + (on ? ', chosen' : '') + (has ? '' : ', none kept') + '</button>';
+    }).join('') + '</div>';
+  const box = '<label class="tiny dim" for="hs-said">Say it, then type it here, or speak it</label>'
+    + '<textarea class="input" id="hs-said" rows="4" style="min-height:88px">' + esc(s.text) + '</textarea>'
+    + '<div class="tiny dim" id="hs-count" aria-live="polite">' + esc(houseSayCountText(s.text, s.length)) + '</div>'
+    + houseSpeakHTML('say');
+  const g = s.grade;
+  let result = '';
+  if(g){
+    result = '<div class="panel p4 col-sm" style="gap:10px" aria-labelledby="hs-verdict">'
+      + '<div class="sub-head" id="hs-verdict" style="margin:0">' + esc(HOUSE_VERDICT_WORDS[g.verdict] || g.verdict) + '</div>'
+      + '<div class="tiny dim">' + esc(g.words + ' of ' + g.cap + ' words, ' + Math.round(g.coverage * 100) + ' per cent of the parts said' + (g.nameSaid ? ', the name said' : ', the name not said')) + '</div>'
+      + houseGradePartsHTML(g.parts)
+      + houseNotesHTML(g.notes)
+      + '<div class="row" style="gap:16px;flex-wrap:wrap;align-items:flex-start">'
+      + '<div class="col-sm" style="gap:4px;flex:1;min-width:220px"><div class="eyebrow">Your kept line</div><div class="small lh">' + esc(g.keptLine) + '</div></div>'
+      + '<div class="col-sm" style="gap:4px;flex:1;min-width:220px"><div class="eyebrow">What you said</div><div class="small lh">' + esc(s.saidText || '') + '</div></div>'
+      + '</div>'
+      + '<div class="row" style="gap:8px;flex-wrap:wrap">'
+      + (s.recorded ? '<span class="small" role="status">Recorded.</span>' : '<button class="btn btn-brass" data-act="hd-say-record"' + HOUSE_TALL + '>Record it</button>')
+      + '<button class="btn btn-ghost" data-act="hd-say-again"' + HOUSE_TALL + '>Try again</button>'
+      + '</div></div>';
+  }
+  return select + lengths + box
+    + '<div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn btn-brass" data-act="hd-say-check"' + HOUSE_TALL + '>Check</button></div>'
+    + result;
+}
+function houseRoleHTML(h){
+  const deck = houseRoleDeck();
+  if(!deck.length) return '<div class="small dim lh">No scenario or mix up on this house has a kept answer yet. Keep one and the guest can ask it here.</div>';
+  const r = h.role;
+  const entry = deck.find(function(e){ return e.kind === r.kind && e.id === r.id; }) || null;
+  const deal = '<div class="row" style="gap:8px;flex-wrap:wrap;align-items:center"><button class="btn btn-ghost" data-act="hd-role-deal"' + HOUSE_TALL + '>' + (entry ? 'Another guest' : 'Deal a guest') + '</button>'
+    + '<span class="tiny dim">' + housePlural(deck.filter(function(e){ return e.kind === 'scenario'; }).length, 'scenario') + ' and ' + housePlural(deck.filter(function(e){ return e.kind === 'mixup'; }).length, 'which is which ask') + ' on this house</span></div>';
+  if(!entry) return deal;
+  const box = '<div class="panel p4 col-sm" style="gap:6px"><div class="eyebrow">' + (entry.kind === 'mixup' ? 'Which is which' : esc(entry.title)) + '</div>'
+    + '<div class="small lh">The guest says: ' + esc(entry.guest) + '</div></div>'
+    + '<label class="tiny dim" for="hr-said">Your answer, typed here or spoken</label>'
+    + '<textarea class="input" id="hr-said" rows="4" style="min-height:88px">' + esc(r.text) + '</textarea>'
+    + '<div class="tiny dim" id="hr-count" aria-live="polite">' + esc(houseRoleCountText(r.text)) + '</div>'
+    + houseSpeakHTML('role');
+  const g = r.grade;
+  let result = '';
+  if(g){
+    result = '<div class="panel p4 col-sm" style="gap:10px" aria-labelledby="hr-verdict">'
+      + '<div class="sub-head" id="hr-verdict" style="margin:0">' + esc(HOUSE_VERDICT_WORDS[g.verdict] || g.verdict) + '</div>'
+      + '<div class="tiny dim">' + esc(g.words + (g.words === 1 ? ' word, ' : ' words, ') + Math.round(g.coverage * 100) + ' per cent of the kept answer said') + '</div>'
+      + houseGradePartsHTML(g.clauses)
+      + (g.items && g.items.length ? '<div class="small lh">' + g.items.map(function(it){ return esc(it.name) + ': ' + (it.named ? 'named' : 'not named'); }).join(' · ') + '</div>' : '')
+      + houseNotesHTML(g.notes)
+      + '<div class="col-sm" style="gap:4px"><div class="eyebrow">The kept answer</div><div class="small lh">' + esc(g.keptYou) + '</div></div>'
+      + (g.principle ? '<div class="col-sm" style="gap:4px"><div class="eyebrow">The principle</div><div class="small lh">' + esc(g.principle) + '</div></div>' : '')
+      + '<div class="row" style="gap:8px;flex-wrap:wrap">'
+      + (r.recorded ? '<span class="small" role="status">Recorded.</span>' : '<button class="btn btn-brass" data-act="hd-role-record"' + HOUSE_TALL + '>Record it</button>')
+      + '<button class="btn btn-ghost" data-act="hd-role-again"' + HOUSE_TALL + '>Try again</button>'
+      + '</div></div>';
+  }
+  return deal + box
+    + '<div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn btn-brass" data-act="hd-role-check"' + HOUSE_TALL + '>Check</button></div>'
+    + result;
+}
+/* the screen under the house line on Mine, when one of the two is open */
+function houseDrillHTML(){
+  const api = houseHere();
+  if(!api || !houseDrillsLib() || !api.current()) return '';
+  const h = houseDrillState();
+  if(h.drill !== 'say' && h.drill !== 'role') return '';
+  const jump = h.drillJump; h.drillJump = false;
+  const title = h.drill === 'say' ? 'Say it back' : 'Guest at the table';
+  return '<section class="panel p4 col-sm house-drill" style="gap:12px" aria-labelledby="house-drill-head">'
+    + '<div class="row between" style="flex-wrap:wrap;gap:8px;align-items:center">'
+    + '<h3 class="sub-head" id="house-drill-head" tabindex="-1" style="margin:0"' + (jump ? ' data-open="1"' : '') + '>' + title + '</h3>'
+    + '<button class="btn btn-ghost" data-act="hd-close"' + HOUSE_TALL + '>Close</button></div>'
+    + '<div class="tiny dim lh">Graded here, on this device, against what you kept: no key and no network. Free, and counted toward no level. ' + HOUSE_DRILL_KITCHEN + '</div>'
+    + (h.drill === 'say' ? houseSayHTML(h) : houseRoleHTML(h))
+    + '</section>';
+}
+/* the two doors, as buttons, wherever a door is drawn; nothing where the
+   engine or its graders are not here */
+function houseDrillDoorsHTML(cls){
+  if(!houseHere() || !houseDrillsLib()) return '';
+  const say = houseSayItems().length, role = houseRoleDeck().length;
+  const c = cls || 'btn btn-ghost';
+  return (say ? '<button class="' + c + '" data-act="hd-open" data-mode="say"' + HOUSE_TALL + '>Say it back (' + say + ')</button>' : '')
+    + (role ? '<button class="' + c + '" data-act="hd-open" data-mode="role"' + HOUSE_TALL + '>Guest at the table (' + role + ')</button>' : '');
+}
+
+/* ---- the acts ------------------------------------------------------------- */
+function houseDrillAct(act, data){
+  const h = houseDrillState();
+  if(typeof captureLiveInputs === 'function') captureLiveInputs();
+  const api = houseHere();
+  const cur = api ? api.current() : null;
+  const d = houseDrillsLib();
+  let done = true;
+  if(act === 'hd-open') houseDrillOpen(data && data.mode);
+  else if(act === 'hd-close'){ h.drill = ''; }
+  else if(act === 'hd-say-next') houseSayNext();
+  else if(act === 'hd-say-length'){
+    const item = houseSayItems().find(function(i){ return i.id === h.say.id; });
+    const l = data && data.l;
+    if(item && item.lengths.indexOf(l) >= 0 && l !== h.say.length){ h.say.length = l; h.say.grade = null; h.say.recorded = false; }
+  }
+  else if(act === 'hd-say-check'){
+    const g = d && cur && h.say.id ? d.gradeSaid(cur, h.say.id, h.say.length, h.say.text || '') : null;
+    h.say.grade = g; h.say.recorded = false; h.say.saidText = h.say.text || '';
+    if(g) houseSaid((HOUSE_VERDICT_WORDS[g.verdict] || g.verdict) + '. ' + (g.notes[0] || ''));
+  }
+  else if(act === 'hd-say-record'){
+    const g = h.say.grade;
+    if(g && !h.say.recorded){
+      houseRecordPush('say', { ts: Date.now(), id: g.itemId, kind: g.kind, length: g.length, verdict: g.verdict, coverage: g.coverage });
+      h.say.recorded = true;
+      houseSaid('Recorded.');
+    } else done = false;
+  }
+  else if(act === 'hd-say-again'){ h.say.text = ''; h.say.grade = null; h.say.recorded = false; }
+  else if(act === 'hd-role-deal') houseRoleDeal();
+  else if(act === 'hd-role-check'){
+    const entry = houseRoleDeck().find(function(e){ return e.kind === h.role.kind && e.id === h.role.id; });
+    const g = entry ? houseGradeRole(entry, h.role.text || '') : null;
+    h.role.grade = g; h.role.recorded = false;
+    if(g) houseSaid((HOUSE_VERDICT_WORDS[g.verdict] || g.verdict) + '.');
+  }
+  else if(act === 'hd-role-record'){
+    const g = h.role.grade;
+    if(g && !h.role.recorded){
+      houseRecordPush('role', { ts: Date.now(), id: h.role.id, kind: h.role.kind, verdict: g.verdict, coverage: g.coverage });
+      h.role.recorded = true;
+      houseSaid('Recorded.');
+    } else done = false;
+  }
+  else if(act === 'hd-role-again'){ h.role.text = ''; h.role.grade = null; h.role.recorded = false; }
+  else if(act === 'hd-speak'){ houseDrillBoxesOut(); houseSpeak(data && data.w); return true; }
+  else done = false;
+  houseDrillBoxesOut();
+  houseRepaint();
+  return done;
+}
+/* the list's change, heard in render */
+function houseSayPick(id){
+  if(typeof captureLiveInputs === 'function') captureLiveInputs();
+  houseSayChoose(id);
+  houseDrillBoxesOut();
+  houseRepaint();
 }

@@ -8,95 +8,681 @@
 <title>Brennan's: Outside Of Time Hospitality</title>
 <meta name="robots" content="noindex">
 <style>
-:root{color-scheme:dark}
-body{margin:0;background:#12100e;color:#f0eae0;font:16px/1.6 ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;padding:0 0 env(safe-area-inset-bottom)}
-.wrap{max-width:660px;margin:0 auto;padding:48px 20px 72px}
-h1{font-family:Georgia,serif;font-weight:400;font-size:2rem;margin:0 0 .2em}
-h2{font-family:Georgia,serif;font-weight:400;font-size:1.2rem;margin:1.8em 0 .4em;color:#e0c48b}
-a{color:#c6a664}
-.dim{color:rgba(240,234,224,.62)}
-.flag{border:1px dashed rgba(198,166,100,.5);padding:14px 16px;border-radius:3px;font-size:.95rem;margin:1.4em 0}
-.go{display:block;min-height:44px;box-sizing:border-box;padding:12px 16px;margin:10px 0;border:1px solid rgba(198,166,100,.55);border-radius:3px;text-decoration:none;color:#f0eae0}
-.go b{color:#e0c48b;font-weight:600}
-.go span{display:block;color:rgba(240,234,224,.7);font-size:.92rem}
-button{min-height:44px;padding:10px 18px;font:inherit;background:#241f1a;color:#f0eae0;border:1px solid rgba(198,166,100,.55);border-radius:3px;cursor:pointer}
+:root{color-scheme:dark;--bg:#12100e;--ink:#f0eae0;--dim:rgba(240,234,224,.66);--gold:#e0c48b;--link:#c6a664;--line:rgba(198,166,100,.55);--soft:rgba(198,166,100,.22);--panel:#1a1714;--btn:#241f1a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;padding:0 0 env(safe-area-inset-bottom)}
+.wrap{max-width:760px;margin:0 auto;padding:40px 16px 80px}
+h1{font-family:Georgia,serif;font-weight:400;font-size:2.1rem;margin:0 0 .2em}
+h2{font-family:Georgia,serif;font-weight:400;font-size:1.45rem;margin:2.2em 0 .5em;color:var(--gold);scroll-margin-top:12px}
+h3{font-family:Georgia,serif;font-weight:400;font-size:1.15rem;margin:1.6em 0 .4em;color:var(--gold)}
+h4{font-size:1rem;margin:1.2em 0 .3em}
+a{color:var(--link)}
+p{margin:.45em 0}
+.dim{color:var(--dim)}
+.flag{border:1px dashed var(--line);padding:14px 16px;border-radius:3px;font-size:.95rem;margin:1.2em 0}
+button,.btn{min-height:44px;padding:10px 16px;font:inherit;background:var(--btn);color:var(--ink);border:1px solid var(--line);border-radius:3px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+button[aria-pressed="true"]{background:#3a3024;border-color:var(--gold);border-width:2px;font-weight:600}
+.chip .on{font-weight:400;font-size:.85em;margin-left:.45em;color:var(--gold)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.bar input[type=search]{flex:1 1 220px;min-height:44px;padding:10px 12px;font:inherit;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:3px}
+.tools{background:var(--bg);padding:6px 0 4px;border-bottom:1px solid var(--soft)}
+@media (min-width:700px) and (min-height:600px){.tools{position:sticky;top:0;z-index:2}details.item,.row,section{scroll-margin-top:200px}}
+#showing{font-size:.92rem;margin:4px 0 6px}
+nav.toc ol{columns:2;column-gap:24px;padding-left:1.3em;margin:.4em 0}
+nav.toc li{margin:.15em 0;break-inside:avoid}
+nav.toc a{display:inline-block;min-height:44px;line-height:44px}
+details.item{border:1px solid var(--soft);border-radius:3px;margin:8px 0;background:var(--panel)}
+details.item>summary{min-height:44px;padding:10px 14px;cursor:pointer;list-style-position:inside}
+details.item>summary .nm{font-weight:600}
+details.item>summary .sub{color:var(--dim);margin-left:.5em;font-size:.92rem}
+.body{padding:2px 16px 14px}
+.lab{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin:1em 0 .15em}
+.count{font-size:.85rem;color:var(--dim);text-transform:none;letter-spacing:0}
+.line{border-left:3px solid var(--line);padding:2px 0 2px 12px;margin:.3em 0 .8em}
+dl.parts{display:grid;grid-template-columns:minmax(120px,30%) 1fr;gap:4px 14px;margin:.3em 0}
+dl.parts dt{color:var(--dim)}
+dl.parts dd{margin:0}
+.note{border:1px dashed var(--line);padding:8px 12px;border-radius:3px;margin:.8em 0}
+.note .eyebrow{font-size:.8rem;color:var(--gold);margin:0 0 .2em}
+.row{border-bottom:1px solid var(--soft);padding:10px 0}
+.row .t{font-weight:600}
+.say{font-style:italic}
+.q{border-left:3px solid var(--line);padding-left:12px}
+.day{border:1px solid var(--soft);border-radius:3px;padding:6px 16px 12px;margin:12px 0;background:var(--panel)}
+.day ol{padding-left:1.3em}
+.day li{margin:.5em 0}
 ul{padding-left:1.2em}
 li{margin:.3em 0}
-#where[hidden]{display:none}
+.course{margin:.6em 0;padding:6px 0;border-bottom:1px solid var(--soft)}
+.course .n{color:var(--gold);font-weight:600}
+[hidden]{display:none !important}
+@media (max-width:520px){nav.toc ol{columns:1}dl.parts{grid-template-columns:1fr}dl.parts dt{margin-top:.4em}h1{font-size:1.8rem}}
+@media print{
+  :root{color-scheme:light}
+  body{background:#fff;color:#000;font-size:11pt}
+  .wrap{max-width:none;padding:0}
+  .noprint,.tools,nav.toc,#again{display:none !important}
+  h1,h2,h3,h4,.lab,.course .n,.note .eyebrow{color:#000}
+  a{color:#000;text-decoration:none}
+  .dim,.count,details.item>summary .sub,dl.parts dt{color:#333}
+  details.item{background:#fff;border:1px solid #999;break-inside:avoid-page}
+  details.item>summary{list-style:none;min-height:0;padding:6px 10px}
+  details.item>summary::-webkit-details-marker{display:none}
+  .day{background:#fff;border-color:#999}
+  .line,.q{border-left-color:#666}
+  .note{border-color:#666}
+  .flag{border-color:#666}
+  h2{break-after:avoid;margin-top:1.4em}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-<p class="dim"><a href="./">&larr; Outside Of Time Hospitality</a></p>
+<p class="dim noprint"><a href="./">&larr; Outside Of Time Hospitality</a></p>
 <h1>Brennan's</h1>
-<p class="dim">417 Royal Street, New Orleans. Menus read 26 September 2026.</p>
+<p class="dim" id="lede">The study guide for the floor, the bar and the cellar. Everything on this page is read from the copy of the house on this device.</p>
 
 <div class="flag" id="status" role="status" aria-live="polite">Loading Brennan's onto this device.</div>
-<p><button type="button" id="again" hidden>Load it again</button></p>
+<p class="noprint"><button type="button" id="again" hidden>Load it again</button></p>
 
-<div id="where" hidden>
-<h2>Where to find it</h2>
-<a class="go" href="table/menu"><b>The World Table: My Menu</b><span>The Kitchen's Menu holds every dish. Under each one: how to say it, the ten, twenty and forty five second lines, the five parts, the wine pairing, and the service note. Below the menu: the words, the guest conversations, the dishes guests mix up, the must-knows, the two tastings and the questions to ask at lineup.</span></a>
-<a class="go" href="table/menu/quiz?mode=drill"><b>The World Table: drill the house</b><span>Questions over the lines, the sauces, the sides, the first picks, the words and the mix-ups. Flip cards and pairings sit on the same page.</span></a>
-<a class="go" href="ledger/"><b>The Bartender's Ledger: Mine, then My Bar</b><span>The signature drinks and the two without alcohol. Open a drink and choose The formula for its parts, its timed lines and what to offer next. Drill what is on it holds the house drills and Pair the menu.</span></a>
-<a class="go" href="codex/"><b>The Sommelier's Codex: Mine, then Our Wine List</b><span>Every wine by the glass and on the tastings, with the profile, what it goes with, how to serve it and the dishes it is first pick for. Mine also holds The house, Our list by heart and Pair the menu.</span></a>
-<h2>Good to know</h2>
-<ul>
-<li>Everything lives on this device only. Load it once on each phone or tablet you study on.</li>
-<li>No allergen box is ticked. The service notes are the guide's words: confirm every allergen with the kitchen at lineup.</li>
-<li>Prices are as printed on 26 September. The questions to ask at lineup list what to confirm on your first shift.</li>
-<li>Anything already on your menus on this device joins Brennan's when you open a wing. Remove what does not belong with Remove.</li>
-</ul>
+<div class="tools noprint" id="tools" hidden>
+  <div class="bar" role="group" aria-label="Show the sections for">
+    <button type="button" class="chip" data-role="all" aria-pressed="true">Everything</button>
+    <button type="button" class="chip" data-role="server" aria-pressed="false">Server</button>
+    <button type="button" class="chip" data-role="bartender" aria-pressed="false">Bartender</button>
+    <button type="button" class="chip" data-role="sommelier" aria-pressed="false">Sommelier</button>
+  </div>
+  <div class="bar">
+    <label for="find" class="dim" style="position:absolute;left:-9999px">Find by name</label>
+    <input type="search" id="find" placeholder="Find a dish, drink, wine or word by name" autocomplete="off">
+    <button type="button" id="openall">Open every entry</button>
+    <button type="button" id="print">Print</button>
+  </div>
+  <p id="showing" class="dim" aria-live="polite"></p>
 </div>
+
+<div id="guide"></div>
 </div>
 <script src="shared/oot-house.js?v=32"></script>
 <script>
 (function () {
   'use strict';
-  var PACK = 'shared/packs/brennans-new-orleans.v1.oothouse.json';
+  /* The one pack this page ships, and the id its edition carries. */
+  var DEFAULT_PACK = 'shared/packs/brennans-new-orleans.v1.oothouse.json';
+  var PACK_ID = 'brennans-new-orleans';
+  var EYEBROW = 'Your words. Allergens: confirm at lineup.';
+  var ROLE_KEY = 'oot-brennans-guide-role';
+  var ROLES = { all: 'Everything', server: 'Server', bartender: 'Bartender', sommelier: 'Sommelier' };
+  var WHOM = {
+    chef: { title: 'Ask the chef', roles: 'server sommelier' },
+    manager: { title: 'Ask the manager', roles: 'server bartender sommelier' },
+    bar: { title: 'Ask the bar', roles: 'bartender server' },
+    sommelier: { title: 'Ask the sommelier', roles: 'sommelier server' }
+  };
+  var LENGTHS = [['s10', 'Ten seconds'], ['s20', 'Twenty seconds'], ['s45', 'Forty five seconds']];
+  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  var api = window.OOT && window.OOT.house;
   var status = document.getElementById('status');
   var again = document.getElementById('again');
-  var where = document.getElementById('where');
+  var tools = document.getElementById('tools');
+  var guide = document.getElementById('guide');
+  var find = document.getElementById('find');
+  var showing = document.getElementById('showing');
+  var openAll = document.getElementById('openall');
+  var role = 'all';
+  try { var r0 = localStorage.getItem(ROLE_KEY); if (r0 && ROLES[r0]) role = r0; } catch (e) { /* a page without storage keeps Everything */ }
+
+  /* ---------- small helpers: every string goes in as text ---------- */
   function say(t) { status.textContent = t; }
+  function add(node, kids) {
+    if (kids === null || kids === undefined || kids === false || kids === '') return node;
+    if (Array.isArray(kids)) { kids.forEach(function (k) { add(node, k); }); return node; }
+    if (typeof kids === 'string' || typeof kids === 'number') { node.appendChild(document.createTextNode(String(kids))); return node; }
+    node.appendChild(kids);
+    return node;
+  }
+  function el(tag, cls, kids) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    return add(node, kids);
+  }
+  function a(href, text) { var x = el('a', null, text); x.setAttribute('href', href); return x; }
+  function fold(s) {
+    return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[‘’'`]/g, '').toLowerCase();
+  }
   function n(c, one, many) { return c + ' ' + (c === 1 ? one : many); }
-  function load() {
+  function words(s) { var t = String(s || '').trim(); return t ? t.split(/\s+/).length : 0; }
+  function longDate(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso || ''));
+    return m ? (+m[3]) + ' ' + MONTHS[+m[2] - 1] + ' ' + m[1] : String(iso || '');
+  }
+  /* A kept mark is a person's: anything else never reaches this page. */
+  function kept(m) { return m && typeof m === 'object' && m.by === 'person' ? m.value : null; }
+  function keptText(m) { var v = kept(m); return typeof v === 'string' && v.trim() ? v : ''; }
+  function list(v) { return Array.isArray(v) ? v : []; }
+
+  var names = {};
+  function nameOf(id) { return names[id] ? names[id].name : ''; }
+  function link(id, fallback) {
+    if (names[id]) return a('#' + id, names[id].name);
+    return fallback || '';
+  }
+  function joinNodes(nodes, sep) {
+    var out = [];
+    nodes.filter(Boolean).forEach(function (x, i) { if (i) out.push(sep || ', '); out.push(x); });
+    return out;
+  }
+  function field(label, content) {
+    if (!content || (Array.isArray(content) && !content.length)) return null;
+    return el('div', null, [el('p', 'lab', label), el('p', null, content)]);
+  }
+  function priceOf(it) {
+    if (it.price) return it.price;
+    return list(it.prices).map(function (p) { return p.meal ? p.meal + ' ' + p.printed : p.printed; }).join(', ');
+  }
+  function linesBlock(it) {
+    var v = kept(it.lines);
+    if (!v || typeof v !== 'object') return null;
+    var caps = (api && api.LINE_CAPS) || { s10: 25, s20: 50, s45: 110 };
+    var out = [];
+    LENGTHS.forEach(function (L) {
+      var t = typeof v[L[0]] === 'string' ? v[L[0]].trim() : '';
+      if (!t) return;
+      var w = words(t);
+      out.push(el('p', 'lab', [L[1] + ' ', el('span', 'count', '(' + n(w, 'word', 'words') + ', the cap is ' + caps[L[0]] + (w > caps[L[0]] ? ', over' : '') + ')')]));
+      out.push(el('p', 'line', t));
+    });
+    return out.length ? el('div', null, out) : null;
+  }
+  function partsBlock(it, labels) {
+    var v = kept(it.parts);
+    if (!v || typeof v !== 'object') return null;
+    var dl = el('dl', 'parts');
+    var any = false;
+    ['main', 'technique', 'sauce', 'sides', 'taste'].forEach(function (k) {
+      var t = typeof v[k] === 'string' ? v[k].trim() : '';
+      if (!t) return;
+      any = true;
+      add(dl, [el('dt', null, labels[k] || k), el('dd', null, t)]);
+    });
+    return any ? el('div', null, [el('p', 'lab', 'The five parts'), dl]) : null;
+  }
+  function serviceNote(it) {
+    var t = String(it.serviceNote || '').trim();
+    if (!t) return null;
+    return el('div', 'note', [el('p', 'eyebrow', EYEBROW), el('p', null, t)]);
+  }
+  function notesBlock(it) {
+    var ks = list(it.kept).filter(function (k) { return k && k.q && k.a; });
+    if (!ks.length) return null;
+    return el('div', null, [el('p', 'lab', 'Kept notes')].concat(ks.map(function (k) {
+      return el('div', 'q', [el('p', null, el('b', null, k.q)), el('p', null, k.a)]);
+    })));
+  }
+  function entry(id, name, sub, bodyKids, searchText) {
+    var d = el('details', 'item');
+    if (id) d.id = id;
+    d.setAttribute('data-name', fold(searchText || name));
+    add(d, el('summary', null, [el('span', 'nm', name), sub ? el('span', 'sub', sub) : null]));
+    add(d, el('div', 'body', bodyKids));
+    return d;
+  }
+  function section(id, title, roles, intro) {
+    var s = el('section');
+    s.id = id;
+    s.setAttribute('data-roles', roles);
+    s.setAttribute('data-title', title);
+    add(s, el('h2', null, title));
+    if (intro) add(s, el('p', 'dim', intro));
+    return s;
+  }
+  function bySection(items) {
+    var order = [];
+    var groups = {};
+    items.forEach(function (it) {
+      var k = it.section || 'Other';
+      if (!groups[k]) { groups[k] = []; order.push(k); }
+      groups[k].push(it);
+    });
+    return order.map(function (k) { return { name: k, items: groups[k] }; });
+  }
+
+  /* ---------- the sections ---------- */
+  function cardSection(h) {
+    var s = section('s-card', 'The card', 'server bartender sommelier');
+    add(s, el('p', null, [el('b', null, h.name), h.address ? ', ' + h.address : '']));
+    var bits = [];
+    if (h.phone) bits.push('Telephone ' + h.phone);
+    if (h.site) bits.push(h.site);
+    if (bits.length) add(s, el('p', 'dim', bits.join('. ') + '.'));
+    var meals = list(h.meals);
+    if (meals.length) {
+      add(s, el('h3', null, 'Hours by meal'));
+      add(s, el('ul', null, meals.map(function (m) { return el('li', null, [el('b', null, m.name), ': ' + [m.days, m.hours].filter(Boolean).join(', ')]); })));
+    }
+    if (h.dressCode) { add(s, el('h3', null, 'Dress code')); add(s, el('p', null, h.dressCode)); }
+    if (h.menusReadOn) add(s, el('p', 'dim', 'Menus read on ' + longDate(h.menusReadOn) + '. Prices are as printed then: confirm anything that matters at lineup.'));
+    var hist = keptText(h.history);
+    if (hist) { add(s, el('h3', null, 'The house')); add(s, el('p', null, hist)); }
+    var src = list(h.sources);
+    if (src.length) {
+      add(s, el('h3', null, 'Where it was read'));
+      add(s, el('ul', 'dim', src.map(function (x) { return el('li', null, [x.title, x.readOn ? ', read ' + longDate(x.readOn) : '']); })));
+    }
+    return s;
+  }
+
+  function planSection(h) {
+    var s = section('s-plan', 'Before your first shift', 'server bartender sommelier',
+      'Three sittings between now and the door on Monday. Do them in order; each one leans on the last. Read out loud wherever you can: a line you have only read silently is a line you do not yet own.');
+    var sig = h.dishes.filter(function (d) { return d.signature; }).map(function (d) { return d.name; });
+    var sigDrinks = h.cocktails.filter(function (c) { return c.section === 'Signature drinks'; }).map(function (c) { return c.name; });
+    var tastings = list(h.tastings).map(function (t) { return t.name + (t.price ? ' (' + t.price + ')' : ''); });
+    function day(title, intro, steps) {
+      return el('div', 'day', [el('h3', null, title), intro ? el('p', 'dim', intro) : null, el('ol', null, steps.map(function (st) { return el('li', null, st); }))]);
+    }
+    add(s, day('Saturday 3 October, this evening', 'About ninety minutes. Tonight is for the shape of the house, not the detail.', [
+      ['Read ', a('#s-card', 'the card'), ' and ', a('#s-musts', 'the must-knows'), ' top to bottom, once, slowly. Know the hours of every meal and the dress code before you know a single dish.'],
+      ['Learn ', a('#s-tastings', 'the two tastings'), ' course by course: ' + (tastings.join(' and ') || 'both of them') + '. They are the spine of the menu. Close the page and write each one out from memory, course and pour, then check.'],
+      sig.length ? ['Read the twenty second line of each signature dish out loud three times: ' + sig.join(', ') + '.'] : null,
+      ['Run one round of ', a('table/menu/quiz?mode=drill', 'Drill the house in the World Table'), ', then ', a('table/menu/quiz?mode=cards', 'the flip cards'), ' until the signature dishes come without a pause.'],
+      ['Before bed, say every respelling in ', a('#s-words', 'the words'), ' aloud once. Pronunciation is the first thing a guest hears.']
+    ].filter(Boolean)));
+    add(s, day('Sunday 4 October', 'The full day, in four blocks with a proper break between each.', [
+      ['Morning, the dishes. Work through ', a('#s-dishes', 'every dish'), ' section by section. For each, say the ten second line with the page closed, then open it and check. Then say them back: take ten dishes, and every signature dish at all three lengths. Read each line once, close the page, say it aloud, then open the dish again and check it word for word. A line is learnt when you have said it right twice in a row with the page closed.'],
+      ['Midday, the drinks. Open ', a('ledger/', "the Bartender's Ledger"), ', go to Mine, then My Bar, and open each drink\'s formula. Start with ' + (sigDrinks.length ? sigDrinks.join(', ') : 'the signature drinks') + ': the first sale of the morning is a drink, offered at the greeting. Learn what to offer next for each one; it is in ', a('#s-drinks', 'the drinks'), ' below too.'],
+      ['Afternoon, the wine. Open ', a('codex/', "the Sommelier's Codex"), ', go to Mine and then Our Wine List, and run Pair the menu. You need the first pick for every signature dish, and the zero-proof choice for each, without looking. ', a('#s-wines', 'The wines'), ' below hold the profile and the line to say.'],
+      ['Late afternoon, the guests. Work through ', a('#s-guests', 'the guest conversations'), ' one at a time: read what the guest says, cover the answer, say yours aloud, then read the kept line and the principle under it. Then do the same with ', a('#s-mixups', 'the dishes guests mix up'), ', saying which is which before you look. When a guest asks about an allergy or a diet, the answer is always the same in spirit: you take it seriously and the kitchen confirms. Never answer from memory.'],
+      ['Evening, one full table out loud, start to finish: greet, offer the eye opener, describe the Traditional Breakfast, take an order, offer the pairing, sell the Bananas Foster at the table. Then read ', a('#s-lineup', 'the questions for your first lineup'), ' and mark the five that matter most. Then stop. Sleep is part of the training.']
+    ]));
+    add(s, day('Monday 5 October, before the shift', 'Short and sharp. Nothing new today: polish what you have.', [
+      'Twenty minutes, out loud: the twenty second lines of the signature dishes and the signature drinks, and the two tastings course by course.',
+      ['One round of ', a('table/menu/quiz?mode=cards', 'flip cards'), ', then say back, with the page closed, the lines of a dish you found hard yesterday, and check them in ', a('#s-dishes', 'the dishes'), '.'],
+      ['Print ', a('#s-card', 'the card'), ' and ', a('#s-lineup', 'the lineup questions'), ' (choose Server above, then Print: the sheet keeps the drinks and the questions for the bar) and bring them. Write the answers on the sheet as you hear them.'],
+      'Dress to the code, and arrive early enough to walk the room before lineup: the tables, the courtyard, where the bar is, where the kitchen pass is.',
+      'On the floor: listen to how a senior server tells the Bananas Foster, and steal what works. Every allergen question goes to the kitchen, every time. If you do not know, say "Let me find out for you", and then do.'
+    ]));
+    return s;
+  }
+
+  function lineupSection(h) {
+    var s = section('s-lineup', 'Questions for your first lineup', 'server bartender sommelier',
+      'Ask these on the first shift. Each one names what the guide could not settle. Write the answer down beside it.');
+    var qs = list(h.askAtLineup);
+    var order = ['chef', 'manager', 'bar', 'sommelier'];
+    qs.forEach(function (q) { if (order.indexOf(q.askWhom) < 0) order.push(q.askWhom); });
+    order.forEach(function (w) {
+      var mine = qs.filter(function (q) { return q.askWhom === w; });
+      if (!mine.length) return;
+      var meta = WHOM[w] || { title: 'Ask ' + w, roles: 'server bartender sommelier' };
+      var g = el('div', 'group', el('h3', null, meta.title));
+      mine.forEach(function (q) {
+        var items = joinNodes(list(q.itemIds).map(function (id) { return link(id); }));
+        var row = el('div', 'row', [el('p', null, q.question), items.length ? el('p', 'dim', ['About: '].concat(items)) : null]);
+        row.setAttribute('data-name', fold(q.question));
+        row.setAttribute('data-role', meta.roles);
+        add(g, row);
+      });
+      add(s, g);
+    });
+    var ds = list(h.disputes);
+    if (ds.length) {
+      var g2 = el('div', 'group', [el('h3', null, 'Where the sources disagree'), el('p', 'dim', 'Quote neither until lineup settles it.')]);
+      ds.forEach(function (d) {
+        var row = el('div', 'row', [
+          el('p', null, [el('b', null, d.field), d.itemId && names[d.itemId] ? [', ', link(d.itemId)] : null]),
+          d.a ? el('p', null, d.a.text + (d.a.source ? ' (' + d.a.source + (d.a.date ? ', ' + longDate(d.a.date) : '') + ')' : '')) : null,
+          d.b ? el('p', null, ['or ', d.b.text + (d.b.source ? ' (' + d.b.source + (d.b.date ? ', ' + longDate(d.b.date) : '') + ')' : '')]) : null
+        ]);
+        row.setAttribute('data-name', fold(d.field + ' ' + (d.a && d.a.text) + ' ' + (d.b && d.b.text) + ' ' + nameOf(d.itemId)));
+        add(g2, row);
+      });
+      add(s, g2);
+    }
+    return s;
+  }
+
+  function tastingsSection(h) {
+    var s = section('s-tastings', 'The two tastings', 'server bartender sommelier', 'Course by course, with the pour on each.');
+    list(h.tastings).forEach(function (t) {
+      var body = [];
+      body.push(el('p', 'dim', [t.meal, t.price, t.includesDrinks ? 'every listed drink included' : 'drinks not included'].filter(Boolean).join('. ') + '.'));
+      list(t.courses).forEach(function (c) {
+        var dishes = joinNodes(list(c.dishIds).map(function (id) { return link(id); }), ' or ');
+        var pour = c.pourText ? c.pourText : (c.pourId ? nameOf(c.pourId) : '');
+        body.push(el('div', 'course', [
+          el('p', null, [el('span', 'n', c.label || ('Course ' + c.n)), dishes.length ? [': '].concat(dishes) : null]),
+          pour ? el('p', 'dim', ['Pour: ', c.pourId && names[c.pourId] ? link(c.pourId) : pour, c.pourId && names[c.pourId] && c.pourText && c.pourText !== nameOf(c.pourId) ? ' (' + c.pourText + ')' : '']) : null
+        ]));
+      });
+      if (t.note) body.push(field('Notes for the table', t.note));
+      add(s, entry(t.id, t.name, t.price, body));
+    });
+    return s;
+  }
+
+  function pairingBlock(d) {
+    var p = kept(d.pairing);
+    if (!p || typeof p !== 'object') return null;
+    var out = [el('p', 'lab', 'The pairing')];
+    var dl = el('dl', 'parts');
+    function row(label, content) { if (content && (!Array.isArray(content) || content.length)) add(dl, [el('dt', null, label), el('dd', null, content)]); }
+    row('First pick', p.wineId ? link(p.wineId, p.wineId) : '');
+    row('Why', p.why);
+    row('The line to say', p.sayIt);
+    row('On the palate', p.palate);
+    row('Second choice', p.secondId ? [link(p.secondId, ''), p.secondWhy ? (names[p.secondId] ? ': ' : '') + p.secondWhy : ''] : p.secondWhy);
+    row('Step up', p.stepUp);
+    row('Zero-proof', p.zeroProofId ? [link(p.zeroProofId, ''), p.zeroProofWhy ? (names[p.zeroProofId] ? ': ' : '') + p.zeroProofWhy : ''] : p.zeroProofWhy);
+    row('Serve', p.serve);
+    row('Avoid', p.avoid);
+    out.push(dl);
+    return el('div', null, out);
+  }
+
+  function dishesSection(h) {
+    var s = section('s-dishes', 'The dishes', 'server sommelier', n(h.dishes.length, 'dish', 'dishes') + ', by section. Open one for how to say it, its lines, its parts, its pairing and the service note.');
+    var labels = (api && api.DISH_PARTS) || {};
+    bySection(h.dishes).forEach(function (g) {
+      var grp = el('div', 'group', el('h3', null, g.name));
+      g.items.forEach(function (d) {
+        var body = [
+          d.description ? el('p', 'dim', d.description) : null,
+          list(d.meals).length ? el('p', 'dim', 'Served at: ' + d.meals.join(', ')) : null,
+          field('How to say it', keptText(d.say)),
+          field('To the guest', keptText(d.guest)),
+          field('Why guests love it', keptText(d.why)),
+          linesBlock(d),
+          partsBlock(d, labels),
+          pairingBlock(d),
+          field('History', keptText(d.origin)),
+          serviceNote(d),
+          notesBlock(d)
+        ];
+        add(grp, entry(d.id, d.name, [priceOf(d), d.signature ? 'signature' : ''].filter(Boolean).join(', '), body));
+      });
+      add(s, grp);
+    });
+    return s;
+  }
+
+  function drinksSection(h) {
+    var s = section('s-drinks', 'The drinks', 'server bartender', n(h.cocktails.length, 'drink', 'drinks') + ', by section, each with its spec, its lines and what to offer next.');
+    var labels = (api && api.COCKTAIL_PARTS) || {};
+    bySection(h.cocktails).forEach(function (g) {
+      var grp = el('div', 'group', el('h3', null, g.name));
+      g.items.forEach(function (c) {
+        var spec = list(c.spec);
+        var ups = list(kept(c.upsells)).map(function (id) { return link(id); }).filter(Boolean);
+        var facts = [c.family, c.spirit ? 'spirit: ' + c.spirit : '', c.glass ? 'glass: ' + c.glass : '', c.garnish ? 'garnish: ' + c.garnish : '', c.zeroProof ? 'without alcohol' : 'contains alcohol'].filter(Boolean).join('. ');
+        var body = [
+          el('p', 'dim', facts + '.'),
+          spec.length ? el('div', null, [el('p', 'lab', 'The spec'), el('ul', null, spec.map(function (x) { return el('li', null, x); }))]) : null,
+          field('The build', c.method),
+          c.note ? el('p', 'dim', c.note) : null,
+          field('How to say it', keptText(c.say)),
+          field('To the guest', keptText(c.guest)),
+          field('Why to offer it', keptText(c.why)),
+          linesBlock(c),
+          partsBlock(c, labels),
+          field('Goes with', keptText(c.pairs)),
+          ups.length ? field('What to offer next', joinNodes(ups)) : null,
+          serviceNote(c),
+          notesBlock(c)
+        ];
+        add(grp, entry(c.id, c.name, [priceOf(c), c.zeroProof ? 'zero-proof' : ''].filter(Boolean).join(', '), body));
+      });
+      add(s, grp);
+    });
+    return s;
+  }
+
+  function winesSection(h) {
+    var s = section('s-wines', 'The wines', 'sommelier', n(h.wines.length, 'wine', 'wines') + ', by style, with the profile, the lines, the food, the service and the first picks.');
+    bySection(h.wines).forEach(function (g) {
+      var grp = el('div', 'group', el('h3', null, g.name));
+      g.items.forEach(function (w) {
+        var picks = list(kept(w.firstPickIds)).map(function (id) { return link(id); }).filter(Boolean);
+        var facts = [w.producer, w.region, list(w.grapes).join(', '), w.style, w.vintage ? 'vintage ' + w.vintage : ''].filter(Boolean).join('. ');
+        var price = [w.glass ? w.glass + ' a glass' : '', w.bottle ? w.bottle + ' a bottle' : ''].filter(Boolean).join(', ');
+        var body = [
+          el('p', 'dim', facts + '.'),
+          price ? el('p', 'dim', 'Price: ' + price + '.') : null,
+          list(w.pours).length ? el('p', 'dim', 'Poured on: ' + w.pours.join(', ') + '.') : null,
+          field('How to say it', keptText(w.say)),
+          field('The profile', keptText(w.profile)),
+          field('To the guest', keptText(w.guest)),
+          linesBlock(w),
+          field('What it goes with', keptText(w.goesWith)),
+          field('How to serve it', keptText(w.serve)),
+          picks.length ? field('First pick for', joinNodes(picks)) : null,
+          serviceNote(w),
+          notesBlock(w)
+        ];
+        add(grp, entry(w.id, w.name, priceOf(w), body));
+      });
+      add(s, grp);
+    });
+    return s;
+  }
+
+  function wordsSection(h) {
+    var s = section('s-words', 'The words', 'server bartender sommelier', n(h.lexicon.length, 'word', 'words') + ' with how to say each one, and how to put it to a guest.');
+    var terms = h.lexicon.slice().sort(function (x, y) { return fold(x.term).localeCompare(fold(y.term)); });
+    terms.forEach(function (t) {
+      var items = joinNodes(list(t.itemIds).map(function (id) { return link(id); }));
+      var row = el('div', 'row', [
+        el('p', null, [el('span', 't', t.term), keptText(t.say) ? [', say ', el('span', 'say', keptText(t.say))] : null]),
+        keptText(t.toGuest) ? el('p', null, keptText(t.toGuest)) : null,
+        items.length ? el('p', 'dim', ['On: '].concat(items)) : null
+      ]);
+      row.id = t.id;
+      row.setAttribute('data-name', fold(t.term));
+      add(s, row);
+    });
+    return s;
+  }
+
+  function scenariosSection(h) {
+    var s = section('s-guests', 'The guest conversations', 'server bartender sommelier', 'What the guest says, what you say, and the principle under it.');
+    h.scenarios.forEach(function (sc) {
+      var items = joinNodes(list(sc.itemIds).map(function (id) { return link(id); }));
+      add(s, entry(sc.id, sc.title, '', [
+        field('The guest says', sc.guest),
+        field('You say', keptText(sc.you)),
+        field('The principle', keptText(sc.principle)),
+        items.length ? field('On the menu', items) : null
+      ], sc.title + ' ' + sc.guest));
+    });
+    return s;
+  }
+
+  function mixUpsSection(h) {
+    var s = section('s-mixups', 'The dishes guests mix up', 'server', 'Which is which, and the question that sorts it at the table.');
+    h.mixUps.forEach(function (m) {
+      var title = (nameOf(m.aId) || m.aId) + ' or ' + (nameOf(m.bId) || m.bId);
+      add(s, entry(m.id, title, '', [
+        el('p', null, [link(m.aId, m.aId), ' or ', link(m.bId, m.bId)]),
+        field('The difference', keptText(m.difference)),
+        field('Ask the guest', keptText(m.ask))
+      ]));
+    });
+    return s;
+  }
+
+  function mustsSection(h) {
+    var s = section('s-musts', 'The must-knows', 'server bartender sommelier');
+    h.mustKnows.forEach(function (k) {
+      var body = keptText(k.body);
+      var row = el('div', 'row', [el('p', 't', k.title), body ? el('p', null, body) : null]);
+      row.id = k.id;
+      row.setAttribute('data-name', fold(k.title));
+      add(s, row);
+    });
+    return s;
+  }
+
+  /* ---------- the whole guide ---------- */
+  function render(h) {
+    names = {};
+    ['dishes', 'wines', 'cocktails'].forEach(function (L) { list(h[L]).forEach(function (it) { names[it.id] = { name: it.name, kind: it.kind }; }); });
+    ['dishes', 'wines', 'cocktails', 'lexicon', 'scenarios', 'mixUps', 'mustKnows', 'tastings', 'askAtLineup', 'disputes'].forEach(function (L) { if (!Array.isArray(h[L])) h[L] = []; });
+    var secs = [cardSection(h), planSection(h), lineupSection(h), tastingsSection(h), dishesSection(h), drinksSection(h), winesSection(h), wordsSection(h), scenariosSection(h), mixUpsSection(h), mustsSection(h)];
+    var toc = el('nav', 'toc noprint', [el('p', 'lab', 'On this page'), el('ol', null, secs.map(function (s) {
+      var li = el('li', null, a('#' + s.id, s.getAttribute('data-title')));
+      li.setAttribute('data-for', s.id);
+      return li;
+    }))]);
+    guide.textContent = '';
+    add(guide, [toc].concat(secs));
+    tools.hidden = false;
+    apply();
+  }
+
+  function sections() { return Array.prototype.slice.call(guide.querySelectorAll('section')); }
+  function apply() {
+    var q = fold(find.value.trim());
+    var count = 0;
+    sections().forEach(function (sec) {
+      var roles = sec.getAttribute('data-roles').split(' ');
+      var roleOk = role === 'all' || roles.indexOf(role) >= 0;
+      var entries = sec.querySelectorAll('[data-name]');
+      var shown = 0;
+      Array.prototype.forEach.call(entries, function (e) {
+        var ok = !q || e.getAttribute('data-name').indexOf(q) >= 0;
+        var er = e.getAttribute('data-role');
+        if (er && role !== 'all' && er.split(' ').indexOf(role) < 0) ok = false;
+        e.hidden = !ok;
+        if (ok) shown++;
+      });
+      Array.prototype.forEach.call(sec.querySelectorAll('.group'), function (g) {
+        if (g.querySelector('[data-name]')) g.hidden = !g.querySelector('[data-name]:not([hidden])');
+      });
+      var visible = roleOk && (!q || shown > 0);
+      sec.hidden = !visible;
+      if (visible && q) count += shown;
+      var li = guide.querySelector('li[data-for="' + sec.id + '"]');
+      if (li) li.hidden = !visible;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.chip'), function (b) {
+      var on = b.getAttribute('data-role') === role;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.textContent = ROLES[b.getAttribute('data-role')];
+      if (on) add(b, el('span', 'on', 'showing'));
+    });
+    var titles = sections().filter(function (s) { return !s.hidden; }).map(function (s) { return s.getAttribute('data-title'); });
+    var head = role === 'all' ? 'Showing everything' : 'Showing the ' + ROLES[role] + "'s sections";
+    if (q) showing.textContent = count ? head + ': ' + n(count, 'entry matches', 'entries match') + ' "' + find.value.trim() + '".' : 'Nothing matches "' + find.value.trim() + '". Clear the box to see the guide again.';
+    else showing.textContent = head + ': ' + titles.join(', ') + '.';
+    if (q && count && count <= 6) {
+      Array.prototype.forEach.call(guide.querySelectorAll('details.item:not([hidden])'), function (d) { if (!d.closest('section').hidden) d.open = true; });
+    }
+  }
+
+  /* A link to an entry opens it, and brings it back if a filter hid it. */
+  function reveal(id) {
+    var t = id && document.getElementById(id);
+    if (!t || !guide.contains(t)) return;
+    var hidden = t.hidden || (t.closest('section') && t.closest('section').hidden) || (t.closest('.group') && t.closest('.group').hidden);
+    if (hidden) { find.value = ''; role = 'all'; apply(); }
+    if (t.tagName === 'DETAILS') t.open = true;
+    t.scrollIntoView({ block: 'start' });
+  }
+  guide.addEventListener('click', function (ev) {
+    var x = ev.target.closest && ev.target.closest('a[href^="#"]');
+    if (!x) return;
+    var id = x.getAttribute('href').slice(1);
+    if (!document.getElementById(id)) return;
+    ev.preventDefault();
+    try { history.replaceState(null, '', '#' + id); } catch (e) { /* the hash is a convenience */ }
+    reveal(id);
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.chip'), function (b) {
+    b.addEventListener('click', function () {
+      role = b.getAttribute('data-role');
+      try { localStorage.setItem(ROLE_KEY, role); } catch (e) { /* not remembered, still applied */ }
+      apply();
+    });
+  });
+  find.addEventListener('input', apply);
+  document.getElementById('print').addEventListener('click', function () { window.print(); });
+  var allOpen = false;
+  openAll.addEventListener('click', function () {
+    allOpen = !allOpen;
+    Array.prototype.forEach.call(guide.querySelectorAll('details.item'), function (d) { d.open = allOpen; });
+    openAll.textContent = allOpen ? 'Close every entry' : 'Open every entry';
+  });
+  var closedForPrint = [];
+  window.addEventListener('beforeprint', function () {
+    closedForPrint = Array.prototype.filter.call(guide.querySelectorAll('details.item'), function (d) { return !d.open; });
+    closedForPrint.forEach(function (d) { d.open = true; });
+  });
+  window.addEventListener('afterprint', function () {
+    closedForPrint.forEach(function (d) { d.open = false; });
+    closedForPrint = [];
+  });
+
+  /* ---------- loading the house ---------- */
+  function isBrennans(h) { return !!(h && h.pack && h.pack.id === PACK_ID); }
+  function counts(h) {
+    return n(h.dishes.length, 'dish', 'dishes') + ', ' + n(h.cocktails.length, 'drink', 'drinks') + ', ' + n(h.wines.length, 'wine', 'wines');
+  }
+  /* Brennan's as the device holds it: by the id ensurePack named, else the
+     current house when it is Brennan's, else a listed house of that name. */
+  function openBrennans(id) {
+    var cur = api.current();
+    if (id) return cur && cur.id === id ? Promise.resolve(cur) : api.switchTo(id);
+    if (isBrennans(cur)) return Promise.resolve(cur);
+    var stub = api.list().filter(function (x) { return fold(x.name).indexOf('brennans') >= 0; })[0];
+    if (!stub) return Promise.resolve(null);
+    return api.switchTo(stub.id).then(function (h) { return isBrennans(h) ? h : null; });
+  }
+  function fetchPack() {
+    if (navigator.onLine === false) return Promise.resolve({ action: 'offline' });
+    return fetch(DEFAULT_PACK, { cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) throw new Error('The menu file did not arrive (' + r.status + ').');
+      return r.text();
+    }).then(function (text) {
+      return api.ensurePack(text, { makeCurrent: true });
+    }).catch(function (e) {
+      return { action: 'offline', said: e && e.message ? e.message : '' };
+    });
+  }
+  function boot() {
     again.hidden = true;
-    var api = window.OOT && window.OOT.house;
     if (!api) { say('The house engine did not load. Check the connection and press Load it again.'); again.hidden = false; return; }
     say("Loading Brennan's onto this device.");
-    api.ready().then(function () {
-      return fetch(PACK, { cache: 'reload' }).then(function (r) {
-        if (!r.ok) throw new Error('The menu file did not arrive (' + r.status + ').');
-        return r.text();
-      });
-    }).then(function (text) {
-      var read = api.readPack(text);
-      if (!read.ok) throw new Error(read.said || 'The menu file could not be read.');
-      var id = read.house.id;
-      var here = api.list().some(function (s) { return s.id === id; });
-      /* On the device already: merge, so anything kept or written since stays
-         and the menu's own lines come back if one went missing. New: add it. */
-      return api.importPack(text, here ? { mode: 'merge', into: id } : { mode: 'new' }).then(function (res) {
-        if (!res.ok) throw new Error(res.said || 'This device would not keep it.');
-        return api.switchTo(res.added || id);
-      });
+    var res = null;
+    api.ready().then(fetchPack).then(function (r) {
+      res = r;
+      return openBrennans(r.action === 'added' || r.action === 'refreshed' || r.action === 'current' ? r.id : null);
     }).then(function (h) {
-      if (!h) throw new Error("Brennan's was saved but could not be opened. Press Load it again.");
-      say("Brennan's is on this device and open in all three apps: " +
-        n(h.dishes.length, 'dish', 'dishes') + ', ' + n(h.cocktails.length, 'drink', 'drinks') + ', ' +
-        n(h.wines.length, 'wine', 'wines') + ', ' + n(h.lexicon.length, 'word', 'words') + ', ' +
-        n(h.scenarios.length, 'guest conversation', 'guest conversations') + ' and ' +
-        n((h.askAtLineup || []).length, 'question', 'questions') + ' to ask at lineup.' +
-        (api.volatile ? ' This browser is keeping nothing after the tab closes (a private window): open this page in a normal window.' : ''));
-      where.hidden = false;
+      if (!h) {
+        if (res.action === 'refused') throw new Error(res.said || 'This device would not keep the menu.');
+        throw new Error("Brennan's is not on this device yet, and the menu file did not arrive. Connect to the internet once.");
+      }
+      var line;
+      if (res.action === 'added') line = "Brennan's is loaded: " + counts(h) + '.';
+      else if (res.action === 'refreshed') {
+        var c = res.counts || { added: 0, updated: 0, kept: 0 };
+        line = "Brennan's updated: " + c.added + ' new' + (c.updated ? ', ' + c.updated + ' changed' : '') + (c.kept ? ', and ' + n(c.kept, 'entry', 'entries') + ' you changed left as you had it' : '') + '. Now ' + counts(h) + '.';
+      } else if (res.action === 'refused') line = (res.said || 'The newer menu file could not be read.') + " Showing Brennan's as this device holds it: " + counts(h) + '.';
+      else if (res.action === 'offline') line = "Offline: Brennan's as this device holds it, " + counts(h) + '.';
+      else line = "Brennan's is on this device and open in all three apps: " + counts(h) + '.';
+      if (api.volatile) line += ' This browser is keeping nothing after the tab closes (a private window): open this page in a normal window.';
+      say(line);
+      render(h);
       again.hidden = false;
+      if (location.hash) reveal(decodeURIComponent(location.hash.slice(1)));
     }).catch(function (e) {
       say((e && e.message ? e.message : 'Something went wrong.') + ' Press Load it again.');
       again.hidden = false;
     });
   }
-  again.addEventListener('click', load);
-  load();
+  again.addEventListener('click', boot);
+  boot();
 })();
 </script>
 </body>

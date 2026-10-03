@@ -138,6 +138,9 @@ function render(){
   if(hs) hs.addEventListener('change', e => { houseSwitch(e.target.value); });
   const hf = document.getElementById('house-file');
   if(hf) hf.addEventListener('change', e => { if(e.target.files[0]) houseImportFile(e.target.files[0]); });
+  /* Say it back's list of the house's drinks: a select, heard on change */
+  const hsi = document.getElementById('hs-item');
+  if(hsi) hsi.addEventListener('change', e => { houseSayPick(e.target.value); });
   /* the two house doors on Mine: the shared reader or reviewer drawn into
      its root under the line, from the house, after every paint */
   if(typeof houseAfterRender === 'function') houseAfterRender();
@@ -981,6 +984,9 @@ document.getElementById('view').addEventListener('click', e => {
   /* the formula pane's acts (js/house-bar.js): each reads its boxes itself,
      writes to the house and repaints when the house answers */
   else if(act.indexOf('hf-')===0){ houseFormulaAct(act, el.dataset); return; }
+  /* Say it back and Guest at the table (js/house-bar.js): graded offline by
+     the engine, recorded only on Record it, counted toward no level */
+  else if(act.indexOf('hd-')===0){ houseDrillAct(act, el.dataset); return; }
   else if(act==='menu-add-line'){ state.menu.form.spec.push(''); }
   else if(act==='menu-del-line'){
     state.menu.form.spec.splice(Number(el.dataset.i), 1);
@@ -1083,6 +1089,15 @@ function captureLiveInputs(){
        already have moved */
     if(note && note.value !== undefined) state.house.note = { id: note.dataset ? note.dataset.id : null, text: note.value };
   }
+  /* Say it back's box and Guest at the table's box (js/house-bar.js) */
+  if(state.house && state.house.say){
+    /* the list is heard on change (houseSayPick), so its value already is
+       the drink being said; grabbed here so no repaint can lose it */
+    const pick = document.getElementById('hs-item');
+    if(pick && pick.value && pick.value !== state.house.say.id && typeof houseSayChoose === 'function') houseSayChoose(pick.value);
+    grab('hs-said', state.house.say, 'text');
+  }
+  if(state.house && state.house.role) grab('hr-said', state.house.role, 'text');
   /* every drill result field, by prefix: on the Ticket Rail an intervening
      act (revealing the order) is REQUIRED between typing and logging, so the
      render in between ate the seconds every single time */
@@ -1126,6 +1141,11 @@ function captureLiveInputs(){
      row written back through saveBarRecord and removeBarRecord, never
      directly. A refusal is a sentence on Mine, never a thrown boot. */
   if(typeof houseSyncIn === 'function'){ try{ await houseSyncIn(); }catch(e){} }
+  /* then the pack this site ships (DEFAULT_PACK in js/house-bar.js), never
+     awaited: fetched when online, added or refreshed by the engine, the list
+     brought into step through the same doors, and one quiet line on Mine.
+     Offline or refused, nothing at all, and the boot has already drawn. */
+  if(typeof houseAutoLoad === 'function'){ houseAutoLoad().then(function(r){ if(r && r.action !== 'current') houseRepaint(); }, function(){}); }
   /* A shelf stored before the vocabulary may hold ids that have since split,
      and twelve of them did. migrateShelf is idempotent and never subtractive:
      an id it does not know is kept, because an unknown id satisfies nothing
