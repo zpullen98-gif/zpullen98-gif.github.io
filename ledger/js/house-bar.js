@@ -53,7 +53,10 @@ function houseHere(){
    sentence to show, a pack read and waiting on a choice, a house just added.
    Made here rather than in engine.js so the whole feature is one file. */
 function houseBlankState(){
-  return { panel:'', name:'', renameTo:'', address:'', err:'', live:'', pending:null, added:null, busy:false };
+  return { panel:'', name:'', renameTo:'', address:'', err:'', live:'', pending:null, added:null, busy:false,
+    /* the formula pane's one open editor, the service note being typed, the
+       picker's choice, the review door's step and the pane's last sentence */
+    edit:null, note:null, pick:'', step:'formula', said:'' };
 }
 if(typeof state !== 'undefined' && state && !state.house) state.house = houseBlankState();
 
@@ -315,7 +318,7 @@ function houseRemove(id){
 /* ---- another tab's write: re-run the wake, once the person is not typing --- */
 var houseStorageTimer = null;
 function houseStorageDue(){
-  const busy = (state.menu && (state.menu.form || state.menu.editing)) || (state.menu && state.menu.imp && state.menu.imp.busy);
+  const busy = (state.menu && (state.menu.form || state.menu.editing)) || (state.menu && state.menu.imp && state.menu.imp.busy) || houseUIEditing();
   if(busy){ houseStorageTimer = setTimeout(houseStorageDue, 2000); return; }
   houseStorageTimer = null;
   const api = houseHere();
@@ -376,7 +379,8 @@ function houseLineHTML(){
     + chip('house-panel', 'New house', 'new')
     + chip('house-panel', 'Import a pack', 'import')
     + chip('house-export', 'Export', null, !cur)
-    + chip('house-panel', 'Rename', 'rename', !cur);
+    + chip('house-panel', 'Rename', 'rename', !cur)
+    + houseDoorsHTML(h, cur, busy);
   let panel = '';
   if(h.panel === 'switch'){
     panel = '<label class="tiny dim" for="house-switch">Open another house on this device</label>'
@@ -399,6 +403,8 @@ function houseLineHTML(){
     panel = '<label class="tiny dim" for="house-rename">Rename ' + esc(cur.name) + '</label>'
       + '<div class="row" style="gap:8px;flex-wrap:wrap"><input class="input" id="house-rename" value="' + esc(h.renameTo) + '" style="flex:1;min-width:180px">'
       + '<button class="chip" data-act="house-rename-go">Rename</button></div>';
+  } else if(h.panel === 'read' || h.panel === 'review'){
+    panel = cur ? houseDoorPanelHTML(h) : '';
   }
   let after = '';
   if(h.pending){
@@ -513,10 +519,41 @@ function houseTakePack(text){
   }
   return houseFinishImport(text, read.house.name, { mode: 'new' });
 }
+/* The service notes on the current house, by kind and id, before a merge:
+   the engine's merge takes the newer item whole, so a pack from another
+   device that never had a note would blank the one written here. Every
+   note the merge emptied is written back through setItemField after. */
+var HOUSE_NOTE_KINDS = { dish: 'dishes', wine: 'wines', cocktail: 'cocktails' };
+function houseNotesOf(cur){
+  const out = [];
+  if(!cur) return out;
+  Object.keys(HOUSE_NOTE_KINDS).forEach(function(kind){
+    (cur[HOUSE_NOTE_KINDS[kind]] || []).forEach(function(it){
+      if(it && it.id && typeof it.serviceNote === 'string' && it.serviceNote.trim()) out.push({ kind: kind, id: it.id, note: it.serviceNote });
+    });
+  });
+  return out;
+}
+function houseNotesBack(api, notes){
+  return houseOneAtATime(function(){
+    const cur = api.current();
+    let chain = Promise.resolve(true);
+    notes.forEach(function(n){
+      const it = cur && (cur[HOUSE_NOTE_KINDS[n.kind]] || []).find(function(x){ return x && x.id === n.id; });
+      if(!it || (typeof it.serviceNote === 'string' && it.serviceNote.trim())) return;
+      chain = chain.then(function(){ return api.setItemField(n.kind, n.id, { serviceNote: n.note }); });
+    });
+    return chain;
+  }).catch(function(){ return false; });
+}
 function houseFinishImport(text, name, choice){
   const api = houseHere(); const h = state.house;
   h.busy = true;
+  const notes = choice.mode === 'merge' && choice.into === api.currentId() ? houseNotesOf(api.current()) : [];
   return api.importPack(text, choice).then(function(result){
+    if(!result.ok || !notes.length || !result.current) return result;
+    return houseNotesBack(api, notes).then(function(){ return result; });
+  }).then(function(result){
     h.pending = null;
     if(!result.ok){ h.err = result.said; return result; }
     h.address = '';
@@ -591,6 +628,459 @@ function houseAttach(){
   api.onChange(function(house, what){
     if(what === 'ready' || what === 'storage') return;
     houseNamesRefresh();
+    /* a mark, a field or an entry written on the house, by this screen or
+       another tab's wake: the formula pane and the two doors' panels are
+       drawn from the house, so they are drawn again */
+    if(what === 'mark' || what === 'field' || what === 'entry' || what === 'remove-item' || what === 'import') houseRedrawIfShown();
   });
 }
 houseAttach();
+
+/* ======================================================================
+   READ AND KEEP, NO KEY: the formula pane on an open drink, the two doors
+   on Mine, and the pack in My Data.
+
+   Every mark here lives on the HOUSE cocktail and nowhere on the row: the
+   five parts, the three timed lines and the upsells are House-only marks,
+   written through OOT.house.setMark('cocktail', id, field, mark) and
+   discarded with null; the service note is a plain House-only field, a
+   person's own words, written through OOT.house.setItemField and never
+   through the row or saveBarRecord. Nothing here reads, writes or infers
+   an allergen: the note's eyebrow is fixed and the words under it are the
+   person's. A mark is hers until by === 'person'; Keep writes her value
+   back with by 'person' and a fresh stamp, Edit then Save writes the typed
+   value the same way, Discard removes the mark. One editor is open at a
+   time across the pane, keyed on state.house.edit.
+
+   The pane and the panels are drawn from the house every render, and the
+   engine's onChange (above) asks for a render after every write, so what
+   is shown is what was saved. The boxes' ids (hf-part-*, hf-line-*,
+   hf-upsell, hf-note) are in captureLiveInputs in app.js, so a render
+   between typing and Save cannot eat the edit; and every act below reads
+   the boxes itself first, because captureLiveInputs runs after an act.
+
+   The two doors hand the shared reader and reviewer, OOT.houseUI, a root
+   under the house line after every render (houseAfterRender, called from
+   render in app.js) and the three hooks; the problems hook returns the
+   engine's own count over the item's lines. With no OOT.houseUI the doors
+   are not drawn; with no engine nothing here is. */
+
+function houseUIHere(){
+  return (typeof OOT !== 'undefined' && OOT && OOT.houseUI && typeof OOT.houseUI.readView === 'function') ? OOT.houseUI : null;
+}
+function houseLibHere(){
+  return (typeof OOT !== 'undefined' && OOT && OOT.houseLib) ? OOT.houseLib : null;
+}
+var HOUSE_PART_KEYS = ['main', 'technique', 'sauce', 'sides', 'taste'];
+var HOUSE_LINE_KEYS = ['s10', 's20', 's45'];
+var HOUSE_LINE_WORDS = { s10: 'Ten seconds', s20: 'Twenty seconds', s45: 'Forty five seconds' };
+var HOUSE_FORMULA_FIELDS = ['parts', 'lines', 'upsells'];
+var HOUSE_NOTE_EYEBROW = 'Your words. Allergens: confirm at lineup.';
+
+/* the engine's own labels, caps and counts, read at call time */
+function housePartLabels(){
+  const api = houseHere(); const lib = houseLibHere();
+  return (api && api.COCKTAIL_PARTS) || (lib && lib.COCKTAIL_PARTS)
+    || { main: 'the spirit', technique: 'the build', sauce: 'modifiers and key flavours', sides: 'glass and garnish', taste: 'how it tastes' };
+}
+function houseLineCaps(){
+  const api = houseHere(); const lib = houseLibHere();
+  return (api && api.LINE_CAPS) || (lib && lib.LINE_CAPS) || { s10: 25, s20: 50, s45: 110 };
+}
+function houseWordCount(s){
+  const lib = houseLibHere();
+  return lib && typeof lib.wordCount === 'function' ? lib.wordCount(s) : 0;
+}
+function houseHasDash(s){
+  const lib = houseLibHere();
+  return !!(lib && typeof lib.hasDash === 'function' && lib.hasDash(s));
+}
+function houseIsMark(m){
+  return !!m && typeof m === 'object' && !Array.isArray(m) && (m.by === 'maitre' || m.by === 'person')
+    && typeof m.ts === 'number' && m.value !== undefined && m.value !== null;
+}
+/* the count a line shows, in the reviewer's own words */
+function houseCountText(key, text){
+  const caps = houseLineCaps();
+  const n = houseWordCount(text || '');
+  return n + ' of ' + caps[key] + ' words' + (n > caps[key] ? '. Over its cap' : '');
+}
+
+/* ---- the chip and the pane ---------------------------------------------- */
+/* the fifth chip on an open drink, only where the engine is here */
+function menuFormulaChip(){
+  return houseHere() ? [['formula', 'The formula']] : [];
+}
+function houseStatusChip(item, field){
+  const m = item[field];
+  const word = !houseIsMark(m) ? 'Nothing yet' : (m.by === 'person' ? 'Kept' : 'Hers, not yet kept');
+  return '<span class="chip tiny">' + word + '</span>';
+}
+function houseMarkChips(id, field, item, ed){
+  const m = item[field];
+  const isM = houseIsMark(m);
+  const a = function(act, label, extra){ return '<button class="chip" data-act="' + act + '" data-id="' + esc(id) + '" data-f="' + field + '"' + (extra || '') + '>' + label + '</button>'; };
+  if(ed) return a('hf-save', 'Save') + a('hf-cancel', 'Cancel');
+  return (isM && m.by !== 'person' ? a('hf-keep', 'Keep') : '')
+    + a('hf-edit', isM ? 'Edit' : 'Write it')
+    + (isM ? a('hf-discard', 'Discard') : '');
+}
+function housePartsHTML(b, item, ed){
+  const labels = housePartLabels();
+  const m = item.parts;
+  const value = houseIsMark(m) && m.value && typeof m.value === 'object' ? m.value : {};
+  let body;
+  if(ed){
+    body = HOUSE_PART_KEYS.map(function(k){
+      const v = ed.parts && typeof ed.parts[k] === 'string' ? ed.parts[k] : '';
+      return '<label class="col-sm" style="gap:4px"><span class="tiny dim">' + esc(labels[k]) + '</span>'
+        + '<input class="input" id="hf-part-' + k + '" value="' + esc(v) + '"></label>';
+    }).join('');
+  } else if(houseIsMark(m)){
+    body = HOUSE_PART_KEYS.map(function(k){
+      return '<div class="small lh"><span class="tiny dim">' + esc(labels[k]) + '</span><br>' + esc(String(value[k] || '')) + '</div>';
+    }).join('');
+  } else {
+    body = '<div class="tiny dim lh">Nothing written yet: the five parts of the drink, in the words you would say them.</div>';
+  }
+  return '<div class="panel p4 col-sm" style="gap:8px">'
+    + '<div class="row between" style="flex-wrap:wrap;gap:6px"><div class="eyebrow">The five parts</div>' + houseStatusChip(item, 'parts') + '</div>'
+    + body
+    + '<div class="row" style="gap:6px;flex-wrap:wrap">' + houseMarkChips(b.id, 'parts', item, ed) + '</div>'
+    + '</div>';
+}
+function houseLinesHTML(b, item, ed){
+  const m = item.lines;
+  const value = houseIsMark(m) && m.value && typeof m.value === 'object' ? m.value : {};
+  let body;
+  if(ed){
+    body = HOUSE_LINE_KEYS.map(function(k){
+      const v = ed.lines && typeof ed.lines[k] === 'string' ? ed.lines[k] : '';
+      return '<label class="col-sm" style="gap:4px"><span class="tiny dim">' + HOUSE_LINE_WORDS[k] + '</span>'
+        + '<textarea class="input" id="hf-line-' + k + '" rows="3">' + esc(v) + '</textarea>'
+        + '<span class="tiny dim" id="hf-count-' + k + '">' + esc(houseCountText(k, v)) + '</span></label>';
+    }).join('');
+  } else if(houseIsMark(m)){
+    body = HOUSE_LINE_KEYS.map(function(k){
+      const t = String(value[k] || '');
+      return '<div class="small lh"><span class="tiny dim">' + HOUSE_LINE_WORDS[k] + '</span><br>' + esc(t)
+        + '<br><span class="tiny dim">' + esc(houseCountText(k, t)) + (houseHasDash(t) ? '. Carries a dash' : '') + '</span></div>';
+    }).join('');
+  } else {
+    body = '<div class="tiny dim lh">Nothing written yet: what you would say about it in ten, twenty and forty five seconds.</div>';
+  }
+  return '<div class="panel p4 col-sm" style="gap:8px">'
+    + '<div class="row between" style="flex-wrap:wrap;gap:6px"><div class="eyebrow">The timed lines</div>' + houseStatusChip(item, 'lines') + '</div>'
+    + body
+    + '<div class="row" style="gap:6px;flex-wrap:wrap">' + houseMarkChips(b.id, 'lines', item, ed) + '</div>'
+    + '</div>';
+}
+/* the house's cocktails other than this one, by id, for the picker */
+function houseOtherCocktails(id){
+  const api = houseHere(); const cur = api ? api.current() : null;
+  return cur ? (cur.cocktails || []).filter(function(c){ return c && c.id !== id; }) : [];
+}
+function houseUpsellIds(item){
+  const m = item.upsells;
+  return houseIsMark(m) && Array.isArray(m.value) ? m.value.slice() : [];
+}
+function houseUpsellsHTML(b, item){
+  const h = state.house;
+  const ids = houseUpsellIds(item);
+  const others = houseOtherCocktails(b.id);
+  const byId = {}; others.forEach(function(c){ byId[c.id] = c; });
+  const rows = ids.map(function(id){
+    const name = byId[id] ? byId[id].name : 'a drink no longer on the house';
+    return '<div class="row between" style="flex-wrap:wrap;gap:6px"><span class="small">' + esc(name) + '</span>'
+      + '<button class="chip" data-act="hf-upsell-drop" data-id="' + esc(b.id) + '" data-up="' + esc(id) + '">Remove</button></div>';
+  }).join('');
+  const free = others.filter(function(c){ return ids.indexOf(c.id) < 0; });
+  const picker = free.length
+    ? '<div class="row" style="gap:8px;flex-wrap:wrap;align-items:center"><select class="input" id="hf-upsell" aria-label="A drink to offer next" style="flex:1;min-width:180px">'
+      + '<option value="">Choose a drink</option>'
+      + free.map(function(c){ return '<option value="' + esc(c.id) + '"' + (h.pick === c.id ? ' selected' : '') + '>' + esc(c.name) + '</option>'; }).join('')
+      + '</select><button class="chip" data-act="hf-upsell-add" data-id="' + esc(b.id) + '">Add it</button></div>'
+    : '<div class="tiny dim lh">' + (others.length ? 'Every other drink on the house is already here.' : 'No other drink on the house yet to offer.') + '</div>';
+  const m = item.upsells;
+  const chips = (houseIsMark(m) && m.by !== 'person' ? '<button class="chip" data-act="hf-keep" data-id="' + esc(b.id) + '" data-f="upsells">Keep</button>' : '')
+    + (houseIsMark(m) ? '<button class="chip" data-act="hf-discard" data-id="' + esc(b.id) + '" data-f="upsells">Discard</button>' : '');
+  return '<div class="panel p4 col-sm" style="gap:8px">'
+    + '<div class="row between" style="flex-wrap:wrap;gap:6px"><div class="eyebrow">What to offer next</div>' + houseStatusChip(item, 'upsells') + '</div>'
+    + (rows || '<div class="tiny dim lh">Nothing yet: the drinks on this house to offer after this one.</div>')
+    + picker
+    + (chips ? '<div class="row" style="gap:6px;flex-wrap:wrap">' + chips + '</div>' : '')
+    + '</div>';
+}
+function houseNoteHTML(b, item){
+  const h = state.house;
+  const draft = h.note && h.note.id === b.id ? h.note.text : (item.serviceNote || '');
+  return '<div class="panel p4 col-sm" style="gap:8px">'
+    + '<div class="eyebrow">' + HOUSE_NOTE_EYEBROW + '</div>'
+    + '<textarea class="input" id="hf-note" data-id="' + esc(b.id) + '" rows="3" aria-label="The service note, in your words">' + esc(draft) + '</textarea>'
+    + '<div class="row" style="gap:6px;flex-wrap:wrap"><button class="chip" data-act="hf-note-save" data-id="' + esc(b.id) + '">Save the note</button></div>'
+    + '<div class="tiny dim lh">Yours alone, on the house and on no record here. It leaves this device only in a pack you export.</div>'
+    + '</div>';
+}
+/* the pane: everything of hers and yours on the house cocktail this drink is */
+function menuFormulaHTML(b){
+  const api = houseHere();
+  if(!api || !b) return '';
+  const h = state.house || (state.house = houseBlankState());
+  const item = houseItemFor(b.id);
+  if(!item) return '<div class="small dim lh">' + (api.current() ? 'This drink is not on the house yet. Edit and save it once and it joins.' : 'No house holds this drink yet. Start one on Mine, or import a pack.') + '</div>';
+  const ed = h.edit && h.edit.id === b.id ? h.edit : null;
+  const unkept = HOUSE_FORMULA_FIELDS.filter(function(f){ return houseIsMark(item[f]) && item[f].by !== 'person'; });
+  return '<div class="col-sm" style="gap:12px">'
+    + '<div class="row between" style="flex-wrap:wrap;gap:6px"><div class="tiny dim lh">Hers until you keep it; until then it reaches no drill, no card and no guest.</div>'
+    + (unkept.length ? '<button class="chip" data-act="hf-keep-all" data-id="' + esc(b.id) + '">Keep all on the drink</button>' : '') + '</div>'
+    + housePartsHTML(b, item, ed && ed.field === 'parts' ? ed : null)
+    + houseLinesHTML(b, item, ed && ed.field === 'lines' ? ed : null)
+    + houseUpsellsHTML(b, item)
+    + houseNoteHTML(b, item)
+    + (h.said ? '<div class="tiny dim" role="status">' + esc(h.said) + '</div>' : '')
+    + '</div>';
+}
+
+/* ---- the live word count: the boxes heard at the document ---------------- */
+function houseOnInput(e){
+  const t = e && e.target;
+  const id = t && typeof t.id === 'string' ? t.id : '';
+  if(id.indexOf('hf-line-') !== 0) return;
+  const key = id.slice(8);
+  const out = document.getElementById('hf-count-' + key);
+  if(out) out.textContent = houseCountText(key, t.value || '');
+}
+if(typeof document !== 'undefined' && document && typeof document.addEventListener === 'function'){
+  document.addEventListener('input', houseOnInput);
+}
+
+/* ---- the acts ------------------------------------------------------------ */
+/* the boxes into state, then the act; every write ends on a repaint */
+function houseFormulaAct(act, data){
+  const api = houseHere(); const h = state.house;
+  if(!api || !h){ houseRepaint(); return Promise.resolve(false); }
+  if(typeof captureLiveInputs === 'function') captureLiveInputs();
+  const id = data && data.id; const f = data && data.f;
+  const item = houseItemFor(id);
+  h.said = '';
+  const mark = function(value, prev){
+    const m = { value: value, by: 'person', ts: Date.now() };
+    if(prev && typeof prev.model === 'string' && prev.model) m.model = prev.model;
+    return m;
+  };
+  /* every write waits its turn with the wake (houseOneAtATime): a Keep
+     pressed while another tab's write is being brought in would otherwise
+     read the house before the wake and save over it, or be saved over */
+  const write = function(field, m, said){
+    return houseOneAtATime(function(){ return api.setMark('cocktail', id, field, m); }).then(function(ok){
+      h.said = ok ? said : 'The house refused that write.';
+      return ok;
+    }).catch(function(){ h.said = 'The house could not be written on this device.'; return false; })
+      .then(function(ok){ houseRepaint(); return ok; });
+  };
+  if(!item){ houseRepaint(); return Promise.resolve(false); }
+  if(act === 'hf-edit'){
+    const m = item[f]; const v = houseIsMark(m) ? m.value : null;
+    h.edit = { id: id, field: f,
+      parts: f === 'parts' ? Object.assign({ main: '', technique: '', sauce: '', sides: '', taste: '' }, v && typeof v === 'object' ? v : {}) : null,
+      lines: f === 'lines' ? Object.assign({ s10: '', s20: '', s45: '' }, v && typeof v === 'object' ? v : {}) : null };
+    houseRepaint(); return Promise.resolve(true);
+  }
+  if(act === 'hf-cancel'){ h.edit = null; houseRepaint(); return Promise.resolve(true); }
+  if(act === 'hf-keep'){
+    const m = item[f];
+    if(!houseIsMark(m) || m.by === 'person'){ houseRepaint(); return Promise.resolve(false); }
+    return write(f, mark(m.value, m), 'Kept. It is yours now and goes with the drink.');
+  }
+  if(act === 'hf-discard'){ h.edit = null; return write(f, null, 'Discarded.'); }
+  if(act === 'hf-save'){
+    const ed = h.edit && h.edit.id === id && h.edit.field === f ? h.edit : null;
+    if(!ed){ houseRepaint(); return Promise.resolve(false); }
+    let value = null;
+    if(f === 'parts'){ value = {}; HOUSE_PART_KEYS.forEach(function(k){ value[k] = String(ed.parts[k] || '').trim(); }); }
+    else if(f === 'lines'){ value = {}; HOUSE_LINE_KEYS.forEach(function(k){ value[k] = String(ed.lines[k] || '').trim(); }); }
+    if(!value || !Object.keys(value).some(function(k){ return value[k]; })){ h.said = 'Nothing to save: every box is empty. Discard it instead.'; houseRepaint(); return Promise.resolve(false); }
+    h.edit = null;
+    /* a line over its cap is saved as typed and shown over its cap: the
+       count is a word on the screen, not a lock on the door */
+    return write(f, mark(value, item[f]), 'Saved, in your words.');
+  }
+  if(act === 'hf-keep-all'){
+    const fields = HOUSE_FORMULA_FIELDS.filter(function(x){ return houseIsMark(item[x]) && item[x].by !== 'person'; });
+    let n = 0;
+    return houseOneAtATime(function(){
+      let chain = Promise.resolve(true);
+      fields.forEach(function(x){
+        chain = chain.then(function(){ return api.setMark('cocktail', id, x, mark(item[x].value, item[x])).then(function(ok){ if(ok) n++; return ok; }); });
+      });
+      return chain;
+    }).catch(function(){ return false; }).then(function(){
+      h.said = n ? 'Kept, all ' + n + ' on the drink.' : 'Nothing of hers waits on this drink.';
+      houseRepaint(); return n > 0;
+    });
+  }
+  if(act === 'hf-upsell-add'){
+    const pick = String(h.pick || '').trim();
+    const ids = houseUpsellIds(item);
+    const okPick = pick && pick !== id && houseOtherCocktails(id).some(function(c){ return c.id === pick; });
+    if(!okPick || ids.indexOf(pick) >= 0){ h.said = 'Choose a drink on this house first.'; houseRepaint(); return Promise.resolve(false); }
+    h.pick = '';
+    return write('upsells', mark(ids.concat([pick]), item.upsells), 'Added.');
+  }
+  if(act === 'hf-upsell-drop'){
+    const ids = houseUpsellIds(item).filter(function(x){ return x !== data.up; });
+    return write('upsells', ids.length ? mark(ids, item.upsells) : null, 'Removed.');
+  }
+  if(act === 'hf-note-save'){
+    const text = h.note && h.note.id === id ? String(h.note.text || '') : String(item.serviceNote || '');
+    return houseOneAtATime(function(){ return api.setItemField('cocktail', id, { serviceNote: text.trim() }); }).then(function(ok){
+      if(ok){
+        h.note = null;
+        /* the box as saved, so the repaint's grab reads the trimmed words */
+        const box = document.getElementById('hf-note');
+        if(box && box.value !== undefined) box.value = text.trim();
+      }
+      h.said = ok ? 'Saved. Your words, on the house.' : 'The house refused the note.';
+      return ok;
+    }).catch(function(){ h.said = 'The house could not be written on this device.'; return false; })
+      .then(function(ok){ houseRepaint(); return ok; });
+  }
+  houseRepaint();
+  return Promise.resolve(false);
+}
+
+/* ---- the two doors on Mine ---------------------------------------------- */
+var HOUSE_REVIEW_STEPS = [['formula', 'The formula'], ['pairings', 'The pairings'], ['wines', 'The wines'], ['lexicon', 'The words'], ['scenarios', 'The table']];
+/* the chips beside the house line, drawn only where the shared screens are */
+function houseDoorsHTML(h, cur, busy){
+  if(!houseUIHere() || !cur) return '';
+  const chip = function(p, label){
+    const open = h.panel === p;
+    return '<button class="chip' + (open ? ' on' : '') + '" data-act="house-panel" data-p="' + p + '" aria-expanded="' + (open ? 'true' : 'false') + '"' + (busy ? ' disabled' : '') + '>' + label + '</button>';
+  };
+  return chip('read', 'The house') + chip('review', 'Hers, to look over');
+}
+/* the panel under the line: the step chips for the review, and the root
+   the shared screen draws into after the render */
+function houseDoorPanelHTML(h){
+  if(!houseUIHere()) return '';
+  if(h.panel === 'read') return '<div id="house-ui-root"></div>';
+  if(h.panel === 'review'){
+    const steps = HOUSE_REVIEW_STEPS.map(function(s){
+      const on = h.step === s[0];
+      return '<button class="chip' + (on ? ' on' : '') + '" data-act="house-step" data-s="' + s[0] + '" aria-pressed="' + (on ? 'true' : 'false') + '">' + s[1] + '</button>';
+    }).join('');
+    return '<div class="row" style="gap:6px;flex-wrap:wrap" aria-label="The steps">' + steps + '</div><div id="house-ui-root"></div>';
+  }
+  return '';
+}
+function houseStep(s){
+  const h = state.house;
+  if(HOUSE_REVIEW_STEPS.some(function(x){ return x[0] === s; })) h.step = s;
+}
+/* the engine's own problems over an item's lines: a line over its cap, or
+   one carrying a dash, each naming the lines mark */
+function houseProblems(kind, id){
+  const api = houseHere(); const lib = houseLibHere();
+  const cur = api ? api.current() : null;
+  if(!cur || !lib || typeof lib.lineProblems !== 'function') return [];
+  const listName = { dish: 'dishes', wine: 'wines', cocktail: 'cocktails' }[kind];
+  if(!listName) return [];
+  const item = (cur[listName] || []).find(function(x){ return x && x.id === id; });
+  const m = item && item.lines;
+  if(!houseIsMark(m) || !m.value || typeof m.value !== 'object') return [];
+  const out = [];
+  (lib.lineProblems(m.value) || []).forEach(function(p){
+    out.push({ field: 'lines', said: 'By the engine, the ' + HOUSE_LINE_WORDS[p.field].toLowerCase() + ' line runs ' + p.words + ' words against its cap of ' + p.cap + '.' });
+  });
+  HOUSE_LINE_KEYS.forEach(function(k){
+    if(houseHasDash(m.value[k])) out.push({ field: 'lines', said: 'By the engine, the ' + HOUSE_LINE_WORDS[k].toLowerCase() + ' line carries a dash.' });
+  });
+  return out;
+}
+function houseUIHooks(){
+  const api = houseHere();
+  /* each hook's write waits its turn with the wake, as the pane's do */
+  const quiet = function(run){ return houseOneAtATime(run).catch(function(){ return false; }); };
+  return {
+    setMark: function(kind, id, field, mark){ return api ? quiet(function(){ return api.setMark(kind, id, field, mark); }) : Promise.resolve(false); },
+    discard: function(kind, id, field){ return api ? quiet(function(){ return api.setMark(kind, id, field, null); }) : Promise.resolve(false); },
+    problems: houseProblems
+  };
+}
+/* The root the shared screen was last drawn into. render() replaces #view
+   whole, so the next root is a new element with no state of its own; an
+   editor open in the old one, and the words typed in it, are read off that
+   root before the draw and put back after, the way captureLiveInputs keeps
+   the wing's own boxes. */
+var houseUIRoot = null;
+/* the open editor on a drawn root: which field, and what its boxes hold */
+function houseUIEditorOf(root){
+  const st = root && root.__ootHouseUI;
+  const e = st && st.editing;
+  if(!e || !e.kind || !e.id || !e.field || typeof root.querySelector !== 'function') return null;
+  const ed = root.querySelector('[data-editor="' + e.field + '"]');
+  const boxes = {};
+  if(ed && typeof ed.querySelectorAll === 'function'){
+    const all = ed.querySelectorAll('[data-e]');
+    for(let i = 0; i < all.length; i++){
+      const name = all[i].getAttribute('data-e');
+      if(name) boxes[name] = all[i].value == null ? '' : String(all[i].value);
+    }
+  }
+  return { kind: e.kind, id: e.id, field: e.field, mode: st.mode, step: st.step, boxes: boxes };
+}
+/* the same editor opened on the new root, by its own Edit chip, and its
+   boxes filled with the words that were typed */
+function houseUIReopen(root, open){
+  const st = root && root.__ootHouseUI;
+  if(!open || !st || st.mode !== open.mode || st.step !== open.step || typeof root.querySelector !== 'function') return;
+  const sel = '[data-h="edit"][data-kind="' + open.kind + '"][data-id="' + open.id + '"][data-field="' + open.field + '"]';
+  const chip = root.querySelector(sel);
+  if(!chip || typeof chip.click !== 'function') return;
+  chip.click();
+  const ed = root.querySelector('[data-editor="' + open.field + '"]');
+  if(!ed || typeof ed.querySelector !== 'function') return;
+  Object.keys(open.boxes).forEach(function(name){
+    const box = ed.querySelector('[data-e="' + name + '"]');
+    if(box && box.value !== undefined) box.value = open.boxes[name];
+  });
+}
+/* an editor open in a door: a storage wake waits for it, as for a form */
+function houseUIEditing(){
+  return !!(houseUIRoot && houseUIRoot.__ootHouseUI && houseUIRoot.__ootHouseUI.editing);
+}
+/* after every render: the shared screen drawn into its root, from the house */
+function houseAfterRender(){
+  if(typeof document === 'undefined' || !document || typeof document.getElementById !== 'function') return;
+  const root = document.getElementById('house-ui-root');
+  if(!root){ houseUIRoot = null; return; }
+  const api = houseHere(); const ui = houseUIHere(); const h = state.house;
+  if(!api || !ui || !h) return;
+  const cur = api.current();
+  const open = houseUIEditorOf(houseUIRoot);
+  if(h.panel === 'review') ui.review(root, cur, h.step, houseUIHooks());
+  else ui.readView(root, cur, houseUIHooks());
+  houseUIRoot = root;
+  houseUIReopen(root, open);
+}
+/* the engine changed: the pane or a panel that is showing is drawn again */
+function houseRedrawIfShown(){
+  const h = state.house;
+  const paneOpen = state.menu && state.menu.open && state.menu.pane === 'formula';
+  const doorOpen = h && (h.panel === 'read' || h.panel === 'review');
+  if(paneOpen || doorOpen) houseRepaint();
+}
+
+/* ---- the pack, from My Data ---------------------------------------------- */
+function housePackPanelHTML(){
+  const api = houseHere();
+  const cur = api ? api.current() : null;
+  if(!cur) return '';
+  const n = (cur.cocktails || []).length;
+  return '<div class="panel p5 col" style="gap:12px">'
+    + '<div class="eyebrow">The house</div>'
+    + '<div class="small dim lh">' + esc(cur.name) + ', with its ' + n + ' drink' + (n === 1 ? '' : 's') + ' and everything kept on them, as one pack file another device or another wing can import.</div>'
+    + '<div class="row"><button class="btn btn-ghost" data-act="house-export">Export the house as a pack</button></div>'
+    + '</div>';
+}

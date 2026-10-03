@@ -1641,7 +1641,18 @@ function mergeItem(mine, theirs, marks) {
         out.kept = kept;
     else
         delete out.kept;
+    /* The service note is a person's words on one device, and a copy made
+       before they wrote it carries an empty string under a stamp that may be
+       newer (a pack re-stamped on export, a row edit on another wing). The
+       note travels by presence: an empty side never blanks a written one, and
+       two written notes settle with the plain fields, by the newer stamp. */
+    const loser = winner === a ? b : a;
+    if (!noteText(out.serviceNote) && noteText(loser.serviceNote))
+        out.serviceNote = loser.serviceNote;
     return out;
+}
+function noteText(v) {
+    return typeof v === 'string' ? v.trim() : '';
 }
 /* -------------------------------------------------------------------------
  * The whole house
@@ -3634,6 +3645,20 @@ const NO_HOUSE_SAID = 'There is no house on this device yet. Make one, or import
 const HOUSE_PARTS = { dish: DISH_PARTS, wine: WINE_PARTS, cocktail: COCKTAIL_PARTS };
 /** The card's plain fields a screen may set; history is a mark and goes through setMark('house', ...). */
 const CARD_KEYS = ['name', 'address', 'phone', 'site', 'meals', 'dressCode', 'menusReadOn', 'sources'];
+/**
+ * The House-only plain fields a screen may set on an item, by kind: the
+ * service note (a person's words, never hers) on every kind, a dish's
+ * signature flag, a wine's pours. Everything shared with the wing (the name,
+ * the price, the spec, the grapes and the rest) comes through the wing's own
+ * row and put, and a mark goes through setMark, so setItemField refuses them.
+ */
+const ITEM_FIELDS = {
+    dish: ['serviceNote', 'signature'],
+    wine: ['serviceNote', 'pours'],
+    cocktail: ['serviceNote']
+};
+/** The lists putListItem writes: every list whose records have no wing row of their own. */
+const PUT_LISTS = ['tastings', 'lexicon', 'scenarios', 'mixUps', 'mustKnows', 'askAtLineup', 'disputes'];
 /* -------------------------------------------------------------------------
  * The small lookups
  * ---------------------------------------------------------------------- */
@@ -3671,6 +3696,10 @@ function createHouseApi(storage, opts = {}) {
     /* Moved on every assignment of house from outside a commit (a reload, a
        switch, a mint), so a commit in flight can tell the house moved under it. */
     let moved = 0;
+    /** The commits in flight, in order: every commit waits for the one before
+        it to land before it reads the house, so two writes in one tab never
+        read one base and the later never buries the earlier. */
+    let writing = Promise.resolve();
     let readying = null;
     const listeners = [];
     /** How many times a commit re-applies its change over a house that moved during its save. */
@@ -3702,8 +3731,21 @@ function createHouseApi(storage, opts = {}) {
      * function is applied again over the house as it now stands and saved
      * once more, so the device ends with both tabs' work. A refused save
      * leaves memory as it was and comes back with the reason.
+     *
+     * Commits are serialised: a commit that starts while another is saving
+     * waits for that save to land (ok or refused) and only then reads the
+     * house, so a Keep pressed beside a sync, or two Keeps in one tick, each
+     * build on the other's work. The `moved` loop below still covers a
+     * reload, a switch or a mint that lands during a save, which run outside
+     * this chain.
      */
-    const commit = async (change, what) => {
+    const commit = (change, what) => {
+        const run = () => commitNow(change, what);
+        const turn = writing.then(run, run);
+        writing = turn.catch(() => undefined);
+        return turn;
+    };
+    const commitNow = async (change, what) => {
         let base = house;
         let step = change(base);
         for (let tries = 0;; tries++) {
@@ -3940,6 +3982,104 @@ function createHouseApi(storage, opts = {}) {
             /* Through the normaliser's door, so the card's strings are capped and no stray key rides in. */
             return commitHouse((base) => normaliseHouse(Object.assign(Object.assign({}, base), patch), { rand }).house, 'card');
         },
+        setItemField: async (kind, id, patch) => {
+            await ready();
+            if (!house)
+                return false;
+            const list = listOfKind(kind);
+            const allowed = ITEM_FIELDS[kind];
+            if (!list || !allowed)
+                return false;
+            if (!patch || typeof patch !== 'object' || Array.isArray(patch))
+                return false;
+            /* Every key named must be one of the kind's own: a shared field, a mark
+               or a key the client refuses is a refusal of the whole patch, not a
+               silent drop, so a screen learns its wiring is wrong. */
+            const given = patch;
+            const fields = {};
+            for (const k of Object.keys(given)) {
+                if (allowed.indexOf(k) < 0)
+                    return false;
+                if (given[k] !== undefined)
+                    fields[k] = given[k];
+            }
+            if (!Object.keys(fields).length)
+                return false;
+            if (!itemsOf(house, list).some((i) => i.id === id))
+                return false;
+            return commitHouse((base) => {
+                const items = itemsOf(base, list);
+                const at = items.findIndex((i) => i.id === id);
+                if (at < 0)
+                    return base;
+                /* A fresh stamp, newer than the item's own, so the merge carries
+                   the note to another device; the wing's row keeps its own stamp
+                   and its shared fields, since the sync never moves a House-only
+                   field with a row. Then the normaliser's door, which caps the
+                   note, reads the flag as a flag and the pours as a list. */
+                const next = Object.assign(Object.assign(Object.assign({}, items[at]), fields), { ts: Math.max(now(), items[at].ts + 1) });
+                const nextList = items.slice();
+                nextList[at] = next;
+                return normaliseHouse(Object.assign(Object.assign({}, base), { [list]: nextList }), { rand }).house;
+            }, 'field');
+        },
+        putListItem: async (list, item) => {
+            await ready();
+            if (!house)
+                return null;
+            if (PUT_LISTS.indexOf(list) < 0)
+                return null;
+            if (!item || typeof item !== 'object' || Array.isArray(item))
+                return null;
+            const given = item;
+            const marks = MARK_FIELDS[list];
+            const { saved, out } = await commit((base) => {
+                const items = itemsOf(base, list);
+                const id = typeof given.id === 'string' ? given.id : '';
+                const at = id ? items.findIndex((i) => i.id === id) : -1;
+                const stored = at >= 0 ? items[at] : undefined;
+                /* The stored entry under the patch: a plain field the patch names
+                   is replaced, one it does not name is kept, and an undefined is
+                   not a value. A mark the patch names takes the field only through
+                   setMark's rules (the shape, the normaliser, hers never over a
+                   kept one); otherwise the stored mark stays, and a discard is
+                   setMark(list, id, field, null), never a null here. */
+                const next = Object.assign(Object.assign({}, (stored || {})), { ts: 0 });
+                for (const k of Object.keys(given)) {
+                    if (given[k] === undefined || k === 'ts')
+                        continue;
+                    if (marks.indexOf(k) >= 0) {
+                        const m = isMark(given[k]) ? normaliseMark(given[k], markKind(k)) : undefined;
+                        if (m && mayReplace(next[k], m))
+                            next[k] = m;
+                        continue;
+                    }
+                    next[k] = given[k];
+                }
+                if (!id)
+                    delete next.id;
+                /* Newer than what it replaces, and newer than a tombstone on the
+                   same id, which is lifted: an entry put back by hand is wanted. */
+                const tomb = id && typeof base.removed[id] === 'number' ? base.removed[id] : 0;
+                next.ts = Math.max(now(), stored ? stored.ts + 1 : 0, tomb + 1);
+                const nextList = items.slice();
+                const index = at >= 0 ? at : nextList.length;
+                nextList[index] = next;
+                let removed = base.removed;
+                if (tomb) {
+                    removed = Object.assign({}, base.removed);
+                    delete removed[id];
+                }
+                /* The normaliser's door for every field, and the mint for an entry
+                   with no id: the list keeps its order, so the entry comes back at
+                   the same index with the id the normaliser claimed or minted. */
+                const normalised = normaliseHouse(Object.assign(Object.assign({}, base), { [list]: nextList, removed }), { rand }).house;
+                return { next: normalised, out: itemsOf(normalised, list)[index] };
+            }, 'entry');
+            if (saved && !saved.ok)
+                return null;
+            return out || null;
+        },
         removeItem: async (target, id) => {
             await ready();
             if (!house)
@@ -4036,6 +4176,12 @@ var ootHouseLib = {
 	stripDashes: stripDashes,
 	wordCount: wordCount,
 	lineProblems: lineProblems,
+	DISH_PARTS: DISH_PARTS,
+	COCKTAIL_PARTS: COCKTAIL_PARTS,
+	WINE_PARTS: WINE_PARTS,
+	LINE_CAPS: LINE_CAPS,
+	PRINCIPLES: PRINCIPLES,
+	BUILD_STEPS: BUILD_STEPS,
 	mergeHouse: mergeHouse,
 	mergeItem: mergeItem,
 	mergeKept: mergeKept,
@@ -4144,7 +4290,9 @@ var ootHouseLib = {
 		MAP_HOUSE_PREFIX: MAP_HOUSE_PREFIX,
 		NO_HOUSE_SAID: NO_HOUSE_SAID,
 		HOUSE_PARTS: HOUSE_PARTS,
-		CARD_KEYS: CARD_KEYS
+		CARD_KEYS: CARD_KEYS,
+		ITEM_FIELDS: ITEM_FIELDS,
+		PUT_LISTS: PUT_LISTS
 	}
 };
 /* The storage: IndexedDB when the window offers one (read behind a try, since

@@ -739,6 +739,9 @@ function dataToolHTML(){
     + '<button class="chip" data-act="data-copy">Copy backup to clipboard</button></div>'
     + '<div class="tiny dim" id="data-export-status" aria-live="polite"></div>'
     + '</div>'
+    /* the house as a pack (js/house-bar.js): the same file the Mine chip
+       makes; nothing where the engine is not loaded or no house is open */
+    + (typeof housePackPanelHTML === 'function' ? housePackPanelHTML() : '')
     + '<div class="panel p5 col" style="gap:12px">'
     + '<div class="eyebrow">Restore from a backup</div>'
     + '<div class="small dim lh"><span class="brass2">Merge</span> keeps the better record wherever both files know a card. <span class="brass2">Replace</span> throws out everything here first.</div>'

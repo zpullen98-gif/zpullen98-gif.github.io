@@ -138,6 +138,9 @@ function render(){
   if(hs) hs.addEventListener('change', e => { houseSwitch(e.target.value); });
   const hf = document.getElementById('house-file');
   if(hf) hf.addEventListener('change', e => { if(e.target.files[0]) houseImportFile(e.target.files[0]); });
+  /* the two house doors on Mine: the shared reader or reviewer drawn into
+     its root under the line, from the house, after every paint */
+  if(typeof houseAfterRender === 'function') houseAfterRender();
   /* Guarded on the element, not on state.tab, like every other post-paint
      hook in this function. It asks YouTube about the ONE film the reader
      opened, and nothing at all on any other tab. */
@@ -965,6 +968,10 @@ document.getElementById('view').addEventListener('click', e => {
   else if(act==='house-import-merge'){ houseImportChoice('merge'); return; }
   else if(act==='house-open-added'){ houseOpenAdded(); return; }
   else if(act==='house-not-now'){ houseNotNow(); }
+  else if(act==='house-step'){ houseStep(el.dataset.s); }
+  /* the formula pane's acts (js/house-bar.js): each reads its boxes itself,
+     writes to the house and repaints when the house answers */
+  else if(act.indexOf('hf-')===0){ houseFormulaAct(act, el.dataset); return; }
   else if(act==='menu-add-line'){ state.menu.form.spec.push(''); }
   else if(act==='menu-del-line'){
     state.menu.form.spec.splice(Number(el.dataset.i), 1);
@@ -1052,6 +1059,21 @@ function captureLiveInputs(){
   /* the House's three boxes on Mine: a new house's name, the address a pack
      is fetched from, and the name a house is renamed to (js/house-bar.js) */
   if(state.house){ grab('house-name', state.house, 'name'); grab('house-url', state.house, 'address'); grab('house-rename', state.house, 'renameTo'); }
+  /* the formula pane on an open drink (js/house-bar.js): the five parts or
+     the three timed lines under Edit, the upsell picker's choice, and the
+     service note being typed; each into its own slot */
+  if(state.house && state.house.edit){
+    const ed = state.house.edit;
+    if(ed.parts){ grab('hf-part-main', ed.parts, 'main'); grab('hf-part-technique', ed.parts, 'technique'); grab('hf-part-sauce', ed.parts, 'sauce'); grab('hf-part-sides', ed.parts, 'sides'); grab('hf-part-taste', ed.parts, 'taste'); }
+    if(ed.lines){ grab('hf-line-s10', ed.lines, 's10'); grab('hf-line-s20', ed.lines, 's20'); grab('hf-line-s45', ed.lines, 's45'); }
+  }
+  if(state.house){
+    grab('hf-upsell', state.house, 'pick');
+    const note = document.getElementById('hf-note');
+    /* keyed on the box's own drink, not on the open one, which an act may
+       already have moved */
+    if(note && note.value !== undefined) state.house.note = { id: note.dataset ? note.dataset.id : null, text: note.value };
+  }
   /* every drill result field, by prefix: on the Ticket Rail an intervening
      act (revealing the order) is REQUIRED between typing and logging, so the
      render in between ate the seconds every single time */

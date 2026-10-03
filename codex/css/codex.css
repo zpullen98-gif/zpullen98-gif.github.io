@@ -724,3 +724,15 @@ input[type=date].sainput{font-family:'EB Garamond',Georgia,serif;color:var(--ink
 /* Her two lines on a bottle: an eyebrow says whose they are until kept. */
 .mline{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:14px;margin-top:6px}
 .mline-eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft)}
+
+/* codex27, read and keep: the house's fields on the cellar form and the
+   list rows. Every chip at least 44px tall, every state a word. */
+.h27 .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.h27 textarea.sainput{width:100%;min-height:88px;font-family:inherit;line-height:1.5;resize:vertical}
+.h27-mark{margin:10px 0}
+.h27-mark legend{padding:0;width:100%}
+.h27 fieldset{border:0;padding:0;margin:10px 0}
+.h27-pick{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 10px;cursor:pointer}
+.h27-pick input{width:22px;height:22px;margin:0}
+.h27-rows{margin:6px 0}
+.h27-editor{margin:8px 0}

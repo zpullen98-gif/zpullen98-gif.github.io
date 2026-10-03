@@ -458,6 +458,8 @@ function keepMaitreField(b, f, text){
 
 /* ---- the four panes inside an open drink ------------------------------- */
 function menuPaneHTML(b, pane){
+  /* the House cocktail's formula, drawn by js/house-bar.js from the house */
+  if(pane === 'formula') return typeof menuFormulaHTML === 'function' ? menuFormulaHTML(b) : '';
   if(pane === 'taste'){
     const words = menuBalanceWords(b);
     return '<div class="col-sm" style="gap:12px">'
@@ -603,7 +605,10 @@ function menuListHTML(){
       + '</button>';
     if(!open) return '<div class="panel p4 col" style="gap:0">'+head+'</div>';
     const pane = state.menu.pane || 'build';
+    /* the fifth chip, The formula, only where the House engine is here
+       (js/house-bar.js); nothing at all in the standalone */
     const chips = [['build','Build'],['taste','Taste and tell'],['canon','Against the classics'],['cost','Cost and pour']]
+      .concat(typeof menuFormulaChip === 'function' ? menuFormulaChip() : [])
       .map(p => '<button class="chip'+(pane===p[0]?' on':'')+'" aria-pressed="'+(pane===p[0]?'true':'false')+'" data-act="menu-pane" data-p="'+p[0]+'">'+p[1]+'</button>').join(' ');
     const body = '<div class="col-sm" style="gap:10px;padding:10px 0 4px">'
       + '<div class="row" style="gap:6px;flex-wrap:wrap">'+chips+'</div>'
