@@ -135,6 +135,39 @@ function stampFaults(wore, wears) {
 /* Where the bytes of a write would actually land: the deepest part of the
    path that exists, resolved through every link on the way, with the part
    that does not exist yet rejoined. Throws on a dangling link. */
+/* The wing owns two things in a shell and a worker that the source also
+   edits: the CACHE name in sw.js (the wing's worker runs under its own
+   oot- prefix) and the ?v= stamps on its own tags (the wing bumps past its
+   own numbers). Before the three-way merge, both source versions are
+   rewritten to carry the wing's values, so those lines never conflict: a
+   CACHE line is always the wing's, and a stamp the source moved between
+   base and head becomes the wing's own number plus one in the head text,
+   while a stamp the source left alone stays the wing's. */
+function wingOwned(p, buf, wingBuf, baseBuf) {
+  let text = buf.toString('utf8');
+  const wingText = wingBuf.toString('utf8');
+  if (/(^|\/)sw\.js$/.test(p)) {
+    const w = wingText.match(/const CACHE\s*=\s*'[^']+';/);
+    if (w) text = text.replace(/const CACHE\s*=\s*'[^']+';/, w[0]);
+    return Buffer.from(text, 'utf8');
+  }
+  if (/\.html$/.test(p)) {
+    const baseText = baseBuf ? baseBuf.toString('utf8') : null;
+    const stampOf = (t, path) => { const m = t.match(new RegExp('(["\'])' + path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\?v=(\\d+)\\1')); return m ? Number(m[2]) : null; };
+    text = text.replace(/(["'])([^"'?]+?)\?v=(\d+)\1/g, (all, q, path, n) => {
+      const mine = stampOf(wingText, path);
+      if (mine == null) return all;
+      if (baseText) {
+        const was = stampOf(baseText, path);
+        if (was != null && was !== Number(n)) return q + path + '?v=' + (mine + 1) + q;
+      }
+      return q + path + '?v=' + mine + q;
+    });
+    return Buffer.from(text, 'utf8');
+  }
+  return buf;
+}
+
 function lexists(p) { try { lstatSync(p); return true; } catch { return false; } }
 function landing(out) {
   let p = out;
@@ -288,9 +321,12 @@ try {
       continue;
     }
 
+    const baseOwn = wingOwned(p, baseBuf, wingBuf, null);
+    const headOwn = wingOwned(p, headBuf, wingBuf, baseBuf);
+    if (wingBuf.equals(headOwn)) { results.push({ path: p, out, action: 'unchanged', bytes: wingBuf, before: 0, after: 0, bin: isBin }); continue; }
     const safe = p.replace(/[\\/]/g, '__');
     const baseTmp = join(tmp, safe + '.base'), headTmp = join(tmp, safe + '.head');
-    writeFileSync(baseTmp, baseBuf); writeFileSync(headTmp, headBuf);
+    writeFileSync(baseTmp, baseOwn); writeFileSync(headTmp, headOwn);
     let merged, conflicts = 0;
     try {
       merged = gitBytes(['merge-file', '-p', '-L', 'copy', '-L', 'base', '-L', 'source', out, baseTmp, headTmp], src);

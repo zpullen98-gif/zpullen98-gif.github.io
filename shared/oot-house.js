@@ -489,9 +489,13 @@ function stripDashes(s) {
  * minted afresh and the report says so, and every reference to the old id
  * inside the house (a pairing, a course, a mix-up, a first pick, an upsell,
  * a term's items) follows it, so a pack whose dishes came in under the
- * desk's 'k-' mint keeps its pairings. A fresh id is drawn again when it
- * would match the client's FORBIDDEN_KEY, because a tombstone in `removed`
- * is a KEY, and the client sweeps keys.
+ * desk's 'k-' mint keeps its pairings. An id that would match the client's
+ * FORBIDDEN_KEY is minted afresh as well, and a fresh id is drawn again
+ * while it would, because a tombstone in `removed` is a KEY and the client
+ * sweeps keys: the day such an item is removed, its id would make the
+ * record one the client refuses and the pack one no device imports. For
+ * the same reason a tombstone already under such a key is dropped and
+ * named in the report; no item in the shape can carry that id.
  */
 /* -------------------------------------------------------------------------
  * The client's rule, copied
@@ -713,6 +717,8 @@ function claimId(raw, prefix, path, ctx) {
         why = 'the id ' + old + ' carries a pipe or a colon';
     else if (old.slice(0, prefix.length) !== prefix)
         why = 'the id ' + old + ' does not start with ' + prefix;
+    else if (FORBIDDEN_KEY.test(old))
+        why = 'the id ' + old + ' would be refused as a key by the client sweep';
     else if (ctx.taken.has(old))
         why = 'the id ' + old + ' is already taken in this house';
     if (!why) {
@@ -911,7 +917,8 @@ function normaliseSource(v) {
     return { title: asText(r.title), url: asText(r.url), readOn: asText(r.readOn) };
 }
 /** The tombstones: id to stamp, a key kept only with a finite number under it, at most LIST_MAX of them. */
-function normaliseRemoved(v) {
+/** The tombstones, id to stamp; a tombstone under a key the client sweep refuses is dropped and named, since no item in the shape carries that id. */
+function normaliseRemoved(v, report) {
     const out = {};
     if (!isRaw(v))
         return out;
@@ -920,6 +927,10 @@ function normaliseRemoved(v) {
         const stamp = v[k];
         if (!k || typeof stamp !== 'number' || !Number.isFinite(stamp))
             continue;
+        if (FORBIDDEN_KEY.test(k)) {
+            report.push({ path: 'house.removed.' + k, code: 'forbidden', said: 'a tombstone under a key the client refuses was dropped' });
+            continue;
+        }
         out[k] = stamp;
         if (++n >= LIST_MAX)
             break;
@@ -1005,8 +1016,8 @@ const BEGAN = ['pack', 'desk', 'hand'];
  * Any value, as a House in the shape, with the report of what changed. The
  * random source is an argument so a test mints the same ids every run. The
  * client's key sweep runs twice: over what came in, so a key that was
- * dropped is still named, and over what goes out, which can only find a
- * tombstone in `removed` whose id happens to match the rule.
+ * dropped is still named, and over what goes out, which finds nothing a
+ * House in the shape can hold and stands as the proof of that.
  */
 function normaliseHouse(raw, opts = {}) {
     const r = asRecord(raw);
@@ -1039,7 +1050,7 @@ function normaliseHouse(raw, opts = {}) {
         mustKnows: asList(r.mustKnows).map((k, i) => normaliseMustKnow(k, i, ctx)),
         askAtLineup: asList(r.askAtLineup).map((a, i) => normaliseAsk(a, i, ctx)),
         disputes: asList(r.disputes).map((u, i) => normaliseDispute(u, i, ctx)),
-        removed: normaliseRemoved(r.removed),
+        removed: normaliseRemoved(r.removed, report),
         build: normaliseBuild(r.build),
         began: oneOf(r.began, BEGAN, 'hand'),
         createdAt: asText(r.createdAt),
@@ -1809,21 +1820,20 @@ const rowTextList = (v) => (Array.isArray(v) ? v.filter((s) => typeof s === 'str
 const rowStamp = (v) => (typeof v === 'number' && Number.isFinite(v) ? v : 0);
 const copyList = (v) => rowTextList(v).slice();
 /**
- * The Ledger's placeholder for an empty glass or garnish: its save door writes
- * a lone em dash there, and its barText reads a lone hyphen, en dash or em
- * dash back as empty. Detected by code point and written by code point, so
+ * The Ledger's placeholder for an empty glass or garnish: the standalone
+ * writes a lone em dash there, and the wing's barText reads a lone hyphen,
+ * en dash or em dash back as empty. The wing itself stores the empty string
+ * and draws the dash at display time, and every row the sync writes goes
+ * through the wing's own door, so the sync reads the placeholder and never
+ * writes it: a row written with the dash would come back through the door
+ * empty and be reported updated on every boot. Detected by code point, so
  * no dash is spelled in this file and the publish gate's count stands.
  */
 const PLACEHOLDER_CODES = [0x2d, 0x2013, 0x2014];
-const PLACEHOLDER = String.fromCharCode(0x2014);
 function readPlaceholder(v) {
     const s = rowText(v);
     const t = s.trim();
     return t.length === 1 && PLACEHOLDER_CODES.includes(t.charCodeAt(0)) ? '' : s;
-}
-function writePlaceholder(v) {
-    const s = rowText(v);
-    return s.trim() ? s : PLACEHOLDER;
 }
 /** The Ledger files a drink with no family or spirit under Other, and so does a row written here. */
 const writeOther = (v) => (rowText(v).trim() ? rowText(v) : 'Other');
@@ -1892,8 +1902,8 @@ const LEDGER_COCKTAIL = {
         plain('name'),
         { item: 'spec', row: 'spec', out: copyList, in: copyList },
         plain('method'),
-        { item: 'glass', row: 'glass', out: writePlaceholder, in: readPlaceholder },
-        { item: 'garnish', row: 'garnish', out: writePlaceholder, in: readPlaceholder },
+        { item: 'glass', row: 'glass', in: readPlaceholder },
+        { item: 'garnish', row: 'garnish', in: readPlaceholder },
         plain('note'),
         { item: 'family', row: 'family', out: writeOther },
         { item: 'spirit', row: 'spirit', out: writeOther },
@@ -2012,10 +2022,20 @@ function adapterFrom(spec) {
         const row = out;
         return spec.finish ? spec.finish(row) : row;
     };
-    const fromRow = (row) => {
+    const fromRow = (row, ref) => {
         const out = Object.assign({ id: row.id, house: rowText(row.house), kind: spec.kind, name: '' }, spec.blank(row));
-        for (const f of spec.shared)
-            out[f.item] = f.in ? f.in(row[f.row]) : rowText(row[f.row]);
+        const refFields = ref;
+        for (const f of spec.shared) {
+            const raw = row[f.row];
+            /* The reference's value, when the row holds that value written out:
+               the text is the same, so the reading must be the same. */
+            if (refFields && f.out && f.item in refFields && sameJson(f.out(refFields[f.item]), raw)) {
+                const v = refFields[f.item];
+                out[f.item] = Array.isArray(v) ? v.slice() : v;
+            }
+            else
+                out[f.item] = f.in ? f.in(raw) : rowText(raw);
+        }
         if (spec.derive)
             Object.assign(out, spec.derive(row));
         const block = readBlock(row.maitre, spec.marks);
@@ -2027,6 +2047,26 @@ function adapterFrom(spec) {
         out.ts = rowStamp(row.ts);
         return out;
     };
+    /* lastTouch's rule over the row's whole block, not the shared marks alone:
+       the Ledger keeps her marks on method, glass and garnish there, and a
+       person's keep on one of them is a touch the tombstone rule must see. */
+    const rowTouch = (row) => {
+        let t = rowStamp(row.ts);
+        const block = row.maitre;
+        if (!block || typeof block !== 'object' || Array.isArray(block))
+            return t;
+        const b = block;
+        for (const f of Object.keys(b)) {
+            const m = b[f];
+            if (isMark(m) && m.by === 'person' && m.ts > t)
+                t = m.ts;
+        }
+        if (Array.isArray(b.kept))
+            for (const n of b.kept)
+                if (isNote(n) && n.ts > t)
+                    t = n.ts;
+        return t;
+    };
     const derived = spec.derive ? Object.keys(spec.derive({ id: '', ts: 0 })) : [];
     return {
         kind: spec.kind,
@@ -2034,6 +2074,7 @@ function adapterFrom(spec) {
         marks: spec.marks,
         toRow,
         fromRow,
+        rowTouch,
         rename: (row, newId) => (Object.assign(Object.assign({}, row), { id: newId })),
         foldName: spec.foldName,
         rowKey: (row) => spec.foldName(spec.rowName(row)),
@@ -2051,7 +2092,7 @@ const codexWine = adapterFrom(CODEX_WINE);
  */
 function settleTwin(item, row, houseId, adapter) {
     const mine = item;
-    const rowItem = adapter.fromRow(row);
+    const rowItem = adapter.fromRow(row, item);
     const settled = {};
     for (const f of adapter.marks) {
         const m = pickMark(isMark(mine[f]) ? mine[f] : undefined, isMark(rowItem[f]) ? rowItem[f] : undefined);
@@ -2115,9 +2156,12 @@ function syncIn(kind, rows, house, adapter, opts = {}) {
     const claimed = new Set();
     const byId = new Map();
     const byKey = new Map();
+    const heldByOthers = new Set();
     rows.forEach((row, i) => {
-        if (scopes[i] === 'foreign')
+        if (scopes[i] === 'foreign') {
+            heldByOthers.add(row.id);
             return;
+        }
         if (!byId.has(row.id))
             byId.set(row.id, i);
         const key = adapter.rowKey(row);
@@ -2128,16 +2172,38 @@ function syncIn(kind, rows, house, adapter, opts = {}) {
             byKey.set(key, [i]);
     });
     const itemIds = new Set(items.map((item) => item.id));
+    /* Every id in play, so a fresh id (rule 7) clashes with no item and no row, this house's or another's. */
+    const taken = new Set(itemIds);
+    rows.forEach((row) => taken.add(row.id));
+    const prefix = ID_PREFIXES[list];
+    const rand = opts.rand || Math.random;
+    const freshId = () => {
+        let id = mintId(prefix, taken, rand);
+        for (let tries = 0; tries < 100 && FORBIDDEN_KEY.test(id); tries++)
+            id = mintId(prefix, taken, rand);
+        taken.add(id);
+        return id;
+    };
     const itemsOut = [];
     const newRows = [];
     let houseChanged = false;
     let rowsChanged = false;
     const removed = Object.assign({}, house.removed);
     const seenItems = new Set();
-    for (const item of items) {
-        if (seenItems.has(item.id))
+    for (const stored of items) {
+        if (seenItems.has(stored.id))
             continue;
-        seenItems.add(item.id);
+        seenItems.add(stored.id);
+        /* Rule 6: the item of this house carries this house's id. A stored
+           record comes back raw, and an item stamped with another house on the
+           device would file a row foreign to the next run, so the stamp is set
+           right here and the house reported changed. */
+        let item = stored;
+        if (stored.house !== house.id) {
+            item = Object.assign(Object.assign({}, stored), { house: house.id });
+            changes.push({ id: item.id, what: 'item-updated' });
+            houseChanged = true;
+        }
         let at = byId.get(item.id);
         if (at === undefined || claimed.has(at)) {
             at = undefined;
@@ -2146,15 +2212,22 @@ function syncIn(kind, rows, house, adapter, opts = {}) {
             const free = cands.find((i) => !claimed.has(i) && !itemIds.has(rows[i].id));
             if (free !== undefined) {
                 rowsOut[free] = adapter.rename(rows[free], item.id);
-                changes.push({ id: item.id, what: 'renamed' });
+                changes.push({ id: item.id, what: 'renamed', from: rows[free].id });
                 rowsChanged = true;
                 at = free;
             }
         }
         if (at === undefined) {
-            newRows.push(adapter.toRow(item, undefined));
-            changes.push({ id: item.id, what: 'row-added' });
-            rowsChanged = true;
+            if (heldByOthers.has(item.id)) {
+                /* Another house's row holds the id: the wing's list keys by id, so
+                   a second row would shadow or overwrite it. The item waits. */
+                changes.push({ id: item.id, what: 'row-held' });
+            }
+            else {
+                newRows.push(adapter.toRow(item, undefined));
+                changes.push({ id: item.id, what: 'row-added' });
+                rowsChanged = true;
+            }
             itemsOut.push(item);
             continue;
         }
@@ -2182,28 +2255,36 @@ function syncIn(kind, rows, house, adapter, opts = {}) {
         if (seenItems.has(row.id))
             return;
         seenItems.add(row.id);
-        const asItem = adapter.fromRow(row);
-        if (scopes[i] === 'adoptable') {
-            /* A person's row arriving: adopted whole, and a tombstone under its id is
-               stale evidence against a row that is here now, so it goes. */
-            rowsOut[i] = Object.assign(Object.assign({}, row), { house: house.id });
-            changes.push({ id: row.id, what: 'adopted' });
+        /* Rule 4 first, whatever the row's scope: a tombstone newer than the
+           row's last touch is a delete the row has not seen, and the row goes.
+           An older tombstone is stale evidence against a row a person touched
+           since, so it goes instead and the row stays. */
+        const tomb = removed[row.id];
+        if (tomb !== undefined && tomb > adapter.rowTouch(row)) {
+            rowsOut[i] = undefined;
+            changes.push({ id: row.id, what: 'row-removed' });
             rowsChanged = true;
-            delete removed[row.id];
+            return;
         }
-        else {
-            const tomb = removed[row.id];
-            if (tomb !== undefined && tomb > lastTouch(asItem, adapter.marks)) {
-                rowsOut[i] = undefined;
-                changes.push({ id: row.id, what: 'row-removed' });
-                rowsChanged = true;
-                return;
-            }
-            if (tomb !== undefined)
-                delete removed[row.id];
+        if (tomb !== undefined)
+            delete removed[row.id];
+        /* Rule 7: an id the key sweep would refuse is re-keyed before it enters. */
+        let rowIn = row;
+        if (FORBIDDEN_KEY.test(row.id)) {
+            rowIn = adapter.rename(row, freshId());
+            rowsOut[i] = rowIn;
+            changes.push({ id: rowIn.id, what: 'renamed', from: row.id });
+            rowsChanged = true;
+        }
+        const asItem = adapter.fromRow(rowIn);
+        if (scopes[i] === 'adoptable') {
+            /* A person's row arriving: adopted whole, stamped with the house. */
+            rowsOut[i] = Object.assign(Object.assign({}, rowIn), { house: house.id });
+            changes.push({ id: rowIn.id, what: 'adopted' });
+            rowsChanged = true;
         }
         itemsOut.push(Object.assign(Object.assign({}, asItem), { house: house.id }));
-        changes.push({ id: row.id, what: 'item-added' });
+        changes.push({ id: rowIn.id, what: 'item-added' });
         houseChanged = true;
     });
     const removedChanged = !sameJson(removed, house.removed);
@@ -2224,7 +2305,8 @@ function syncOut(kind, house, adapter, prevRows = []) {
     for (const row of prevRows)
         if (!prev.has(row.id))
             prev.set(row.id, row);
-    return house[list].map((item) => adapter.toRow(item, prev.get(item.id)));
+    /* Rule 6 here too: the rows of this house carry this house's id. */
+    return house[list].map((item) => adapter.toRow(item.house === house.id ? item : Object.assign(Object.assign({}, item), { house: house.id }), prev.get(item.id)));
 }
 
 /* ==================== src/lib/house/house-store.ts ==================== */
@@ -2458,8 +2540,11 @@ function idbOpen(factory, onClose) {
  * The browser's storage: the index in localStorage, the houses in
  * IndexedDB through the raw API, no library. The database is opened once
  * and the connection kept; a failed transaction drops it so the next call
- * opens afresh. Every read is caught and reads as nothing; every write
- * measures first and refuses whole with its reason.
+ * opens afresh, and so does an open the browser refused, because a private
+ * window or a phone granting storage late refuses the first open and takes
+ * the second, and one refusal at boot must not pin every later read to
+ * nothing until a reload. Every read is caught and reads as nothing; every
+ * write measures first and refuses whole with its reason.
  */
 function idbStorage(win) {
     let opening = null;
@@ -2477,7 +2562,14 @@ function idbStorage(win) {
     const open = () => {
         if (!opening) {
             const f = factory();
-            opening = f ? idbOpen(f, reset) : Promise.resolve(null);
+            const raw = f ? idbOpen(f, reset) : Promise.resolve(null);
+            /* A refused open is never cached: the next call opens afresh. */
+            const cached = raw.then((db) => {
+                if (!db && opening === cached)
+                    opening = null;
+                return db;
+            });
+            opening = cached;
         }
         return opening;
     };
@@ -2618,6 +2710,33 @@ function listHouses(storage) {
 function stubOf(index, id) {
     return index.list.find((s) => s.id === id);
 }
+/**
+ * Every house id the device holds: the index's, in its order, and then any
+ * record the index does not list, because a save never makes an index
+ * (saveHouse below) and an index write can be refused after a record
+ * landed, so the index is not the device. This is the one answer to "is
+ * this id on the device" that a mint and an import may take, so neither
+ * ever writes over a record the index forgot. A list the storage cannot
+ * give reads as the index alone.
+ */
+async function deviceIds(storage) {
+    const out = listHouses(storage).map((s) => s.id);
+    const seen = new Set(out);
+    let stored = [];
+    try {
+        stored = await storage.list();
+    }
+    catch (_a) {
+        stored = [];
+    }
+    for (const id of stored) {
+        if (typeof id === 'string' && id && !seen.has(id)) {
+            seen.add(id);
+            out.push(id);
+        }
+    }
+    return out;
+}
 /* -------------------------------------------------------------------------
  * The records
  * ---------------------------------------------------------------------- */
@@ -2684,11 +2803,13 @@ async function saveHouse(storage, house, now) {
  * first export. The first house on a device becomes current; a later one is
  * listed behind the current and the caller switches when it means to. A
  * refused index write takes the record back out, so the device never holds
- * a house its index does not know.
+ * a house its index does not know. The fresh id is drawn against every id
+ * the device holds, listed or not, so a record the index forgot is never
+ * written over.
  */
 async function mintHouse(storage, name, began, now, rand = Math.random) {
+    const taken = new Set(await deviceIds(storage));
     const index = readIndex(storage);
-    const taken = new Set(index ? index.list.map((s) => s.id) : []);
     const id = mintId(ID_PREFIXES.house, taken, rand);
     const house = emptyHouse(id, name.trim() ? name.trim() : MY_HOUSE, began, now);
     const saved = await putHouse(storage, house, now);
@@ -2707,23 +2828,30 @@ async function mintHouse(storage, name, began, now, rand = Math.random) {
  * The current pointer moved to a house on the index; the previous current
  * id comes back (null when there was none). An id not on the index is a
  * caller's error and is thrown, so a screen can never point at a house the
- * device does not hold. The projections are the wings' to replace; this
- * moves the pointer and nothing else.
+ * device does not hold; an index write the device refused is thrown too,
+ * so a caller never takes a switch that did not land and shows a house the
+ * device does not point at. The projections are the wings' to replace;
+ * this moves the pointer and nothing else.
  */
 function switchTo(storage, id) {
     const index = readIndex(storage);
     if (!index || !stubOf(index, id))
         throw new Error('switchTo: no house ' + id + ' on this device');
     const previous = index.current;
-    if (previous !== id)
-        writeIndex(storage, { v: 1, current: id, list: index.list });
+    if (previous !== id && !writeIndex(storage, { v: 1, current: id, list: index.list })) {
+        throw new Error('switchTo: the device refused to write the index');
+    }
     return previous;
 }
 /**
- * A house removed from the device, record and stub, only when the person
+ * A house removed from the device, stub and record, only when the person
  * typed its name (the name as the index holds it, outer spaces aside). The
- * current pointer moves to the first house left, or to none. SRS cards and
- * the wings' own rows are left where they are: removal of a house is not
+ * current pointer moves to the first house left, or to none. The index is
+ * written first and the record deleted second: a refused index write then
+ * changes nothing and false means nothing was removed, while a record the
+ * delete could not reach is at worst an orphan the index no longer lists,
+ * which deviceIds still sees and nothing writes over. SRS cards and the
+ * wings' own rows are left where they are: removal of a house is not
  * removal of what a person learned.
  */
 async function removeHouse(storage, id, typedName) {
@@ -2733,15 +2861,17 @@ async function removeHouse(storage, id, typedName) {
         return false;
     if (typedName.trim() !== stub.name.trim())
         return false;
+    const list = index.list.filter((s) => s.id !== id);
+    const current = index.current === id ? (list.length ? list[0].id : null) : index.current;
+    if (!writeIndex(storage, { v: 1, current, list }))
+        return false;
     try {
         await storage.remove(id);
     }
     catch (_a) {
-        return false;
+        /* the stub is gone and the record is an orphan; deviceIds still lists it */
     }
-    const list = index.list.filter((s) => s.id !== id);
-    const current = index.current === id ? (list.length ? list[0].id : null) : index.current;
-    return writeIndex(storage, { v: 1, current, list });
+    return true;
 }
 /** The house renamed, record and stub; a blank name is refused and nothing is written. */
 async function renameHouse(storage, id, name, now) {
@@ -2784,12 +2914,16 @@ async function renameHouse(storage, id, name, now) {
  *
  * A PACK NEVER OVERWRITES A HOUSE SILENTLY. A pack whose house id is not on
  * the device is added as a new house; it becomes current only when the
- * device had no index at all, or when the only house on it is a hand house
- * with nothing in it. A pack whose id IS on the device is added under a
- * fresh id ("Add as a new house", the items keeping theirs) or merged into
- * the house it names ("Merge into"), which ends on a count. The index write
- * an import makes is a person's act, the second of the two that may create
- * an index (mintHouse in house-store.ts is the first).
+ * device has no current house (no index, or an index whose current is
+ * null, as after the last house was removed), or when the only house on it
+ * is a hand house with nothing in it. A pack whose id IS on the device is
+ * added under a fresh id ("Add as a new house", the items keeping theirs)
+ * or merged into the house it names ("Merge into"), which ends on a count.
+ * "On the device" means deviceIds (house-store.ts): the index's houses and
+ * any record the index does not list, so a record a save left unlisted is
+ * never written over either. The index write an import makes is a person's
+ * act, the second of the two that may create an index (mintHouse in
+ * house-store.ts is the first).
  */
 /* -------------------------------------------------------------------------
  * The file
@@ -2876,13 +3010,15 @@ function countItems(house) {
 }
 /**
  * The rule for the current pointer on an import: a new house becomes
- * current when the device had no index at all, or when its only house is a
- * hand house with nothing in it (the implicit "My house" a person minted a
- * moment ago and never filled). Otherwise it is listed behind the current
- * house and the screen offers "Open it now?".
+ * current when the device has no current house (no index at all, or an
+ * index pointing at none, which is what the last removal leaves and what
+ * mintHouse takes the same way), or when its only house is a hand house
+ * with nothing in it (the implicit "My house" a person minted a moment ago
+ * and never filled). Otherwise it is listed behind the current house and
+ * the screen offers "Open it now?".
  */
 async function packBecomesCurrent(storage, index) {
-    if (!index)
+    if (!index || index.current === null)
         return true;
     if (index.list.length !== 1)
         return false;
@@ -2918,8 +3054,8 @@ async function importPack(storage, pack, choice, now, rand = Math.random) {
     if (!read.ok)
         return read;
     let house = read.house;
+    const onDevice = new Set(await deviceIds(storage));
     const index = readIndex(storage);
-    const onDevice = new Set(index ? index.list.map((s) => s.id) : []);
     const into = choice.mode === 'merge' ? choice.into || house.id : '';
     if (into && onDevice.has(into)) {
         const mine = await loadHouse(storage, into);
@@ -3440,7 +3576,14 @@ function buildFlashcards(house) {
  * Keep, Edit and Discard are theirs. Every mark goes through the
  * normaliser's door (normaliseMark), so a key the client refuses cannot
  * ride in on a value, and removeItem writes a tombstone newer than the
- * item's last touch so the sync honours it on every wing.
+ * item's last touch so the sync honours it on every wing. A tombstone is a
+ * KEY in `removed`, so an id the client's sweep would refuse gets none: the
+ * sync re-keys such a row before it enters (its rule 7), and an item that
+ * still carries one is dropped without a tombstone rather than written as
+ * a key that would make the record unsendable and the pack unimportable.
+ *
+ * ON THE DEVICE means deviceIds (house-store.ts), the index's houses and
+ * any record the index does not list, wherever this file walks the device.
  */
 /* -------------------------------------------------------------------------
  * The shapes
@@ -3543,8 +3686,16 @@ function createHouseApi(storage, opts = {}) {
             await ready();
             if (!listHouses(storage).some((s) => s.id === id))
                 return null;
-            if (currentId(storage) !== id)
-                switchTo(storage, id);
+            if (currentId(storage) !== id) {
+                /* A refused pointer write is thrown by the store; the memory copy
+                   stays with the house the device still points at. */
+                try {
+                    switchTo(storage, id);
+                }
+                catch (_a) {
+                    return null;
+                }
+            }
             house = await loadHouse(storage, id);
             fire('switch');
             return house;
@@ -3586,10 +3737,11 @@ function createHouseApi(storage, opts = {}) {
             if (!house)
                 return { ok: false, row: null, said: NO_HOUSE_SAID };
             const adapter = adapterFor(kind);
-            const res = syncIn(kind, [row], house, adapter, { now: now(), knownHouses: known() });
+            const res = syncIn(kind, [row], house, adapter, { now: now(), knownHouses: known(), rand });
             /* The one row asked about: under its own id, under the item's id when a
-               name twin was re-keyed, or gone when a tombstone was newer. The rows
-               the sync would add for the house's other items are not this call's. */
+               name twin or a refused id was re-keyed (the change carries the former
+               id in from), or gone when a tombstone was newer. The rows the sync
+               would add for the house's other items are not this call's. */
             let out = res.rows.find((r) => r.id === row.id) || null;
             const renamed = res.changes.find((c) => c.what === 'renamed');
             if (renamed)
@@ -3606,7 +3758,7 @@ function createHouseApi(storage, opts = {}) {
             if (!house)
                 return { ok: false, rows: rows.slice(), changes: [], said: NO_HOUSE_SAID };
             const adapter = adapterFor(kind);
-            const res = syncIn(kind, rows, house, adapter, { now: now(), knownHouses: known() });
+            const res = syncIn(kind, rows, house, adapter, { now: now(), knownHouses: known(), rand });
             if (res.house !== house) {
                 const saved = await commit(res.house, 'sync');
                 if (!saved.ok)
@@ -3693,9 +3845,15 @@ function createHouseApi(storage, opts = {}) {
             const items = itemsOf(house, list);
             const item = items.find((i) => i.id === id);
             /* The tombstone must be newer than the item's last touch (a kept mark
-               re-stamps the mark, not the item), or the sync would read it as stale. */
+               re-stamps the mark, not the item), or the sync would read it as stale.
+               An id the client's key sweep would refuse gets no tombstone at all:
+               the item is dropped, the wing's own delete has taken the row, and
+               the record stays one the client sends and every device imports. */
             const stamp = item ? Math.max(now(), lastTouch(item, MARK_FIELDS[list]) + 1) : now();
-            const next = Object.assign(Object.assign({}, house), { [list]: items.filter((i) => i.id !== id), removed: Object.assign(Object.assign({}, house.removed), { [id]: stamp }) });
+            const removed = FORBIDDEN_KEY.test(id) ? house.removed : Object.assign(Object.assign({}, house.removed), { [id]: stamp });
+            if (!item && removed === house.removed)
+                return true;
+            const next = Object.assign(Object.assign({}, house), { [list]: items.filter((i) => i.id !== id), removed });
             return (await commit(next, 'remove-item')).ok;
         },
         names: async (kind) => {
@@ -3705,8 +3863,8 @@ function createHouseApi(storage, opts = {}) {
                 return [];
             const out = [];
             const seen = new Set();
-            for (const stub of listHouses(storage)) {
-                const h = house && house.id === stub.id ? house : await loadHouse(storage, stub.id);
+            for (const id of await deviceIds(storage)) {
+                const h = house && house.id === id ? house : await loadHouse(storage, id);
                 if (!h)
                     continue;
                 for (const item of itemsOf(h, list)) {
