@@ -1,6 +1,6 @@
 /* The Sommelier's Codex: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-codex-v113';
+const CACHE = 'oot-codex-v114';
 
 /* The world maps (maps/*.jpg) are deliberately NOT in ASSETS above.
 
@@ -22,6 +22,8 @@ const ASSETS = [
   '../shared/oot-config.js',
   '../shared/oot-profiles.js',
   '../shared/oot-home.js',
+  '../shared/oot-house.js',
+  '../shared/oot-house-ui.js',
   '../shared/oot-home.css',
   '../shared/oot-auth.js',
   '../shared/oot-gate.js',
@@ -79,6 +81,7 @@ const ASSETS = [
   './js/codex24.js',
   './js/codex25.js',
   './js/codex26.js',
+  './js/codex27.js',
   './js/boot.js',
   './fonts/cinzel-normal-400-900-latin.woff2',
   './fonts/cinzel-normal-400-900-latin-ext.woff2',
@@ -160,6 +163,19 @@ self.addEventListener('fetch', e => {
   if (url.pathname.indexOf('/maps/') >= 0) {
     e.respondWith(caches.open(MAPS).then(c =>
       c.match(e.request).then(hit => hit || fetch(e.request))));
+    return;
+  }
+
+  /* A house pack under /shared/packs/ is network first: the file is read on
+     the person's press of an import door and must be the one the site holds
+     now, never the copy this cache-first worker stored a fortnight ago. The
+     fresh copy is stored, and the cache answers only when the network does
+     not, so an import still works offline once the pack has been fetched. */
+  if (url.pathname.startsWith('/shared/packs/')) {
+    e.respondWith(fetch(e.request).then(res => {
+      if (res.ok) caches.open(CACHE).then(c => c.put(e.request, res.clone()));
+      return res;
+    }).catch(() => caches.open(CACHE).then(c => c.match(e.request, { ignoreSearch: true }))));
     return;
   }
   e.respondWith(

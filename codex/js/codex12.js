@@ -103,7 +103,21 @@ function startCellarDrill(){
   if(!qs.length){ if(typeof toast==='function')toast('The list needs grapes, regions or producers before it can ask about them.'); return; }
   stopTimer(); S.mode='drill'; S.section='Our List';
   S._again=startCellarDrill;   /* the results screen's Redrill rebuilds from the list */
-  S.pool=shuffle(qs).slice(0,15); S.idx=0; S.correct=0; S.results=[]; resetQ(); S.view='quiz'; render();
+  var cut=cellarDrillLen();
+  S.pool=cut?shuffle(qs).slice(0,cut):shuffle(qs); S.idx=0; S.correct=0; S.results=[]; resetQ(); S.view='quiz'; render();
+}
+
+/* The drill's length is the person's choice since 3 Oct 2026: 15 (the old
+   fixed cut), 30, or the whole list (0, no cut), because a house list of a
+   hundred and fifty bottles was asked about fifteen at a time. The setting
+   is a preference, not the list, so it IS registered in ST_DEFAULTS and a
+   reset takes it back to 15. codex27 draws the chips on the list screen. */
+if(typeof ST_DEFAULTS!=='undefined')ST_DEFAULTS.cellarDrillN=15;
+if(ST.cellarDrillN===undefined)ST.cellarDrillN=15;
+function cellarDrillLen(){
+  var n=ST.cellarDrillN;
+  if(n==='all'||n===0)return 0;
+  return n===30?30:15;
 }
 
 /* ═══════════ recitation ═══════════
@@ -277,8 +291,10 @@ applyLevel=function(lvl,skipRender){
    yield at worst a strange-looking bottle, never a strange-behaving one. */
 function cellarSanitize(b){
   var out={id:String(b.id).slice(0,24),ts:Number(b.ts)||0};
+  /* 4000, raised from 300 on 3 Oct 2026: the House's own prose cap, so a wine the
+     House projects onto the list is never cut on the row and re-written on every wake. */
   ['producer','name','vintage','region','grapes','style','glass','bottle','note'].forEach(function(k){
-    out[k]=typeof b[k]==='string'?b[k].slice(0,300):'';
+    out[k]=typeof b[k]==='string'?b[k].slice(0,4000):'';
   });
   return out;
 }

@@ -221,12 +221,16 @@ function say(text) {
 /* ═══════════ her marks on a bottle ═══════════ */
 
 var V24_MARK_FIELDS = ['say', 'guest', 'why', 'pairs', 'origin'];
-var V24_KEPT_CAP = 50;
+/* 500 kept answers and 4000 characters a mark, raised from 50 and 600 on
+   3 Oct 2026 to the House's own caps (KEPT_CAP, PROSE_MAX), so a line the
+   House holds is never cut on the row and re-settled on every wake. */
+var V24_KEPT_CAP = 500;
+var V24_MARK_MAX = 4000;
 
 /* One mark, coerced: a value, who made it, when. An import is a FILE. */
 function v24SanitiseMark(m) {
   if (!m || typeof m !== 'object' || typeof m.value !== 'string' || !m.value) return null;
-  var out = { value: m.value.slice(0, 600), by: m.by === 'person' ? 'person' : 'maitre', ts: Number(m.ts) || 0 };
+  var out = { value: m.value.slice(0, V24_MARK_MAX), by: m.by === 'person' ? 'person' : 'maitre', ts: Number(m.ts) || 0 };
   if (typeof m.model === 'string' && m.model) out.model = m.model.slice(0, 60);
   return out;
 }
@@ -242,7 +246,7 @@ function v24SanitiseMaitre(m) {
     var kept = [];
     m.kept.forEach(function (k) {
       if (!k || typeof k !== 'object' || typeof k.q !== 'string' || typeof k.a !== 'string' || !k.a) return;
-      var row = { q: k.q.slice(0, 600), a: k.a.slice(0, 2000), ts: Number(k.ts) || 0 };
+      var row = { q: k.q.slice(0, V24_MARK_MAX), a: k.a.slice(0, V24_MARK_MAX), ts: Number(k.ts) || 0 };
       if (typeof k.model === 'string' && k.model) row.model = k.model.slice(0, 60);
       if (kept.length < V24_KEPT_CAP) kept.push(row);
     });
@@ -1231,7 +1235,7 @@ function v24MaitreFromForm(prior, typed) {
     var val = String(typed[k] || '').trim();
     var had = out[k] && typeof out[k].value === 'string' ? out[k] : null;
     if (!val) delete out[k];
-    else if (!had || had.value !== val) out[k] = { value: val.slice(0, 600), by: 'person', ts: Date.now() };
+    else if (!had || had.value !== val) out[k] = { value: val.slice(0, V24_MARK_MAX), by: 'person', ts: Date.now() };
   });
   return Object.keys(out).length ? out : null;
 }
