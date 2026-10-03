@@ -68,9 +68,12 @@ a merge that would carry more dashes than the copy had.
 ## The tools, and the order
 
 `node tools/check-all.mjs` is the gate before every push. It runs check-mirror,
-check-publish, inject-shared --check, check-stamps, check-wings and check-wake, in that
-order, each as a child process, stops at the first failure and prints a summary table; the
-list is one constant at the top of the file, where check-pack will join it. check-wake
+check-publish, inject-shared --check, check-stamps, check-wings, check-wake and check-pack, in
+that order, each as a child process, stops at the first failure and prints a summary table;
+the list is one constant at the top of the file. check-pack proves every pack under
+shared/packs/ through the shipped engine (it reads, validates with no fatal code, every mark
+a person's, every id and reference resolved, no dash, imports onto a fresh device); a pack is
+built by WorldTable's tools/house/ pipeline and mirrored here, never patched. check-wake
 loads the shipped shared/oot-house.js in a sandbox with no IndexedDB and proves the
 three-record wake (a dish, a cocktail and a wine through the engine's doors, each wing's
 rows read back, a newer row settling the house, a tombstone taking a row off and never
