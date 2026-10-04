@@ -160,7 +160,8 @@ var V28_WORDS = {
   front: 'Say the ten second line aloud, then flip.',
   flip: 'Flip',
   cardOf: 'Card {i} of {n}',
-  listLine: 'By the glass, as the server guide prints it: {n} wines, {p} with a glass price and {t} poured on the tastings. The full bottle list is not in the guide.',
+  listLine: 'By the glass, as the house menus print it: {n} wines, {p} with a glass price and {t} poured on the tastings. The full bottle list is not in the guide.',
+  listMenuBottles: 'Bottles the menus print: {b}, half bottles, large formats and the Bubbles rosés among them.',
   listBottles: 'From the bottle list: {b} bottles verified online on {date}, not the whole list; confirm with the sommelier before offering one.',
   own: 'Your own',
   deckNone: 'No wine here has a kept ten second line or kept parts yet, so there is no card to deal.',
@@ -817,14 +818,21 @@ function v28LiveText(all, st) {
   return v28W('showing', { section: sec, n: shown.length, unit: shown.length === 1 ? 'wine' : 'wines' });
 }
 
+/* A wine the menus print only by the bottle (a half bottle, a magnum, a
+   Bubbles rosé): a bottle price and no glass price. Counted apart, so the
+   glass sentence counts glasses. */
+function v28MenuBottle(w) { return !!(w && !v28IsBottle(w) && !v28Str(w.glass) && v28Str(w.bottle)); }
+
 function v28ListSentence(h, all) {
-  var glass = v28Wines(h).filter(function (w) { return !v28IsBottle(w); });
+  var menuBottles = v28Wines(h).filter(v28MenuBottle);
+  var glass = v28Wines(h).filter(function (w) { return !v28IsBottle(w) && !v28MenuBottle(w); });
   var priced = glass.filter(function (w) { return (Array.isArray(w.prices) ? w.prices : []).some(function (p) { return p && v28Str(p.printed); }); }).length;
   var poured = glass.filter(function (w) {
     var hasPrice = (Array.isArray(w.prices) ? w.prices : []).some(function (p) { return p && v28Str(p.printed); });
     return !hasPrice && v28Pours(h, w.id).length > 0;
   }).length;
   var s = v28W('listLine', { n: glass.length, p: priced, t: poured });
+  if (menuBottles.length) s = s.replace(' The full bottle list', ' ' + v28W('listMenuBottles', { b: menuBottles.length }) + ' The full bottle list');
   var bottles = v28Wines(h).filter(v28IsBottle);
   if (bottles.length) {
     var on = '';
