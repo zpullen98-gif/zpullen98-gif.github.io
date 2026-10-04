@@ -1,0 +1,1 @@
+import{p as e}from"./Beeg8YG2.js";function t(t,n){throw new e(t,n)}export{t};

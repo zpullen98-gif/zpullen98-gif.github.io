@@ -1,4 +1,4 @@
-/* Outside Of Time: one device preference and a quiet way between all five rooms.
+/* Outside Of Time: one device preference for day and night service, shared by all five rooms.
  * Canonical copy: WorldTable/static/service/oot-service.js.
  * Plain wings carry this exact file as js/oot-service.js; the hub uses service/.
  * Load in the head with data-wing, before any wing reads its own preferences.
@@ -11,7 +11,7 @@
   var script = d.currentScript;
   var wing = script && script.getAttribute('data-wing') || 'hub';
   var valid = function (v) { return v === 'day' || v === 'night'; };
-  var listeners = [], host, root, saveFailed = false;
+  var listeners = [], host, root, saveFailed = false, subscribeLabel = null;
   var media = w.matchMedia ? w.matchMedia('(prefers-color-scheme: light)') : { matches: false };
   function read(key) { try { return w.localStorage.getItem(key); } catch (_) { return null; } }
   var chosen = read(KEY);
@@ -27,9 +27,7 @@
       m.content = service === 'day' ? '#f3ead8' : '#081510';
     });
     if (host) host.setAttribute('data-service', service);
-    if (root) Array.prototype.forEach.call(root.querySelectorAll('[data-set-service]'), function (b) {
-      b.setAttribute('aria-pressed', String(b.getAttribute('data-set-service') === service));
-    });
+    if (subscribeLabel) subscribeLabel();
   }
   function apply(next, persist) {
     if (!valid(next)) return false;
@@ -42,7 +40,8 @@
     paint();
     listeners.slice().forEach(function (fn) { fn(service); });
     w.dispatchEvent(new CustomEvent('oot:servicechange', { detail: { service: service } }));
-    if (root) root.querySelector('[role="status"]').textContent = saveFailed
+    var status = root && root.querySelector && root.querySelector('[role="status"]');
+    if (status) status.textContent = saveFailed
       ? 'Appearance changed for this visit. This browser could not save the preference.'
       : (service === 'day' ? 'Day service' : 'Night service') + '. Your choice follows you through the collection on this browser.';
     return true;
@@ -57,52 +56,41 @@
   if (media.addEventListener) media.addEventListener('change', function () {
     if (!chosen) { apply(media.matches ? 'day' : 'night', false); chosen = null; }
   });
-  var rooms = [
-    ['table', 'The World Table', 'Food, recipes and the art of service'],
-    ['ledger', "The Bartender's Ledger", 'Cocktails, ingredients and bar craft'],
-    ['codex', "The Sommelier's Codex", 'Wine, regions and the art of tasting'],
-    ['light', 'First Light', 'Movement, reflection and a daily reset'],
-    ['almanac', 'Calendar For Life', 'Festivals, traditions and places to discover']
-  ];
-  var guides = {
-    table: ['Choose a level on Home and begin Today\'s study.', 'Use Flashcards to remember, Quizzes to practise, and Library to look something up.', 'More holds your tools and progress. Back returns to the screen you came from.'],
-    ledger: ['Choose a level on Home and begin Today\'s study.', 'Use Flashcards to remember, Quizzes to practise, and Library to explore cocktails and ingredients.', 'More holds your tools and progress. Back returns to the screen you came from.'],
-    codex: ['Choose a level on Home and begin Today\'s study.', 'Use Flashcards to remember, Quizzes to practise, and Library for wine, maps and reading.', 'More holds your tools and progress. Back returns to the screen you came from.'],
-    light: ['Begin on Today with movement, a reading or a moment of reflection.', 'Count completed workout sets beneath the videos; Undo corrects a tap.', 'Use the main tabs to explore your practice and return to Today whenever you need a starting point.'],
-    almanac: ['Start with Today, explore a month, or search for a place or tradition.', 'Save celebrations you want to return to in Saved voyages.', 'Trails connects related celebrations into a journey. Back returns to your previous view.'],
-    hub: ['Choose a room below for food, cocktails, wine, daily practice or exploration.', 'Each room keeps its own place and progress on this browser.', 'Day service and Night service change the whole collection. Explore opens these doors from every room.']
-  };
-  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
-  var CSS = ':host{display:block!important;box-sizing:border-box!important;width:100%!important;max-width:1200px!important;min-width:0!important;margin:0 auto!important;padding:10px 16px 10px 60px!important;color:#f3e9d5;font:15px/1.5 Georgia,serif;--bg:#102119;--text:#f3e9d5;--dim:#c5c4ae;--line:#829073;--accent:#e1c184;--active:#e1c184;--on:#102119}' +
-    ':host([data-service="day"]){color:#21382a;--bg:#fff8e9;--text:#21382a;--dim:#5c5948;--line:#88795d;--accent:#725315;--active:#35563d;--on:#fff8e9}' +
-    '*{box-sizing:border-box}.rail{display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex-wrap:wrap}button,summary,a{font:inherit;color:var(--text)}button,summary{min-height:44px;border:1px solid var(--line);border-radius:3px;background:var(--bg);padding:8px 12px;cursor:pointer}summary{display:list-item;list-style-position:inside}summary::marker{color:var(--accent)}.switch{display:flex;gap:4px;margin-left:auto}button[aria-pressed="true"]{background:var(--active);color:var(--on);border-color:var(--active);font-weight:bold}button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.explore{min-width:0}.panel{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:3px;margin-top:10px;padding:18px}.panel[hidden]{display:none}.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;list-style:none;padding:0;margin:12px 0}.links a{display:block;border:1px solid var(--line);padding:12px;text-decoration:none;min-height:44px}.links a[aria-current]{border:2px solid var(--accent)}.links strong{display:block;color:var(--accent);font-weight:normal}.links small{display:block;font-size:14px;color:var(--dim)}h2{font:normal 20px/1.3 Georgia,serif;color:var(--accent);margin:0 0 12px}p{margin:0 0 12px}.help{padding-left:22px;margin:0}.help li{margin-bottom:8px}.home{display:inline-block;min-height:44px;padding:10px 0;color:var(--accent)}.sr{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap} @media(max-width:500px){:host{padding-left:60px;padding-right:10px}.rail{gap:6px}.switch{margin-left:0;width:100%}.switch button{flex:1;padding:8px;font-size:14px}.links{grid-template-columns:1fr}.panel{margin-left:-44px}} @media print{:host{display:none!important}}';
+  /* The control: one small round button in the top corner, over the masthead
+     art and opposite the OOT badge. It is absolutely placed at the top of the
+     page, so it takes no room in the layout, scrolls away with the masthead and
+     never sits over a sticky bar. A crescent moon shows in night service, a sun
+     in day service; a tap switches to the other. */
+  var MOON = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.4 14.6A8.6 8.6 0 0 1 9.4 3.6a.6.6 0 0 0-.8-.7A9.6 9.6 0 1 0 21.1 15.4a.6.6 0 0 0-.7-.8z"/></svg>';
+  var SUN = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.6" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 1.8v2.6M12 19.6v2.6M1.8 12h2.6M19.6 12h2.6M4.8 4.8l1.8 1.8M17.4 17.4l1.8 1.8M4.8 19.2l1.8-1.8M17.4 6.6l1.8-1.8"/></g></svg>';
+  var CSS = ':host{all:initial;position:absolute!important;top:10px!important;right:10px!important;left:auto!important;z-index:45!important;display:block!important;width:44px!important;height:44px!important;margin:0!important;padding:0!important}' +
+    'button{box-sizing:border-box;width:44px;height:44px;border-radius:50%;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;' +
+    'background:rgba(8,21,16,.72);color:#e1c184;border:1px solid rgba(225,193,132,.55);box-shadow:0 1px 4px rgba(0,0,0,.35);-webkit-tap-highlight-color:transparent}' +
+    ':host([data-service="day"]) button{background:rgba(255,248,233,.86);color:#725315;border-color:rgba(114,83,21,.5)}' +
+    'button:hover{border-color:currentColor}button:focus-visible{outline:3px solid #e1c184;outline-offset:3px}' +
+    '.sr{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}@media print{:host{display:none!important}}';
+  function label() {
+    var b = root && root.querySelector && root.querySelector('button');
+    if (!b) return;
+    var next = service === 'day' ? 'night' : 'day';
+    b.innerHTML = service === 'day' ? SUN : MOON;
+    b.setAttribute('aria-label', (service === 'day' ? 'Day service on. ' : 'Night service on. ') + 'Switch to ' + next + ' service');
+    b.setAttribute('title', 'Switch to ' + next + ' service');
+    b.setAttribute('data-set-service', next);
+  }
+  subscribeLabel = label;
   function mount() {
     if (!d.body || (host && host.isConnected)) return;
     if (wing === 'table' && d.documentElement.dataset.hydrated !== 'true') return;
-    var slot = d.getElementById('oot-service-slot');
-    var selectors = { table: '.house-masthead', ledger: '.wrap', codex: '#app', light: '.col', almanac: '.house-masthead', hub: 'header.top' };
-    var anchor = d.querySelector(selectors[wing] || 'main');
-    if (!slot && !anchor) return;
     host = d.createElement('div'); host.id = 'oot-service-toolbar';
     root = host.attachShadow ? host.attachShadow({ mode: 'open' }) : host;
-    var ownRoom = script && script.src ? new URL('../', script.src).href : location.href;
-    var hub = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
-      ? new URL('/', location.href).href : 'https://zpullen98-gif.github.io/';
-    root.innerHTML = '<style>' + CSS + '</style><div class="rail"><details class="explore"><summary>Explore &amp; guide</summary></details>' +
-      '<div class="switch" role="group" aria-label="Service colour scheme"><button type="button" data-set-service="day">Day service</button><button type="button" data-set-service="night">Night service</button></div></div>' +
-      '<section class="panel" hidden aria-label="Explore Outside Of Time"><h2>Five rooms. One collection.</h2><nav aria-label="Outside Of Time apps"><ul class="links">' + rooms.map(function (r) {
-        return '<li><a href="' + (r[0] === wing ? ownRoom : hub + r[0] + '/') + '"' + (r[0] === wing ? ' aria-current="page"' : '') + '><strong>' + esc(r[1]) + '</strong><small>' + r[2] + (r[0] === wing ? ' · You are here' : '') + '</small></a></li>';
-      }).join('') + '</ul><a class="home" href="' + hub + '">Return to Outside Of Time</a></nav><h2>A place to begin</h2><ol class="help">' + (guides[wing] || guides.hub).map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ol><p>Appearance is shared on this browser. Progress stays with the app and profile you use.</p></section><span class="sr" role="status" aria-live="polite"></span>';
-    var details = root.querySelector('details'), panel = root.querySelector('.panel');
-    details.addEventListener('toggle', function () { panel.hidden = !details.open; });
-    root.addEventListener('click', function (e) {
-      var b = e.target.closest('[data-set-service]');
-      if (b) apply(b.getAttribute('data-set-service'), true);
+    root.innerHTML = '<style>' + CSS + '</style><button type="button"></button><span class="sr" role="status" aria-live="polite"></span>';
+    var button = root.querySelector && root.querySelector('button');
+    if (!button) { host = null; root = null; return; }
+    button.addEventListener('click', function () {
+      apply(service === 'day' ? 'night' : 'day', true);
     });
-    root.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && details.open) { details.open = false; panel.hidden = true; details.querySelector('summary').focus(); e.preventDefault(); }
-    });
-    if (slot) slot.appendChild(host); else anchor.parentNode.insertBefore(host, anchor);
+    d.body.appendChild(host);
     paint();
   }
   OOT.service = {
