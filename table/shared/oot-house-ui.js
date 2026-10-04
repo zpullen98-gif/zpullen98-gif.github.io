@@ -869,6 +869,11 @@
       st.editing = null;
       if (value !== undefined) {
         var prev = markAt(st, kind, id, fieldName, itemOf(st, kind, id));
+        /* The pairing's bottle tiers have no box here: they ride over from the mark being replaced, so
+           an edit to the why or the second pick never drops the bottles offered with the dish. */
+        if (fieldName === 'pairing' && isMark(prev) && prev.value && typeof prev.value === 'object' && prev.value.bottles && typeof prev.value.bottles === 'object') {
+          value.bottles = prev.value.bottles;
+        }
         var mark = { value: value, by: 'person', ts: now() };
         if (isMark(prev) && typeof prev.model === 'string' && prev.model) mark.model = prev.model;
         write(st, kind, id, fieldName, mark);

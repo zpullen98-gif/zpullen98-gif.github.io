@@ -1,6 +1,6 @@
 /* The Sommelier's Codex: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-codex-v120';
+const CACHE = 'oot-codex-v121';
 
 /* The world maps (maps/*.jpg) are deliberately NOT in ASSETS above.
 
@@ -16,6 +16,16 @@ const CACHE = 'oot-codex-v120';
    be swept away on the first deploy after somebody stored nine megabytes of
    maps. This one is caught by neither. */
 const MAPS = 'codexmaps-v1';
+
+/* The house's whole bottle list (shared/packs/<pack id>.winelist.v1.json,
+   read by codex29's The full list) lives in a cache of its own for the same
+   reason as the maps: a codex-vN bump re-fetches only ASSETS and reaps the
+   old CACHE, and a list kept there would go stale or go missing after a
+   deploy. It is served NETWORK FIRST, so a new edition of the list is read as
+   soon as the network answers, and the copy kept here answers offline after
+   one visit. Again no hyphen after "codex", so activate never reaps it. */
+const LIST = 'codexlist-v1';
+const LIST_RE = /\/shared\/packs\/[a-z0-9-]+\.winelist\.v\d+\.json$/;
 
 const ASSETS = [
   './',
@@ -38,6 +48,7 @@ const ASSETS = [
   './css/house-surfaces.css',
   './css/house-study.css',
   './css/house-list.css',
+  './css/house-fulllist.css',
   './assets/codex-library-v1.webp',
   './js/data-questions.js',
   './js/reference.js',
@@ -84,6 +95,7 @@ const ASSETS = [
   './js/codex26.js',
   './js/codex27.js',
   './js/codex28.js',
+  './js/codex29.js',
   './js/boot.js',
   './fonts/cinzel-normal-400-900-latin.woff2',
   './fonts/cinzel-normal-400-900-latin-ext.woff2',
@@ -149,6 +161,23 @@ self.addEventListener('message', e => {
 });
 
 self.addEventListener('fetch', e => {
+  /* The list is answered before every other rule, so no broader one (the
+     cache-first catch-all below, or the network-first rule for every house
+     pack that the site's copy of this worker adds) can ever store it in
+     CACHE, which each bump reaps. Kept first on purpose, ahead of the lines
+     the site's copy edits, so a three-way merge lands it above that copy's
+     own rules without a conflict. */
+  if (e.request.method === 'GET' && new URL(e.request.url).origin === location.origin && LIST_RE.test(new URL(e.request.url).pathname)) {
+    e.respondWith(caches.open(LIST).then(c =>
+      fetch(e.request).then(res => {
+        if (res.ok) c.put(e.request, res.clone());
+        return res;
+      }).catch(() => c.match(e.request, { ignoreSearch: true }).then(hit => {
+        if (hit) return hit;
+        throw new Error('the list is not on this device yet');
+      }))));
+    return;
+  }
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
   if (url.origin !== location.origin) return;

@@ -1,0 +1,29 @@
+/* Outside Of Time: the floor's bottles and the full list (codex29).
+   Built from the Codex's own tokens and codex28's components: the dark page
+   carries --parch, --gold, --gold-soft and --gold-hi; nothing here sits on
+   parchment. Layout and hierarchy only: no new colour, no new face. Every
+   control at least 44px; every row at least 56px. */
+@media screen {
+  /* a bottle's bin, before its name on a row and under it on a card */
+  .wrap .v29-bin { display: inline-block; margin-right: 6px; font-family: var(--house-display); font-size: 14px; letter-spacing: .04em;
+    color: var(--gold-soft); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .wrap .v28 .v29-binline { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 8px; }
+  .wrap .v29-size { color: var(--parch2); font-size: 16px; }
+  .wrap .v29-tier { font-family: var(--house-display); font-size: 14px; letter-spacing: .04em; color: var(--gold-soft); }
+  .wrap .v29-floorchips { padding-top: 4px; }
+
+  /* the full list: the search and three chip rows scroll with the page, so
+     a phone keeps its screen for the rows */
+  .wrap .v29-bar { position: static; padding-top: 0; }
+  .wrap .v29-bar .v28-chips + .v28-chips { padding-top: 4px; }
+  .wrap .v29-nav { margin-bottom: 6px; }
+  .wrap .v28 .v29-count { font-size: 16px; color: var(--gold-soft); margin: 10px 0 0; }
+  .wrap .v29-row[aria-expanded='true'] { border-bottom-style: solid; border-bottom-color: var(--gold-soft); }
+  .wrap .v29-detail { padding: 6px 2px 14px 12px; border-left: 2px solid var(--line); margin: 0 0 6px; }
+  .wrap .v29-detail .v28-eyebrow:first-child { margin-top: 6px; }
+  .wrap .v28 .v29-tell { color: var(--parch2); font-style: italic; }
+  /* a bin the list also prints for another bottle: said before the producer, so the bin is never rung alone */
+  .wrap .v28 .v29-binshared { color: var(--gold-hi); font-size: 16px; margin: 6px 0 4px; }
+  .wrap .v29-morerow { justify-content: center; margin: 16px 0 8px; }
+  .wrap .v29-morerow .btn { min-height: 48px; padding: 10px 20px; }
+}

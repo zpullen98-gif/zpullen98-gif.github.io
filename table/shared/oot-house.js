@@ -139,6 +139,58 @@ const WINE_PARTS = {
 const BUILD_STEPS = ['card', 'menus', 'filed', 'formula', 'pairings', 'wines', 'lexicon', 'scenarios'];
 /** The three kinds of item that carry the formula. */
 const ITEM_KINDS = ['dish', 'wine', 'cocktail'];
+/**
+ * Which list a wine is sold from: 'glass' is the menus' own wines (the
+ * glasses and the bottles a menu prints), 'bottle' is a bottle from the
+ * house's full bottle list that has a whole card for the floor. A wine
+ * without the field is a glass wine, so every edition written before the
+ * field existed reads as it always did.
+ */
+const WINE_LISTS = ['glass', 'bottle'];
+/**
+ * The bottle tiers a dish's pairing may carry, in the order a server offers
+ * them: value, the sweet spot (classic), the celebration (splurge), and a
+ * half bottle where one fits.
+ */
+const BOTTLE_TIERS = ['value', 'classic', 'splurge', 'half'];
+/**
+ * The price band each priced tier holds, in dollars of the printed bottle
+ * price: value under 100, classic from 100 to 250 (both ends in), splurge
+ * over 250. The half bottle has no band; it is held to HALF_SIZE instead.
+ */
+const BOTTLE_BANDS = { value: 100, classicTop: 250 };
+/** Whether a bottle price sits in a tier's band; the half bottle takes any price. */
+function inBottleBand(tier, price) {
+    if (!Number.isFinite(price) || price <= 0)
+        return false;
+    if (tier === 'value')
+        return price < BOTTLE_BANDS.value;
+    if (tier === 'classic')
+        return price >= BOTTLE_BANDS.value && price <= BOTTLE_BANDS.classicTop;
+    if (tier === 'splurge')
+        return price > BOTTLE_BANDS.classicTop;
+    return true;
+}
+/**
+ * The first figure in a printed price, as dollars: '$1,250' is 1250 and
+ * '$80 half-bottle' is 80. NaN when the price prints no figure.
+ */
+function printedDollars(printed) {
+    const m = String(printed == null ? '' : printed).match(/\d[\d,]*(?:\.\d+)?/);
+    return m ? Number(m[0].replace(/,/g, '')) : NaN;
+}
+/** A size folded for comparison: lower case, no spaces, so '375 ml' and '375ml' are one size. */
+function foldSize(size) {
+    return String(size == null ? '' : size).toLowerCase().replace(/\s+/g, '');
+}
+/** The list a wine is sold from, reading an absent field as 'glass'. */
+function wineListOf(wine) {
+    return wine.list === 'bottle' ? 'bottle' : 'glass';
+}
+/** The size a half bottle carries, folded: lower case, no spaces. */
+const HALF_SIZE = '375ml';
+/** The word cap on a tier's why and its line to say at the table. */
+const BOTTLE_WORDS = 25;
 /* -------------------------------------------------------------------------
  * The lists, the marks and the ids, as data
  * ---------------------------------------------------------------------- */
@@ -221,8 +273,10 @@ const KEYS = {
     Lines: ['s10', 's20', 's45'],
     Pairing: [
         'wineId', 'why', 'sayIt', 'whyThisWine', 'palate', 'principles',
-        'secondId', 'secondWhy', 'stepUp', 'serve', 'avoid', 'zeroProofId', 'zeroProofWhy'
+        'secondId', 'secondWhy', 'stepUp', 'serve', 'avoid', 'zeroProofId', 'zeroProofWhy', 'bottles'
     ],
+    PairingBottles: ['value', 'classic', 'splurge', 'half'],
+    BottlePick: ['wineId', 'why', 'sayIt'],
     MealPrice: ['meal', 'printed'],
     ItemBase: ITEM_BASE_KEYS,
     HouseDish: [
@@ -230,7 +284,7 @@ const KEYS = {
     ],
     HouseWine: [
         ...ITEM_BASE_KEYS, 'kind', 'producer', 'wine', 'vintage', 'region', 'grapes', 'style', 'glass', 'bottle', 'pours',
-        'profile', 'goesWith', 'firstPickIds', 'serve'
+        'profile', 'goesWith', 'firstPickIds', 'serve', 'list', 'bin', 'size'
     ],
     HouseCocktail: [
         ...ITEM_BASE_KEYS, 'kind', 'spec', 'method', 'glass', 'garnish', 'note', 'family', 'spirit', 'zeroProof',
@@ -255,6 +309,16 @@ const KEYS = {
     ],
     HouseIndex: ['v', 'current', 'list'],
     HouseStub: ['id', 'name', 'ts', 'bytes', 'began']
+};
+/**
+ * The plain keys a record may leave out, by shape: written only when they
+ * say something, so a record from an edition that never had them reads
+ * unchanged. A test that holds a record to its whole key list takes these
+ * out of the required half.
+ */
+const OPTIONAL_KEYS = {
+    Pairing: ['bottles'],
+    HouseWine: ['list', 'bin', 'size']
 };
 /* -------------------------------------------------------------------------
  * The small functions every module shares
@@ -497,7 +561,7 @@ function stripDashes(s) {
  * IDS. Each list has its prefix (ID_PREFIXES); an id missing, carrying a
  * pipe or a colon, with the wrong prefix or already taken in this house is
  * minted afresh and the report says so, and every reference to the old id
- * inside the house (a pairing, a course, a mix-up, a first pick, an upsell,
+ * inside the house (a pairing and its bottle tiers, a course, a mix-up, a first pick, an upsell,
  * a term's items) follows it, so a pack whose dishes came in under the
  * desk's 'k-' mint keeps its pairings. An id that would match the client's
  * FORBIDDEN_KEY is minted afresh as well, and a fresh id is drawn again
@@ -647,7 +711,15 @@ function markValue(v, kind) {
     }
     const p = { principles: [] };
     for (const k of KEYS.Pairing) {
-        if (k === 'principles') {
+        if (k === 'bottles') {
+            /* Optional: set only when some tier holds something, so a pairing without tiers keeps its old shape. */
+            const bottles = normaliseBottles(v.bottles);
+            if (bottles) {
+                p.bottles = bottles;
+                any = true;
+            }
+        }
+        else if (k === 'principles') {
             /* Carried as they came, even one outside PRINCIPLES, so the validator can name it. */
             p.principles = asTextList(v.principles);
             if (p.principles.length)
@@ -660,6 +732,34 @@ function markValue(v, kind) {
         }
     }
     return any ? p : undefined;
+}
+/**
+ * A pairing's bottle tiers: each tier rebuilt from KEYS.BottlePick and kept
+ * only when something is in it; undefined when no tier survives. A key
+ * outside the four tiers or the three fields is dropped here as everywhere.
+ */
+function normaliseBottles(v) {
+    if (!isRaw(v))
+        return undefined;
+    const out = {};
+    let any = false;
+    for (const tier of BOTTLE_TIERS) {
+        const raw = v[tier];
+        if (!isRaw(raw))
+            continue;
+        const pick = {};
+        let some = false;
+        for (const k of KEYS.BottlePick) {
+            pick[k] = asText(raw[k]);
+            if (!blank(pick[k]))
+                some = true;
+        }
+        if (!some)
+            continue;
+        out[tier] = pick;
+        any = true;
+    }
+    return any ? out : undefined;
 }
 /**
  * A mark brought to the wings' shape, or nothing: a value of the field's
@@ -797,6 +897,17 @@ function normaliseWine(raw, i, ctx) {
     w.bottle = asPrinted(r.bottle);
     w.pours = asTextList(r.pours);
     marksOnto(w, r, MARK_FIELDS.wines);
+    /* The bottle list's three fields, each written only when it says something: list only as
+       'bottle' (absent is 'glass'), the bin and the size only when not blank, so a wine from an
+       edition that never had them comes back with the same keys it went in with. */
+    if (r.list === 'bottle')
+        w.list = 'bottle';
+    const bin = asPrinted(r.bin);
+    if (!blank(bin))
+        w.bin = bin;
+    const size = asText(r.size);
+    if (!blank(size))
+        w.size = size;
     return w;
 }
 function normaliseCocktail(raw, i, ctx) {
@@ -991,6 +1102,12 @@ function applyRenames(house, ctx) {
         p.wineId = one(p.wineId);
         p.secondId = one(p.secondId);
         p.zeroProofId = one(p.zeroProofId);
+        if (p.bottles)
+            for (const tier of BOTTLE_TIERS) {
+                const pick = p.bottles[tier];
+                if (pick)
+                    pick.wineId = one(pick.wineId);
+            }
     }
     for (const w of house.wines)
         if (w.firstPickIds)
@@ -1098,8 +1215,12 @@ function normaliseHouse(raw, opts = {}) {
  * its cap; 'ref' an id that points at nothing in this house; 'principles' a
  * pairing principle outside the nine; 'price' a printed price that does not
  * stand on the page it was read from, by the client's own rule; and
- * 'allergen-talk' a line of hers that speaks of allergens. Those seven are
- * FATAL_CODES, the default list, and a pack builder passes exactly that.
+ * 'allergen-talk' a line of hers that speaks of allergens; and 'tier' a
+ * bottle tier that breaks its rule (a wine not on the bottle list, a price
+ * outside the tier's band, a half bottle that is not HALF_SIZE, a tier with
+ * no why or no line to say). Those eight are FATAL_CODES, the default list,
+ * and a pack builder passes exactly that. A tier's why and line over
+ * BOTTLE_WORDS are 'word-cap', and a tier naming no house wine is 'ref'.
  * Three more are advisory and NEVER fatal, whatever list a caller hands in:
  * 'service-note', a person's note that names an allergen without the word
  * confirm (the note is theirs and stands; the flag reminds them to confirm
@@ -1115,7 +1236,7 @@ function normaliseHouse(raw, opts = {}) {
  * and onPage, the rule that 12 is not on a page that prints only 12.50.
  */
 /** The codes that stop a pack, and the default `fatal` list. */
-const FATAL_CODES = ['forbidden', 'dash', 'word-cap', 'ref', 'principles', 'price', 'allergen-talk'];
+const FATAL_CODES = ['forbidden', 'dash', 'word-cap', 'ref', 'principles', 'price', 'allergen-talk', 'tier'];
 /** The codes that are advice and never fatal, whatever list a caller hands in. */
 const NEVER_FATAL = ['service-note', 'proper-noun', 'quote'];
 /** The client's ALLERGEN_TALK: a line of hers that strays onto allergens is refused, by the code and not the prompt. */
@@ -1286,6 +1407,14 @@ function checkRefs(house, add) {
             ref(at + 'wineId', p.wineId, wines, 'a house wine', false);
             ref(at + 'secondId', p.secondId, wines, 'a house wine', true);
             ref(at + 'zeroProofId', p.zeroProofId, zero, 'a zero-proof house cocktail', true);
+            const bottles = p.bottles;
+            if (bottles && typeof bottles === 'object') {
+                for (const tier of BOTTLE_TIERS) {
+                    const pick = bottles[tier];
+                    if (pick && typeof pick === 'object')
+                        ref(at + 'bottles.' + tier + '.wineId', pick.wineId, wines, 'a house wine', false);
+                }
+            }
         }
         if (list === 'wines' && isMark(item.firstPickIds))
             refs(path + '.firstPickIds.value', item.firstPickIds.value, dishes, 'a house dish');
@@ -1320,6 +1449,60 @@ function checkRefs(house, add) {
     for (let i = 0; i < disputes.length; i++) {
         if (disputes[i].itemId !== undefined)
             ref('house.disputes[' + i + '].itemId', disputes[i].itemId, items, 'a house item', true);
+    }
+}
+/**
+ * Every bottle tier on every pairing: the wine is a house wine with list
+ * 'bottle' (a wine that is not in the house at all is checkRefs' to name),
+ * its printed bottle price sits in the tier's band, a half bottle is
+ * HALF_SIZE, and the why and the line to say are there and within
+ * BOTTLE_WORDS.
+ */
+function checkBottles(house, add) {
+    const wines = new Map();
+    for (const w of listOf(house, 'wines'))
+        if (typeof w.id === 'string')
+            wines.set(w.id, w);
+    const dishes = listOf(house, 'dishes');
+    for (let i = 0; i < dishes.length; i++) {
+        const pairing = dishes[i].pairing;
+        if (!isMark(pairing) || !pairing.value || typeof pairing.value !== 'object')
+            continue;
+        const bottles = pairing.value.bottles;
+        if (!bottles || typeof bottles !== 'object')
+            continue;
+        for (const tier of BOTTLE_TIERS) {
+            const pick = bottles[tier];
+            if (!pick || typeof pick !== 'object')
+                continue;
+            const at = 'house.dishes[' + i + '].pairing.value.bottles.' + tier;
+            const p = pick;
+            for (const k of ['why', 'sayIt']) {
+                const text = typeof p[k] === 'string' ? p[k] : '';
+                if (!text.trim())
+                    add(at + '.' + k, 'tier', 'the ' + tier + ' bottle has no ' + (k === 'why' ? 'why' : 'line to say'));
+                else if (wordCount(text) > BOTTLE_WORDS)
+                    add(at + '.' + k, 'word-cap', wordCount(text) + ' words; the cap on a bottle tier is ' + BOTTLE_WORDS);
+            }
+            const w = typeof p.wineId === 'string' ? wines.get(p.wineId) : undefined;
+            if (!w)
+                continue;
+            const name = typeof w.name === 'string' ? w.name : String(p.wineId);
+            if (wineListOf(w) !== 'bottle') {
+                add(at + '.wineId', 'tier', name + ' is not on the bottle list');
+                continue;
+            }
+            if (tier === 'half') {
+                if (foldSize(typeof w.size === 'string' ? w.size : '') !== HALF_SIZE)
+                    add(at + '.wineId', 'tier', name + ' is not a ' + HALF_SIZE + ' half bottle');
+                continue;
+            }
+            const dollars = printedDollars(typeof w.bottle === 'string' ? w.bottle : '');
+            if (!Number.isFinite(dollars))
+                add(at + '.wineId', 'tier', name + ' prints no bottle price');
+            else if (!inBottleBand(tier, dollars))
+                add(at + '.wineId', 'tier', name + ' at ' + dollars + ' dollars is outside the ' + tier + ' band');
+        }
     }
 }
 function checkPrinciples(house, add) {
@@ -1496,6 +1679,7 @@ function validateHouse(house, opts = {}) {
     checkWordCaps(house, add);
     checkRefs(house, add);
     checkPrinciples(house, add);
+    checkBottles(house, add);
     if (typeof opts.sourceText === 'string')
         checkPrices(house, opts.sourceText, add);
     checkMarks(house, add);
@@ -4912,6 +5096,10 @@ var ootHouseLib = {
 	emptyHouse: emptyHouse,
 	isMark: isMark,
 	isNote: isNote,
+	wineListOf: wineListOf,
+	printedDollars: printedDollars,
+	inBottleBand: inBottleBand,
+	foldSize: foldSize,
 	mapStorage: mapStorage,
 	idbStorage: idbStorage,
 	asIndex: asIndex,
@@ -4986,6 +5174,12 @@ var ootHouseLib = {
 		FORBIDDEN_KEY: FORBIDDEN_KEY,
 		DASH: DASH,
 		DASH_SOURCE: DASH_SOURCE,
+		OPTIONAL_KEYS: OPTIONAL_KEYS,
+		WINE_LISTS: WINE_LISTS,
+		BOTTLE_TIERS: BOTTLE_TIERS,
+		BOTTLE_BANDS: BOTTLE_BANDS,
+		HALF_SIZE: HALF_SIZE,
+		BOTTLE_WORDS: BOTTLE_WORDS,
 		FATAL_CODES: FATAL_CODES,
 		NEVER_FATAL: NEVER_FATAL,
 		ALLERGEN_TALK: ALLERGEN_TALK,
