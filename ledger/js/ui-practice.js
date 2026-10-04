@@ -1104,6 +1104,9 @@ function renderTools(){
     return '<select class="input" id="'+id+'" style="flex:2;min-width:170px">'+opts+'</select>';
   };
 
+  /* More's Settings: the video settings on a screen of their own, outside
+     the tools' row (the consolidation) */
+  if(t.view==='video' && typeof videoSettingsScreenHTML === 'function') return videoSettingsScreenHTML();
   if(t.view==='maitre') return wrap(maitreToolHTML());
   if(t.view==='data') return wrap(dataToolHTML());
   if(t.view==='spills') return wrap(spillHTML());

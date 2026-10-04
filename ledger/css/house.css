@@ -206,6 +206,46 @@
     .stat-grid{gap:10px}.stat-num{font-size:2rem}
     .sw-toast{bottom:calc(84px + env(safe-area-inset-bottom))}
   }
+  /* The consolidation (4 October 2026): the one Back, the scope chip, the
+     rows of the three roots, More's quiet word. Built from the components
+     above; no new colour, face or picture. */
+  .crumb.backrow{position:sticky;top:0;z-index:40;display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin:0 0 16px;padding:6px 0;background:var(--felt);transition:none}
+  .crumb.backrow.is-stuck{padding-left:22px;box-shadow:0 1px 0 var(--house-line)}
+  .back-sentinel{height:1px;margin-bottom:-1px}
+  .back-from{flex:1 1 220px;line-height:1.5}
+  .backrow ~ .col .hs-bar{top:58px}
+  .backrow ~ .col .hs-find{padding-left:0}
+  .scope{margin:12px 0 14px}
+  .lib-line{margin:0 0 18px}
+  .scope{display:flex;flex-direction:column;gap:10px}
+  .scope-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .scope-all{font-family:var(--house-display);font-size:.78rem;letter-spacing:.06em;color:var(--brass-2)}
+  .scope-list{display:flex;flex-wrap:wrap;gap:8px}
+  .scope-list .lv-here{margin-left:4px}
+  button.chip.on .lv-here{color:var(--ink)}
+  nav.quiet.rows{display:grid;grid-template-columns:1fr;gap:10px;padding-top:0;border-top:0}
+  nav.quiet.rows .door{min-height:0;width:100%}
+  .door-off{cursor:default;opacity:1}
+  .lv-block{display:flex;flex-direction:column;gap:12px}
+  .lv-block>.sub-head,.fc-pick .sub-head,.qz-root .sub-head,.mine .sub-head{margin:0}
+  .lv-secs,.lv-quiet{gap:8px}
+  details.lv-holds>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-family:var(--house-display);font-size:.8rem;letter-spacing:.08em;color:var(--brass-2)}
+  details.lv-holds:not([open]) .when-open,details.lv-holds[open] .when-closed{display:none}
+  details.lv-holds .subsections{margin-top:12px}
+  .sub-read{min-height:44px;padding:0;background:none;border:0;color:inherit;font:inherit;text-align:left;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+  .cl-btn.cl-more,.bnav-btn.bnav-more{font-weight:400;border-left:1px solid #6d593488}
+  .nav-pill{font-size:.72em;letter-spacing:0;color:var(--brass-2)}
+  .fc-side{align-self:center}
+  .miss-row .row{gap:8px}
+  @media(min-width:640px) and (max-width:850px){.crumb.backrow.is-stuck{padding-left:39px}}
+  @media(max-width:639px){.crumb.backrow.is-stuck{padding-left:47px}.crumb.backrow{margin-bottom:12px}}
+  /* the floor of the consolidation's design (2.9): every line its screens
+     added reads at the body size, never below 15px; the door names keep
+     their eyebrow size, which is the art's */
+  .crumb.backrow .chip,.scope .chip{font-size:.94rem;letter-spacing:.04em}
+  details.lv-holds>summary{font-size:.94rem}
+  .sub-line,.sub-note,.door-sub,.deck-count,.study-modes .tiny,.study-modes .bold{font-size:1rem;line-height:1.45}
+  .study-toolbar{font-size:1rem}
   @media(max-width:359px){.books{grid-template-columns:1fr}.lv-name{font-size:.8rem}.door-name{font-size:.6rem}.bnav-btn{font-size:.59rem}}
   @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
   @media(forced-colors:active){

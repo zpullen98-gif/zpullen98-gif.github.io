@@ -1,7 +1,7 @@
 The World Table
-commit 3431e014d81959259d9a02ef1805721b0339479d
+commit 83cc290a3952fe2cf219bf34efe70c0d64507a65
 branch dish-standards
-built  2026-10-04T07:15:32.093Z
+built  2026-10-04T16:40:30.422Z
 
 Written by tools/postbuild.mjs. The monorepo wing is a copy of this
 directory; this file is how a copy says where it came from.

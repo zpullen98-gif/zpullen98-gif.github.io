@@ -128,7 +128,12 @@ const saveProgress = () => store.set(KEY(), JSON.stringify(progress));
 const state = {
   tab:'home',
   lib:{ q:'', fam:'All', tier:'All', open:null },
-  fc:{ stage:'setup', mode:null, src:'All', boardSrc:'All', tier:'All', family:'All', spirit:'All', special:'All', smart:false, section:'All',
+  /* stage: 'pick' is the Flashcards root, the one deck picker; 'setup' a
+     deck's screen; 'run' its cards; 'board' the mastery board. deckId names
+     the deck (js/ui-nav.js), `only` holds a deck's own cards where fcPool's
+     filters cannot (one drink, the misses, the menu's words), deckModes the
+     ways a deck may be studied, missKeys the cards a miss deck holds */
+  fc:{ stage:'pick', deckId:null, only:null, deckModes:null, missKeys:[], mode:null, src:'All', boardSrc:'All', tier:'All', family:'All', spirit:'All', special:'All', smart:false, section:'All',
        deck:[], idx:0, flipped:false, right:0, wrong:0, missed:[],
        pool:[], sel:[], checked:false, lastOk:null, clozeIdx:0, opts:[], picked:null, boardOpen:null },
   quiz:{ stage:'setup', mode:'mixed', round:null, idx:0, picked:null, score:0, missedQ:[], section:null },
@@ -168,7 +173,11 @@ const state = {
   /* the four levels: which level's page is open (null is the reader's own,
      derived, never stored), the level test while one is being sat, and
      where Mine should open */
-  level:{ n:null },
+  level:{ n:null, q:'' },
+  /* the scope chip on the Flashcards and Quizzes roots: show all levels, and
+     which root's level list is open (js/ui-nav.js); never stored */
+  scopeAll:{ flashcards:false, quiz:false },
+  scopeOpen:'',
   lt:null,
   mine:{ at:null },
   famOpen: Object.keys(FAMILIES)[0],

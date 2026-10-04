@@ -50,7 +50,22 @@ function libList(){
 }
 function libListHTML(){
   const list = libList();
+  /* a filter never hides what was searched for (design 2.4): nothing at the
+     chosen level, and the matches at the other levels under their own
+     heading, each naming its level on its chip */
+  const lv = Number(state.lib.level) || 0;
+  if(!list.length && lv && String(state.lib.q || '').trim()){
+    const was = state.lib.level;
+    state.lib.level = null;
+    let away;
+    try { away = libList(); } finally { state.lib.level = was; }
+    if(away.length) return '<p class="door-line">Nothing at '+esc(levelInfo(lv).name)+' for "'+esc(state.lib.q)+'".</p>'
+      + '<h3 class="sub-head">At other levels</h3>' + libRowsHTML(away);
+  }
   if(!list.length) return '<div class="panel p5 tc small dim">Nothing on the ledger matches. Clear a filter or try another ingredient.</div>';
+  return libRowsHTML(list);
+}
+function libRowsHTML(list){
   return list.map(({c,i}) => {
     const isOpen = state.lib.open === i;
     const story = LORE[c.name]
@@ -89,8 +104,7 @@ function renderLibrary(){
     return '<div id="print-sheet">'
       + '<div class="print-bar panel p4 row between" style="grid-column:1/-1">'
       + '<span class="small dim">'+list.length+' spec card'+(list.length===1?'':'s')+': ready for paper. Landscape fits more; portrait reads bigger.</span>'
-      + '<span class="row"><button class="btn btn-brass" data-act="lib-print-go">Print</button>'
-      + '<button class="btn btn-ghost" data-act="lib-print-close">← Back to the library</button></span></div>'
+      + '<span class="row"><button class="btn btn-brass" data-act="lib-print-go">Print</button></span></div>'
       + list.map(({c}) => ticketHTML(c)).join('')
       + '</div>';
   }
@@ -105,7 +119,13 @@ function renderLibrary(){
       const l = v === 'All' ? null : levelInfo(Number(v));
       return '<option value="'+v+'"'+(lvCur===v?' selected':'')+'>'+(l ? esc(l.name) : 'Every level')+'</option>';
     }).join('') + '</select>';
+  /* the search over everything heads the Library root (design 4.2); its
+     heading and scope chip stand above the shelf (clusterChromeHTML) */
+  const head = typeof scopeChipHTML === 'function'
+    ? '<nav class="quiet rows" aria-label="Search"><button class="door" data-act="search-all"><span class="door-name">Search everything</span><span class="door-line">Every drink, sheet and lesson in the ledger.</span></button></nav>'
+    : '';
   return '<div class="col">'
+    + head
     + '<input class="input" id="lib-search" aria-label="Search the library" placeholder="Search by name, spirit, or ingredient…" value="'+esc(state.lib.q)+'">'
     + '<div class="row">'+famChips+'</div>'
     + '<div class="row">'+levelSel+bookSel+'</div><div class="row">'
@@ -277,6 +297,9 @@ function isMastered(name){
 function weakScore(name){ const s=progress.cards[name]; return s ? (s.w*2 + (s.lapses||0)*1.5 - s.r + Math.random()*0.5) : (1 + Math.random()*0.5); }
 function fcPool(){
   const f = state.fc;
+  /* a deck that names its own cards (one drink, the misses, the menu's
+     words: js/ui-nav.js) deals exactly those */
+  if(Array.isArray(f.only)) return f.only.filter(function(d){ return d && !d.draft; });
   return allDrinks().filter(function(d){
     /* a draft has no spec, and Name to Spec would deal an empty ticket and
        ask the learner to grade themselves against nothing; a draft with a
@@ -430,8 +453,8 @@ const fitsLine = key => d => typeof keptLineOf === 'function' && !!keptLineOf(d,
    mark the same way (js/house-bar.js), and on nothing hers */
 const fitsHouse = mode => d => typeof houseCardFits === 'function' && !!houseCardFits(mode, d);
 const FC_MODES = [
-  ['name2spec','Name → Spec','The order comes in. Recite the whole build out loud, then flip and grade yourself.', fitsName],
-  ['spec2name','Spec → Name','Read a blind ticket and call the drink, the service-printer skill.', fitsName],
+  ['name2spec','Name to Spec','The order comes in. Recite the whole build out loud, then flip and grade yourself.', fitsName],
+  ['spec2name','Spec to Name','Read a blind ticket and call the drink, the service-printer skill.', fitsName],
   ['build','Assemble the Ticket','An ingredient bank with decoys mixed in. Select every line that belongs in the spec.', hasSpec],
   ['cloze','Fill the Missing Line','One line of the ticket is blanked. Pick the exact line that completes it.', hasSpec],
   ['service','Service Details','Glass, garnish and method with no spec to lean on, the part the guest actually sees.', d => FACT_SOURCES.indexOf(d.src) < 0 && hasSpec(d)],
@@ -441,27 +464,26 @@ const FC_MODES = [
   ['parts','The five parts','A new starter asks what is in it. Say the five parts you kept for it, then flip.', fitsHouse('parts')],
   ['upsell','What to offer next','The glass is empty. Say what you kept to offer after it, then flip.', fitsHouse('upsell')],
   ['study','The house card','Name and section on the front. The line, the five parts and what to offer next on the back.', fitsHouse('study')],
+  /* the house's words, from the shared engine (js/ui-nav.js menuWordCards) */
+  ['word','Word cards','The word and the question on the front, what you kept on the back.', d => d.src === 'Words'],
 ];
 
 function renderFlashcards(){
   const fc = state.fc;
 
-  /* -------- setup -------- */
-  if(fc.stage==='setup'){
-    const srcChips = ['All'].concat(deckSources()).map(function(s){
-      /* never a draft: the chip promises what the deck will deal, and a
-         house drink with a kept line is dealt by the line modes */
-      const n = allDrinks().filter(function(d){ return (d.src === 'My Bar' ? isHouseCard(d) : !d.draft) && (s==='All' || d.src===s); }).length;
-      return '<button class="chip'+(fc.src===s?' on':'')+'" aria-pressed="'+(fc.src===s?'true':'false')+'" data-act="fc-src" data-s="'+esc(s)+'">'+(s==='All'?'Everything':esc(srcLabel(s)))+' <span class="font-tix">'+n+'</span></button>';
-    }).join(' ');
+  /* -------- the deck picker, the Flashcards root (js/ui-nav.js) -------- */
+  if(fc.stage==='pick' && typeof fcPickHTML === 'function') return fcPickHTML();
+
+  /* -------- the deck screen: the deck chose the source -------- */
+  if(fc.stage==='setup' || fc.stage==='pick'){
     const isCocktail = fc.src==='Cocktails' || fc.src==='All';
     /* the books inside the level the deck deals from, as in the Library; a
        level's other subsections hold no cocktail, so they draw no book */
-    const books = isCocktail && (!fc.sub || fc.sub === 'cocktails');
+    const books = isCocktail && !fc.only && (!fc.sub || fc.sub === 'cocktails');
     fc.tier = books ? bookHeld(fc.level, fc.tier) : 'All';
     const bookSel = books ? '<select class="input" id="fc-book" aria-label="Filter by book" style="max-width:380px">'+bookOptions(fc.tier, fc.level)+'</select>' : '';
     /* the menu's sections, when the deck is the menu and a house names them */
-    const menuSecs = fc.src==='My Bar' && typeof houseStudySectionOf === 'function'
+    const menuSecs = fc.src==='My Bar' && !fc.only && typeof houseStudySectionOf === 'function'
       ? [...new Set((progress.bar||[]).map(function(b){ return houseStudySectionOf(b.id); }).filter(Boolean))] : [];
     if(menuSecs.indexOf(fc.section) < 0) fc.section = 'All';
     const secSel = menuSecs.length > 1 ? '<select class="input" id="fc-section" aria-label="Filter by section of the menu" style="max-width:380px">'
@@ -478,31 +500,35 @@ function renderFlashcards(){
     const dueN = (function(){ const s = fc.special; fc.special = 'due'; const n = fcPool().length; fc.special = s; return n; })();
     const specials = [['All','Full deck'],['unmastered','Unmastered only'],['trouble','Trouble cards'],['due','Due for review'+(dueN?' · '+dueN:'')]]
       .map(([k,l]) => '<button class="chip'+(fc.special===k?' on':'')+'" aria-pressed="'+(fc.special===k?'true':'false')+'" data-act="fc-special" data-s="'+k+'">'+l+'</button>').join(' ');
-    const pool = fcPool();
+    /* the ways this deck may be studied, filtered by what its cards can ask;
+       the house card leads on a deck of the menu */
+    const allowed = FC_MODES.filter(function(row){ return !fc.deckModes || fc.deckModes.indexOf(row[0]) >= 0; });
+    const pool0 = fcPool();
+    let fitting = allowed.filter(([,,,fits]) => !fits || pool0.some(fits));
+    if(fc.src==='My Bar'){ const st = fitting.find(function(r){ return r[0]==='study'; }); if(st) fitting = [st].concat(fitting.filter(function(r){ return r !== st; })); }
+    const pool = pool0.filter(function(d){ return fitting.some(function(r){ return !r[3] || r[3](d); }); });
     const masteredIn = pool.filter(function(d){ return isMastered(cardKey(d)); }).length;
-    /* index into the FILTERED list, or a deck that hides the first mode draws
-       no brass button at all */
-    const modeBtns = FC_MODES.filter(([,,,fits]) => !fits || pool.some(fits)).map(([m,t,d],i) =>
+    const modeBtns = fitting.map(([m,t,d],i) =>
       '<button class="btn '+(i===0?'btn-brass':'btn-ghost')+'" data-act="fc-start" data-mode="'+m+'" style="text-align:left"'+(pool.length?'':' disabled')+'>'
       + '<span class="bold">'+t+'</span><br><span class="tiny'+(i===0?'':' dim')+'" style="font-weight:400">'+d+'</span></button>').join('');
-    return '<div class="col">'
-      + '<div class="panel p5 col" style="gap:14px">'
-      + '<div class="eyebrow">Build your deck</div>'
-      + (fc.level ? '<div class="row" style="gap:8px;align-items:center"><span class="small">Dealing from '+esc(levelInfo(fc.level).name)+(fc.sub ? ', '+esc(levelSubTitle(fc.sub)) : '')+'.</span>'
-        + '<button class="chip" data-act="fc-level-clear">Every card</button></div>' : '')
-      + '<div class="row">'+srcChips+'</div>'
+    const name = typeof deckNameNow === 'function' ? deckNameNow() : 'Your deck';
+    const narrow = fc.only ? '' : '<details class="lv-holds fc-narrow"><summary><span class="when-closed">Narrow this deck</span><span class="when-open">Hide the filters</span></summary><div class="col-sm" style="gap:12px;padding-top:12px">'
       + (bookSel ? '<div class="row">'+bookSel+'</div>' : '')
       + (secSel ? '<div class="row">'+secSel+'</div>' : '')
       + '<div class="row" style="gap:10px"><select class="input" id="fc-family" aria-label="Filter by '+(fc.src==='Shots'?'shot category':fc.src==='Zero Proof'?'zero-proof family':'family')+'" style="flex:1;min-width:150px">'+famOpts+'</select>'
-      + (isCocktail ? '<select class="input" id="fc-spirit" aria-label="Filter by base spirit" style="flex:1;min-width:150px">'+spOpts+'</select>' : '')+'</div>'
+      + (fc.src==='Cocktails' || fc.src==='All' ? '<select class="input" id="fc-spirit" aria-label="Filter by base spirit" style="flex:1;min-width:150px">'+spOpts+'</select>' : '')+'</div>'
       + '<div class="row">'+specials
-      + '<button class="chip'+(fc.smart?' on':'')+'" aria-pressed="'+(fc.smart?'true':'false')+'" data-act="fc-smart" title="Orders the deck so your weakest and unseen cards come first">'+(fc.smart?'✓ ':'')+'Weakest first</button></div>'
-      + '<div class="tiny dim">'+pool.length+' cards in this deck · '+masteredIn+' already mastered'+(pool.length? '' : ': loosen a filter to deal')+'</div>'
-      + '<div class="eyebrow" style="margin-top:4px">Choose your drill</div>'
+      + '<button class="chip'+(fc.smart?' on':'')+'" aria-pressed="'+(fc.smart?'true':'false')+'" data-act="fc-smart" title="Orders the deck so your weakest and unseen cards come first">Weakest first'+(fc.smart?', on':', off')+'</button></div>'
+      + '</div></details>';
+    return '<div class="col">'
+      + '<div class="panel p5 col" style="gap:14px">'
+      + '<h2 class="lv-title" tabindex="-1">'+esc(name)+'</h2>'
+      + '<div class="small deck-count">'+pool.length+' card'+(pool.length===1?'':'s')+' · '+masteredIn+' learnt'+(pool.length ? '' : '. No cards in this deck yet.')+'</div>'
+      + (fc.level ? '<div class="small dim deck-count">Dealing from '+esc(levelInfo(fc.level).name)+(fc.sub ? ', '+esc(levelSubTitle(fc.sub)) : '')+'.</div>' : '')
+      + narrow
+      + '<div class="eyebrow" style="margin-top:4px">Choose how to study</div>'
       + '<div class="col-sm study-modes">'+modeBtns+'</div>'
       + '</div>'
-      + '<div class="row center"><button class="btn btn-ghost" data-act="fc-board">Mastery board →</button></div>'
-      + '<div class="tiny dim lh" style="padding:0 4px">Every drink in the ledger is drillable: all '+COCKTAILS.length+' cocktails, '+SHOTS.length+' shots, '+NA_DRINKS.length+' zero-proof drinks, '+(menuCardCount() ? tapCount()+' beer, cider, sake and mead cards, and your '+menuCardCount()+' menu drink'+(menuCardCount()===1?'':'s') : 'and '+tapCount()+' beer, cider, sake and mead cards')+', '+allDrinks().filter(d => !d.draft).length+' cards in total. Path to mastery: run <span class="brass2">Name \u2192 Spec</span> until clean, prove it in <span class="brass2">Assemble the Ticket</span>, then keep <span class="brass2">Trouble cards</span> + <span class="brass2">Weakest first</span> in rotation. Three honest wins with a winning record masters a card.</div>'
       + '</div>';
   }
 
@@ -532,44 +558,57 @@ function renderFlashcards(){
     }).join('');
     const mastered = shown.filter(function(o){ return isMastered(cardKey(o.d)); }).length;
     return '<div class="col-sm">'
-      + '<div class="row between"><button class="btn btn-ghost" data-act="fc-quit">← Back to decks</button>'
-      + '<span class="tiny dim">'+mastered+' of '+shown.length+' mastered</span>'
+      + '<h2 class="lv-title" tabindex="-1">The mastery board</h2>'
+      + '<div class="row between"><span class="tiny dim">'+mastered+' of '+shown.length+' mastered</span>'
       + '<button class="chip" data-act="fc-reset">Reset records</button></div>'
       + '<div class="row">'+srcChips+'</div>'
       + rows + '</div>';
   }
 
-  /* -------- end of deck -------- */
+  /* -------- end of deck: the deck summary -------- */
   if(fc.idx >= fc.deck.length){
-    const total = Math.max(1, fc.right+fc.wrong);
-    const pct = Math.round(fc.right/total*100);
-    const verdict = pct>=90 ? 'Rainbow Room ready.' : pct>=70 ? 'Solid shift. Run the misses again.' : 'Back to the well: repetition is the whole trick.';
-    const missList = fc.missed.length
-      ? '<div class="tix-rule"></div><div class="tix-label">Missed</div>' + fc.missed.map(function(n){ return '<div>· '+esc(n)+'</div>'; }).join('')
+    const misses = fc.missed.length;
+    const missList = misses
+      ? '<div class="tix-rule"></div><div class="tix-label">To see again</div>' + fc.missed.map(function(n){ return '<div>'+esc(n)+'</div>'; }).join('')
       : '';
     return '<div class="col" style="align-items:center">'
       + '<div class="ticket"><div class="ticket-inner tc">'
-      + '<div class="tix-label">End of round</div><div class="tix-name">DECK COMPLETE</div>'
-      + '<div class="tix-rule"></div><div>Called correctly: '+fc.right+'</div><div>Missed: '+fc.wrong+'</div>'
-      + '<div class="bold mt1">'+pct+'% clean</div>'
+      + '<div class="tix-label">'+esc(typeof deckNameNow === 'function' ? deckNameNow() : 'End of round')+'</div><h2 class="tix-name" tabindex="-1">Deck done</h2>'
+      + '<div class="tix-rule"></div><div>'+fc.right+' got it'+(misses ? ', '+fc.wrong+' to see again.' : '.')+'</div>'
       + missList
-      + '<div class="tix-rule"></div><div class="tix-note tiny">'+verdict+'</div></div></div>'
+      + '</div></div>'
       + '<div class="row center">'
       + (state.sess && state.sess.active && state.sess.step==='cards'
-        ? (fc.missed.length ? '<button class="btn btn-ox" data-act="fc-rerun-miss">Drill the misses ('+fc.missed.length+')</button>' : '')
-          + '<button class="btn btn-brass" data-act="sess-quiz">Next: the quiz round →</button>'
+        ? (misses ? '<button class="btn btn-ox" data-act="fc-rerun-miss">Study the misses</button>' : '')
+          + '<button class="btn btn-brass" data-act="sess-quiz">Next: the quiz round</button>'
           + '<button class="btn btn-ghost" data-act="sess-end">End the session</button>'
-        : (fc.missed.length ? '<button class="btn btn-ox" data-act="fc-rerun-miss">Drill the misses ('+fc.missed.length+')</button>' : '')
-          + '<button class="btn btn-brass" data-act="fc-start" data-mode="'+fc.mode+'">Run it again</button>'
-          + '<button class="btn btn-ghost" data-act="fc-quit">Change deck</button>')
+        : (misses ? '<button class="btn btn-ox" data-act="fc-rerun-miss">Study the misses</button>' : '')
+          + '<button class="btn btn-brass" data-act="fc-another">Another deck</button>')
       + '</div></div>';
   }
 
   /* -------- running -------- */
   const c = fc.deck[fc.idx];
-  const head = '<div class="row between tiny dim study-toolbar"><span>Card '+(fc.idx+1)+' of '+fc.deck.length+'</span>'
-    + '<span>✓ '+fc.right+' &nbsp; ✗ '+fc.wrong+'</span>'
-    + '<button class="chip" data-act="fc-quit">Quit deck</button></div>';
+  /* the position and the deck's name, and the tally in words; the way out is
+     the one Back above (design 2.6) */
+  const head = '<div class="row between tiny dim study-toolbar"><span>Card '+(fc.idx+1)+' of '+fc.deck.length+' · '+esc(typeof deckNameNow === 'function' ? deckNameNow() : 'Your deck')+'</span>'
+    + '<span>'+fc.right+' got it · '+fc.wrong+' again</span></div>';
+  /* the face says Front before Flip and Answer after, in words */
+  const FRONT = '<div class="eyebrow fc-side">Front</div>', ANSWER = '<div class="eyebrow fc-side">Answer</div>';
+  const grade = '<div class="row center"><button class="btn btn-brass" data-act="fc-grade" data-ok="1">Got it</button>'
+    + '<button class="btn btn-ox" data-act="fc-grade" data-ok="0">Again</button></div>';
+
+  /* the house's words: the word and its question on the front, what was kept on the back */
+  if(fc.mode==='word'){
+    if(!fc.flipped){
+      return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'+FRONT
+        + '<div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
+        + '<button class="btn btn-brass" data-act="fc-flip">Flip</button></div></div>';
+    }
+    return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+ANSWER
+      + '<div class="font-display tc" style="font-size:1.2rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
+      + '<div class="small lh tc" style="max-width:520px">'+esc(c.back || '')+'</div>'+grade+'</div></div>';
+  }
 
   /* the three line modes: the drink's name on the face, the line a person
      kept on the House on the back, graded the way a name card is */
@@ -577,32 +616,30 @@ function renderFlashcards(){
     const key = HOUSE_LINE_MODES[fc.mode][0], secs = HOUSE_LINE_MODES[fc.mode][1];
     const line = typeof keptLineOf === 'function' ? keptLineOf(c, key) : '';
     if(!fc.flipped){
-      return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'
+      return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'+FRONT
         + '<div class="eyebrow">The guest asks about:</div><div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
         + '<div class="small dim">Say it in '+secs+', out loud, then flip.</div>'
-        + '<button class="btn btn-brass" data-act="fc-flip">Flip the card</button></div></div>';
+        + '<button class="btn btn-brass" data-act="fc-flip">Flip</button></div></div>';
     }
-    return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'
+    return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+ANSWER
       + '<div class="font-display tc" style="font-size:1.2rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
       + '<div class="small lh tc" style="max-width:520px">'+esc(line)+'</div>'
-      + '<div class="row center"><button class="btn btn-brass" data-act="fc-grade" data-ok="1">Nailed it</button>'
-      + '<button class="btn btn-ox" data-act="fc-grade" data-ok="0">Missed it</button></div></div></div>';
+      + grade+'</div></div>';
   }
 
   /* the parts and the upsell modes: the drink's name on the face, the kept
      parts or the kept upsells on the back, graded the way a name card is */
   if(typeof HOUSE_CARD_MODES !== 'undefined' && HOUSE_CARD_MODES[fc.mode]){
     if(!fc.flipped){
-      return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'
+      return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'+FRONT
         + '<div class="eyebrow">'+(fc.mode==='parts' ? 'What is in it?' : fc.mode==='study' ? esc((typeof houseStudySectionOf === 'function' && c.ref ? houseStudySectionOf(c.ref.id) : '') || 'The house card') : 'The glass is empty:')+'</div><div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
         + '<div class="small dim">'+esc(HOUSE_CARD_MODES[fc.mode])+'</div>'
-        + '<button class="btn btn-brass" data-act="fc-flip">Flip the card</button></div></div>';
+        + '<button class="btn btn-brass" data-act="fc-flip">Flip</button></div></div>';
     }
-    return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'
+    return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+ANSWER
       + '<div class="font-display tc" style="font-size:1.2rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
       + houseCardBackHTML(fc.mode, c)
-      + '<div class="row center"><button class="btn btn-brass" data-act="fc-grade" data-ok="1">Nailed it</button>'
-      + '<button class="btn btn-ox" data-act="fc-grade" data-ok="0">Missed it</button></div></div></div>';
+      + grade+'</div></div>';
   }
 
   if(fc.mode==='name2spec' || fc.mode==='spec2name'){
@@ -621,17 +658,16 @@ function renderFlashcards(){
         ? '<div class="eyebrow">'+ask+'</div><div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div><div class="small dim">'
           + cue+'</div>'
         : '<div class="eyebrow">'+(isFact ? 'Read the card. Name it.' : 'Read the ticket. Call the drink.')+'</div>'+cardTicket(c,true);
-      return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'+face
-        + '<button class="btn btn-brass" data-act="fc-flip">Flip the card</button></div></div>';
+      return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'+FRONT+face
+        + '<button class="btn btn-brass" data-act="fc-flip">Flip</button></div></div>';
     }
     const back = fc.mode==='name2spec'
       ? cardTicket(c)
       : '<div class="font-display tc" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div>';
     const foot = (c.src==='Cocktails' && typeof loreFootnote==='function' && loreFootnote(c))
       ? '<div class="tiny dim italic tc lh" style="max-width:400px">❦ '+esc(loreFootnote(c))+'</div>' : '';
-    return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+back+foot+videoRowHTML(c)
-      + '<div class="row center"><button class="btn btn-brass" data-act="fc-grade" data-ok="1">Nailed it</button>'
-      + '<button class="btn btn-ox" data-act="fc-grade" data-ok="0">Missed it</button></div></div></div>';
+    return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+ANSWER+back+foot+videoRowHTML(c)
+      + grade+'</div></div>';
   }
 
   if(fc.mode==='build'){
@@ -720,7 +756,7 @@ function renderFlashcards(){
 /* ---------------- QUIZ ---------------- */
 /* ---- quiz rounds: mixed, or a single domain drilled deliberately ---- */
 const QUIZ_MODES = [
-  ['mixed','Mixed round','Families, blind tickets and bar knowledge, the shape of a shift.'],
+  ['mixed','Mixed round','Families, blind tickets and bar knowledge: the shape of a shift.'],
   ['mybar','Menu','Your own list: name, glass and spec, straight off the menu.'],
   /* the house's own pairings, dealt by the shared engine (js/house-bar.js);
      the chip is drawn only where the house is ready for it */
@@ -743,7 +779,10 @@ const QUIZ_MODES = [
    'wine' is approximate by construction and is the honest approximation,
    because the wine pool is where the surviving mode lives. */
 var MODE_WAS = { beerwine: 'wine' };
+/* the rounds that are rows and never chips: the quick quiz (js/ui-nav.js) */
+var QUIZ_LABELS = { quick: 'Quick quiz' };
 function modeLabel(m){
+  if(QUIZ_LABELS[m]) return QUIZ_LABELS[m];
   var lv = (typeof levelModeLabel === 'function') ? levelModeLabel(m) : null;
   if(lv) return lv;
   var k = MODE_WAS[m] || m;
@@ -910,6 +949,8 @@ function buildRound(mode, pool){
   mode = mode || 'mixed';
   /* a level page's Quiz door: Deal another round comes back through here */
   if(/^level-/.test(mode) && typeof levelRoundFromMode === 'function') return levelRoundFromMode(mode);
+  /* the quick quiz: five from the menu and five from the chosen level (js/ui-nav.js) */
+  if(mode === 'quick' && typeof buildQuickRound === 'function') return buildQuickRound();
   /* the session passes the deck it just drilled, so the quiz reinforces
      tonight’s drinks rather than quizzing the Obscura at a Barback */
   const drinkPool = (pool && pool.length >= 8)
@@ -986,6 +1027,20 @@ function buildRound(mode, pool){
 }
 function renderQuiz(){
   const z = state.quiz;
+  /* Say it back and Guest at the table, under Quizzes (js/house-bar.js) */
+  if(z.stage==='house' && typeof houseDrillHTML === 'function'){
+    const d = houseDrillHTML();
+    if(d) return '<div class="col">'+d+'</div>';
+    z.stage = 'setup';
+  }
+  /* the Quizzes root: every round as a row (js/ui-nav.js). A mode the list
+     no longer justifies falls back to mixed first, so Deal another round
+     never deals a thin or empty round. */
+  if(z.stage==='setup' && typeof quizRootHTML === 'function'){
+    if(z.mode==='mybar' && menuCardCount() < 4) z.mode = 'mixed';
+    if(z.mode==='housepair' && !(typeof housePairReady === 'function' && housePairReady().length > 0)) z.mode = 'mixed';
+    return quizRootHTML();
+  }
   if(z.stage==='setup'){
     /* drinks WITH a spec: a draft deals no question, so it cannot open the
        round either, or four names would open a round of nothing */
@@ -1030,23 +1085,18 @@ function renderQuiz(){
       : pct>=0.7 ? 'Solid. Read the misses below before you deal another.'
       : pct>=0.5 ? 'Half is a start. The explanations are where the round pays you back.'
       : 'Everyone starts by polishing glassware. Run it again.';
-    const missPanel = z.missedQ.length
-      ? '<div class="panel p4 col-sm" style="width:100%"><div class="eyebrow mb1">Where the round got away from you</div>'
-        + z.missedQ.map(q => '<div class="small lh" style="border-bottom:1px solid var(--felt-3);padding:8px 0">'
-          + '<span class="dim">'+esc(q.prompt)+(q.ticket? ' ['+esc(q.ticket.name)+']':'')+(q.factCard? ' ['+esc(q.factCard.name)+']':'')+'</span><br>'
-          + '<span class="brass2">→ '+esc(q.answer)+'</span>'
-          /* the explanation is the whole point of reviewing a miss */
-          + (q.explain ? '<br><span class="tiny dim">'+esc(q.explain)+'</span>' : '')
-          + '</div>').join('')
-        + '</div>' : '';
+    /* what you missed, each with its card or its reading (js/ui-nav.js) */
+    const missPanel = typeof missesPanelHTML === 'function' ? missesPanelHTML(z.missedQ) : '';
+    const missCards = typeof missKeysOf === 'function' ? missKeysOf(z.missedQ).length : 0;
     return '<div class="col" style="align-items:center">'
       + '<div class="ticket"><div class="ticket-inner tc">'
-      + '<div class="tix-label">Round complete</div><div class="tix-name" style="font-size:1.5rem">'+z.score+' / '+total+'</div>'
+      + '<div class="tix-label">'+esc(modeLabel(z.mode||'mixed'))+'</div><div class="tix-name" style="font-size:1.5rem">'+z.score+' / '+total+'</div>'
       + '<div class="tix-rule"></div><div class="tix-note tiny">'+verdict+'</div></div></div>'
       + missPanel
       + '<div class="row center">'
       + sessionQuizDoneHTML()
       + (z.missedQ.length ? '<button class="btn btn-ox" data-act="quiz-replay">Replay the misses ('+z.missedQ.length+')</button>' : '')
+      + (missCards ? '<button class="btn btn-ghost" data-act="fc-misses" data-from="quiz">Study the misses</button>' : '')
       /* only suppress Deal another while the SESSION is actually on its quiz step:
          suppressing on `active` alone left this screen with zero buttons */
       + (state.sess && state.sess.active && state.sess.step==='quiz' ? '' : '<button class="btn btn-brass" data-act="quiz-start">Deal another round</button>')
@@ -1067,9 +1117,8 @@ function renderQuiz(){
       + '<button class="btn btn-brass self-end" data-act="quiz-next">'+(z.idx+1>=z.round.length?'Close out the round':'Next question')+'</button>'
     : '';
   return '<div class="col">'
-    + '<div class="row between tiny dim"><span>Question '+(z.idx+1)+' of '+z.round.length+'</span>'
-    + '<span>Score: '+z.score+'</span>'
-    + '<button class="chip" data-act="quiz-quit">Quit round</button></div>'
+    + '<div class="row between tiny dim"><span>Question '+(z.idx+1)+' of '+z.round.length+' · '+esc(modeLabel(z.mode||'mixed'))+'</span>'
+    + '<span>Score: '+z.score+'</span></div>'
     + '<div class="panel p5 col"><div class="bold lh">'+esc(q.prompt)+'</div>'
     + (q.ticket ? (q.ticketType==='shot' ? shotTicketHTML(q.ticket,true) : q.ticketType==='na' ? naTicketHTML(q.ticket,true) : q.ticketType==='mybar' ? ticketHTML(q.ticket,true) : ticketHTML(q.ticket,true)) : '')
     /* a level's Quiz door deals beer and coffee cards blind: the question

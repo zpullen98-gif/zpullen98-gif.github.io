@@ -16,7 +16,8 @@
 
 /* ---- the home ---- */
 function homeLevelsHTML(){
-  const cur = firstUnmetLevel();
+  /* the chosen level (js/ui-nav.js), which falls back to the first unmet */
+  const cur = typeof chosenLevel === 'function' ? chosenLevel() : firstUnmetLevel();
   return '<section class="levels" aria-label="Levels">' + LEVELS.map(function(l){
     const on = l.n === cur;
     return '<button class="level'+(on?' on':'')+'" data-act="level-open" data-n="'+l.n+'" data-level="'+l.n+'"'+(on?' aria-current="step"':'')+'>'
@@ -31,8 +32,11 @@ function homeLevelsHTML(){
 
 /* Today's door carries the session's three states, in words. */
 function todayDoor(){
-  const lv = todayLevel();
+  const lv = typeof dealLevel === 'function' ? dealLevel() : todayLevel();
   const parts = sessionDeckParts();
+  /* the counts are Due today's own (js/ui-nav.js), so the two rows never
+     say two numbers for one evening */
+  const t = typeof dueToday === 'function' ? dueToday() : null;
   /* what tonight's hand actually deals: the menu leads while it holds a
      card never seen, and a night of reviews deals from no level at all */
   const deals = !parts.newDeck.length ? 'Reviews only tonight.'
@@ -49,8 +53,9 @@ function todayDoor(){
       : { line:'Tonight is in the book without hands. ' + drill.name + ' still counts.', sub:deals };
   }
   const bits = [];
-  if(parts.dueDeck.length) bits.push(parts.dueDeck.length + ' review' + (parts.dueDeck.length===1?'':'s') + ' due');
-  if(parts.newDeck.length) bits.push(parts.newDeck.length + ' new card' + (parts.newDeck.length===1?'':'s'));
+  const nDue = t ? t.nDue : parts.dueDeck.length, nNew = t ? t.nNew : parts.newDeck.length;
+  if(nDue) bits.push(nDue + ' review' + (nDue===1?'':'s') + ' due');
+  if(nNew) bits.push(nNew + ' new card' + (nNew===1?'':'s'));
   return { line:'Pour tonight’s session: ' + (bits.length ? bits.join(', ') + ', ' : '') + 'a quiz round, then ' + drill.name + '.', sub:deals };
 }
 function deskWaitingCount(){
@@ -77,8 +82,13 @@ function homeDoorsHTML(){
         desk ? desk + ' cocktail' + (desk===1?'':'s') + ' from the Menu Desk ' + (desk===1?'is':'are') + ' waiting.' : '')
     + '</nav>';
 }
+/* The home is the four level cards and nothing else (the owner, 4 October
+   2026): the doors that stood under them have new homes (Today's study on a
+   level page, the Library tab, More's record, My restaurant), and
+   homeDoorsHTML and openDoor stay defined for the wing, which wraps
+   renderHome by name. */
 function homeHTML(){
-  return '<div class="home4">' + homeLevelsHTML() + homeDoorsHTML() + '</div>';
+  return '<div class="home4">' + homeLevelsHTML() + '</div>';
 }
 /* A door, applied. */
 function openDoor(d){
@@ -98,13 +108,15 @@ function openDoor(d){
     return;
   }
   if(d === 'library'){ state.tab = 'library'; state.lib.level = null; return; }
-  if(d === 'record'){ state.tab = 'mine'; state.mine.at = 'record'; return; }
-  if(d === 'mine'){ state.tab = 'mine'; return; }
+  if(d === 'record'){ state.tab = 'record'; state.mine.at = 'record'; return; }
+  if(d === 'mine'){ state.tab = 'level'; state.level.n = typeof chosenLevel === 'function' ? chosenLevel() : firstUnmetLevel(); return; }
 }
+/* whatever level is opened is the level being studied (design 2.4) */
 function openLevel(n){
   state.lt = null;
   state.level.n = n;
   state.tab = 'level';
+  if(typeof setChosenLevel === 'function') setChosenLevel(n);
 }
 
 /* ---- a level's page ---- */
@@ -161,32 +173,27 @@ function trainDoorsHTML(n, sub){
 }
 function renderLevel(){
   if(state.lt) return renderLevelTest();
-  const n = state.level.n || firstUnmetLevel();
+  const n = state.level.n || (typeof chosenLevel === 'function' ? chosenLevel() : firstUnmetLevel());
   state.level.n = n;
   const info = levelInfo(n);
   const p = levelProgress(n);
-  const here = firstUnmetLevel() === n;
+  const here = (typeof chosenLevel === 'function' ? chosenLevel() : firstUnmetLevel()) === n;
   const switcher = '<nav class="lv-switch" aria-label="The four levels">' + LEVELS.map(function(l){
     return '<button class="chip'+(l.n===n?' on':'')+'" data-act="level-open" data-n="'+l.n+'"'+(l.n===n?' aria-current="page"':'')+'>'+esc(l.name)+'</button>';
   }).join('') + '</nav>';
-  const subs = p.subs.map(function(s){
-    const note = s.sub === 'cocktails' ? familyNoteFor(n) : '';
-    return '<li class="subsection" data-sub="'+s.sub+'">'
-      + '<h3 class="sub-head">'+esc(s.title)+'</h3>'
-      + '<p class="sub-line">'+s.total+' at this level · '+esc(s.label)+'</p>'
-      + (note ? '<p class="sub-note">'+esc(note)+'</p>' : '')
-      + (s.sub === 'cocktails' ? levelBooksHTML(n) : '')
-      + '<div class="trains">'+trainDoorsHTML(n, s.sub)+'</div>'
-      + '</li>';
-  }).join('');
+  /* the page, top to bottom (the consolidation, 4 October 2026): the name,
+     what it asks, where you stand; Today's study; My restaurant; a search;
+     what the level holds, closed; and the other levels at the foot, so
+     Today's study is in the first screen at 390 by 844 (js/ui-nav.js) */
+  const blocks = typeof todayStudyHTML === 'function'
+    ? todayStudyHTML(n) + myRestaurantHTML() + levelSearchHTML() + levelHoldsHTML(n)
+    : '';
   return '<div class="col level-page">'
-    + switcher
-    + '<h2 class="lv-title">'+esc(info.name)+'</h2>'
+    + '<h2 class="lv-title" tabindex="-1">'+esc(info.name)+'</h2>'
     + '<p class="lv-blurb">'+esc(info.blurb)+'</p>'
     + '<p class="lv-statline">'+esc(p.label)+(here ? ' · <span class="lv-here">Your level</span>' : '')+'</p>'
-    + '<ol class="subsections">'+subs+'</ol>'
-    + '<button class="btn btn-brass leveltest" data-act="lt-start" data-n="'+n+'">The '+esc(info.name)+' test</button>'
-    + '<p class="tiny dim lh tc">Seventeen questions across the eight subsections of '+esc(info.name)+'. No clock. It ends on what got away, with the right answers.</p>'
+    + blocks
+    + '<section class="lv-block" aria-labelledby="lv-other-h"><h3 class="sub-head" id="lv-other-h">Another level</h3>' + switcher + '</section>'
     + '</div>';
 }
 
@@ -203,8 +210,7 @@ function renderLevelTest(){
   const head = '<h2 class="lv-title">The '+esc(info.name)+' test</h2>';
   if(t.none){
     return '<div class="col level-page">'+head
-      + '<div class="panel p5 small dim lh">This level cannot deal its test yet.</div>'
-      + '<div class="row center"><button class="btn btn-ghost" data-act="lt-close">Back to '+esc(info.name)+'</button></div></div>';
+      + '<div class="panel p5 small dim lh">This level cannot deal its test yet.</div></div>';
   }
   if(t.done){
     const rows = t.misses.map(function(m){
@@ -215,14 +221,15 @@ function renderLevelTest(){
         + '<span class="small">You chose '+esc(m.chose)+'</span>'
         + '<span class="small brass2">The answer: '+esc(q.answer)+'</span>'
         + (q.explain ? '<span class="tiny dim lh">'+esc(q.explain)+'</span>' : '')
+        /* the card to restudy, or where it is read (js/ui-nav.js) */
+        + (typeof missLinkHTML === 'function' ? '<span class="row">'+missLinkHTML(q)+'</span>' : '')
         + '</li>';
     }).join('');
     return '<div class="col level-page">'+head
       + (t.misses.length
         ? '<div class="panel p5 col"><div class="eyebrow">What got away, with the right answers.</div><ul class="lt-misses">'+rows+'</ul></div>'
         : '<div class="panel p5 tc"><div class="font-display brass2" style="font-size:1.3rem">Nothing got away.</div></div>')
-      + '<div class="row center"><button class="btn btn-brass" data-act="lt-close">Back to '+esc(info.name)+'</button>'
-      + '<button class="btn btn-ghost" data-act="lt-start" data-n="'+t.n+'">Take it again</button></div></div>';
+      + '<div class="row center"><button class="btn btn-ghost" data-act="lt-start" data-n="'+t.n+'">Take it again</button></div></div>';
   }
   const q = t.qs[t.idx];
   const answered = t.picked !== null;
@@ -237,8 +244,7 @@ function renderLevelTest(){
       + '<button class="btn btn-brass self-end" data-act="lt-next">'+(t.idx+1>=t.qs.length ? 'Finish the test' : 'Next question')+'</button>'
     : '';
   return '<div class="col level-page">'+head
-    + '<div class="row between tiny dim"><span>Question '+(t.idx+1)+' of '+t.qs.length+' · '+esc(levelSubTitle(q.part))+'</span>'
-    + '<button class="chip" data-act="lt-close">Leave the test</button></div>'
+    + '<div class="row between tiny dim"><span>Question '+(t.idx+1)+' of '+t.qs.length+' · '+esc(levelSubTitle(q.part))+'</span></div>'
     + '<div class="panel p5 col">'+ltQuestionBodyHTML(q)+'<div class="col-sm">'+opts+'</div>'+after+'</div></div>';
 }
 
@@ -293,6 +299,14 @@ function recordHTML(){
     + '</div>'
     + levelTestsHTML()
     + dashboardHTML()
+    + '</div>';
+}
+/* In the ledger and the four pillars: More's About (the consolidation moved
+   them off the record, worded as before) */
+function aboutLedgerHTML(){
+  const tastings = (progress.tastings || []).length;
+  const drillLogs = Object.values(progress.practice || {}).reduce(function(n,a){ return n + (a?a.length:0); }, 0);
+  return '<div class="col">'
     + '<div class="panel p5">'
     + '<div class="eyebrow mb2">In the ledger</div>'
     + '<div class="row" style="gap:6px">'
@@ -316,50 +330,32 @@ function recordHTML(){
     + '<span style="color:var(--cream)">Hospitality</span> from PDT and the speakeasy era: the drink is only half the job.'
     + '</div></div></div>';
 }
+/* More: the record, the tools, the data, the Maître d', settings and about,
+   one tap each (js/ui-nav.js moreHTML); the id stays `mine`, so #/mine
+   lands here */
 function renderMine(){
-  const at = state.mine.at;
-  state.mine.at = null;
-  const door = function(attrs, name, line){
-    return '<button class="door" '+attrs+'><span class="door-name">'+esc(name)+'</span><span class="door-line">'+esc(line)+'</span></button>';
-  };
-  return '<div class="col mine">'
-    + '<h2 class="lv-title">Mine</h2>'
-    + (typeof deskWaitingHTML === 'function' ? deskWaitingHTML('home') : '')
-    /* the House the menu belongs to, with its doors (js/house-bar.js);
-       nothing at all where the engine is not loaded */
-    + (typeof houseLineHTML === 'function' ? houseLineHTML() : '')
-    + '<nav class="quiet" aria-label="Your bar and your tools">'
-    + door('data-act="go" data-tab="menu"', 'My Bar', 'The venue’s own list, the stock, and what can be poured tonight.')
-    + door('data-act="go" data-tab="tools"', 'Tools', 'Batching, strength, pour cost, the spill log, open bottles, conversion.')
-    + door('data-act="go" data-tab="tools" data-v="data"', 'My Data', 'Back up and restore everything this ledger has recorded.')
-    /* her own door where her client is here or can be fetched; elsewhere the
-       Tools page that says, in words, how she is brought in */
-    + door((typeof maitreHere === 'function' && (maitreHere() || maitreLoadable())) ? 'data-act="maitre-open"' : 'data-act="go" data-tab="tools" data-v="maitre"',
-        'The Maître d’', 'Optional, with a key of your own: she reads a menu with you.')
-    + '</nav>'
-    + '<p class="tiny dim lh">Your records live in this browser and go nowhere else, unless you bring in the Maître d’ with a key of your own, and then only the menu you hand her goes to Anthropic. Back them up now and then from My Data.</p>'
-    + '<section id="record" aria-labelledby="record-head">'
-    + '<h3 class="sub-head" id="record-head" tabindex="-1"'+(at==='record' ? ' data-open="1"' : '')+'>The record</h3>'
-    + recordHTML()
-    + '</section></div>';
+  if(typeof moreHTML === 'function') return moreHTML();
+  return '<div class="col mine"><h2 class="lv-title">More</h2>' + recordHTML() + '</div>';
 }
 
 /* ---- the chrome a cluster's tabs carry, in place of the sub-row ---- */
-const LIBRARY_SHELF = [['library','The '+COCKTAILS.length],['families','Families'],['shots','Shots'],['na','Zero Proof'],['ontap','On Tap'],['coffee','Coffee & Tea'],['prep','The Prep Room'],['producers','Producers'],['service','Behind the Stick'],['notes','Notes & Glossary']];
+const LIBRARY_SHELF = [['library','The '+COCKTAILS.length],['families','Families'],['shots','Shots'],['na','Zero Proof'],['ontap','On Tap'],['coffee','Coffee & Tea'],['prep','The Prep Room'],['producers','Producers'],['service','Behind the Stick'],['notes','Notes & Glossary'],['videos','Videos']];
+/* The one Back on every screen but Home (js/ui-nav.js backRowHTML), then on
+   the Library's tabs its heading and scope chip on the root and the shelf of
+   the eleven. No screen carries a second way back. */
 function clusterChromeHTML(){
   const cl = clusterOf(state.tab);
+  const back = typeof backRowHTML === 'function' ? backRowHTML() : '';
   if(cl === 'library'){
-    return '<nav class="shelf" aria-label="The Library">' + LIBRARY_SHELF.map(function(t){
+    const lv = Number(state.lib.level) || 0;
+    const root = state.tab === 'library' && !state.lib.print && typeof scopeChipHTML === 'function'
+      ? '<h2 class="lv-title" tabindex="-1">Library</h2>' + scopeChipHTML('library')
+        + '<p class="door-line lib-line">'+(lv ? 'Reading for '+esc(levelInfo(lv).name)+'. Nothing here is graded.' : 'Reading for every level. Nothing here is graded.')+'</p>'
+      : '';
+    return back + root + '<nav class="shelf" aria-label="The Library">' + LIBRARY_SHELF.map(function(t){
       const on = state.tab === t[0];
       return '<button class="tab-btn'+(on?' active':'')+'"'+(on?' aria-current="page"':'')+' data-act="go" data-tab="'+t[0]+'">'+esc(t[1])+'</button>';
     }).join('') + '</nav>';
   }
-  if(cl === 'levels' && state.tab !== 'level'){
-    const n = state.level.n || firstUnmetLevel();
-    return '<div class="crumb"><button class="chip" data-act="level-open" data-n="'+n+'">Back to '+esc(levelInfo(n).name)+'</button></div>';
-  }
-  if(cl === 'mine' && state.tab !== 'mine'){
-    return '<div class="crumb"><button class="chip" data-act="go" data-tab="mine">Back to Mine</button></div>';
-  }
-  return '';
+  return back;
 }

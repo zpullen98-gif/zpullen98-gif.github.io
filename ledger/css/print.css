@@ -9,6 +9,8 @@ body::before{ display:none !important; }
 
 /* hide the app chrome */
 .masthead, nav.tabs, footer.foot, #bnav, #sheet, #search-ol, .sw-toast{ display:none !important; }
+/* the one Back and the Library's shelf are the screen's chrome, not the page */
+.crumb.backrow, .back-sentinel, nav.shelf{ display:none !important; }
 
 /* default (non-print-mode) printing: flatten panels */
 /* utility colour classes carry the felt theme's light inks: on white paper

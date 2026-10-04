@@ -1,6 +1,6 @@
 /* ---------------- RENDER & EVENTS ---------------- */
 const prTicks = {};  /* one stopwatch interval per drill id */
-const TABS = [['home','Home'],['level','Levels'],['mine','Mine'],['menu','Menu'],['families','Families'],['library','Library'],['shots','Shots'],['na','Zero Proof'],['service','Behind the Stick'],['ontap','On Tap'],['coffee','Coffee & Tea'],['prep','Prep'],['producers','Producers'],['notes','Notes'],['flashcards','Flashcards'],['quiz','Quiz'],['practice','Practice'],['riffs','Riffs'],['tools','Tools']];
+const TABS = [['home','Home'],['level','Levels'],['mine','More'],['record','Record and progress'],['videos','Videos'],['menu','Menu'],['families','Families'],['library','Library'],['shots','Shots'],['na','Zero Proof'],['service','Behind the Stick'],['ontap','On Tap'],['coffee','Coffee & Tea'],['prep','Prep'],['producers','Producers'],['notes','Notes'],['flashcards','Flashcards'],['quiz','Quiz'],['practice','Practice'],['riffs','Riffs'],['tools','Tools']];
 /* Announce something to assistive tech. The region is outside #view so it
    survives the innerHTML swap below. */
 function say(msg){
@@ -27,10 +27,15 @@ function focusSignature(el){
     .join('');
 }
 
-function render(){
-  const sig = focusSignature(document.activeElement);
+function render(kind){
+  let sig = focusSignature(document.activeElement);
+  /* a screen's state settled before its address is written (js/ui-nav.js) */
+  if(typeof navNormalise === 'function') navNormalise();
+  syncRoute(kind);
+  /* the history model keeps the control that opened each screen, so a pop
+     puts focus back on it (design 2.3) */
+  if(typeof navOpener === 'function') sig = navOpener(sig);
   renderNav();
-  syncRoute();
   const view = document.getElementById('view');
   /* The fallback is not defensive padding: an unmapped tab was a hard
      TypeError that blanked the whole app, and a stale hash from an older
@@ -39,16 +44,27 @@ function render(){
   const views = {home:renderHome, menu:renderMenu, families:renderFamilies, library:renderLibrary,
     shots:renderShots, na:renderNA, service:renderService, ontap:renderOnTap, coffee:renderCoffee, producers:renderProducers, prep:renderPrep,
     flashcards:renderFlashcards, quiz:renderQuiz, riffs:renderRiffs,
-    practice:renderPractice, tools:renderTools, notes:renderNotes, level:renderLevel, mine:renderMine};
+    practice:renderPractice, tools:renderTools, notes:renderNotes, level:renderLevel, mine:renderMine,
+    record:renderRecord, videos:renderVideos};
   if(!views[state.tab]) state.tab = 'home';
   /* One visual vocabulary, with a compact masthead inside the library.
      Presentation only: routing and stored study records stay untouched. */
   document.body.dataset.ledgerPage = state.tab;
   view.dataset.tab = state.tab;
-  /* the Library's shelf, or the one way back from a level's or Mine's tab:
-     what the sub-row did before the four levels */
+  /* the one Back on every screen but Home, then the Library's shelf on its
+     tabs (js/ui-levels.js clusterChromeHTML) */
   view.innerHTML = clusterChromeHTML() + views[state.tab]();
-  if(sig){
+  /* a new screen lands at its top; a pop's scroll is put back by the router */
+  if(typeof NAV !== 'undefined' && NAV.kind === 'push'){ try{ window.scrollTo(0, 0); }catch(e){} }
+  /* a new screen: focus its heading, or the view, without scrolling it
+     (design 2.3); the control that opened it is not on this screen, and a
+     same-named control further down must not drag the page to it */
+  const pushed = typeof NAV !== 'undefined' && NAV.kind === 'push';
+  if(pushed){
+    const hd = view.querySelector('h2[tabindex="-1"]') || view;
+    try{ hd.focus({ preventScroll:true }); }catch(e){ try{ view.focus(); }catch(e2){} }
+  }
+  else if(sig){
     let back = null;
     try{ back = document.querySelector(sig); }catch(e){}
     /* !back.disabled: focus() on a disabled control is a spec-defined no-op,
@@ -57,7 +73,7 @@ function render(){
        signature still matches it, and a Tab user restarted from the masthead
        after EVERY answer. A disabled match is a gone control. */
     if(back && back.focus && !back.disabled) back.focus();
-    else view.focus();                 /* the control is gone: land in the view, not at the top */
+    else { try{ view.focus({ preventScroll:true }); }catch(e){ view.focus(); } }   /* the control is gone: land in the view, not at the top */
   }
   /* bring whatever the user just opened into sight */
   const opened = document.querySelector('[data-open="1"]');
@@ -144,6 +160,8 @@ function render(){
   /* the two house doors on Mine: the shared reader or reviewer drawn into
      its root under the line, from the house, after every paint */
   if(typeof houseAfterRender === 'function') houseAfterRender();
+  /* the sticky Back's observer and the level page's search box (js/ui-nav.js) */
+  if(typeof navAfterRender === 'function') navAfterRender();
   /* Guarded on the element, not on state.tab, like every other post-paint
      hook in this function. It asks YouTube about the ONE film the reader
      opened, and nothing at all on any other tab. */
@@ -175,24 +193,30 @@ function navClick(e){
   if(sc){ openSearch(); return; }
   const cl = e.target.closest('[data-cluster]');
   if(cl){
-    const ck = cl.dataset.cluster;
-    const tabs = NAV_CLUSTERS.find(([k]) => k===ck)[2];
-    /* the cluster's first tab, always: Home, the level you are on, the
-       Library, Mine. The sheet and the sub-row went with the four levels. */
-    state.tab = tabs[0]; state.sheet = null;
-    /* a test being sat resumes; otherwise the level you are on, worked out
-       again now, because the one last browsed is not the one you are on */
-    if(ck === 'levels'){ if(state.lt && !state.lt.done) state.level.n = state.lt.n; else { state.lt = null; state.level.n = firstUnmetLevel(); } }
-    render(); return;
+    navTab(cl.dataset.cluster);
+    return;
   }
   const b = e.target.closest('[data-tab]');
   if(b){
     state.tab = b.dataset.tab;
     state.sheet = null;
-    if(!state.lastSub) state.lastSub = {};
-    state.lastSub[clusterOf(state.tab)] = state.tab;
     render();
   }
+}
+/* A tab lands on its root, never on a remembered sub-screen, so the same tap
+   always does the same thing; the lit tab on its root scrolls to the top and
+   writes no history (design 2.1). */
+function navTab(ck){
+  const row = NAV_CLUSTERS.find(([k]) => k===ck);
+  if(!row) return;
+  const before = typeof screenKey === 'function' ? screenKey() : null;
+  state.sheet = null; state.scopeOpen = '';
+  state.tab = row[2][0];
+  if(ck === 'flashcards'){ state.fc.stage = 'pick'; if(state.scopeAll) state.scopeAll.flashcards = false; }
+  else if(ck === 'quizzes'){ if(state.quiz.stage !== 'setup') state.quiz.stage = 'setup'; if(state.scopeAll) state.scopeAll.quiz = false; }
+  else if(ck === 'library'){ state.lib = { q:'', fam:'All', tier:'All', open:null, level: typeof chosenLevel === 'function' ? chosenLevel() : null }; }
+  if(before !== null && typeof screenKey === 'function' && screenKey() === before){ try{ window.scrollTo(0, 0); }catch(e2){} }
+  render();
 }
 document.getElementById('tabs').addEventListener('click', navClick);
 document.getElementById('bnav').addEventListener('click', navClick);
@@ -206,7 +230,18 @@ document.getElementById('search-ol').addEventListener('click', e => {
   if(e.target.closest('[data-search-close]')) closeSearch();
 });
 
-window.addEventListener('hashchange', () => { if(applyRoute()) render(); });
+/* the history model (js/ui-nav.js): a pop renders its entry with its scroll;
+   a typed or linked address is adopted as one entry and rendered once */
+window.addEventListener('popstate', e => { navPop(e); });
+window.addEventListener('hashchange', () => { navHashChange(); });
+/* a hash link inside the view goes through the router's push, never the
+   browser's own entry (design 2.3: one user action, one entry) */
+document.getElementById('view').addEventListener('click', e => {
+  const a = e.target.closest && e.target.closest('a[href^="#/"]');
+  if(!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+  e.preventDefault();
+  gotoHash(a.getAttribute('href'));
+}, true);
 
 /* ---------------- KEYBOARD SHORTCUTS ---------------- */
 document.addEventListener('keydown', e => {
@@ -223,6 +258,9 @@ document.addEventListener('keydown', e => {
     }
     return;
   }
+  /* Escape closes the topmost layer and never navigates: the scope chip's
+     level list (design 2.3) */
+  if(e.key === 'Escape' && state.scopeOpen){ state.scopeOpen = ''; render(); e.preventDefault(); return; }
   if(typing) return;
   if(e.key === '/'){ openSearch(); e.preventDefault(); return; }
   if(e.key === 'Escape' && state.sheet){ closeSheet(); return; }
@@ -271,11 +309,7 @@ document.addEventListener('keydown', e => {
      cluster-deletion away from destructuring undefined, and the throw would
      be on a keypress nobody would think to report. */
   if(/^[1-9]$/.test(e.key) && NAV_CLUSTERS[Number(e.key)-1]){
-    const [ck,,tabs] = NAV_CLUSTERS[Number(e.key)-1];
-    state.tab = tabs[0];
-    state.sheet = null;
-    if(ck === 'levels'){ if(state.lt && !state.lt.done) state.level.n = state.lt.n; else { state.lt = null; state.level.n = firstUnmetLevel(); } }
-    render();
+    navTab(NAV_CLUSTERS[Number(e.key)-1][0]);
   }
 });
 
@@ -293,16 +327,27 @@ document.getElementById('view').addEventListener('click', e => {
      captureLiveInputs runs after every act rather than before this one. */
   if(typeof captureImport === 'function') captureImport();
   const fc = state.fc, z = state.quiz;
+  /* the four tabs' own acts: Back, a deck, a round, a door on a level page,
+     the scope chip (js/ui-nav.js); each says whether it repaints */
+  if(typeof navAct === 'function'){
+    const r = navAct(act, el.dataset, el);
+    if(r === 'done') return;
+    if(r === 'render'){ captureLiveInputs(); render(); return; }
+  }
   if(act==='go'){ state.tab = el.dataset.tab;
     /* optional deep links, so "Quiz your list" opens the quiz ON the list
        instead of leaving the promise at the tab door */
     if(el.dataset.view) state.practice.view = el.dataset.view;
     if(el.dataset.v && state.tab === 'tools') state.tools.view = el.dataset.v;
-    if(el.dataset.mode){ state.quiz.mode = el.dataset.mode; state.quiz.stage = 'setup'; }
-    if(el.dataset.src){ state.fc.src = el.dataset.src; state.fc.family='All'; state.fc.spirit='All'; state.fc.tier='All'; state.fc.stage = 'setup'; state.fc.level = null; state.fc.sub = null; }
-    /* the Library by a plain door is the whole Library; a level's Read door
-       comes through applyTarget and keeps its filter */
-    if(state.tab === 'library') state.lib.level = null;
+    /* a round's door deals the round; a source's door opens its deck */
+    if(el.dataset.mode && typeof startRound === 'function'){ if(!startRound(el.dataset.mode)){ state.quiz.stage = 'setup'; } }
+    else if(el.dataset.mode){ state.quiz.mode = el.dataset.mode; state.quiz.stage = 'setup'; }
+    if(el.dataset.src && typeof openDeck === 'function' && el.dataset.src === 'My Bar') openDeck('menu');
+    else if(el.dataset.src){ state.fc.src = el.dataset.src; state.fc.family='All'; state.fc.spirit='All'; state.fc.tier='All'; state.fc.stage = 'setup'; state.fc.level = null; state.fc.sub = null; }
+    if(state.tab === 'flashcards' && !el.dataset.src) state.fc.stage = 'pick';
+    /* the Library by a plain door is its root at the chosen level; a level's
+       Read door comes through applyTarget and keeps its filter */
+    if(state.tab === 'library'){ state.lib.open = null; state.lib.level = typeof chosenLevel === 'function' ? chosenLevel() : null; }
   }
   else if(act==='level-open'){ openLevel(Number(el.dataset.n)); }
   else if(act==='door'){ openDoor(el.dataset.d); }
@@ -316,7 +361,11 @@ document.getElementById('view').addEventListener('click', e => {
     if(!applyTarget(bookTarget(Number(el.dataset.n), Number(el.dataset.t)))) return;
     state.level.n = Number(el.dataset.n);
   }
-  else if(act==='lt-start'){ const t = ltStart(Number(el.dataset.n)); state.level.n = t.n; state.tab = 'level'; }
+  /* a test being sat goes on where it was; else a fresh sitting */
+  else if(act==='lt-start'){
+    if(el.dataset.resume && state.lt && !state.lt.done){ state.level.n = state.lt.n; state.tab = 'level'; }
+    else { const t = ltStart(Number(el.dataset.n)); state.level.n = t.n; state.tab = 'level'; }
+  }
   else if(act==='lt-pick'){
     const ok = ltPick(Number(el.dataset.i));
     const q = state.lt && state.lt.qs[state.lt.idx];
@@ -331,14 +380,12 @@ document.getElementById('view').addEventListener('click', e => {
   else if(act==='lib-toggle'){ const i=Number(el.dataset.i); state.lib.open = state.lib.open===i ? null : i; }
   else if(act==='lib-print'){ state.lib.print = true; }
   else if(act==='lib-print-go'){ window.print(); return; }
-  else if(act==='lib-print-close'){ state.lib.print = false; }
   else if(act==='fc-drill-weak'){
-    const key = el.dataset.k;
-    const card = allDrinks().filter(d => cardKey(d) === key);
-    if(card.length){
-      state.tab = 'flashcards';
-      Object.assign(fc, { stage:'run', mode:'name2spec', deck:card, idx:0, right:0, wrong:0, missed:[] });
-      prepCard();
+    /* the record's weakest cards: a deck of those, on the one card screen */
+    if(typeof startMisses === 'function'){ if(!startMisses([el.dataset.k])) return; }
+    else {
+      const card = allDrinks().filter(d => cardKey(d) === el.dataset.k);
+      if(card.length){ state.tab = 'flashcards'; Object.assign(fc, { stage:'run', mode:'name2spec', deck:card, idx:0, right:0, wrong:0, missed:[] }); prepCard(); }
     } }
   else if(act==='fc-src'){
     fc.src = el.dataset.s; fc.family = 'All'; fc.spirit = 'All';
@@ -365,7 +412,7 @@ document.getElementById('view').addEventListener('click', e => {
     const all = allDrinks();
     const row = FC_MODES.find(function(x){ return x[0] === fc.mode; });
     const deck = shuffle(fc.missed.map(function(k){
-      return all.filter(function(d){ return cardKey(d)===k; })[0];
+      return typeof cardByKey === 'function' ? cardByKey(k) : all.filter(function(d){ return cardKey(d)===k; })[0];
     }).filter(Boolean).filter(row ? row[3] : function(){ return true; }));
     if(!deck.length) return;
     Object.assign(fc, { stage:'run', deck:deck, idx:0, right:0, wrong:0, missed:[] });
@@ -401,7 +448,7 @@ document.getElementById('view').addEventListener('click', e => {
       }
     } }
   else if(act==='fc-next'){ fc.idx++; prepCard(); }
-  else if(act==='fc-quit'){ fc.stage='setup'; if(state.sess) state.sess.active = false; }
+  else if(act==='fc-quit'){ fc.stage = fc.deckId && fc.deckId !== 'due' && fc.deckId !== 'session' ? 'setup' : 'pick'; if(state.sess) state.sess.active = false; }
   else if(act==='sess-start'){ startSession(); }
   else if(act==='sess-quiz'){
     state.sess.step = 'quiz';
@@ -466,6 +513,8 @@ document.getElementById('view').addEventListener('click', e => {
          this, closing the tab here loses the streak entirely */
       if(state.sess && state.sess.active && state.sess.step==='quiz') recordSessionComplete(false, state.sess.night);
       z.stage = 'done';
+      /* the results read from their top (the round's own entry, replaced) */
+      try{ window.scrollTo(0, 0); }catch(e){}
     } else { z.idx++; z.picked = null; } }
   else if(act==='quiz-replay'){
     if(z.missedQ.length){
@@ -1106,6 +1155,8 @@ function captureLiveInputs(){
      input, and is grabbed here so no act's render can lose a word of it */
   if(state.menu && state.menu.study) grab('hs-q', state.menu.study, 'q');
   grab('fc-section', state.fc, 'section');
+  /* the level page's search box (js/ui-nav.js), repainted alone on input */
+  if(state.level) grab('lv-q', state.level, 'q');
   if(state.house && state.house.role) grab('hr-said', state.house.role, 'text');
   /* every drill result field, by prefix: on the Ticket Rail an intervening
      act (revealing the order) is REQUIRED between typing and logging, so the
@@ -1176,6 +1227,8 @@ function captureLiveInputs(){
   /* #drink=<id>, the address another room links a drink by (js/house-study.js):
      read once, before the router, and replaced by the drink's own address */
   if(typeof houseStudyDeepLink === 'function'){ try{ houseStudyDeepLink(); }catch(e){} }
+  /* the history model's first entry: its depth, or the reload's, or none */
+  if(typeof navBoot === 'function') navBoot();
   try { applyRoute(); } catch (e) { state.tab = 'home'; }
   render();
 })();

@@ -1,6 +1,6 @@
 /* The Sommelier's Codex: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-codex-v123';
+const CACHE = 'oot-codex-v124';
 
 /* Both the reviewed SVG atlas and original JPG maps stay out of ASSETS.
 
@@ -103,6 +103,7 @@ const ASSETS = [
   './js/data-atlas-v2.js',
   './js/atlas-cache.js',
   './js/codex31.js',
+  './js/codex32.js',
   './js/boot.js',
   './fonts/cinzel-normal-400-900-latin.woff2',
   './fonts/cinzel-normal-400-900-latin-ext.woff2',

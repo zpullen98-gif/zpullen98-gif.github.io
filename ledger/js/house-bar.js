@@ -374,6 +374,9 @@ function houseStartCards(mode){
   Object.assign(fc, { src: 'My Bar', level: null, sub: null, special: 'All', family: 'All', spirit: 'All', tier: 'All' });
   const pool = fcPool().filter(row[3] || function(){ return true; });
   state.tab = 'flashcards';
+  /* the deck of the Flashcards tab this mode is (js/ui-nav.js) */
+  const deckId = { line10: 'menu-line10', line20: 'menu-line20', line45: 'menu-line45', parts: 'menu-parts', upsell: 'menu-offer', study: 'menu' }[mode] || 'menu';
+  Object.assign(fc, { deckId: deckId, only: null, deckModes: mode === 'study' ? null : [mode], section: 'All', smart: false });
   if(!pool.length){ fc.stage = 'setup'; return false; }
   Object.assign(fc, { stage: 'run', mode: mode, deck: shuffle(pool), idx: 0, right: 0, wrong: 0, missed: [] });
   if(typeof prepCard === 'function') prepCard();
@@ -809,8 +812,7 @@ function houseLineHTML(){
     + (h.err ? '<div class="small" style="color:var(--oxblood-text)">' + esc(h.err) + '</div>' : '')
     + (h.live ? '<div class="tiny dim">' + esc(h.live) + '</div>' : '')
     + (api.volatile ? '<div class="tiny dim lh">This browser offers no database, so the house lives only as long as the page. Export a pack before you leave.</div>' : '')
-    + '</section>'
-    + (typeof houseDrillHTML === 'function' ? houseDrillHTML() : '');
+    + '</section>';
 }
 /* Say it back and Guest at the table beside the house line, as chips that
    open the screen under it; only where the graders are here and the house
@@ -1626,9 +1628,12 @@ function houseGradeRole(entry, said){
 function houseDrillOpen(mode){
   const h = houseDrillState();
   if(mode !== 'say' && mode !== 'role') return false;
-  h.drill = h.drill === mode && state.tab === 'mine' ? '' : mode;
-  h.drillJump = !!h.drill;
-  state.tab = 'mine';
+  /* the drill is a screen under Quizzes since the consolidation: opened, it
+     is always opened (its way out is the one Back above it) */
+  h.drill = mode;
+  h.drillJump = true;
+  state.tab = 'quiz';
+  state.quiz.stage = 'house';
   if(h.drill === 'say'){
     const items = houseSayItems();
     if(!items.some(function(i){ return i.id === h.say.id; })) houseSayChoose(items.length ? items[Math.floor(Math.random() * items.length)].id : '');
@@ -1836,8 +1841,8 @@ function houseDrillHTML(){
   const title = h.drill === 'say' ? 'Say it back' : 'Guest at the table';
   return '<section class="panel p4 col-sm house-drill" style="gap:12px" aria-labelledby="house-drill-head">'
     + '<div class="row between" style="flex-wrap:wrap;gap:8px;align-items:center">'
-    + '<h3 class="sub-head" id="house-drill-head" tabindex="-1" style="margin:0"' + (jump ? ' data-open="1"' : '') + '>' + title + '</h3>'
-    + '<button class="btn btn-ghost" data-act="hd-close"' + HOUSE_TALL + '>Close</button></div>'
+    + '<h2 class="sub-head" id="house-drill-head" tabindex="-1" style="margin:0"' + (jump ? ' data-open="1"' : '') + '>' + title + '</h2>'
+    + '</div>'
     + '<div class="tiny dim lh">Graded here, on this device, against what you kept: no key and no network. Free, and counted toward no level. ' + HOUSE_DRILL_KITCHEN + '</div>'
     + (h.drill === 'say' ? houseSayHTML(h) : houseRoleHTML(h))
     + '</section>';

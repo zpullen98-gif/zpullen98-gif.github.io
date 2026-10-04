@@ -61,7 +61,7 @@ var HS_WORDS = {
   cards: 'Flash cards',
   weak: 'My weak ones ({n})',
   weakNone: 'My weak ones: none yet',
-  quizTab: 'Quiz the list (the Quiz tab)',
+  quizTab: 'Drill the menu (Quizzes)',
   editOff: 'Edit the menu',
   editOn: 'Edit the menu: on',
   edit: 'Edit',
@@ -80,8 +80,8 @@ var HS_WORDS = {
   nextOnly: 'Next',
   offShift: 'Not on the {meal} list. Counting the whole menu.',
   offList: 'Not in the rows on screen. Counting the whole menu.',
-  drillSection: 'Drill this section (the Quiz tab)',
-  drillWhole: 'Drill the whole menu (the Quiz tab)',
+  drillSection: 'Drill this section (Quizzes)',
+  drillWhole: 'Drill the whole menu (Quizzes)',
   tooSmall: '{section} is too small to drill alone.',
   canonLine: 'The classic {name} is in the Library. Its build is the classic’s, not ours.',
   canonFamily: 'It comes from the {name}. The classic is in the Library; its build is the classic’s, not ours.',
@@ -149,7 +149,7 @@ var HS_ROOM_ENTRIES = { table: ['/table/shell.html'], codex: ['/codex/index.html
 
 /* ---- the screen's state --------------------------------------------------- */
 function hsBlank(){
-  return { q: '', sec: '', open: null, editAll: false, deck: null, y: 0, jump: null, pushed: false, l20: false, l45: false, lastId: null, scrollCard: false };
+  return { q: '', sec: '', open: null, editAll: false, deck: null, y: 0, jump: null, pushed: false, l20: false, l45: false, lastId: null, from: null, scrollCard: false };
 }
 if(typeof state !== 'undefined' && state && state.menu && !state.menu.study) state.menu.study = hsBlank();
 function hsState(){
@@ -699,7 +699,9 @@ function houseStudyHTML(){
   if(!houseStudyOn()) return '';
   const h = hsCurrent();
   const st = hsState();
-  if(st.deck) return hsDeckHTML(h);
+  /* the study view keeps no card of its own: its Flash cards buttons open
+     the Flashcards tab's decks, one card style (the consolidation) */
+  st.deck = null;
   if(st.open){
     const card = hsCardHTML(h, st.open);
     if(card) return card;
@@ -992,7 +994,9 @@ function hsCardHTML(h, id){
   };
   let out = '<article class="hs hs-card col-sm" aria-labelledby="hs-name">';
   /* 1. the way back, the position, and Next */
-  out += '<div class="hs-cardnav"><button class="btn btn-ghost" data-act="hs-back">' + esc(hsSay('back')) + '</button>'
+  /* the one Back above the screen takes the card back to its list (the
+     consolidation): no second way back here, only the position and Next */
+  out += '<div class="hs-cardnav">'
     + '<span class="hs-pos">' + esc(position) + '</span>'
     + (nextRow ? '<button class="btn btn-ghost" data-act="hs-next">' + esc(hsSay('nextOnly')) + '</button>' : '') + '</div>'
     + (offList ? '<div class="hs-soft">' + esc(offMeal && !hsFold(st.q || '').trim() ? hsSay('offShift', { meal: offMeal }) : hsSay('offList')) + '</div>' : '');
@@ -1104,97 +1108,23 @@ function hsCardHTML(h, id){
   return out;
 }
 
-/* ---- the deck in the Menu tab (4.2) ---------------------------------------------
-   Built the way the Flashcards tab builds one: a temporary state.fc over the
-   menu in the house card mode, through fcPool, then put back. */
-function houseStudyDeck(scope){
-  const h = hsCurrent();
-  if(!h || typeof fcPool !== 'function' || typeof FC_MODES === 'undefined') return false;
-  const sc = scope || {};
-  const fc = state.fc;
-  const was = { src: fc.src, mode: fc.mode, section: fc.section, special: fc.special, level: fc.level, sub: fc.sub, tier: fc.tier, family: fc.family, spirit: fc.spirit };
-  Object.assign(fc, { src: 'My Bar', mode: 'study', section: sc.section || 'All', special: sc.weak ? 'trouble' : 'All', level: null, sub: null, tier: 'All', family: 'All', spirit: 'All' });
-  let pool;
-  try { pool = fcPool(); } finally { Object.assign(fc, was); }
-  const row = FC_MODES.find(function(m){ return m[0] === 'study'; });
-  const fits = row && row[3] ? row[3] : function(){ return true; };
-  const inPool = {};
-  pool.filter(fits).forEach(function(d){ if(d.ref && d.ref.id) inPool[d.ref.id] = true; });
-  const meal = hsMealGet(h);
-  const known = hsMeals(h);
-  const ids = hsItemCards(h, sc.itemIds ? { itemIds: sc.itemIds } : null)
-    .filter(function(c){ return inPool[c.itemId]; })
-    .filter(function(c){ if(sc.itemIds) return true; const it = hsFind(h, c.itemId); return it && hsInMeal(it, meal, known); })
-    .map(function(c){ return c.itemId; });
-  const st = hsState();
-  if(!ids.length){ st.deck = null; return false; }
-  const label = sc.itemIds ? (hsFind(h, sc.itemIds[0]) || {}).name || '' : sc.weak ? hsSay('weak', { n: ids.length }) : sc.section || 'The whole menu';
-  st.deck = { ids: ids, idx: 0, flipped: false, got: 0, again: 0, againIds: [], label: label, scope: sc, jump: true };
-  return true;
-}
-function hsDeckHTML(h){
-  const st = hsState();
-  const d = st.deck;
-  const jump = d.jump; d.jump = false; if(jump) st.scrollCard = true;
-  const head = '<div class="hs-cardnav"><button class="btn btn-ghost" data-act="hs-close">' + esc(hsSay('close')) + '</button>'
-    + '<span class="hs-pos">' + esc(hsSay('count', { g: d.got, a: d.again })) + '</span></div>'
-    + '<h2 class="hs-h3 hs-decktitle" id="hs-deck" tabindex="-1"' + (jump ? ' data-open="1"' : '') + '>' + esc(hsSay('cards')) + ': ' + esc(d.label) + '</h2>';
-  if(d.idx >= d.ids.length){
-    return '<div class="hs hs-deck col-sm">' + head
-      + '<section class="panel hs-face hs-end"><div class="hs-facename">' + esc(hsSay('done')) + '</div>'
-      + '<p>' + esc(hsSay('count', { g: d.got, a: d.again })) + '</p>'
-      + '<div class="hs-btns">'
-      + (d.againIds.length ? '<button class="btn btn-brass" data-act="hs-again-deck">' + esc(hsSay('againDeck', { n: d.againIds.length })) + '</button>' : '')
-      + '<button class="btn btn-ghost" data-act="hs-shuffle">' + esc(hsSay('shuffle')) + '</button>'
-      + '<button class="btn btn-ghost" data-act="hs-close">' + esc(hsSay('close')) + '</button></div></section></div>';
-  }
-  const id = d.ids[d.idx];
-  const item = hsFind(h, id);
-  if(!item){ d.idx++; return hsDeckHTML(h); }
-  const sec = hsPlain(item.section) || 'The menu';
-  const eyebrow = 'Card ' + (d.idx + 1) + ' of ' + d.ids.length + ' · ' + sec;
-  if(!d.flipped){
-    return '<div class="hs hs-deck col-sm">' + head
-      + '<button class="panel hs-face hs-front" data-act="hs-flip">'
-      + '<span class="eyebrow">' + esc(eyebrow) + '</span>'
-      + '<span class="hs-facename">' + esc(item.name) + '</span>'
-      + '<span class="hs-faceline">' + esc(hsSay('front')) + '</span>'
-      + '<span class="hs-flipword">' + esc(hsSay('flip')) + '</span></button></div>';
-  }
-  const back = hsCardBack(h, item);
-  return '<div class="hs hs-deck col-sm">' + head
-    + '<section class="panel hs-face hs-back" aria-label="' + esc(item.name) + '">'
-    + '<span class="eyebrow">' + esc(eyebrow) + '</span>'
-    + '<div class="hs-backname">' + esc(item.name) + '</div>'
-    + (back.s10 ? '<p class="hs-ten">' + esc(back.s10) + '</p>' : '')
-    + (back.price ? '<p class="hs-price">' + esc(back.price) + '</p>' : '')
-    + back.pairs.map(function(p){ return '<p class="hs-line"><span class="hs-strong">' + esc(p[0]) + ':</span> ' + esc(p[1]) + '</p>'; }).join('')
-    + (back.say ? '<div class="eyebrow">' + esc(hsSay('say')) + '</div><p class="hs-say">' + esc(back.say) + '</p>' : '')
-    + (back.parts.length ? '<details class="hs-more"><summary>' + esc(hsSay('parts')) + '</summary><dl class="hs-dl">'
-      + back.parts.map(function(p){ return '<dt>' + esc(p[0]) + '</dt><dd>' + esc(p[1]) + '</dd>'; }).join('') + '</dl></details>' : '')
-    + '<div class="hs-grade"><button class="btn btn-ghost" data-act="hs-again">' + esc(hsSay('again')) + '</button>'
-    + '<button class="btn btn-brass" data-act="hs-got">' + esc(hsSay('got')) + '</button></div>'
-    + '</section></div>';
-}
-function hsGrade(got){
-  const st = hsState();
-  const d = st.deck;
-  if(!d || !d.flipped || d.idx >= d.ids.length) return false;
-  const id = d.ids[d.idx];
-  const card = hsCardOf(id);
-  if(card && typeof gradeCardKey === 'function') gradeCardKey(cardKey(card), got);
-  if(got) d.got++; else { d.again++; if(d.againIds.indexOf(id) < 0) d.againIds.push(id); }
-  d.idx++; d.flipped = false;
-  return true;
-}
+/* ---- the deck that stood in the Menu tab ------------------------------------------
+   Gone with the consolidation: the house's cards are the Flashcards tab's
+   decks (js/ui-nav.js: menu, a section, my weak ones, one drink), graded
+   through gradeCardKey under the same keys as before. */
 
 /* ---- the address of an open card, and the back gesture (1.7) --------------------- */
+/* One user action, one entry: where the app's history model runs
+   (js/ui-nav.js), the render that follows writes the card's entry with its
+   depth, so nothing is pushed here; elsewhere the card pushes its own. */
 function hsPush(hash){
+  if(typeof navOwnsHistory === 'function' && navOwnsHistory()) return true;
   try { if(typeof history !== 'undefined' && history && typeof history.pushState === 'function'){ history.pushState(null, '', hash); return true; } } catch (e) {}
   return false;
 }
 function hsReplace(hash){
-  try { if(typeof history !== 'undefined' && history && typeof history.replaceState === 'function'){ history.replaceState(null, '', hash); return true; } } catch (e) {}
+  if(typeof navOwnsHistory === 'function' && navOwnsHistory()) return true;
+  try { if(typeof history !== 'undefined' && history && typeof history.replaceState === 'function'){ history.replaceState(history.state || null, '', hash); return true; } } catch (e) {}
   return false;
 }
 /* the address of the drink a study card shows, for currentRoute */
@@ -1217,7 +1147,7 @@ function houseStudyRoute(row){
   state.menu.view = 'menu';
   st.deck = null;
   if(row && row.id){
-    if(st.open !== row.id){ st.open = row.id; st.jump = 'card'; st.l20 = false; st.l45 = false; }
+    if(st.open !== row.id){ if(!st.open) st.from = row.id; st.open = row.id; st.jump = 'card'; st.l20 = false; st.l45 = false; }
   } else if(st.open){
     st.open = null; st.jump = 'back'; st.pushed = false;
   }
@@ -1245,11 +1175,15 @@ function houseStudyTryWant(final){
   const st = hsState();
   state.tab = 'menu';
   state.menu.view = 'menu';
-  st.editAll = false; st.deck = null; st.open = item.id; st.jump = 'card'; st.pushed = false;
+  st.editAll = false; st.deck = null; st.open = item.id; st.from = item.id; st.jump = 'card'; st.pushed = false;
+  /* the card takes the place of the entry the browser made for the link,
+     at its depth: held until a wake, it is still that arrival, not a push */
+  state.navForce = 'replace';
   hsReplace('#/menu/' + slugify(item.name));
   return true;
 }
 function houseStudyRetry(){
+  if(typeof navTryWantSection === 'function') navTryWantSection(true);
   return houseStudyTryWant(true);
 }
 
@@ -1264,7 +1198,9 @@ function houseStudyAct(act, data){
     const it = h && (h.cocktails || []).find(function(c){ return c && c.id === id; });
     const b = hsBarRow(id);
     if(!it && !b) return false;
-    if(!st.open) st.y = scrollY();
+    /* the row that opened the card, kept apart from lastId, which Next and
+       Previous move: Back focuses this one (design test 2) */
+    if(!st.open){ st.y = scrollY(); st.from = id; }
     st.open = id; st.jump = 'card'; st.l20 = false; st.l45 = false; st.deck = null;
     if(push){ if(hsPush('#/menu/' + slugify(it ? it.name : b.name))) st.pushed = true; }
     else hsReplace('#/menu/' + slugify(it ? it.name : b.name));
@@ -1280,6 +1216,7 @@ function houseStudyAct(act, data){
   let done = true;
   if(act === 'hs-open'){ done = openRow(ds.id, !st.open); }
   else if(act === 'hs-back'){
+    if(typeof navBack === 'function' && typeof navOwnsHistory === 'function' && navOwnsHistory()){ navBack(); return true; }
     if(st.pushed && typeof history !== 'undefined' && history && typeof history.back === 'function'){
       /* the entry hs-open pushed is taken back; the hashchange closes the card */
       st.pushed = false;
@@ -1304,22 +1241,12 @@ function houseStudyAct(act, data){
     state.menu.view = 'menu';
   }
   else if(act === 'hs-cards'){
-    const scope = ds.id ? { itemIds: [ds.id] } : ds.weak ? { weak: true } : ds.s ? { section: ds.s } : {};
+    /* the Flashcards tab's deck: the whole menu, a section, the weak ones or
+       one drink (js/ui-nav.js) */
     if(!st.open) st.y = scrollY();
-    done = houseStudyDeck(scope);
+    const id = ds.id ? 'drink:' + ds.id : ds.weak ? 'menu-weak' : ds.s ? 'menu:' + slugify(ds.s) : 'menu';
+    done = typeof openDeck === 'function' ? openDeck(id) : false;
   }
-  else if(act === 'hs-flip'){ if(st.deck) st.deck.flipped = true; else done = false; }
-  else if(act === 'hs-got') done = hsGrade(true);
-  else if(act === 'hs-again') done = hsGrade(false);
-  else if(act === 'hs-shuffle'){
-    if(st.deck){ Object.assign(st.deck, { ids: shuffle(st.deck.ids.slice()), idx: 0, flipped: false, got: 0, again: 0, againIds: [], jump: true }); }
-    else done = false;
-  }
-  else if(act === 'hs-again-deck'){
-    if(st.deck && st.deck.againIds.length){ Object.assign(st.deck, { ids: st.deck.againIds.slice(), idx: 0, flipped: false, got: 0, again: 0, againIds: [], jump: true }); }
-    else done = false;
-  }
-  else if(act === 'hs-close'){ st.deck = null; if(!st.open) st.jump = 'back'; }
   else if(act === 'hs-say'){
     if(typeof houseDrillOpen === 'function' && houseDrillOpen('say')){ if(typeof houseSayChoose === 'function') houseSayChoose(ds.id); }
     else done = false;
@@ -1334,7 +1261,7 @@ function houseStudyAct(act, data){
     state.quiz.section = ds.s || null;
     const round = typeof buildRound === 'function' ? buildRound('mybar') : [];
     state.tab = 'quiz';
-    if(round.length) Object.assign(state.quiz, { stage: 'run', mode: 'mybar', round: round, idx: 0, picked: null, score: 0, missedQ: [], replay: false });
+    if(round.length) Object.assign(state.quiz, { stage: 'run', mode: 'mybar', round: round, idx: 0, picked: null, score: 0, missedQ: [], replay: false, section: ds.s || null });
     else { state.quiz.section = null; state.quiz.stage = 'setup'; }
   }
   else done = false;
@@ -1362,7 +1289,8 @@ function houseStudyAfterRender(){
   if(st.jump === 'back'){
     st.jump = null;
     const y = st.y || 0;
-    const id = st.lastId;
+    const id = st.from || st.lastId;
+    st.from = null;
     try { if(typeof window !== 'undefined' && window && typeof window.scrollTo === 'function') window.scrollTo(0, y); } catch (e) {}
     if(id){
       let row = null;
