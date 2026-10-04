@@ -89,6 +89,22 @@
   .hs-strong{font-weight:600;color:var(--cream)}
   .hs-ticket .ticket{max-width:100%}
 
+  /* the videos: links out, never a player; the title a 44px target in brass */
+  .hs-vlist{list-style:none;margin:0;padding:0}
+  .hs-sec .hs-vlist{margin:0}
+  .hs-video{display:flex;flex-direction:column;gap:2px;padding:8px 0;border-bottom:1px solid var(--house-line)}
+  .hs-video:last-child{border-bottom:0}
+  .hs-vlink{display:inline-flex;align-items:center;min-height:44px;color:var(--brass-2);font-size:1.125rem;line-height:1.35;text-decoration:underline;text-underline-offset:4px}
+  .hs-vlink:focus-visible{outline:3px solid var(--brass-2);outline-offset:3px}
+  .hs-vmeta{font-size:1rem;color:var(--cream-dim)}
+  .hs-vwhy{font-size:1.0625rem;line-height:1.55}
+  .hs-vfor{font-size:1rem;color:var(--cream-dim)}
+  /* the heading and the note keep the inset every other section's head has:
+     .hs p{margin:0} outranks a bare class, so the note's rule carries .hs too */
+  .hs-videos .hs-sec-name{padding:10px 14px 0}
+  .hs .hs-vnote{margin:6px 14px 0}
+  .hs-videos .hs-more{margin:6px 14px}
+
   /* the deck: the whole front is one button; Got it and Again only after Flip */
   .hs-decktitle{font-size:.9rem}
   .hs-face{width:100%;min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px 18px;text-align:center;color:var(--cream);font-family:var(--house-reading);border:1px solid var(--brass);background:radial-gradient(ellipse at 50% 0,#3f4b294d,transparent 64%),linear-gradient(145deg,#182b1e,#0a1811)}

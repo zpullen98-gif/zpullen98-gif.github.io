@@ -125,6 +125,17 @@
   .wrap .v28-grade .btn { flex: 1 1 50%; min-height: 56px; }
   .wrap .v28-end { text-align: center; margin-bottom: 14px; }
 
+  /* codex30: the house's videos, links out and never a player; the title a 44px target in gold */
+  .wrap .v30-list { list-style: none; margin: 0 0 12px; padding: 0; }
+  .wrap .v30-video { display: flex; flex-direction: column; gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .wrap .v30-video:last-child { border-bottom: 0; }
+  .wrap .v28 .v30-title { font-size: 18px; line-height: 1.35; }
+  .wrap .v28 .v30-title:focus-visible, .wrap .v28 .v30-open:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
+  .wrap .v30-meta { font-size: 16px; color: var(--gold-soft); }
+  .wrap .v30-why { font-size: 17px; line-height: 1.55; color: var(--parch); }
+  .wrap .v30-for { font-size: 16px; color: var(--parch); }
+  .wrap .v28 .v30-open { background: none; border: 0; font: inherit; cursor: pointer; text-align: left; }
+
   /* the atlas row a card's door opened on */
   .wrap .refrow.v28-here { outline: 1px solid var(--gold-soft); outline-offset: 2px; }
   .wrap .refrow.v28-here:focus { outline: 2px solid var(--gold-hi); }

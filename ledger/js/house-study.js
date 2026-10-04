@@ -34,6 +34,14 @@
    gradeCardKey under 'My Bar · name', the deck's own record, so a card
    turned here and the same card on the Flashcards tab are one record.
 
+   THE VIDEOS ARE LINKS OUT. The Watch block on a card and the Videos entry
+   at the foot of the list draw the house's videos (house.videos) as plain
+   links that open YouTube or Vimeo in a new tab with rel noopener. Nothing
+   here embeds a player or plays on its own, unlike the Coffee & Tea films,
+   and the words say a video needs a connection. A link the engine's rule
+   would refuse is not drawn at all (hsVideoUrlOk, the same rule held here
+   so a stale engine cannot let one through).
+
    NOBODY IS NAMED HERE, NO STRING CARRIES A DASH, AND THE WORDS ARE BRITISH. */
 
 /* ---- the words (the design's section 9, the Ledger's share) -------------- */
@@ -112,7 +120,16 @@ var HS_WORDS = {
   front: 'Say the ten second line aloud, then flip.',
   flip: 'Flip',
   yourOwn: 'Your own',
-  houseLists: 'The house: must-knows, words and the table'
+  houseLists: 'The house: must-knows, words and the table',
+  watch: 'Watch',
+  videos: 'Videos',
+  videosCount: 'Videos ({n})',
+  videoNote: 'Each video opens on YouTube or Vimeo in a new tab, and needs a connection.',
+  newTab: '(opens in a new tab)',
+  videoFor: 'For: ',
+  videoNone: 'More to watch',
+  videoPlain: 'A video on {topic}',
+  videoPlainOf: 'A video on {topic}, {i} of {n}'
 };
 function hsSay(key, vars){
   const v = vars || {};
@@ -533,6 +550,150 @@ function hsVisible(h){
 }
 function hsUnit(n){ return n === 1 ? 'drink' : 'drinks'; }
 
+/* ---- the videos: a link out, never a player -------------------------------------
+   The engine's videosFor, videoGroups and videoMeta when it ships them, else
+   the same rules here, so a page holding an older engine still lists them. */
+var HS_VIDEO_HOSTS = ['youtube.com', 'youtu.be', 'vimeo.com'];
+function hsVideoUrlOk(url){
+  if(typeof url !== 'string' || url.length > 500) return false;
+  const m = /^https:\/\/([A-Za-z0-9.-]+)(?:[\/?#][^\s]*)?$/.exec(url);
+  if(!m) return false;
+  const host = m[1].toLowerCase();
+  return HS_VIDEO_HOSTS.some(function(x){ return host === x || host.slice(-(x.length + 1)) === '.' + x; });
+}
+function hsVideoList(h){ return (h && Array.isArray(h.videos) ? h.videos : []).filter(function(v){ return v && hsVideoUrlOk(v.url) && hsPlain(v.title); }); }
+function hsVideosForLocal(h, id){
+  const terms = {};
+  (h.lexicon || []).forEach(function(t){ if(t && (t.itemIds || []).indexOf(id) >= 0) terms[t.id] = true; });
+  const direct = [], viaTerm = [];
+  (Array.isArray(h.videos) ? h.videos : []).forEach(function(v){
+    if((v.itemIds || []).indexOf(id) >= 0) direct.push(v);
+    else if((v.termIds || []).some(function(t){ return terms[t]; })) viaTerm.push(v);
+  });
+  return direct.concat(viaTerm);
+}
+function hsVideoGroupsLocal(h){
+  const all = Array.isArray(h.videos) ? h.videos : [];
+  const ordered = all.filter(function(v){ return v.house; }).concat(all.filter(function(v){ return !v.house; }));
+  const groups = [], at = {};
+  ordered.forEach(function(v){
+    const topic = hsPlain(v.topic) || hsSay('videoNone');
+    if(!Object.prototype.hasOwnProperty.call(at, topic)){ at[topic] = groups.length; groups.push({ topic: topic, videos: [] }); }
+    groups[at[topic]].videos.push(v);
+  });
+  return groups;
+}
+function hsVideoMetaLocal(v){
+  const parts = [];
+  if(hsPlain(v.channel)) parts.push(hsPlain(v.channel));
+  if(typeof v.mins === 'number' && v.mins > 0) parts.push(Math.max(1, Math.round(v.mins)) + ' min');
+  return parts.join(', ');
+}
+/* NOBODY IS NAMED, VIDEOS INCLUDED. A house video's title, channel and why
+   are quoted from the pack, and a pack may name a living cook or bartender
+   there: a channel that is a person, a title "with" a chef. So the Ledger
+   draws a video's own title and channel only when its channel is one of the
+   schools, houses and publishers below, which name nobody, and its title
+   does not take the shape a person's name takes in a title ("with" or
+   "Chef" before two capitalised words). Any other video is drawn under a
+   plain label made from its topic, with no channel. A why in that shape is
+   left out too. The list names no person, so a channel nobody has vetted
+   fails safe: a false alarm costs a title, a miss would name somebody. */
+var HS_VIDEO_INSTITUTIONS = ['le cordon bleu', 'americas test kitchen', 'food network', 'hog island oyster co',
+  'saveur', 'wine spirit education trust', 'wset', 'court of master sommeliers', 'guildsomm', 'wine folly',
+  'diffords guide', 'educated barfly', 'the historic new orleans collection', 'sazerac house', 'brennans'];
+var HS_VIDEO_PERSON_SHAPE = /\b(?:with|Chef)\s+(?:Master\s+Chef\s+)?[A-Z][A-Za-z\u00c0-\u024f'.]+\s+[A-Z][A-Za-z\u00c0-\u024f'.]+/;
+function hsVideoFold(t){
+  return hsPlain(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '');
+}
+function hsInstitution(channel){
+  const c = hsVideoFold(channel);
+  return !!c && HS_VIDEO_INSTITUTIONS.some(function(x){ return c.indexOf(hsVideoFold(x)) === 0; });
+}
+function hsPersonShape(text){ return HS_VIDEO_PERSON_SHAPE.test(hsPlain(text)); }
+function hsVideoNamesPerson(v){ return !v || !hsInstitution(v.channel) || hsPersonShape(v.title); }
+/* What the Ledger draws for one video: the title, the meta line and the why,
+   each with any person left out. */
+function hsVideoShown(v, meta, ord){
+  const why = hsPersonShape(v.why) ? '' : hsPlain(v.why);
+  if(!hsVideoNamesPerson(v)) return { title: hsPlain(v.title), meta: meta, why: why };
+  const mins = typeof v.mins === 'number' && v.mins > 0 ? Math.max(1, Math.round(v.mins)) + ' min' : '';
+  const topic = hsPlain(v.topic) || hsSay('videoNone');
+  const title = ord && ord.n > 1 ? hsSay('videoPlainOf', { topic: topic, i: ord.i, n: ord.n }) : hsSay('videoPlain', { topic: topic });
+  return { title: title, meta: mins, why: why };
+}
+/* Two plain labels in one list would read as one link twice, so the plain
+   videos that share a topic in a list are counted: "1 of 2", "2 of 2". */
+function hsVideoOrdinals(vids){
+  const total = {}, seen = {}, out = {};
+  vids.forEach(function(v){ if(hsVideoNamesPerson(v)){ const t = hsPlain(v.topic); total[t] = (total[t] || 0) + 1; } });
+  vids.forEach(function(v){ if(hsVideoNamesPerson(v)){ const t = hsPlain(v.topic); seen[t] = (seen[t] || 0) + 1; out[v.id] = { i: seen[t], n: total[t] }; } });
+  return out;
+}
+function hsHouseFn(name, local){
+  const lib = typeof houseLibHere === 'function' ? houseLibHere() : null;
+  return lib && typeof lib[name] === 'function' ? lib[name] : local;
+}
+function hsVideosFor(h, id){
+  const ok = {};
+  hsVideoList(h).forEach(function(v){ ok[v.id] = true; });
+  return hsHouseFn('videosFor', hsVideosForLocal)(h, id).filter(function(v){ return ok[v.id]; });
+}
+function hsVideoGroups(h){
+  const ok = {};
+  hsVideoList(h).forEach(function(v){ ok[v.id] = true; });
+  return hsHouseFn('videoGroups', hsVideoGroupsLocal)(h).map(function(g){
+    return { topic: g.topic, videos: g.videos.filter(function(v){ return ok[v.id]; }) };
+  }).filter(function(g){ return g.videos.length; });
+}
+/* One video: the title as a link out, the channel and length, why it helps,
+   and, in the study view's list, the items it teaches (a drink opens its
+   card; a dish or a wine is a link into its room, or words). */
+function hsVideoLI(h, v, withFor, ord){
+  const shown = hsVideoShown(v, hsHouseFn('videoMeta', hsVideoMetaLocal)(v), ord);
+  const meta = shown.meta;
+  let names = '';
+  if(withFor){
+    const items = (v.itemIds || []).map(function(i){ return hsFind(h, i); }).filter(function(it){ return it && hsPlain(it.name); });
+    if(items.length) names = '<span class="hs-vfor">' + esc(hsSay('videoFor')) + items.map(function(it){
+      const kind = hsKindOf(it.id);
+      if(kind === 'cocktail') return '<button class="hs-inline" data-act="hs-open" data-id="' + esc(it.id) + '">' + esc(hsPlain(it.name)) + '</button>';
+      const room = kind === 'wine' ? 'codex' : 'table';
+      return hsRoomLink(room, hsRoomHref(room, it.id, h), hsPlain(it.name));
+    }).join(', ') + '</span>';
+  }
+  return '<li class="hs-video" data-video="' + esc(v.id) + '">'
+    + '<a class="hs-vlink" href="' + esc(v.url) + '" target="_blank" rel="noopener">' + esc(shown.title) + '<span class="sr-only"> ' + esc(hsSay('newTab')) + '</span></a>'
+    + (meta ? '<span class="hs-vmeta">' + esc(meta) + '</span>' : '')
+    + (shown.why ? '<span class="hs-vwhy">' + esc(shown.why) + '</span>' : '')
+    + names
+    + '</li>';
+}
+/* The Watch block on a card: nothing when the house names no video for the drink. */
+function hsWatchHTML(h, id){
+  const vids = hsVideosFor(h, id);
+  if(!vids.length) return '';
+  const ords = hsVideoOrdinals(vids);
+  return '<section class="hs-group hs-watch" aria-labelledby="hs-watch-h"><h3 class="hs-h3" id="hs-watch-h">' + esc(hsSay('watch')) + '</h3>'
+    + '<p class="hs-soft">' + esc(hsSay('videoNote')) + '</p>'
+    + '<ul class="hs-vlist">' + vids.map(function(v){ return hsVideoLI(h, v, false, ords[v.id]); }).join('') + '</ul></section>';
+}
+/* The Videos entry at the foot of the list: every video by topic, the house's
+   own first, one closed disclosure per topic so the first screen stays the menu's. */
+function hsVideosHTML(h){
+  const groups = hsVideoGroups(h);
+  const n = groups.reduce(function(t, g){ return t + g.videos.length; }, 0);
+  if(!n) return '';
+  const ords = hsVideoOrdinals(groups.reduce(function(all, g){ return all.concat(g.videos); }, []));
+  return '<section class="panel hs-sec hs-videos" aria-labelledby="hs-videos-h"><h3 class="eyebrow hs-sec-name" id="hs-videos-h">' + esc(hsSay('videosCount', { n: n })) + '</h3>'
+    + '<p class="hs-soft hs-vnote">' + esc(hsSay('videoNote')) + '</p>'
+    + groups.map(function(g){
+      return '<details class="hs-more"><summary>' + esc(g.topic) + ' (' + g.videos.length + ')</summary><ul class="hs-vlist">'
+        + g.videos.map(function(v){ return hsVideoLI(h, v, true, ords[v.id]); }).join('') + '</ul></details>';
+    }).join('')
+    + '</section>';
+}
+
 /* ---- the view ------------------------------------------------------------------- */
 function houseStudyHTML(){
   if(!houseStudyOn()) return '';
@@ -649,6 +810,7 @@ function hsListHTML(h){
     + '</div>'
     + '<div id="hs-rows" class="col-sm">' + houseStudyRowsHTML() + '</div>'
     + hsHouseListsHTML(h)
+    + hsVideosHTML(h)
     + '<div class="hs-facts">' + esc(facts) + '</div>'
     + also
     + '</div>';
@@ -907,6 +1069,8 @@ function hsCardHTML(h, id){
   /* 11. the service note, under its fixed eyebrow */
   const note = item ? hsPlain(item.serviceNote) : '';
   out += '<section class="hs-group"><div class="eyebrow">' + esc(hsSay('eyebrow')) + '</div><p class="hs-read">' + esc(note || hsSay('noteNone')) + '</p></section>';
+  /* 11a. Watch: the house's videos for the drink, each a link out */
+  if(item) out += hsWatchHTML(h, id);
   /* 12. In this app, and the other rooms */
   if(item) out += hsHereHTML(h, item, ticketRow);
   const roomLinks = [];

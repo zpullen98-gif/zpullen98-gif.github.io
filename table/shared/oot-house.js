@@ -26,8 +26,10 @@
 
    THE RULES TRAVEL WITH THE CODE. No allergen field exists on any shape and
    the normaliser drops any key the client would refuse, at every depth. A
-   price is a string as printed, never a number. A mark is { value, by, ts,
-   model? } and kept means by is 'person': a person's mark beats hers whatever
+   price is a string as printed, never a number. A video is a link out to
+   YouTube or Vimeo on the secure scheme (VIDEO_HOSTS), checked and never
+   fetched: the engine plays nothing and names no other address. A mark
+   is { value, by, ts, model? } and kept means by is 'person': a person's mark beats hers whatever
    the stamps, and an unkept mark reaches no drill. No prose carries a dash.
    WorldTable/tools/check-port-house.mjs runs the fixture through this file
    and through the TypeScript and exits 1 on any difference. A fix belongs
@@ -191,14 +193,52 @@ function wineListOf(wine) {
 const HALF_SIZE = '375ml';
 /** The word cap on a tier's why and its line to say at the table. */
 const BOTTLE_WORDS = 25;
+/**
+ * The videos a house points a server to. A video is a link out and never a
+ * player: a wing opens it in a new tab, plays nothing on its own and says a
+ * video needs a connection. The link is held to one scheme and three hosts,
+ * so a pack, a hand edit or a file cannot plant any other address on a card.
+ * VIDEO_SCHEME is written once, here, and it is the one place the shipped
+ * engine spells the secure scheme: tools/port-house.mjs and
+ * tools/check-port-house.mjs allow exactly this one occurrence and still
+ * refuse any other. The hosts are names a link is compared against; the
+ * engine never fetches one.
+ */
+const VIDEO_SCHEME = 'https';
+const VIDEO_HOSTS = ['youtube.com', 'youtu.be', 'vimeo.com'];
+/** The word cap on why a video helps, the bottle tiers' cap. */
+const VIDEO_WHY_WORDS = 25;
+/** The longest link a video may carry. */
+const VIDEO_URL_MAX = 500;
+const VIDEO_URL = new RegExp('^' + VIDEO_SCHEME + ':\\/\\/([A-Za-z0-9.-]+)(?:[\\/?#][^\\s]*)?$');
+/**
+ * Whether a link may stand on a video: the secure scheme, no user name, no
+ * port, no space, and a host that is one of VIDEO_HOSTS or a name under one
+ * (www.youtube.com, m.youtube.com, player.vimeo.com). Anything else is not a
+ * video link here, however it reads.
+ */
+function videoUrlOk(url) {
+    if (typeof url !== 'string' || !url || url.length > VIDEO_URL_MAX)
+        return false;
+    const m = VIDEO_URL.exec(url);
+    if (!m)
+        return false;
+    const host = m[1].toLowerCase();
+    for (const h of VIDEO_HOSTS)
+        if (host === h || host.slice(-(h.length + 1)) === '.' + h)
+            return true;
+    return false;
+}
 /* -------------------------------------------------------------------------
  * The lists, the marks and the ids, as data
  * ---------------------------------------------------------------------- */
 /**
- * The ten lists on a House, in the order the record carries them: the eight a
- * pack builds for Lizzy and the drills, then the two working lists a person
- * keeps for lineup. Every list holds records with an id, so the merge runs
- * per list by id over all ten.
+ * The eleven lists on a House, in the order the record carries them: the
+ * eight a pack builds for Lizzy and the drills, the two working lists a
+ * person keeps for lineup, then the videos. Every list holds records with an
+ * id, so the merge runs per list by id over all eleven. The videos are
+ * OPTIONAL_LISTS: written only when they hold something, so every loop over
+ * this list reads a house's rows through houseRows, never house[list].
  */
 const HOUSE_LISTS = [
     'tastings',
@@ -210,8 +250,20 @@ const HOUSE_LISTS = [
     'mixUps',
     'mustKnows',
     'askAtLineup',
-    'disputes'
+    'disputes',
+    'videos'
 ];
+/** The lists a House carries only when they hold something; absent reads as empty. */
+const OPTIONAL_LISTS = ['videos'];
+/** A house's rows on one list, or none when the list is absent (an optional list, or a record from an older edition). */
+function houseRows(house, list) {
+    const v = house[list];
+    return Array.isArray(v) ? v : [];
+}
+/** Whether a list is one a House carries only when it holds something. */
+function optionalList(list) {
+    return OPTIONAL_LISTS.indexOf(list) >= 0;
+}
 /** The mark fields per kind: everything Lizzy may write and a person may keep. Wines carry parts and lines too. */
 const DISH_MARKS = ['say', 'guest', 'why', 'pairs', 'origin', 'ingredientsNamed', 'parts', 'lines', 'pairing'];
 const WINE_MARKS = ['say', 'guest', 'why', 'pairs', 'origin', 'profile', 'goesWith', 'firstPickIds', 'serve', 'parts', 'lines'];
@@ -232,7 +284,8 @@ const MARK_FIELDS = {
     mixUps: ['difference', 'ask'],
     mustKnows: ['body'],
     askAtLineup: [],
-    disputes: []
+    disputes: [],
+    videos: []
 };
 /**
  * The id prefix per list and for the house itself. Dishes, wines and
@@ -251,7 +304,8 @@ const ID_PREFIXES = {
     mixUps: 'm-',
     mustKnows: 'k-',
     askAtLineup: 'a-',
-    disputes: 'u-'
+    disputes: 'u-',
+    videos: 'v-'
 };
 /** ItemBase on its own, then spread into the three kinds, so a base key is listed once. */
 const ITEM_BASE_KEYS = [
@@ -301,10 +355,11 @@ const KEYS = {
     Dispute: ['id', 'itemId', 'field', 'a', 'b', 'resolution', 'ts'],
     HouseMeal: ['name', 'days', 'hours'],
     HouseSource: ['title', 'url', 'readOn'],
+    HouseVideo: ['id', 'url', 'title', 'channel', 'mins', 'topic', 'why', 'itemIds', 'termIds', 'house', 'checkedOn', 'ts'],
     PackStamp: ['id', 'builtBy', 'builtAt', 'version'],
     House: [
         'format', 'version', 'id', 'name', 'address', 'phone', 'site', 'meals', 'history', 'dressCode', 'menusReadOn', 'sources',
-        'tastings', 'dishes', 'wines', 'cocktails', 'lexicon', 'scenarios', 'mixUps', 'mustKnows', 'askAtLineup', 'disputes',
+        'tastings', 'dishes', 'wines', 'cocktails', 'lexicon', 'scenarios', 'mixUps', 'mustKnows', 'askAtLineup', 'disputes', 'videos',
         'removed', 'build', 'began', 'createdAt', 'lastWrite', 'pack'
     ],
     HouseIndex: ['v', 'current', 'list'],
@@ -318,7 +373,8 @@ const KEYS = {
  */
 const OPTIONAL_KEYS = {
     Pairing: ['bottles'],
-    HouseWine: ['list', 'bin', 'size']
+    HouseWine: ['list', 'bin', 'size'],
+    House: ['videos']
 };
 /* -------------------------------------------------------------------------
  * The small functions every module shares
@@ -365,6 +421,61 @@ function emptyHouse(id, name, began, now) {
  * character. A thousand collisions in a row means the source is broken, and
  * that is said rather than spun on.
  */
+/**
+ * The videos for one item, for the Watch block on its card: those that name
+ * the item first, then those that name a lexicon term reaching the item, each
+ * once, in the house's order within each half. An absent list reads as none.
+ */
+function videosFor(house, itemId) {
+    const videos = house.videos || [];
+    const direct = [];
+    const viaTerm = [];
+    const terms = new Set();
+    for (const t of house.lexicon || [])
+        if (t.itemIds.indexOf(itemId) >= 0)
+            terms.add(t.id);
+    for (const v of videos) {
+        if (v.itemIds.indexOf(itemId) >= 0)
+            direct.push(v);
+        else if (v.termIds.some((id) => terms.has(id)))
+            viaTerm.push(v);
+    }
+    return direct.concat(viaTerm);
+}
+/** The heading a video with no topic is listed under. */
+const VIDEO_TOPIC_NONE = 'More to watch';
+/**
+ * Every video by topic, for the Videos entry in a study view: the videos
+ * about the house itself first, so their topics lead, then the rest in the
+ * house's order; a topic is a group in the order it is first met, and a
+ * video with no topic sits under VIDEO_TOPIC_NONE.
+ */
+function videoGroups(house) {
+    const videos = house.videos || [];
+    const ordered = videos.filter((v) => v.house).concat(videos.filter((v) => !v.house));
+    const groups = [];
+    const at = new Map();
+    for (const v of ordered) {
+        const topic = v.topic.trim() || VIDEO_TOPIC_NONE;
+        let i = at.get(topic);
+        if (i === undefined) {
+            i = groups.length;
+            at.set(topic, i);
+            groups.push({ topic, videos: [] });
+        }
+        groups[i].videos.push(v);
+    }
+    return groups;
+}
+/** The small line under a video's title: its channel and its length, either left out when unknown ("Brennan's, 6 min"). */
+function videoMeta(v) {
+    const parts = [];
+    if (v.channel && v.channel.trim())
+        parts.push(v.channel.trim());
+    if (v.mins > 0)
+        parts.push(Math.max(1, Math.round(v.mins)) + ' min');
+    return parts.join(', ');
+}
 function mintId(prefix, taken, rand = Math.random) {
     for (let tries = 0; tries < 1000; tries++) {
         let s = prefix;
@@ -562,7 +673,7 @@ function stripDashes(s) {
  * pipe or a colon, with the wrong prefix or already taken in this house is
  * minted afresh and the report says so, and every reference to the old id
  * inside the house (a pairing and its bottle tiers, a course, a mix-up, a first pick, an upsell,
- * a term's items) follows it, so a pack whose dishes came in under the
+ * a term's items, a video's items and terms) follows it, so a pack whose dishes came in under the
  * desk's 'k-' mint keeps its pairings. An id that would match the client's
  * FORBIDDEN_KEY is minted afresh as well, and a fresh id is drawn again
  * while it would, because a tombstone in `removed` is a KEY and the client
@@ -570,6 +681,12 @@ function stripDashes(s) {
  * record one the client refuses and the pack one no device imports. For
  * the same reason a tombstone already under such a key is dropped and
  * named in the report; no item in the shape can carry that id.
+ *
+ * VIDEOS. A video whose link is not a video link by videoUrlOk (the one
+ * scheme, the three hosts) is dropped whole and named in the report under
+ * 'video', before it claims an id: a card must never carry a link out to
+ * anywhere else. The list is written only when a video survives, so a house
+ * from before the list comes back with the keys it went in with.
  */
 /* -------------------------------------------------------------------------
  * The client's rule, copied
@@ -1029,6 +1146,38 @@ function normaliseDispute(raw, i, ctx) {
         u.resolution = resolution;
     return u;
 }
+/** A video's length in minutes: a finite number at or above zero, else 0 (not measured). */
+function asMinutes(v) {
+    return typeof v === 'number' && Number.isFinite(v) && v > 0 ? v : 0;
+}
+/**
+ * One video, or null when its link is not a video link: dropped whole, named
+ * in the report, and never given an id, so a later video keeps the id it
+ * came with.
+ */
+function normaliseVideo(raw, i, ctx) {
+    const r = asRecord(raw);
+    const path = 'house.videos[' + i + ']';
+    if (!videoUrlOk(r.url)) {
+        const shown = typeof r.url === 'string' ? r.url.slice(0, 80) : 'nothing';
+        ctx.report.push({ path: path + '.url', code: 'video', said: 'the link ' + shown + ' is not a secure link on YouTube or Vimeo; the video was dropped' });
+        return null;
+    }
+    return {
+        id: claimId(r.id, ID_PREFIXES.videos, path, ctx),
+        url: r.url,
+        title: asText(r.title),
+        channel: asText(r.channel),
+        mins: asMinutes(r.mins),
+        topic: asText(r.topic),
+        why: asText(r.why),
+        itemIds: asTextList(r.itemIds),
+        termIds: asTextList(r.termIds),
+        house: asFlag(r.house),
+        checkedOn: asText(r.checkedOn),
+        ts: asStamp(r.ts)
+    };
+}
 function normaliseMeal(v) {
     const r = asRecord(v);
     return { name: asText(r.name), days: asText(r.days), hours: asText(r.hours) };
@@ -1134,6 +1283,12 @@ function applyRenames(house, ctx) {
     for (const u of house.disputes)
         if (u.itemId)
             u.itemId = one(u.itemId);
+    if (house.videos) {
+        for (const v of house.videos) {
+            v.itemIds = many(v.itemIds);
+            v.termIds = many(v.termIds);
+        }
+    }
 }
 /* -------------------------------------------------------------------------
  * The door
@@ -1189,6 +1344,15 @@ function normaliseHouse(raw, opts = {}) {
     const pack = normalisePack(r.pack);
     if (pack)
         house.pack = pack;
+    const videos = [];
+    const rawVideos = asList(r.videos);
+    for (let i = 0; i < rawVideos.length; i++) {
+        const v = normaliseVideo(rawVideos[i], i, ctx);
+        if (v)
+            videos.push(v);
+    }
+    if (videos.length)
+        house.videos = videos;
     applyRenames(house, ctx);
     for (const p of forbiddenKeys(house, 'house', [])) {
         report.push({ path: p, code: 'forbidden', said: 'a key the client refuses is still on the record after normalising' });
@@ -1218,9 +1382,12 @@ function normaliseHouse(raw, opts = {}) {
  * 'allergen-talk' a line of hers that speaks of allergens; and 'tier' a
  * bottle tier that breaks its rule (a wine not on the bottle list, a price
  * outside the tier's band, a half bottle that is not HALF_SIZE, a tier with
- * no why or no line to say). Those eight are FATAL_CODES, the default list,
- * and a pack builder passes exactly that. A tier's why and line over
- * BOTTLE_WORDS are 'word-cap', and a tier naming no house wine is 'ref'.
+ * no why or no line to say); and 'video' a video whose link is not a video
+ * link by videoUrlOk, or that has no title or no why. Those nine are
+ * FATAL_CODES, the default list, and a pack builder passes exactly that. A
+ * tier's why and line over BOTTLE_WORDS are 'word-cap', and so is a video's
+ * why over VIDEO_WHY_WORDS; a tier naming no house wine is 'ref', and so is
+ * a video's item or term that is not in the house.
  * Three more are advisory and NEVER fatal, whatever list a caller hands in:
  * 'service-note', a person's note that names an allergen without the word
  * confirm (the note is theirs and stands; the flag reminds them to confirm
@@ -1236,7 +1403,7 @@ function normaliseHouse(raw, opts = {}) {
  * and onPage, the rule that 12 is not on a page that prints only 12.50.
  */
 /** The codes that stop a pack, and the default `fatal` list. */
-const FATAL_CODES = ['forbidden', 'dash', 'word-cap', 'ref', 'principles', 'price', 'allergen-talk', 'tier'];
+const FATAL_CODES = ['forbidden', 'dash', 'word-cap', 'ref', 'principles', 'price', 'allergen-talk', 'tier', 'video'];
 /** The codes that are advice and never fatal, whatever list a caller hands in. */
 const NEVER_FATAL = ['service-note', 'proper-noun', 'quote'];
 /** The client's ALLERGEN_TALK: a line of hers that strays onto allergens is refused, by the code and not the prompt. */
@@ -1449,6 +1616,35 @@ function checkRefs(house, add) {
     for (let i = 0; i < disputes.length; i++) {
         if (disputes[i].itemId !== undefined)
             ref('house.disputes[' + i + '].itemId', disputes[i].itemId, items, 'a house item', true);
+    }
+    const terms = idSet(listOf(house, 'lexicon'));
+    const videos = listOf(house, 'videos');
+    for (let i = 0; i < videos.length; i++) {
+        refs('house.videos[' + i + '].itemIds', videos[i].itemIds, items, 'a house item');
+        refs('house.videos[' + i + '].termIds', videos[i].termIds, terms, 'a house term');
+    }
+}
+/**
+ * Every video: its link a video link (videoUrlOk, the normaliser's rule,
+ * asked again because a validator may be handed a house nobody normalised),
+ * a title, and a why within VIDEO_WHY_WORDS. Where each video points is
+ * checkRefs' to name.
+ */
+function checkVideos(house, add) {
+    const videos = listOf(house, 'videos');
+    for (let i = 0; i < videos.length; i++) {
+        const v = videos[i];
+        const at = 'house.videos[' + i + ']';
+        if (!videoUrlOk(v.url))
+            add(at + '.url', 'video', 'the link is not a secure link on YouTube or Vimeo');
+        const title = typeof v.title === 'string' ? v.title : '';
+        if (!title.trim())
+            add(at + '.title', 'video', 'the video has no title');
+        const why = typeof v.why === 'string' ? v.why : '';
+        if (!why.trim())
+            add(at + '.why', 'video', 'the video has no line saying why it helps');
+        else if (wordCount(why) > VIDEO_WHY_WORDS)
+            add(at + '.why', 'word-cap', wordCount(why) + ' words; the cap on why a video helps is ' + VIDEO_WHY_WORDS);
     }
 }
 /**
@@ -1680,6 +1876,7 @@ function validateHouse(house, opts = {}) {
     checkRefs(house, add);
     checkPrinciples(house, add);
     checkBottles(house, add);
+    checkVideos(house, add);
     if (typeof opts.sourceText === 'string')
         checkPrices(house, opts.sourceText, add);
     checkMarks(house, add);
@@ -1916,7 +2113,8 @@ const CARD_FIELDS = ['name', 'address', 'phone', 'site', 'meals', 'dressCode', '
 /**
  * Two copies of one house as one: mine, with theirs merged in.
  *
- * Per list by id: a twin settles by mergeItem with the list's own mark
+ * Per list by id, over all eleven (an absent optional list reads as
+ * empty and is written back only when it holds something): a twin settles by mergeItem with the list's own mark
  * fields; an item on one side only is carried. A tombstone in either
  * `removed` newer than the item's last touch drops the item from both sides,
  * and the tombstones themselves union on the newer stamp, so a delete
@@ -1966,8 +2164,8 @@ function mergeHouse(mine, theirs) {
     const dropped = new Set();
     for (const list of HOUSE_LISTS) {
         const marks = MARK_FIELDS[list];
-        const mineList = mine[list];
-        const theirsList = theirs[list].map((item) => adopt(item, mine.id));
+        const mineList = houseRows(mine, list);
+        const theirsList = houseRows(theirs, list).map((item) => adopt(item, mine.id));
         const theirsById = new Map();
         for (const item of theirsList)
             if (!theirsById.has(item.id))
@@ -2002,17 +2200,25 @@ function mergeHouse(mine, theirs) {
             merged.push(t);
             counts.added++;
         }
-        out[list] = merged;
+        /* An optional list (the videos) is written only when it holds something, the normaliser's rule. */
+        if (merged.length || !optionalList(list))
+            out[list] = merged;
+        else
+            delete out[list];
     }
     counts.removed = dropped.size;
     out.removed = removed;
     out.lastWrite = Math.max(mine.lastWrite, theirs.lastWrite);
     return { house: out, counts };
 }
-/** Their item under my house id, when it carries one; a tasting or a term carries none and passes through. */
+/**
+ * Their item under my house id, when it carries one; a tasting or a term
+ * carries none and passes through, and so does a video, whose `house` is a
+ * flag and never an id: only a string is re-stamped.
+ */
 function adopt(item, houseId) {
     const rec = item;
-    if (!('house' in rec) || rec.house === houseId)
+    if (typeof rec.house !== 'string' || rec.house === houseId)
         return item;
     return Object.assign(Object.assign({}, rec), { house: houseId });
 }
@@ -3276,18 +3482,12 @@ function readPack(text, opts = {}) {
 function restampHouse(house, id) {
     return Object.assign(Object.assign({}, house), { id, dishes: house.dishes.map((d) => (Object.assign(Object.assign({}, d), { house: id }))), wines: house.wines.map((w) => (Object.assign(Object.assign({}, w), { house: id }))), cocktails: house.cocktails.map((c) => (Object.assign(Object.assign({}, c), { house: id }))) });
 }
-/** How many records the ten lists hold between them. */
+/** How many records the eleven lists hold between them; an absent list counts none. */
 function countItems(house) {
-    return (house.tastings.length +
-        house.dishes.length +
-        house.wines.length +
-        house.cocktails.length +
-        house.lexicon.length +
-        house.scenarios.length +
-        house.mixUps.length +
-        house.mustKnows.length +
-        house.askAtLineup.length +
-        house.disputes.length);
+    let n = 0;
+    for (const list of HOUSE_LISTS)
+        n += houseRows(house, list).length;
+    return n;
 }
 /**
  * The rule for the current pointer on an import: a new house becomes
@@ -3388,11 +3588,11 @@ function modeStamp(stamps) {
     }
     return best;
 }
-/** Every record of the ten lists, flat. */
+/** Every record of the eleven lists, flat. */
 function editionRecords(house) {
     const out = [];
     for (const list of HOUSE_LISTS)
-        for (const r of house[list])
+        for (const r of houseRows(house, list))
             out.push(r);
     return out;
 }
@@ -3403,7 +3603,7 @@ function editionStamp(house) {
         stamps.push(house.history.ts);
     for (const list of HOUSE_LISTS) {
         const fields = MARK_FIELDS[list];
-        for (const r of house[list]) {
+        for (const r of houseRows(house, list)) {
             for (const f of fields) {
                 const m = r[f];
                 if (isMark(m))
@@ -3413,7 +3613,7 @@ function editionStamp(house) {
     }
     return modeStamp(stamps);
 }
-/** The edition's item stamp on a house: the most frequent ts over every record of the ten lists. */
+/** The edition's item stamp on a house: the most frequent ts over every record of the eleven lists. */
 function editionItemStamp(house) {
     return modeStamp(editionRecords(house).map((r) => r.ts));
 }
@@ -3561,18 +3761,19 @@ function refreshEdition(device, shipped) {
     const out = Object.assign({}, device);
     for (const list of HOUSE_LISTS) {
         const marks = MARK_FIELDS[list];
-        const mine = device[list];
+        const mine = houseRows(device, list);
         const mineById = new Map();
         for (const r of mine)
             if (!mineById.has(r.id))
                 mineById.set(r.id, r);
         const next = [];
         const seen = new Set();
-        for (const raw of shipped[list]) {
+        for (const raw of houseRows(shipped, list)) {
             if (seen.has(raw.id))
                 continue;
             seen.add(raw.id);
-            const t = 'house' in raw ? Object.assign(Object.assign({}, raw), { house: device.id }) : raw;
+            /* Only an item's house id is re-stamped; a video's `house` is a flag. */
+            const t = typeof raw.house === 'string' ? Object.assign(Object.assign({}, raw), { house: device.id }) : raw;
             const m = mineById.get(t.id);
             if (!m) {
                 const tomb = device.removed[t.id];
@@ -3602,7 +3803,11 @@ function refreshEdition(device, shipped) {
             }
             next.push(m);
         }
-        out[list] = next;
+        /* An optional list (the videos) is written only when it holds something. */
+        if (next.length || !optionalList(list))
+            out[list] = next;
+        else
+            delete out[list];
     }
     for (const f of ['address', 'phone', 'site', 'meals', 'dressCode'])
         out[f] = shipped[f];
@@ -4612,7 +4817,7 @@ function createHouseApi(storage, opts = {}) {
         }
         return readying;
     };
-    const itemsOf = (h, list) => h[list];
+    const itemsOf = (h, list) => houseRows(h, list);
     return {
         ready,
         current: () => house,
@@ -4909,7 +5114,12 @@ function createHouseApi(storage, opts = {}) {
                 const removed = FORBIDDEN_KEY.test(id) ? base.removed : Object.assign(Object.assign({}, base.removed), { [id]: stamp });
                 if (!item && removed === base.removed)
                     return base;
-                return Object.assign(Object.assign({}, base), { [list]: items.filter((i) => i.id !== id), removed });
+                const rest = items.filter((i) => i.id !== id);
+                const next = Object.assign(Object.assign({}, base), { [list]: rest, removed });
+                /* An optional list (the videos) emptied goes, the normaliser's rule. */
+                if (!rest.length && optionalList(list))
+                    delete next[list];
+                return next;
             }, 'remove-item');
         },
         names: async (kind) => {
@@ -5096,6 +5306,12 @@ var ootHouseLib = {
 	emptyHouse: emptyHouse,
 	isMark: isMark,
 	isNote: isNote,
+	videoUrlOk: videoUrlOk,
+	videosFor: videosFor,
+	videoGroups: videoGroups,
+	videoMeta: videoMeta,
+	houseRows: houseRows,
+	optionalList: optionalList,
 	wineListOf: wineListOf,
 	printedDollars: printedDollars,
 	inBottleBand: inBottleBand,
@@ -5180,6 +5396,12 @@ var ootHouseLib = {
 		BOTTLE_BANDS: BOTTLE_BANDS,
 		HALF_SIZE: HALF_SIZE,
 		BOTTLE_WORDS: BOTTLE_WORDS,
+		OPTIONAL_LISTS: OPTIONAL_LISTS,
+		VIDEO_SCHEME: VIDEO_SCHEME,
+		VIDEO_HOSTS: VIDEO_HOSTS,
+		VIDEO_WHY_WORDS: VIDEO_WHY_WORDS,
+		VIDEO_URL_MAX: VIDEO_URL_MAX,
+		VIDEO_TOPIC_NONE: VIDEO_TOPIC_NONE,
 		FATAL_CODES: FATAL_CODES,
 		NEVER_FATAL: NEVER_FATAL,
 		ALLERGEN_TALK: ALLERGEN_TALK,
