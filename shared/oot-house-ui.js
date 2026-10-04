@@ -17,15 +17,17 @@
        Hers, to look over, for one step: 'formula' (the five Floor Deck
        lines, the parts and the timed lines on dishes and cocktails),
        'pairings' (the pairing block on dishes), 'wines' (everything on a
-       wine), 'lexicon' (the words) or 'scenarios' (the table: the
-       conversations, the mix-ups and the must-knows). Every item carrying
+       wine but its comparisons), 'lexicon' (the words), 'scenarios' (the
+       table: the conversations, the mix-ups and the must-knows), 'compare'
+       (each dish, cocktail and wine's comparisons) or 'components' (each
+       component's say, explanation and flash card). Every item carrying
        a mark of hers that nobody has kept, with Keep, Edit and Discard on
        each mark, Keep all on this item, and Keep all that read cleanly.
 
    hooks = { setMark(kind, id, field, mark), discard(kind, id, field),
    problems(kind, id) }, each optional. `kind` is 'dish', 'wine' or
    'cocktail' for an item, the list's own name ('lexicon', 'scenarios',
-   'mixUps', 'mustKnows') for the rest, and 'house' for the card's history:
+   'mixUps', 'mustKnows', 'components') for the rest, and 'house' for the card's history:
    the first argument OOT.house.setMark takes, so a wing hands that through
    and a discard that calls it with null. problems(kind, id) may return a
    list of { field, said } for the item; a problem naming a field holds that
@@ -136,7 +138,9 @@
       pairings: 'The pairings',
       wines: 'The wines',
       lexicon: 'The words',
-      scenarios: 'The table'
+      scenarios: 'The table',
+      compare: 'The comparisons',
+      components: 'The components'
     },
     kinds: {
       dishes: 'Dish',
@@ -145,7 +149,8 @@
       lexicon: 'Term',
       scenarios: 'Conversation',
       mixUps: 'Mix-up',
-      mustKnows: 'Must-know'
+      mustKnows: 'Must-know',
+      components: 'Component'
     },
     fields: {
       say: 'How to say it',
@@ -168,9 +173,16 @@
       difference: 'What tells them apart',
       ask: 'The question that settles it',
       body: 'What to know',
-      history: 'The history'
+      history: 'The history',
+      compare: 'Compare with',
+      explain: 'The explanation',
+      card: 'The flash card'
     },
     lines: { s10: 'Ten seconds', s20: 'Twenty seconds', s45: 'Forty five seconds' },
+    card: { front: 'The front', back: 'The back' },
+    compare: { app: 'Where', ref: 'What it opens', label: 'The comparison', same: 'What is the same', different: 'What is different' },
+    compareEntry: 'Comparison',
+    appHint: 'table, ledger, codex or classic',
     pairing: {
       wineId: 'The wine',
       why: 'Why',
@@ -207,6 +219,9 @@
   var ID_KEYS = { wineId: 1, secondId: 1, zeroProofId: 1 };
   var LIST_FIELDS = { ingredientsNamed: 1, firstPickIds: 1, upsells: 1 };
   var ID_LIST_FIELDS = { firstPickIds: 1, upsells: 1 };
+  var CARD_KEYS = ['front', 'back'];
+  var COMPARE_KEYS = ['app', 'ref', 'label', 'same', 'different'];
+  var COMPARE_MAX = 2;
 
   /* The marks each step looks over, per list. Dishes, wines and cocktails
      are addressed by their kind; the other lists by their name. */
@@ -216,11 +231,13 @@
     pairings: { dishes: ['pairing'] },
     wines: { wines: ['say', 'guest', 'why', 'pairs', 'origin', 'profile', 'goesWith', 'firstPickIds', 'serve', 'parts', 'lines'] },
     lexicon: { lexicon: ['say', 'toGuest'] },
-    scenarios: { scenarios: ['you', 'principle'], mixUps: ['difference', 'ask'], mustKnows: ['body'] }
+    scenarios: { scenarios: ['you', 'principle'], mixUps: ['difference', 'ask'], mustKnows: ['body'] },
+    compare: { dishes: ['compare'], cocktails: ['compare'], wines: ['compare'] },
+    components: { components: ['say', 'explain', 'card'] }
   };
-  var LIST_ORDER = ['dishes', 'cocktails', 'wines', 'lexicon', 'scenarios', 'mixUps', 'mustKnows'];
-  var KIND_OF = { dishes: 'dish', wines: 'wine', cocktails: 'cocktail', lexicon: 'lexicon', scenarios: 'scenarios', mixUps: 'mixUps', mustKnows: 'mustKnows' };
-  var LIST_OF = { dish: 'dishes', wine: 'wines', cocktail: 'cocktails', lexicon: 'lexicon', scenarios: 'scenarios', mixUps: 'mixUps', mustKnows: 'mustKnows' };
+  var LIST_ORDER = ['dishes', 'cocktails', 'wines', 'lexicon', 'scenarios', 'mixUps', 'mustKnows', 'components'];
+  var KIND_OF = { dishes: 'dish', wines: 'wine', cocktails: 'cocktail', lexicon: 'lexicon', scenarios: 'scenarios', mixUps: 'mixUps', mustKnows: 'mustKnows', components: 'components' };
+  var LIST_OF = { dish: 'dishes', wine: 'wines', cocktail: 'cocktails', lexicon: 'lexicon', scenarios: 'scenarios', mixUps: 'mixUps', mustKnows: 'mustKnows', components: 'components' };
 
   /* The dash in every spelling the House refuses, built from pieces so this
      file does not carry what it refuses; the word, as house-lines.ts counts
@@ -390,6 +407,18 @@
       }
       return box;
     }
+    if (field === 'card' && value && typeof value === 'object') {
+      for (var c = 0; c < CARD_KEYS.length; c++) box.appendChild(h('p', { 'class': 'oot-h-sub' }, [eyebrow(STRINGS.card[CARD_KEYS[c]]), String(value[CARD_KEYS[c]] || '')]));
+      return box;
+    }
+    if (field === 'compare' && Array.isArray(value)) {
+      for (var e = 0; e < value.length; e++) {
+        var entry = value[e] && typeof value[e] === 'object' ? value[e] : {};
+        var where = String(entry.app || '') + (entry.ref ? ', ' + String(entry.ref) : '');
+        box.appendChild(h('p', { 'class': 'oot-h-sub' }, [eyebrow(String(entry.label || STRINGS.compareEntry) + (where ? ' (' + where + ')' : '')), String(entry.same || ''), ' ', String(entry.different || '')]));
+      }
+      return box;
+    }
     if (Array.isArray(value)) {
       box.appendChild(h('p', null, has(ID_LIST_FIELDS, field) ? namesOf(house, value) : value.join(', ')));
       return box;
@@ -549,6 +578,19 @@
         var hint = k === 'principles' ? STRINGS.principlesHint : (has(ID_KEYS, k) ? STRINGS.idHint : null);
         ed.appendChild(field(STRINGS.pairing[k], box(k, text, !has(ID_KEYS, k) && k !== 'principles'), hint));
       }
+    } else if (fieldName === 'card') {
+      var card = value && typeof value === 'object' ? value : {};
+      for (i = 0; i < CARD_KEYS.length; i++) ed.appendChild(field(STRINGS.card[CARD_KEYS[i]], box(CARD_KEYS[i], card[CARD_KEYS[i]], true)));
+    } else if (fieldName === 'compare') {
+      var entries = Array.isArray(value) ? value : [];
+      for (var n = 0; n < COMPARE_MAX; n++) {
+        var en = entries[n] && typeof entries[n] === 'object' ? entries[n] : {};
+        ed.appendChild(h('p', { 'class': 'oot-h-label' }, STRINGS.compareEntry + ' ' + (n + 1)));
+        for (i = 0; i < COMPARE_KEYS.length; i++) {
+          k = COMPARE_KEYS[i];
+          ed.appendChild(field(STRINGS.compare[k], box(k + n, en[k], k === 'same' || k === 'different'), k === 'app' ? STRINGS.appHint : null));
+        }
+      }
     } else if (has(LIST_FIELDS, fieldName) || Array.isArray(value)) {
       ed.appendChild(field(labelOf(fieldName), box('list', Array.isArray(value) ? value.join('\n') : '', true), STRINGS.onePerLine));
     } else {
@@ -578,6 +620,20 @@
       out = {};
       for (i = 0; i < LINE_KEYS.length; i++) { k = LINE_KEYS[i]; out[k] = trim(boxValue(ed, k)); if (out[k]) any = true; }
       return any ? out : undefined;
+    }
+    if (fieldName === 'card') {
+      out = {};
+      for (i = 0; i < CARD_KEYS.length; i++) { k = CARD_KEYS[i]; out[k] = trim(boxValue(ed, k)); if (out[k]) any = true; }
+      return any ? out : undefined;
+    }
+    if (fieldName === 'compare') {
+      out = [];
+      for (var e = 0; e < COMPARE_MAX; e++) {
+        var entry = {}, some = false;
+        for (i = 0; i < COMPARE_KEYS.length; i++) { k = COMPARE_KEYS[i]; entry[k] = trim(boxValue(ed, k + e)); if (entry[k] && k !== 'app') some = true; }
+        if (some) out.push(entry);
+      }
+      return out.length ? out : undefined;
     }
     if (fieldName === 'pairing') {
       out = {};

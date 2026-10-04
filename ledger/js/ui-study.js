@@ -466,6 +466,8 @@ const FC_MODES = [
   ['study','The house card','Name and section on the front. The line, the five parts and what to offer next on the back.', fitsHouse('study')],
   /* the house's words, from the shared engine (js/ui-nav.js menuWordCards) */
   ['word','Word cards','The word and the question on the front, what you kept on the back.', d => d.src === 'Words'],
+  /* the house's components, one card each (js/ui-nav.js componentCards) */
+  ['component','Component cards','The question on the front, the answer you kept on the back.', d => d.src === 'Components'],
 ];
 
 function renderFlashcards(){
@@ -598,10 +600,12 @@ function renderFlashcards(){
   const grade = '<div class="row center"><button class="btn btn-brass" data-act="fc-grade" data-ok="1">Got it</button>'
     + '<button class="btn btn-ox" data-act="fc-grade" data-ok="0">Again</button></div>';
 
-  /* the house's words: the word and its question on the front, what was kept on the back */
-  if(fc.mode==='word'){
+  /* the house's words: the word and its question on the front, what was kept on the back;
+     a component's card the same, with its kind (Ingredients, Techniques, Stories) above */
+  if(fc.mode==='word' || fc.mode==='component'){
+    const kindLine = fc.mode==='component' && c.group ? '<div class="eyebrow fc-kind">'+esc(c.group)+'</div>' : '';
     if(!fc.flipped){
-      return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'+FRONT
+      return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'+FRONT+kindLine
         + '<div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
         + '<button class="btn btn-brass" data-act="fc-flip">Flip</button></div></div>';
     }

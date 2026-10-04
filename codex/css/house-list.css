@@ -136,6 +136,17 @@
   .wrap .v30-for { font-size: 16px; color: var(--parch); }
   .wrap .v28 .v30-open { background: none; border: 0; font: inherit; cursor: pointer; text-align: left; }
 
+  /* codex34: what a wine is made of, each component a closed disclosure in the card's own rule; Compare with, its doors 44px targets in gold */
+  .wrap .v34-comps, .wrap .v34-cmp { list-style: none; margin: 0 0 12px; padding: 0; }
+  .wrap .v34-cmp > li { padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .wrap .v34-cmp > li:last-child { border-bottom: 0; }
+  .wrap .v34-body p { margin: 0 0 10px; font-size: 17px; line-height: 1.6; color: var(--parch); }
+  .wrap .v34-body .v28-dl { margin: 4px 0 10px; }
+  .wrap .v34-label { font-weight: 600; color: var(--parch); }
+  .wrap .v34-sub { display: block; margin-top: 3px; font-size: 17px; line-height: 1.55; color: var(--parch); }
+  .wrap .v28 .v34-door { background: none; border: 0; font: inherit; cursor: pointer; text-align: left; font-weight: 600; }
+  .wrap .v28 .v34-door:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
+
   /* the atlas row a card's door opened on */
   .wrap .refrow.v28-here { outline: 1px solid var(--gold-soft); outline-offset: 2px; }
   .wrap .refrow.v28-here:focus { outline: 2px solid var(--gold-hi); }

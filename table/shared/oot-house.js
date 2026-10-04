@@ -4,7 +4,9 @@
 
    WHAT THIS IS. The House: one record per venue (its card, its dishes, wines
    and cocktails with her marks, its tastings, lexicon, scenarios, mix-ups,
-   must-knows and the questions for lineup), kept in the browser and shared
+   must-knows, the questions for lineup, the videos and the components: the
+   ingredients, techniques and stories each item is made of, one card each),
+   kept in the browser and shared
    by the three craft wings. The schema (house-schema.ts), the lines and
    their caps (house-lines.ts), the normaliser (house-normalise.ts), the
    validator (house-validate.ts), the merge (house-merge.ts), the sync with
@@ -210,6 +212,31 @@ const VIDEO_HOSTS = ['youtube.com', 'youtu.be', 'vimeo.com'];
 const VIDEO_WHY_WORDS = 25;
 /** The longest link a video may carry. */
 const VIDEO_URL_MAX = 500;
+/**
+ * The components: the ingredients, techniques and stories an item is made
+ * of, each one card shared by every item that uses it. COMPONENT_KINDS is
+ * the whole set a component may be; COMPONENT_LABELS is how a screen heads
+ * each group, in this order.
+ */
+const COMPONENT_KINDS = ['ingredient', 'technique', 'story'];
+const COMPONENT_LABELS = { ingredient: 'Ingredients', technique: 'Techniques', story: 'Stories' };
+/**
+ * The word caps on a component: the explanation, the card's front and its
+ * back. The validator holds the caps; the floors (EXPLAIN_FLOOR, CARD_BACK_FLOOR)
+ * are the pack builder's, since a person's own shorter note is no fault.
+ */
+const COMPONENT_WORDS = { explain: 160, front: 14, back: 45 };
+const COMPONENT_FLOORS = { explain: 80, back: 20 };
+/**
+ * Where a comparison points: a World Table recipe or technique, a Ledger
+ * cocktail, a Codex grape, producer, primer or house wine, or a classic
+ * written out with no link at all.
+ */
+const COMPARE_APPS = ['table', 'ledger', 'codex', 'classic'];
+/** At most this many comparisons on one item, an in-app one first. */
+const COMPARE_MAX = 2;
+/** The word caps on a comparison: its label, what is the same and what differs. */
+const COMPARE_WORDS = { label: 8, same: 30, different: 30 };
 const VIDEO_URL = new RegExp('^' + VIDEO_SCHEME + ':\\/\\/([A-Za-z0-9.-]+)(?:[\\/?#][^\\s]*)?$');
 /**
  * Whether a link may stand on a video: the secure scheme, no user name, no
@@ -233,11 +260,11 @@ function videoUrlOk(url) {
  * The lists, the marks and the ids, as data
  * ---------------------------------------------------------------------- */
 /**
- * The eleven lists on a House, in the order the record carries them: the
+ * The twelve lists on a House, in the order the record carries them: the
  * eight a pack builds for Lizzy and the drills, the two working lists a
- * person keeps for lineup, then the videos. Every list holds records with an
- * id, so the merge runs per list by id over all eleven. The videos are
- * OPTIONAL_LISTS: written only when they hold something, so every loop over
+ * person keeps for lineup, then the videos and the components. Every list holds records with an
+ * id, so the merge runs per list by id over all twelve. The videos and the
+ * components are OPTIONAL_LISTS: written only when they hold something, so every loop over
  * this list reads a house's rows through houseRows, never house[list].
  */
 const HOUSE_LISTS = [
@@ -251,10 +278,11 @@ const HOUSE_LISTS = [
     'mustKnows',
     'askAtLineup',
     'disputes',
-    'videos'
+    'videos',
+    'components'
 ];
 /** The lists a House carries only when they hold something; absent reads as empty. */
-const OPTIONAL_LISTS = ['videos'];
+const OPTIONAL_LISTS = ['videos', 'components'];
 /** A house's rows on one list, or none when the list is absent (an optional list, or a record from an older edition). */
 function houseRows(house, list) {
     const v = house[list];
@@ -265,9 +293,9 @@ function optionalList(list) {
     return OPTIONAL_LISTS.indexOf(list) >= 0;
 }
 /** The mark fields per kind: everything Lizzy may write and a person may keep. Wines carry parts and lines too. */
-const DISH_MARKS = ['say', 'guest', 'why', 'pairs', 'origin', 'ingredientsNamed', 'parts', 'lines', 'pairing'];
-const WINE_MARKS = ['say', 'guest', 'why', 'pairs', 'origin', 'profile', 'goesWith', 'firstPickIds', 'serve', 'parts', 'lines'];
-const COCKTAIL_MARKS = ['say', 'guest', 'why', 'pairs', 'origin', 'ingredientsNamed', 'parts', 'lines', 'upsells'];
+const DISH_MARKS = ['say', 'guest', 'why', 'pairs', 'origin', 'ingredientsNamed', 'parts', 'lines', 'pairing', 'compare'];
+const WINE_MARKS = ['say', 'guest', 'why', 'pairs', 'origin', 'profile', 'goesWith', 'firstPickIds', 'serve', 'parts', 'lines', 'compare'];
+const COCKTAIL_MARKS = ['say', 'guest', 'why', 'pairs', 'origin', 'ingredientsNamed', 'parts', 'lines', 'upsells', 'compare'];
 /**
  * The mark fields on every list and on the card, so a merge, a review screen
  * or a drill can loop over them without naming a field twice. A list with no
@@ -285,7 +313,8 @@ const MARK_FIELDS = {
     mustKnows: ['body'],
     askAtLineup: [],
     disputes: [],
-    videos: []
+    videos: [],
+    components: ['say', 'explain', 'card']
 };
 /**
  * The id prefix per list and for the house itself. Dishes, wines and
@@ -305,12 +334,13 @@ const ID_PREFIXES = {
     mustKnows: 'k-',
     askAtLineup: 'a-',
     disputes: 'u-',
-    videos: 'v-'
+    videos: 'v-',
+    components: 'c-'
 };
 /** ItemBase on its own, then spread into the three kinds, so a base key is listed once. */
 const ITEM_BASE_KEYS = [
     'id', 'house', 'name', 'section', 'meals', 'price', 'prices',
-    'say', 'guest', 'why', 'pairs', 'origin', 'kept', 'parts', 'lines',
+    'say', 'guest', 'why', 'pairs', 'origin', 'kept', 'parts', 'lines', 'compare',
     'serviceNote', 'ts'
 ];
 /**
@@ -347,6 +377,9 @@ const KEYS = {
     TastingCourse: ['n', 'label', 'dishIds', 'pourId', 'pourText'],
     Tasting: ['id', 'name', 'price', 'meal', 'includesDrinks', 'courses', 'note', 'ts'],
     LexiconTerm: ['id', 'term', 'say', 'toGuest', 'itemIds', 'ts'],
+    ComponentCard: ['front', 'back'],
+    CompareEntry: ['app', 'ref', 'label', 'same', 'different'],
+    HouseComponent: ['id', 'kind', 'name', 'say', 'explain', 'card', 'itemIds', 'termIds', 'ts'],
     Scenario: ['id', 'title', 'guest', 'you', 'principle', 'itemIds', 'ts'],
     MixUp: ['id', 'aId', 'bId', 'difference', 'ask', 'ts'],
     MustKnow: ['id', 'title', 'body', 'ts'],
@@ -355,11 +388,11 @@ const KEYS = {
     Dispute: ['id', 'itemId', 'field', 'a', 'b', 'resolution', 'ts'],
     HouseMeal: ['name', 'days', 'hours'],
     HouseSource: ['title', 'url', 'readOn'],
-    HouseVideo: ['id', 'url', 'title', 'channel', 'mins', 'topic', 'why', 'itemIds', 'termIds', 'house', 'checkedOn', 'ts'],
+    HouseVideo: ['id', 'url', 'title', 'channel', 'mins', 'topic', 'why', 'itemIds', 'termIds', 'componentIds', 'house', 'checkedOn', 'ts'],
     PackStamp: ['id', 'builtBy', 'builtAt', 'version'],
     House: [
         'format', 'version', 'id', 'name', 'address', 'phone', 'site', 'meals', 'history', 'dressCode', 'menusReadOn', 'sources',
-        'tastings', 'dishes', 'wines', 'cocktails', 'lexicon', 'scenarios', 'mixUps', 'mustKnows', 'askAtLineup', 'disputes', 'videos',
+        'tastings', 'dishes', 'wines', 'cocktails', 'lexicon', 'scenarios', 'mixUps', 'mustKnows', 'askAtLineup', 'disputes', 'videos', 'components',
         'removed', 'build', 'began', 'createdAt', 'lastWrite', 'pack'
     ],
     HouseIndex: ['v', 'current', 'list'],
@@ -374,7 +407,8 @@ const KEYS = {
 const OPTIONAL_KEYS = {
     Pairing: ['bottles'],
     HouseWine: ['list', 'bin', 'size'],
-    House: ['videos']
+    HouseVideo: ['componentIds'],
+    House: ['videos', 'components']
 };
 /* -------------------------------------------------------------------------
  * The small functions every module shares
@@ -476,6 +510,31 @@ function videoMeta(v) {
         parts.push(Math.max(1, Math.round(v.mins)) + ' min');
     return parts.join(', ');
 }
+/**
+ * The components of one item, in the house's order: every component whose
+ * itemIds name it. An absent list reads as none.
+ */
+function componentsFor(house, itemId) {
+    return (house.components || []).filter((c) => c.itemIds.indexOf(itemId) >= 0);
+}
+/**
+ * The components of one item grouped by kind, in COMPONENT_KINDS order
+ * (Ingredients, Techniques, Stories), a kind with none left out.
+ */
+function componentGroups(house, itemId) {
+    const mine = componentsFor(house, itemId);
+    const out = [];
+    for (const kind of COMPONENT_KINDS) {
+        const components = mine.filter((c) => c.kind === kind);
+        if (components.length)
+            out.push({ kind, label: COMPONENT_LABELS[kind], components });
+    }
+    return out;
+}
+/** The videos that teach one component, in the house's order. */
+function componentVideos(house, componentId) {
+    return (house.videos || []).filter((v) => Array.isArray(v.componentIds) && v.componentIds.indexOf(componentId) >= 0);
+}
 function mintId(prefix, taken, rand = Math.random) {
     for (let tries = 0; tries < 1000; tries++) {
         let s = prefix;
@@ -491,8 +550,9 @@ function mintId(prefix, taken, rand = Math.random) {
 }
 /**
  * A value with the mark's shape: a known `by`, a finite stamp, a `model` that
- * is a string when present, and a value that is a string, a list of strings
- * or an object (the parts, the lines, the pairing). The shape only: whether
+ * is a string when present, and a value that is a string, a list of strings,
+ * a list of records (the comparisons) or an object (the parts, the lines, the
+ * pairing, a component's card). The shape only: whether
  * the value is blank, and whether it fits the field it sits on, is the
  * normaliser's question.
  */
@@ -509,8 +569,9 @@ function isMark(v) {
     const value = m.value;
     if (typeof value === 'string')
         return true;
+    /* A list of strings (the ids, the names) or a list of records (the comparisons), never a mix. */
     if (Array.isArray(value))
-        return value.every((s) => typeof s === 'string');
+        return value.every((s) => typeof s === 'string') || value.every((s) => !!s && typeof s === 'object' && !Array.isArray(s));
     return !!value && typeof value === 'object';
 }
 /** A value with a kept note's shape: a question, an answer, a finite stamp, a `model` that is a string when present. */
@@ -673,7 +734,8 @@ function stripDashes(s) {
  * pipe or a colon, with the wrong prefix or already taken in this house is
  * minted afresh and the report says so, and every reference to the old id
  * inside the house (a pairing and its bottle tiers, a course, a mix-up, a first pick, an upsell,
- * a term's items, a video's items and terms) follows it, so a pack whose dishes came in under the
+ * a term's items, a video's items, terms and components, a component's items
+ * and terms, a comparison pointing at a house wine) follows it, so a pack whose dishes came in under the
  * desk's 'k-' mint keeps its pairings. An id that would match the client's
  * FORBIDDEN_KEY is minted afresh as well, and a fresh id is drawn again
  * while it would, because a tombstone in `removed` is a KEY and the client
@@ -687,6 +749,12 @@ function stripDashes(s) {
  * 'video', before it claims an id: a card must never carry a link out to
  * anywhere else. The list is written only when a video survives, so a house
  * from before the list comes back with the keys it went in with.
+ *
+ * COMPONENTS. The ingredients, techniques and stories ride in their own
+ * optional list, written only when one survives, each with its three marks
+ * (say, explain, card). An item's comparisons are one mark of records, and a
+ * video's componentIds are written only when it names a component, so a
+ * record from before either field comes back with the keys it went in with.
  */
 /* -------------------------------------------------------------------------
  * The client's rule, copied
@@ -783,7 +851,9 @@ const MARK_KINDS = {
     upsells: 'list',
     parts: 'parts',
     lines: 'lines',
-    pairing: 'pairing'
+    pairing: 'pairing',
+    card: 'card',
+    compare: 'compare'
 };
 function markKind(field) {
     return MARK_KINDS[field] || 'text';
@@ -805,6 +875,8 @@ function markValue(v, kind) {
         const l = asTextList(v);
         return l.length ? l : undefined;
     }
+    if (kind === 'compare')
+        return normaliseCompare(v);
     if (!isRaw(v))
         return undefined;
     let any = false;
@@ -816,6 +888,15 @@ function markValue(v, kind) {
                 any = true;
         }
         return any ? p : undefined;
+    }
+    if (kind === 'card') {
+        const c = {};
+        for (const k of KEYS.ComponentCard) {
+            c[k] = asText(v[k]);
+            if (!blank(c[k]))
+                any = true;
+        }
+        return any ? c : undefined;
     }
     if (kind === 'lines') {
         const l = {};
@@ -849,6 +930,30 @@ function markValue(v, kind) {
         }
     }
     return any ? p : undefined;
+}
+/**
+ * An item's comparisons: each entry rebuilt from KEYS.CompareEntry, every
+ * field a string (the app carried as it came, so the validator can name one
+ * outside COMPARE_APPS), kept only when something is in it; undefined when
+ * none survives. No entry is cut for the count: COMPARE_MAX is the
+ * validator's to name.
+ */
+function normaliseCompare(v) {
+    const out = [];
+    for (const raw of asList(v)) {
+        if (!isRaw(raw))
+            continue;
+        const e = {};
+        let some = false;
+        for (const k of KEYS.CompareEntry) {
+            e[k] = asText(raw[k]);
+            if (k !== 'app' && !blank(asText(raw[k])))
+                some = true;
+        }
+        if (some)
+            out.push(e);
+    }
+    return out.length ? out : undefined;
 }
 /**
  * A pairing's bottle tiers: each tier rebuilt from KEYS.BottlePick and kept
@@ -1163,7 +1268,7 @@ function normaliseVideo(raw, i, ctx) {
         ctx.report.push({ path: path + '.url', code: 'video', said: 'the link ' + shown + ' is not a secure link on YouTube or Vimeo; the video was dropped' });
         return null;
     }
-    return {
+    const v = {
         id: claimId(r.id, ID_PREFIXES.videos, path, ctx),
         url: r.url,
         title: asText(r.title),
@@ -1177,6 +1282,38 @@ function normaliseVideo(raw, i, ctx) {
         checkedOn: asText(r.checkedOn),
         ts: asStamp(r.ts)
     };
+    /* Written only when it names a component, so a video from before the field keeps its keys. */
+    const componentIds = asTextList(r.componentIds);
+    if (componentIds.length) {
+        const out = {};
+        for (const k of KEYS.HouseVideo) {
+            if (k === 'componentIds')
+                out[k] = componentIds;
+            else if (k in v)
+                out[k] = v[k];
+        }
+        return out;
+    }
+    return v;
+}
+/**
+ * One component: its id under the 'c-' prefix, its kind and name as text
+ * (a kind outside COMPONENT_KINDS is carried so the validator names it),
+ * the items and terms it belongs to, and its three marks.
+ */
+function normaliseComponent(raw, i, ctx) {
+    const r = asRecord(raw);
+    /* Built in the order KEYS.HouseComponent names, the marks in their place, so a component reads the same however it came. */
+    const c = {
+        id: claimId(r.id, ID_PREFIXES.components, 'house.components[' + i + ']', ctx),
+        kind: asText(r.kind),
+        name: asText(r.name)
+    };
+    marksOnto(c, r, MARK_FIELDS.components);
+    c.itemIds = asTextList(r.itemIds);
+    c.termIds = asTextList(r.termIds);
+    c.ts = asStamp(r.ts);
+    return c;
 }
 function normaliseMeal(v) {
     const r = asRecord(v);
@@ -1287,7 +1424,22 @@ function applyRenames(house, ctx) {
         for (const v of house.videos) {
             v.itemIds = many(v.itemIds);
             v.termIds = many(v.termIds);
+            if (v.componentIds)
+                v.componentIds = many(v.componentIds);
         }
+    }
+    if (house.components) {
+        for (const c of house.components) {
+            c.itemIds = many(c.itemIds);
+            c.termIds = many(c.termIds);
+        }
+    }
+    /* A comparison's ref is a house wine's id when it points at one; any other ref is a key in another app and maps to nothing here. */
+    for (const list of [house.dishes, house.wines, house.cocktails]) {
+        for (const item of list)
+            if (item.compare)
+                for (const e of item.compare.value)
+                    e.ref = one(e.ref);
     }
 }
 /* -------------------------------------------------------------------------
@@ -1353,6 +1505,9 @@ function normaliseHouse(raw, opts = {}) {
     }
     if (videos.length)
         house.videos = videos;
+    const components = asList(r.components).map((c, i) => normaliseComponent(c, i, ctx));
+    if (components.length)
+        house.components = components;
     applyRenames(house, ctx);
     for (const p of forbiddenKeys(house, 'house', [])) {
         report.push({ path: p, code: 'forbidden', said: 'a key the client refuses is still on the record after normalising' });
@@ -1383,11 +1538,19 @@ function normaliseHouse(raw, opts = {}) {
  * bottle tier that breaks its rule (a wine not on the bottle list, a price
  * outside the tier's band, a half bottle that is not HALF_SIZE, a tier with
  * no why or no line to say); and 'video' a video whose link is not a video
- * link by videoUrlOk, or that has no title or no why. Those nine are
- * FATAL_CODES, the default list, and a pack builder passes exactly that. A
+ * link by videoUrlOk, or that has no title or no why; 'component' a
+ * component whose kind is outside COMPONENT_KINDS, or with no name, or whose
+ * card lacks a front or a back; and 'compare' an item's comparisons past
+ * COMPARE_MAX, an entry whose app is outside COMPARE_APPS, a classic that
+ * carries a ref, an in-app entry with none, or an entry with no label, same
+ * or different. Those eleven are FATAL_CODES, the default list, and a pack builder passes exactly that. A
  * tier's why and line over BOTTLE_WORDS are 'word-cap', and so is a video's
  * why over VIDEO_WHY_WORDS; a tier naming no house wine is 'ref', and so is
- * a video's item or term that is not in the house.
+ * a video's item or term that is not in the house; a component's explanation
+ * over COMPONENT_WORDS.explain, its card's front or back over theirs, and a
+ * comparison's label, same or different over COMPARE_WORDS are 'word-cap';
+ * a component's item or term, a video's component and a codex comparison
+ * naming a house wine id that the house lacks are 'ref'.
  * Three more are advisory and NEVER fatal, whatever list a caller hands in:
  * 'service-note', a person's note that names an allergen without the word
  * confirm (the note is theirs and stands; the flag reminds them to confirm
@@ -1403,7 +1566,7 @@ function normaliseHouse(raw, opts = {}) {
  * and onPage, the rule that 12 is not on a page that prints only 12.50.
  */
 /** The codes that stop a pack, and the default `fatal` list. */
-const FATAL_CODES = ['forbidden', 'dash', 'word-cap', 'ref', 'principles', 'price', 'allergen-talk', 'tier', 'video'];
+const FATAL_CODES = ['forbidden', 'dash', 'word-cap', 'ref', 'principles', 'price', 'allergen-talk', 'tier', 'video', 'component', 'compare'];
 /** The codes that are advice and never fatal, whatever list a caller hands in. */
 const NEVER_FATAL = ['service-note', 'proper-noun', 'quote'];
 /** The client's ALLERGEN_TALK: a line of hers that strays onto allergens is refused, by the code and not the prompt. */
@@ -1618,11 +1781,106 @@ function checkRefs(house, add) {
             ref('house.disputes[' + i + '].itemId', disputes[i].itemId, items, 'a house item', true);
     }
     const terms = idSet(listOf(house, 'lexicon'));
+    const components = listOf(house, 'components');
+    const componentIds = idSet(components);
     const videos = listOf(house, 'videos');
     for (let i = 0; i < videos.length; i++) {
         refs('house.videos[' + i + '].itemIds', videos[i].itemIds, items, 'a house item');
         refs('house.videos[' + i + '].termIds', videos[i].termIds, terms, 'a house term');
+        if (videos[i].componentIds !== undefined)
+            refs('house.videos[' + i + '].componentIds', videos[i].componentIds, componentIds, 'a house component');
     }
+    for (let i = 0; i < components.length; i++) {
+        refs('house.components[' + i + '].itemIds', components[i].itemIds, items, 'a house item');
+        refs('house.components[' + i + '].termIds', components[i].termIds, terms, 'a house term');
+    }
+    /* A codex comparison naming a house wine by its id must name one this house holds; any other ref is a key in another app, check-compare's to resolve. */
+    eachItem(house, (item, path) => {
+        const compare = item.compare;
+        if (!isMark(compare) || !Array.isArray(compare.value))
+            return;
+        const entries = compare.value;
+        for (let j = 0; j < entries.length; j++) {
+            const e = entries[j];
+            if (e && e.app === 'codex' && typeof e.ref === 'string' && HOUSE_WINE_ID.test(e.ref) && !wines.has(e.ref)) {
+                add(path + '.compare.value[' + j + '].ref', 'ref', e.ref + ' is not a house wine in this house');
+            }
+        }
+    });
+}
+/** The shape of a house wine id, the one comparison ref the validator resolves itself. */
+const HOUSE_WINE_ID = /^w-[a-z0-9]{8}$/;
+/**
+ * Every component: its kind one of COMPONENT_KINDS, a name, an explanation
+ * within its cap, and a card, when there is one, with a front and a back
+ * each within its cap. The floors are the pack builder's, never a device's.
+ */
+function checkComponents(house, add) {
+    const known = COMPONENT_KINDS;
+    const components = listOf(house, 'components');
+    for (let i = 0; i < components.length; i++) {
+        const c = components[i];
+        const at = 'house.components[' + i + ']';
+        if (known.indexOf(c.kind) < 0)
+            add(at + '.kind', 'component', String(c.kind) + ' is not one of ' + COMPONENT_KINDS.join(', '));
+        if (typeof c.name !== 'string' || !c.name.trim())
+            add(at + '.name', 'component', 'the component has no name');
+        const explain = c.explain;
+        if (isMark(explain) && typeof explain.value === 'string' && wordCount(explain.value) > COMPONENT_WORDS.explain) {
+            add(at + '.explain.value', 'word-cap', wordCount(explain.value) + ' words; the cap on an explanation is ' + COMPONENT_WORDS.explain);
+        }
+        const card = c.card;
+        if (isMark(card) && card.value && typeof card.value === 'object') {
+            const v = card.value;
+            for (const side of ['front', 'back']) {
+                const text = typeof v[side] === 'string' ? v[side] : '';
+                if (!text.trim())
+                    add(at + '.card.value.' + side, 'component', 'the card has no ' + side);
+                else if (wordCount(text) > COMPONENT_WORDS[side])
+                    add(at + '.card.value.' + side, 'word-cap', wordCount(text) + ' words; the cap on a card\'s ' + side + ' is ' + COMPONENT_WORDS[side]);
+            }
+        }
+    }
+}
+/**
+ * Every item's comparisons: at most COMPARE_MAX, each with an app from
+ * COMPARE_APPS, a ref for an in-app entry and none for a classic, and a
+ * label, a same and a different, each within its cap.
+ */
+function checkCompare(house, add) {
+    const apps = COMPARE_APPS;
+    eachItem(house, (item, path) => {
+        const compare = item.compare;
+        if (!isMark(compare))
+            return;
+        const at = path + '.compare.value';
+        if (!Array.isArray(compare.value)) {
+            add(at, 'compare', 'the comparisons are not a list');
+            return;
+        }
+        const entries = compare.value;
+        if (entries.length > COMPARE_MAX)
+            add(at, 'compare', entries.length + ' comparisons; an item carries at most ' + COMPARE_MAX);
+        for (let j = 0; j < entries.length; j++) {
+            const e = entries[j] || {};
+            const here = at + '[' + j + ']';
+            const app = typeof e.app === 'string' ? e.app : '';
+            if (apps.indexOf(app) < 0)
+                add(here + '.app', 'compare', (app || 'nothing') + ' is not one of ' + COMPARE_APPS.join(', '));
+            const ref = typeof e.ref === 'string' ? e.ref.trim() : '';
+            if (app === 'classic' && ref)
+                add(here + '.ref', 'compare', 'a classic is written out and carries no ref');
+            if (app !== 'classic' && apps.indexOf(app) >= 0 && !ref)
+                add(here + '.ref', 'compare', 'an in-app comparison needs the ref it opens');
+            for (const k of ['label', 'same', 'different']) {
+                const text = typeof e[k] === 'string' ? e[k] : '';
+                if (!text.trim())
+                    add(here + '.' + k, 'compare', 'the comparison has no ' + k);
+                else if (wordCount(text) > COMPARE_WORDS[k])
+                    add(here + '.' + k, 'word-cap', wordCount(text) + ' words; the cap on a comparison\'s ' + k + ' is ' + COMPARE_WORDS[k]);
+            }
+        }
+    });
 }
 /**
  * Every video: its link a video link (videoUrlOk, the normaliser's rule,
@@ -1877,6 +2135,8 @@ function validateHouse(house, opts = {}) {
     checkPrinciples(house, add);
     checkBottles(house, add);
     checkVideos(house, add);
+    checkComponents(house, add);
+    checkCompare(house, add);
     if (typeof opts.sourceText === 'string')
         checkPrices(house, opts.sourceText, add);
     checkMarks(house, add);
@@ -3933,8 +4193,12 @@ const LINE_LABELS = {
     s20: 'in twenty seconds',
     s45: 'in forty five seconds'
 };
-/** The five flashcard kinds: parts, lines, terms, mix-ups, pairings. */
-const FLASHCARD_KINDS = ['part', 'line', 'term', 'mixUp', 'pairing'];
+/**
+ * The six flashcard kinds: parts, lines, terms, mix-ups, pairings and the
+ * components. A component card's itemId is the component's own id (c-),
+ * one card shared by every item that uses it.
+ */
+const FLASHCARD_KINDS = ['part', 'line', 'term', 'mixUp', 'pairing', 'component'];
 /* -------------------------------------------------------------------------
  * The small helpers
  * ---------------------------------------------------------------------- */
@@ -4221,8 +4485,9 @@ function cardBack(name, why) {
 /**
  * The flashcard deck over the kept marks: one card per kept part, per kept
  * line, per kept say and toGuest on a term, per kept difference and ask on
- * a mix-up, and per resolved first pick and zero-proof pick in a kept
- * pairing. The order is the record's; the screen shuffles. A mark nobody
+ * a mix-up, per resolved first pick and zero-proof pick in a kept
+ * pairing, and per kept card on a component, once however many items share
+ * it. The order is the record's; the screen shuffles. A mark nobody
  * kept makes no card.
  */
 function buildFlashcards(house) {
@@ -4283,6 +4548,15 @@ function buildFlashcards(house) {
         const zero = namedItem(byId, p.zeroProofId, 'cocktail');
         if (zero)
             out.push({ kind: 'pairing', front: name + ': without alcohol', back: cardBack(nameOf(zero), p.zeroProofWhy), itemId: d.id });
+    }
+    for (const c of house.components || []) {
+        const card = keptValue(c.card);
+        if (!card)
+            continue;
+        const front = plainText(card.front);
+        const back = plainText(card.back);
+        if (front && back)
+            out.push({ kind: 'component', front, back, itemId: c.id });
     }
     return out;
 }
@@ -5312,6 +5586,9 @@ var ootHouseLib = {
 	videoMeta: videoMeta,
 	houseRows: houseRows,
 	optionalList: optionalList,
+	componentsFor: componentsFor,
+	componentGroups: componentGroups,
+	componentVideos: componentVideos,
 	wineListOf: wineListOf,
 	printedDollars: printedDollars,
 	inBottleBand: inBottleBand,
@@ -5402,6 +5679,13 @@ var ootHouseLib = {
 		VIDEO_WHY_WORDS: VIDEO_WHY_WORDS,
 		VIDEO_URL_MAX: VIDEO_URL_MAX,
 		VIDEO_TOPIC_NONE: VIDEO_TOPIC_NONE,
+		COMPONENT_KINDS: COMPONENT_KINDS,
+		COMPONENT_LABELS: COMPONENT_LABELS,
+		COMPONENT_WORDS: COMPONENT_WORDS,
+		COMPONENT_FLOORS: COMPONENT_FLOORS,
+		COMPARE_APPS: COMPARE_APPS,
+		COMPARE_MAX: COMPARE_MAX,
+		COMPARE_WORDS: COMPARE_WORDS,
 		FATAL_CODES: FATAL_CODES,
 		NEVER_FATAL: NEVER_FATAL,
 		ALLERGEN_TALK: ALLERGEN_TALK,

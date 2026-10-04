@@ -129,7 +129,17 @@ var HS_WORDS = {
   videoFor: 'For: ',
   videoNone: 'More to watch',
   videoPlain: 'A video on {topic}',
-  videoPlainOf: 'A video on {topic}, {i} of {n}'
+  videoPlainOf: 'A video on {topic}, {i} of {n}',
+  madeOf: 'What it\u2019s made of',
+  flashThese: 'Flash these components',
+  compareWith: 'Compare with',
+  same: 'The same',
+  different: 'What differs',
+  classic: 'A classic, for comparison',
+  cardFront: 'On the card',
+  cardBack: 'The answer',
+  inTheRoom: 'in the {room}',
+  inLibrary: 'in the Library'
 };
 function hsSay(key, vars){
   const v = vars || {};
@@ -950,6 +960,85 @@ function hsHereHTML(h, item, row){
   return blocks.length ? '<section class="hs-group" aria-label="' + esc(hsSay('here')) + '"><h3 class="hs-h3">' + esc(hsSay('here')) + '</h3>' + blocks.join('') + '</section>' : '';
 }
 
+/* ---- What it is made of, and Compare with (the component deep dive) ------------- */
+/* An item's components grouped Ingredients, Techniques, Stories, the engine's
+   componentGroups when it is here (OOT.houseLib), else the same rule read
+   here: the house's components whose itemIds name the item, in the house's
+   order, a kind with none left out. */
+var HS_COMPONENT_KINDS = ['ingredient', 'technique', 'story'];
+var HS_COMPONENT_LABELS = { ingredient: 'Ingredients', technique: 'Techniques', story: 'Stories' };
+function hsComponentGroupsLocal(h, id){
+  const mine = (h && Array.isArray(h.components) ? h.components : []).filter(function(c){ return c && Array.isArray(c.itemIds) && c.itemIds.indexOf(id) >= 0; });
+  return HS_COMPONENT_KINDS.map(function(k){
+    return { kind: k, label: HS_COMPONENT_LABELS[k], components: mine.filter(function(c){ return c.kind === k; }) };
+  }).filter(function(g){ return g.components.length; });
+}
+function hsComponentGroups(h, id){ return hsHouseFn('componentGroups', hsComponentGroupsLocal)(h, id); }
+function hsComponentVideos(h, cid){
+  return hsVideoList(h).filter(function(v){ return Array.isArray(v.componentIds) && v.componentIds.indexOf(cid) >= 0; });
+}
+/* A component's kept card, or null: a front and a back, both kept. */
+function hsComponentCard(c){
+  const v = hsKept(c && c.card);
+  return v && hsPlain(v.front) && hsPlain(v.back) ? { front: hsPlain(v.front), back: hsPlain(v.back) } : null;
+}
+function hsMadeOfHTML(h, id){
+  const groups = hsComponentGroups(h, id);
+  if(!groups.length) return '';
+  let cards = 0;
+  const body = groups.map(function(g){
+    return '<div class="eyebrow hs-kind" data-kind="' + esc(g.kind) + '">' + esc(g.label) + '</div><ul class="hs-comps">'
+      + g.components.map(function(c){
+        const say = hsKeptText(c.say);
+        const explain = hsKeptText(c.explain);
+        const card = hsComponentCard(c);
+        if(card) cards++;
+        const vids = hsComponentVideos(h, c.id);
+        const ords = vids.length ? hsVideoOrdinals(vids) : {};
+        return '<li data-component="' + esc(c.id) + '"><details class="hs-more hs-comp"><summary>' + esc(hsPlain(c.name)) + '</summary><div class="hs-read">'
+          + (say ? '<p><span class="hs-soft">' + esc(hsSay('say')) + ':</span> ' + esc(say) + '</p>' : '')
+          + (explain ? hsParas(explain) : '')
+          + (card ? '<dl class="hs-dl"><dt>' + esc(hsSay('cardFront')) + '</dt><dd>' + esc(card.front) + '</dd><dt>' + esc(hsSay('cardBack')) + '</dt><dd>' + esc(card.back) + '</dd></dl>' : '')
+          + (vids.length ? '<p class="hs-soft">' + esc(hsSay('videoNote')) + '</p><ul class="hs-vlist">' + vids.map(function(v){ return hsVideoLI(h, v, false, ords[v.id]); }).join('') + '</ul>' : '')
+          + '</div></details></li>';
+      }).join('') + '</ul>';
+  }).join('');
+  return '<section class="hs-group hs-madeof" aria-labelledby="hs-madeof-h"><h3 class="hs-h3" id="hs-madeof-h">' + esc(hsSay('madeOf')) + '</h3>' + body
+    + (cards ? '<div class="hs-btns"><button class="btn btn-brass" data-act="hs-comp-cards" data-id="' + esc(id) + '">' + esc(hsSay('flashThese')) + '</button></div>' : '')
+    + '</section>';
+}
+/* An item's kept comparisons: a Ledger cocktail opens its Library page here,
+   a Table recipe or technique and a Codex door open in their rooms on the
+   shared origin when the room is installed or the network is up (hsRoomLink),
+   and a classic is words. */
+function hsCompareHref(e, h){
+  const ref = hsPlain(e && e.ref);
+  if(!ref) return { href: '', room: '' };
+  if(e.app === 'ledger') return { href: '#/library/' + slugify(ref), room: 'ledger' };
+  if(!hsShared()) return { href: '', room: '' };
+  if(e.app === 'table') return { href: /^(recipe|technique)\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(ref) ? '/table/' + ref : '', room: 'table' };
+  if(e.app === 'codex') return { href: /^w-[a-z0-9]{8}$/.test(ref) ? hsRoomHref('codex', ref, h) : '/codex/#ref=' + encodeURIComponent(ref), room: 'codex' };
+  return { href: '', room: '' };
+}
+function hsCompareHTML(h, item){
+  const entries = hsKept(item && item.compare);
+  if(!Array.isArray(entries)) return '';
+  const rows = entries.filter(function(e){ return e && hsPlain(e.label); }).map(function(e){
+    const to = e.app === 'classic' ? { href: '', room: '' } : hsCompareHref(e, h);
+    const label = hsPlain(e.label);
+    let head;
+    if(to.room === 'ledger' && to.href) head = '<a class="hs-link" href="' + esc(to.href) + '">' + esc(label) + '</a> <span class="hs-soft">' + esc(hsSay('inLibrary')) + '</span>';
+    else if(to.href) head = hsRoomLink(to.room, to.href, label) + ' <span class="hs-soft">' + esc(hsSay('inTheRoom', { room: HS_ROOM_NAMES[to.room] })) + '</span>';
+    else head = '<span class="hs-strong">' + esc(label) + '</span>' + (e.app === 'classic' ? ' <span class="hs-soft">' + esc(hsSay('classic')) + '</span>' : '');
+    return '<li data-app="' + esc(e.app) + '">' + head
+      + (hsPlain(e.same) ? '<br><span class="hs-soft">' + esc(hsSay('same')) + ':</span> ' + esc(hsPlain(e.same)) : '')
+      + (hsPlain(e.different) ? '<br><span class="hs-soft">' + esc(hsSay('different')) + ':</span> ' + esc(hsPlain(e.different)) : '')
+      + '</li>';
+  });
+  if(!rows.length) return '';
+  return '<section class="hs-group hs-compare" aria-labelledby="hs-compare-h"><h3 class="hs-h3" id="hs-compare-h">' + esc(hsSay('compareWith')) + '</h3><ul class="hs-list">' + rows.join('') + '</ul></section>';
+}
+
 /* ---- the card (1.3) -------------------------------------------------------------- */
 function hsBarRow(id){ return (progress.bar || []).find(function(b){ return b.id === id; }) || null; }
 function hsCardHTML(h, id){
@@ -1039,6 +1128,8 @@ function hsCardHTML(h, id){
   if(pours.length) out += '<div class="eyebrow">' + esc(hsSay('pouredOn')) + '</div><ul class="hs-list">'
     + pours.map(function(t){ return '<li>' + esc(t.tasting.name) + (t.course.label ? ', ' + esc(t.course.label) : '') + '</li>'; }).join('') + '</ul>';
   out += '</section>';
+  /* 8a. what it is made of, and what to compare it with */
+  if(item) out += hsMadeOfHTML(h, id) + hsCompareHTML(h, item);
   /* 9. the five parts */
   if(parts.length) out += '<section class="hs-group"><h3 class="hs-h3">' + esc(hsSay('parts')) + '</h3><dl class="hs-dl">'
     + parts.map(function(p){ return '<dt>' + esc(p[0]) + '</dt><dd>' + esc(p[1]) + '</dd>'; }).join('') + '</dl></section>';
@@ -1246,6 +1337,11 @@ function houseStudyAct(act, data){
     if(!st.open) st.y = scrollY();
     const id = ds.id ? 'drink:' + ds.id : ds.weak ? 'menu-weak' : ds.s ? 'menu:' + slugify(ds.s) : 'menu';
     done = typeof openDeck === 'function' ? openDeck(id) : false;
+  }
+  else if(act === 'hs-comp-cards'){
+    /* the drink's components on the Flashcards tab's card screen, dealt at once (js/ui-nav.js) */
+    if(!st.open) st.y = scrollY();
+    done = typeof openDeck === 'function' && openDeck('item-components:' + ds.id) && typeof startDeckRun === 'function' ? startDeckRun('component') : false;
   }
   else if(act === 'hs-say'){
     if(typeof houseDrillOpen === 'function' && houseDrillOpen('say')){ if(typeof houseSayChoose === 'function') houseSayChoose(ds.id); }

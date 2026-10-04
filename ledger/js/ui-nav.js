@@ -150,7 +150,7 @@ function startDueToday(){
 /* ---- the decks (design 4.7) ------------------------------------------------
    A deck is an id and a preset over state.fc; the deck screen is today's
    setup panel with the source chosen, and the card screen today's run. */
-var DECK_BASE = { src: 'All', section: 'All', special: 'All', level: null, sub: null, tier: 'All', family: 'All', spirit: 'All', smart: false, only: null, deckModes: null };
+var DECK_BASE = { src: 'All', section: 'All', special: 'All', level: null, sub: null, tier: 'All', family: 'All', spirit: 'All', smart: false, only: null, deckModes: null, ordered: false };
 var MENU_MODE_DECKS = { 'menu-line10': ['line10', 'The ten second line'], 'menu-line20': ['line20', 'The twenty second line'], 'menu-line45': ['line45', 'The forty five second line'], 'menu-parts': ['parts', 'The five parts'], 'menu-offer': ['upsell', 'What to offer next'] };
 var SRC_DECKS = { 'shots': ['Shots', 'Shots'], 'zero-proof': ['Zero Proof', 'Zero Proof'], 'on-tap': ['On Tap', 'On Tap'], 'coffee': ['Coffee', 'Coffee & Tea'] };
 var SPECIAL_DECKS = { 'everything': ['All', 'Every card'], 'trouble': ['trouble', 'Trouble cards'], 'unmastered': ['unmastered', 'Unmastered only'] };
@@ -189,10 +189,48 @@ function menuWordCards(){
 function wordCardByKey(key){
   return menuWordCards().find(function(d){ return cardKey(d) === key; }) || null;
 }
+/* the house's components as cards (one per component, shared by every item
+   that uses it), from the shared engine, when it is here: graded under
+   'Components · {front}', a key the orphan sweep never touches */
+var COMPONENT_KINDS_NAV = ['ingredient', 'technique', 'story'];
+var COMPONENT_DECK_NAMES = { ingredient: 'Ingredients', technique: 'Techniques', story: 'Stories' };
+function componentCards(){
+  try {
+    const lib = typeof houseLibHere === 'function' ? houseLibHere() : null;
+    const h = typeof hsCurrent === 'function' ? hsCurrent() : null;
+    /* the engine's door puts buildFlashcards on houseLib itself; drills is read too, for an engine that moves it */
+    const build = lib && lib.drills && typeof lib.drills.buildFlashcards === 'function' ? lib.drills.buildFlashcards
+      : lib && typeof lib.buildFlashcards === 'function' ? lib.buildFlashcards : null;
+    if(!build || !h) return [];
+    const kindOf = {};
+    (h.components || []).forEach(function(c){ if(c && c.id) kindOf[c.id] = c.kind; });
+    return build(h).filter(function(c){ return c && c.kind === 'component' && c.front && c.back; })
+      .map(function(c){ const k = kindOf[c.itemId] || ''; return { src: 'Components', name: c.front, back: c.back, group: COMPONENT_DECK_NAMES[k] || 'Components', kind: k, ref: { id: c.itemId } }; });
+  } catch (e) { return []; }
+}
+function componentCardByKey(key){
+  return componentCards().find(function(d){ return cardKey(d) === key; }) || null;
+}
+/* the cards of one item's components, Ingredients then Techniques then Stories */
+function itemComponentCards(itemId){
+  const h = typeof hsCurrent === 'function' ? hsCurrent() : null;
+  if(!h) return [];
+  const cards = componentCards();
+  const mine = (h.components || []).filter(function(c){ return c && Array.isArray(c.itemIds) && c.itemIds.indexOf(itemId) >= 0; });
+  const out = [];
+  COMPONENT_KINDS_NAV.forEach(function(k){
+    mine.filter(function(c){ return c.kind === k; }).forEach(function(c){
+      const card = cards.find(function(d){ return d.ref && d.ref.id === c.id; });
+      if(card) out.push(card);
+    });
+  });
+  return out;
+}
 /* a card key back to its card, of any engine here: the deck's own cards and
    the house's words */
 function cardByKey(key){
   if(String(key).indexOf('Words · ') === 0) return wordCardByKey(key);
+  if(String(key).indexOf('Components · ') === 0) return componentCardByKey(key);
   return allDrinks().find(function(d){ return !d.draft && cardKey(d) === key; }) || null;
 }
 /* id to { name, preset } ; null for an id nothing answers */
@@ -210,6 +248,20 @@ function deckDef(id, lvArg){
   if(id === 'menu-words'){
     const cards = menuWordCards();
     return cards.length ? { name: 'The menu’s words', preset: { only: cards, deckModes: ['word'] }, house: true } : null;
+  }
+  if(id === 'components' || id.indexOf('components:') === 0){
+    const k = id.slice(11);
+    if(id !== 'components' && !COMPONENT_DECK_NAMES[k]) return null;
+    const cards = componentCards().filter(function(d){ return id === 'components' || d.kind === k; });
+    return cards.length ? { name: id === 'components' ? 'Every component' : COMPONENT_DECK_NAMES[k], preset: { only: cards, deckModes: ['component'] }, house: true } : null;
+  }
+  if(id.indexOf('item-components:') === 0){
+    const itemId = id.slice(16);
+    const h = typeof hsCurrent === 'function' ? hsCurrent() : null;
+    const it = h && typeof hsFind === 'function' ? hsFind(h, itemId) : null;
+    const cards = itemComponentCards(itemId);
+    /* dealt in the order the card shows them, Ingredients, Techniques, Stories, never shuffled */
+    return it && cards.length ? { name: it.name + ': what it is made of', preset: { only: cards, deckModes: ['component'], ordered: true }, house: true } : null;
   }
   if(id.indexOf('drink:') === 0){
     const b = (progress.bar || []).find(function(x){ return x.id === id.slice(6); });
@@ -285,7 +337,7 @@ function startDeckRun(mode){
   if(!row) return false;
   const pool = pool0.filter(row[3] || function(){ return true; });
   if(!pool.length) return false;
-  const deck = fc.smart ? pool.slice().sort(function(a, b){ return weakScore(cardKey(b)) - weakScore(cardKey(a)); }) : shuffle(pool);
+  const deck = fc.ordered ? pool.slice() : fc.smart ? pool.slice().sort(function(a, b){ return weakScore(cardKey(b)) - weakScore(cardKey(a)); }) : shuffle(pool);
   Object.assign(fc, { stage: 'run', mode: row[0], deck: deck, idx: 0, right: 0, wrong: 0, missed: [] });
   prepCard();
   return true;
@@ -346,6 +398,8 @@ function fcPickHTML(){
   });
   const level = rowsNav(L, [deckRow('cocktails')].concat(books, [deckRow('shots'), deckRow('zero-proof'), deckRow('on-tap'), deckRow('coffee')]));
   const words = deckDef('menu-words') ? rowsNav('Words', [deckRow('menu-words')]) : '';
+  /* what the menu is made of: a deck per kind of component, each only when it holds a card */
+  const made = rowsNav('What it\u2019s made of', COMPONENT_KINDS_NAV.map(function(k){ return deckRow('components:' + k); }));
   const ref = rowsNav('Reference cards', [deckRow('everything'), deckRow('trouble'), deckRow('unmastered'),
     rowDoor('data-act="fc-board"', 'The mastery board', 'Every card and its record, by name.')]);
   return '<div class="col fc-pick">'
@@ -354,6 +408,7 @@ function fcPickHTML(){
     + due
     + '<section class="col-sm" aria-labelledby="fc-house-h"><h3 class="sub-head" id="fc-house-h">My restaurant</h3>' + house + '</section>'
     + '<section class="col-sm" aria-labelledby="fc-level-h"><h3 class="sub-head" id="fc-level-h">' + esc(L) + '</h3>' + level + '</section>'
+    + (made ? '<section class="col-sm" aria-labelledby="fc-made-h"><h3 class="sub-head" id="fc-made-h">What it\u2019s made of</h3>' + made + '</section>' : '')
     + (words ? '<section class="col-sm" aria-labelledby="fc-words-h"><h3 class="sub-head" id="fc-words-h">Words</h3>' + words + '</section>' : '')
     + '<section class="col-sm" aria-labelledby="fc-ref-h"><h3 class="sub-head" id="fc-ref-h">Reference cards</h3>' + ref + '</section>'
     + '</div>';

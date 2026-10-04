@@ -89,6 +89,16 @@
   .hs-strong{font-weight:600;color:var(--cream)}
   .hs-ticket .ticket{max-width:100%}
 
+  /* what a drink is made of: the kinds as quiet eyebrows, each component a closed disclosure in the house's own rule */
+  .hs-kind{margin-top:4px}
+  .hs-comps{list-style:none;margin:0;padding:0}
+  .hs-comps li{border-bottom:1px solid var(--house-line)}
+  .hs-comps li:last-child{border-bottom:0}
+  .hs-comp>summary{font-family:var(--house-reading);font-size:1.0625rem;letter-spacing:0;color:var(--cream)}
+  .hs-comp .hs-dl{margin:6px 0}
+  .hs-compare .hs-list li{margin:.5em 0}
+  .fc-kind{color:var(--brass-2)}
+
   /* the videos: links out, never a player; the title a 44px target in brass */
   .hs-vlist{list-style:none;margin:0;padding:0}
   .hs-sec .hs-vlist{margin:0}
