@@ -8,6 +8,8 @@
    IT NEVER COUNTS AT THEM. No streak, no day number, no notice about how long
    it has been. A streak punishes hardest exactly when somebody is already
    struggling, and an absence notice is an app telling a person off for living.
+   The owner's optional workout set counter is a hand-operated tool beneath
+   each workout film, not a score or an automatic completion record.
    The totals still exist for anyone who goes looking for them, in Settings and
    in The Record. They are not brought to the reader unasked. This is the same
    position the journal heatmap already took when it chose to report a steady
@@ -125,9 +127,77 @@ FL_ACTS.liftAgain = function () {
 
 FL_ACTS.vidAgain = function () {
   vidSeed++;
-  render();
+  var shelf = document.getElementById('today-films');
+  if (shelf) shelf.innerHTML = todayFilms(doyOf(flShiftedNow().getMonth() + 1, flShiftedNow().getDate()));
+  else render();
   announce('Two more films.');
 };
+
+FL_ACTS.todayJump = function (el) {
+  var target = document.getElementById(el.getAttribute('data-target'));
+  if (target) { target.focus({ preventScroll: true }); target.scrollIntoView({ block: 'start' }); }
+};
+
+/* A counter changes only its own text and controls. Repainting Today would
+   tear down the video iframe and stop the reader's workout on every tap. */
+var todaySetUndo = {};
+function todaySetKey(day, id) { return day + ':' + id; }
+function todaySetRecord(day, id) {
+  var rec = FL.workoutSets && FL.workoutSets[day] && FL.workoutSets[day][id];
+  return flValidSetRecord(rec) ? rec : { count: 0, updated: 0 };
+}
+function todaySetCounter(v) {
+  if (v.kind !== 'workout') return '';
+  var day = flToday(), count = todaySetRecord(day, v.id).count;
+  var undo = todaySetUndo[todaySetKey(day, v.id)];
+  return '<section class="workout-counter" data-set-video="' + esc(v.id) + '" data-set-day="' + day + '" aria-label="Set counter for ' + esc(v.title || v.frame) + '">' +
+    '<div class="set-heading"><h3>Workout set counter</h3><p><strong data-set-count>' + count + '</strong> <span data-set-unit>' + (count === 1 ? 'set' : 'sets') + '</span> today</p></div>' +
+    '<p class="set-help">Tap after each set you choose to count. Saved for this video and this day on this device; your next day starts at zero.</p>' +
+    '<div class="set-actions">' +
+      '<button type="button" class="btn" data-act="workoutSet" data-op="add"' + (count >= 999 ? ' disabled' : '') + '>Add a set</button>' +
+      '<button type="button" class="keep" data-act="workoutSet" data-op="undo"' + (undo ? '' : ' disabled') + '>' + (undo && undo.op === 'reset' ? 'Undo reset' : 'Undo') + '</button>' +
+      '<button type="button" class="keep" data-act="workoutSet" data-op="reset"' + (count ? '' : ' disabled') + '>Reset</button>' +
+    '</div><p class="set-status" data-set-status role="status" aria-live="polite" aria-atomic="true"></p></section>';
+}
+FL_ACTS.workoutSet = function (el) {
+  var host = el.closest('.workout-counter');
+  if (!host) return;
+  var id = host.getAttribute('data-set-video'), day = host.getAttribute('data-set-day');
+  if (!todayFilmPool().some(function (v) { return v.id === id && v.kind === 'workout'; })) return;
+  /* A video can remain open past the reader's shift boundary. Keep the player,
+     move this counter to the new day, then honour the tap on that day. */
+  var changedDay = day !== flToday();
+  if (changedDay) { day = flToday(); host.setAttribute('data-set-day', day); }
+  var key = todaySetKey(day, id), record = todaySetRecord(day, id), count = record.count;
+  var op = el.getAttribute('data-op'), old = count, undo = todaySetUndo[key];
+  if (op === 'add' && count < 999) count++;
+  else if (op === 'reset' && count) count = 0;
+  else if (op === 'undo' && undo) count = undo.count;
+  else { todayPaintSetCounter(host, day, id, changedDay ? 'A new day: the counter starts at zero.' : ''); return; }
+  if (op === 'undo') delete todaySetUndo[key];
+  else todaySetUndo[key] = { count: old, op: op };
+  if (!FL.workoutSets || typeof FL.workoutSets !== 'object' || Array.isArray(FL.workoutSets)) FL.workoutSets = {};
+  if (!FL.workoutSets[day] || typeof FL.workoutSets[day] !== 'object' || Array.isArray(FL.workoutSets[day])) FL.workoutSets[day] = {};
+  FL.workoutSets[day][id] = { count: count, updated: Math.max(Date.now(), record.updated + 1) };
+  var saved = flSave(true);
+  var message = (op === 'reset' ? 'Counter reset. Undo restores it.' : op === 'undo' ? 'Last change undone.' : 'Set added.') +
+    ' ' + count + (count === 1 ? ' set' : ' sets') + ' today.';
+  if (changedDay) message = 'A new day. ' + message;
+  if (!saved) message += ' This device could not save; the count lasts only for this session.';
+  todayPaintSetCounter(host, day, id, message);
+};
+function todayPaintSetCounter(host, day, id, message) {
+  var count = todaySetRecord(day, id).count, undo = todaySetUndo[todaySetKey(day, id)];
+  host.querySelector('[data-set-count]').textContent = count;
+  host.querySelector('[data-set-unit]').textContent = count === 1 ? 'set' : 'sets';
+  var add = host.querySelector('[data-op="add"]'), back = host.querySelector('[data-op="undo"]'), reset = host.querySelector('[data-op="reset"]');
+  add.disabled = count >= 999; back.disabled = !undo; reset.disabled = !count;
+  back.textContent = undo && undo.op === 'reset' ? 'Undo reset' : 'Undo';
+  host.querySelector('[data-set-status]').textContent = message;
+  if (document.activeElement && document.activeElement.disabled && host.contains(document.activeElement)) {
+    (add.disabled ? reset : add).focus({ preventScroll: true });
+  }
+}
 
 /* FL.intents is the ONLY source of truth for the chosen intent: a session
    mirror made the chip need two taps to clear after a reload. */
@@ -217,16 +287,16 @@ function todayFilmPool() {
 function todayFilms(doy) {
   var pool = todayFilmPool();
   if (pool.length < 2 || typeof vidCard !== 'function') return '';
-  var n = pool.length;
-  var a = (doy + vidSeed * 5) % n;
-  var b = (doy * 3 + 1 + vidSeed * 7) % n;
-  if (b === a) b = (b + 1) % n;
+  var yoga = pool.filter(function (v) { return v.kind === 'yoga'; });
+  var workout = pool.filter(function (v) { return v.kind === 'workout'; });
+  var a = yoga.length ? yoga[(doy + vidSeed) % yoga.length] : pool[(doy + vidSeed) % pool.length];
+  var b = workout.length ? workout[(doy + vidSeed) % workout.length] : pool[(doy + vidSeed + 1) % pool.length];
   return '<div class="label">Two films for the body</div>' +
-    '<p class="px" style="color:var(--faint);margin-bottom:10px">Dealt by the date from the yoga and workout shelf. ' +
+    '<p class="px" style="color:var(--faint);margin-bottom:10px">One yoga practice and one workout, chosen by the date. ' +
       'They belong to their creators and need a connection to play; ' +
       'the whole shelf is in <a class="readmini" href="#/videos">Videos</a>, under Body.</p>' +
-    vidCard(pool[a], pool[a].id) + vidCard(pool[b], pool[b].id) +
-    '<div style="text-align:center;margin-top:4px"><button class="keep" data-act="vidAgain">Another</button></div>';
+    vidCard(a, a.id) + vidCard(b, b.id) + todaySetCounter(b) +
+    '<div style="text-align:center;margin-top:4px"><button class="keep" data-act="vidAgain">Choose two other films</button></div>';
 }
 
 /* --- pieces --- */
@@ -406,7 +476,7 @@ function todayGuided(m, d, e, doy, p) {
     { label: 'Sit with it', body: function () {
         return todayBreath();
       } },
-    { label: 'Move', body: function () { return todayMove(); } },
+    { label: 'Move', body: function () { return todayMove() + '<div id="today-films">' + todayFilms(doy) + '</div>'; } },
     { label: 'The practice', body: function () { return todayPractice(p) + todayLift(doy); } }
   ];
 
@@ -469,14 +539,22 @@ function todayPage(m, d, e, doy, p) {
     todayDateLine() +
     '<h1>' + esc(trackMonths()[m - 1][1]) + '</h1>' +
     '<p class="note">' + esc(trackMonths()[m - 1][2]) + '</p>' +
+    '<nav class="today-shortcuts" aria-label="On this morning’s page">' +
+      '<span>Go straight to</span>' +
+      '<button class="keep" data-act="todayJump" data-target="today-read">Read</button>' +
+      '<button class="keep" data-act="todayJump" data-target="today-breathe">Breathe</button>' +
+      '<button class="keep" data-act="todayJump" data-target="today-films">Workout films</button>' +
+      '<button class="keep" data-act="todayJump" data-target="today-move">Movement</button>' +
+      '<button class="readmini" data-act="todayMode" data-mode="guided">Guide me through</button>' +
+    '</nav>' +
     '<div class="flow">' +
-      todayVoice(m, d, e) +
+      '<section id="today-read" tabindex="-1" aria-label="Today’s reading">' + todayVoice(m, d, e) + '</section>' +
       '<p class="refl" style="margin-top:10px">' + esc(TURN_PROMPTS[doy % TURN_PROMPTS.length]) + '</p>' +
       todayLift(doy) +
-      todayBreath() +
-      todayFilms(doy) +
+      '<section id="today-breathe" tabindex="-1" aria-label="Breathing practice">' + todayBreath() + '</section>' +
+      '<section id="today-films" tabindex="-1" aria-label="Yoga and workout films">' + todayFilms(doy) + '</section>' +
       todayTeaching(m, doy) +
-      todayMove() +
+      '<section id="today-move" tabindex="-1" aria-label="Today’s movement">' + todayMove() + '</section>' +
       '<div class="label">Today’s practice</div>' + todayPractice(p) +
       todayIntentPanel() +
       todaySortPanel() +

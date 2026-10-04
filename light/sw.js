@@ -7,7 +7,7 @@
    index.html. A file in one and not the other is the single most common way this
    app breaks offline while looking fine online. */
 
-const CACHE = 'oot-light-v86';
+const CACHE = 'oot-light-v87';
 
 /* Scripture lives in its own cache, deliberately NOT versioned with the shell.
    The library is ~12 MB; tying it to CACHE would throw it away and re-download it
@@ -19,6 +19,7 @@ const TEXT_CACHE = 'oot-light-texts-v3';
 const ASSETS = [
   './',
   './index.html',
+  './js/oot-service.js',
   /* The nine shared scripts are the only content this wing loads from outside
      its own directory, and every page needs them: without them cached, an
      offline reader gets a wing with no return chip and no profile row. The

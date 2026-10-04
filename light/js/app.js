@@ -127,6 +127,7 @@ var NAV_HOMES = { chart: 'mind' };
 var NAV_UNLISTED = ['lineup', 'clear'];
 /* sub-row labels that differ from the view's own */
 var NAV_LABELS = { vault: 'The Vault', hall: 'The Readings', threads: 'The Threads' };
+var NAV_HINTS = { mind: 'Read & explore', body: 'Move & breathe', heart: 'Reflect & plan', soul: 'Sacred readings' };
 var flLastSub = {};   // tab id -> last visited view, session-only
 
 function navClusterOf(view) {
@@ -162,14 +163,14 @@ function renderNav() {
   /* the visible text starts the accessible name: "First Light, today" */
   var home = '<div class="nav-home">' +
     '<a class="nav-name" href="#/today"' + (here === 'today' ? ' aria-current="page"' : '') +
-      '>First Light<span class="sr-only">, today</span></a>' +
+      '>Today<span class="sr-only"> in First Light</span></a>' +
     '<div class="nav-utils">' + NAV_UTILS.concat(stray).map(navLink).join('') + '</div>' +
   '</div>';
 
   var tabs = NAV_CLUSTERS.map(function (c) {
     var dest = flLastSub[c[0]] || c[2][0];
     return '<a href="#/' + dest + '"' + (active === c[0] ? ' aria-current="true" class="on"' : '') +
-           '>' + esc(c[1]) + '</a>';
+           '><span>' + esc(c[1]) + '</span><span class="nav-hint">' + esc(NAV_HINTS[c[0]]) + '</span></a>';
   }).join('');
 
   var tab = null;

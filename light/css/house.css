@@ -46,6 +46,8 @@
   .col .nav-places{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
   .col .nav-places a{font-family:var(--house-display);font-size:14px;letter-spacing:.13em;min-height:52px;border:1px solid var(--line);color:var(--ink);border-radius:3px}
   .col .nav-places a.on{border-color:var(--accent);box-shadow:inset 0 -3px var(--accent);background:var(--bg)}
+  .col #nav .nav-places a{flex-direction:column;gap:4px}
+  .col .nav-hint{font-family:var(--sans);font-size:11px;line-height:1.4;letter-spacing:0;text-transform:none;color:var(--faint)}
   .col .nav-tools{max-width:none;gap:5px 13px;justify-content:flex-start;margin-top:14px;padding-top:10px}
   .col .nav-utils a,.col .nav-tools a{font-size:12px;letter-spacing:.07em;color:var(--faint)}
   .col #nav a:hover,.col .nav-tools a[aria-current='page']{color:var(--accent);border-bottom-color:var(--accent)}

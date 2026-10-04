@@ -191,8 +191,12 @@ function sunApply() {
   var pref = (typeof FL !== 'undefined' && FL.prefs && FL.prefs.theme) ? FL.prefs.theme : 'auto';
   var phase = (pref === 'auto') ? sunPhase() : pref;
   var root = document.documentElement;
+  var service = root.getAttribute('data-service');
+  if (service === 'day' || service === 'night') phase = service;
   if (root.getAttribute('data-phase') !== phase) root.setAttribute('data-phase', phase);
   root.setAttribute('data-season', sunSeason());
+  var chooser = document.querySelector('[data-change="setServiceTheme"]');
+  if (chooser && chooser.value !== service) chooser.value = service;
 
   /* Keep the meta theme-color in step so the phone's status bar matches the app
      rather than flashing the wrong colour on every launch. */
@@ -209,6 +213,9 @@ function sunApply() {
   sunTimer = setTimeout(sunApply, msToNextMinute);
   return phase;
 }
+/* The common service choice changes the palette in place, preserving a video,
+   breath timer or half-written journal entry already open on the page. */
+window.addEventListener('oot:servicechange', function () { sunApply(); });
 
 /* A readable summary for the settings panel, so the reader can see what the app
    believes about their sky and correct it if it is wrong. */

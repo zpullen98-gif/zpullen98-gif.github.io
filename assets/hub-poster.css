@@ -345,3 +345,13 @@ header.top { padding: 0; }
 .plate-live.plate-zoomed footer.foot { padding: 10px 0 12px; border-top: 1px solid var(--hair-firm); }
 
 .venue-note { text-align: center; }
+/* The surrounding page follows the collection; the original illuminated
+   artwork keeps its own natural colours in both services. */
+html[data-service='day'] {
+  color-scheme: light;
+  --ink: #f3ead8; --ink-2: #fff8e9; --ink-3: #e9dec6;
+  --cream: #21382a; --dim: #5c5948;
+  --brass: #806022; --brass-hi: #725315;
+  --line: #cdb991; --line-2: #88795d;
+}
+html[data-service='day'] body { background: #f3ead8; color: #21382a; }

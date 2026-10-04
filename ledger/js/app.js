@@ -17,6 +17,7 @@ function say(msg){
 function focusSignature(el){
   if(!el || el === document.body) return null;
   const d = el.dataset || {};
+  if(d.act && d.act.indexOf('scope-') === 0 && typeof scopeFocusSelector === 'function') return scopeFocusSelector(d);
   /* selects and inputs have no data-act but do have stable ids: without
      this, every filter change dropped focus to <body> and arrow-browsing a
      select was impossible */
@@ -260,7 +261,13 @@ document.addEventListener('keydown', e => {
   }
   /* Escape closes the topmost layer and never navigates: the scope chip's
      level list (design 2.3) */
-  if(e.key === 'Escape' && state.scopeOpen){ state.scopeOpen = ''; render(); e.preventDefault(); return; }
+  if(e.key === 'Escape' && state.scopeOpen){
+    const root = state.scopeOpen;
+    state.scopeOpen = ''; render();
+    const opener = document.querySelector(scopeFocusSelector({ for:root }));
+    if(opener && opener.focus) opener.focus({ preventScroll:true });
+    e.preventDefault(); return;
+  }
   if(typing) return;
   if(e.key === '/'){ openSearch(); e.preventDefault(); return; }
   if(e.key === 'Escape' && state.sheet){ closeSheet(); return; }

@@ -1,5 +1,5 @@
 {
   "note": "The source commit each wing copy was last synced from, per piece. sync-wing.mjs merges only the hunks between this base and the source HEAD, then advances it. The historical divergence of the wing copies (nobody named, dash-free wording, KEY()) is never re-merged.",
-  "ledger": "693e5d5",
-  "codex": "8d5b03c"
+  "ledger": "4c5a8a7",
+  "codex": "5fb27f8"
 }

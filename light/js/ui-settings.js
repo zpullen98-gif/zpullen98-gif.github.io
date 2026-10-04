@@ -52,6 +52,12 @@ FL_ACTS.setTheme = function (el) {
   sunApply();
   render();
 };
+FL_ACTS.setServiceTheme = function (el) {
+  if (window.OOT && window.OOT.service && typeof window.OOT.service.set === 'function') {
+    window.OOT.service.set(el.value);
+    sunApply();
+  }
+};
 
 FL_ACTS.useLocation = function () {
   sunAskLocation().then(function () {
@@ -214,7 +220,8 @@ FL_VIEWS.settings = {
   title: 'Settings',
   render: function () {
     var sky = sunDescribe();
-    var theme = FL.prefs.theme || 'auto';
+    var serviceTheme = !!(window.OOT && window.OOT.service);
+    var theme = serviceTheme ? document.documentElement.getAttribute('data-service') : (FL.prefs.theme || 'auto');
     var opt = function (v, t) {
       return '<option value="' + v + '"' + (theme === v ? ' selected' : '') + '>' + t + '</option>';
     };
@@ -228,7 +235,7 @@ FL_VIEWS.settings = {
 
     var times = sky.polar
       ? '<p class="px" style="color:var(--faint)">At your latitude the sun does not rise or set today. ' +
-        'The palette follows the sun’s height instead, which still works.</p>'
+        'The solar phase still follows the sun’s height.</p>'
       : '<div class="astrorow"><span class="k">First light</span> ' + esc(sky.dawn) +
         '</div><div class="astrorow"><span class="k">Sunrise</span> ' + esc(sky.sunrise) +
         '</div><div class="astrorow"><span class="k">Sunset</span> ' + esc(sky.sunset) +
@@ -240,13 +247,15 @@ FL_VIEWS.settings = {
 
       '<div class="label">Light</div>' +
       '<div class="card">' +
+        (serviceTheme ? '<p class="px" style="margin-bottom:10px">Choose warm paper for Day service or forest green for Night service. The same choice follows you through all five Outside Of Time apps in this browser.</p>' +
+        '<select class="sel" data-change="setServiceTheme" aria-label="Service colours">' + opt('day', 'Day service') + opt('night', 'Night service') + '</select>' :
         '<p class="px" style="margin-bottom:10px">The app follows your sky by default: night before first light, ' +
         'warm through sunrise, plain by day, cooler at dusk. You can hold it at one instead.</p>' +
         '<select class="sel" data-change="setTheme" aria-label="Palette">' +
           opt('auto', 'Follow the sun') + opt('firstlight', 'Always first light') +
           opt('day', 'Always day') + opt('dusk', 'Always dusk') + opt('night', 'Always night') +
-        '</select>' +
-        '<div class="astrorow" style="margin-top:12px"><span class="k">Right now</span> ' +
+        '</select>') +
+        '<div class="astrorow" style="margin-top:12px"><span class="k">Your sky now</span> ' +
           esc(sky.phase) + ' · ' + esc(sky.season) + '</div>' +
         times +
       '</div>' +

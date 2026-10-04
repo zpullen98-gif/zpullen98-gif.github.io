@@ -2274,6 +2274,8 @@
 <link rel="stylesheet" href="css/house.css">
 <link rel="stylesheet" href="css/house-cards.css">
 <link rel="stylesheet" href="css/house-overlays.css">
+<link rel="stylesheet" href="css/house-service.css">
+<script src="js/oot-service.js" data-wing="almanac"></script>
 </head>
 <body class="house-atlas-home">
 <a class="skip" id="skip-link" href="#charts-home">Skip to content</a>
@@ -4255,7 +4257,7 @@
         </div>
         <div class="fnb-form-row">
           <label>Name</label>
-          <input type="text" class="fnb-form-name" aria-label="Name of recipe, drink or wine" placeholder="e.g. Cape Malay bobotie" value="${name}">
+          <input type="text" class="fnb-form-name" aria-label="Name of recipe, drink or wine" placeholder="Name the recipe, drink or wine" value="${name}">
         </div>
         <textarea class="fnb-form-notes" aria-label="Tasting notes or recipe" placeholder="How it tasted, where you had it, the recipe, the bottle...">${notes}</textarea>
         <div class="fnb-form-actions">
@@ -4432,6 +4434,9 @@
 
   // ============ MY VOYAGES VIEW ============
   function showMyVoyages() {
+    clearTimeout(searchDebounce);
+    searchInput.value = '';
+    window.dispatchEvent(new Event('calendar:viewchange'));
     const list = loadBookmarks();
     // Resolve each saved key to its underlying voyage / stop record.
     const voyageItems = [];
@@ -4656,6 +4661,9 @@
       ' a date that varies by year; find ' + (vary === 1 ? 'it' : 'them') + ' on the month chart.';
   }
   function showToday() {
+    clearTimeout(searchDebounce);
+    searchInput.value = '';
+    window.dispatchEvent(new Event('calendar:viewchange'));
     const now = new Date();
     // Resolve against the year the reader is in: weekday rules move each year.
     const lookup = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -4945,6 +4953,7 @@
 
   // ============ APPLY FILTERS ============
   function applyFilters() {
+    railSetActive(null);
     const q = state.search.trim().toLowerCase();
     const flag = state.activeFlag;
 
@@ -4987,7 +4996,7 @@
       });
     }
 
-    navResults('search');
+    navResults('search/' + encodeURIComponent(state.search));
     chartsHome.style.display = 'none';
     chartView.classList.remove('is-open');
     resultsView.style.display = 'block';
@@ -5090,6 +5099,7 @@
 
   // Clickable cards are divs; give them button semantics and keyboard reach.
   function keyify(el) {
+    if (el.matches('button, a[href], input, select, textarea')) return;
     el.setAttribute('role', 'button');
     el.setAttribute('tabindex', '0');
     el.addEventListener('keydown', (e) => {
@@ -5401,7 +5411,10 @@
       case 'today': showToday(); return true;
       case 'myvoyages': showMyVoyages(); return true;
       case 'pilgrimages': showPilgrimages(); return true;
-      case 'search': return false;
+      case 'search':
+        showAlmanacNow(); state.search = arg; searchInput.value = arg; applyFilters(); return true;
+      case 'trail-search':
+        showPilgrimages(); pilgrimState.search = arg; pilgrimSearch.value = arg; applyPilgrimSearch(); return true;
       case 'chart':
         if (MONTHS.indexOf(arg) < 0) return false;
         showAlmanac();
@@ -5658,6 +5671,7 @@
     almanacSection.style.display = 'none';
   }
   function showPilgrimages() {
+    clearTimeout(searchDebounce); clearTimeout(pilgrimDebounce);
     railSetActive('pilgrimages');
     navSection('pilgrimages');
     hideAllTopSections();
@@ -5674,6 +5688,7 @@
   // The whole answer to "put me back at the start": the twelve months, with
   // Pilgrimages closed behind you and no door lit.
   function showAlmanacNow() {
+    clearTimeout(searchDebounce); clearTimeout(pilgrimDebounce);
     hideAllTopSections();
     almanacSection.style.display = '';
     resultsView.style.display = 'none';
@@ -5707,6 +5722,7 @@
     if (!navClose('pilgrimage')) closePilgrimageNow();
   });
   $('#back-from-pilgrim-results').addEventListener('click', () => {
+    if (navClose('pilgrim-search')) return;
     pilgrimSearch.value = '';
     pilgrimState.search = '';
     pilgrimResults.style.display = 'none';
@@ -5715,10 +5731,16 @@
   });
 
   // ============ PILGRIM SEARCH ============
+  function closePilgrimSearchNow() {
+    pilgrimSearch.value = ''; pilgrimState.search = '';
+    pilgrimResults.style.display = 'none'; pilgrimHome.style.display = '';
+    window.dispatchEvent(new Event('calendar:viewchange'));
+  }
   function applyPilgrimSearch() {
     const q = pilgrimState.search.trim().toLowerCase();
     if (!q) {
       if (pilgrimResults.style.display === 'block') {
+        if (navClose('pilgrim-search')) return;
         pilgrimResults.style.display = 'none';
         pilgrimHome.style.display = '';
       }
@@ -5744,6 +5766,8 @@
         if (matches) stopHits.push({ p, s });
       }
     }
+    if (pilgrimResults.style.display === 'block') navRetag('trail-search/' + encodeURIComponent(pilgrimState.search));
+    else navOpen('pilgrim-search', 'trail-search/' + encodeURIComponent(pilgrimState.search), closePilgrimSearchNow);
     pilgrimHome.style.display = 'none';
     pilgrimView.classList.remove('is-open');
     pilgrimResults.style.display = 'block';
@@ -5808,6 +5832,36 @@
     wrap(Element.prototype, 'scrollTo');
     wrap(window, 'scrollTo');
   })();
+
+  // Keep the same four destinations available from either book. A tab first
+  // returns through the existing history stack, then opens its destination.
+  let calendarNavigationPending = false;
+  window.calendarNavigate = function(kind) {
+    if (calendarNavigationPending) return;
+    clearTimeout(searchDebounce); clearTimeout(pilgrimDebounce);
+    const finish = () => {
+      calendarNavigationPending = false;
+      showAlmanacNow();
+      state.search = ''; state.activeFlag = null; state.activeMonth = null; searchInput.value = '';
+      pilgrimState.search = ''; pilgrimSearch.value = '';
+      if (kind === 'today') showToday();
+      else if (kind === 'saved') showMyVoyages();
+      else if (kind === 'trails') showPilgrimages();
+      window.dispatchEvent(new Event('calendar:viewchange'));
+    };
+    if (nav.stack.length) {
+      calendarNavigationPending = true;
+      window.addEventListener('popstate', finish, {once:true});
+      navUnwind();
+    } else finish();
+  };
+  window.calendarRefreshSaved = function() {
+    const y = window.scrollY;
+    const previous = nav.silent;
+    nav.silent = true;
+    try { showMyVoyages(); } finally { nav.silent = previous; }
+    window.scrollTo({top:y,behavior:'instant'});
+  };
 
   // ============ INIT ============
   renderFlagRail();

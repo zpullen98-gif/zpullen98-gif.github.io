@@ -72,19 +72,25 @@ function scopeChipHTML(root){
   const name = levelInfo(lv || chosen).name;
   let line;
   if(lv){
-    line = '<button class="chip scope-name" data-act="scope-open" data-for="' + root + '" aria-expanded="' + (state.scopeOpen === root ? 'true' : 'false') + '" aria-label="' + esc(name) + ', change level">' + esc(name) + '</button>'
+    line = '<button class="chip scope-name" data-act="scope-open" data-for="' + root + '" aria-expanded="' + (state.scopeOpen === root ? 'true' : 'false') + '"' + (state.scopeOpen === root ? ' aria-controls="scope-options-' + root + '"' : '') + ' aria-label="' + esc(name) + ', change level">' + esc(name) + '</button>'
       + '<span class="scope-dot" aria-hidden="true"> · </span>'
       + '<button class="chip" data-act="scope-all" data-for="' + root + '">show all levels</button>';
   } else {
     line = '<span class="scope-all">All levels</span><span class="scope-dot" aria-hidden="true"> · </span>'
       + '<button class="chip" data-act="scope-one" data-for="' + root + '">show ' + esc(name) + ' only</button>';
   }
-  const list = state.scopeOpen === root ? '<div class="scope-list">' + LEVELS.map(function(l){
+  const list = state.scopeOpen === root ? '<div class="scope-list" id="scope-options-' + root + '" role="group" aria-label="Choose a level">' + LEVELS.map(function(l){
     const on = l.n === lv;
     return '<button class="chip' + (on ? ' on' : '') + '" data-act="scope-pick" data-for="' + root + '" data-n="' + l.n + '" aria-pressed="' + (on ? 'true' : 'false') + '">'
       + esc(l.name) + (l.n === chosen ? ' <span class="lv-here">Your level</span>' : '') + '</button>';
   }).join('') + '</div>' : '';
   return '<div class="scope" role="group" aria-label="Level"><div class="scope-row">' + line + '</div>' + list + '</div>';
+}
+/* Scope choices replace their own buttons. Keep keyboard focus on the
+   surviving control in that same picker, never back at the whole page. */
+function scopeFocusSelector(data){
+  if(!data || ['flashcards','quiz','library'].indexOf(data.for) < 0) return null;
+  return '[data-act="scope-' + (data.act === 'scope-all' ? 'one' : 'open') + '"][data-for="' + data.for + '"]';
 }
 function scopeAct(act, data){
   const root = data.for;

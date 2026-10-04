@@ -329,15 +329,27 @@ var V31_GRAPE_MAPS = {
   'Malbec': ['argentina', 'france'], 'Nebbiolo': ['italy']
 };
 function v31FlashMaps() {
-  if (S.view !== 'flash' || !S.fc || !S.fc.flip || !S.fc.deck || !S.fc.deck.length) return;
-  var grape = GRAPES[S.fc.deck[0]], ids = grape && V31_GRAPE_MAPS[grape.g];
-  var card = document.getElementById('fcard');
+  var grape = null, card = null, unified = false;
+  var run = S.view === 'flash' ? S.fc : S._v32run;
+  if ((S.view === 'flash' || S.view === 'housedeck') && run && run.v32 && typeof v32RunCard === 'function') {
+    if (!run.flip) return;
+    var current = v32RunCard();
+    if (current && current.kind === 'grape') {
+      grape = current.g; card = document.getElementById('v32-face'); unified = true;
+    }
+  } else if (S.view === 'flash' && S.fc && S.fc.flip && S.fc.deck && S.fc.deck.length) {
+    grape = GRAPES[S.fc.deck[0]]; card = document.getElementById('fcard');
+  }
+  var ids = grape && V31_GRAPE_MAPS[grape.g];
   if (!ids || !card || document.querySelector('.v31-flash-maps')) return;
   ids = ids.filter(function (id) { return !!v31Sheet(id); });
   if (!ids.length) return;
   var box = el('<aside class="v31-flash-maps" aria-label="Maps for this grape"><h3>Place it on the map</h3><p>Open a map, then return to this same card.</p><div>' + ids.map(function (id) { return '<button type="button" class="v31-btn v31-secondary" data-flash-map="' + id + '">' + v31Esc(v31Name(id)) + '</button>'; }).join('') + '</div></aside>');
-  var stage = card.parentNode;
-  stage.parentNode.insertBefore(box, stage.nextSibling);
+  if (unified) card.parentNode.appendChild(box);
+  else {
+    var stage = card.parentNode;
+    stage.parentNode.insertBefore(box, stage.nextSibling);
+  }
   Array.prototype.forEach.call(box.querySelectorAll('[data-flash-map]'), function (button) {
     button.onclick = function () { v23Open(button.getAttribute('data-flash-map')); };
     button.onkeydown = function (event) { event.stopPropagation(); };

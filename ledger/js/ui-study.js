@@ -546,7 +546,7 @@ function renderFlashcards(){
       const key = cardKey(o.d);
       const s = progress.cards[key];
       const open = fc.boardOpen===o.i;
-      const rec = s ? '<span class="font-tix tiny" style="color:#7fbf95">✓'+s.r+'</span> <span class="font-tix tiny" style="color:var(--oxblood-text)">✗'+s.w+'</span>' : '<span class="tiny dim">unseen</span>';
+      const rec = s ? '<span class="font-tix tiny" style="color:var(--positive-text,#7fbf95)">✓'+s.r+'</span> <span class="font-tix tiny" style="color:var(--oxblood-text)">✗'+s.w+'</span>' : '<span class="tiny dim">unseen</span>';
       const badge = isMastered(key) ? '<span class="chip brass">Mastered</span>' : '';
       /* srcLabel, not the raw literal: this is a site that PRINTS a source, and
          it has been showing 'My Bar' since the tab was renamed to Menu. */

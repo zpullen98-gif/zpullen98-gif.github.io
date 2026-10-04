@@ -57,6 +57,7 @@ var FL = {
   practice: {},      // "YYYY-MM-DD"       -> 1        the day's practice marked done
   morning: {},       // "YYYY-MM-DD"       -> {read,move,breathe,reflect}  the day's four, ticked
   moves: {},         // "YYYY-MM-DD"       -> n        movement sessions finished, for the level
+  workoutSets: {},   // day -> video id -> {count, updated}; a personal counter, separate from completed sessions
   intents: {},       // "YYYY-MM-DD"       -> "Grief"  a named need, when one was named
   journal: {},       // id -> {d, ref, text, t}        writing; ref ties it to a day/quote/passage
   examen: {},        // "YYYY-MM-DD"       -> {well, short, tomorrow}
@@ -338,6 +339,31 @@ function flExportFilename() {
   return 'first-light-' + flToday() + '.json';
 }
 
+/* Set counters retain a zero after a reset, so an older backup cannot restore
+   the count that was deliberately cleared. Latest edit wins for one video/day;
+   different videos and days join without touching any existing activity log. */
+function flValidSetRecord(rec) {
+  return !!rec && typeof rec === 'object' && Number.isInteger(rec.count) &&
+    rec.count >= 0 && rec.count <= 999 && Number.isSafeInteger(rec.updated) && rec.updated > 0;
+}
+function flMergeWorkoutSets(incoming) {
+  if (!incoming || typeof incoming !== 'object' || Array.isArray(incoming)) return;
+  if (!FL.workoutSets || typeof FL.workoutSets !== 'object' || Array.isArray(FL.workoutSets)) FL.workoutSets = {};
+  Object.keys(incoming).forEach(function (day) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) return;
+    var videos = incoming[day];
+    if (!videos || typeof videos !== 'object' || Array.isArray(videos)) return;
+    Object.keys(videos).forEach(function (id) {
+      if (!/^[A-Za-z0-9_-]{11}$/.test(id) || !flValidSetRecord(videos[id])) return;
+      if (!FL.workoutSets[day] || typeof FL.workoutSets[day] !== 'object' || Array.isArray(FL.workoutSets[day])) FL.workoutSets[day] = {};
+      var mine = FL.workoutSets[day][id], theirs = videos[id];
+      if (!flValidSetRecord(mine) || theirs.updated > mine.updated) {
+        FL.workoutSets[day][id] = { count: theirs.count, updated: theirs.updated };
+      }
+    });
+  });
+}
+
 /* Merges rather than replaces, and never deletes. Importing a backup onto a device
    that has since accumulated new mornings should end with both, not whichever file
    was newer. Returns a summary so the UI can say what actually happened. */
@@ -365,6 +391,7 @@ function flImport(text) {
   if (rec.moves) Object.keys(rec.moves).forEach(function (k) {
     if ((rec.moves[k] || 0) > (FL.moves[k] || 0)) FL.moves[k] = rec.moves[k];
   });
+  flMergeWorkoutSets(rec.workoutSets);
   /* the day's four ticks merge as a union: a thing done on either device was
      done, and this app does not take a finished morning back off anybody. */
   if (rec.morning) Object.keys(rec.morning).forEach(function (day) {

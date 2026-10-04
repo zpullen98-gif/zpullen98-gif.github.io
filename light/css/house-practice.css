@@ -189,7 +189,28 @@
   #view .heatkey .cell { flex: 0 0 13px; }
   #view .heatkey .ds { flex-basis: 100%; max-width: 100%; font-size: 11px; line-height: 1.7; letter-spacing: .035em; text-align: center; }
 
+  /* Today offers short routes into the long morning, without resetting it. */
+  #view .today-shortcuts { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:24px 0 30px; padding:18px; border:1px solid var(--line); background:var(--paper); border-radius:3px; }
+  #view .today-shortcuts > span { flex-basis:100%; font-size:12px; letter-spacing:.06em; color:var(--faint); }
+  #view .today-shortcuts button { margin:0; }
+  #view .flow > section { scroll-margin-top:24px; }
+  #view .workout-counter { margin:-24px 0 24px; padding:22px 24px; border:1px solid var(--line); border-top:2px solid var(--accent); background:var(--paper); box-shadow:var(--shadow); }
+  #view .set-heading { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 20px; }
+  #view .set-heading h3 { margin:0; font-family:var(--house-display); font-size:17px; letter-spacing:.025em; font-weight:500; }
+  #view .set-heading p { margin:0; color:var(--accent); font-size:16px; }
+  #view [data-set-count] { font-size:30px; font-variant-numeric:tabular-nums; font-weight:500; }
+  #view .set-help { margin:9px 0 14px; max-width:62ch; font-size:14px; line-height:1.65; color:var(--faint); }
+  #view .set-actions { display:flex; flex-wrap:wrap; gap:9px; }
+  #view .set-actions button { margin:0; min-height:48px; }
+  #view .set-actions button:disabled { opacity:.55; }
+  #view .set-status { margin:10px 0 0; font-size:13px; line-height:1.5; color:var(--faint); min-height:1.5em; }
   @media (max-width: 480px) {
+    #view .workout-counter { padding:20px 18px; }
+    #view .set-heading { display:block; }
+    #view .set-heading p { margin-top:5px; }
+    #view .set-actions .btn { flex-basis:100%; }
+    #view .today-shortcuts { padding:14px; }
+    .col .nav-hint { font-size:10px; }
     #view .movecard,
     #view .tier,
     #view[data-house-view="journal"] .q,

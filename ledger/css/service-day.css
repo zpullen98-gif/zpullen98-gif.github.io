@@ -1,0 +1,57 @@
+/* Day service: the same brass-bound library, opened in natural light.
+   Teaching illustrations, printed recipes and answer-state colours stay intact. */
+@media screen {
+  html[data-service='day'] {
+    color-scheme:light;
+    --felt:#f4ecd9;--felt-2:#fff8e9;--felt-3:#d3c5a8;--felt-line:#8b7b60;
+    --brass:#765824;--brass-2:#62471b;--cream:#26382e;--cream-dim:#615944;
+    --paper:#fff8e9;--ink:#29271f;--ink-dim:#64553d;
+    --oxblood:#843d37;--oxblood-2:#6a302c;--oxblood-text:#843d37;
+    --positive-text:#2f5e38;
+    --house-line:#b8a078;--house-shadow:0 8px 24px #52411e12;
+    --service-panel:linear-gradient(135deg,#fff9ec,#eee2c9);
+    --service-hover:#e8dcc2;--service-light:#fff8e9;
+  }
+  html[data-service='day'] body { background:#e6dbc4;color:var(--cream); }
+  html[data-service='day'] body::before { background:radial-gradient(ellipse at 50% 0,#fffdf4,transparent 70%),#e6dbc4; }
+  html[data-service='day'] .wrap { border-color:var(--house-line);box-shadow:0 20px 65px #49371720; }
+
+  /* Artwork keeps its original evening light; reading surfaces use ink. */
+  html[data-service='day'] header.masthead {
+    --brass:#d5b16c;--brass-2:#f1d89e;--cream:#f3e9d5;--cream-dim:#e3d3b4;
+    border-bottom:1px solid var(--house-line);
+  }
+  html[data-service='day'] header.masthead::before { background:linear-gradient(180deg,#020904d9,#041108b8 65%,#102119); }
+  html[data-service='day'] body[data-ledger-page='home'] header.masthead::before { background:linear-gradient(180deg,#020704cf,#02070459 29%,transparent 53%,transparent 72%,#102119); }
+  html[data-service='day'] :is(.panel,.subsection,.plate,.level,.door,.study-face,.search-panel,.sheet-panel) { background:var(--service-panel); }
+  html[data-service='day'] .level { box-shadow:inset 0 0 0 4px var(--felt),inset 0 0 0 5px #a78a5355,var(--house-shadow); }
+  html[data-service='day'] .level.on { background:linear-gradient(135deg,#e4d9bc,#fff7e6);box-shadow:inset 0 0 0 4px var(--felt),inset 0 0 0 5px var(--brass),var(--house-shadow); }
+  html[data-service='day'] :is(.panel.click,.plate,.level,.door,.book):hover { background:var(--service-hover); }
+  html[data-service='day'] .book { background:#fff8e980; }
+  html[data-service='day'] .study-face { box-shadow:inset 0 0 0 6px var(--felt-2),inset 0 0 0 7px #a78a5380,var(--house-shadow); }
+  html[data-service='day'] .study-face::before { border-color:var(--brass);box-shadow:inset 0 0 0 6px var(--felt-2),inset 0 0 0 7px #a78a5380; }
+  html[data-service='day'] .ticket { box-shadow:0 8px 22px #52411e20,inset 0 0 0 5px #ede0c4,inset 0 0 0 6px #ac8b4c88; }
+  html[data-service='day'] .explain { background:#e6ddc7;color:var(--cream); }
+
+  /* Filled controls need light text when the brass token becomes dark ink. */
+  html[data-service='day'] :is(.btn-brass,.tab-btn.active,.sheet-btn.active,button.chip.on,.sw-toast,.skip) { background:var(--brass);color:var(--service-light);border-color:var(--brass); }
+  html[data-service='day'] :is(.btn-brass,.sw-toast button):hover { background:#60461d;color:var(--service-light); }
+  html[data-service='day'] :is(button.chip.on .lv-here,button.hs-chip.on,.btn-ox,.btn.running) { color:var(--service-light); }
+  html[data-service='day'] .btn-ghost { background:var(--felt-2);color:var(--cream); }
+  html[data-service='day'] .btn-ghost:hover { background:var(--service-hover); }
+  html[data-service='day'] .input { background:var(--felt-2); }
+  html[data-service='day'] .input::placeholder { color:var(--cream-dim);opacity:1; }
+  html[data-service='day'] :is(.search-row:hover,.search-row.sel) { background:var(--service-hover); }
+  html[data-service='day'] .opt-btn:hover:not(:disabled),html[data-service='day'] .opt-btn.picked { background:var(--service-hover);color:var(--cream); }
+  html[data-service='day'] .opt-btn.correct { background:#e2efdf;border-color:#467046;color:#234628; }
+  html[data-service='day'] .opt-btn.wrong { background:#f2ded7;border-color:#9f5647;color:#742d28; }
+  html[data-service='day'] .vid-play { background:#102119ed;color:#f1d89e; }
+  html[data-service='day'] .vid-thumb:hover .vid-play,html[data-service='day'] .vid-thumb:focus-visible .vid-play { background:var(--brass);color:var(--service-light); }
+  html[data-service='day'] #bnav { background:#fff8e9f5;box-shadow:0 -6px 22px #49371714; }
+  html[data-service='day'] :is(.cl-btn,.bnav-btn):not(.active) { color:var(--cream);font-weight:600; }
+
+  @media (forced-colors:active) {
+    html[data-service='day'] :is(body,.wrap,.panel,.subsection,.plate,.level,.door,.study-face,.search-panel,.sheet-panel,.book,.explain) { background:Canvas;color:CanvasText;box-shadow:none; }
+    html[data-service='day'] :is(.btn-brass,.tab-btn.active,.sheet-btn.active,button.chip.on) { background:Highlight;color:HighlightText; }
+  }
+}

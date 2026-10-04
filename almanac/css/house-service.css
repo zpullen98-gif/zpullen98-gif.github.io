@@ -1,0 +1,44 @@
+/* Shared day/night service. Artwork keeps its original light; reading surfaces
+   follow the reader's choice. Print remains the original paper edition. */
+@media screen {
+  :root { --cfl-surface:#102219; --cfl-text:#f5e8cc; --cfl-muted:#cbbc9a; --cfl-accent:#e1c28b; --cfl-line:#947a46; }
+  html[data-service="day"] { --cfl-surface:#fff9e9; --cfl-text:#293b2e; --cfl-muted:#58604c; --cfl-accent:#735524; --cfl-line:#a68d5c; background:#ece1c6; }
+  html[data-service="day"] body { background:radial-gradient(ellipse at 50% 0,#fff8e5,#ece1c6 80%) !important; color:var(--cfl-text); }
+  .house-wayfinder { max-width:1280px; margin:auto; padding:18px 24px 8px; }
+  .house-wayfinder nav { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:9px; max-width:900px; margin:auto; }
+  .house-wayfinder button,.house-search-clear { min-height:46px; font:500 12px/1.5 var(--house-display); padding:10px 13px; border:1px solid var(--cfl-line); border-radius:3px; background:var(--cfl-surface); color:var(--cfl-text); cursor:pointer; }
+  .house-wayfinder button[aria-current="page"] { background:#d4b477; color:#19271d; border-color:#eed7a6; box-shadow:inset 0 -3px #725727; }
+  .house-wayfinder p { margin:12px auto 0; max-width:850px; text-align:center; font-size:16px; color:var(--cfl-muted); }
+  .house-flow-ready #flag-rail { display:none; }
+  .house-flow-ready .search-wrap { display:flex; align-items:center; gap:8px; }
+  .house-flow-ready .search-input { min-width:0; flex:1; }
+  .house-search-clear { flex:none; padding:10px; }
+  .house-search-clear[hidden] { display:none; }
+  html[data-service="day"] .top-rail { background:#f8f0dcf5; border-color:var(--cfl-line); }
+  html[data-service="day"] :is(.brand-text,.house-section-intro h2,.house-section-intro p,.back-link,.page-fineprint,.page-fineprint a) { color:var(--cfl-text); }
+  html[data-service="day"] .search-input { background:#fffbef; border-color:var(--cfl-line); color:var(--cfl-text); }
+  html[data-service="day"] .search-input::placeholder { color:var(--cfl-muted); }
+  html[data-service="day"] .search-input:focus { background:white; }
+  html[data-service="day"] :is(.back-link,.house-search-clear):hover { background:#eaddbf; color:var(--cfl-text); }
+  html[data-service="day"] :is(#almanac,#pilgrimages) :is(.chart-card,.chart-header,.results-banner,.empty-state) { background:linear-gradient(140deg,#fff9e9,#eddfbf); color:var(--cfl-text); border-color:var(--cfl-line); box-shadow:0 8px 24px #4a3c1d14; }
+  html[data-service="day"] :is(#almanac,#pilgrimages) :is(.chart-card-inner,.chart-card .month-name,.chart-card .month-quote,.chart-card .month-quote .quote-author,.chart-card .roman,.chart-header .chart-no-large,.chart-header .month-display,.chart-header .month-sub,.chart-header .chart-quote,.chart-header .chart-quote .quote-author,.results-banner strong,.empty-state em,.closing-flourish .creed,.closing-flourish .creed strong) { color:var(--cfl-text); }
+  html[data-service="day"] #pilgrimages :is(.pilgrim-intro .pilgrim-eyebrow,.pilgrim-intro .pilgrim-title,.pilgrim-intro .pilgrim-sub,.pilgrim-intro .pilgrim-credo,.pilgrim-intro .pilgrim-credo strong,.chart-card .voyage-count,.chart-card .voyage-count strong,.chart-header .pilgrim-credo) { color:var(--cfl-text); }
+  html[data-service="day"] :is(.crew-kit,.myvoy-tools) { background:#ede0c2; color:var(--cfl-text); box-shadow:none; }
+  html[data-service="day"] :is(.crew-kit,.myvoy-tools) :is(.section-title,.crew-kit-btn,.myvoy-tool-btn,.crew-kit-status,.myvoy-tool-status) { color:var(--cfl-text); border-color:var(--cfl-line); }
+  html[data-service="day"] :is(.crew-kit-btn,.myvoy-tool-btn):hover { background:#e0d0aa; color:var(--cfl-text); }
+  html[data-service="day"] .almanac-who { --oot-ink:#293b2e; --oot-dim:#58604c; --oot-line:#a68d5c; --oot-accent:#735524; }
+  html[data-service="day"] :is(button,a,input,select,textarea,[role="button"]):focus-visible { outline-color:#775722; }
+  html[data-service="night"] :is(.scroll-overlay,.journal-overlay,.fnb-overlay) { --folio-paper:#14261c; --folio-raised:#203629; --folio-ink:#f5e8cc; --folio-muted:#c9c3ab; --folio-accent:#e1c28b; --folio-line:#81704b; --folio-field:#a38b5b; --folio-danger:#ffb6a7; }
+  html[data-service="night"] :is(.scroll-paper,.journal-paper,.fnb-paper) { color-scheme:dark; }
+  html[data-service="night"] :is(#almanac,#pilgrimages) .voyage-card { background:linear-gradient(140deg,#21372a,#14261c); border-color:#81704b; color:#f5e8cc; box-shadow:inset 0 0 0 4px #14261c,inset 0 0 0 5px #81704b70,0 10px 25px #0003; }
+  html[data-service="night"] :is(#almanac,#pilgrimages) .voyage-card :is(.voyage-meta,.voyage-name,.voyage-port,.voyage-date,.voyage-quote,.voyage-quote .quote-author) { color:#f5e8cc; }
+  html[data-service="night"] :is(.scroll-paper,.journal-paper,.fnb-paper) :is(button,.lantern-link,.lantern-more):hover { background:#304a37; color:#fff2d4; border-color:#e1c28b; }
+  html[data-service="night"] :is(.scroll-paper .journal-open-btn,.scroll-paper .fnb-open-btn,.scroll-paper .scroll-toast,.scroll-paper .lantern-link,.scroll-paper .lantern-more,.fnb-paper .fnb-form-actions .fnb-save-btn) { background:#d4b477; color:#14261c; border-color:#d4b477; }
+  html[data-service="night"] .fnb-paper .fnb-form-actions .fnb-save-btn:disabled { background:#304236; color:#c9c3ab; border-color:#81704b; }
+  html[data-service="night"] .fnb-paper .fnb-form-actions .fnb-save-btn:hover:not(:disabled) { background:#ecd19a; color:#14261c; border-color:#ecd19a; }
+  html[data-service="night"] .fnb-paper .fnb-item-actions .fnb-delete-btn:hover { background:#47362e; color:#ffb6a7; }
+  html[data-service="night"] .scroll-paper .scroll-flags .flag-glyph { color:#f5e8cc; border-color:#81704b; background:#203629; }
+  @media(max-width:600px) { .house-wayfinder { padding:15px 18px 5px; } .house-wayfinder nav { grid-template-columns:repeat(2,minmax(0,1fr)); } .house-wayfinder p { font-size:15px; } }
+  @media(forced-colors:active) { .house-wayfinder button[aria-current="page"] { border:3px solid Highlight; } }
+}
+@media print { .house-wayfinder,.house-search-clear { display:none !important; } }

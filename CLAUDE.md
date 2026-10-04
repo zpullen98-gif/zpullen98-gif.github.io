@@ -1,5 +1,22 @@
 # Outside Of Time, the live site
 
+## Service controls, October 2026
+
+Day/night service and the collection guide are written once in
+`WorldTable/static/service/oot-service.js`. The hub carries it in `service/`,
+the built Table in `table/service/`, and the other four apps in their own `js/`.
+Each shell loads it in the head with the matching `data-wing` and caches it in
+its own worker. `tools/check-suite-service.mjs`, part of `check-all`, proves all
+six copies, their early loads and offline inclusion. The preference key is
+`oot.service.v1`; study records remain independent.
+
+First Light and Calendar source repos are now present at `C:/Users/zpull/FirstLight`
+and `C:/Users/zpull/CalendarForLife`. Their runtime forks still need controlled
+source-equivalent changes, never a wholesale folder copy. First Light documents
+its three-way delta publisher in its source tools; Calendar maintains targeted
+matching changes in both shells. Their own worker prefixes and suite integration
+remain intact. Their patches may be included in a coordinated suite release.
+
 This repository is the GitHub Pages site at zpullen98-gif.github.io: the hub (index.html,
 the root pages, pass/ and sw.js) and five wings served from subfolders of the one origin,
 table/ (The World Table), ledger/ (The Bartender's Ledger), codex/ (The Sommelier's Codex),

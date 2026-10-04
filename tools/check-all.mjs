@@ -32,6 +32,7 @@ const GATES = [
   { file: 'check-publish.mjs', args: [] },
   { file: 'inject-shared.mjs', args: ['--check'] },
   { file: 'check-stamps.mjs', args: [] },
+  { file: 'check-suite-service.mjs', args: [] },
   { file: 'check-wings.mjs', args: [] },
   { file: 'check-wake.mjs', args: [] },
   { file: 'check-pack.mjs', args: [] }

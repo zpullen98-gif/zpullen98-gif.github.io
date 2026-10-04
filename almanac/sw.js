@@ -6,7 +6,7 @@
    clients refresh on next load.
    ============================================================ */
 
-const CACHE_VERSION = 'oot-cfl-v106';
+const CACHE_VERSION = 'oot-cfl-v107';
 const APP_CACHE     = `${CACHE_VERSION}-app`;
 // The fonts live in their own cache, deliberately NOT keyed to CACHE_VERSION:
 // a version bump used to reap them, so every deploy cost the reader a fresh
@@ -19,9 +19,11 @@ const FONT_CSS      = 'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;
 const APP_SHELL = [
   './',
   './index.html',
+  './js/oot-service.js',
   './css/house.css',
   './css/house-cards.css',
   './css/house-overlays.css',
+  './css/house-service.css',
   './css/house-pages.css',
   './house.js',
   './images/atlas-library.webp',

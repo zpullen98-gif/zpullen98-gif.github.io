@@ -1,0 +1,63 @@
+/* Day service: parchment, forest ink and antique brass in the same library.
+   The atlas plates and wine-colour teaching swatches retain their actual colours. */
+@media screen {
+  html[data-service='day'] {
+    color-scheme:light;
+    --bg:#f4ecd9;--bg2:#fff8e9;--parch:#26382e;--parch2:#615944;
+    --ink:#29271f;--ink-soft:#64553d;--gold:#765824;--gold-soft:#765824;--gold-hi:#62471b;
+    --claret:#843d37;--claret-deep:#6a302c;--green:#3c6045;--red:#9c2f2f;--red-text:#843d37;
+    --field-line:#8b7b60;--line:#b8a078;
+    --house-panel:linear-gradient(135deg,#fff9ec,#eee2c9);
+    --house-frame:inset 0 0 0 4px var(--bg2),inset 0 0 0 5px #a78a5355;
+    --house-shadow:0 8px 24px #52411e12;
+    --service-hover:#e8dcc2;--service-light:#fff8e9;
+  }
+  html[data-service='day'] body { background:radial-gradient(ellipse at 50% 0,#fffdf4,transparent 70%),#e6dbc4;color:var(--parch); }
+  html[data-service='day'] .wrap { box-shadow:0 20px 65px #49371720; }
+  html[data-service='day'] .wrap .house-topbar .appnav.v32nav .navword:not([aria-current]) { color:var(--parch);font-weight:600;opacity:1; }
+
+  /* Art headers remain dark islands, with local light foreground tokens. */
+  html[data-service='day'] :is(.house-masthead,.v31-head) {
+    --parch:#f3e9d5;--parch2:#e3d3b4;--gold:#d5b16c;--gold-soft:#ead19b;--gold-hi:#f1d89e;
+  }
+  html[data-service='day'] .house-masthead { border-bottom:1px solid var(--line); }
+  html[data-service='day'] .house-masthead::before { background:linear-gradient(180deg,#030b08df,#05120abd 70%,#102119); }
+  html[data-service='day'] body[data-codex-page='home'] .house-masthead::before { background:linear-gradient(180deg,#020904d9,#02090485 25%,#0209040a 53%,#0209041a 80%,#102119); }
+  html[data-service='day'] .wrap .levels .level.on { background:linear-gradient(135deg,#e4d9bc,#fff7e6); }
+  html[data-service='day'] .wrap :is(.levels .level,.quiet .door,.secbtn):hover { background:var(--service-hover); }
+  html[data-service='day'] .wrap :is(.mode,.courtpin.on,.pyr-bar) { background:var(--house-panel);color:var(--ink); }
+  html[data-service='day'] .wrap .rite.done .ritebox { color:var(--service-light); }
+  html[data-service='day'] .wrap :is(.stat,.courtpin) { background:var(--bg2); }
+  html[data-service='day'] .toast { background:var(--bg2);color:var(--parch);box-shadow:var(--house-shadow); }
+  html[data-service='day'] .wrap :is(.pass,.ontrack,.rdy-ok,.miss .ma) { color:#2f5e38; }
+  html[data-service='day'] .wrap :is(.fail,.behind,.rdy-none,.miss .mu,.dispute .mu) { color:#843d37; }
+  html[data-service='day'] .wrap :is(.refso,.grape-line.trapline) { color:var(--claret); }
+  html[data-service='day'] .wrap .flow-n { color:var(--service-light); }
+
+  /* Buttons and selected chips reverse explicitly; reading ink stays dark. */
+  html[data-service='day'] .wrap .btn { color:var(--service-light); }
+  html[data-service='day'] .wrap .btn.ghost { color:var(--gold-hi); }
+  html[data-service='day'] .wrap .card .btn.ghost { color:var(--claret); }
+  html[data-service='day'] .wrap .btn.gold { background:var(--gold);border-color:var(--gold);color:var(--service-light); }
+  html[data-service='day'] .wrap .btn.gold:hover { background:#60461d; }
+  html[data-service='day'] .wrap .v28-chip[aria-pressed='true'] { color:var(--service-light); }
+  html[data-service='day'] .wrap :is(.prlev.on,.card .flagbtn.on) { color:var(--service-light); }
+  html[data-service='day'] .v32pill { color:var(--service-light); }
+  html[data-service='day'] .wrap .leg-row.sel .leg-badge { background:var(--gold);color:var(--service-light); }
+  html[data-service='day'] .skip { background:var(--bg2);color:var(--ink); }
+  html[data-service='day'] .wrap :is(.sainput,.mtsel)::placeholder { color:var(--ink-soft);opacity:1; }
+
+  /* Atlas guides and the movable viewer share the reading-room palette. */
+  html[data-service='day'] :is(.v31-thumb,.v31-canvas) { background:#e1d6bc; }
+  html[data-service='day'] :is(.wrap,.v31-viewer) .v31-btn { color:var(--service-light); }
+  html[data-service='day'] .wrap .v31-secondary { color:var(--parch); }
+  html[data-service='day'] .v31-viewer-tools .v31-btn { color:var(--parch); }
+  html[data-service='day'] .v31-viewer-tools .v31-btn:hover:not(:disabled) { background:var(--service-hover); }
+  html[data-service='day'] .wrap .v31-btn:hover:not(:disabled),html[data-service='day'] .v31-viewer-top .v31-btn:hover:not(:disabled) { background:#60461d;color:var(--service-light); }
+  html[data-service='day'] .wrap .v31-secondary:hover:not(:disabled) { background:var(--service-hover);color:var(--parch); }
+
+  @media (forced-colors:active) {
+    html[data-service='day'] :is(body,.wrap,.subsection,.v25row,.v31-thumb,.v31-canvas) { background:Canvas;color:CanvasText;box-shadow:none; }
+    html[data-service='day'] .wrap :is(.btn.gold,.v28-chip[aria-pressed='true']) { background:Highlight;color:HighlightText; }
+  }
+}

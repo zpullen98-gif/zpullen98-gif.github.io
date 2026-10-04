@@ -15,7 +15,7 @@
  * narrower scope, and a narrower scope always wins, so /ledger/ is served by
  * ledger/sw.js and never by this file.
  */
-const CACHE = 'oot-shell-v30';
+const CACHE = 'oot-shell-v31';
 
 /* Every page asks for shared/oot-config.js?v=23 and the cache is matched with
    ignoreSearch, so the precached copy answers whatever stamp the page wears:
@@ -26,6 +26,7 @@ const CACHE = 'oot-shell-v30';
 const ASSETS = [
   './',
   './index.html',
+  './service/oot-service.js',
   './privacy.html',
   './terms.html',
   './404.html',
@@ -66,7 +67,7 @@ const OWNED_PAGES = new Set([
   '/', '/index.html', '/privacy.html', '/terms.html', '/404.html',
   '/manifest.webmanifest', '/icon.svg', '/favicon.ico', '/sw.js',
 ]);
-const OWNED_DIRS = ['/assets/', '/shared/', '/icons/', '/pass/'];
+const OWNED_DIRS = ['/service/', '/assets/', '/shared/', '/icons/', '/pass/'];
 
 function owns(url) {
   if (url.origin !== self.location.origin) return false;
