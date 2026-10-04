@@ -805,6 +805,11 @@ function renderMenu(){
   /* the study view of the house's drinks (js/house-study.js) when a house
      with drinks is current and Edit the menu is off; today's list otherwise */
   else inner = (typeof houseStudyOn === 'function' && houseStudyOn()) ? houseStudyHTML() : menuListHTML();
+  /* Vocabulary for the whole list, never an assignment to a house drink.
+     Keep the individual study card and its flashcard answers unchanged. */
+  if(v === 'menu' && !(typeof houseStudyOn === 'function' && houseStudyOn() && hsState().open)){
+    inner += glassShapesHTML();
+  }
   /* the desk's share, above every sub-view: what another room read and left
      for this bar is the first thing to know on opening the Menu tab */
   const waiting = (typeof deskWaitingHTML === 'function') ? deskWaitingHTML('menu') : '';

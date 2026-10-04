@@ -1255,7 +1255,9 @@ if('serviceWorker' in navigator){
   } else {
     window.addEventListener('load', async () => {
       try{
-        const reg = await navigator.serviceWorker.register('sw.js');
+        // The worker imports the reviewed art registry. Always revalidate its
+        // imports with the new edition, instead of retaining an older HTTP copy.
+        const reg = await navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' });
         /* an update that reached "waiting" on a previous visit */
         if(reg.waiting && navigator.serviceWorker.controller) showUpdateToast(reg.waiting, reg);
         /* A hash-routed SPA performs no navigations, so the browser never

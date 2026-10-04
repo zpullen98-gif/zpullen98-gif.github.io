@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
     <radialGradient id="bg" cx="50%" cy="30%" r="90%">
-      <stop offset="0%" stop-color="#331420"/>
-      <stop offset="60%" stop-color="#1c0d11"/>
-      <stop offset="100%" stop-color="#130709"/>
+      <stop offset="0%" stop-color="#17382a"/>
+      <stop offset="60%" stop-color="#102119"/>
+      <stop offset="100%" stop-color="#081510"/>
     </radialGradient>
     <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f2e2a8"/>
-      <stop offset="55%" stop-color="#c9a227"/>
-      <stop offset="100%" stop-color="#8a6d17"/>
+      <stop offset="0%" stop-color="#f1d89e"/>
+      <stop offset="55%" stop-color="#d5b16c"/>
+      <stop offset="100%" stop-color="#947746"/>
     </linearGradient>
     <radialGradient id="wine" cx="40%" cy="25%" r="90%">
       <stop offset="0%" stop-color="#a03348"/>
@@ -18,11 +18,11 @@
   </defs>
 
   <rect width="512" height="512" rx="96" fill="url(#bg)"/>
-  <rect x="18" y="18" width="476" height="476" rx="82" fill="none" stroke="#c9a227" stroke-opacity=".55" stroke-width="6"/>
-  <rect x="32" y="32" width="448" height="448" rx="70" fill="none" stroke="#c9a227" stroke-opacity=".28" stroke-width="2"/>
+  <rect x="18" y="18" width="476" height="476" rx="82" fill="none" stroke="#d5b16c" stroke-opacity=".55" stroke-width="6"/>
+  <rect x="32" y="32" width="448" height="448" rx="70" fill="none" stroke="#d5b16c" stroke-opacity=".28" stroke-width="2"/>
 
   <!-- corner fleurons -->
-  <g fill="#c9a227" fill-opacity=".8" font-family="Georgia,serif" font-size="44" text-anchor="middle">
+  <g fill="#d5b16c" fill-opacity=".8" font-family="Georgia,serif" font-size="44" text-anchor="middle">
     <text x="86" y="104">❧</text>
     <text x="426" y="104" transform="scale(-1,1) translate(-852,0)">❧</text>
     <text x="86" y="452" transform="scale(1,-1) translate(0,-880)">❧</text>
@@ -44,5 +44,5 @@
   </g>
 
   <!-- star above -->
-  <text x="256" y="112" font-family="Georgia,serif" font-size="52" fill="#f2e2a8" text-anchor="middle">✦</text>
+  <text x="256" y="112" font-family="Georgia,serif" font-size="52" fill="#f1d89e" text-anchor="middle">✦</text>
 </svg>
