@@ -192,10 +192,10 @@ const PREPS = [
     uses:"Gibsons, Bloody Marys, Caesars, and savory garnish trays.",
     note:"A house Gibson garnish is a small detail that regulars notice immediately and remember." },
   { name:"Ice Program", cat:"Juice & Garnish", ratio:"Match the ice to the job", yield:"Plan roughly 1–2 lbs per guest per hour in service",
-    steps:["LARGE CUBES for spirit-forward rocks drinks: slow dilution.","1-INCH CUBES for shaking; cracked ice chills faster but dilutes faster too.","CRUSHED for juleps, swizzles, and tiki: it’s the engine of the drink, not a filler.","CLEAR ICE: freeze directionally in an insulated cooler with the lid off so it freezes top-down and pushes air and impurities to the bottom; cut off the cloudy base."],
+    steps:["LARGE CUBES are a common presentation for rocks drinks. Choose the ice specified by the recipe and the bar.","CUBED and CRACKED ice differ in shape and surface area. Size alone does not predict final dilution: temperature, surface meltwater, agitation and time also matter.","CRUSHED ice is common in juleps, swizzles and tiki drinks. Follow the recipe's method and amount rather than substituting by appearance alone.","CLEAR ICE: freeze directionally in an insulated cooler with the lid off so it freezes top-down and pushes air and impurities to the bottom; cut off the cloudy base."],
     keeps:"Ice absorbs odors; keep it covered and never store food or garnish in the ice well.",
     uses:"Every drink you make.",
-    note:"Wet, small, warm ice over-dilutes everything. If your drinks taste watery, look at your ice before you touch your specs." },
+    note:"Surface meltwater adds water before further melting takes place. Compare ice condition, ice and liquid quantities, method and timing when diagnosing an unexpectedly watery drink." },
 ];
 
 const PREP_LISTS = [
@@ -313,6 +313,8 @@ function renderPrep(){
       + '</div></div>'
       + '<div style="max-width:440px"><div class="eyebrow mb1">Why it matters</div><div class="small dim lh">'+esc(x.note)+'</div></div>'
       + prepVideoHTML(x)
+      + (x.name === 'Cutting Garnishes' ? craftPictureHTML('garnish-citrus', 'Citrus cuts: illustrated reference') : '')
+      + (x.name === 'Ice Program' ? craftPictureHTML('ice', 'Ice: four forms') : '')
       + '</div>' : '';
     return '<div class="panel"><button class="drink-head" aria-expanded="'+(open?'true':'false')+'" data-act="prep-open" data-i="'+i+'"'+(open?' data-open="1"':'')+'>'
       + '<span class="bold">'+esc(x.name)+'</span>'

@@ -839,7 +839,7 @@ const STUDY = [
     ["Shake vs. stir","Shake anything with citrus, egg, cream, or juice. Stir anything all-spirit. Both chill AND dilute: dilution is 20–25% of the drink and belongs there."],
     ["Shaking","Fresh ice 2/3 full, seal at an angle, shake HARD 10–15 seconds until the tin frosts. Dry shake egg drinks first. Whip shake (few pebbles) for crushed-ice serves."],
     ["Stirring","Barspoon rides the wall; ice moves as one silent mass. 30–45 seconds; taste with a straw to check dilution."],
-    ["Ice","Big cold dry ice dilutes slowly; wet small ice dilutes fast. Large cube for rocks, cracked for shaking, crushed for juleps and tiki. Never scoop with the glass."],
+    ["Ice","Ice chills and dilutes. Its size alone does not determine the final dilution: temperature, surface meltwater, the amount of ice and liquid, agitation, and time also matter. Follow the drink specification and taste the result. Never scoop with the glass."],
     ["Straining","Hawthorne for shaken, julep for stirred, double strain anything shaken with citrus or herbs going 'up'."],
     ["Pouring","Jigger for accuracy. Free-pour counts: 1 = 1/4 oz, 2 = 1/2, 4 = 1, 8 = 2 oz. Calibrate weekly with water and a jigger."],
     ["Garnish","The garnish is the first thing the nose meets: an ingredient, not decoration. Express peels skin-side down; flame orange peels through a match for caramelized oil; slap mint; cut fresh every shift."],

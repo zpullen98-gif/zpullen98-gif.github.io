@@ -27,9 +27,12 @@
         entry.thumb.width >= entry.width || entry.thumb.width * entry.height !== entry.thumb.height * entry.width)) return;
     if (entry.labels && (!Array.isArray(entry.labels) || entry.labels.length > 24 ||
         entry.labels.some(function (label) { return typeof label !== 'string' || !label.trim(); }))) return;
+    if (entry.notes && (!Array.isArray(entry.notes) || !entry.labels || entry.notes.length !== entry.labels.length ||
+        entry.notes.some(function (note) { return typeof note !== 'string' || !note.trim(); }))) return;
     entries[id] = Object.freeze({ src: entry.src, width: entry.width, height: entry.height,
       alt: entry.alt, caption: entry.caption,
       labels: Object.freeze((entry.labels || []).slice()),
+      notes: Object.freeze((entry.notes || []).slice()),
       thumb: entry.thumb && Object.freeze({src:entry.thumb.src,width:entry.thumb.width,height:entry.thumb.height}) });
     urls.add(new URL(entry.src, base).href);
     if (entry.thumb) urls.add(new URL(entry.thumb.src, base).href);
@@ -144,9 +147,14 @@
     if (!entry) return '';
     return '<details class="teaching-reference" data-teaching-reference="' + esc(id) + '"><summary>' + esc(title) + '</summary>' +
       '<div data-teaching-slot></div>' +
-      '<ol class="teaching-image-key">' + entry.labels.map(function (label) { return '<li>' + esc(label) + '</li>'; }).join('') + '</ol></details>';
+      key(entry) + '</details>';
   }
-  scope.LedgerTeaching = Object.freeze({ entries:entries, cacheName:cacheName, figure:figure, disclosure:disclosure, handles:handles, owns:owns, serve:serve,
+  function key(entry) {
+    return '<ol class="teaching-image-key' + (entry.notes.length ? ' teaching-image-guide' : '') + '">' +
+      entry.labels.map(function (label, i) { return '<li>' + (entry.notes.length ? '<strong>' + esc(label) + '</strong><span>' + esc(entry.notes[i]) + '</span>' : esc(label)) + '</li>'; }).join('') + '</ol>';
+  }
+  function lesson(id) { return entries[id] ? figure(id) + key(entries[id]) : ''; }
+  scope.LedgerTeaching = Object.freeze({ entries:entries, cacheName:cacheName, figure:figure, lesson:lesson, disclosure:disclosure, handles:handles, owns:owns, serve:serve,
     maxImageBytes:maxImageBytes, maxBytes:maxBytes, maxEntries:maxEntries,
     forget:function () { return scope.caches ? scope.caches.delete(cacheName) : Promise.resolve(false); } });
 

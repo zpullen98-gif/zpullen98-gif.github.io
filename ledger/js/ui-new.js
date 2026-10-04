@@ -171,7 +171,7 @@ function applyRoute(hashArg){
     else if(tab==='producers') state.prod.open = null;
     /* the two accordions that are not STUDY entries: a search hit for a
        glossary term used to open Notes with the target collapsed at the bottom */
-    else if(tab==='notes' && (slug==='glossary' || slug==='plates')){ state.noteOpen = '__'+slug; state.noteJump = true; }
+    else if(tab==='notes' && (slug==='glossary' || slug==='plates' || slug==='garnish')){ state.noteOpen = '__'+slug; state.noteJump = true; }
     /* the menu's own address closes a study card (js/house-study.js) */
     else if(tab==='menu' && typeof houseStudyRoute === 'function') houseStudyRoute(null);
   }
@@ -192,7 +192,7 @@ function legacyRoute(){
   else if(t==='na' && state.na.open!=null && NA_DRINKS[state.na.open]) slug = slugify(NA_DRINKS[state.na.open].name);
   else if(t==='prep' && state.prep.open!=null && PREPS[state.prep.open]) slug = slugify(PREPS[state.prep.open].name);
   else if(t==='producers' && state.prod.open!=null && PRODUCERS[state.prod.open]) slug = slugify(PRODUCERS[state.prod.open].name);
-  else if(t==='notes' && state.noteOpen) slug = state.noteOpen === '__glossary' ? 'glossary' : state.noteOpen === '__plates' ? 'plates' : slugify(state.noteOpen);
+  else if(t==='notes' && state.noteOpen) slug = state.noteOpen === '__glossary' ? 'glossary' : state.noteOpen === '__plates' ? 'plates' : state.noteOpen === '__garnish' ? 'garnish' : slugify(state.noteOpen);
   else if(t==='service' && state.svc.dom) slug = slugify(state.svc.dom);
   else if(t==='ontap' && state.ontap.sec) slug = slugify(state.ontap.sec);
   else if(t==='coffee' && state.coffee.sec) slug = slugify(state.coffee.sec);
@@ -424,6 +424,15 @@ function glassShapesHTML(){
   return typeof LedgerTeaching !== 'undefined'
     ? LedgerTeaching.disclosure('brennans-glassware', 'Glass shapes: a service reference') : '';
 }
+function craftPictureHTML(id, title){
+  return typeof LedgerTeaching !== 'undefined' ? LedgerTeaching.disclosure(id, title) : '';
+}
+/* Only a printed citrus cut earns this door. It cannot supply a missing
+   house garnish, guess a cut from an ingredient, or appear on a blind ticket. */
+function citrusGarnishLink(garnish){
+  if(typeof garnish !== 'string' || !/\b(?:(?:lemon|orange)\s+twist|orange\s+peel|(?:lime|lemon)\s+(?:wheel|wedge)|orange\s+(?:slice|half[ -]wheel))s?\b/i.test(garnish)) return '';
+  return '<a class="teaching-reference-link" href="#/notes/garnish">Citrus cuts: illustrated reference</a>';
+}
 function renderService(){
   const s = state.svc;
   const sec = SERVICE_STUDY.find(x => x.key === s.dom) || SERVICE_STUDY[0];
@@ -464,6 +473,7 @@ function renderService(){
     + '<div class="col-sm">'+rows+'</div>'
     + (s.dom === 'glassware' ? glassShapesHTML() : '')
     + refHTML
+    + '<div class="row wrap"><a class="teaching-reference-link" href="#/notes/technique-the-mechanics">Bar tools and ice</a><a class="teaching-reference-link" href="#/notes/garnish">Citrus garnish cuts</a></div>'
     + '</div>';
 }
 
@@ -492,7 +502,7 @@ const PLATES = [
     svg:'<path d="M30 40 L38 108 L74 108 L82 40 Z"/><ellipse cx="56" cy="80" rx="13" ry="16" opacity="0.8"/><path d="M44 30 L68 54 M68 30 L44 54" stroke-width="2.2"/><rect x="42" y="28" width="28" height="28" rx="3" opacity="0.55"/><path d="M96 74 L118 74 M118 74 L112 68 M118 74 L112 80"/><path d="M132 40 L140 108 L176 108 L184 40 Z"/><rect x="144" y="58" width="14" height="14" rx="2"/><rect x="156" y="76" width="14" height="14" rx="2"/><rect x="142" y="84" width="12" height="12" rx="2"/>' },
   { id:'muddle', title:'Plate VII · The Muddle Press',
     caption:'Press, twist a quarter turn, lift: three or four times, no more. You are coaxing oil from the leaf and juice from the fruit, not making pesto: a ground herb releases chlorophyll and bitterness, and no amount of rum forgives it.',
-    svg:'<path d="M132 10 L106 92" stroke-width="7" stroke-linecap="round"/><ellipse cx="101" cy="110" rx="11" ry="17" transform="rotate(18 101 110)"/><path d="M60 66 L66 140 L134 140 L140 66"/><path d="M74 130 C80 122 88 126 90 132 M110 134 C108 124 118 120 124 128" stroke-linecap="round"/><path d="M80 92 L80 108 M80 108 L75 102 M80 108 L85 102" opacity="0.8"/>' },
+    svg:'<path d="M132 10 L106 92" stroke-width="7" stroke-linecap="round"/><path d="M97 92 L112 92 L115 116 L94 116 Z" transform="rotate(18 104 104)"/><path d="M60 66 L66 140 L134 140 L140 66"/><path d="M74 130 C80 122 88 126 90 132 M110 134 C108 124 118 120 124 128" stroke-linecap="round"/><path d="M80 92 L80 108 M80 108 L75 102 M80 108 L85 102" opacity="0.8"/>' },
   { id:'float', title:'Plate VIII · The Float',
     caption:'Rest the back of the spoon against the inner wall, just above the drink, and pour slow: the liquid walks down the spoon, spreads across the surface, and sits. Wine on a New York Sour, scotch on a Penicillin: weather, not mixture.',
     svg:'<path d="M124 8 L86 68" stroke-width="2"/><ellipse cx="82" cy="74" rx="10" ry="6" transform="rotate(-28 82 74)"/><path d="M60 60 L66 140 L134 140 L140 60"/><path d="M67 92 L133 92" stroke-width="2.4"/><path d="M68 104 L132 104 M69 116 L131 116" stroke-dasharray="4 4" opacity="0.5"/><path d="M76 76 C86 80 96 82 108 80" stroke-dasharray="2 3" opacity="0.8"/>' },

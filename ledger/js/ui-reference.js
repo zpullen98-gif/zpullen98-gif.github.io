@@ -495,6 +495,7 @@ function naTicketHTML(d, hideName){
     + '<div><span class="tix-label">Method </span>'+esc(d.method)+'</div>'
     + '<div><span class="tix-label">Glass </span>'+esc(d.glass)+'</div>'
     + '<div><span class="tix-label">Garnish </span>'+esc(d.garnish)+'</div>'
+    + (!hideName && typeof citrusGarnishLink === 'function' ? citrusGarnishLink(d.garnish) : '')
     + (!hideName && d.why ? '<div class="tix-rule"></div><div class="tix-note">'+esc(d.why)+'</div>' : '')
     + '</div></div>';
 }
@@ -742,4 +743,3 @@ function renderProducers(){
     + '<span class="tiny dim push">'+list.length+' houses</span></div>'
     + '<div class="col-sm">'+rows+'</div></div>';
 }
-
