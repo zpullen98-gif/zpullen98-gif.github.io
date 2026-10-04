@@ -617,7 +617,9 @@ function menuListHTML(){
       + '<button class="chip" data-act="menu-del" data-id="'+esc(b.id)+'">Remove</button></div></div>';
     return '<div class="panel p4 col" style="gap:0">'+head+body+'</div>';
   }).join('');
-  return '<div class="col-sm" style="gap:8px">'+standing+rows+'</div>';
+  /* with a house current, the switch back to the study view (js/house-study.js) */
+  const studyBar = typeof houseStudyEditBarHTML === 'function' ? houseStudyEditBarHTML() : '';
+  return '<div class="col-sm" style="gap:8px">'+studyBar+standing+rows+'</div>';
 }
 
 /* ---- sub-view 2: the stock ---------------------------------------------
@@ -800,7 +802,9 @@ function renderMenu(){
             + '</div>'
           : '');
   }
-  else inner = menuListHTML();
+  /* the study view of the house's drinks (js/house-study.js) when a house
+     with drinks is current and Edit the menu is off; today's list otherwise */
+  else inner = (typeof houseStudyOn === 'function' && houseStudyOn()) ? houseStudyHTML() : menuListHTML();
   /* the desk's share, above every sub-view: what another room read and left
      for this bar is the first thing to know on opening the Menu tab */
   const waiting = (typeof deskWaitingHTML === 'function') ? deskWaitingHTML('menu') : '';

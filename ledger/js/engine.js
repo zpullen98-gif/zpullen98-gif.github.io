@@ -128,10 +128,10 @@ const saveProgress = () => store.set(KEY(), JSON.stringify(progress));
 const state = {
   tab:'home',
   lib:{ q:'', fam:'All', tier:'All', open:null },
-  fc:{ stage:'setup', mode:null, src:'All', boardSrc:'All', tier:'All', family:'All', spirit:'All', special:'All', smart:false,
+  fc:{ stage:'setup', mode:null, src:'All', boardSrc:'All', tier:'All', family:'All', spirit:'All', special:'All', smart:false, section:'All',
        deck:[], idx:0, flipped:false, right:0, wrong:0, missed:[],
        pool:[], sel:[], checked:false, lastOk:null, clozeIdx:0, opts:[], picked:null, boardOpen:null },
-  quiz:{ stage:'setup', mode:'mixed', round:null, idx:0, picked:null, score:0, missedQ:[] },
+  quiz:{ stage:'setup', mode:'mixed', round:null, idx:0, picked:null, score:0, missedQ:[], section:null },
   riff:{ frame:null, deal:null, revealed:false },
   tools:{ view:'batch', drink:3, serv:8, dilute:false, shelf:[],
           convVal:1, convFrom:'oz', bottlePrice:30, bottleMl:750, targetPour:20, dilPct:25 },

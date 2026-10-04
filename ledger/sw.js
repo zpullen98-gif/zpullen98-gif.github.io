@@ -1,6 +1,6 @@
 /* The Bartender's Ledger: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-ledger-v94';
+const CACHE = 'oot-ledger-v95';
 
 const ASSETS = [
   './',
@@ -19,6 +19,7 @@ const ASSETS = [
   './index.html',
   './css/ledger.css',
   './css/house.css',
+  './css/house-menu.css',
   './img/explorers-library.webp',
   './fonts/cinzel-latin.woff2',
   './fonts/garamond-latin.woff2',
@@ -49,6 +50,7 @@ const ASSETS = [
   './js/levels.js',
   './js/ui-levels.js',
   './js/house-bar.js',
+  './js/house-study.js',
   './js/app.js',
   './js/storage-alarm.js',
   './js/oot-ledger.js',

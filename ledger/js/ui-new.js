@@ -140,6 +140,9 @@ function applyRoute(){
     else if(tab==='service') Object.assign(state.svc, { dom: SERVICE_STUDY[i].key, rowOpen:null, refOpen:null });
     else if(tab==='ontap') Object.assign(state.ontap, { sec: ONTAP_STUDY[i].key, rowOpen:null, refOpen:null });
     else if(tab==='coffee') Object.assign(state.coffee, { sec: COFFEE_STUDY[i].key, rowOpen:null, refOpen:null });
+    /* while the study view shows, a drink's address opens its study card,
+       not the editor (js/house-study.js); else today's Build pane */
+    else if(tab==='menu' && typeof houseStudyRoute === 'function' && houseStudyRoute((progress.bar||[])[i])){}
     else if(tab==='menu'){ state.menu.open = (progress.bar||[])[i] ? progress.bar[i].id : null;
                            state.menu.view = 'menu'; state.menu.pane = 'build'; }
   } else {
@@ -153,6 +156,8 @@ function applyRoute(){
     /* the two accordions that are not STUDY entries: a search hit for a
        glossary term used to open Notes with the target collapsed at the bottom */
     else if(tab==='notes' && (slug==='glossary' || slug==='plates')){ state.noteOpen = '__'+slug; state.noteJump = true; }
+    /* the menu's own address closes a study card (js/house-study.js) */
+    else if(tab==='menu' && typeof houseStudyRoute === 'function') houseStudyRoute(null);
   }
   return true;
 }
@@ -170,6 +175,7 @@ function currentRoute(){
   else if(t==='service' && state.svc.dom) slug = slugify(state.svc.dom);
   else if(t==='ontap' && state.ontap.sec) slug = slugify(state.ontap.sec);
   else if(t==='coffee' && state.coffee.sec) slug = slugify(state.coffee.sec);
+  else if(t==='menu' && typeof houseStudyRouteSlug === 'function' && houseStudyOn()) slug = houseStudyRouteSlug();
   else if(t==='menu' && state.menu.open && state.menu.view === 'menu'){
     const b = (progress.bar||[]).find(x => x.id === state.menu.open);
     if(b) slug = slugify(b.name);

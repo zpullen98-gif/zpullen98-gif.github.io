@@ -289,6 +289,10 @@ function fcPool(){
       if(f.sub && subOf(cardKey(d)) !== f.sub) return false;
     }
     if(f.src!=='All' && d.src!==f.src) return false;
+    /* a section of the house's menu (js/house-study.js), for a menu card only */
+    if(f.section && f.section!=='All' && d.src==='My Bar'){
+      if(typeof houseStudySectionOf !== 'function' || houseStudySectionOf(d.ref && d.ref.id) !== f.section) return false;
+    }
     if(f.tier!=='All'){ if(d.src!=='Cocktails' || d.tier!==Number(f.tier)) return false; }
     if(f.family!=='All' && d.group!==f.family) return false;
     if(f.spirit!=='All'){ if(d.src!=='Cocktails' || d.spirit!==f.spirit) return false; }
@@ -436,6 +440,7 @@ const FC_MODES = [
   ['line45','The forty five second line','A table has time. Say the whole line you kept, then flip and grade yourself.', fitsLine('s45')],
   ['parts','The five parts','A new starter asks what is in it. Say the five parts you kept for it, then flip.', fitsHouse('parts')],
   ['upsell','What to offer next','The glass is empty. Say what you kept to offer after it, then flip.', fitsHouse('upsell')],
+  ['study','The house card','Name and section on the front. The line, the five parts and what to offer next on the back.', fitsHouse('study')],
 ];
 
 function renderFlashcards(){
@@ -455,6 +460,13 @@ function renderFlashcards(){
     const books = isCocktail && (!fc.sub || fc.sub === 'cocktails');
     fc.tier = books ? bookHeld(fc.level, fc.tier) : 'All';
     const bookSel = books ? '<select class="input" id="fc-book" aria-label="Filter by book" style="max-width:380px">'+bookOptions(fc.tier, fc.level)+'</select>' : '';
+    /* the menu's sections, when the deck is the menu and a house names them */
+    const menuSecs = fc.src==='My Bar' && typeof houseStudySectionOf === 'function'
+      ? [...new Set((progress.bar||[]).map(function(b){ return houseStudySectionOf(b.id); }).filter(Boolean))] : [];
+    if(menuSecs.indexOf(fc.section) < 0) fc.section = 'All';
+    const secSel = menuSecs.length > 1 ? '<select class="input" id="fc-section" aria-label="Filter by section of the menu" style="max-width:380px">'
+      + ['All'].concat(menuSecs).map(function(sec){ return '<option value="'+esc(sec)+'"'+(fc.section===sec?' selected':'')+'>'+(sec==='All'?'Every section':esc(sec))+'</option>'; }).join('')
+      + '</select>' : '';
     const groupList = fc.src==='All' ? [].concat(Object.keys(FAMILIES), SHOT_CATS, NA_CATS) : groupsFor(fc.src);
     const groupLabel = fc.src==='Shots' ? 'All shot categories' : fc.src==='Zero Proof' ? 'All zero-proof families' : 'All families';
     const fams = ['All'].concat(groupList);
@@ -480,6 +492,7 @@ function renderFlashcards(){
         + '<button class="chip" data-act="fc-level-clear">Every card</button></div>' : '')
       + '<div class="row">'+srcChips+'</div>'
       + (bookSel ? '<div class="row">'+bookSel+'</div>' : '')
+      + (secSel ? '<div class="row">'+secSel+'</div>' : '')
       + '<div class="row" style="gap:10px"><select class="input" id="fc-family" aria-label="Filter by '+(fc.src==='Shots'?'shot category':fc.src==='Zero Proof'?'zero-proof family':'family')+'" style="flex:1;min-width:150px">'+famOpts+'</select>'
       + (isCocktail ? '<select class="input" id="fc-spirit" aria-label="Filter by base spirit" style="flex:1;min-width:150px">'+spOpts+'</select>' : '')+'</div>'
       + '<div class="row">'+specials
@@ -581,7 +594,7 @@ function renderFlashcards(){
   if(typeof HOUSE_CARD_MODES !== 'undefined' && HOUSE_CARD_MODES[fc.mode]){
     if(!fc.flipped){
       return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'
-        + '<div class="eyebrow">'+(fc.mode==='parts' ? 'What is in it?' : 'The glass is empty:')+'</div><div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
+        + '<div class="eyebrow">'+(fc.mode==='parts' ? 'What is in it?' : fc.mode==='study' ? esc((typeof houseStudySectionOf === 'function' && c.ref ? houseStudySectionOf(c.ref.id) : '') || 'The house card') : 'The glass is empty:')+'</div><div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
         + '<div class="small dim">'+esc(HOUSE_CARD_MODES[fc.mode])+'</div>'
         + '<button class="btn btn-brass" data-act="fc-flip">Flip the card</button></div></div>';
     }
@@ -910,7 +923,12 @@ function buildRound(mode, pool){
        counts the way this deals: a DRAFT (a name with no spec yet) is left
        out, because "name this drink" over a ticket with no lines is not a
        question anybody can get right. */
-    shuffle((progress.bar||[]).filter(isHouseCard)).forEach(b => {
+    /* a section's round from the study view (js/house-study.js): the
+       questions about that section's drinks, the wrong answers still drawn
+       from the whole list */
+    const sec = state.quiz && state.quiz.section;
+    shuffle((progress.bar||[]).filter(isHouseCard)
+      .filter(b => !sec || (typeof houseStudySectionOf === 'function' && houseStudySectionOf(b.id) === sec))).forEach(b => {
       /* a drink with a kept line and no spec is a card for its line alone */
       if(hasSpec(b)){
         qs.push(qMyBarTicket(b));

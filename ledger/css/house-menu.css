@@ -1,0 +1,120 @@
+/* The study view of the house's drinks (js/house-study.js), in the Ledger's
+   own felt and brass: the tokens and components of css/house.css, laid out
+   for a server reading at arm's length. Body text is never under 16px, a
+   row's name never under 18px, the ten second line 20px, a flash card's
+   front name 28px; every control is at least 44px tall, and every state is
+   said in a word. */
+@media screen{
+  .hs{font-family:var(--house-reading);font-size:1.0625rem;line-height:1.55;color:var(--cream)}
+  .hs p{margin:0}
+  .hs .btn{min-height:44px;font-size:.95rem}
+  .hs .eyebrow{font-size:.78rem}
+
+  /* the header: the house, one line of facts, the progress, the doors */
+  .hs-head{padding:10px 14px 12px;display:flex;flex-direction:column;gap:4px}
+  .hs.col-sm{gap:8px}
+  .hs-head .hs-facts,.hs-head .hs-progress{line-height:1.4}
+  .hs-head-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .hs-house{margin:0;font-family:var(--house-reading);font-weight:500;font-size:1.4rem;line-height:1.25;color:var(--brass-2)}
+  .hs-quiet{min-height:44px;padding:0 4px;background:none;border:0;color:var(--cream);font:inherit;font-size:1rem;text-decoration:underline;text-underline-offset:4px;cursor:pointer;white-space:nowrap}
+  .hs-facts,.hs-progress,.hs-soft,.hs-also,.hs-pos{font-size:1rem;color:var(--cream-dim);line-height:1.5}
+  .hs-btns,.hs-toggles,.hs-foot{display:flex;flex-wrap:wrap;gap:8px}
+  /* the shift: one row that scrolls inside itself, like the section chips */
+  .hs-meals{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;padding-bottom:2px}
+  /* the header's three doors on one row: a long label wraps inside its button */
+  .hs-head .hs-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .hs-head .hs-btns .btn{padding:4px 8px;font-size:.9rem;line-height:1.15;white-space:normal}
+  .hs-chip{min-height:44px!important;font-family:var(--house-reading);font-size:1rem!important;letter-spacing:.01em;text-transform:none;flex:none;color:var(--cream)}
+  button.hs-chip.on{color:var(--ink)}
+
+  /* the sticky bar: the search box, then one row of section chips that
+     scrolls inside itself; the first row keeps clear of the suite's badge */
+  .hs-bar{position:sticky;top:0;z-index:20;background:var(--felt-2);border-bottom:1px solid var(--brass);padding:calc(6px + env(safe-area-inset-top,0px)) 0 8px;display:flex;flex-direction:column;gap:6px}
+  .hs-find{display:flex;gap:8px;align-items:center}
+  .hs-q{flex:1;min-width:0;min-height:44px;font-size:1rem}
+  .hs-chips{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;padding-bottom:2px}
+  .hs-chips .hs-chip{scroll-snap-align:start}
+
+  /* sections and rows */
+  .hs-sec{padding:0;overflow:hidden}
+  .hs-sec-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:2px 6px 2px 14px;border-bottom:1px solid var(--house-line)}
+  .hs-sec-name{margin:0;font-size:.85rem;line-height:1.5}
+  .hs-row{display:block;width:100%;min-height:56px;padding:12px 14px;text-align:left;background:none;border:0;border-bottom:1px dotted var(--house-line);color:var(--cream);font-family:var(--house-reading);cursor:pointer}
+  .hs-row:last-child{border-bottom:0}
+  .hs-row:hover,.hs-row:focus-visible{background:#d5b16c0d}
+  .hs-row-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .hs-row-name{font-size:1.2rem;line-height:1.3;color:var(--brass-2)}
+  .hs-row-price{font-size:1rem;color:var(--brass-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .hs-row-line{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:3px;font-size:1rem;line-height:1.45;color:var(--cream-dim)}
+  .hs-tag{display:inline-block;margin-left:6px;padding:0 6px;border:1px solid var(--brass);font-family:var(--house-display);font-size:.7rem;letter-spacing:.08em;color:var(--brass-2);vertical-align:middle}
+  .hs-none{padding:6px 4px;font-size:1rem}
+  .hs-sec .hs-list,.hs-sec .hs-more{margin:10px 14px}
+
+  /* the card */
+  .hs-card{gap:14px;scroll-margin-top:64px}
+  .hs-cardnav{display:flex;align-items:center;gap:10px}
+  .hs-cardnav .hs-pos{flex:1;min-width:0}
+  .hs-namerow{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .hs-name{margin:0;font-family:var(--house-reading);font-weight:500;font-size:1.9rem;line-height:1.2;color:var(--brass-2)}
+  .hs-name:focus{outline:none}
+  .hs-name:focus-visible{outline:3px solid var(--brass-2);outline-offset:4px}
+  .hs-price{font-size:1.2rem;color:var(--brass-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .hs-block{display:flex;flex-direction:column;gap:4px}
+  .hs-say{font-size:1.1rem}
+  .hs-ten{font-size:1.25rem;line-height:1.5;border-left:2px solid var(--brass);padding-left:12px}
+  .hs-offer,.hs-line{font-size:1.0625rem;line-height:1.6}
+  /* a line of words: each name travels with its comma, and wraps as one piece */
+  .hs-offer{display:block}
+  .hs-offer-item{display:inline-block}
+  .hs-inline{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;background:none;border:0;color:var(--brass-2);font:inherit;text-decoration:underline;text-underline-offset:4px;cursor:pointer;text-align:left}
+  .hs-group{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--house-line);padding-top:14px}
+  .hs-h3{margin:0;font-family:var(--house-display);font-weight:500;font-size:.95rem;letter-spacing:.08em;color:var(--brass-2)}
+  .hs-read p{margin:0 0 .7em;font-size:1.0625rem;line-height:1.65}
+  .hs-read p:last-child{margin-bottom:0}
+  .hs-dl{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:8px 12px;margin:0}
+  .hs-dl dt{font-family:var(--house-display);font-size:.74rem;letter-spacing:.08em;color:var(--brass-2);padding-top:3px}
+  .hs-dl dd{margin:0;font-size:1.0625rem;line-height:1.5}
+  .hs-list{margin:0;padding-left:1.1em;font-size:1.0625rem;line-height:1.55}
+  .hs-list li{margin:.3em 0}
+  .hs-link{display:inline-block;padding:10px 0;color:var(--brass-2);text-decoration:underline;text-underline-offset:4px}
+  .hs-stack{display:flex;flex-direction:column;gap:8px;align-items:stretch}
+  .hs-left{text-align:left;justify-content:flex-start}
+  .hs-more summary{min-height:44px;display:flex;align-items:center;gap:8px;cursor:pointer;font-family:var(--house-display);font-size:.85rem;letter-spacing:.06em;color:var(--brass-2)}
+  .hs-more summary{list-style:none}
+  .hs-more summary::-webkit-details-marker{display:none}
+  /* the state in a word, beside the question */
+  .hs-more summary::after{content:'Show';margin-left:auto;padding-left:10px;font-family:var(--house-reading);font-size:.95rem;letter-spacing:0;color:var(--cream-dim);text-decoration:underline;text-underline-offset:4px}
+  .hs-more[open]>summary::after{content:'Hide'}
+  .hs-more[open]>summary{margin-bottom:6px}
+  .hs-strong{font-weight:600;color:var(--cream)}
+  .hs-ticket .ticket{max-width:100%}
+
+  /* the deck: the whole front is one button; Got it and Again only after Flip */
+  .hs-decktitle{font-size:.9rem}
+  .hs-face{width:100%;min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px 18px;text-align:center;color:var(--cream);font-family:var(--house-reading);border:1px solid var(--brass);background:radial-gradient(ellipse at 50% 0,#3f4b294d,transparent 64%),linear-gradient(145deg,#182b1e,#0a1811)}
+  button.hs-face{cursor:pointer}
+  .hs-facename{font-size:1.75rem;line-height:1.25;color:var(--brass-2)}
+  .hs-faceline{font-size:1rem;color:var(--cream-dim);max-width:30em}
+  .hs-flipword{display:inline-flex;align-items:center;min-height:44px;padding:0 24px;border:1px solid var(--brass);font-family:var(--house-display);font-size:.8rem;letter-spacing:.12em;color:var(--brass-2)}
+  .hs-back{align-items:stretch;text-align:left;justify-content:flex-start;gap:10px}
+  .hs-back p,.hs-back dd{font-size:1.125rem}
+  .hs-backname{font-size:1.4rem;line-height:1.3;color:var(--brass-2)}
+  .hs-grade{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+  .hs-grade .btn{min-height:56px;font-size:1rem}
+
+  @media(max-width:639px){
+    .hs-bar{margin-inline:-17px;padding-inline:17px}
+    .hs-find{padding-left:calc(48px + env(safe-area-inset-left,0px))}
+    .hs-name{font-size:1.75rem}
+    .hs-btns .btn{flex:1 1 auto}
+  }
+  @media(min-width:640px) and (max-width:1189px){
+    .hs-find{padding-left:calc(30px + env(safe-area-inset-left,0px))}
+  }
+  @media(forced-colors:active){
+    .hs-face,.hs-bar{border:1px solid CanvasText}
+  }
+}
+@media print{
+  .hs-bar,.hs-btns,.hs-cardnav,.hs-foot{display:none}
+}

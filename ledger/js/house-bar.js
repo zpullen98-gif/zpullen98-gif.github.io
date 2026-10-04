@@ -186,10 +186,13 @@ function houseDistinct(list){
   return out;
 }
 /* the two card modes over the kept marks: what the face asks for */
-var HOUSE_CARD_MODES = { parts: 'Say its five parts, in your own words, then flip.', upsell: 'Say what you would offer after it, then flip.' };
+var HOUSE_CARD_MODES = { parts: 'Say its five parts, in your own words, then flip.', upsell: 'Say what you would offer after it, then flip.',
+  study: 'Say the ten second line aloud, then flip.' };
 function houseCardFits(mode, d){
   if(mode === 'parts') return hasKeptParts(d);
   if(mode === 'upsell') return hasKeptUpsells(d);
+  /* the house card (js/house-study.js): a drink of the menu with a kept line */
+  if(mode === 'study') return !!(d && d.src === 'My Bar' && hasKeptLines(d));
   return false;
 }
 /* the back of a card: the kept parts under the engine's labels, or the
@@ -206,6 +209,22 @@ function houseCardBackHTML(mode, c){
     const names = keptUpsellsOf(c) || [];
     return '<div class="col-sm" style="gap:6px;max-width:520px;width:100%"><span class="tiny dim">What you kept to offer next</span>'
       + names.map(function(n){ return '<div class="small lh">' + esc(n) + '</div>'; }).join('') + '</div>';
+  }
+  /* the house card's back: the line, the price, what to offer next, how to
+     say it and the five parts, all kept marks (js/house-study.js) */
+  if(mode === 'study'){
+    const b = c && c.ref ? c.ref : c;
+    const item = b ? houseItemFor(b.id) : null;
+    const api = houseHere();
+    if(!item || !api || typeof hsCardBack !== 'function') return '';
+    const back = hsCardBack(api.current(), item);
+    return '<div class="col-sm" style="gap:8px;max-width:520px;width:100%">'
+      + (back.s10 ? '<div class="lh" style="font-size:1.25rem">' + esc(back.s10) + '</div>' : '')
+      + (back.price ? '<div class="small">' + esc(back.price) + '</div>' : '')
+      + back.pairs.map(function(p){ return '<div class="small lh"><span class="tiny dim">' + esc(p[0]) + '</span><br>' + esc(p[1]) + '</div>'; }).join('')
+      + (back.say ? '<div class="small lh"><span class="tiny dim">Say it</span><br>' + esc(back.say) + '</div>' : '')
+      + back.parts.map(function(p){ return '<div class="small lh"><span class="tiny dim">' + esc(p[0]) + '</span><br>' + esc(p[1]) + '</div>'; }).join('')
+      + '</div>';
   }
   return '';
 }
@@ -509,6 +528,8 @@ function houseSyncInNow(api){
       houseSyncedTo = api.currentId();
       const said = houseApplyChanges(out);
       if(!out.ok && out.said) said.push(out.said);
+      /* a #drink= address waiting on this house (js/house-study.js) */
+      if(typeof houseStudyRetry === 'function') houseStudyRetry();
       if(out.changes.length){ allDrinks._c = null; saveProgress(); }
       if(said.length && state.house) state.house.err = said.join(' ');
       return out;
@@ -708,6 +729,7 @@ if(typeof window !== 'undefined' && window && typeof window.addEventListener ===
    person is typing in survives the render, as every act's render does. */
 function houseRepaint(){
   if(typeof captureLiveInputs === 'function') captureLiveInputs();
+  if(typeof houseStudyRetry === 'function') houseStudyRetry();
   if(typeof render === 'function') render();
 }
 
@@ -1437,6 +1459,8 @@ function houseUIEditing(){
 /* after every render: the shared screen drawn into its root, from the house */
 function houseAfterRender(){
   if(typeof document === 'undefined' || !document || typeof document.getElementById !== 'function') return;
+  /* the study view's search box, its scroll and its focus (js/house-study.js) */
+  if(typeof houseStudyAfterRender === 'function') houseStudyAfterRender();
   const root = document.getElementById('house-ui-root');
   if(!root){ houseUIRoot = null; return; }
   const api = houseHere(); const ui = houseUIHere(); const h = state.house;

@@ -112,7 +112,7 @@ function render(){
   });
   /* a book's key is still `tier` in state; the render drops a book the
      chosen level does not hold (bookHeld) */
-  [['fc-family','fc','family'],['fc-spirit','fc','spirit'],['fc-book','fc','tier'],['lib-book','lib','tier'],['lib-level','lib','level']].forEach(([id,obj,key]) => {
+  [['fc-family','fc','family'],['fc-spirit','fc','spirit'],['fc-book','fc','tier'],['fc-section','fc','section'],['lib-book','lib','tier'],['lib-level','lib','level']].forEach(([id,obj,key]) => {
     const sel = document.getElementById(id);
     if(sel) sel.addEventListener('change', e => {
       state[obj][key] = e.target.value;
@@ -343,7 +343,7 @@ document.getElementById('view').addEventListener('click', e => {
   else if(act==='fc-src'){
     fc.src = el.dataset.s; fc.family = 'All'; fc.spirit = 'All';
     /* choosing a source is choosing the deck: a level's filter ends here */
-    fc.level = null; fc.sub = null;
+    fc.level = null; fc.sub = null; fc.section = 'All';
     if(fc.src!=='Cocktails' && fc.src!=='All') fc.tier = 'All'; }
   else if(act==='fc-board-src'){ fc.boardSrc = el.dataset.s; fc.boardOpen = null; }
   else if(act==='fc-special'){ fc.special = el.dataset.s; }
@@ -435,8 +435,9 @@ document.getElementById('view').addEventListener('click', e => {
     state.fc.stage = 'setup';
     state.tab = 'home';
   }
-  else if(act==='quiz-mode'){ z.mode = el.dataset.m; }
-  else if(act==='quiz-quit'){ z.stage='setup'; if(state.sess) state.sess.active=false; }
+  /* a section's round (js/house-study.js) ends when the setup is touched */
+  else if(act==='quiz-mode'){ z.mode = el.dataset.m; z.section = null; }
+  else if(act==='quiz-quit'){ z.stage='setup'; z.section = null; if(state.sess) state.sess.active=false; }
   else if(act==='quiz-start'){ Object.assign(z, { stage:'run', round:buildRound(z.mode), idx:0, picked:null, score:0, missedQ:[], replay:false }); }
   else if(act==='quiz-pick'){
     if(z.picked!==null) return;
@@ -987,6 +988,9 @@ document.getElementById('view').addEventListener('click', e => {
   /* Say it back and Guest at the table (js/house-bar.js): graded offline by
      the engine, recorded only on Record it, counted toward no level */
   else if(act.indexOf('hd-')===0){ houseDrillAct(act, el.dataset); return; }
+  /* the study view of the house's drinks (js/house-study.js): every act
+     there repaints itself, or hands the back gesture to the browser */
+  else if(act.indexOf('hs-')===0){ houseStudyAct(act, el.dataset); return; }
   else if(act==='menu-add-line'){ state.menu.form.spec.push(''); }
   else if(act==='menu-del-line'){
     state.menu.form.spec.splice(Number(el.dataset.i), 1);
@@ -1097,6 +1101,11 @@ function captureLiveInputs(){
     if(pick && pick.value && pick.value !== state.house.say.id && typeof houseSayChoose === 'function') houseSayChoose(pick.value);
     grab('hs-said', state.house.say, 'text');
   }
+  /* the study view's search box and the Flashcards tab's section select
+     (js/house-study.js, js/ui-study.js); the box repaints its rows alone on
+     input, and is grabbed here so no act's render can lose a word of it */
+  if(state.menu && state.menu.study) grab('hs-q', state.menu.study, 'q');
+  grab('fc-section', state.fc, 'section');
   if(state.house && state.house.role) grab('hr-said', state.house.role, 'text');
   /* every drill result field, by prefix: on the Ticket Rail an intervening
      act (revealing the order) is REQUIRED between typing and logging, so the
@@ -1164,6 +1173,9 @@ function captureLiveInputs(){
   if(expireStaleEightySix()) saveProgress();
   dropDeadEightySix();
   srsMigrate(progress.cards);
+  /* #drink=<id>, the address another room links a drink by (js/house-study.js):
+     read once, before the router, and replaced by the drink's own address */
+  if(typeof houseStudyDeepLink === 'function'){ try{ houseStudyDeepLink(); }catch(e){} }
   try { applyRoute(); } catch (e) { state.tab = 'home'; }
   render();
 })();

@@ -1,0 +1,131 @@
+/* Outside Of Time: Our List, to study (codex28).
+   Built from the Codex's own tokens and components: the dark page carries
+   --parch, --gold, --gold-soft and --gold-hi; anything inside a .card is on
+   parchment and carries --ink and --ink-soft (the contrast rule in
+   CLAUDE.md). Layout and hierarchy only: no new colour, no new face.
+   Every control at least 44px; every row at least 56px; body text at least
+   17px in the reading face. */
+@media screen {
+  .wrap .v28 { min-width: 0; }
+  .wrap .v28 p { font-size: 17px; line-height: 1.6; color: var(--parch); margin: 0 0 12px; overflow-wrap: anywhere; }
+  .wrap .v28 .v28-soft, .wrap .v28 p.v28-soft { color: var(--parch2); font-size: 16px; }
+  .wrap .v28 .v28-link { color: var(--gold-hi); text-decoration: underline; text-underline-offset: 3px; display: inline-flex; align-items: center; min-height: 44px; padding: 0; vertical-align: middle; }
+  .wrap .v28 .v28-link:hover { color: var(--gold); }
+
+  /* the header */
+  .wrap .v28-head { margin: 6px 0 10px; padding-bottom: 8px; }
+  .wrap .v28-head .sub { margin-top: 4px; }
+  .wrap .v28-headrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .wrap .v28-headrow h2 { margin: 0; }
+  .wrap .v28-switch { flex: 0 0 auto; min-height: 44px; padding: 8px 4px; background: none; border: 0; color: var(--gold-soft);
+    font-family: var(--house-reading); font-size: 16px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .wrap .v28-switch:hover { color: var(--gold-hi); }
+  .wrap .v28 .v28-lede { font-size: 17px; line-height: 1.45; color: var(--parch2); margin-bottom: 8px; }
+  .wrap .v28-progrow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-bottom: 8px; }
+  .wrap .v28 .v28-progress { margin: 0; font-size: 16px; color: var(--gold-soft); }
+  .wrap .v28-meals { display: flex; flex-wrap: wrap; gap: 8px; }
+  .wrap .v28-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 4px; }
+  .wrap .v28-actions .btn { padding: 8px 12px; font-size: 15px; }
+  .wrap .v28-actions .btn[disabled] { opacity: 1; color: var(--parch2); border-color: var(--line); cursor: default; }
+
+  /* the chips: a word for every state, the chosen one filled */
+  .wrap .v28-chip { flex: 0 0 auto; min-height: 44px; padding: 8px 14px; white-space: nowrap; scroll-snap-align: start; cursor: pointer;
+    background: transparent; border: 1px solid #a28957; border-radius: 3px; color: var(--gold-hi);
+    font-family: var(--house-reading); font-size: 16px; line-height: 1.4; }
+  .wrap .v28-chip:hover { border-color: var(--gold-hi); background: #d5b16c12; }
+  .wrap .v28-chip[aria-pressed='true'] { background: var(--gold-hi); border-color: var(--gold-hi); color: var(--ink); font-weight: 600; }
+
+  /* the sticky bar, clear of the suite's badge at the top left */
+  .wrap .v28-bar { position: sticky; top: 0; z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line);
+    padding: env(safe-area-inset-top, 0px) 0 8px; margin: 0 0 4px; }
+  .wrap .v28-find { padding-left: calc(64px + env(safe-area-inset-left, 0px)); padding-top: 4px; }
+  .wrap .v28-find .v28-q { width: 100%; min-height: 44px; box-sizing: border-box; font-size: 17px; }
+  .wrap .v28-chips { display: flex; gap: 8px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity;
+    padding: 8px 0 2px; scrollbar-width: thin; }
+
+  /* sections and rows */
+  .wrap .v28-sechead { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; border-bottom: 1px solid var(--line); }
+  .wrap .v28-sechead .secgroup { margin: 0; padding: 8px 0; border: 0; font-family: var(--house-display); font-size: 14px; letter-spacing: .02em; min-width: 0; }
+  .wrap .v28-sechead .btn.small { padding: 8px 10px; font-size: 14px; }
+  .wrap .v28-sechead .btn { flex: 0 0 auto; }
+  .wrap .v28-row { display: block; width: 100%; min-height: 56px; box-sizing: border-box; padding: 12px 2px; margin: 0; cursor: pointer; text-align: left;
+    background: transparent; border: 0; border-bottom: 1px dotted var(--line); border-radius: 0; color: var(--parch); font-family: var(--house-reading); }
+  .wrap .v28-row:hover { background: #d5b16c0a; }
+  .wrap .v28-rowtop { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .wrap .v28-name { font-family: var(--house-reading); font-size: 1.2rem; font-weight: 600; line-height: 1.35; color: var(--parch); min-width: 0; overflow-wrap: anywhere; }
+  .wrap .v28-price { flex: 0 0 auto; white-space: nowrap; font-variant-numeric: tabular-nums; font-family: var(--house-display); }
+  .wrap .v28 p.v28-pour { color: var(--gold-hi); margin: 0 0 8px; }
+  .wrap .v28-pour { display: block; margin-top: 2px; font-size: 16px; line-height: 1.45; color: var(--gold-hi); }
+  .wrap .v28-short { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 4px;
+    font-size: 1rem; line-height: 1.45; color: var(--gold-soft); }
+  .wrap .v28-tag { display: inline-block; margin-right: 8px; padding: 0 6px; border: 1px solid var(--line); border-radius: 2px;
+    font-family: var(--house-display); font-size: 14px; letter-spacing: .05em; color: var(--gold-hi); vertical-align: 2px; }
+  .wrap .v28-list { margin: 0 0 12px; padding-left: 20px; }
+  .wrap .v28-list li { font-size: 17px; line-height: 1.55; color: var(--parch); margin-bottom: 8px; }
+  .wrap .v28-also { margin-top: 18px; }
+
+  /* the card */
+  /* the card's bar and the deck's bar, padded clear of the suite's badge at the top left, as the sticky bar's search is */
+  .wrap .v28-cardnav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin: 4px 0 14px;
+    padding-left: calc(64px + env(safe-area-inset-left, 0px)); }
+  .wrap .v28-pos { order: 3; flex: 1 1 100%; color: var(--parch2); font-size: 16px; min-width: 0; }
+  .wrap .v28-cardnav .btn.small { padding: 8px 12px; font-size: 14px; }
+  .wrap .v28-eyebrow { font-family: var(--house-display); font-size: 14px; letter-spacing: .07em; color: var(--gold-soft); margin: 14px 0 6px; font-weight: 500; }
+  .wrap .v28 .v28-top { margin-top: 0; }
+  .wrap .v28-title { font-family: var(--house-display); color: var(--gold-hi); font-size: clamp(24px, 6vw, 32px); line-height: 1.25; letter-spacing: .02em; margin: 0 0 8px; overflow-wrap: anywhere; }
+  .wrap .v28-title:focus { outline: none; }
+  /* the heading takes focus when a card opens; a quiet mark, not a ring */
+  .wrap .v28-title:focus-visible { outline: none; text-decoration: underline; text-decoration-color: var(--gold-soft); text-decoration-thickness: 1px; text-underline-offset: 6px; }
+  .wrap .v28 .v28-price-line { margin: 0 0 4px; }
+  .wrap .v28 .v28-sayit { font-size: 18px; color: var(--parch); }
+  .wrap .v28-tenbox { padding: 16px 18px; margin: 10px 0 12px; }
+  .wrap .v28-tenbox .v28-ten, .wrap .v28-back .v28-ten { color: var(--ink); font-family: var(--house-reading); font-size: 20px; line-height: 1.5; font-weight: 600;
+    border-left: 3px solid var(--claret); padding-left: 12px; margin: 0; }
+  .wrap .card .v28-eyebrow.v28-ink, .wrap .v28-ink { color: var(--ink-soft); margin-top: 0; }
+  .wrap .v28-back .v28-ten { margin-bottom: 14px; }
+  .wrap .v28 .v28-pick { font-size: 17px; color: var(--parch); }
+  .wrap .v28-btnrow { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 12px; }
+  .wrap .v28 .v28-timed { border-left: 2px solid var(--line); padding-left: 12px; }
+  .wrap .v28-block { margin-top: 18px; }
+  .wrap .v28-block > .secgroup { font-family: var(--house-display); border-bottom: 1px solid var(--line); }
+  .wrap .v28-dl { display: grid; grid-template-columns: 8.5em minmax(0, 1fr); gap: 8px 12px; margin: 0 0 12px; }
+  .wrap .v28-dl dt { font-family: var(--house-display); font-size: 14px; letter-spacing: .05em; color: var(--gold-soft); padding-top: 3px; overflow-wrap: anywhere; }
+  .wrap .v28-dl dd { margin: 0; font-size: 17px; line-height: 1.55; color: var(--parch); overflow-wrap: anywhere; }
+  .wrap .v28-dl dd > .v28-soft { display: block; }
+  .wrap .v28-say { display: block; color: var(--parch2); font-size: 16px; font-style: italic; margin-top: 2px; }
+  .wrap .v28-q { border-bottom: 1px solid var(--line); }
+  .wrap .v28-q > summary { min-height: 44px; display: flex; align-items: center; gap: 12px; cursor: pointer; color: var(--gold-hi); font-size: 17px; padding: 6px 0; }
+  .wrap .v28-q > summary::-webkit-details-marker { display: none; }
+  /* the state in a word, since display:flex drops the marker: Show when closed, Hide when open */
+  .wrap .v28-q > summary::after { content: 'Show'; margin-left: auto; flex: 0 0 auto; font-family: var(--house-reading); font-size: 15px;
+    color: var(--gold-soft); text-decoration: underline; text-underline-offset: 3px; }
+  .wrap .v28-q[open] > summary::after { content: 'Hide'; }
+  .wrap .v28-back .v28-q > summary::after { color: var(--ink-soft); }
+  .wrap .v28-q[open] > summary { margin-bottom: 4px; }
+  .wrap .v28-housedoor { margin-top: 18px; border-top: 1px solid var(--line); }
+  .wrap .v28-ref { margin-bottom: 12px; }
+  .wrap .v28 .v28-refname { font-weight: 600; margin-bottom: 6px; color: var(--gold-hi); }
+  .wrap .v28-editbar { margin: 0 0 12px; }
+
+  /* the deck: the front one button, the grades after the flip only */
+  .wrap .v28-deckbar { margin-top: 0; align-items: center; justify-content: space-between; padding-left: calc(64px + env(safe-area-inset-left, 0px)); }
+  .wrap .v28-count { font-size: 16px; color: var(--gold-soft); }
+  .wrap .v28-front { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; width: 100%; min-height: 260px;
+    box-sizing: border-box; cursor: pointer; text-align: center; font-family: var(--house-reading); }
+  .wrap .v28-fname { font-family: var(--house-display); font-size: 28px; line-height: 1.3; color: var(--ink); overflow-wrap: anywhere; }
+  .wrap .v28-fhint { font-size: 17px; color: var(--ink-soft); }
+  .wrap .v28-flipword { font-family: var(--house-display); font-size: 16px; letter-spacing: .08em; color: var(--claret); }
+  .wrap .v28-back p, .wrap .v28-back dd, .wrap .v28-end p { color: var(--ink); font-size: 18px; }
+  .wrap .v28-back .v28-dl dt { color: var(--ink-soft); }
+  .wrap .v28-back .v28-q > summary { color: var(--claret); }
+  .wrap .v28-back .v28-q { border-bottom-color: var(--field-line); }
+  .wrap .v28-bname { font-family: var(--house-display); font-size: 22px; color: var(--ink); margin: 0 0 10px; }
+  .wrap .v28-ink-tag { font-family: var(--house-display); color: var(--ink); border: 1px solid var(--field-line); padding: 2px 8px; border-radius: 2px; }
+  .wrap .v28-grade { display: flex; gap: 10px; margin: 14px 0; }
+  .wrap .v28-grade .btn { flex: 1 1 50%; min-height: 56px; }
+  .wrap .v28-end { text-align: center; margin-bottom: 14px; }
+
+  /* the atlas row a card's door opened on */
+  .wrap .refrow.v28-here { outline: 1px solid var(--gold-soft); outline-offset: 2px; }
+  .wrap .refrow.v28-here:focus { outline: 2px solid var(--gold-hi); }
+}
