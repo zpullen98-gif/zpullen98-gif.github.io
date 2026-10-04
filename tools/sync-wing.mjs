@@ -15,9 +15,10 @@
    stamped tag on the shared layer (shared/x?v=N, compared per file, and
    frozen) is a refusal: the whole run writes nothing and names the file
    and the rule, because a half-synced wing is worse than an old one.
-   Files new in the source under js/, css/, fonts/ and icons/, and the
-   three root files (index.html, sw.js, manifest.webmanifest), are copied
-   in; a changed file the copy does not carry is skipped with a note; a
+   Files new in the source under js/, css/, fonts/ and icons/, the
+   three root files (index.html, sw.js, manifest.webmanifest), and web
+   images new under the wing's own image folder (ledger img/, codex
+   assets/), are copied in; a changed file the copy does not carry is skipped with a note; a
    file deleted in the source is left in place with a note; a rename in
    the source arrives as that deletion plus a new file, with a note when
    the copy's old name carried edits that need porting; a binary file is
@@ -51,6 +52,11 @@ const NEVER = { ledger: ['js/oot-ledger.js'], codex: ['js/data-firstpath.js'] };
 /* Where a file that is new in the source is welcome in the copy. */
 const NEW_DIRS = ['js/', 'css/', 'fonts/', 'icons/'];
 const NEW_FILES = ['index.html', 'sw.js', 'manifest.webmanifest'];
+/* Each wing's own image folder, where a new teaching image is welcome too, but
+   only a web image: a README or a tool that lands beside the art stays a note.
+   Without this the source's js could name art that the site never received. */
+const NEW_MEDIA_DIRS = { ledger: ['img/'], codex: ['assets/'] };
+const MEDIA = /\.(?:webp|png|jpe?g|avif|svg)$/i;
 
 const MARKER = /^(?:<{7}|>{7})(?: |$)/m;
 /* A stamped tag that names the shared layer, whatever the prefix
@@ -101,7 +107,7 @@ function lineOf(buf, re) {
   const i = text.search(re);
   return i < 0 ? 0 : text.slice(0, i).split('\n').length;
 }
-function isNewAllowed(p) { return NEW_FILES.includes(p) || NEW_DIRS.some(d => p.startsWith(d)); }
+function isNewAllowed(p) { return NEW_FILES.includes(p) || NEW_DIRS.some(d => p.startsWith(d)) || (MEDIA.test(p) && NEW_MEDIA_DIRS[wing].some(d => p.startsWith(d))); }
 
 /* The shared tags a text wears: file name to the set of stamps on it. */
 function sharedStamps(buf) {
@@ -298,7 +304,7 @@ try {
     if (lands !== join(wingReal, p)) { refuse(p, `a link is in the way: the bytes would land at ${show(lands)}, not in ${wing}/ itself, and nothing is written through a link`); continue; }
 
     if (c.status === 'A') {
-      if (!isNewAllowed(p)) { lib.note(`${wing}/${p}: new in the source outside js/, css/, fonts/, icons/ and the root files; not copied`); skipped++; continue; }
+      if (!isNewAllowed(p)) { lib.note(`${wing}/${p}: new in the source outside js/, css/, fonts/, icons/, the root files and the images under ${NEW_MEDIA_DIRS[wing].join(', ')}; not copied`); skipped++; continue; }
       if (inWing) { refuse(p, `new in the source since ${base} but the copy already holds a file of that name, so there is no base to merge from; resolve by hand`); continue; }
       const headBuf = gitBytes(['show', `${head}:${p}`], src);
       const isBin = binary.has(p);
