@@ -1,6 +1,7 @@
 /* The Sommelier's Codex: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-codex-v126';
+const CACHE = 'oot-codex-v128';
+importScripts('./js/data-teaching-images.js?v=2', './js/teaching-cache.js?v=1');
 
 /* Both the reviewed SVG atlas and original JPG maps stay out of ASSETS.
 
@@ -52,6 +53,7 @@ const ASSETS = [
   './css/house-list.css',
   './css/house-fulllist.css',
   './css/house-maps.css',
+  './css/house-teaching.css',
   './assets/codex-library-v1.webp',
   './assets/codex-atlas-room-v2.webp',
   './atlas-sources.html',
@@ -106,6 +108,10 @@ const ASSETS = [
   './js/atlas-cache.js',
   './js/codex31.js',
   './js/codex32.js',
+  './js/data-teaching-images.js',
+  './js/teaching-cache.js',
+  './js/codex33.js',
+  './js/codex34.js',
   './js/boot.js',
   './fonts/cinzel-normal-400-900-latin.woff2',
   './fonts/cinzel-normal-400-900-latin-ext.woff2',
@@ -197,6 +203,14 @@ self.addEventListener('fetch', e => {
      by ignoreSearch, and the interception itself made crawler-style fetches
      flaky. Anything else, the browser handles natively. */
   if (!url.pathname.startsWith('/codex/') && !url.pathname.startsWith('/shared/')) return;
+
+  /* These namespaces must precede both the broad maps rule and shell fallback.
+     Only exact reviewed manifest files are cached, within their own bounds.
+     Empty or missing art never blocks installation or a written lesson. */
+  if (CodexTeachingCache.owns(url.href, self.location.href)) {
+    e.respondWith(CodexTeachingCache.respond(e.request, self.location.href));
+    return;
+  }
 
   /* Served out of the maps cache, never out of CACHE, so a deploy cannot
      throw away what the reader chose to keep. Falling through to the network

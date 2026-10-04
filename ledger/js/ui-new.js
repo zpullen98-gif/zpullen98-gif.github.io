@@ -171,7 +171,7 @@ function applyRoute(hashArg){
     else if(tab==='producers') state.prod.open = null;
     /* the two accordions that are not STUDY entries: a search hit for a
        glossary term used to open Notes with the target collapsed at the bottom */
-    else if(tab==='notes' && (slug==='glossary' || slug==='plates')){ state.noteOpen = '__'+slug; state.noteJump = true; }
+    else if(tab==='notes' && (slug==='glossary' || slug==='plates' || slug==='garnish')){ state.noteOpen = '__'+slug; state.noteJump = true; }
     /* the menu's own address closes a study card (js/house-study.js) */
     else if(tab==='menu' && typeof houseStudyRoute === 'function') houseStudyRoute(null);
   }
@@ -192,7 +192,7 @@ function legacyRoute(){
   else if(t==='na' && state.na.open!=null && NA_DRINKS[state.na.open]) slug = slugify(NA_DRINKS[state.na.open].name);
   else if(t==='prep' && state.prep.open!=null && PREPS[state.prep.open]) slug = slugify(PREPS[state.prep.open].name);
   else if(t==='producers' && state.prod.open!=null && PRODUCERS[state.prod.open]) slug = slugify(PRODUCERS[state.prod.open].name);
-  else if(t==='notes' && state.noteOpen) slug = state.noteOpen === '__glossary' ? 'glossary' : state.noteOpen === '__plates' ? 'plates' : slugify(state.noteOpen);
+  else if(t==='notes' && state.noteOpen) slug = state.noteOpen === '__glossary' ? 'glossary' : state.noteOpen === '__plates' ? 'plates' : state.noteOpen === '__garnish' ? 'garnish' : slugify(state.noteOpen);
   else if(t==='service' && state.svc.dom) slug = slugify(state.svc.dom);
   else if(t==='ontap' && state.ontap.sec) slug = slugify(state.ontap.sec);
   else if(t==='coffee' && state.coffee.sec) slug = slugify(state.coffee.sec);
@@ -420,6 +420,19 @@ function renderOnTap(){
     + '</div>';
 }
 
+function glassShapesHTML(){
+  return typeof LedgerTeaching !== 'undefined'
+    ? LedgerTeaching.disclosure('brennans-glassware', 'Glass shapes: a service reference') : '';
+}
+function craftPictureHTML(id, title){
+  return typeof LedgerTeaching !== 'undefined' ? LedgerTeaching.disclosure(id, title) : '';
+}
+/* Only a printed citrus cut earns this door. It cannot supply a missing
+   house garnish, guess a cut from an ingredient, or appear on a blind ticket. */
+function citrusGarnishLink(garnish){
+  if(typeof garnish !== 'string' || !/\b(?:(?:lemon|orange)\s+twist|orange\s+peel|(?:lime|lemon)\s+(?:wheel|wedge)|orange\s+(?:slice|half[ -]wheel))s?\b/i.test(garnish)) return '';
+  return '<a class="teaching-reference-link" href="#/notes/garnish">Citrus cuts: illustrated reference</a>';
+}
 function renderService(){
   const s = state.svc;
   const sec = SERVICE_STUDY.find(x => x.key === s.dom) || SERVICE_STUDY[0];
@@ -458,7 +471,9 @@ function renderService(){
         ? '<div class="tiny dim lh" style="padding:0 4px">These rows describe US law as it generally stands. The statute, the BAC limit and the certification that count are your state’s, and this is training, not legal advice.</div>'
         : '')
     + '<div class="col-sm">'+rows+'</div>'
+    + (s.dom === 'glassware' ? glassShapesHTML() : '')
     + refHTML
+    + '<div class="row wrap"><a class="teaching-reference-link" href="#/notes/technique-the-mechanics">Bar tools and ice</a><a class="teaching-reference-link" href="#/notes/garnish">Citrus garnish cuts</a></div>'
     + '</div>';
 }
 
@@ -487,7 +502,7 @@ const PLATES = [
     svg:'<path d="M30 40 L38 108 L74 108 L82 40 Z"/><ellipse cx="56" cy="80" rx="13" ry="16" opacity="0.8"/><path d="M44 30 L68 54 M68 30 L44 54" stroke-width="2.2"/><rect x="42" y="28" width="28" height="28" rx="3" opacity="0.55"/><path d="M96 74 L118 74 M118 74 L112 68 M118 74 L112 80"/><path d="M132 40 L140 108 L176 108 L184 40 Z"/><rect x="144" y="58" width="14" height="14" rx="2"/><rect x="156" y="76" width="14" height="14" rx="2"/><rect x="142" y="84" width="12" height="12" rx="2"/>' },
   { id:'muddle', title:'Plate VII · The Muddle Press',
     caption:'Press, twist a quarter turn, lift: three or four times, no more. You are coaxing oil from the leaf and juice from the fruit, not making pesto: a ground herb releases chlorophyll and bitterness, and no amount of rum forgives it.',
-    svg:'<path d="M132 10 L106 92" stroke-width="7" stroke-linecap="round"/><ellipse cx="101" cy="110" rx="11" ry="17" transform="rotate(18 101 110)"/><path d="M60 66 L66 140 L134 140 L140 66"/><path d="M74 130 C80 122 88 126 90 132 M110 134 C108 124 118 120 124 128" stroke-linecap="round"/><path d="M80 92 L80 108 M80 108 L75 102 M80 108 L85 102" opacity="0.8"/>' },
+    svg:'<path d="M132 10 L106 92" stroke-width="7" stroke-linecap="round"/><path d="M97 92 L112 92 L115 116 L94 116 Z" transform="rotate(18 104 104)"/><path d="M60 66 L66 140 L134 140 L140 66"/><path d="M74 130 C80 122 88 126 90 132 M110 134 C108 124 118 120 124 128" stroke-linecap="round"/><path d="M80 92 L80 108 M80 108 L75 102 M80 108 L85 102" opacity="0.8"/>' },
   { id:'float', title:'Plate VIII · The Float',
     caption:'Rest the back of the spoon against the inner wall, just above the drink, and pour slow: the liquid walks down the spoon, spreads across the surface, and sits. Wine on a New York Sour, scotch on a Penicillin: weather, not mixture.',
     svg:'<path d="M124 8 L86 68" stroke-width="2"/><ellipse cx="82" cy="74" rx="10" ry="6" transform="rotate(-28 82 74)"/><path d="M60 60 L66 140 L134 140 L140 60"/><path d="M67 92 L133 92" stroke-width="2.4"/><path d="M68 104 L132 104 M69 116 L131 116" stroke-dasharray="4 4" opacity="0.5"/><path d="M76 76 C86 80 96 82 108 80" stroke-dasharray="2 3" opacity="0.8"/>' },
@@ -736,22 +751,54 @@ const GLASS_ICONS = {
   hurricane: '<path d="M9 3 C9 7 8 8.5 8 11 C8 14 10 15.5 12 15.5 C14 15.5 16 14 16 11 C16 8.5 15 7 15 3 Z M12 15.5 L12 19 M9 21 C9 20.2 10.5 19.8 12 19.8 C13.5 19.8 15 20.2 15 21 Z"/>',
   shot: '<path d="M8.5 8 L9.5 19 L14.5 19 L15.5 8 Z"/>',
   wine: '<path d="M7.5 3 C7.5 8.5 9 11 12 11 C15 11 16.5 8.5 16.5 3 Z M12 11 L12 18 M8.5 20 C8.5 19.1 10 18.7 12 18.7 C14 18.7 15.5 19.1 15.5 20 Z"/>',
-  julep: '<path d="M7 5 L8 19 L16 19 L17 5 Z M7 5 L17 5 M7.5 12 L16.5 12"/>',
+  julep: '<path d="M6 5 L18 5 L15.5 20 L8.5 20 Z M5.5 3 L18.5 3 M6 6 L18 6 M8.5 18 L15.5 18"/><path d="M7 4 L17 4" stroke-dasharray="1 1"/>',
   tumbler: '<path d="M7 5 L7.8 19 L16.2 19 L17 5 Z"/>',
+  nicknora: '<path d="M7 4 L17 4 C17 8 15.5 11.5 12 12 C8.5 11.5 7 8 7 4 Z M12 12 L12 19 M8 20 L16 20"/>',
+  irish: '<path d="M7 3 L7.5 14 Q12 17 16.5 14 L17 3 Z M17 5 C22 5 22 12 16.7 12 M12 15.5 L12 19 M8 21 L16 21"/>',
+  tiki: '<path d="M7 3 L17 3 L18 20 L6 20 Z M7 8 L10 7 L10 10 M17 8 L14 7 L14 10 M10 14 L14 14 L15 17 L9 17 Z"/>',
+  copper: '<path d="M5 5 L15 5 Q18 13 15 19 L5 19 Q3 13 5 5 Z M16 7 C22 6 22 17 16 17 M5 4 L15 4"/>',
+  punch: '<path d="M4 7 L16 7 L15 14 Q10 17 5 14 Z M16 8 C22 7 22 14 15 13 M10 16 L10 19 M6 20 L14 20"/>',
+  demitasse: '<path d="M5 8 L15 8 L14 16 L6 16 Z M15 9 C21 8 21 14 14.5 14 M3 19 Q10 22 18 19"/>',
+  pint: '<path d="M5 3 L19 3 L16 21 L8 21 Z M6 7 L18 7"/>',
+  pilsner: '<path d="M6 3 L18 3 L14 18 L10 18 Z M10 18 L9 21 L15 21 L14 18"/>',
+  clay: '<path d="M8 3 L16 3 L16 6 C21 12 19 20 15 21 L9 21 C5 20 3 12 8 6 Z M8 5 L16 5"/>',
+  metal: '<path d="M6 4 L18 4 L16 20 L8 20 Z M6 6 L18 6 M8 18 L16 18"/>',
+  bowl: '<path d="M3 9 L21 9 Q20 18 12 18 Q4 18 3 9 Z M9 18 L8 21 L16 21 L15 18"/>',
 };
+/* The icon illustrates the first vessel actually named, not a house guess.
+   An alternative later in the field must not outrank its first choice. Blank
+   fields and garnish-only text stay blank; the written specification remains
+   beside this decorative symbol and is never replaced by it. */
+function glassIconKey(glassText){
+  const g = String(glassText || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .split(/\s+or\s+|\s*\+\s*/)[0];
+  if(/nick\s*(?:&|and)\s*nora/.test(g)) return 'nicknora';
+  if(/irish coffee|footed mug/.test(g)) return 'irish';
+  if(/pilsner/.test(g)) return 'pilsner';
+  if(/tiki|skull mug|fog cutter mug/.test(g)) return 'tiki';
+  if(/copper/.test(g)) return 'copper';
+  if(/punch cup/.test(g)) return 'punch';
+  if(/demitasse|brulot/.test(g)) return 'demitasse';
+  if(/cantarito|clay cup/.test(g)) return 'clay';
+  if(/metal swizzle cup/.test(g)) return 'metal';
+  if(/scorpion bowl/.test(g)) return 'bowl';
+  if(/coupe/.test(g)) return 'coupe';
+  if(/martini|cocktail glass/.test(g)) return 'martini';
+  if(/flute/.test(g)) return 'flute';
+  if(/wine|goblet|balloon|copa/.test(g)) return 'wine';
+  if(/hurricane|pearl diver/.test(g)) return 'hurricane';
+  if(/mug|toddy/.test(g)) return 'mug';
+  if(/julep|tin cup/.test(g)) return 'julep';
+  if(/shot|shooter|cordial/.test(g)) return 'shot';
+  if(/pint|beer glass/.test(g)) return 'pint';
+  if(/collins|highball|tall|zombie/.test(g)) return 'collins';
+  if(/rocks|old.fashioned|lowball/.test(g)) return 'rocks';
+  if(/tumbler/.test(g)) return 'tumbler';
+  return null;
+}
 function glassIcon(glassText){
-  const g = String(glassText || '').toLowerCase();
-  let key = 'tumbler';
-  if(/coupe|nick/.test(g)) key = 'coupe';
-  else if(/martini|cocktail glass/.test(g)) key = 'martini';
-  else if(/flute/.test(g)) key = 'flute';
-  else if(/wine|goblet|balloon|copa/.test(g)) key = 'wine';
-  else if(/hurricane|tiki|pearl diver|footed/.test(g)) key = 'hurricane';
-  else if(/mug|copper|toddy|irish coffee/.test(g)) key = 'mug';
-  else if(/julep|tin cup/.test(g)) key = 'julep';
-  else if(/shot|shooter|cordial/.test(g)) key = 'shot';
-  else if(/collins|highball|tall|pint|pilsner|zombie/.test(g)) key = 'collins';
-  else if(/rocks|old.fashioned|double|lowball/.test(g)) key = 'rocks';
+  const key = glassIconKey(glassText);
+  if(!key) return '';
   return '<svg class="glass-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true">'+GLASS_ICONS[key]+'</svg>';
 }
 

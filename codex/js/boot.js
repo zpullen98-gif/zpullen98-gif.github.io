@@ -19,7 +19,7 @@ render();
      this page wants a reload. The Ledger gates it the same way. */
   var swWantReload=false;
   window.addEventListener('load',function(){
-    navigator.serviceWorker.register('sw.js').then(function(reg){
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function(reg){
       if(reg.waiting&&navigator.serviceWorker.controller){offerUpdate(reg.waiting,reg);}
       reg.addEventListener('updatefound',function(){
         const nw=reg.installing;

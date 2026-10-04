@@ -74,6 +74,20 @@
   .accordion-body{line-height:1.75;padding:20px 4px}
   .accordion-body .lh,.story-body{font-family:var(--house-reading);font-size:1.17rem;line-height:1.6}
   .plate{padding:22px;gap:12px}.plate-grid{gap:20px}
+  .teaching-image{max-width:500px;margin:16px auto;color:inherit}
+  .teaching-image img{display:block;width:100%;height:auto;border:1px solid var(--house-line);border-radius:3px}
+  .teaching-image img[hidden],.teaching-image-missing[hidden]{display:none}
+  .teaching-image figcaption,.teaching-image-missing{font-size:1rem;line-height:1.55;margin:10px 0 0}
+  .teaching-image-open{display:inline-flex;align-items:center;min-height:44px;color:var(--brass-2);font-size:1rem;line-height:1.5;text-underline-offset:3px}
+  .teaching-reference{border:1px solid var(--house-line);border-radius:3px;padding:12px 18px;margin:8px 0}
+  .teaching-reference>summary{min-height:44px;display:list-item;align-content:center;cursor:pointer;font:500 1rem/1.5 var(--house-display);color:var(--brass-2)}
+  .teaching-image-key{max-width:500px;margin:16px auto;padding-left:28px;font-size:1rem;line-height:1.65;columns:2;column-gap:28px}
+  .teaching-image-key li{break-inside:avoid;padding:3px 0 3px 4px}
+  .teaching-image-guide{columns:1}
+  .teaching-image-guide li{padding-top:8px;padding-bottom:8px}
+  .teaching-image-guide strong,.teaching-image-guide span{display:block}
+  .teaching-reference-link{display:inline-flex;align-items:center;min-height:44px;font-size:1rem;line-height:1.5;text-underline-offset:3px}
+  @media(max-width:400px){.teaching-image-key{columns:1}}
   .vid-card{border-color:var(--house-line);box-shadow:var(--house-shadow)}
   .vid-meta{padding:16px}
   .gloss-grid{gap:24px 32px}

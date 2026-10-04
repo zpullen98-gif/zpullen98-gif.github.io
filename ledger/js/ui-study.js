@@ -1160,17 +1160,27 @@ function glossaryHTML(){
    reader JUST opened (a search hit, a deep link, a tap) earns it: the
    default-open first note must not drag every plain visit down the page. */
 function noteOpenMark(isOpen){ return (isOpen && state.noteJump) ? '1' : '0'; }
+function garnishNoteHTML(){
+  const open = state.noteOpen === '__garnish';
+  const body = open && typeof LedgerTeaching !== 'undefined'
+    ? '<div class="accordion-body">'+LedgerTeaching.lesson('garnish-citrus')+'</div>' : '';
+  return '<div class="panel" style="padding:0 16px"><button class="accordion-btn'+(open?' open':'')+'" aria-expanded="'+(open?'true':'false')+'" data-act="note-open" data-t="__garnish" data-open="'+noteOpenMark(open)+'">'
+    + '<span>Garnish <span class="tiny dim">· Citrus cuts</span></span><span style="color:var(--brass)">'+(open?'−':'+')+'</span></button>'+body+'</div>';
+}
 function renderNotes(){
   /* the notes first and the video settings last: a reader arriving from the
      induction or a search hit should meet the note, not a settings panel */
   const html = '<div class="col-sm">' + STUDY.map(sec => {
     const isOpen = state.noteOpen === sec.title;
-    const body = isOpen ? '<div class="accordion-body">' + sec.rows.map(([h,p]) =>
-      '<div><div class="small bold brass2">'+esc(h)+'</div><div class="small dim lh">'+esc(p)+'</div></div>').join('') + '</div>' : '';
+    const mechanics = sec.title === 'Technique: The Mechanics';
+    const body = isOpen ? '<div class="accordion-body">' + (mechanics ? craftPictureHTML('bar-tools', 'Bar tools: know the working end') : '') + sec.rows.map(([h,p]) =>
+      '<div><div class="small bold brass2">'+esc(h)+'</div><div class="small dim lh">'+esc(p)+'</div>'
+      + (mechanics && h === 'Ice' ? craftPictureHTML('ice', 'Ice: four forms') : '')
+      + (mechanics && h === 'Garnish (DeGroff doctrine)' ? '<a class="teaching-reference-link" href="#/notes/garnish">Citrus garnish cuts</a>' : '') + '</div>').join('') + '</div>' : '';
     return '<div class="panel" style="padding:0 16px">'
       + '<button class="accordion-btn'+(isOpen?' open':'')+'" aria-expanded="'+(isOpen?'true':'false')+'" data-act="note-open" data-t="'+esc(sec.title)+'" data-open="'+noteOpenMark(isOpen)+'">'
       + '<span>'+esc(sec.title)+'</span><span style="color:var(--brass)">'+(isOpen?'−':'+')+'</span></button>'+body+'</div>';
-  }).join('') + platesHTML() + glossaryHTML() + videoSettingsHTML() + '</div>';
+  }).join('') + platesHTML() + garnishNoteHTML() + glossaryHTML() + videoSettingsHTML() + '</div>';
   state.noteJump = false;
   return html;
 }

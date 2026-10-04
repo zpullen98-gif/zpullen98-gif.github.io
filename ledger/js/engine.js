@@ -198,6 +198,7 @@ function ticketHTML(c, hideName){
     + '<div><span class="tix-label">Method </span>'+esc(c.method || '-')+'</div>'
     + '<div><span class="tix-label">Glass </span>'+esc(c.glass || '-')+'</div>'
     + '<div><span class="tix-label">Garnish </span>'+esc(c.garnish || '-')+'</div>'
+    + (!hideName && typeof citrusGarnishLink === 'function' ? citrusGarnishLink(c.garnish) : '')
     + bal + note + '</div></div>';
 }
 const idxOf = (name) => COCKTAILS.findIndex(c => c.name === name);
