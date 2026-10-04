@@ -1,0 +1,153 @@
+/* The wine atlas: accurate cartography inside the Explorer's Library. */
+@media screen {
+  .v31-atlas { min-width:0; }
+  .v31-atlas [hidden],.v31-viewer [hidden] { display:none!important; }
+  .wrap .v31-head { position:relative;isolation:isolate;overflow:hidden;min-height:245px;border:1px solid var(--line);border-radius:3px;background:var(--bg2);margin:0 0 28px;display:flex;align-items:center; }
+  .v31-room { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2; }
+  .v31-head::after { content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#04110def 0%,#07160ec9 53%,#07160e34 100%); }
+  .wrap .v31-head-copy { padding:30px;max-width:730px; }
+  .wrap .v31-eyebrow { color:var(--gold-hi);font:11px/1.6 var(--house-display);letter-spacing:.15em;text-transform:uppercase;margin:0 0 12px; }
+  .wrap .v31-head h2 { font:500 clamp(28px,4vw,42px)/1.2 var(--house-display);color:var(--gold-hi);margin:0 0 15px;text-wrap:balance; }
+  .wrap .v31-head-copy>p:last-child { font-size:20px;line-height:1.55;color:var(--parch);max-width:52ch;margin:0; }
+  .wrap .v31-head-sheet { min-height:180px; }
+  .wrap .v31-head-sheet h2 { font-size:clamp(27px,4vw,36px); }
+  .wrap .v31-find { display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 18px;margin:0 0 28px;align-items:center; }
+  .wrap .v31-find label { grid-column:1/-1;color:var(--gold-soft);font-size:17px; }
+  .wrap .v31-find input { width:100%;min-width:0;border:1px solid var(--field-line);border-radius:3px;background:var(--bg2);color:var(--parch);padding:11px 14px;font:18px/1.4 var(--house-reading); }
+  .v31-find input::placeholder { color:var(--parch2);opacity:.8; }
+  .v31-find>span { color:var(--parch2);font-size:15px; }
+  .wrap .v31-group-title { margin:34px 0 18px;padding-top:21px;border-top:1px solid var(--line);color:var(--gold-hi);font:500 21px/1.4 var(--house-display); }
+  .v31-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(min(235px,100%),1fr));gap:22px; }
+  .wrap .v31-map-card { display:flex;flex-direction:column;min-width:0;width:100%;padding:0;text-align:left;border:1px solid var(--line);border-radius:3px;background:var(--house-panel);color:var(--parch);overflow:hidden;cursor:pointer;box-shadow:var(--house-shadow); }
+  .wrap .v31-map-card:hover { border-color:var(--gold); }
+  .v31-thumb { display:grid;place-items:center;aspect-ratio:4/4.3;width:100%;padding:12px;background:#091810;overflow:hidden;border-bottom:1px solid var(--line); }
+  .v31-thumb img { display:block;width:100%;height:100%;min-height:0;object-fit:contain; }
+  .v31-card-copy { display:flex;flex-direction:column;flex:1;padding:20px;gap:7px; }
+  .v31-card-name { font:500 20px/1.35 var(--house-display);color:var(--gold-hi); }
+  .v31-card-count,.v31-card-saved { font-size:14px;line-height:1.4;color:var(--parch2); }
+  .v31-card-intro { font-size:17px;line-height:1.55;padding-block:5px 9px; }
+  .v31-card-saved { margin-top:auto; }
+  .v31-card-open { margin-top:9px;color:var(--gold-soft);font:11px/1.6 var(--house-display);letter-spacing:.06em;text-transform:uppercase; }
+  .v31-empty { padding:30px 20px;border:1px solid var(--line);background:var(--bg2); }
+  .v31-image-fail { padding:24px;text-align:center;color:var(--parch2);font-size:17px;line-height:1.55; }
+  .wrap .v31-btn,.v31-viewer .v31-btn { appearance:none;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;border:1px solid var(--gold);border-radius:3px;background:var(--gold);color:var(--bg);font:600 17px/1.3 var(--house-reading);cursor:pointer;text-align:center; }
+  .wrap .v31-btn:hover:not(:disabled),.v31-viewer .v31-btn:hover:not(:disabled) { background:var(--gold-hi); }
+  .wrap .v31-secondary { background:transparent;color:var(--parch);border-color:var(--field-line);font-weight:400; }
+  .wrap .v31-secondary:hover:not(:disabled) { background:var(--bg2);border-color:var(--gold); }
+  .wrap .v31-btn:disabled,.v31-viewer .v31-btn:disabled { opacity:.6;cursor:default; }
+  .v31-storage { margin-top:34px;padding:23px;border:1px solid var(--line);border-radius:3px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;background:var(--house-panel); }
+  .wrap .v31-storage h3 { font:500 20px/1.4 var(--house-display);color:var(--gold-hi);margin:0 0 9px; }
+  .v31-storage p { margin:6px 0;color:var(--parch2);font-size:17px;line-height:1.5; }
+  .v31-storage .v31-small,.v31-storage-unavailable { font-size:15px; }
+  .v31-storage-actions { display:flex;flex-direction:column;justify-content:center;gap:10px; }
+  .wrap .v31-back { appearance:none;min-height:44px;background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;color:var(--gold-soft);padding:10px 0;font:17px/1.4 var(--house-reading);cursor:pointer;text-align:left;margin-bottom:16px; }
+  .v31-spread { display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);gap:30px;align-items:start; }
+  .v31-art-column { position:sticky;top:20px;min-width:0; }
+  .v31-figure { margin:0; }
+  .wrap .v31-map-open { display:grid;place-items:center;position:relative;width:100%;height:min(610px,calc(100dvh - 170px));min-height:180px;padding:0;border:0;background:transparent;border-radius:3px;cursor:zoom-in;overflow:hidden; }
+  .v31-map-open>img { position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain; }
+  .v31-figure figcaption { display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px 16px;margin-top:13px;color:var(--parch2);font-size:14px;line-height:1.4; }
+  .v31-map-note { max-width:48ch;margin:14px auto 0;color:var(--parch2);font-size:15px;line-height:1.5;text-align:center; }
+  .wrap .v31-guide>h3,.wrap .v31-beyond>h3,.wrap .v31-study>h3 { color:var(--gold-hi);font:500 24px/1.35 var(--house-display);margin:0 0 13px; }
+  .v31-scope { font-size:18px;line-height:1.65;color:var(--parch);margin:0 0 17px; }
+  .v31-reading { margin:0 0 21px;padding-left:20px;color:var(--parch2);font-size:18px;line-height:1.65; }
+  .v31-reading li { margin-bottom:9px;padding-left:3px; }
+  .v31-regions { list-style:none;margin:0;padding:0; }
+  .v31-regions>li { padding:20px 0;border-top:1px solid var(--line);scroll-margin-top:20px; }
+  .v31-region-title { display:flex;align-items:baseline;gap:13px;margin-bottom:10px; }
+  .v31-region-title>span { flex:0 0 25px;color:var(--gold);font:500 19px/1.4 var(--house-display); }
+  .wrap .v31-region-title h4 { margin:0;color:var(--gold-hi);font:500 19px/1.4 var(--house-display); }
+  .v31-regions p { margin:9px 0 0;font-size:18px;line-height:1.6;color:var(--parch2); }
+  .v31-regions .v31-locators { color:var(--parch);font-size:17px; }
+  .v31-locators b { color:var(--gold-soft);font-weight:500;margin-right:7px; }
+  .v31-reference-places { padding-top:18px;border-top:1px solid var(--line);color:var(--parch2);font-size:17px;line-height:1.55; }
+  .wrap .v31-reference-places h4 { color:var(--gold-hi);font:500 17px/1.4 var(--house-display);margin:0 0 10px; }
+  .v31-reference-places ul { margin:0;padding-left:20px; }.v31-reference-places li { margin-bottom:7px; }
+  .v31-reference-letter { color:var(--gold);font-style:italic;margin-right:5px; }
+  .v31-disclosure { border:1px solid var(--line);border-radius:3px;margin-top:24px;background:var(--house-panel); }
+  .v31-disclosure summary { cursor:pointer;padding:19px 22px;min-height:44px;color:var(--gold-hi);font:500 17px/1.5 var(--house-display); }
+  .v31-disclosure summary>span { color:var(--parch2);font:15px/1.5 var(--house-reading);margin-left:10px;white-space:nowrap; }
+  .v31-disclosure-body { border-top:1px solid var(--line);padding:23px;color:var(--parch2);font-size:18px;line-height:1.6; }
+  .v31-disclosure-intro { margin:0 0 20px;max-width:68ch; }
+  .v31-course-row { padding:17px 0;border-top:1px solid var(--line); }
+  .wrap .v31-course-row h4 { color:var(--gold-hi);font:500 18px/1.4 var(--house-display);margin:0 0 12px; }
+  .v31-course-row dl { margin:0; }.v31-course-row dl>div { display:grid;grid-template-columns:125px minmax(0,1fr);gap:12px;margin:5px 0; }
+  .v31-course-row dt { color:var(--gold-soft);font-size:16px; }.v31-course-row dd { margin:0; }
+  .v31-course-row p { margin:12px 0 0; }
+  .v31-sources ul { list-style:none;padding:0;margin:15px 0 0; }
+  .v31-sources li { border-top:1px solid var(--line); }
+  .v31-sources a { color:var(--gold-soft);display:inline-flex;align-items:center;min-height:44px;padding:9px 0;overflow-wrap:anywhere; }
+  .v31-bibliography { margin:20px 0 0;font-size:17px;line-height:1.5; }.v31-bibliography a { display:inline-flex;align-items:center;min-height:44px;color:var(--gold-soft); }
+  .v31-beyond,.v31-study { margin-top:28px;border-top:1px solid var(--line);padding-top:25px;color:var(--parch2);font-size:18px;line-height:1.6; }
+  .v31-beyond>p,.v31-study>p { max-width:65ch;margin:0 0 18px; }
+  .v31-study-links { display:grid;gap:10px; }
+  .v31-study-links>div { display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line); }
+  .v31-study-links>div>span { margin-right:auto;color:var(--gold-soft); }
+  .v31-neighbours { display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;margin-top:28px; }
+  .v31-flash-maps { margin-top:22px;padding:20px;border:1px solid var(--line);border-radius:3px;background:var(--house-panel); }
+  .wrap .v31-flash-maps h3 { color:var(--gold-hi);font:500 18px/1.4 var(--house-display);margin:0 0 8px; }
+  .v31-flash-maps p { color:var(--parch2);font-size:16px;margin:0 0 12px; }.v31-flash-maps>div { display:flex;flex-wrap:wrap;gap:9px; }
+  .v31-viewer { box-sizing:border-box;width:calc(100vw - 24px);max-width:1380px;height:calc(100dvh - 24px);max-height:calc(100dvh - 24px);padding:18px;margin:auto;border:1px solid var(--gold);border-radius:3px;background:var(--bg);color:var(--parch);font:17px/1.5 var(--house-reading);overflow:hidden; }
+  .v31-viewer[open] { display:grid;grid-template-rows:auto auto auto minmax(0,1fr) auto;gap:10px; }
+  .v31-viewer::backdrop { background:#020805e8; }
+  .v31-viewer-top { display:flex;align-items:center;justify-content:space-between;gap:16px; }
+  .v31-viewer-top h2 { margin:0;color:var(--gold-hi);font:500 24px/1.3 var(--house-display); }
+  .v31-viewer-tools { display:flex;align-items:center;gap:8px;flex-wrap:wrap; }
+  .v31-viewer-tools .v31-btn { background:var(--bg2);color:var(--parch);font-weight:400; }
+  .v31-viewer-tools .v31-btn:hover:not(:disabled) { background:#223526; }
+  .v31-zoom-value { color:var(--gold-soft);font-variant-numeric:tabular-nums;margin-left:6px; }
+  #atlas-viewer-help { color:var(--parch2);font-size:14px;margin:0;line-height:1.4; }
+  .v31-canvas { min-height:0;overflow:auto;background:#06120c;border:1px solid var(--line);touch-action:none;overscroll-behavior:contain; }
+  .v31-canvas.is-zoomed { cursor:grab; }.v31-canvas.is-zoomed:active { cursor:grabbing; }
+  .v31-plane { display:grid;place-items:center;min-width:100%;min-height:100%; }
+  .v31-plane img { display:block;max-width:none;max-height:none;user-select:none;-webkit-user-drag:none; }
+  .v31-viewer-fail { padding:28px;max-width:55ch;margin:auto;text-align:center; }
+  .v31-viewer-key { max-height:30dvh;overflow:auto;border-top:1px solid var(--line); }
+  .v31-viewer-key summary { min-height:44px;padding:10px 2px;cursor:pointer;color:var(--gold-soft); }
+  .v31-viewer-key ol { display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));list-style:none;gap:10px 18px;margin:0;padding:0 0 10px; }
+  .v31-viewer-key li { display:grid;grid-template-columns:25px minmax(0,1fr);gap:0 8px;line-height:1.4; }
+  .v31-viewer-key li>span { color:var(--gold); }.v31-viewer-key small { grid-column:2;color:var(--parch2);font-size:14px; }
+  .v31-viewer :focus-visible { outline:3px solid var(--gold-hi);outline-offset:2px; }
+  @media(max-width:849px) {
+    .v31-spread { display:block; }.v31-art-column { position:static;margin-bottom:30px; }
+    .wrap .v31-map-open { height:auto;aspect-ratio:4/5;max-height:none;min-height:0; }.v31-map-open>img { position:static;height:auto; }
+    .v31-storage { grid-template-columns:minmax(0,1fr); }.v31-storage-actions { flex-direction:row;flex-wrap:wrap;justify-content:flex-start; }
+    .wrap .v31-head-copy { padding:25px; }
+  }
+  @media(max-width:520px) {
+    .wrap .v31-head { min-height:230px; }.wrap .v31-head-sheet { min-height:180px; }
+    .wrap .v31-head-copy { padding:23px 18px; }.wrap .v31-head-copy>p:last-child { font-size:18px; }
+    .v31-head::after { background:linear-gradient(90deg,#04110de8,#07160eb3); }
+    .wrap .v31-find { grid-template-columns:minmax(0,1fr); }.v31-find>span { font-size:14px; }
+    .v31-grid { gap:18px; }.v31-thumb { aspect-ratio:4/4; }.v31-card-copy { padding:18px; }
+    .v31-disclosure summary,.v31-disclosure-body { padding:17px; }.v31-disclosure summary>span { display:block;margin:6px 0 0 18px; }
+    .v31-course-row dl>div { display:block; }.v31-course-row dt { margin-top:10px; }
+    .v31-region-title { gap:9px; }.wrap .v31-region-title h4 { font-size:18px; }
+    .v31-storage { padding:18px; }.v31-storage-actions .v31-btn { width:100%; }
+    .v31-viewer { width:calc(100vw - 12px);height:calc(100dvh - 12px);max-height:calc(100dvh - 12px);padding:10px; }
+    .v31-viewer-top h2 { font-size:20px; }.v31-viewer-top .v31-btn { padding-inline:12px; }
+    .v31-viewer-tools { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px; }.v31-viewer-tools .v31-btn { font-size:15px;padding:8px 4px; }
+    .v31-zoom-value { grid-column:1/-1;margin:0;text-align:center;font-size:14px;line-height:1.2; }
+    #atlas-viewer-help { font-size:13px; }
+    .v31-viewer-key ol { grid-template-columns:minmax(0,1fr); }
+  }
+  @media(prefers-reduced-motion:reduce) { .v31-atlas *,.v31-viewer * { scroll-behavior:auto;transition:none;animation:none; } }
+}
+@media print {
+  body:has(.v31-viewer) { overflow:visible!important; }
+  .v31-room,.v31-find,.v31-storage,.v31-storage-unavailable,.v31-viewer,.v31-back,.v31-neighbours,.v31-study,.v31-flash-maps,.v31-figure figcaption { display:none!important; }
+  .v31-map-card { display:block;width:100%;max-width:100%;padding:4mm;margin:3mm 0;text-align:left;border:1px solid #aaa;break-inside:avoid; }
+  .v31-map-card .v31-thumb { display:block;width:100%;height:auto; }.v31-map-card img { display:block;width:auto;max-width:100%;height:45mm;margin:0 auto; }
+  .v31-map-card .v31-card-copy>span { display:block; }.v31-map-card .v31-card-name { font-size:14pt;font-weight:bold; }
+  .v31-map-card .v31-card-saved,.v31-map-card .v31-card-open { display:none!important; }
+  .v31-atlas .v31-head { border:0;background:none;min-height:0; }.v31-head::after { display:none; }
+  .v31-atlas .v31-head-copy { padding:0; }.v31-atlas .v31-head h2 { font-size:23pt;margin:8mm 0 4mm; }
+  .v31-atlas .v31-art-column { position:static;break-inside:avoid; }.v31-atlas .v31-figure { margin:5mm auto;max-width:110mm; }
+  .v31-atlas .v31-map-open { display:block;width:100%;height:auto;padding:0;border:0;background:none; }.v31-map-open img { position:static;display:block;width:100%;height:auto; }
+  .v31-atlas .v31-spread { display:block; }.v31-atlas .v31-map-note { font-size:10pt;text-align:center; }
+  .v31-atlas .v31-regions { list-style:none;padding:0; }.v31-regions>li,.v31-course-row { break-inside:avoid;border-top:1px solid #aaa;padding:4mm 0; }
+  .v31-region-title { display:flex;gap:3mm;align-items:baseline; }.v31-region-title h4 { margin:0; }
+  .v31-disclosure { margin-top:5mm; }.v31-disclosure summary { font-weight:bold; }.v31-sources a { display:inline;overflow-wrap:anywhere; }
+  .v31-sources a::after { content:' (' attr(href) ')';font-size:9pt;word-break:break-all; }
+  .v31-atlas [hidden] { display:none!important; }
+}

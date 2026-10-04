@@ -1,21 +1,21 @@
 /* The Sommelier's Codex: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-codex-v122';
+const CACHE = 'oot-codex-v123';
 
-/* The world maps (maps/*.jpg) are deliberately NOT in ASSETS above.
+/* Both the reviewed SVG atlas and original JPG maps stay out of ASSETS.
 
    This wing precaches one asset at a time rather than atomically, so a
    missing map would not take the offline shell down with it, but everything
    in ASSETS is still re-downloaded in full on every CACHE bump and these
    files are large.
 
-   So they live here instead, in a cache of their own that the page fills only
-   when the reader asks for it. THE NAME DOES NOT CARRY THIS WORKER'S PREFIX
-   ON PURPOSE: activate below deletes every cache matching 'oot-codex-', and
-   the standalone tree's worker sweeps 'codex-'. A name caught by either would
-   be swept away on the first deploy after somebody stored nine megabytes of
-   maps. This one is caught by neither. */
-const MAPS = 'codexmaps-v1';
+   The reviewed maps use an installation-specific cache filled only on request.
+   Both map cache names avoid the codex-/oot-codex- shell prefixes, so shell
+   updates retain saved maps. Original JPGs remain readable from the legacy
+   shared cache; atlas-cache.js removes only this installation's exact keys. */
+const MAP_ROOT = new URL('./maps/', self.location.href);
+const MAPS = 'codexmaps-v2-' + encodeURIComponent(new URL('./', self.location.href).pathname);
+const LEGACY_MAPS = 'codexmaps-v1';
 
 /* The house's whole bottle list (shared/packs/<pack id>.winelist.v1.json,
    read by codex29's The full list) lives in a cache of its own for the same
@@ -49,7 +49,10 @@ const ASSETS = [
   './css/house-study.css',
   './css/house-list.css',
   './css/house-fulllist.css',
+  './css/house-maps.css',
   './assets/codex-library-v1.webp',
+  './assets/codex-atlas-room-v2.webp',
+  './atlas-sources.html',
   './js/data-questions.js',
   './js/reference.js',
   './js/core.js',
@@ -97,6 +100,9 @@ const ASSETS = [
   './js/codex28.js',
   './js/codex29.js',
   './js/codex30.js',
+  './js/data-atlas-v2.js',
+  './js/atlas-cache.js',
+  './js/codex31.js',
   './js/boot.js',
   './fonts/cinzel-normal-400-900-latin.woff2',
   './fonts/cinzel-normal-400-900-latin-ext.woff2',
@@ -192,8 +198,11 @@ self.addEventListener('fetch', e => {
   /* Served out of the maps cache, never out of CACHE, so a deploy cannot
      throw away what the reader chose to keep. Falling through to the network
      covers a map that is present on the server and not yet stored. */
-  if (url.pathname.indexOf('/maps/') >= 0) {
-    e.respondWith(caches.open(MAPS).then(c =>
+  if (url.pathname.startsWith(MAP_ROOT.pathname)) {
+    // The original JPGs remain an archive. Exact legacy keys still work;
+    // new SVGs use the current installation's own persistent map collection.
+    const mapCache = /\.jpg$/i.test(url.pathname) ? LEGACY_MAPS : MAPS;
+    e.respondWith(caches.open(mapCache).then(c =>
       c.match(e.request).then(hit => hit || fetch(e.request))));
     return;
   }
