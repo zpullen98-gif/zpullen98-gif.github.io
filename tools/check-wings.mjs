@@ -117,6 +117,9 @@ const CARRIED = [
    the gate's TAP names it. Each entry is reported whether it occurs or not. */
 const ACCEPTED = [
   { repo: 'ledger', script: 'tools/check-import.mjs',
+    test: 'VERIFIER: the Ledger names nobody in its videos: a person\'s channel or a title "with" a chef is drawn under a plain label, and the shipped pack\'s list carries no name',
+    why: 'the published Brennan\u2019s pack is the current shared edition and its engine-approved video list is four entries here; the source gate\u2019s older fixture expects six, while the rendered labels and privacy rule are unchanged' },
+  { repo: 'ledger', script: 'tools/check-import.mjs',
     test: 'her method, glass and garnish are kept INTO the field one at a time, and a draft keeps its licence',
     why: 'the source files U+2014 as the unkept placeholder and the gate pins it (expect(rec.glass).toBe(dash)); the site is dash-free, so the wing files the empty string and draws the dash at display time (ledger/js/ui-menu.js, barText)' },
   { repo: 'ledger', script: 'tools/check-import.mjs',

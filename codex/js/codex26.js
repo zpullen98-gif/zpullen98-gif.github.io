@@ -22,18 +22,8 @@ topbar = function () {
   image.setAttribute('fetchpriority', 'high');
   picture.appendChild(image);
   mast.appendChild(picture);
-  var signature = document.createElement('p');
-  signature.className = 'house-brand';
-  signature.textContent = 'Outside Of Time Hospitality';
-  mast.appendChild(signature);
   bar.insertBefore(mast, brand);
   mast.appendChild(brand);
-  if (S.view === 'home') {
-    var line = document.createElement('p');
-    line.className = 'house-intro';
-    line.textContent = 'A journey through wine, place and the art of service';
-    mast.appendChild(line);
-  }
   return bar;
 };
 
