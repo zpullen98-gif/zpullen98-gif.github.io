@@ -85,7 +85,7 @@ a merge that would carry more dashes than the copy had.
 ## The tools, and the order
 
 `node tools/check-all.mjs` is the gate before every push. It runs check-mirror,
-check-publish, inject-shared --check, check-stamps, check-wings, check-wake and check-pack, in
+check-publish, inject-shared --check, check-stamps, check-suite-service, check-wings, check-wake and check-pack, in
 that order, each as a child process, stops at the first failure and prints a summary table;
 the list is one constant at the top of the file. check-pack proves every pack under
 shared/packs/ through the shipped engine (it reads, validates with no fatal code, every mark
