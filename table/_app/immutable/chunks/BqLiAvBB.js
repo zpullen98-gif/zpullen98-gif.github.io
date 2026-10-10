@@ -1,0 +1,1 @@
+import{p as e}from"./Ha1syS3C.js";function t(t,n){throw new e(t,n)}export{t};
