@@ -3,10 +3,12 @@
    shared JPG cache stays intact until this installation's reader removes it.
    No study record, answer, score, or localStorage field is written here. */
 var ATLAS_CACHE_BASE = new URL('./', location.href);
-var ATLAS_CACHE_NAME = 'codexmaps-v2-' + encodeURIComponent(ATLAS_CACHE_BASE.pathname);
+var ATLAS_CACHE_NAME = 'codexmaps-v3-' + encodeURIComponent(ATLAS_CACHE_BASE.pathname);
+var ATLAS_PREVIOUS_CACHE = 'codexmaps-v2-' + encodeURIComponent(ATLAS_CACHE_BASE.pathname);
 var ATLAS_LEGACY_CACHE = 'codexmaps-v1';
 var ATLAS_FETCH_TIMEOUT_MS = 15000;
 var ATLAS_MAX_MAP_BYTES = 2 * 1024 * 1024;
+var ATLAS_MAX_FRAME_BYTES = 320 * 1024;
 
 function atlasCacheIds() {
   return MAP_SHEETS.map(function (sheet) { return sheet.id; });
@@ -15,9 +17,9 @@ function atlasCacheIds() {
 /* Only the seventeen registered, versioned local files can be requested.
    Reject a changed/invalid manifest rather than fetch a guessed destination. */
 mapFile = function (id) {
-  if (typeof ATLAS_V2 === 'undefined' || ATLAS_V2.version !== '2' || !mapSheet(id)) return '';
+  if (typeof ATLAS_V2 === 'undefined' || ATLAS_V2.version !== '3' || !mapSheet(id)) return '';
   var sheet = ATLAS_V2.sheets && ATLAS_V2.sheets[id];
-  var expected = 'maps/atlas-v2/' + id + '.svg';
+  var expected = 'maps/atlas-v3/' + id + '.svg';
   return sheet && sheet.file === expected ? expected : '';
 };
 
@@ -45,7 +47,7 @@ function atlasCacheResourcesSafe(text) {
     if (++embedded > 1) return false;
     var base64 = value.slice('data:image/webp;base64,'.length);
     var size = base64.length * 3 / 4 - (base64.endsWith('==') ? 2 : base64.endsWith('=') ? 1 : 0);
-    if (size < 12 || size > 128 * 1024) return false;
+    if (size < 12 || size > ATLAS_MAX_FRAME_BYTES) return false;
     try {
       var header = atob(base64.slice(0, 16));
       if (header.slice(0, 4) !== 'RIFF' || header.slice(8, 12) !== 'WEBP') return false;
@@ -96,17 +98,41 @@ v23ReadStored = function () {
   }).catch(function () { return {}; });
 };
 
+/* The prior edition stays available to an older tab until explicit removal.
+   Only this installation's registered URLs count, even in the old shared cache. */
+function atlasCacheOlderEntries() {
+  return [
+    { name: ATLAS_PREVIOUS_CACHE, folder: 'maps/atlas-v2/', suffix: '.svg' },
+    { name: ATLAS_LEGACY_CACHE, folder: 'maps/', suffix: '.jpg' }
+  ];
+}
+function atlasCacheReadOlder() {
+  if (!v23HaveCaches()) return Promise.resolve(false);
+  return caches.keys().then(function (names) {
+    return Promise.all(atlasCacheOlderEntries().filter(function (entry) {
+      return names.indexOf(entry.name) >= 0;
+    }).map(function (entry) {
+      return caches.open(entry.name).then(function (cache) {
+        return Promise.all(atlasCacheIds().map(function (id) {
+          return cache.match(new URL(entry.folder + id + entry.suffix, ATLAS_CACHE_BASE).href).then(function (response) { return !!response; });
+        })).then(function (hits) { return hits.some(Boolean); });
+      });
+    })).then(function (hits) { return hits.some(Boolean); });
+  }).catch(function () { return false; });
+}
+
 /* The explicit inventory is study content even when its picture is not saved.
    No HEAD probes or network request decide whether a lesson can be opened. */
 V23.have = atlasCacheIds();
 V23.probed = true;
 V23.busy = '';
 V23.lastMessage = '';
+V23.olderStored = false;
 v23Probe = function () {
   V23.have = atlasCacheIds();
   V23.probed = true;
-  return v23ReadStored().then(function (stored) {
-    V23.stored = stored;
+  return Promise.all([v23ReadStored(), atlasCacheReadOlder()]).then(function (saved) {
+    V23.stored = saved[0]; V23.olderStored = saved[1];
     atlasCacheNotify();
     return V23.have.slice();
   });
@@ -188,24 +214,28 @@ v23Forget = function (btn, say) {
   if (btn) btn.disabled = true;
   atlasCacheSay(say, 'Removing this Codex’s saved maps…');
   return caches.delete(ATLAS_CACHE_NAME).then(function () {
-    // The old cache was shared by both installations. Remove exact own JPG
-    // keys only, never delete the cache or touch another installation's URLs.
+    // Remove exact own keys in prior editions only. Never delete their
+    // caches wholesale or touch another installation's URLs.
     return caches.keys().then(function (names) {
-      if (names.indexOf(ATLAS_LEGACY_CACHE) < 0) return;
-      return caches.open(ATLAS_LEGACY_CACHE).then(function (cache) {
-        return Promise.all(atlasCacheIds().map(function (id) {
-          return cache.delete(new URL('maps/' + id + '.jpg', ATLAS_CACHE_BASE).href);
-        }));
-      });
+      return Promise.all(atlasCacheOlderEntries().filter(function (entry) {
+        return names.indexOf(entry.name) >= 0;
+      }).map(function (entry) {
+        return caches.open(entry.name).then(function (cache) {
+          return Promise.all(atlasCacheIds().map(function (id) {
+            return cache.delete(new URL(entry.folder + id + entry.suffix, ATLAS_CACHE_BASE).href);
+          }));
+        });
+      }));
     });
   }).then(function () {
     V23.stored = {};
+    V23.olderStored = false;
     V23.busy = '';
     if (btn) btn.disabled = false;
     atlasCacheSay(say, 'This Codex’s saved maps have been removed. They still open with a connection.');
   }).catch(function () {
-    return v23ReadStored().then(function (stored) {
-      V23.stored = stored;
+    return Promise.all([v23ReadStored(), atlasCacheReadOlder()]).then(function (saved) {
+      V23.stored = saved[0]; V23.olderStored = saved[1];
       V23.busy = '';
       if (btn) btn.disabled = false;
       atlasCacheSay(say, 'Some maps could not be removed. Please try again.');

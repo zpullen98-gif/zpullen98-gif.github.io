@@ -38,10 +38,11 @@ function v31StorageHtml() {
 function v31RefreshStorage() {
   var count = v31StoredCount(), total = v31Sheets().length;
   var status = document.getElementById('atlas-storage-status');
-  if (status) status.textContent = V23.lastMessage || count + ' of ' + total + ' maps saved on this device.';
+  if (status) status.textContent = V23.lastMessage || count + ' of ' + total + ' current maps saved on this device.' +
+    (V23.olderStored && count < total ? ' An earlier edition is still saved. Keep the current maps to take the new artwork offline.' : '');
   var keep = document.getElementById('atlas-keep'), remove = document.getElementById('atlas-remove');
   if (keep) { keep.disabled = !!V23.busy || count >= total; keep.textContent = count >= total ? 'All maps saved' : 'Keep maps on this device'; }
-  if (remove) { remove.disabled = !!V23.busy || !count; }
+  if (remove) { remove.disabled = !!V23.busy || (!count && !V23.olderStored); }
   Array.prototype.forEach.call(document.querySelectorAll('[data-atlas-saved]'), function (node) {
     node.textContent = V23.stored && V23.stored[node.getAttribute('data-atlas-saved')] ? 'Saved on this device' : 'Artwork needs a connection';
   });

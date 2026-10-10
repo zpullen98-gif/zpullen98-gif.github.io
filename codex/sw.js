@@ -1,6 +1,6 @@
 /* The Sommelier's Codex: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-codex-v134';
+const CACHE = 'oot-codex-v135';
 importScripts('./js/data-teaching-images.js?v=2', './js/teaching-cache.js?v=1');
 
 /* Both the reviewed SVG atlas and original JPG maps stay out of ASSETS.
@@ -15,7 +15,8 @@ importScripts('./js/data-teaching-images.js?v=2', './js/teaching-cache.js?v=1');
    updates retain saved maps. Original JPGs remain readable from the legacy
    shared cache; atlas-cache.js removes only this installation's exact keys. */
 const MAP_ROOT = new URL('./maps/', self.location.href);
-const MAPS = 'codexmaps-v2-' + encodeURIComponent(new URL('./', self.location.href).pathname);
+const MAPS = 'codexmaps-v3-' + encodeURIComponent(new URL('./', self.location.href).pathname);
+const PREVIOUS_MAPS = 'codexmaps-v2-' + encodeURIComponent(new URL('./', self.location.href).pathname);
 const LEGACY_MAPS = 'codexmaps-v1';
 
 /* The house's whole bottle list (shared/packs/<pack id>.winelist.v1.json,
@@ -219,7 +220,8 @@ self.addEventListener('fetch', e => {
   if (url.pathname.startsWith(MAP_ROOT.pathname)) {
     // The original JPGs remain an archive. Exact legacy keys still work;
     // new SVGs use the current installation's own persistent map collection.
-    const mapCache = /\.jpg$/i.test(url.pathname) ? LEGACY_MAPS : MAPS;
+    const mapCache = /\.jpg$/i.test(url.pathname) ? LEGACY_MAPS :
+      url.pathname.startsWith(MAP_ROOT.pathname + 'atlas-v2/') ? PREVIOUS_MAPS : MAPS;
     e.respondWith(caches.open(mapCache).then(c =>
       c.match(e.request).then(hit => hit || fetch(e.request))));
     return;
