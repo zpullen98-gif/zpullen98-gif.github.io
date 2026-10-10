@@ -1633,14 +1633,24 @@ var V27_PAIR_KINDS = [
   { key: 'zeroProofFor', kind: 'zeroProofFor', view: null, label: function () { return v27DrillLabel('zeroProofFor'); } }
 ];
 
-/* Every item the kind can ask about once, each dealt by the engine: as many
-   deals as the kind has drillable items, a repeat item dealt again, and the
-   first null (the floor unmet, the options short) ends it. */
-function v27DealAll(house, kind, rand) {
+/* Every item the kind can ask about once (or up to limit of them), each
+   dealt by the engine. An engine with dealRound deals the round in one pass
+   over the house: the pool and the four options' field read once, every
+   item asked once, nothing dealt to be thrown away. An older engine is
+   asked one question at a time as before: as many deals as the kind has
+   drillable items, a repeat item dealt again, and the first null (the floor
+   unmet, the options short) ends it. */
+function v27DealAll(house, kind, rand, limit) {
   var lib = v27Lib();
-  if (!lib || typeof lib.dealQuestion !== 'function' || typeof lib.drillableCounts !== 'function' || !house) return [];
+  if (!lib || !house) return [];
+  var cap = (typeof limit === 'number' && limit > 0) ? limit : Infinity;
+  if (typeof lib.dealRound === 'function') {
+    try { return lib.dealRound(house, kind, rand || v27Rand, cap) || []; } catch (e) { return []; }
+  }
+  if (typeof lib.dealQuestion !== 'function' || typeof lib.drillableCounts !== 'function') return [];
   var want = 0;
   try { want = Number(lib.drillableCounts(house)[kind]) || 0; } catch (e) { return []; }
+  if (want > cap) want = cap;
   var seen = {};
   var out = [];
   for (var tries = 0; tries < want * 8 && out.length < want; tries++) {
@@ -1670,14 +1680,15 @@ function v27Question(dq, key, label, cat) {
 }
 
 /* The questions a set of kinds deals over the current house, or none when
-   there is no engine, no house, or no mark a person kept. */
-function v27HouseQs(kinds, cat, rand) {
+   there is no engine, no house, or no mark a person kept. A limit asks each
+   kind for at most that many, for a round that will show no more. */
+function v27HouseQs(kinds, cat, rand, limit) {
   var h = v27Current();
   if (!h || !v27Drills() || !v27HasKept(h)) return [];
   var out = [];
   kinds.forEach(function (k) {
     var house = k.view ? k.view(h) : h;
-    v27DealAll(house, k.kind, rand).forEach(function (dq) {
+    v27DealAll(house, k.kind, rand, limit).forEach(function (dq) {
       var q = v27Question(dq, k.key, k.label(), cat);
       if (q) out.push(q);
     });
@@ -1685,8 +1696,63 @@ function v27HouseQs(kinds, cat, rand) {
   return out;
 }
 
-function v27CellarHouseQs(rand) { return v27HouseQs(V27_CELLAR_KINDS, V27_CELLAR_SECTION, rand); }
-function v27PairQuestions(rand) { return v27HouseQs(V27_PAIR_KINDS, V27_PAIR_SECTION, rand); }
+function v27CellarHouseQs(rand, limit) { return v27HouseQs(V27_CELLAR_KINDS, V27_CELLAR_SECTION, rand, limit); }
+
+/* A Fisher and Yates shuffle on a copy, the quiz engine's own when it is here. */
+function v27Shuffle(list) {
+  if (typeof shuffle === 'function') return shuffle(list.slice());
+  var out = list.slice();
+  for (var i = out.length - 1; i > 0; i--) { var j = Math.floor(v27Rand() * (i + 1)); var t = out[i]; out[i] = out[j]; out[j] = t; }
+  return out;
+}
+
+/* How many of a round of cut each source gives, drawn as one shuffle of
+   every question from every source and the first cut taken would draw
+   them: each source's size in, its share out. No cut, or a cut past the
+   total, keeps every question. */
+function v27Shares(sizes, cut) {
+  var total = 0;
+  sizes.forEach(function (n) { total += n; });
+  if (!(cut > 0) || cut >= total) return sizes.slice();
+  var bag = [];
+  sizes.forEach(function (n, i) { for (var j = 0; j < n; j++) bag.push(i); });
+  var out = sizes.map(function () { return 0; });
+  v27Shuffle(bag).slice(0, cut).forEach(function (i) { out[i]++; });
+  return out;
+}
+
+/* One cellar round of cut questions (every question when cut is nothing),
+   the house's kinds mixed with any questions the list's own drill made, in
+   the order a shuffle of all of them and a cut would give. With an engine
+   that can size and deal a round (drillableCount and dealRound) only the
+   questions the round shows are dealt; a kind dealing short of its share
+   (an item whose options fall short) falls back to dealing every question,
+   so a round is never shorter than the questions allow. */
+function v27CellarRound(cut, others) {
+  others = Array.isArray(others) ? others : [];
+  var lib = v27Lib();
+  var h = v27Current();
+  var all = function () { var qs = v27Shuffle(others.concat(v27CellarHouseQs())); return cut > 0 ? qs.slice(0, cut) : qs; };
+  if (!(cut > 0) || !h || !lib || typeof lib.dealRound !== 'function' || typeof lib.drillableCount !== 'function' || !v27Drills() || !v27HasKept(h)) return all();
+  var houses = V27_CELLAR_KINDS.map(function (k) { return k.view ? k.view(h) : h; });
+  var sizes = houses.map(function (house, i) {
+    try { return Number(lib.drillableCount(house, V27_CELLAR_KINDS[i].kind)) || 0; } catch (e) { return 0; }
+  });
+  var shares = v27Shares(sizes.concat([others.length]), cut);
+  var round = v27Shuffle(others).slice(0, shares[V27_CELLAR_KINDS.length]);
+  var short = false;
+  V27_CELLAR_KINDS.forEach(function (k, i) {
+    if (!shares[i]) return;
+    var dealt = v27DealAll(houses[i], k.kind, null, shares[i]);
+    if (dealt.length < shares[i]) short = true;
+    dealt.forEach(function (dq) {
+      var q = v27Question(dq, k.key, k.label(), V27_CELLAR_SECTION);
+      if (q) round.push(q); else short = true;
+    });
+  });
+  return short ? all() : v27Shuffle(round);
+}
+function v27PairQuestions(rand, limit) { return v27HouseQs(V27_PAIR_KINDS, V27_PAIR_SECTION, rand, limit); }
 
 /* A question this file dealt: its id, under any rank prefix, starts h-. */
 function v27IsHouseKey(k) {
@@ -1701,18 +1767,23 @@ function v27IsHouseQ(q) { return !!(q && typeof q.id === 'string' && q.id.indexO
 var _v27StartCellarDrill = (typeof startCellarDrill === 'function') ? startCellarDrill : null;
 if (_v27StartCellarDrill) {
   startCellarDrill = function () {
-    var extra = [];
-    try { extra = v27CellarHouseQs(); } catch (e) { extra = []; }
-    if (!extra.length) return _v27StartCellarDrill.apply(this, arguments);
+    /* the house deals nothing (no engine, no house, nothing kept): the list's own drill, as it always was */
+    var h = v27Current();
+    if (!h || !v27Drills() || !v27HasKept(h)) return _v27StartCellarDrill.apply(this, arguments);
     var before = S.pool;
     /* the list's own drill first, when the list can make one; it says why when it cannot */
     if ((ST.cellar || []).length >= 3) _v27StartCellarDrill.apply(this, arguments);
     var started = S.pool !== before && S.view === 'quiz' && S.section === V27_CELLAR_SECTION;
-    var all = shuffle((started ? S.pool : []).concat(extra));
     var cut = (typeof cellarDrillLen === 'function') ? cellarDrillLen() : 15;
+    var pool = [];
+    try { pool = v27CellarRound(cut, started ? S.pool : []); } catch (e) { pool = []; }
+    if (!pool.length) {
+      if (started) return;
+      return _v27StartCellarDrill.apply(this, arguments);
+    }
     stopTimer();
     S.mode = 'drill'; S.section = V27_CELLAR_SECTION;
-    S.pool = cut ? all.slice(0, cut) : all;
+    S.pool = pool;
     S.idx = 0; S.correct = 0; S.results = []; resetQ(); S.view = 'quiz'; render();
   };
 }

@@ -1322,6 +1322,12 @@ function v28DeckClose() {
 
 function v28DrillQs(section) {
   var qs = [];
+  /* the whole list: only the round's own questions are dealt (codex27's
+     v27CellarRound); a section deals every question and keeps its own */
+  if (!section && typeof v27CellarRound === 'function') {
+    var cut = (typeof cellarDrillLen === 'function') ? cellarDrillLen() : 15;
+    try { return v27CellarRound(cut, []); } catch (e) { return []; }
+  }
   try { qs = (typeof v27CellarHouseQs === 'function') ? v27CellarHouseQs() : []; } catch (e) { qs = []; }
   if (!section) return qs;
   var h = v28House();
