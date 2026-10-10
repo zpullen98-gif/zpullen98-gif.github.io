@@ -1,7 +1,7 @@
 The World Table
-commit 6b878f84cc66be4ff3e616eacb08e0b7f153d8df
-branch codex/brennans-food-studies
-built  2026-10-10T18:06:59.124Z
+commit e0b66abb9876b470c996808da40c43c9d6eea903
+branch codex/world-table-visual-learning
+built  2026-10-10T19:13:19.764Z
 
 Written by tools/postbuild.mjs. The monorepo wing is a copy of this
 directory; this file is how a copy says where it came from.
