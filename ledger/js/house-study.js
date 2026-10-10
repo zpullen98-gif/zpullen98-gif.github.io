@@ -139,7 +139,24 @@ var HS_WORDS = {
   cardFront: 'On the card',
   cardBack: 'The answer',
   inTheRoom: 'in the {room}',
-  inLibrary: 'in the Library'
+  inLibrary: 'in the Library',
+  whoMakes: 'Who makes it',
+  flashProducers: 'Flash these producers',
+  allProducers: 'All producers',
+  producerSupplies: 'Supplies',
+  producerWhere: 'Where',
+  producerFounded: 'Founded',
+  producerFacts: 'Facts',
+  producerHistory: 'The story',
+  producerNotes: 'Notes for the floor',
+  askBar: 'Ask the bar',
+  inLedgerLib: 'In the Ledger’s library',
+  onTheMenu: 'On the menu',
+  houseBar: '{house} bar',
+  producersLine: '{n} behind {m} on the menu.',
+  qProducerOf: 'Which producer is behind the {name} on your menu?',
+  qProducerWhere: 'Where is {name} from?',
+  qProducerDrink: 'Which drink on your menu uses {name}?'
 };
 function hsSay(key, vars){
   const v = vars || {};
@@ -165,6 +182,38 @@ if(typeof state !== 'undefined' && state && state.menu && !state.menu.study) sta
 function hsState(){
   if(!state.menu.study) state.menu.study = hsBlank();
   return state.menu.study;
+}
+/* The card's open disclosures, kept in the screen's state against the card
+   that holds them: a producer's profile ('p:' and its component id), a
+   component ('c:' and its id) and the Library's story ('story'). A plain
+   <details> forgets on every paint, and the paint after Back (from the
+   library's entry, a deck of cards or the Producers tab) closed the profile
+   the reader had open while the router put the old scroll back over a page
+   thousands of pixels shorter, so the reader landed far down the card. The
+   toggle is read as it happens (houseStudyAfterRender), the paint draws the
+   kept ones open, and a card opened afresh (st.jump 'card') starts with none
+   open. */
+function hsOpenKept(cardId, key){
+  const k = hsState().kept;
+  return !!(k && k.card === cardId && k.open && k.open[key]);
+}
+function hsKeepOpen(cardId, key, open){
+  const st = hsState();
+  if(!cardId || !key) return;
+  if(!st.kept || st.kept.card !== cardId) st.kept = { card: cardId, open: {} };
+  if(open) st.kept.open[key] = true; else delete st.kept.open[key];
+}
+function hsOpenAttr(cardId, key){ return hsOpenKept(cardId, key) ? ' open' : ''; }
+/* the key a card's disclosure is kept under, from its own data-keep or the row it sits in; '' for any other */
+function hsKeepKeyOf(d){
+  if(!d || typeof d.getAttribute !== 'function') return '';
+  const own = d.getAttribute('data-keep');
+  if(own) return own;
+  const li = d.parentNode;
+  if(!li || typeof li.getAttribute !== 'function') return '';
+  if(li.getAttribute('data-producer')) return 'p:' + li.getAttribute('data-producer');
+  if(li.getAttribute('data-component')) return 'c:' + li.getAttribute('data-component');
+  return '';
 }
 
 /* ---- the engine's study module, when it ships ---------------------------- */
@@ -954,7 +1003,7 @@ function hsHereHTML(h, item, row){
      the house's, and the house's own coaching above may say otherwise */
   if(canon && typeof LORE !== 'undefined' && LORE[canon.c.name]){
     const href = '#/library/' + slugify(canon.c.name);
-    blocks.push('<details class="hs-more"><summary>' + esc(hsSay('libStory')) + '</summary><div class="hs-read"><p>' + esc(hsFirstSentences(LORE[canon.c.name], 2)) + '</p>'
+    blocks.push('<details class="hs-more" data-keep="story"' + hsOpenAttr(item.id, 'story') + '><summary>' + esc(hsSay('libStory')) + '</summary><div class="hs-read"><p>' + esc(hsFirstSentences(LORE[canon.c.name], 2)) + '</p>'
       + '<p><a class="hs-link" href="' + esc(href) + '">' + esc(hsSay('story')) + '</a></p></div></details>');
   }
   return blocks.length ? '<section class="hs-group" aria-label="' + esc(hsSay('here')) + '"><h3 class="hs-h3">' + esc(hsSay('here')) + '</h3>' + blocks.join('') + '</section>' : '';
@@ -995,7 +1044,7 @@ function hsMadeOfHTML(h, id){
         if(card) cards++;
         const vids = hsComponentVideos(h, c.id);
         const ords = vids.length ? hsVideoOrdinals(vids) : {};
-        return '<li data-component="' + esc(c.id) + '"><details class="hs-more hs-comp"><summary>' + esc(hsPlain(c.name)) + '</summary><div class="hs-read">'
+        return '<li data-component="' + esc(c.id) + '"><details class="hs-more hs-comp"' + hsOpenAttr(id, 'c:' + c.id) + '><summary>' + esc(hsPlain(c.name)) + '</summary><div class="hs-read">'
           + (say ? '<p><span class="hs-soft">' + esc(hsSay('say')) + ':</span> ' + esc(say) + '</p>' : '')
           + (explain ? hsParas(explain) : '')
           + (card ? '<dl class="hs-dl"><dt>' + esc(hsSay('cardFront')) + '</dt><dd>' + esc(card.front) + '</dd><dt>' + esc(hsSay('cardBack')) + '</dt><dd>' + esc(card.back) + '</dd></dl>' : '')
@@ -1039,6 +1088,346 @@ function hsCompareHTML(h, item){
   return '<section class="hs-group hs-compare" aria-labelledby="hs-compare-h"><h3 class="hs-h3" id="hs-compare-h">' + esc(hsSay('compareWith')) + '</h3><ul class="hs-list">' + rows.join('') + '</ul></section>';
 }
 
+/* ---- Who makes it: the producers behind the house's drinks ------------------------
+   A component of the house may carry a producer mark (the engine's
+   ProducerProfile: type, who, where, founded, history, facts, notes, sayIt,
+   askKitchen). The bar's producers are the kept profiles whose component
+   reaches a drink of the house; a producer of the kitchen's alone is never
+   drawn in this app, since a food profile may name the people behind a
+   farm or a bakery and the Ledger names nobody living. Read only, kept
+   only (hsKept), and nothing here says what a guest may eat or drink: a
+   question about that is the bar's or the kitchen's, at lineup. */
+var HS_PRODUCER_TYPES = { maker: 'Maker', farm: 'Farm', fishery: 'Fishery', origin: 'Origin', house: 'Made in house' };
+var HS_PRODUCER_KINDS = ['producerOf', 'producerWhere', 'producerDish'];
+function hsProducerProfile(c){
+  const v = hsKept(c && c.producer);
+  return v && typeof v === 'object' && !Array.isArray(v) && hsPlain(v.who) ? v : null;
+}
+/* the who as a question names it: up to its first bracket or comma, the engine's shortWho */
+function hsShortWho(who){
+  const w = hsPlain(who);
+  const cut = w.split(/\s*\(|,\s/)[0].trim();
+  return cut || w;
+}
+function hsTextList(v){ return Array.isArray(v) ? v.map(hsPlain).filter(Boolean) : []; }
+/* whether a component's name only repeats its producer's who */
+function hsEchoes(who, supplies){
+  const w = hsFold(who).trim(), s = hsFold(supplies).trim();
+  if(!w || !s) return false;
+  return s === w || w.indexOf(s) >= 0 || s.indexOf(w + ' ') === 0;
+}
+/* The general library's entry for a producer, matched on folded words, never
+   mapped by hand: the library name that sits earliest in the who, else in the
+   component's name, the longer name winning a tie. A name is read as its
+   forms: the whole name, and where it carries a bracket or a slash, each part
+   ('Toschi (Nocello)' is Toschi and Nocello, 'Rhum J.M / Neisson' Rhum J.M
+   and Neisson), a form under four characters never matching. A form matches
+   as a whole run of words, or, when it has two words or more, as every one of
+   its words standing whole somewhere in the text ('Mattei Cap Corse' in 'L.N.
+   Mattei, makers of Cap Corse Mattei'). A one-word form does not match behind
+   a capitalised word of the same name, unless that word opens the text: the
+   Hennessy of 'Moët Hennessy' is the group's name, not the cognac house's,
+   while the Dudognon of 'Maison Dudognon' is the house. */
+function hsLibraryForms(name){
+  const whole = hsPlain(name);
+  const parts = [whole].concat(whole.split(/\s*[()\/]\s*/));
+  const seen = {}, out = [];
+  parts.forEach(function(p){
+    const f = hsFold(p).trim();
+    if(f.length >= 4 && !seen[f]){ seen[f] = true; out.push(f); }
+  });
+  return out;
+}
+/* a text as the matcher reads it: its folded hay, and the same hay with every
+   word that sits behind a capitalised word of the same name (no comma or
+   bracket between, the first word of the text excepted) blanked, for a
+   one-word form; the two are the same length, so a place in one is a place in
+   the other */
+function hsLibraryHay(text){
+  const raw = hsPlain(text).split(/\s+/).filter(Boolean);
+  const plain = [], masked = [];
+  raw.forEach(function(w, i){
+    const f = hsFold(w).trim();
+    if(!f) return;
+    const prev = i > 0 ? raw[i - 1] : '';
+    const behind = i > 1 && /^[^\p{L}\p{N}]*\p{Lu}/u.test(prev) && !/[,;:)\]]$/.test(prev) && !/^[(\[]/.test(w);
+    plain.push(f);
+    masked.push(behind ? f.replace(/[a-z0-9]/g, '_') : f);
+  });
+  return { plain: ' ' + plain.join(' ') + ' ', masked: ' ' + masked.join(' ') + ' ' };
+}
+function hsLibraryAt(hay, form){
+  const words = form.split(' ');
+  if(words.length === 1) return hsNameIn(hay.masked, form);
+  const run = hsNameIn(hay.plain, form);
+  if(run >= 0) return run;
+  let first = -1;
+  for(let i = 0; i < words.length; i++){
+    const at = hay.plain.indexOf(' ' + words[i] + ' ');
+    if(at < 0) return -1;
+    if(first < 0 || at < first) first = at;
+  }
+  return first;
+}
+function hsLibraryProducer(who, supplies){
+  if(typeof PRODUCERS === 'undefined' || !Array.isArray(PRODUCERS)) return null;
+  const find = function(text){
+    const hay = hsLibraryHay(text);
+    let best = null, at = -1;
+    PRODUCERS.forEach(function(p){
+      if(!p || !hsPlain(p.name)) return;
+      let i = -1;
+      hsLibraryForms(p.name).forEach(function(f){ const j = hsLibraryAt(hay, f); if(j >= 0 && (i < 0 || j < i)) i = j; });
+      if(i < 0) return;
+      if(!best || i < at || (i === at && hsFold(p.name).length > hsFold(best.name).length)){ best = p; at = i; }
+    });
+    return best;
+  };
+  return find(who) || find(supplies);
+}
+/* one producer as the card and the Producers tab draw it, with the drinks of the house it reaches */
+function hsProducerRow(h, c){
+  const p = hsProducerProfile(c);
+  if(!p) return null;
+  const who = hsPlain(p.who);
+  const type = HS_PRODUCER_TYPES[p.type] ? p.type : 'maker';
+  const drinks = [];
+  (c.itemIds || []).forEach(function(id){
+    const it = (h.cocktails || []).find(function(x){ return x && x.id === id; });
+    if(it && hsPlain(it.name) && !drinks.some(function(d){ return d.id === id; })) drinks.push({ id: id, name: hsPlain(it.name) });
+  });
+  const history = hsPlain(p.history);
+  return { id: c.id, supplies: hsPlain(c.name), suppliesShown: hsEchoes(who, c.name) ? '' : hsPlain(c.name),
+    type: type, typeLabel: HS_PRODUCER_TYPES[type], who: who, short: hsShortWho(who),
+    where: hsPlain(p.where), founded: hsPlain(p.founded), sayIt: hsPlain(p.sayIt),
+    facts: hsTextList(p.facts), paragraphs: history ? history.split(/\n\s*\n/).map(function(x){ return x.trim(); }).filter(Boolean) : [],
+    notes: hsTextList(p.notes), ask: hsTextList(p.askKitchen), drinks: drinks, lib: hsLibraryProducer(who, c.name) };
+}
+/* every kept producer whose component reaches a drink of the house, in the
+   house's order; kept against the house object it was read from, since the
+   engine hands back a new object for every saved change and a screen asks
+   for these several times a paint (read them, never change them) */
+var HS_PRODUCER_MEMO = { h: null, rows: [] };
+function hsDrinkProducers(h){
+  if(!h) return [];
+  if(HS_PRODUCER_MEMO.h === h) return HS_PRODUCER_MEMO.rows;
+  const drinks = {};
+  (h.cocktails || []).forEach(function(c){ if(c && c.id && hsPlain(c.name)) drinks[c.id] = true; });
+  const rows = (Array.isArray(h.components) ? h.components : [])
+    .filter(function(c){ return c && Array.isArray(c.itemIds) && c.itemIds.some(function(id){ return drinks[id]; }); })
+    .map(function(c){ return hsProducerRow(h, c); }).filter(Boolean);
+  HS_PRODUCER_MEMO = { h: h, rows: rows };
+  return rows;
+}
+/* the producers behind one drink, in the house's order */
+function hsWhoMakesRows(h, id){
+  return hsDrinkProducers(h).filter(function(r){ return r.drinks.some(function(d){ return d.id === id; }); });
+}
+function hsDrinkProducerById(h, cid){
+  return hsDrinkProducers(h).find(function(r){ return r.id === cid; }) || null;
+}
+/* The house as the engine should read it for the bar's producers: its
+   drinks, and only the components whose producers reach them, so a card's
+   "which drinks?" and a question's wrong answers are the bar's alone. */
+function hsDrinkProducerHouse(h){
+  const keep = {};
+  hsDrinkProducers(h).forEach(function(r){ keep[r.id] = true; });
+  return Object.assign({}, h, { dishes: [], wines: [], lexicon: [], mixUps: [], scenarios: [], tastings: [],
+    components: (Array.isArray(h.components) ? h.components : []).filter(function(c){ return c && keep[c.id]; }) });
+}
+/* "The producers": how many, behind how many drinks; empty when none */
+function hsProducersLine(h){
+  const rows = hsDrinkProducers(h);
+  if(!rows.length) return '';
+  const drinks = {};
+  rows.forEach(function(r){ r.drinks.forEach(function(d){ drinks[d.id] = true; }); });
+  const m = Object.keys(drinks).length;
+  return hsSay('producersLine', { n: rows.length + (rows.length === 1 ? ' producer' : ' producers'), m: m + (m === 1 ? ' drink' : ' drinks') });
+}
+
+/* The cards: up to three per producer (who and where, one thing to know, which
+   drinks), the engine's buildFlashcards when it deals the producer kind, else
+   the same three made here. */
+function hsFirstSentenceOf(text){
+  const t = hsPlain(String(text || '').split(/\n\s*\n/)[0]);
+  const m = /^[\s\S]*?[.!?](?=\s|$)/.exec(t);
+  return hsPlain(m ? m[0] : t);
+}
+function hsSayList(names){
+  if(names.length < 2) return names.join('');
+  return names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
+}
+/* A founded value as the who card says it, without its closing stop, by the
+   engine's rule (house-drills.ts foundedSentence): after Founded when it
+   opens on a date (a figure, a month, or a lower case word that carries one,
+   'between 1849 and 1857'), and as a sentence of its own when it opens on
+   any other capital ('Distillery 1896; brand 1992 or 1993'), never 'Founded
+   The family has...'. */
+var HS_MONTH_WORD = /^(?:January|February|March|April|May|June|July|August|September|October|November|December)\b/;
+function hsFoundedSentence(founded){
+  const f = hsPlain(founded).replace(/[\s.]+$/, '');
+  if(!f) return '';
+  return /^[0-9a-z]/.test(f) || HS_MONTH_WORD.test(f) ? 'Founded ' + f : f;
+}
+/* sentences as a card's back joins them: each without its own stop, one stop at the end */
+function hsJoinSentences(parts){
+  const kept = parts.map(function(p){ return hsPlain(p).replace(/[\s.]+$/, ''); }).filter(Boolean);
+  return kept.length ? kept.join('. ') + '.' : '';
+}
+function hsProducerCardsLocal(house){
+  const out = [];
+  hsDrinkProducers(house).forEach(function(r){
+    const who = hsJoinSentences([r.where, hsFoundedSentence(r.founded)]);
+    if(who) out.push({ kind: 'producer', front: r.short + (r.founded ? ': where, and since when?' : ': where from?'), back: who, itemId: r.id, n: 0 });
+    const point = r.facts[0] || hsFirstSentenceOf(r.paragraphs.join('\n\n'));
+    if(point) out.push({ kind: 'producer', front: r.short + ': one thing to know', back: point, itemId: r.id, n: 1 });
+    if(r.drinks.length) out.push({ kind: 'producer', front: r.short + ': which drinks?', back: hsSayList(r.drinks.map(function(d){ return d.name; })) + '.', itemId: r.id, n: 2 });
+  });
+  return out;
+}
+function hsProducerFlashcards(h){
+  if(!h) return [];
+  const lib = typeof houseLibHere === 'function' ? houseLibHere() : null;
+  const kinds = lib && lib.drills && Array.isArray(lib.drills.FLASHCARD_KINDS) ? lib.drills.FLASHCARD_KINDS : [];
+  const build = kinds.indexOf('producer') >= 0 ? hsHouseFn('buildFlashcards', hsProducerCardsLocal) : hsProducerCardsLocal;
+  try { return build(hsDrinkProducerHouse(h)).filter(function(c){ return c && c.kind === 'producer' && hsPlain(c.front) && hsPlain(c.back); }); }
+  catch (e) { return hsProducerCardsLocal(h); }
+}
+
+/* The questions: which producer is behind a drink, where a producer is
+   from, which drink uses a producer. The engine's dealQuestion when it
+   knows the producer kinds, else the same rule here: four options, every
+   wrong one another of the bar's producers (or its places, or its drinks),
+   a second right answer never offered, nothing dealt under the floor. */
+function hsDealProducerLocal(view, kind, rand){
+  const rows = hsDrinkProducers(view);
+  const fold = function(s){ return hsPlain(s).toLowerCase().replace(/\s+/g, ' '); };
+  const distinct = function(list){ const seen = {}, out = []; list.forEach(function(s){ const t = hsPlain(s), f = fold(t); if(f && !seen[f]){ seen[f] = true; out.push(t); } }); return out; };
+  const selfAnswers = function(stem, answer){ return hsFold(stem).indexOf(hsFold(answer)) >= 0; };
+  let pool = [], field = [];
+  if(kind === 'producerOf'){
+    (view.cocktails || []).forEach(function(it){
+      const whos = distinct(rows.filter(function(r){ return r.drinks.some(function(d){ return d.id === it.id; }); }).map(function(r){ return r.short; }));
+      if(whos.length && hsPlain(it.name) && !selfAnswers(it.name, whos[0])) pool.push({ itemId: it.id, stem: hsPlain(it.name), answer: whos[0], others: whos.slice(1) });
+    });
+    field = distinct(rows.map(function(r){ return r.short; }));
+  } else if(kind === 'producerWhere'){
+    rows.forEach(function(r){ if(r.where && !selfAnswers(r.short, r.where)) pool.push({ itemId: r.id, stem: r.short, answer: r.where, others: [] }); });
+    field = distinct(rows.map(function(r){ return r.where; }));
+  } else if(kind === 'producerDish'){
+    rows.forEach(function(r){
+      const names = distinct(r.drinks.map(function(d){ return d.name; }));
+      if(names.length && !selfAnswers(r.short, names[0])) pool.push({ itemId: r.id, stem: r.short, answer: names[0], others: names.slice(1) });
+    });
+    field = distinct((view.cocktails || []).map(function(c){ return c && c.name; }));
+  } else return null;
+  if(pool.length < 2 || field.length < 4) return null;
+  const pick = function(n){ const r = rand(); return Math.min(n - 1, Math.max(0, Math.floor((r >= 0 && r < 1 ? r : 0) * n))); };
+  const mix = function(list){ const out = list.slice(); for(let i = out.length - 1; i > 0; i--){ const j = pick(i + 1); const t = out[i]; out[i] = out[j]; out[j] = t; } return out; };
+  const c = pool[pick(pool.length)];
+  const right = [c.answer].concat(c.others).map(fold);
+  const wrong = mix(field.filter(function(s){ return right.indexOf(fold(s)) < 0; })).slice(0, 3);
+  if(wrong.length < 3) return null;
+  return { kind: kind, stem: c.stem, options: mix([c.answer].concat(wrong)), answer: c.answer, itemId: c.itemId };
+}
+function hsDealProducer(view, kind, rand){
+  const lib = typeof houseLibHere === 'function' ? houseLibHere() : null;
+  const known = lib && lib.drills && Array.isArray(lib.drills.PRODUCER_KINDS) ? lib.drills.PRODUCER_KINDS : [];
+  const deal = known.indexOf(kind) >= 0 ? hsHouseFn('dealQuestion', hsDealProducerLocal) : hsDealProducerLocal;
+  try { return deal(view, kind, rand); } catch (e) { return hsDealProducerLocal(view, kind, rand); }
+}
+/* A dealt question in the quiz's own shape: its prompt in the Ledger's
+   words, the producer's card as its study place (so a miss offers Study
+   this card and the misses deal it), and the kind, so a miss is never read
+   as a drink's own card. */
+function hsProducerQuestion(q, rows){
+  let row = null, n = 0, prompt = '', explain = '';
+  if(q.kind === 'producerOf'){
+    row = rows.find(function(r){ return r.short === q.answer && r.drinks.some(function(d){ return d.id === q.itemId; }); }) || null;
+    n = 2;
+    prompt = hsSay('qProducerOf', { name: q.stem });
+    explain = q.stem + ': ' + q.answer + '.';
+  } else if(q.kind === 'producerWhere'){
+    row = rows.find(function(r){ return r.id === q.itemId; }) || null;
+    prompt = hsSay('qProducerWhere', { name: q.stem });
+    explain = q.stem + ': ' + q.answer + '.';
+  } else {
+    row = rows.find(function(r){ return r.id === q.itemId; }) || null;
+    n = 2;
+    prompt = hsSay('qProducerDrink', { name: q.stem });
+    explain = q.stem + ': ' + (row ? hsSayList(row.drinks.map(function(d){ return d.name; })) : q.answer) + '.';
+  }
+  const out = { prompt: prompt, options: q.options.slice(), answer: q.answer, explain: explain, houseKind: q.kind };
+  const cards = typeof producerCards === 'function' && row ? producerCards().filter(function(d){ return d.ref && d.ref.id === row.id; }) : [];
+  const card = cards.find(function(d){ return d.n === n; }) || cards[0];
+  if(card && typeof cardKey === 'function') out.ckey = cardKey(card);
+  return out;
+}
+/* Up to `want` producer questions over the current house, the three kinds in
+   turn and no stem asked twice; a section's round (state.quiz.section) asks
+   only about the producers of that section's drinks. Empty with no house,
+   no producer, or too few to make four options. */
+function houseProducerQuestions(want){
+  const h = hsCurrent();
+  if(!h) return [];
+  const rows = hsDrinkProducers(h);
+  if(rows.length < 2) return [];
+  const view = hsDrinkProducerHouse(h);
+  const sec = typeof state !== 'undefined' && state && state.quiz ? state.quiz.section : null;
+  const inSec = function(id){ return !sec || houseStudySectionOf(id) === sec; };
+  const out = [], seen = {};
+  for(let i = 0; i < 40 && out.length < (want || 3); i++){
+    const kind = HS_PRODUCER_KINDS[i % HS_PRODUCER_KINDS.length];
+    const q = hsDealProducer(view, kind, Math.random);
+    if(!q) continue;
+    if(sec){
+      const ok = kind === 'producerOf' ? inSec(q.itemId) : rows.some(function(r){ return r.id === q.itemId && r.drinks.some(function(d){ return inSec(d.id); }); });
+      if(!ok) continue;
+    }
+    const key = kind + '|' + hsFold(q.stem);
+    if(seen[key]) continue;
+    seen[key] = true;
+    out.push(hsProducerQuestion(q, rows));
+  }
+  return out;
+}
+
+/* One producer's profile inside the card's disclosure: what it supplies,
+   where and since when, the line to say, the facts, the story, the notes,
+   Ask the bar when the bar has something to answer, and the general
+   library's entry when it holds one. */
+function hsProducerBodyHTML(r){
+  const facts = [];
+  if(r.suppliesShown) facts.push('<dt>' + esc(hsSay('producerSupplies')) + '</dt><dd>' + esc(r.suppliesShown) + '</dd>');
+  if(r.where) facts.push('<dt>' + esc(hsSay('producerWhere')) + '</dt><dd>' + esc(r.where) + '</dd>');
+  if(r.founded) facts.push('<dt>' + esc(hsSay('producerFounded')) + '</dt><dd>' + esc(r.founded) + '</dd>');
+  const list = function(key, items){ return items.length ? '<div class="eyebrow">' + esc(hsSay(key)) + '</div><ul class="hs-list">' + items.map(function(t){ return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : ''; };
+  return '<div class="hs-read">'
+    + (facts.length ? '<dl class="hs-dl">' + facts.join('') + '</dl>' : '')
+    + (r.sayIt ? '<p><span class="hs-soft">' + esc(hsSay('say')) + ':</span> “' + esc(r.sayIt) + '”</p>' : '')
+    + list('producerFacts', r.facts)
+    + (r.paragraphs.length ? '<div class="eyebrow">' + esc(hsSay('producerHistory')) + '</div>' + r.paragraphs.map(function(p){ return '<p>' + esc(p) + '</p>'; }).join('') : '')
+    + list('producerNotes', r.notes)
+    + list('askBar', r.ask)
+    + (r.lib ? '<p><a class="hs-link" href="#/producers/' + esc(slugify(r.lib.name)) + '">' + esc(hsSay('inLedgerLib')) + '</a></p>' : '')
+    + '</div>';
+}
+/* Who makes it, on the card above What it's made of: nothing when no kept
+   producer reaches the drink. */
+function hsWhoMakesHTML(h, id){
+  const rows = hsWhoMakesRows(h, id);
+  if(!rows.length) return '';
+  const cards = typeof producerCards === 'function' ? producerCards().filter(function(d){ return rows.some(function(r){ return d.ref && d.ref.id === r.id; }); }).length : 0;
+  return '<section class="hs-group hs-whomakes" aria-labelledby="hs-whomakes-h"><h3 class="hs-h3" id="hs-whomakes-h">' + esc(hsSay('whoMakes')) + '</h3>'
+    + '<ul class="hs-comps hs-prods">' + rows.map(function(r){
+      return '<li data-producer="' + esc(r.id) + '"><details class="hs-more hs-comp"' + hsOpenAttr(id, 'p:' + r.id) + '><summary>' + esc(r.who) + '</summary>' + hsProducerBodyHTML(r) + '</details></li>';
+    }).join('') + '</ul>'
+    + '<div class="hs-btns">'
+    + (cards ? '<button class="btn btn-brass" data-act="hs-prod-cards" data-id="' + esc(id) + '">' + esc(hsSay('flashProducers')) + '</button>' : '')
+    + '<button class="btn btn-ghost" data-act="hs-producers">' + esc(hsSay('allProducers')) + '</button></div>'
+    + '</section>';
+}
+
 /* ---- the card (1.3) -------------------------------------------------------------- */
 function hsBarRow(id){ return (progress.bar || []).find(function(b){ return b.id === id; }) || null; }
 function hsCardHTML(h, id){
@@ -1069,7 +1458,7 @@ function hsCardHTML(h, id){
   const position = hsFold(st.q || '').trim() && !offList
     ? hsSay('found', { i: at + 1, n: navList.length })
     : hsSay('position', { i: inSec.findIndex(function(r){ return r.id === id; }) + 1, n: inSec.length, section: here.section });
-  const jump = st.jump === 'card'; if(jump){ st.jump = null; st.scrollCard = true; }
+  const jump = st.jump === 'card'; if(jump){ st.jump = null; st.scrollCard = true; st.kept = { card: id, open: {} }; }
   const price = item ? hsPriceLine(item, h) : hsPlain(row.price);
   const lines = item ? hsLinesShown(item) : { s10: '', s20: '', s45: '', guest: '', guestShown: false };
   const say = item ? hsKeptText(item.say) : '';
@@ -1128,8 +1517,8 @@ function hsCardHTML(h, id){
   if(pours.length) out += '<div class="eyebrow">' + esc(hsSay('pouredOn')) + '</div><ul class="hs-list">'
     + pours.map(function(t){ return '<li>' + esc(t.tasting.name) + (t.course.label ? ', ' + esc(t.course.label) : '') + '</li>'; }).join('') + '</ul>';
   out += '</section>';
-  /* 8a. what it is made of, and what to compare it with */
-  if(item) out += hsMadeOfHTML(h, id) + hsCompareHTML(h, item);
+  /* 8a. who makes it, what it is made of, and what to compare it with */
+  if(item) out += hsWhoMakesHTML(h, id) + hsMadeOfHTML(h, id) + hsCompareHTML(h, item);
   /* 9. the five parts */
   if(parts.length) out += '<section class="hs-group"><h3 class="hs-h3">' + esc(hsSay('parts')) + '</h3><dl class="hs-dl">'
     + parts.map(function(p){ return '<dt>' + esc(p[0]) + '</dt><dd>' + esc(p[1]) + '</dd>'; }).join('') + '</dl></section>';
@@ -1273,6 +1662,20 @@ function houseStudyTryWant(final){
   hsReplace('#/menu/' + slugify(item.name));
   return true;
 }
+/* A drink's card opened from another screen (a producer's drinks on the
+   Producers tab): the Menu tab's study view with the card open, one screen
+   change, so the render's push makes its entry and Back returns. */
+function houseStudyOpenFrom(id){
+  const h = hsCurrent();
+  const item = h && (h.cocktails || []).find(function(c){ return c && c.id === id; });
+  if(!item || typeof state === 'undefined' || !state || !state.menu) return false;
+  const st = hsState();
+  state.tab = 'menu';
+  state.menu.view = 'menu';
+  st.editAll = false; st.deck = null; st.sec = ''; st.q = '';
+  st.open = item.id; st.from = item.id; st.jump = 'card'; st.l20 = false; st.l45 = false; st.pushed = false;
+  return true;
+}
 function houseStudyRetry(){
   if(typeof navTryWantSection === 'function') navTryWantSection(true);
   return houseStudyTryWant(true);
@@ -1343,6 +1746,16 @@ function houseStudyAct(act, data){
     if(!st.open) st.y = scrollY();
     done = typeof openDeck === 'function' && openDeck('item-components:' + ds.id) && typeof startDeckRun === 'function' ? startDeckRun('component') : false;
   }
+  else if(act === 'hs-prod-cards'){
+    /* the drink's producers on the Flashcards tab's card screen, dealt at once (js/ui-nav.js) */
+    if(!st.open) st.y = scrollY();
+    done = typeof openDeck === 'function' && openDeck('item-producers:' + ds.id) && typeof startDeckRun === 'function' ? startDeckRun('producer') : false;
+  }
+  else if(act === 'hs-producers'){
+    /* the Producers tab, its house group at the top (js/ui-nav.js) */
+    if(!st.open) st.y = scrollY();
+    done = typeof openHouseProducers === 'function' ? openHouseProducers() : false;
+  }
   else if(act === 'hs-say'){
     if(typeof houseDrillOpen === 'function' && houseDrillOpen('say')){ if(typeof houseSayChoose === 'function') houseSayChoose(ds.id); }
     else done = false;
@@ -1370,6 +1783,22 @@ function houseStudyAfterRender(){
   if(typeof document === 'undefined' || !document || typeof document.getElementById !== 'function') return;
   if(typeof state === 'undefined' || !state || !state.menu || state.tab !== 'menu') return;
   const st = hsState();
+  /* a disclosure on the card opened or closed: kept against the card, so
+     the next paint (Back from where its links lead) draws it as it was. The
+     toggle event does not bubble, so the view listens in its capture phase,
+     once for the life of the page. */
+  const view = document.getElementById('view');
+  if(view && !view.__hsKeep && typeof view.addEventListener === 'function'){
+    view.__hsKeep = true;
+    view.addEventListener('toggle', function(e){
+      const d = e && e.target;
+      if(!d || String(d.tagName || '').toUpperCase() !== 'DETAILS') return;
+      if(typeof state === 'undefined' || !state || state.tab !== 'menu') return;
+      const cur = hsState();
+      const key = hsKeepKeyOf(d);
+      if(cur.open && key) hsKeepOpen(cur.open, key, !!d.open);
+    }, true);
+  }
   const box = document.getElementById('hs-q');
   if(box && !box.__hs){
     box.__hs = true;

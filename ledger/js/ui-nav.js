@@ -226,11 +226,52 @@ function itemComponentCards(itemId){
   });
   return out;
 }
+/* the producers behind the house's drinks as cards (up to three each: who
+   and where, one thing to know, which drinks), from the shared engine when
+   it deals them, else made the same way (house-study.js
+   hsProducerFlashcards); a producer of the kitchen's alone is never dealt.
+   Graded under 'Producers · {front}', a key the orphan sweep never touches;
+   two producers that share a front are one card. */
+function producerCards(){
+  try {
+    const h = typeof hsCurrent === 'function' ? hsCurrent() : null;
+    if(!h || typeof hsProducerFlashcards !== 'function') return [];
+    const rows = {};
+    hsDrinkProducers(h).forEach(function(r){ rows[r.id] = r; });
+    const seen = {};
+    return hsProducerFlashcards(h).filter(function(c){ return rows[c.itemId]; })
+      .map(function(c){ const r = rows[c.itemId]; return { src: 'Producers', name: c.front, back: c.back, group: r.typeLabel, kind: r.type, n: c.n, ref: { id: c.itemId } }; })
+      .filter(function(d){ const k = cardKey(d); if(seen[k]) return false; seen[k] = true; return true; });
+  } catch (e) { return []; }
+}
+function producerCardByKey(key){
+  return producerCards().find(function(d){ return cardKey(d) === key; }) || null;
+}
+/* the cards of one drink's producers, producer by producer in the house's order, each card in its own order */
+function itemProducerCards(itemId){
+  const h = typeof hsCurrent === 'function' ? hsCurrent() : null;
+  if(!h || typeof hsWhoMakesRows !== 'function') return [];
+  const cards = producerCards();
+  const out = [];
+  hsWhoMakesRows(h, itemId).forEach(function(r){
+    cards.filter(function(d){ return d.ref && d.ref.id === r.id; }).sort(function(a, b){ return (a.n || 0) - (b.n || 0); })
+      .forEach(function(d){ if(out.indexOf(d) < 0) out.push(d); });
+  });
+  return out;
+}
+/* the Producers tab with its house group at the top, from a card's All
+   producers or the level page's door: one screen change */
+function openHouseProducers(){
+  state.tab = 'producers';
+  Object.assign(state.prod, { cat: 'All', open: null, house: null, primerOpen: null });
+  return true;
+}
 /* a card key back to its card, of any engine here: the deck's own cards and
    the house's words */
 function cardByKey(key){
   if(String(key).indexOf('Words · ') === 0) return wordCardByKey(key);
   if(String(key).indexOf('Components · ') === 0) return componentCardByKey(key);
+  if(String(key).indexOf('Producers · ') === 0) return producerCardByKey(key);
   return allDrinks().find(function(d){ return !d.draft && cardKey(d) === key; }) || null;
 }
 /* id to { name, preset } ; null for an id nothing answers */
@@ -262,6 +303,18 @@ function deckDef(id, lvArg){
     const cards = itemComponentCards(itemId);
     /* dealt in the order the card shows them, Ingredients, Techniques, Stories, never shuffled */
     return it && cards.length ? { name: it.name + ': what it is made of', preset: { only: cards, deckModes: ['component'], ordered: true }, house: true } : null;
+  }
+  if(id === 'producers'){
+    const cards = producerCards();
+    return cards.length ? { name: 'The producers', preset: { only: cards, deckModes: ['producer'] }, house: true } : null;
+  }
+  if(id.indexOf('item-producers:') === 0){
+    const itemId = id.slice(15);
+    const h = typeof hsCurrent === 'function' ? hsCurrent() : null;
+    const it = h && typeof hsFind === 'function' ? hsFind(h, itemId) : null;
+    const cards = itemProducerCards(itemId);
+    /* dealt in the order the card shows them, never shuffled */
+    return it && cards.length ? { name: it.name + ': who makes it', preset: { only: cards, deckModes: ['producer'], ordered: true }, house: true } : null;
   }
   if(id.indexOf('drink:') === 0){
     const b = (progress.bar || []).find(function(x){ return x.id === id.slice(6); });
@@ -383,7 +436,7 @@ function fcPickHTML(){
     const secs = houseSectionList();
     house = rowsNav('My restaurant', [deckRow('menu')]
       .concat(secs.length > 1 ? secs.map(function(s){ return deckRow('menu:' + s.slug); }) : [])
-      .concat([deckRow('menu-weak'), deckRow('menu-line10'), deckRow('menu-line20'), deckRow('menu-line45'), deckRow('menu-parts'), deckRow('menu-offer')]));
+      .concat([deckRow('menu-weak'), deckRow('menu-line10'), deckRow('menu-line20'), deckRow('menu-line45'), deckRow('menu-parts'), deckRow('menu-offer'), deckRow('producers')]));
   } else if(menuCardCount()){
     house = rowsNav('My restaurant', [deckRow('menu'), deckRow('menu-weak')]);
   } else {
@@ -566,6 +619,8 @@ function studyHashOf(key){
   if(d.src === 'Zero Proof') return '#/na/' + slugify(d.name);
   if(d.src === 'On Tap' && d.ref && d.ref.dom) return '#/ontap/' + slugify(d.ref.dom);
   if(d.src === 'Coffee' && d.ref && d.ref.dom) return '#/coffee/' + slugify(d.ref.dom);
+  /* a producer's card is read in its profile on the Producers tab */
+  if(d.src === 'Producers' && d.ref && d.ref.id) return '#/producers/house/' + navProducerId(d.ref.id);
   return '';
 }
 /* a bank question's reading place: where its level reads it, else its topic's tab */
@@ -640,10 +695,13 @@ function myRestaurantHTML(){
   const desk = typeof deskWaitingHTML === 'function' ? deskWaitingHTML('home') : '';
   const line = engine && typeof houseLineHTML === 'function' ? houseLineHTML() : '';
   const own = (progress.bar || []).length;
+  /* the bar's producers, read on the Producers tab, with their count */
+  const prodLine = h && typeof hsProducersLine === 'function' ? hsProducersLine(h) : '';
   const doors = (h || own) ? rowsNav('Study the menu', [
     rowDoor('data-act="lv-menu"', 'Study the whole menu', ''),
     rowDoor('data-act="deck" data-deck="menu"', 'Flashcards for the menu', ''),
-    menuCardCount() >= 4 ? rowDoor('data-act="quiz-go" data-m="mybar"', 'Drill the menu', '') : ''
+    menuCardCount() >= 4 ? rowDoor('data-act="quiz-go" data-m="mybar"', 'Drill the menu', '') : '',
+    prodLine ? rowDoor('data-act="lv-producers"', 'The producers', prodLine) : ''
   ]) : '';
   const secs = h ? houseSectionList() : [];
   const chips = secs.length > 1 ? '<div class="row lv-secs" role="group" aria-label="The menu’s sections">' + secs.map(function(s){
@@ -821,6 +879,10 @@ function routeNow(){
     const v = state.practice.view || 'drills'; hash += '/' + v; key += '/' + v;
   } else if(t === 'tools'){
     const v = state.tools.view || 'batch'; hash += '/' + v; key += '/' + v;
+  } else if(t === 'producers' && state.prod.house){
+    /* a producer of the house's bar, open: its own screen, as a library entry is */
+    const id = navProducerId(state.prod.house);
+    hash += '/house/' + id; key += '/house/' + id;
   } else if(t === 'menu'){
     const v = state.menu.view || 'menu';
     const study = typeof houseStudyOn === 'function' && houseStudyOn();
@@ -845,6 +907,8 @@ function routeNow(){
   }
   return { hash: hash, key: key };
 }
+/* a component id as an address carries it, and nothing looser */
+function navProducerId(id){ return String(id || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 40); }
 function deckSegment(id){
   if(id === 'misses') return 'misses/' + (state.fc.missKeys || []).map(encodeURIComponent).join(',');
   return id;
@@ -986,7 +1050,7 @@ function parentTab(){
   if(t === 'shots') return state.shots.open != null ? 'shots' : 'library';
   if(t === 'na') return state.na.open != null ? 'na' : 'library';
   if(t === 'prep') return state.prep.open != null ? 'prep' : 'library';
-  if(t === 'producers') return state.prod.open != null ? 'producers' : 'library';
+  if(t === 'producers') return state.prod.open != null || state.prod.house ? 'producers' : 'library';
   if(['families', 'notes', 'service', 'ontap', 'coffee', 'videos'].indexOf(t) >= 0) return 'library';
   if(t === 'mine') return 'home';
   if(t === 'record' || t === 'tools') return 'mine';
@@ -1020,7 +1084,7 @@ function applyParent(){
     else if(t === 'shots') state.shots.open = null;
     else if(t === 'na') state.na.open = null;
     else if(t === 'prep') state.prep.open = null;
-    else if(t === 'producers') state.prod.open = null;
+    else if(t === 'producers'){ state.prod.open = null; state.prod.house = null; }
     return true;
   }
   if(p === 'library'){ goLibraryRoot(false); return true; }
@@ -1111,6 +1175,19 @@ function navAct(act, data, el){
     return 'render';
   }
   if(act === 'menu-stock'){ state.tab = 'menu'; state.menu.view = 'stock'; return 'render'; }
+  /* the bar's producers: the Producers tab's house group, one profile open
+     (its own screen, as a library entry is), a drink's card from its chips */
+  if(act === 'lv-producers'){ openHouseProducers(); return 'render'; }
+  if(act === 'prod-house'){
+    const id = String(data.id || '');
+    state.prod.house = state.prod.house === id ? null : id;
+    if(state.prod.house) state.prod.open = null;
+    return 'render';
+  }
+  if(act === 'prod-drink'){
+    if(typeof houseStudyOpenFrom !== 'function' || !houseStudyOpenFrom(data.id)) return 'done';
+    return 'render';
+  }
   if(act === 'search-all'){ openSearch(); return 'done'; }
   if(act.indexOf('scope-') === 0){ scopeAct(act, data); return 'render'; }
   if(act === 'fc-misses'){
@@ -1144,6 +1221,17 @@ function navNormalise(){
   const fc = state.fc;
   if(state.tab === 'flashcards' && fc.stage === 'run' && !(fc.deck && fc.deck.length)) fc.stage = fc.deckId && deckDef(fc.deckId, fc.level || null) && fc.deckId !== 'due' && fc.deckId !== 'session' ? 'setup' : 'pick';
   if(state.tab === 'flashcards' && fc.stage === 'setup' && !fc.deckId && !fc.level && fc.src === 'All' && fc.special === 'All') fc.deckId = 'everything';
+  /* one producer open on the Producers tab at a time, the library's or the
+     house's; a house producer the woken house does not hold is dropped, by
+     a replace, while one asked for before the wake keeps its address */
+  const pr = state.prod;
+  if(pr && pr.house){
+    if(pr.open != null) pr.house = null;
+    else if(state.tab === 'producers' && typeof hsCurrent === 'function' && typeof hsDrinkProducerById === 'function' && !navHouseUnanswered()){
+      const h = hsCurrent();
+      if(!h || !hsDrinkProducerById(h, pr.house)){ pr.house = null; state.navForce = 'replace'; }
+    }
+  }
 }
 
 /* ---- the routes this file adds, read back (applyRoute calls this first) ----
@@ -1220,5 +1308,17 @@ function applyNavRoute(parts){
     return true;
   }
   if(tab === 'library' && a === 'all'){ state.tab = 'library'; state.lib.level = null; state.lib.open = null; return true; }
+  /* a producer of the house's bar, by its component's id: held before the
+     house wakes as a section is, and dropped by navNormalise once a woken
+     house lacks it; every other producers address closes it */
+  if(tab === 'producers' && state.prod){
+    if(a === 'house'){
+      state.tab = 'producers';
+      state.prod.open = null;
+      state.prod.house = b ? navProducerId(b) || null : null;
+      return true;
+    }
+    state.prod.house = null;
+  }
   return false;
 }

@@ -468,6 +468,8 @@ const FC_MODES = [
   ['word','Word cards','The word and the question on the front, what you kept on the back.', d => d.src === 'Words'],
   /* the house's components, one card each (js/ui-nav.js componentCards) */
   ['component','Component cards','The question on the front, the answer you kept on the back.', d => d.src === 'Components'],
+  /* the producers behind the house's drinks, up to three cards each (js/ui-nav.js producerCards) */
+  ['producer','Producer cards','A producer on the front: say where it is from, one thing to know, or which drinks use it, then flip.', d => d.src === 'Producers'],
 ];
 
 function renderFlashcards(){
@@ -601,9 +603,10 @@ function renderFlashcards(){
     + '<button class="btn btn-ox" data-act="fc-grade" data-ok="0">Again</button></div>';
 
   /* the house's words: the word and its question on the front, what was kept on the back;
-     a component's card the same, with its kind (Ingredients, Techniques, Stories) above */
-  if(fc.mode==='word' || fc.mode==='component'){
-    const kindLine = fc.mode==='component' && c.group ? '<div class="eyebrow fc-kind">'+esc(c.group)+'</div>' : '';
+     a component's card the same, with its kind (Ingredients, Techniques, Stories) above,
+     and a producer's with its kind (Maker, Origin and the rest) */
+  if(fc.mode==='word' || fc.mode==='component' || fc.mode==='producer'){
+    const kindLine = (fc.mode==='component' || fc.mode==='producer') && c.group ? '<div class="eyebrow fc-kind">'+esc(c.group)+'</div>' : '';
     if(!fc.flipped){
       return '<div class="col">'+head+'<div class="panel p5 col tc study-face" style="align-items:center">'+FRONT+kindLine
         + '<div class="font-display" style="font-size:1.5rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
@@ -989,7 +992,11 @@ function buildRound(mode, pool){
       const qp = typeof qMyBarParts === 'function' ? qMyBarParts(b) : null;
       if(qp) qs.push(qp);
     });
-    return shuffle(qs).slice(0,10);
+    /* the producers behind the drinks (js/house-study.js): up to three of
+       the ten when the house has them, more only to fill a short round */
+    const prod = typeof houseProducerQuestions === 'function' ? houseProducerQuestions(6) : [];
+    const base = shuffle(qs).slice(0, 10 - Math.min(3, prod.length));
+    return shuffle(base.concat(prod.slice(0, 10 - base.length)));
   }
   /* Pair the menu: the engine's questions over the current house */
   if(mode === 'housepair') return typeof houseQuizRound === 'function' ? houseQuizRound() : [];
@@ -1085,7 +1092,9 @@ function renderQuiz(){
   if(z.stage==='done'){
     const total = z.round.length;
     const pct = z.score/total;
-    const verdict = pct>=0.9 ? 'Clean round. Recognition is not the same as doing it: take it to the drills.'
+    /* Clean round only with nothing missed: a round of nine in ten is close, and says so */
+    const verdict = z.score===total ? 'Clean round. Recognition is not the same as doing it: take it to the drills.'
+      : pct>=0.9 ? 'Nearly clean. Read what you missed below, then take it to the drills.'
       : pct>=0.7 ? 'Solid. Read the misses below before you deal another.'
       : pct>=0.5 ? 'Half is a start. The explanations are where the round pays you back.'
       : 'Everyone starts by polishing glassware. Run it again.';

@@ -97,6 +97,9 @@
   .hs-comp>summary{font-family:var(--house-reading);font-size:1.0625rem;letter-spacing:0;color:var(--cream)}
   .hs-comp .hs-dl{margin:6px 0}
   .hs-compare .hs-list li{margin:.5em 0}
+  /* who makes it: the profile's small heads keep a line of air above them */
+  .hs-prods .hs-read .eyebrow{margin-top:10px}
+  .hs-prods .hs-read .hs-list{margin-top:4px}
   .fc-kind{color:var(--brass-2)}
 
   /* the videos: links out, never a player; the title a 44px target in brass */
