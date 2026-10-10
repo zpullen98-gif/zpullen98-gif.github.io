@@ -223,9 +223,9 @@ cellarView = function () {
     // Reference bottle cards, never house flashcards, a tasting run or a quiz.
     var state = v28State(), row = v28Find(v28Rows(), state.open), item = row && row.item;
     if (item) {
-      var description = [item.name, item.grape, item.section, item.region].join(' '), ids = [];
-      if (/\b1946\b|Rubicon.*2010|2010.*Rubicon/i.test(description)) ids.push('bottle-ullage');
-      if (/\b1946\b|Chardonnay|Burgundy|Bourgogne|Chablis|Rubicon/i.test(description)) ids.push('glass-crystals-sediment-cork');
+      // The reviewed study registry owns exact wine-to-lesson connections.
+      // A skill link never implies this particular bottle has a defect.
+      var ids = typeof v36WineGuides === 'function' ? v36WineGuides(item) : [];
       v33Append(card, ids, card.querySelector('.v28-foot'));
     }
   } else {

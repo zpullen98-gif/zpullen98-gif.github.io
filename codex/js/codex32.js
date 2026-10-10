@@ -2291,6 +2291,9 @@ function v32Key(e) {
   } catch (e) { V32.d = 0; }
   try {
     var hash = (typeof location !== 'undefined' && location && typeof location.hash === 'string') ? location.hash : '';
+    /* Later layers can register new views after this first parse. Preserve
+       the original address even if an early asynchronous render replaces it. */
+    V32.initialHash = hash;
     if (hash.indexOf('#/') === 0) {
       var r = v32Parse(hash);
       if (r) v32Apply(r, v32CurState());

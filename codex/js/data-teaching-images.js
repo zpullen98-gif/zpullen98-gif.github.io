@@ -86,7 +86,7 @@ var CODEX_TEACHING_IMAGES = {
         ['Sparkling-wine bottle', 'Built to withstand pressure, with a substantial neck finish for its closure. Champagne is a familiar example; other sparkling wines use similar bottles.']
       ],
       note: 'The punt is the indentation underneath a bottle. Its depth varies by design: it is not fixed by bottle shape and does not tell you the wine’s quality. Always confirm producer, wine, vintage and bottle size before service.',
-      sources: [{title: 'WSET: wine packaging and traditional shapes', url: 'https://www.wsetglobal.com/knowledge-centre/blog/2025/breaking-the-glass-mould-innovative-drinks-packaging'}, {title: 'Comité Champagne: the pressure-resistant bottle', url: 'https://www.champagne.fr/en/about-champagne/a-great-blended-wine/champagne-bottles-bottling'}, {title: 'Verallia: bottle designs and different push-ups', url: 'https://www.verallia.com/en/our-products/selective-line/'}, {title: 'WSET: bottle shapes and the purpose of a punt', url: 'https://wset-uat-integr8.azurewebsites.net/knowledge-centre/blog/2019/june/13/the-definitive-guide-to-wine-bottle-shapes-and-sizes'}]
+      sources: [{title: 'WSET: wine packaging and traditional shapes', url: 'https://www.wsetglobal.com/knowledge-centre/blog/2025/breaking-the-glass-mould-innovative-drinks-packaging'}, {title: 'Comité Champagne: the pressure-resistant bottle', url: 'https://www.champagne.fr/en/about-champagne/a-great-blended-wine/champagne-bottles-bottling'}, {title: 'Verallia: bottle designs and different push-ups', url: 'https://www.verallia.com/en/our-products/selective-line/'}]
     },
     {
       id: 'pinot-noir', kind: 'teach', title: 'A closer look at Pinot Noir', numbered: false,
@@ -102,6 +102,186 @@ var CODEX_TEACHING_IMAGES = {
       ],
       note: 'Use this portrait to connect the vine with your written grape profile. For botanical comparison, use documented photographs and descriptors; do not treat an illustration as a verified photograph of a particular clone.',
       sources: [{title: 'Plantgrape: Pinot noir identification and clonal diversity', url: 'https://www.plantgrape.fr/en/varieties/fruit-varieties/218/export'}, {title: 'Wine Australia: vine identification and variability', url: 'https://www.wineaustralia.com/getmedia/21669eff-05de-41d9-9ef8-283b1e01edcb/201008-Vine-identification.pdf'}, {title: 'Bourgogne Wine Board: the anatomy of Pinot Noir', url: 'https://www.bourgogne-wines.com/wine-and-terroir/our-grape-varietals-our-colors/pinot-noir/the-bourgogne-wine-region-birthplace-of-the-pinot-noir-varietal,2798,10603.html'}]
+    },
+    {
+      "id": "service-bottle-check",
+      "file": "assets/teach/service-bottle-check-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 180922,
+      "sha256": "ab26e4200ba64b18e0e5cfb3aff9932970acfaf4fbdab720534c33e76bd92ad1",
+      "thumb": {
+        "file": "assets/teach/service-bottle-check-v1.thumb.webp",
+        "width": 540,
+        "height": 360,
+        "bytes": 29380
+      },
+      "kind": "teach",
+      "title": "The bottle check, before opening",
+      "alt": "Four numbered service scenes: 1 a wine bottle beside an order book, 2 its rear label, 3 the intact capsule and closure area, and 4 a server presenting the front label. The labels are intentionally blank.",
+      "caption": "A quiet check before opening prevents an avoidable mistake at the table. Match the actual bottle to the order, inspect its condition and present it for confirmation. Use the fictional label exercise below to practise reading real text.",
+      "key": [
+        [
+          "Match the order",
+          "Compare the producer, wine or cuvée, vintage and bottle size with the guest’s order. Confirm any substitution before opening."
+        ],
+        [
+          "Read the supporting details",
+          "Use the front and rear labels to confirm identity and size. Packaging shape, foil colour and familiar artwork cannot replace reading the actual label."
+        ],
+        [
+          "Inspect the bottle",
+          "Look at the fill, capsule, closure and any seepage. These are clues to investigate; a clean appearance cannot prove that the wine is sound."
+        ],
+        [
+          "Present for confirmation",
+          "Keep the label visible to the person who ordered and identify the bottle clearly. Wait for confirmation before opening, following your restaurant’s service sequence."
+        ]
+      ],
+      "note": "These are staged teaching illustrations with intentionally blank labels, not photographs of Brennan’s bottles. The written practice example is fictional. Follow Brennan’s current service procedure and ask the sommelier about any discrepancy.",
+      "sources": [
+        {
+          "title": "Court of Master Sommeliers: hospitality and service standards",
+          "url": "https://www.mastersommeliers.org/wp-content/uploads/2023/12/CMS-Hospitality-Service-Standards.pdf"
+        },
+        {
+          "title": "Court of Master Sommeliers: advanced service guidance",
+          "url": "https://www.mastersommeliers.org/wp-content/uploads/2025/05/2025-ADV-MS-HS-Standards-and-Guidlines-FINAL.pdf"
+        }
+      ]
+    },
+    {
+      "id": "service-still-opening",
+      "file": "assets/teach/service-still-opening-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 140146,
+      "sha256": "fcb3fbe9e949fce4f00914a0d8b41205335c02aeed7baffa4849efb8b36f4257",
+      "thumb": {
+        "file": "assets/teach/service-still-opening-v1.thumb.webp",
+        "width": 540,
+        "height": 360,
+        "bytes": 30192
+      },
+      "kind": "teach",
+      "title": "Opening still wine with control",
+      "alt": "Four numbered close-ups show a server cutting the capsule below the bottle lip, wiping the exposed cork and rim, completing a controlled cork extraction with a waiter’s corkscrew, and pouring a small tasting sample.",
+      "caption": "Keep the bottle steady and the label available to the guest. Prepare the lip, use a centred corkscrew and withdraw the cork gently. The third frame shows the final extraction; it is not a diagram of the lever’s contact points.",
+      "key": [
+        [
+          "Cut below the lip",
+          "Use the wine key’s blade to cut the capsule below the second lip, following house procedure. Remove the top cleanly and close the blade; keep fingers clear."
+        ],
+        [
+          "Wipe before opening",
+          "Wipe the exposed cork and bottle lip with a clean service cloth. Keep the bottle steady and avoid turning it unnecessarily."
+        ],
+        [
+          "Extract with control",
+          "Centre the worm and engage it securely without driving through the cork. Use the lever correctly for your wine key, then finish the extraction gently by hand. The image shows that final controlled stage; practise lever placement with a trainer."
+        ],
+        [
+          "Check and offer a taste",
+          "Check and wipe the lip after extraction. Offer a small tasting sample to the host according to house procedure, then wait for acceptance before serving the table."
+        ]
+      ],
+      "note": "For sound natural corks in still wine. An old or fragile cork can require different tools and a sommelier’s help. The illustrations are staged practice examples; they do not replace a demonstration or Brennan’s current service procedure.",
+      "sources": [
+        {
+          "title": "Court of Master Sommeliers: hospitality and service standards",
+          "url": "https://www.mastersommeliers.org/wp-content/uploads/2023/12/CMS-Hospitality-Service-Standards.pdf"
+        },
+        {
+          "title": "Court of Master Sommeliers: advanced service guidance",
+          "url": "https://www.mastersommeliers.org/wp-content/uploads/2025/05/2025-ADV-MS-HS-Standards-and-Guidlines-FINAL.pdf"
+        }
+      ]
+    },
+    {
+      "id": "service-sparkling-control",
+      "file": "assets/teach/service-sparkling-control-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 215668,
+      "sha256": "fe3dc93410382ea95082eb4ec6a2628588c827291fd506210ec9a3ddcba895f3",
+      "thumb": {
+        "file": "assets/teach/service-sparkling-control-v1.thumb.webp",
+        "width": 540,
+        "height": 360,
+        "bytes": 38184
+      },
+      "kind": "teach",
+      "title": "Opening sparkling wine quietly",
+      "alt": "Three numbered close-ups show a chilled sparkling-wine bottle angled about 45 degrees: a thumb controls the caged cork, a cloth-covered hand retains the cork and cage while the other holds the bottle, and the removed intact cork remains in the hand.",
+      "caption": "Keep the closure controlled from the moment you start. Chilled sparkling wine should open with a quiet release under a restraining hand, with the bottle directed away from people and breakable objects.",
+      "key": [
+        [
+          "Secure the closure",
+          "Keep a thumb firmly over the cork while removing the foil and loosening the wire cage. Leave the loosened cage on the cork and never let the closure point toward anyone."
+        ],
+        [
+          "Turn the bottle",
+          "With the bottle around 45 degrees, hold the cork and cage firmly under a clean cloth. Turn the bottle slowly with your other hand while resisting the cork’s outward pressure."
+        ],
+        [
+          "Ease the release",
+          "Allow the cork to ease out quietly into the controlling hand. Keep hold of the cork and cage together, wipe the lip if needed and follow the house tasting and pouring sequence."
+        ]
+      ],
+      "note": "The frames show a continuous controlled opening, not permission to let go between steps. Do not shake the bottle or launch the cork. Practise the technique with a trained colleague before guest service; unusual or damaged closures need the sommelier’s help.",
+      "sources": [
+        {
+          "title": "Court of Master Sommeliers: hospitality and service standards",
+          "url": "https://www.mastersommeliers.org/wp-content/uploads/2023/12/CMS-Hospitality-Service-Standards.pdf"
+        },
+        {
+          "title": "Court of Master Sommeliers: advanced service guidance",
+          "url": "https://www.mastersommeliers.org/wp-content/uploads/2025/05/2025-ADV-MS-HS-Standards-and-Guidlines-FINAL.pdf"
+        }
+      ]
+    },
+    {
+      "id": "service-decanting",
+      "file": "assets/teach/service-decanting-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 183604,
+      "sha256": "0dcf49c97ec69d5043e5392976a7f929d98e31476ddfd219884e27f072999c7c",
+      "thumb": {
+        "file": "assets/teach/service-decanting-v1.thumb.webp",
+        "width": 540,
+        "height": 360,
+        "bytes": 32182
+      },
+      "kind": "teach",
+      "title": "Decanting: leave the sediment behind",
+      "alt": "Two numbered scenes show an older red-wine bottle resting in a lined cradle beside a clean decanter and inspection light, followed by a close controlled pour into the decanter while the bottle shoulder and dark sediment remain visible.",
+      "caption": "Decanting can separate a clear wine from sediment; another purpose is controlled exposure to air. Decide which is needed before starting. These two frames illustrate sediment separation, not a universal waiting time for every wine.",
+      "key": [
+        [
+          "Prepare without disturbing",
+          "Assess the wine with the sommelier. If sediment is present, allow it to settle and keep the bottle in its settled orientation during careful transport and opening. Prepare a clean decanter and a light that lets you see the neck and shoulder."
+        ],
+        [
+          "Watch and stop",
+          "Pour slowly and steadily, keeping the bottle close to the decanter and avoiding splashing. Watch the wine passing the shoulder and neck. Stop as sediment approaches the neck or the stream becomes cloudy; leave the remaining wine and deposit in the bottle."
+        ]
+      ],
+      "note": "Sediment is made conspicuous for learning. It is not a measure of a wine’s age or quality. A fragile mature wine may fade with prolonged air, while a young wine may benefit; there is no fixed decanting time that suits all bottles. Brennan’s sommelier and house procedure determine the service decision.",
+      "sources": [
+        {
+          "title": "Court of Master Sommeliers: hospitality and service standards",
+          "url": "https://www.mastersommeliers.org/wp-content/uploads/2023/12/CMS-Hospitality-Service-Standards.pdf"
+        },
+        {
+          "title": "Court of Master Sommeliers: advanced service guidance",
+          "url": "https://www.mastersommeliers.org/wp-content/uploads/2025/05/2025-ADV-MS-HS-Standards-and-Guidlines-FINAL.pdf"
+        },
+        {
+          "title": "WSET: serving and decanting wine",
+          "url": "https://www.wsetglobal.com/knowledge-centre/blog/2024/july/21/frequently-asked-questions-about-serving-and-decanting-wine/"
+        }
+      ]
     }
   ]
 };

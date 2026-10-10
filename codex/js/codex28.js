@@ -172,6 +172,7 @@ var V28_WORDS = {
   atlas: 'Open the Terroir Atlas',
   chapter: 'Read {cat}, a chapter at {level}',
   map: 'See {sheet} on the World Map',
+  mapOverview: 'Explore {sheet}, a regional overview',
   producer: 'Open {name} in The Producers',
   guest: 'Play it in Guest at the table',
   zeroWith: '{drink}, without alcohol with the {dish}',
@@ -607,17 +608,60 @@ function v28DeckIds(scope) {
 
 /* =========== the links in this app =========== */
 
+/* Authored synonyms only. A compound display name is not a blend, and an
+   unfamiliar grape must never acquire a profile through a partial match. */
+var V28_GRAPE_ALIASES = {
+  'syrah': 'syrah', 'shiraz': 'syrah', 'syrah shiraz': 'syrah',
+  'grenache': 'grenache', 'garnacha': 'grenache', 'grenache garnacha': 'grenache'
+};
+function v28GrapeKey(name) {
+  var f = v28Fold(name).trim();
+  return Object.prototype.hasOwnProperty.call(V28_GRAPE_ALIASES, f) ? V28_GRAPE_ALIASES[f] : f;
+}
+
+/* These are study destinations, not replacements for the house's origin.
+   A parent overview must not add a more specific terroir or appellation to
+   the wine. Exact comma-separated place names keep the join reviewable. */
+var V28_PLACE_STUDIES = [
+  { names: ['Piemonte', 'Piedmont'], map: 'italy', row: 'Piedmont', chapter: 'Italy North', intro: 'piedmont' },
+  { names: ['Roussillon'], map: 'france', row: 'Languedoc-Roussillon', chapter: 'Southern France', overview: true },
+  { names: ['Val de Loire', 'Loire'], map: 'france', row: 'Loire Valley', chapter: 'Loire', intro: 'loire', overview: true },
+  { names: ['California'], map: 'california', chapter: 'California', overview: true }
+];
+function v28PlaceStudies(item) {
+  var parts = String(item && item.region || '').split(',').map(function (p) { return v28Fold(p); });
+  return V28_PLACE_STUDIES.filter(function (s) {
+    return s.names.some(function (n) { return parts.indexOf(v28Fold(n)) >= 0; });
+  });
+}
+function v28PlacePrimer(item) {
+  var hit = null;
+  v28PlaceStudies(item).some(function (s) {
+    return PRIMERS.some(function (p, i) {
+      if (p && typeof p.cat === 'string' && p.cat === s.chapter) {
+        hit = { at: 0, name: p.cat, key: p.cat }; return true;
+      }
+      if (p && typeof p.cat !== 'string' && s.intro && p.id === s.intro) {
+        hit = { at: 0, name: p.t || s.row, key: i }; return true;
+      }
+      return false;
+    });
+  });
+  return hit;
+}
+
 function v28GrapeProfiles(item) {
   var out = [];
   var pools = [];
   if (typeof GRAPES !== 'undefined' && Array.isArray(GRAPES)) pools.push({ list: GRAPES, flash: true });
+  if (typeof CERT_GRAPES !== 'undefined' && Array.isArray(CERT_GRAPES)) pools.push({ list: CERT_GRAPES, flash: false });
   if (typeof GRAPES_PLUS !== 'undefined' && Array.isArray(GRAPES_PLUS)) pools.push({ list: GRAPES_PLUS, flash: false });
   v28Grapes(item).forEach(function (g) {
-    var f = v28Fold(g);
+    var f = v28GrapeKey(g);
     var hit = null;
     pools.some(function (p) {
       return p.list.some(function (x, i) {
-        if (x && typeof x.g === 'string' && v28Fold(x.g) === f) { hit = { p: x, flash: p.flash, idx: i }; return true; }
+        if (x && typeof x.g === 'string' && v28GrapeKey(x.g) === f) { hit = { p: x, flash: p.flash, idx: i }; return true; }
         return false;
       });
     });
@@ -653,6 +697,8 @@ function v28LevelName() {
 function v28Primer(item) {
   var region = item && item.region;
   if (!region || typeof PRIMERS === 'undefined' || !Array.isArray(PRIMERS)) return null;
+  var authored = v28PlacePrimer(item);
+  if (authored) return authored;
   var hay = v28Fold(region);
   var best = null;
   PRIMERS.forEach(function (p, i) {
@@ -707,6 +753,18 @@ function v28Map(item, terroir) {
     });
     if (found) { hit = s; return true; }
     return false;
+  });
+  if (!hit) v28PlaceStudies(item).some(function (study) {
+    return have.some(function (s) {
+      if (s.id !== study.map) return false;
+      var rows = [];
+      try { rows = mapRegions(s.id) || []; } catch (e) { rows = []; }
+      if (!rows.length || (study.row && !rows.some(function (r) { return r && v28Fold(r.n || r.name) === v28Fold(study.row); }))) return false;
+      hit = {};
+      Object.keys(s).forEach(function (key) { hit[key] = s[key]; });
+      if (study.overview) hit.overview = true;
+      return true;
+    });
   });
   return hit;
 }
@@ -1093,7 +1151,7 @@ function v28HereBlock(h, item) {
   if (primer) doors.push('<button type="button" class="btn small ghost" data-v28="primer" data-k="' + v28Esc(String(primer.key)) + '">'
     + v28W('chapter', { cat: V28_QUOTE(primer.name), level: v28Esc(v28LevelName()) }) + '</button>');
   var sheet = v28Map(item, terroir);
-  if (sheet) doors.push('<button type="button" class="btn small ghost" data-v28="map" data-k="' + v28Esc(sheet.id) + '">' + v28W('map', { sheet: V28_QUOTE(sheet.name) }) + '</button>');
+  if (sheet) doors.push('<button type="button" class="btn small ghost" data-v28="map" data-k="' + v28Esc(sheet.id) + '">' + v28W(sheet.overview ? 'mapOverview' : 'map', { sheet: V28_QUOTE(sheet.name) }) + '</button>');
   var prod = v28Producer(item);
   if (prod) doors.push('<button type="button" class="btn small ghost" data-v28="producer" data-k="' + v28Esc(prod.id) + '">' + v28W('producer', { name: V28_QUOTE(prod.p) }) + '</button>');
   if (doors.length) html += '<div class="v28-btnrow v28-doors">' + doors.join('') + '</div>';

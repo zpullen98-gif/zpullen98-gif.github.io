@@ -25,12 +25,13 @@
       suite's path when the room answers, and a classic is words. Each says
       what is the same and what differs.
 
-   3. THE DECKS. codex32's one card screen gains three: components, every
-      component; components:{kind}, Ingredients, Techniques or Stories; and
+   3. THE DECKS. codex32's one card screen gains three: components, the wine
+      components; components:{kind}, Ingredients, Techniques or Stories; and
       item-components:{id}, one wine's components in the order its card
       shows them, never shuffled. The Flashcards root lists a deck per kind
       under What it's made of. A grade is recorded as the words are, under
-      h-{component id}-component.
+      h-{component id}-component. components-all is the explicit choice to
+      study every house component, including food and cocktails.
 
    4. THE DOOR FROM ANOTHER ROOM. #ref={a grape, a producer or a primer} is
       read once at load and opens that door on the first render, so a
@@ -61,7 +62,11 @@ var V35_WORDS = {
   producerDoor: 'The producer',
   primerDoor: 'The chapter',
   ourWine: 'On our list',
-  everyComponent: 'Every component',
+  everyComponent: 'Wine components',
+  allComponents: 'All house components',
+  componentScope: 'Choose your scope',
+  wineScope: 'Components linked to the wines on our list.',
+  allScope: 'Every house component, including food, wine and cocktails.',
   itemDeck: '{name}: what it is made of',
   videoNote: 'Each video opens on YouTube or Vimeo in a new tab, and needs a connection.',
   offlineRoom: '(open the {room} once online and it stays with you offline)'
@@ -108,10 +113,12 @@ function v35Card(c) {
 
 /* The house's component cards, one per component with a kept card, as the
    card screen deals them: { kind: 'component', id, front, back, label }. */
-function v35Cards(h) {
+function v35Cards(h, scope) {
   if (!h) return [];
   var out = [];
+  var wineIds = (Array.isArray(h.wines) ? h.wines : []).filter(function (w) { return w && w.id; }).map(function (w) { return w.id; });
   (Array.isArray(h.components) ? h.components : []).forEach(function (c) {
+    if (scope !== 'all' && !(c && Array.isArray(c.itemIds) && c.itemIds.some(function (id) { return wineIds.indexOf(id) >= 0; }))) return;
     var card = v35Card(c);
     if (card && c.id) out.push({ kind: 'component', id: c.id, ck: c.kind, front: card.front, back: card.back, label: V35_LABELS[c.kind] || '' });
   });
@@ -119,7 +126,8 @@ function v35Cards(h) {
 }
 /* One wine's component cards, Ingredients then Techniques then Stories. */
 function v35ItemCards(h, id) {
-  var cards = v35Cards(h);
+  if (!h || !Array.isArray(h.wines) || !h.wines.some(function (w) { return w && w.id === id; })) return [];
+  var cards = v35Cards(h, 'all');
   var out = [];
   v35Groups(h, id).forEach(function (g) {
     g.components.forEach(function (c) { cards.forEach(function (x) { if (x.id === c.id) out.push(x); }); });
@@ -158,12 +166,17 @@ function v35MadeOfHtml(h, id) {
 
 function v35Fold(s) { return (typeof v28Fold === 'function') ? v28Fold(s) : String(s || '').toLowerCase(); }
 function v35Grape(ref) {
-  var f = v35Fold(ref);
+  var key = typeof v28GrapeKey === 'function' ? v28GrapeKey : v35Fold;
+  var f = key(ref);
   var hit = null;
-  [['GRAPES', true], ['GRAPES_PLUS', false]].some(function (p) {
+  [['GRAPES', true], ['CERT_GRAPES', false], ['GRAPES_PLUS', false]].some(function (p) {
     var list = null;
-    try { list = p[0] === 'GRAPES' ? (typeof GRAPES !== 'undefined' ? GRAPES : null) : (typeof GRAPES_PLUS !== 'undefined' ? GRAPES_PLUS : null); } catch (e) { list = null; }
-    return Array.isArray(list) && list.some(function (g) { if (g && typeof g.g === 'string' && v35Fold(g.g) === f) { hit = { g: g, flash: p[1] }; return true; } return false; });
+    try {
+      if (p[0] === 'GRAPES') list = typeof GRAPES !== 'undefined' ? GRAPES : null;
+      else if (p[0] === 'CERT_GRAPES') list = typeof CERT_GRAPES !== 'undefined' ? CERT_GRAPES : null;
+      else list = typeof GRAPES_PLUS !== 'undefined' ? GRAPES_PLUS : null;
+    } catch (e) { list = null; }
+    return Array.isArray(list) && list.some(function (g) { if (g && typeof g.g === 'string' && key(g.g) === f) { hit = { g: g, flash: p[1] }; return true; } return false; });
   });
   return hit;
 }
@@ -284,20 +297,45 @@ if (typeof v32DeckDef === 'function') {
   v32DeckDef = function (id) {
     var s = String(id || '');
     var m;
-    if (s === 'components' || (m = /^components:(ingredient|technique|story)$/.exec(s)) || (m = /^item-components:(w-[a-z0-9]{8})$/.exec(s))) {
+    if ((m = /^(components(?:-all)?)(?::(ingredient|technique|story))?$/.exec(s)) || /^item-components:(w-[a-z0-9]{8})$/.test(s)) {
       var h = v35House();
       var def = { id: s, name: '', cards: [], kind: 'component' };
-      if (s === 'components') { def.name = v35W('everyComponent'); def.cards = v35Cards(h); }
-      else if (s.indexOf('components:') === 0) { def.name = V35_LABELS[m[1]]; def.cards = v35Cards(h).filter(function (c) { return c.ck === m[1]; }); }
+      if (m) {
+        var all = m[1] === 'components-all';
+        var kind = m[2];
+        def.name = kind ? V35_LABELS[kind] : v35W(all ? 'allComponents' : 'everyComponent');
+        def.cards = v35Cards(h, all ? 'all' : 'wine').filter(function (c) { return !kind || c.ck === kind; });
+      }
       else {
-        var w = h && Array.isArray(h.wines) ? h.wines.filter(function (x) { return x && x.id === m[1]; })[0] : null;
+        var id = s.slice('item-components:'.length);
+        var w = h && Array.isArray(h.wines) ? h.wines.filter(function (x) { return x && x.id === id; })[0] : null;
         def.name = v35W('itemDeck', { name: w ? w.name : 'One wine' });
-        def.cards = v35ItemCards(h, m[1]);
+        def.cards = v35ItemCards(h, id);
       }
       def.learnt = v32Learnt(def);
       return def;
     }
     return _v35DeckDef(id);
+  };
+}
+/* Scope choices replace only the deck setup route. A running card keeps its
+   original cards, position and history token until the reader leaves it. */
+if (typeof v32DeckHtml === 'function') {
+  var _v35DeckHtml = v32DeckHtml;
+  v32DeckHtml = function () {
+    var html = _v35DeckHtml();
+    var m = /^(components(?:-all)?)(?::(ingredient|technique|story))?$/.exec(String(S._v32deck || ''));
+    if (!m) return html;
+    var all = m[1] === 'components-all';
+    var suffix = m[2] ? ':' + m[2] : '';
+    var scope = '<p class="v32-line">' + v35W(all ? 'allScope' : 'wineScope') + '</p>'
+      + '<div class="v32chips" role="group" aria-label="' + v35W('componentScope') + '">'
+      + [['components', 'everyComponent'], ['components-all', 'allComponents']].map(function (choice) {
+        return '<button type="button" class="v28-chip" data-v32="narrow" data-deck="' + choice[0] + suffix + '" aria-pressed="' + (choice[0] === m[1] ? 'true' : 'false') + '">' + v35W(choice[1]) + '</button>';
+      }).join('') + '</div>';
+    var at = html.indexOf('<button type="button" class="btn gold v32-go"');
+    if (at < 0) at = html.lastIndexOf('</div>');
+    return at < 0 ? html : html.slice(0, at) + scope + html.slice(at);
   };
 }
 if (typeof v32Learnt === 'function') {
@@ -342,7 +380,7 @@ if (typeof v32FlashcardsHtml === 'function') {
   v32FlashcardsHtml = function () {
     var html = _v35FlashcardsHtml();
     if (!v35House() || typeof v32Group !== 'function' || typeof v32DeckRow !== 'function') return html;
-    var rows = V35_KINDS.map(function (k) { return v32DeckRow('components:' + k); }).join('');
+    var rows = v32DeckRow('components') + V35_KINDS.map(function (k) { return v32DeckRow('components:' + k); }).join('') + v32DeckRow('components-all');
     var group = v32Group(v35W('madeOf'), rows, 'v35-fc-made');
     if (!group) return html;
     var at = html.indexOf('<section class="v32-group" aria-labelledby="v32-fc-words"');
@@ -373,7 +411,14 @@ var V35_WANT = null;
 /* Opens the door a ref names: a grape's profile in the run of every grape, a producer, a primer. True when one opened. */
 function v35OpenRef(ref) {
   var grape = v35Grape(ref);
-  if (grape && typeof v32StartRun === 'function') return v32StartRun('grapes-all', { push: true, first: grape.g.g }) !== false;
+  if (grape && typeof v32StartRun === 'function') {
+    /* This is the reference deck across every level, not the active list.
+       Guard the exact destination so a partial installation cannot silently
+       substitute the first card when the requested profile is unavailable. */
+    var deck = typeof v32DeckDef === 'function' ? v32DeckDef('grapes-all') : null;
+    if (!deck || !Array.isArray(deck.cards) || !deck.cards.some(function (card) { return card.id === grape.g.g; })) return false;
+    return v32StartRun('grapes-all', { push: true, first: grape.g.g }) !== false;
+  }
   var prod = v35Producer(ref);
   if (prod && prod.id) {
     var ci = 0;

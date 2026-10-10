@@ -258,7 +258,10 @@ function runOnce(gate, at, what) {
   const env = { ...process.env };
   delete env.LEDGER_JS;
   delete env.OOT_SHARED;
-  const argv = [script];
+  /* Named failures must use the TAP grammar verdicts() reads. Node's default
+     reporter can change with its version or terminal, obscuring the existing
+     accepted-divergence policy without changing any test result. */
+  const argv = gate.script === 'tools/check-import.mjs' ? ['--test-reporter=tap', script] : [script];
   if (at === 'wing') {
     if (gate.repo === 'ledger') { env.LEDGER_JS = SITE.ledger; env.OOT_SHARED = SITE.shared; }
     if (gate.dirArg) argv.push(SITE[gate.repo]);

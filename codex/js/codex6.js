@@ -122,35 +122,35 @@ function tastingTally(){
 /* ---- the grid reference ---- */
 var TASTING_GRID=[
  ['Sight',[
-  ['Clarity & brightness','Clear or hazy; dull, bright, day-bright, star-bright. Nearly every sound wine today is clear and bright: say it and move on.'],
-  ['Concentration','Pale, medium, or deep. Judge against a white page. Deep color in a red points toward thick-skinned grapes: Cabernet, Syrah, Malbec.'],
-  ['Color & hue','Whites: straw, yellow, gold. Reds: purple, ruby, garnet. Purple says youth; garnet says age or a naturally lighter variety like Nebbiolo or Pinot Noir.'],
-  ['Rim variation','A wide, pale or orange rim on a red suggests age or Nebbiolo/Sangiovese; magenta rim points to Malbec; little rim variation implies youth.'],
-  ['Extract & staining','Tears that stain the glass suggest a deeply extracted wine; heavy, slow tears mean alcohol or residual sugar.']]],
+  ['Clarity & brightness','Describe clear or hazy, then brightness. Haze alone does not establish a fault: consider filtration, sediment, intended style, aroma and flavour.'],
+  ['Concentration','Pale, medium or deep. Judge against a white background in neutral light. Grape pigments and winemaking both influence depth of colour.'],
+  ['Color & hue','Whites: straw, yellow, gold. Reds: purple, ruby, garnet. Describe what you see; colour alone cannot prove a grape variety or age.'],
+  ['Rim variation','Compare the centre with the thinner edge. Note a pale, purple or orange rim as an observation, then assess it alongside aroma, flavour and structure.'],
+  ['Extract & staining','Note staining and tears if useful. Tears depend on the liquid, glass and conditions; they are not a dependable measure of body, alcohol percentage or quality.']]],
  ['Nose',[
   ['Condition & intensity','Clean or showing a fault. Intensity: delicate, moderate, powerful. Aromatic grapes: Muscat, Gewürztraminer, Torrontés, Viognier, Riesling.'],
   ['Age assessment','Youthful (primary fruit dominates) versus developed (dried fruit, leather, earth, oxidative notes).'],
-  ['Fruit: white wines','Citrus, apple/pear (cool climate), stone fruit (moderate), tropical (warm). Name real fruits: lime, green apple, apricot, pineapple.'],
-  ['Fruit: red wines','Red fruit (cherry, cranberry, raspberry: cooler/lighter) versus black fruit (blackberry, cassis, plum: warmer/fuller). Note fresh vs baked or jammy.'],
+  ['Fruit: white wines','Name the fruit you perceive: citrus, apple, pear, stone fruit or tropical fruit. Describe fresh, cooked or dried character before considering variety, ripeness or climate.'],
+  ['Fruit: red wines','Describe red fruit such as cherry or cranberry and black fruit such as blackberry or cassis. Note fresh, cooked or dried character; fruit colour does not establish climate or body.'],
   ['Non-fruit','Floral, herbal, vegetal, spice, animal, oxidative. Pyrazine (bell pepper) → Cabernet family; rotundone (black pepper) → Syrah/Grüner; petrol → Riesling.'],
-  ['Earth & mineral','Forest floor, mushroom, wet stone, chalk, flint. Earth is a classic Old-World marker, but describe what is in the glass, not the theory.'],
+  ['Earth & mineral','Forest floor, mushroom, wet stone, chalk, flint: use these as aroma descriptions, not proof of origin or literal minerals tasted from the soil.'],
   ['Oak','Vanilla, baking spice, toast, coconut (American oak), dill. New versus used, large versus small barrels.']]],
  ['Palate',[
   ['Sweetness','Bone dry, dry, off-dry, sweet. Confirm the nose’s promise: ripe fruit is not sugar.'],
   ['Body','Light, medium, full. Driven by alcohol, extract, and sugar.'],
-  ['Acidity','Low, medium, high. The mouth waters; high acid says cool climate or high-acid variety.'],
+  ['Acidity','Low, medium, high. Assess mouthwatering freshness. Variety, ripeness, growing conditions and winemaking can all affect acidity; it does not establish climate alone.'],
   ['Tannin','Low to high; note texture: silky, plush, dusty, grippy, astringent. Structure grape-driven (Nebbiolo, Cabernet) or oak-driven.'],
-  ['Alcohol','Warmth on the finish. Under ~11.5% low, 11.5–13.5 medium, above that high, a climate clue in the glass.'],
-  ['Finish & complexity','Short, moderate, long. How many distinct flavors persist? Length is the fastest honest quality marker.']]],
+  ['Alcohol','Describe perceived warmth or heat. Alcohol contributes to the whole impression, but tasting does not measure an exact percentage or establish climate alone.'],
+  ['Finish & complexity','Describe how long pleasant flavours last and how many distinct elements develop. Assess length alongside balance, intensity and complexity; persistence alone is not quality.']]],
  ['Initial conclusion',[
-  ['Old World or New','Earth and restraint with higher acid → Old World; forward fruit, riper alcohol → New World. Say it with the evidence, not a guess.'],
+  ['Old World or New','Treat origin as a hypothesis. Compare several plausible places using the complete evidence; earthy, ripe or restrained wines occur in both groups.'],
   ['Climate','Cool, moderate, or warm: triangulate from fruit character, acid, and alcohol.'],
   ['Age range','1–3 years, 3–5, or older, from color, rim, and development on the nose.'],
-  ['Grape candidates','Name two or three plausible varieties, then eliminate against structure: the acid/tannin/alcohol triangle rarely lies.']]],
+  ['Grape candidates','Name two or three plausible varieties. Compare aroma and structure, explain the strongest fit and acknowledge evidence that does not fit.']]],
  ['Final conclusion',[
   ['Commit','One grape, one country, one region, vintage within the range. A specific, defensible call scores; hedging does not.'],
-  ['Quality & drinkability','Sound, good, outstanding; drink now or hold. Tie it to concentration, balance, length.'],
-  ["The squire's bar",'As a squire you taste two wines and are graded on method and on the accuracy of the major calls (variety, origin, vintage range) not on mystical precision.']]]
+  ['Quality & drinkability','Assess condition, then quality and readiness to drink. Support the judgment with balance, length, intensity, complexity and development.'],
+  ['Practice standard','Speak observations before conclusions. This app rehearses reasoning; a text exercise cannot replace tasting real wines or the current requirements of your examination.']]]
 ];
 function tasteGridView(){
   let html='<div><div class="viewhead"><h2>The Deductive Grid</h2><div class="sub">Speak it in this order, aloud, every time: the grid is the exam’s spine and the palate’s discipline.</div></div>';
@@ -171,45 +171,45 @@ function tasteGridView(){
 /* ═══════════ Service Ritual ═══════════ */
 var SERVICE=[
  {t:'Mise en Place',ic:'✦',steps:[
-  ['Polish and inspect every glass against the light','Spots, lint, or water marks fail a table before a word is spoken. Hold stems by the base, breathe, polish, and rack.'],
+  ['Polish and inspect every glass against the light','Use steam and clean linen. Check for residue, odours and damage; support the bowl without twisting against the stem.'],
   ['Serviette pressed and folded over the left forearm','It wipes the neck after every pour and shields the label from drips; it never touches the table.'],
   ['Waiter’s corkscrew, matches, and crumber in the pocket','A sommelier borrows nothing mid-service. The two-step (double-hinged) corkscrew is the professional standard.'],
   ['Know the list before the guest asks','By-the-glass pours, vintages currently in the cellar, and two confident recommendations at every price tier.'],
   ['Check service temperatures ahead of the seating','Sparkling and sweet wines on ice early; big reds pulled to cellar temperature: chasing temperature mid-service is too late.']]},
  {t:'Order of Service',ic:'❉',steps:[
-  ['Approach from the right, serve with the right hand, move clockwise','Consistency is the courtesy: guests learn where you will appear and are never startled or reached across.'],
-  ['Women first where practical, then men, host always last','The host tastes first but is served last: approval first, hospitality before rank thereafter.'],
+  ['Serve from the right where practical; move clockwise','Adapt your position to avoid disturbing a guest or reaching across them.'],
+  ['Confirm approval, then serve clockwise regardless of gender','Begin to the ordering guest’s left, with a guest of honour first if present; serve the ordering guest last. Respect a requested order.'],
   ['Never reach across a guest; never turn your back to the table','Walk the extra step around. Service is choreography seen from every chair.'],
-  ['Pour to the sensible measure','Roughly 5–6 oz for still wine: a 750 ml bottle serves five to six. Champagne in a two-stage pour; never fill past two-thirds.'],
+  ['Confirm the appropriate pour','Use the house measure for the service being offered. For a shared bottle, consider guest numbers and wishes; glass height is not a volume measure.'],
   ['Keep the table dressed','Fresh glasses for each new wine, crumb between courses, water topped without being asked.']]},
  {t:'Opening Still Wine',ic:'⚜',steps:[
   ['Present the bottle to the host, label forward','Announce producer, wine, appellation, and vintage aloud, and wait for confirmation: this is the moment mislistings are caught.'],
   ['Cut the capsule below the bottom lip','Two draws around with the knife, one vertical, lift the cap. The lip keeps any drip off the foil edge; the label never turns away from the host.'],
   ['Wipe the exposed cork and lip with the serviette','Cellar dust and mold live under capsules. Wipe before the worm goes anywhere near the cork.'],
-  ['Insert the worm just off-center and screw to the last spiral','Off-center entry drives the worm down the cork’s true center. Never pierce through the bottom: cork dust in the wine is a fault of technique.'],
+  ['Centre the corkscrew and choose depth for the cork','Keep the bottle steady. Use the appropriate opener for the closure and avoid driving through the cork; there is no universal number of turns.'],
   ['Lever in two stages, ease the cork silently by hand','First notch, then second, then fingers for the last half-inch. A still wine opens with no sound at all.'],
-  ['Wipe the neck inside and out; present the cork to the host’s right','The guest may read the cork’s branding and condition. Do not sniff it theatrically yourself.'],
-  ['Pour the host a taste, about an ounce, and await approval','Then serve the table in order, return to top the host’s glass last, and station the bottle to the host’s right, label facing them.']]},
+  ['Wipe the bottle lip; present the cork on an underliner','Place it to the ordering guest’s right. Cork appearance alone cannot establish the wine’s condition.'],
+  ['Offer a small taste and wait for approval before serving','CMS rehearsal uses 1–1.5 oz / 30–45 ml. Confirm permission to continue, serve the table, then the ordering guest; finish with the bottle on an underliner or in a bucket.']]},
  {t:'Sparkling Wine',ic:'❈',steps:[
   ['Serve well chilled: 42–50°F (6–10°C)','Cold keeps the mousse fine and the cork docile. A warm bottle of Champagne is a projectile with a label.'],
-  ['Present, then remove the foil above the cage','A neat tear at the tab or a knife-assisted peel: the presentation continues; the label still faces the host.'],
-  ['Loosen the cage (six half-turns) and never let go of the cork again','From the instant the cage loosens, the thumb rides the cork until it is out. The cage stays on; it gives grip.'],
+  ['Present, then cut the foil below the cage','Keep the bottle pointed away from people. Prepare a clean serviette over the cage and cork.'],
+  ['Control the cork before loosening the cage','Keep a firm hand or thumb over cork and cage throughout; loosen the wire and leave the cage in place.'],
   ['Angle the bottle 30–45°, away from every guest and light fitting','Grip the cork and cage in the serviette hand and twist the bottle, not the cork, from the base.'],
   ['Release with a sigh, not a pop','Ease the cork out under control so pressure whispers away. The pop is for New Year’s at home; the sigh is professional.'],
-  ['Pour in two stages against the mousse','A first pour to let the foam settle, then top to two-thirds. Or pour down the side of a tilted glass, never one foaming push.']]},
+  ['Wipe the lip, offer the taste, then serve each guest','After approval, complete one glass before moving on, using at most two pours to control foam. Follow the agreed volume rather than a fixed fraction of the glass.']]},
  {t:'The Decanting Ritual',ic:'✤',steps:[
-  ['Stand the bottle upright the day before','Sediment settles to the base overnight. A bottle pulled flat from the rack cannot be decanted clean.'],
-  ['Set the station: candle or torch, decanter, serviette, saucer for the cork','The flame sits under the shoulder of the bottle where sediment first shows. Everything within reach before the cork moves.'],
+  ['Preserve the bottle’s settled position','Keep an upright bottle upright. Move a side-stored bottle gently into a lined cradle without rolling it; suspended sediment needs time to settle.'],
+  ['Prepare the light, decanter, linen and underliners','Arrange a clear view of the shoulder. Keep a candle safely below the bottle so it neither heats the wine nor scorches the label.'],
   ['Open gently, at the table or in the cradle, without disturbing the wine','Same still-wine ritual, softer hands. With very old corks, an ah-so (two-pronged puller) saves crumbling.'],
-  ['Pour in one slow, continuous motion over the light','Stopping and restarting stirs the wine. Watch the shoulder: the first wisp of sediment reaching the neck ends the pour.'],
-  ['Serve from the decanter; present the original bottle alongside','The empty bottle and cork stay on display: provenance remains visible through the last glass.'],
-  ['Know why you decant, and when not to','Old wine: off sediment. Young, structured wine: aeration. Fragile old Burgundy often should not be decanted at all: offer, and follow the host.']]},
+  ['Pour smoothly and stop as fine sediment reaches the shoulder','Watch continuously; keep the bottle clear of the decanter. Stop before the sediment travels into the neck.'],
+  ['Offer the taste from the decanter and await approval','Use the normal service sequence. Offer to leave the labelled bottle, and ask before clearing the cork or extra items.'],
+  ['Agree the purpose before decanting','Separating sediment and adding air are different aims. Assess this bottle and the guest’s preference; age or appellation alone does not decide. Fragile wine needs particular care.']]},
  {t:'Temperatures & Glassware',ic:'⚖',steps:[
   ['Sparkling: 42–50°F (6–10°C), flute or tulip','Cold preserves pressure and bead; a tulip gives the nose room the straight flute denies.'],
   ['Light whites & rosé: 45–50°F; fuller whites: 50–55°F','Over-chilling mutes aroma: the ice bucket is a tool, not a parking space. Oaked Chardonnay shows best nearer 55°F.'],
-  ['Light reds: 55–60°F, lightly chilled','Beaujolais, Pinot Noir, Frappato gain lift with a quarter-hour in the bucket. “Room temperature” was written in a cold century.'],
-  ['Full reds: 60–65°F, never warmer','Above 65°F alcohol rides over fruit. Cellar temperature, not radiator temperature.'],
-  ['Fortified & sweet: Fino and Tokaji cold; Tawny cool; Vintage Port at red temperature','Sweetness and alcohol both magnify with warmth; chill disciplines them. Vintage Port needs decanting besides.'],
+  ['Light reds: try 55–60°F, lightly chilled','Adjust for the bottle and the guest. Check the actual temperature; a fixed number of minutes in a bucket does not establish it.'],
+  ['Full reds: try 60–65°F','Use this as a starting range, then assess balance and guest preference. A warm dining room may be too warm for the wine.'],
+  ['Fortified & sweet: choose temperature for the style','Serve Fino and sweet whites chilled, Tawny cool and Vintage Port at a cool red-wine temperature. Assess sediment before deciding to decant; keep pours appropriate to house service.'],
   ['All-purpose stem, generous bowl, tapering rim','One good glass beats six novelty shapes: swirl room below, aroma focus above, and a polish that survives candlelight.']]},
  {t:'The Practical, as Graded',ic:'❖',steps:[
   ['Salesmanship is scored, not just technique','Recommend an aperitif, a wine for the table, a digestif: by name, producer, and price bracket, with a reason.'],
@@ -220,7 +220,8 @@ var SERVICE=[
 ];
 function serviceView(){
   S.svc=S.svc||{};
-  let html='<div><div class="viewhead"><h2>The Service Ritual</h2><div class="sub">The practical, step by step. Tick each movement as you rehearse it: the choreography must live in the hands, not the notes.</div></div>';
+  let html='<div><div class="viewhead"><h2>The Service Ritual</h2><div class="sub">Rehearse the sequence, then practise with your trainer. These are general service foundations; confirm Brennan’s equipment, measures and procedures at line-up.</div></div>'
+    +'<details class="card"><summary>Training sources and house practice</summary><p>Reviewed against the <a href="https://www.mastersommeliers.org/wp-content/uploads/2023/12/CMS-Hospitality-Service-Standards.pdf" target="_blank" rel="noopener">CMS general service standards</a> and <a href="https://www.mastersommeliers.org/wp-content/uploads/2025/05/2025-ADV-MS-HS-Standards-and-Guidlines-FINAL.pdf" target="_blank" rel="noopener">2025 Advanced and Master guidance</a>. This checklist is independent study material, not a Brennan’s procedure or an official examination checklist. Temperature ranges are starting points; wine style and guest preference matter.</p></details>';
   SERVICE.forEach(function(rite,ri){
     const done=(S.svc[ri]||[]).filter(Boolean).length;
     html+='<div class="secgroup">'+rite.t+' <span class="ritecount">'+done+'/'+rite.steps.length+'</span></div>';

@@ -1,0 +1,49 @@
+/* Study controls borrow the room's service palette. Photographs are never
+   tinted: accurate glass colour and hand positions are part of the lesson. */
+.v36-studies{max-width:980px;margin-inline:auto}
+.v36-studies h3,.v36-library-door h3,.v36-recall h3{font-family:var(--house-display,Cinzel,serif);font-weight:500;color:var(--gold-hi);line-height:1.4}
+.v36-studies h3{font-size:22px;margin:24px 0 12px}
+.v36-intro,.v36-purpose,.v36-library-door p{font-size:18px;line-height:1.6}
+.v36-controls{margin-block:22px;padding:18px;background:var(--bg2);border:1px solid var(--line)}
+.v36-search-label{display:block;font-size:17px;margin-bottom:8px;color:var(--parch)}
+.v36-controls input{box-sizing:border-box;width:100%;max-width:100%;min-height:44px;font-size:18px}
+.v36-filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.v36-filters button{min-height:44px;white-space:normal;text-align:left}
+.v36-count,.v36-small,.v36-save-status{font-size:16px;line-height:1.5;color:var(--parch)}
+.v36-save-status{margin:12px 0 0}
+.v33-canvas .v36-save-status{color:#f5ecd6;background:#081510;padding:10px 14px;margin:0}
+.v36-collection{border-top:1px solid var(--line);margin-top:24px}
+.v36-study{margin-bottom:24px;min-width:0}
+.v36-purpose{margin:14px 0 0;color:var(--parch)}
+.v36-study .v33-guide{margin-top:8px}
+.v36-recall{margin:24px 0 16px;padding:16px;border:1px solid var(--line);background:var(--bg2)}
+.v36-recall h3{font-size:20px;margin:0 0 10px}
+.v36-recall p{margin:10px 0}
+.v36-label-study{margin:22px 0;padding:16px;border:1px solid var(--line);background:var(--bg2)}
+.v36-label-study h3{font-family:var(--house-display,Cinzel,serif);font-size:19px;line-height:1.5;color:var(--gold-hi)}
+.v36-practice-label{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:6px 14px;padding:16px;border:1px solid var(--gold);background:var(--bg);color:var(--parch)}
+.v36-practice-label dt{font-weight:600}.v36-practice-label dd{margin:0;overflow-wrap:anywhere}
+.v36-answer>summary,.v36-related>summary{cursor:pointer;min-height:44px;box-sizing:border-box;padding:10px 0;line-height:1.5;color:var(--gold-hi)}
+.v36-answer{border-block:1px solid var(--line);margin-block:14px}
+.v36-practise{font-size:17px}
+.v36-related{margin:-8px 0 20px;font-size:17px;color:var(--parch)}
+.v36-related ul{margin:0;padding-left:20px}
+.v36-related li{margin:3px 0}
+.v36-related-label{display:block;margin:10px 0 6px}
+.v36-related-search{box-sizing:border-box;max-width:100%;width:100%;min-height:44px;font-size:17px}
+.v36-related-more{min-height:44px;margin-top:10px;white-space:normal}
+.v36-related-more[hidden]{display:none!important}
+.v36-text-button{display:inline-block;background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 0;min-height:44px;font:inherit;line-height:1.5;color:var(--gold-hi);text-align:left;cursor:pointer;overflow-wrap:anywhere}
+.v36-library-door{margin:18px 0 24px;padding:22px;border:1px solid var(--gold);background:var(--bg2)}
+.v36-library-door h3{margin:0;font-size:24px}
+.v36-library-door p{margin:10px 0 18px}
+.v36-level-door{margin:4px 0 18px}
+.v36-card-guides{margin:16px 0;padding:16px;border:1px solid var(--line);color:var(--parch);background:var(--bg2)}
+.v36-card-guides>p{margin:0 0 12px;font-size:17px}
+.v36-card-guides>div{display:flex;flex-wrap:wrap;gap:10px}
+.v36-card-guides .btn{min-height:44px;white-space:normal;text-align:left;line-height:1.5;max-width:100%}
+.v36-retry{min-height:44px;margin:4px 0 10px}
+.v36-studies [hidden],.v36-card-guides[hidden]{display:none!important}
+:is(.v36-studies,.v36-library-door,.v36-level-door,.v36-card-guides,.v36-recall) :focus-visible{outline:3px solid var(--gold-hi);outline-offset:3px}
+@media(max-width:599px){.v36-controls,.v36-library-door,.v36-recall,.v36-card-guides{padding:14px}.v36-studies h3{font-size:20px}.v36-library-door h3{font-size:21px}.v36-filters{gap:6px}.v36-filters .v28-chip{font-size:16px}.v36-card-guides>div{display:grid;grid-template-columns:minmax(0,1fr)}.v36-card-guides .btn{width:100%}}
+@media print{.v36-controls,.v36-library-door,.v36-level-door,.v36-card-guides,.v36-retry,.v36-save-status{display:none!important}.v36-answer>p{display:block!important}}

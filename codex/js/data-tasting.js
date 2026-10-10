@@ -138,7 +138,8 @@ function tasteProfile(name) {
    What a taster IS given is sensation, and what they are trained to do is
    convert sensation into a call. Salivation at the back of the jaw is how
    acid announces itself. Gums that feel scoured after the swallow is tannin.
-   Warmth down the chest is alcohol. Slow legs and a coated glass is weight.
+   Warmth can suggest alcohol. Body is the wine's perceived weight in the mouth;
+   tears on the glass do not measure that weight.
    Novices know the words and misread the sensations, and that is precisely
    the skill worth drilling.
 
@@ -163,13 +164,13 @@ const TASTE_EVIDENCE = {
     'The whole mouth is scoured. The tongue sticks to the roof, the gums feel stripped, and it is still drying a full minute later.'
   ],
   body: [
-    'It runs off the tongue like water and the glass clears instantly when you swirl.',
-    'It has a little weight but leaves quickly, and the glass sheets clean with a thin edge.',
-    'It coats the tongue and stays a moment. The glass holds slow, broad legs.',
-    'It fills the mouth and sits there heavily. The glass is thickly coated and the legs crawl.'
+    'It feels almost weightless in the mouth, close to water in texture.',
+    'It has a little weight on the tongue but feels light and delicate.',
+    'It has a rounded presence across the tongue, with noticeable substance.',
+    'It fills the mouth with a broad, dense sense of weight and texture.'
   ],
   alc: [
-    'No warmth anywhere. You could drink a lot of this.',
+    'No noticeable warmth in the throat or on the finish.',
     'A suggestion of warmth in the throat, easy to miss.',
     'Clear warmth down the chest after you swallow, and a faint heat in the nostrils over the glass.',
     'It burns a little at the back of the throat and the fumes prickle the nose before the wine reaches your lips.'
@@ -182,20 +183,9 @@ const TASTE_EVIDENCE = {
   ]
 };
 
-/* The sight line, built from the profile rather than from prose, because a
-   student should be reading colour and rim as evidence of age and weight and
-   not as a label. Colour follows body for a red and weight for a white, and
-   the rim widens with age. */
+/* These profiles supply structure, not an independently observed glass.
+   Do not invent colour from body: a pale wine can still have considerable
+   tannin or weight. Keep the function signature used by the blind grid. */
 function tasteSight(p, isRed) {
-  if (isRed) {
-    var core = ['pale and translucent, you can read through it',
-                'medium ruby, the stem visible through the bowl',
-                'deep ruby, the stem a shadow',
-                'opaque and staining, no light through the core'][p.body];
-    return core + '.';
-  }
-  return ['water-white with a green cast',
-          'pale straw',
-          'straw gold',
-          'deep gold, almost burnished'][p.body] + '.';
+  return 'Not supplied in this text exercise. With a real glass, observe clarity, colour and rim against a white background; do not infer them from body.';
 }
