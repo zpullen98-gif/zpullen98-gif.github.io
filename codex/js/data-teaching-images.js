@@ -282,6 +282,226 @@ var CODEX_TEACHING_IMAGES = {
           "url": "https://www.wsetglobal.com/knowledge-centre/blog/2024/july/21/frequently-asked-questions-about-serving-and-decanting-wine/"
         }
       ]
+    },
+    {
+      "kind": "teach",
+      "id": "culinary-fruit-references",
+      "file": "assets/teach/culinary-fruit-references-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 241926,
+      "sha256": "1edf5ff9f7d04393f3d4c3c42b2693a32d4f9c02dc3efa0cbcddd96bb3ad7cf7",
+      "thumb": {
+        "file": "assets/teach/culinary-fruit-references-v1.thumb.webp",
+        "width": 540,
+        "height": 360,
+        "bytes": 34732
+      },
+      "title": "Fresh, dried and cooked fruit references",
+      "alt": "Six numbered aroma references in two rows: 1 fresh green apple and a cut half, 2 ripe peach and a cut half, 3 lemon peel beside half a lemon, 4 fresh cherries, 5 dried cherries and 6 cherry compote in a bowl.",
+      "caption": "Build a more precise aroma vocabulary by naming a fruit and its condition. These separate kitchen references are not ingredients added to the wine, a ripeness sequence or a key that identifies a grape.",
+      "key": [
+        [
+          "Fresh green apple",
+          "Notice the crisp, fresh apple reference. Its green skin does not measure acidity in a wine."
+        ],
+        [
+          "Ripe peach",
+          "Name the ripe stone-fruit resemblance independently of sweetness on the palate."
+        ],
+        [
+          "Fresh lemon peel",
+          "Compare the fragrant peel with the juice and flesh of a real lemon; a citrus aroma is not an acidity measurement."
+        ],
+        [
+          "Fresh cherry",
+          "Use fresh cherry as one recognisable red-fruit reference."
+        ],
+        [
+          "Dried cherry",
+          "A dried reference can smell different from fresh fruit. Dried fruits can look similar; the written key identifies these as cherries."
+        ],
+        [
+          "Cooked cherry compote",
+          "Look for the softened fruit and juices, then smell a real, plainly prepared compote for comparison."
+        ]
+      ],
+      "note": "Pictures support vocabulary; they cannot convey smell. Dried or cooked-fruit notes alone prove neither hot-climate origin nor bottle age, and fruit aroma does not establish residual sugar. Keep ingredient comparisons separate and do not force a match.",
+      "sources": [
+        {
+          "title": "WSET: aroma references and tasting vocabulary",
+          "url": "https://www.wsetglobal.com/media/11766/wset_l3wines_sat_en_may2022_issue2.pdf"
+        },
+        {
+          "title": "WSET: why wine can smell unlike grapes",
+          "url": "https://www.wsetglobal.com/knowledge-centre/blog/2022/january/13/why-doesn-t-wine-taste-like-grapes"
+        }
+      ]
+    },
+    {
+      "kind": "teach",
+      "id": "culinary-savoury-references",
+      "file": "assets/teach/culinary-savoury-references-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 239138,
+      "sha256": "04aae3218d51d7baf70093f9654f68d3b945860a09cc6c750faac7dcdecd3b80",
+      "thumb": {
+        "file": "assets/teach/culinary-savoury-references-v1.thumb.webp",
+        "width": 540,
+        "height": 360,
+        "bytes": 36030
+      },
+      "title": "Herbs, spice and cellar references",
+      "alt": "Six numbered aroma references in two rows: 1 cut green bell pepper, 2 black peppercorns and ground pepper, 3 split vanilla pods, 4 toasted bread, 5 a butter curl and pat, and 6 dried mushroom slices.",
+      "caption": "Name the resemblance before proposing its source. These kitchen references help you describe aromas, but none can establish the wine’s grape, production method or age by itself.",
+      "key": [
+        [
+          "Green bell pepper",
+          "A green or herbaceous reference. It is different from the burning sensation of chilli."
+        ],
+        [
+          "Black pepper",
+          "A spice-aroma reference, illustrated as whole peppercorns with a little ground pepper."
+        ],
+        [
+          "Vanilla pod",
+          "A familiar reference that may suggest oak influence; confirm production details before stating a method."
+        ],
+        [
+          "Toasted bread",
+          "Toast-like notes may overlap between oak influence and yeast-related development."
+        ],
+        [
+          "Butter",
+          "A buttery note can relate to malolactic conversion. It is not proof of new oak."
+        ],
+        [
+          "Dried mushroom",
+          "An earthy reference that may occur with maturation. It does not identify a vintage or confirm that the wine is sound."
+        ]
+      ],
+      "note": "Smell the actual references separately. A single descriptor is not a diagnosis. Ask the sommelier about an unexpected aroma and use the whole wine and reliable producer information before drawing conclusions.",
+      "sources": [
+        {
+          "title": "WSET: aroma references and tasting vocabulary",
+          "url": "https://www.wsetglobal.com/media/11766/wset_l3wines_sat_en_may2022_issue2.pdf"
+        },
+        {
+          "title": "WSET: why wine can smell unlike grapes",
+          "url": "https://www.wsetglobal.com/knowledge-centre/blog/2022/january/13/why-doesn-t-wine-taste-like-grapes"
+        }
+      ]
+    },
+    {
+      "kind": "teach",
+      "id": "culinary-sauce-comparison",
+      "file": "assets/teach/culinary-sauce-comparison-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 152424,
+      "sha256": "ed0c8048bccf5cc9d29154aee58808e3dbfd9af71f53ab71b6805d60f9736ed7",
+      "thumb": {
+        "file": "assets/teach/culinary-sauce-comparison-v1.thumb.webp",
+        "width": 360,
+        "height": 540,
+        "bytes": 23416
+      },
+      "title": "Six sauces, seen side by side",
+      "alt": "Six numbered sauce studies in white dishes: 1 pale yellow hollandaise, 2 herb-flecked béarnaise, 3 coral Choron, 4 tan Foyot, 5 red-brown marchand de vin with small pieces, and 6 smooth ivory beurre blanc.",
+      "caption": "Compare six classic sauce studies before deciding how a dish might meet a wine. Their ingredients and texture matter more than a rule based only on the main protein.",
+      "key": [
+        [
+          "Hollandaise",
+          "A butter-and-egg-yolk emulsion with acidity; the illustration is pale yellow."
+        ],
+        [
+          "Béarnaise",
+          "A butter sauce with tarragon character, shown with visible herbs."
+        ],
+        [
+          "Choron",
+          "A tomato variation of béarnaise, here with a coral tint."
+        ],
+        [
+          "Foyot",
+          "Béarnaise enriched with reduced meat glaze, illustrated as tan."
+        ],
+        [
+          "Marchand de vin",
+          "A savoury red-wine brown sauce. The picture includes mushrooms and shallot; confirm the current house ingredients."
+        ],
+        [
+          "Beurre blanc",
+          "A wine-and-butter emulsion, shown smooth and ivory rather than separated."
+        ]
+      ],
+      "note": "Reused from the World Table’s reviewed sauce collection. These are classic recipe studies, not Brennan’s current service photographs or a colour standard. The plain beurre blanc does not specify the house’s preserved-lemon version. Taste the actual preparation before recommending a wine.",
+      "sources": [
+        {
+          "title": "Professional Cooking: classical sauces (hosted by Escoffier)",
+          "url": "https://resources.escoffier.edu/textbooks/gisslen/professional_cooking_09.pdf"
+        },
+        {
+          "title": "Brennan’s: breakfast and lunch menu",
+          "url": "https://www.brennansneworleans.com/menus/breakfast-and-lunch/"
+        },
+        {
+          "title": "Brennan’s: dinner menu",
+          "url": "https://www.brennansneworleans.com/menus/dinner/"
+        }
+      ]
+    },
+    {
+      "kind": "teach",
+      "id": "culinary-hussarde-components",
+      "file": "assets/teach/culinary-hussarde-components-v1.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 193672,
+      "sha256": "db36b0586cab678018ab3d4b91c8def37cda176a99588c09147a6fc217a11676",
+      "thumb": {
+        "file": "assets/teach/culinary-hussarde-components-v1.thumb.webp",
+        "width": 360,
+        "height": 540,
+        "bytes": 27502
+      },
+      "title": "Eggs Hussarde: recognise both sauces",
+      "alt": "Five numbered separate component studies: 1 split English muffin, 2 sliced Canadian bacon, 3 whole and opened poached eggs, 4 pale hollandaise, and 5 red-brown marchand de vin.",
+      "caption": "The Brennan’s menu names an English muffin, coffee-cured Canadian bacon, poached egg, hollandaise and marchand de vin. Remember both sauces when describing the dish or discussing a wine.",
+      "key": [
+        [
+          "English muffin",
+          "The menu specifies a housemade English muffin. The open crumb here is a component study."
+        ],
+        [
+          "Coffee-cured Canadian bacon",
+          "Recognise the round loin-bacon slices; confirm the current cure and preparation with the kitchen."
+        ],
+        [
+          "Poached egg",
+          "The whole and opened views compare texture. They do not establish a portion count."
+        ],
+        [
+          "Hollandaise",
+          "The pale butter-and-yolk sauce contributes richness; consider it alongside the egg."
+        ],
+        [
+          "Marchand de vin",
+          "The second sauce has a savoury red-wine character. The pictured mushrooms and shallot do not confirm today’s exact house recipe."
+        ]
+      ],
+      "note": "Reused from the World Table’s reviewed component collection. Numbers identify parts, not an assembly sequence. Confirm current portions, stacking, sauce placement and china at the pass. Pairing practice proposes options, not a new approved house pairing.",
+      "sources": [
+        {
+          "title": "Brennan’s: breakfast and lunch menu",
+          "url": "https://www.brennansneworleans.com/menus/breakfast-and-lunch/"
+        },
+        {
+          "title": "Professional Cooking: classical sauces (hosted by Escoffier)",
+          "url": "https://resources.escoffier.edu/textbooks/gisslen/professional_cooking_09.pdf"
+        }
+      ]
     }
   ]
 };

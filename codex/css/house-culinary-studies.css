@@ -1,0 +1,40 @@
+/* The room palette changes for day and night; teaching photographs do not. */
+.v37-culinary{max-width:980px;margin-inline:auto}
+.v37-culinary,.v37-viewer{color:var(--parch);font-size:18px;line-height:1.65}
+.v37-culinary h3,.v37-viewer h3{font-family:var(--house-display,Cinzel,serif);font-size:23px;line-height:1.4;font-weight:500;color:var(--gold-hi)}
+.v37-culinary h4,.v37-viewer h4{font-size:18px;line-height:1.5;font-weight:600;color:var(--gold-hi);margin:16px 0 5px}
+.v37-lesson>p,.v37-dish>p{margin:14px 0}
+.v37-lead{font-size:21px;line-height:1.6}
+.v37-boundaries,.v37-boundary{border-left:3px solid var(--gold);padding:10px 18px;background:var(--bg2)}
+.v37-boundaries{margin:22px 0 28px}.v37-boundaries p{margin:10px 0}.v37-boundaries>summary{cursor:pointer;min-height:44px;box-sizing:border-box;padding:10px 0;color:var(--gold-hi)}
+.v37-lessons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.v37-lesson-card{min-width:0;padding:24px;border:1px solid var(--line);background:var(--bg2)}
+.v37-lesson-card h3{margin:6px 0 12px}.v37-lesson-card p{margin:10px 0 18px}
+.v37-step-number{color:var(--gold-hi);font-size:15px;letter-spacing:.1em;text-transform:uppercase}
+.v37-lesson-card .btn,.v37-continue{white-space:normal;text-align:left;min-height:44px;line-height:1.5;max-width:100%}
+.v37-steps{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 28px;padding:14px 0;border-block:1px solid var(--line)}
+.v37-steps .v36-text-button{flex-basis:100%}.v37-steps .v28-chip{min-height:44px;white-space:normal;text-align:left;max-width:100%}
+.v37-steps [aria-current=step]{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.v37-structure{margin-block:26px}.v37-structure-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.v37-sensation{border:1px solid var(--line);background:var(--bg2);padding:0 16px;align-self:start}
+.v37-sensation p{margin:6px 0 18px}.v37-sensation summary,.v37-sources summary{cursor:pointer;min-height:44px;padding:12px 0;box-sizing:border-box;color:var(--gold-hi)}
+.v37-sources{margin:18px 0;border-block:1px solid var(--line)}.v37-sources li{margin:8px 0}.v37-sources a{color:var(--gold-hi);overflow-wrap:anywhere}
+.v37-practice{margin:26px 0;padding:20px;border:1px solid var(--gold);background:var(--bg2)}.v37-practice h3{margin:0 0 14px}
+.v37-small{font-size:16px;line-height:1.6}.v37-continue{margin-top:20px}
+.v37-dishes{margin:28px 0}.v37-dish-label,.v37-rehearsal-label{display:block;margin:14px 0 7px;color:var(--parch);font-weight:600}
+.v37-dish-select,.v37-rehearsal{box-sizing:border-box;width:100%;max-width:100%;font:inherit;min-height:48px;color:var(--parch);background:var(--bg2);border:1px solid var(--line)}
+.v37-dish-select{padding:10px}.v37-rehearsal{padding:12px;resize:vertical;line-height:1.5}
+.v37-dish{margin-top:18px;padding:22px;border:1px solid var(--line);background:var(--bg2);min-width:0}.v37-dish h3{margin:0 0 14px}
+.v37-variables{display:grid;grid-template-columns:minmax(100px,.65fr) minmax(0,2fr);gap:12px 18px;margin:20px 0}.v37-variables dt{font-weight:600;color:var(--gold-hi)}.v37-variables dd{margin:0}
+.v37-options{margin:22px 0 10px;padding:14px;border:1px solid var(--line);min-width:0}.v37-options legend{padding:0 8px;font-weight:600;color:var(--gold-hi)}
+.v37-option{display:flex;align-items:flex-start;gap:12px;min-height:44px;padding:10px 0;cursor:pointer}.v37-option input{flex:none;margin:6px 0 0;width:20px;height:20px;accent-color:var(--gold)}.v37-option span{min-width:0;overflow-wrap:anywhere}
+.v37-choice-result{padding:16px;background:var(--bg);border:1px solid var(--line);min-height:90px}.v37-choice-result p{margin:6px 0 12px}.v37-choice-result h4:first-child{margin-top:0}
+.v37-doors{margin:20px 0;padding:16px;border:1px solid var(--line);background:var(--bg2)}.v37-doors>p{margin:0 0 12px;font-size:18px;color:var(--parch)}.v37-doors>div{display:flex;flex-wrap:wrap;gap:10px}.v37-doors .btn{min-height:44px;max-width:100%;white-space:normal;text-align:left;line-height:1.5}
+.v37-index-door{margin:0 0 20px}
+.v37-viewer{box-sizing:border-box;width:min(1000px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--gold);background:var(--bg);overflow:auto;overscroll-behavior:contain}
+.v37-viewer::backdrop{background:rgba(0,0,0,.78)}.v37-viewer-bar{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;position:sticky;top:0;z-index:3;padding:16px 20px;border-bottom:1px solid var(--line);background:var(--bg)}
+.v37-viewer-bar h2{font-family:var(--house-display,Cinzel,serif);font-size:23px;line-height:1.4;color:var(--gold-hi);margin:0}.v37-viewer-bar .btn{flex:none;white-space:normal;min-height:44px;max-width:110px;line-height:1.4}
+.v37-viewer>.v37-lesson{padding:20px}.v37-viewer .v33-guide{min-width:0}
+:is(.v37-culinary,.v37-viewer,.v37-doors) :focus-visible{outline:3px solid var(--gold-hi);outline-offset:3px}
+@media(max-width:599px){.v37-lessons,.v37-structure-grid{grid-template-columns:minmax(0,1fr)}.v37-lesson-card,.v37-practice,.v37-dish{padding:15px}.v37-variables{grid-template-columns:minmax(0,1fr);gap:4px}.v37-variables dd{margin-bottom:12px}.v37-viewer>.v37-lesson{padding:14px}.v37-viewer-bar{padding:12px}.v37-viewer-bar h2{font-size:19px}.v37-viewer{width:calc(100vw - 12px);max-height:calc(100dvh - 12px)}.v37-doors>div{display:grid;grid-template-columns:minmax(0,1fr)}.v37-doors .btn{width:100%}.v37-steps .v28-chip{font-size:15px}.v37-lead{font-size:19px}}
+@media print{.v37-steps,.v37-continue,.v37-doors,.v37-library-door,.v37-index-door{display:none!important}}

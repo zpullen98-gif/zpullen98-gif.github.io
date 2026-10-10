@@ -29,6 +29,16 @@ var CODEX_VISUAL_STUDIES = {
         "grid-colour-rim",
         "pinot-noir"
       ]
+    },
+    {
+      "id": "culinary",
+      "title": "The culinary companion",
+      "ids": [
+        "culinary-fruit-references",
+        "culinary-savoury-references",
+        "culinary-sauce-comparison",
+        "culinary-hussarde-components"
+      ]
     }
   ],
   "purposes": {
@@ -41,7 +51,11 @@ var CODEX_VISUAL_STUDIES = {
     "service-decanting": "Choose a purpose and watch the shoulder.",
     "glass-crystals-sediment-cork": "Distinguish deposits from cork taint.",
     "grid-colour-rim": "Describe appearance before inferring identity.",
-    "pinot-noir": "Connect the grape profile with the vine."
+    "pinot-noir": "Connect the grape profile with the vine.",
+    "culinary-fruit-references": "Name the fruit and its condition, then assess sweetness separately.",
+    "culinary-savoury-references": "Separate an aroma observation from a claim about its cause.",
+    "culinary-sauce-comparison": "Read sauce ingredients and texture before proposing a wine.",
+    "culinary-hussarde-components": "Remember the two sauces and explain the complete bite."
   },
   "recall": {
     "bottle-shapes": {
@@ -93,6 +107,26 @@ var CODEX_VISUAL_STUDIES = {
       "question": "Why are you decanting this bottle, and what is the sediment stopping cue?",
       "answer": "Distinguish sediment removal from aeration. For sediment, watch the illuminated shoulder and stop when the deposit reaches it. Age alone does not decide whether to decant.",
       "practise": "Explain the purpose and check the wine, guest preference and house guidance. Practise the steady motion with water before handling a valuable bottle."
+    },
+    "culinary-fruit-references": {
+      "question": "If a wine smells like cherry compote, must it taste sweet?",
+      "answer": "No. That describes an aroma resemblance. Assess sweetness separately on the palate; the aroma alone also cannot establish age or climate.",
+      "practise": "Compare fresh, dried and cooked cherry references separately. Describe one difference in plain words."
+    },
+    "culinary-savoury-references": {
+      "question": "Does a buttery aroma prove new-oak ageing?",
+      "answer": "No. Butter-like aroma can relate to malolactic conversion. Oak and malolactic conversion are separate choices; assess the wine and check producer information.",
+      "practise": "Describe two real aroma references, then name one production question each would prompt."
+    },
+    "culinary-sauce-comparison": {
+      "question": "Does a red-wine sauce require a red wine at the table?",
+      "answer": "No. Consider the complete dish, the actual sauce and wine, and the guest’s taste. A recommendation needs a reason and a trade-off, not a colour-matching rule.",
+      "practise": "Compare a pale butter sauce and a savoury brown sauce. Describe what you would taste before suggesting two wine styles."
+    },
+    "culinary-hussarde-components": {
+      "question": "Which two sauces belong in your explanation of Eggs Hussarde?",
+      "answer": "Hollandaise and marchand de vin. Consider their richness and savoury character alongside the egg, coffee-cured Canadian bacon and muffin.",
+      "practise": "Explain the five components in one guest-friendly sentence, then ask whether the guest prefers bubbles or still wine."
     }
   },
   "wineGuides": {
