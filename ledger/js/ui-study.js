@@ -76,7 +76,8 @@ function libRowsHTML(list){
        then how to tell you made it, then why it matters. */
     const body = isOpen ? '<div class="drink-body">'+ticketHTML(c)
       + familyMarksHTML(c.family, 'Judged as a '+c.family+': how to tell it went right')
-      + story+tip+videoRowHTML(vd)+'</div>' : '';
+      + story+tip+videoRowHTML(vd)
+      + (typeof methodInlineHTML === 'function' ? methodInlineHTML(methodIdsForRecord('Cocktails','',c.name)) : '')+'</div>' : '';
     return '<div class="panel"><button class="drink-head" aria-expanded="'+(isOpen?'true':'false')+'" data-act="lib-toggle" data-i="'+i+'"'+(isOpen?' data-open="1"':'')+'>'
       + glassIcon(c.glass)
       + '<span class="bold">'+esc(c.name)+'</span>'
@@ -126,6 +127,7 @@ function renderLibrary(){
     : '';
   return '<div class="col">'
     + head
+    + (typeof methodStudyDoorHTML === 'function' ? methodStudyDoorHTML(false) : '')
     + '<input class="input" id="lib-search" aria-label="Search the library" placeholder="Search by name, spirit, or ingredient…" value="'+esc(state.lib.q)+'">'
     + '<div class="row">'+famChips+'</div>'
     + '<div class="row">'+levelSel+bookSel+'</div><div class="row">'
@@ -614,7 +616,8 @@ function renderFlashcards(){
     }
     return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+ANSWER
       + '<div class="font-display tc" style="font-size:1.2rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
-      + '<div class="small lh tc" style="max-width:520px">'+esc(c.back || '')+'</div>'+grade+'</div></div>';
+      + '<div class="small lh tc" style="max-width:520px">'+esc(c.back || '')+'</div>'
+      + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')+grade+'</div></div>';
   }
 
   /* the three line modes: the drink's name on the face, the line a person
@@ -631,6 +634,7 @@ function renderFlashcards(){
     return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+ANSWER
       + '<div class="font-display tc" style="font-size:1.2rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
       + '<div class="small lh tc" style="max-width:520px">'+esc(line)+'</div>'
+      + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')
       + grade+'</div></div>';
   }
 
@@ -646,6 +650,7 @@ function renderFlashcards(){
     return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+ANSWER
       + '<div class="font-display tc" style="font-size:1.2rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
       + houseCardBackHTML(fc.mode, c)
+      + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')
       + grade+'</div></div>';
   }
 
@@ -674,6 +679,7 @@ function renderFlashcards(){
     const foot = (c.src==='Cocktails' && typeof loreFootnote==='function' && loreFootnote(c))
       ? '<div class="tiny dim italic tc lh" style="max-width:400px">❦ '+esc(loreFootnote(c))+'</div>' : '';
     return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+ANSWER+back+foot+videoRowHTML(c)
+      + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')
       + grade+'</div></div>';
   }
 
@@ -698,6 +704,7 @@ function renderFlashcards(){
       ? '<div class="explain"><span class="brass2 bold">'+(fc.lastOk?'Clean build. ':'Not quite. ')+'</span>'
         + esc(c.method)+' · '+esc(c.glass)+' · '+esc(c.garnish)+'.'+(c.note?' '+esc(c.note):'')+'</div>'
         + videoRowHTML(c)
+        + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')
         + '<button class="btn btn-brass self-end" data-act="fc-next">Next card</button>'
       : '<button class="btn btn-brass self-end" data-act="fc-check"'+(fc.sel.length?'':' disabled')+'>Check the build</button>';
     return '<div class="col">'+head+'<div class="panel p5 col">'
@@ -719,6 +726,7 @@ function renderFlashcards(){
     const after = answered
       ? '<div class="explain"><span class="brass2 bold">'+(fc.lastOk?'Correct. ':'Not quite. ')+'</span>The missing line is "'+esc(c.spec[fc.clozeIdx])+'".'+(c.note?' '+esc(c.note):'')+'</div>'
         + videoRowHTML(c)
+        + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')
         + '<button class="btn btn-brass self-end" data-act="fc-next">Next card</button>'
       : '';
     return '<div class="col">'+head+'<div class="panel p5 col" style="align-items:stretch">'
@@ -749,6 +757,7 @@ function renderFlashcards(){
       ? '<div class="explain"><span class="brass2 bold">'+(fc.lastOk?'All three. ':'Not clean. ')+'</span>'
         + s.fields.map(f => '<span class="brass2">'+f+':</span> '+esc(c[f])).join(' · ')+'</div>'
         + videoRowHTML(c)
+        + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')
         + '<button class="btn btn-brass self-end" data-act="fc-next">Next card</button>'
       : '';
     return '<div class="col">'+head+'<div class="panel p5 col" style="align-items:stretch">'
@@ -1181,6 +1190,7 @@ function garnishNoteHTML(){
     + '<span>Garnish <span class="tiny dim">· Citrus cuts</span></span><span style="color:var(--brass)">'+(open?'−':'+')+'</span></button>'+body+'</div>';
 }
 function renderNotes(){
+  if(typeof methodStudyActive === 'function' && methodStudyActive()) return renderMethodStudies();
   /* the notes first and the video settings last: a reader arriving from the
      induction or a search hit should meet the note, not a settings panel */
   const html = '<div class="col-sm">' + STUDY.map(sec => {
@@ -1189,7 +1199,7 @@ function renderNotes(){
     const body = isOpen ? '<div class="accordion-body">' + (mechanics ? craftPictureHTML('bar-tools', 'Bar tools: know the working end') : '') + sec.rows.map(([h,p]) =>
       '<div><div class="small bold brass2">'+esc(h)+'</div><div class="small dim lh">'+esc(p)+'</div>'
       + (mechanics && h === 'Ice' ? craftPictureHTML('ice', 'Ice: four forms') : '')
-      + (mechanics && h === 'Garnish (DeGroff doctrine)' ? '<a class="teaching-reference-link" href="#/notes/garnish">Citrus garnish cuts</a>' : '') + '</div>').join('') + '</div>' : '';
+      + (mechanics && (h === 'Garnish' || h === 'Garnish (DeGroff doctrine)') ? '<a class="teaching-reference-link" href="#/notes/garnish">Citrus garnish cuts</a>' : '') + '</div>').join('') + '</div>' : '';
     return '<div class="panel" style="padding:0 16px">'
       + '<button class="accordion-btn'+(isOpen?' open':'')+'" aria-expanded="'+(isOpen?'true':'false')+'" data-act="note-open" data-t="'+esc(sec.title)+'" data-open="'+noteOpenMark(isOpen)+'">'
       + '<span>'+esc(sec.title)+'</span><span style="color:var(--brass)">'+(isOpen?'−':'+')+'</span></button>'+body+'</div>';

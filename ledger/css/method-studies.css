@@ -1,0 +1,56 @@
+/* The field guide shares the Ledger's colour tokens in both service modes.
+   Instructional diagrams keep their own neutral colours. */
+.method-door{display:grid;gap:7px;padding:20px 24px;border:1px solid var(--house-line);border-left:3px solid var(--brass);background:var(--felt-2);color:var(--cream);text-decoration:none;line-height:1.5;min-width:0}
+.method-door strong{font:500 1.05rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2)}
+.method-door>span:last-child{font-size:.9rem;color:var(--cream-dim)}
+.method-door:hover,.method-card:hover{border-color:var(--brass);background:var(--felt-3)}
+.method-index,.method-study{max-width:920px;margin-inline:auto;min-width:0}
+.method-heading{padding:16px 0 22px;border-bottom:1px solid var(--house-line);margin-bottom:24px}
+.method-heading h2{font-size:clamp(1.45rem,3vw,2.1rem);line-height:1.25;margin:10px 0 16px;text-wrap:balance}
+.method-heading>p{max-width:720px;font-size:1.05rem;line-height:1.65}
+.method-caption,.method-figure figcaption{font-size:.84rem!important;color:var(--cream-dim);line-height:1.6}
+.method-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:24px}
+.method-card{display:flex;flex-direction:column;gap:12px;padding:24px;border:1px solid var(--house-line);background:var(--felt-2);color:var(--cream);text-decoration:none;min-width:0}
+.method-card h3{font:500 1.18rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0}
+.method-card p{font-size:.96rem;line-height:1.7;margin:0}
+.method-card-preview{display:block;width:100%;height:auto;border:1px solid var(--house-line);background:#eee2c8}
+.method-card-action{padding-top:8px;margin-top:auto;color:var(--brass-2);text-decoration:underline;text-underline-offset:4px;font-size:.88rem}
+.method-content{display:grid;gap:24px;min-width:0}
+.method-figure{margin:0;border:1px solid var(--house-line);background:var(--felt-2)}
+.method-figure img{display:block;width:100%;height:auto;max-width:1200px;background:#eee2c8}
+.method-figure figcaption{padding:14px 18px}
+.method-steps{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.method-steps li{display:grid;grid-template-columns:38px minmax(0,1fr);gap:14px;padding:20px;border:1px solid var(--house-line);background:var(--felt-2)}
+.method-step-mark{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--brass);border-radius:50%;font:500 1rem var(--house-display,Georgia,serif);color:var(--brass-2)}
+.method-content h3{font:500 1.07rem/1.45 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0 0 9px}
+.method-content p{margin:0 0 12px;font-size:.98rem;line-height:1.75}
+.method-content p:last-child{margin-bottom:0}
+.method-checks,.method-guest,.method-recall{padding:22px 24px;border-left:2px solid var(--brass);background:var(--felt-2)}
+.method-checks ul{padding-left:20px;margin:0}
+.method-checks li{margin:0 0 10px;line-height:1.7}
+.method-house,.method-sources{border:1px solid var(--house-line);background:var(--felt-2);padding:0 20px}
+.method-house summary,.method-sources summary,.method-recall summary{cursor:pointer;min-height:48px;padding:14px 0;line-height:1.6;color:var(--brass-2);font-size:.95rem}
+.method-house p,.method-sources p,.method-sources ul{font-size:.93rem;line-height:1.75;margin:0 0 18px}
+.method-sources ul{padding-left:20px}
+.method-sources a,.method-reading a{overflow-wrap:anywhere}
+.method-inline{width:100%;min-width:0;border:1px solid var(--house-line);background:var(--felt-2);text-align:left;margin:12px 0}
+.method-inline>summary{cursor:pointer;padding:16px 20px;min-height:48px;color:var(--brass-2);line-height:1.5}
+.method-inline>summary span{font-size:.8rem;color:var(--cream-dim);margin-right:10px}
+.method-inline>summary strong{font-weight:500}
+.method-inline-body{padding:0 20px 22px}
+.method-inline-body>.btn{margin-top:20px}
+.method-inline-body>p{font-size:.98rem;line-height:1.7}
+.method-feedback{width:100%;margin-top:18px;min-width:0}
+.method-reading{display:flex;gap:10px;flex-wrap:wrap}
+.method-next{margin-top:26px}
+.method-companions .teaching-reference{margin:10px 0}
+.method-content summary:focus-visible,.method-inline summary:focus-visible{outline:3px solid var(--brass-2);outline-offset:3px}
+@media(max-width:639px){
+ .method-cards{grid-template-columns:1fr;gap:14px}.method-card{padding:20px}
+ .method-door{padding:18px}.method-steps li{padding:16px 12px;grid-template-columns:30px minmax(0,1fr);gap:10px}
+ .method-step-mark{width:28px;height:28px;font-size:.85rem}.method-content{gap:18px}
+ .method-checks,.method-guest,.method-recall{padding:18px 16px}.method-inline-body{padding:0 12px 18px}
+ .method-inline>summary{padding:16px 12px}.method-house,.method-sources{padding-inline:14px}
+ .method-figure figcaption{padding:12px}.method-content h3{font-size:1rem}
+}
+@media print{.method-card,.method-door,.method-steps li,.method-figure,.method-house,.method-sources,.method-checks,.method-guest,.method-recall{box-shadow:none;background:white;color:#222;border-color:#777}.method-step-mark,.method-content h3,.method-heading,.method-caption,.method-figure figcaption{color:#222}.method-next,.method-reading{display:none}.method-steps li{break-inside:avoid}}

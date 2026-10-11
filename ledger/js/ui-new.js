@@ -218,6 +218,7 @@ function syncRoute(kind){
 let SEARCH_INDEX = null;
 function buildSearchIndex(){
   const ix = [];
+  if(typeof methodStudySearchEntries === 'function') ix.push(...methodStudySearchEntries());
   /* the book by its name: a book is never numbered where a reader sees it */
   COCKTAILS.forEach(c => ix.push({ t:c.name, s:c.family+' · '+c.spirit+' · '+bookName(c.tier),
     body:(c.spec.join(' ')+' '+c.method+' '+c.garnish).toLowerCase(), h:'#/library/'+slugify(c.name) }));
@@ -483,28 +484,28 @@ function renderService(){
 
 const PLATES = [
   { id:'seal', title:'Plate I · The Two-Tin Seal',
-    caption:'Set the small tin into the large at an angle, then strike the crown once with the heel of your hand. The vacuum of the cold does the rest: a straight-on jam sticks; the angle releases with a squeeze and a twist.',
+    caption:'Fit the two tins securely and tap to seal. Hold both pieces while shaking. Use the release point appropriate to your shaker; practise the seal and opening with water and ice before working a guest order.',
     svg:'<path d="M62 138 L74 64 L130 64 L142 138 Z"/><path d="M78 66 L94 14 L146 26 L118 70" transform="rotate(-4 100 40)"/><path d="M70 96 L134 96" stroke-dasharray="3 4" opacity="0.5"/><path d="M155 40 C165 46 168 56 164 66" fill="none" marker-end="none"/><path d="M160 68 L164 66 L166 60" fill="none"/>' },
   { id:'gate', title:'Plate II · The Hawthorne Gate',
-    caption:'The spring is the filter; your forefinger is the gate. Pressed forward, the strainer closes tight for a controlled pour; eased back, it opens wide. Ice shards and herb flecks stay behind: that is the whole job.',
+    caption:'Hold the Hawthorne securely at the vessel opening to retain ice and control the pour. Closing the gate reduces coarse particles; add a fine strainer when the recipe calls for finer filtration.',
     svg:'<circle cx="88" cy="78" r="46"/><circle cx="88" cy="78" r="36" stroke-dasharray="5 4" opacity="0.7"/><circle cx="88" cy="78" r="26" stroke-dasharray="5 4" opacity="0.45"/><rect x="132" y="72" width="52" height="12" rx="4"/><path d="M60 42 L54 30 M116 42 L122 30"/><circle cx="88" cy="78" r="3" fill="currentColor"/>' },
   { id:'dstrain', title:'Plate III · The Double Strain',
-    caption:'Hawthorne on the tin, fine mesh held over the glass: the second net catches what the first forgives. Standard for every shaken drink served up: nothing should float in a coupe but the garnish.',
+    caption:'Pour through the main strainer and then fine mesh when the recipe calls for a smooth drink without fine ice, pulp or herb fragments. Choose the straining method for the intended texture; double straining is not required for every drink served up.',
     svg:'<g transform="rotate(32 60 40)"><path d="M38 20 L46 72 L88 72 L96 20"/><path d="M30 20 L104 20"/></g><path d="M96 62 C100 72 104 82 106 92" stroke-dasharray="2 4"/><path d="M84 96 L128 96 L106 122 Z"/><path d="M90 102 L122 102 M96 109 L116 109" opacity="0.55"/><path d="M76 128 C82 140 96 146 106 146 C116 146 130 140 136 128 Z"/><path d="M106 146 L106 150" ' + '/>' },
   { id:'express', title:'Plate IV · Expressing the Peel',
-    caption:'Hold the peel skin-side down a hand above the drink and snap it once, sharply: the oils rain, they don’t drip. Then wipe the rim with the skin and drop it in or discard it, as the spec demands. Express high; the spray should fall like weather.',
+    caption:'Aim the coloured outer surface of the peel towards the drink and pinch to release its aromatic oils over the surface. Rub the rim, add the peel or discard it only as the recipe directs. Keep handling away from the drinking edge.',
     svg:'<path d="M34 36 C48 26 66 26 80 36" stroke-width="7" stroke-linecap="round"/><path d="M88 44 L102 56 M92 34 L110 44 M96 24 L114 30" stroke-dasharray="1 5" stroke-linecap="round"/><path d="M96 78 C102 90 116 96 128 96 C140 96 154 90 160 78 Z"/><path d="M128 96 L128 122 M112 128 C112 124 120 122 128 122 C136 122 144 124 144 128 Z"/>' },
   { id:'dome', title:'Plate V · The Julep Dome',
-    caption:'Pack crushed ice past the rim and shape it into a dome: the meltwater is an ingredient, and the dome meters it. Swizzle until the metal frosts; the frost line is your doneness indicator.',
+    caption:'Use the ice and finish specified for the julep. Stir or swizzle to chill and dilute; cup frost is a traditional visual cue, not a measurement of balance. Check the drink as well as the cup before finishing the ice dome.',
     svg:'<path d="M64 78 L72 140 L128 140 L136 78"/><path d="M60 78 L140 78"/><path d="M66 78 C66 52 84 40 100 40 C116 40 134 52 134 78" stroke-dasharray="3 3"/><circle cx="86" cy="64" r="4"/><circle cx="102" cy="54" r="4"/><circle cx="116" cy="66" r="4"/><circle cx="98" cy="70" r="4"/><path d="M112 44 L134 12 M120 20 C126 14 132 12 138 14" opacity="0.8"/>' },
   { id:'dryshake', title:'Plate VI · The Dry Shake',
-    caption:'Egg-white drinks shake twice: first without ice (hard, ten seconds, to build the foam), then again with ice to chill. Skip the dry shake and the drink reads thin; do it lazily and the foam won’t hold a straw.',
+    caption:'A dry shake aerates without ice; a wet shake chills and dilutes. This diagram shows dry then wet, while other recipes reverse that order. Follow the tested method and judge texture, temperature and balance rather than a universal count or whether foam supports a straw.',
     svg:'<path d="M30 40 L38 108 L74 108 L82 40 Z"/><ellipse cx="56" cy="80" rx="13" ry="16" opacity="0.8"/><path d="M44 30 L68 54 M68 30 L44 54" stroke-width="2.2"/><rect x="42" y="28" width="28" height="28" rx="3" opacity="0.55"/><path d="M96 74 L118 74 M118 74 L112 68 M118 74 L112 80"/><path d="M132 40 L140 108 L176 108 L184 40 Z"/><rect x="144" y="58" width="14" height="14" rx="2"/><rect x="156" y="76" width="14" height="14" rx="2"/><rect x="142" y="84" width="12" height="12" rx="2"/>' },
   { id:'muddle', title:'Plate VII · The Muddle Press',
-    caption:'Press, twist a quarter turn, lift: three or four times, no more. You are coaxing oil from the leaf and juice from the fruit, not making pesto: a ground herb releases chlorophyll and bitterness, and no amount of rum forgives it.',
+    caption:'Press herbs gently to release aroma without shredding. Firmer fruit can need more pressure. Work to the recipe and ingredient texture, not a fixed number of presses; stop before delicate leaves become a paste.',
     svg:'<path d="M132 10 L106 92" stroke-width="7" stroke-linecap="round"/><path d="M97 92 L112 92 L115 116 L94 116 Z" transform="rotate(18 104 104)"/><path d="M60 66 L66 140 L134 140 L140 66"/><path d="M74 130 C80 122 88 126 90 132 M110 134 C108 124 118 120 124 128" stroke-linecap="round"/><path d="M80 92 L80 108 M80 108 L75 102 M80 108 L85 102" opacity="0.8"/>' },
   { id:'float', title:'Plate VIII · The Float',
-    caption:'Rest the back of the spoon against the inner wall, just above the drink, and pour slow: the liquid walks down the spoon, spreads across the surface, and sits. Wine on a New York Sour, scotch on a Penicillin: weather, not mixture.',
+    caption:'Pour gently over the back of a spoon near the surface to limit mixing when a recipe calls for a float. Whether the layer holds depends on the liquids and their texture; follow the specified amount and finish instead of assuming every liquid will stay separate.',
     svg:'<path d="M124 8 L86 68" stroke-width="2"/><ellipse cx="82" cy="74" rx="10" ry="6" transform="rotate(-28 82 74)"/><path d="M60 60 L66 140 L134 140 L140 60"/><path d="M67 92 L133 92" stroke-width="2.4"/><path d="M68 104 L132 104 M69 116 L131 116" stroke-dasharray="4 4" opacity="0.5"/><path d="M76 76 C86 80 96 82 108 80" stroke-dasharray="2 3" opacity="0.8"/>' },
 ];
 

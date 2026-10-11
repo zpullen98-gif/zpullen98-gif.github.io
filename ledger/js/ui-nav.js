@@ -713,7 +713,9 @@ function myRestaurantHTML(){
     + line
     + desk
     + (h ? '<p class="door-line">' + esc(houseCountLine()) + '</p>' : '')
-    + doors + chips + quiet
+    + doors + chips
+    + (h && typeof methodStudyDoorHTML === 'function' ? methodStudyDoorHTML(true) : '')
+    + quiet
     + '</section>';
 }
 function levelSearchHTML(){
@@ -856,7 +858,10 @@ function navRestoreScroll(){
 function routeNow(){
   const t = state.tab;
   let hash = '#/' + t, key = t;
-  if(t === 'level'){
+  if(t === 'notes' && state.noteOpen === '__methods'){
+    const id = typeof methodStudy === 'function' && methodStudy(state.methodStudyId) ? state.methodStudyId : '';
+    hash = '#/notes/studies' + (id ? '/' + id : ''); key = 'notes/studies' + (id ? '/' + id : '');
+  } else if(t === 'level'){
     const n = state.lt ? state.lt.n : (state.level.n || chosenLevel());
     const slug = slugify(levelInfo(n).name);
     hash += '/' + slug; key += '/' + slug;
@@ -1031,6 +1036,7 @@ function navBack(){
 function parentTab(){
   const t = state.tab;
   if(t === 'home') return null;
+  if(t === 'notes' && state.noteOpen === '__methods') return state.methodStudyId ? 'notes' : 'library';
   if(t === 'level') return state.lt ? 'quiz' : 'home';
   if(t === 'menu'){
     const st = state.menu.study;
@@ -1060,6 +1066,7 @@ function applyParent(){
   const t = state.tab;
   const p = parentTab();
   if(!p) return false;
+  if(t === 'notes' && state.noteOpen === '__methods' && state.methodStudyId){ state.methodStudyId = ''; return true; }
   if(t === 'level' && state.lt){ state.tab = 'quiz'; state.quiz.stage = 'setup'; return true; }
   if(t === 'menu'){
     const st = state.menu.study;
@@ -1136,6 +1143,7 @@ function navWatchBack(){
 
 /* ---- the screens' own acts ---------------------------------------------------- */
 function navAct(act, data, el){
+  if(act === 'go' && data.tab === 'notes' && state.noteOpen === '__methods'){ state.noteOpen = null; state.methodStudyId = ''; }
   if(act === 'back'){ navBack(); return 'done'; }
   if(act === 'hash'){ gotoHash(data.h); return 'done'; }
   if(act === 'deck'){ if(!openDeck(data.deck)) return 'done'; return 'render'; }
@@ -1238,6 +1246,13 @@ function navNormalise(){
    true when it applied the address, false for applyRoute's own branches. */
 function applyNavRoute(parts){
   const tab = parts[0], a = parts[1], b = parts[2];
+  if(tab === 'notes' && a === 'studies' && typeof methodStudy === 'function'){
+    state.tab = 'notes'; state.noteOpen = '__methods'; state.noteJump = false;
+    state.methodStudyId = methodStudy(b) ? b : '';
+    return true;
+  }
+  /* A normal Notes address must not resurrect the illustrated-study view. */
+  if(tab === 'notes' && state.noteOpen === '__methods'){ state.noteOpen = null; state.methodStudyId = ''; }
   /* Print cards shows only at its own address */
   if(state.lib) state.lib.print = tab === 'library' && a === 'print';
   if(state.lib && state.lib.print){ state.tab = 'library'; state.lib.open = null; return true; }

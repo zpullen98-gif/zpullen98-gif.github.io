@@ -439,11 +439,11 @@ function balanceLineHTML(c){
 }
 const BALANCE_TIPS = {
   'Sour':"The dials: too tart → nudge the sweet up ⅛ oz; cloying → add ¼ oz citrus; thin → suspect your shake and your ice before the spec. Citrus varies daily: taste it before service.",
-  'Old Fashioned':"Sweetness should whisper. If it drinks hot, the fix is usually ten more seconds of stirring: water is the missing ingredient, not sugar.",
+  'Old Fashioned':"If it drinks hot, check dilution before adding sugar. Stir towards the recipe's intended balance rather than adding a fixed number of seconds.",
   'Spirit & Vermouth':"The ratio is the personality: 2:1 is the modern standard, 1:1 is 1880s silk. If it tastes dull, suspect the vermouth's age before you blame the ratio.",
   'Highball':"Balance here is temperature and fizz, not math. Everything cold, gentle build, one lift of the spoon: a hard stir murders the carbonation.",
-  'Egg & Cream':"Texture is the fourth ingredient. A lazy dry shake reads as thin foam; a proper one holds a straw upright.",
-  'Julep & Smash':"Crushed ice does the sweetening math for you: an under-diluted julep tastes too strong and too sweet at the same time.",
+  'Egg & Cream':"Texture belongs to the recipe: look for integrated body and, where intended, fine even foam. Check temperature, dilution and balance too; straw support is not a service-quality test.",
+  'Julep & Smash':"Check chill, sweetness, spirit intensity and herb or fruit aroma together. Ice and mixing affect dilution; an ice dome or frosted cup alone does not establish balance.",
   'Tiki':"Total the many sours and many sweets like one big sour: roughly 1 oz sour to 1 oz sweet per 2 oz of combined rums.",
   'Duo & Trio':"No citrus safety net here: the liqueur is the only sweetness, so measure it honestly and let dilution soften the edges.",
   'Punch':"Respect the rhyme's ratios, then let time do the mixing: an hour of rest marries flavors no shake can.",
@@ -507,8 +507,8 @@ const DRILLS = [
     desc:'Four different cocktails from four different families, clean station at the end or it doesn\u2019t count. The drill deals them; picking your own four is how you quietly practise what you already know. Log total seconds. Under 360 is service-ready; under 240 is Saturday-night ready.' },
   { id:'blind', name:'Blind Tasting', unit:'correct of 3', dir:'high', ready:{ op:'ge', v:2 },
     desc:'Three spirits from one category, poured blind by a friend. Nose, sip, add water, sip again, write notes, then identify. Log how many of 3 you called. Your palate is a muscle. 2 of 3 is a palate you can trust on the floor.' },
-  { id:'foam', name:'Dry-Shake Discipline', unit:'sec foam holds', dir:'high', ready:{ op:'ge', v:10 },
-    desc:'Whiskey Sour with egg white: dry shake, shake, strain up. Log how many seconds the foam holds a straw upright. Under 5 means your dry shake is lazy; 15+ is meringue. 10 or more is ready for service.' },
+  { id:'foam', name:'Dry-Shake Discipline (legacy)', unit:'sec foam holds', dir:'high', ready:{ op:'ge', v:10 },
+    desc:'Legacy record: seconds that an egg-white Whiskey Sour foam held a straw upright. The original 10-second marker remains only to preserve past practice progress; it does not establish service readiness. Do not enter texture ratings into this seconds field. For current practice, use the Shake for the Requested Texture study and check the recipe, fine even foam where intended, chill, dilution and balance.' },
   { id:'garnish', name:'Garnish Prep Speed', unit:'sec for 20 twists + 10 wheels', dir:'low', ready:{ op:'lt', v:300 },
     desc:'Twenty lemon twists, no pith, and ten lime wheels slit for the rim: against the clock, into a clean caddy. This is where a slow bartender loses ten minutes of every prep hour, and it is the first thing a manager watches on a trail. Under 300 is respectable; under 180 is a professional.' },
   { id:'mise', name:'Station Setup', unit:'sec to set the station', dir:'low', ready:{ op:'lt', v:240 },
@@ -531,7 +531,7 @@ function strengthBand(abvServed){
     : abvServed >= 22 ? { key:'spirit-forward', line:'Spirit-forward. Standard for a stirred classic served up.' }
     : abvServed >= 14 ? { key:'moderate', line:'Moderate: a sour or a short highball.' }
     : abvServed >= 8 ? { key:'sessionable', line:'Sessionable. This is the strength most long drinks land at.' }
-    : { key:'light', line:'Low-ABV. Aperitivo territory: you can serve two.' };
+    : { key:'light', line:'Lower estimated alcohol concentration. Serving volume still determines the amount of alcohol; this band is not a serving recommendation.' };
 }
 
 /* ---------------- SHELF KEYWORDS (inventory mode) ---------------- */

@@ -490,6 +490,7 @@ function renderPractice(){
       + '<div class="row between"><span class="bold">'+esc(d.name)+(d.id===tonight?' <span class="chip brass">tonight</span>':'')+'</span>'
       + '<span class="tiny font-tix dim">best <span class="brass2">'+bestStr+'</span> · last '+lastStr+'</span></div>'
       + '<div class="small dim lh">'+esc(d.desc)+'</div>'
+      + (typeof methodDrillReferencesHTML === 'function' ? methodDrillReferencesHTML(d.id) : '')
       + subjHTML
       + '<div class="row" style="gap:10px">'+timerHTML
       + '<input class="input" type="number" step="any" inputmode="decimal" id="pr-in-'+d.id+'" placeholder="'+esc(d.unit)+'" aria-label="'+esc(d.name)+' result ('+esc(d.unit)+')" value="'+esc((state.practice.drillIn||{})[d.id]||'')+'" style="max-width:150px">'
