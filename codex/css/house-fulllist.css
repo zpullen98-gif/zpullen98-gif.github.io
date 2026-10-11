@@ -13,8 +13,11 @@
   .wrap .v29-floorchips { padding-top: 4px; }
 
   /* the full list: the search and three chip rows scroll with the page, so
-     a phone keeps its screen for the rows */
-  .wrap .v29-bar { position: static; padding-top: 0; }
+     a phone keeps its screen for the rows. Both classes, so this outranks
+     house-list.css's sticky .v28-bar, which loads after this file; sticky,
+     the bar sat under the stuck Back bar and a tap on the search landed on
+     Back. */
+  .wrap .v28-bar.v29-bar { position: static; padding-top: 0; }
   .wrap .v29-bar .v28-chips + .v28-chips { padding-top: 4px; }
   .wrap .v29-nav { margin-bottom: 6px; }
   .wrap .v28 .v29-count { font-size: 16px; color: var(--gold-soft); margin: 10px 0 0; }

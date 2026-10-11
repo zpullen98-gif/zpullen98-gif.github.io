@@ -905,7 +905,7 @@ function v32RestoreScroll() {
     var map = v32SessGet(V32_SCROLL_KEY);
     y = map && map.y && typeof map.y[location.href] === 'number' ? map.y[location.href] : 0;
   } catch (e) { y = 0; }
-  var go = function () { try { window.scrollTo(0, y); } catch (e) { } };
+  var go = function () { try { window.scrollTo(0, y); } catch (e) { } v32StuckNow(); };
   go();
   try {
     if (typeof requestAnimationFrame === 'function') requestAnimationFrame(function () { requestAnimationFrame(go); });
@@ -2172,6 +2172,31 @@ if (typeof v25MainName === 'function') {
 
 var V32_OLD_BACK = /^(Back|Back to\b.*|All countries)$/;
 
+/* Stuck or not, read from the sentinel at once: stuck once the sentinel above
+   the row has scrolled out of the top. The IntersectionObserver alone reports
+   a frame or more after a jump scroll (a region chosen, a group opened, the
+   place put back after Back), and for those frames the stuck Back was drawn
+   at the left edge under the suite's badge (the walk-through of 10 October
+   2026, its second round). A scroll handler runs before the frame it scrolled
+   is painted, so the row moves clear of the badge in the frame it sticks; the
+   observer stays as the second reader, and both say the same thing. */
+function v32StuckNow() {
+  try {
+    var row = document.querySelector('#view > .v32back');
+    var sen = document.querySelector('#view > .v32sentinel');
+    if (!row || !sen || typeof sen.getBoundingClientRect !== 'function' || !row.classList) return;
+    row.classList.toggle('is-stuck', sen.getBoundingClientRect().bottom <= 0);
+  } catch (e) { }
+}
+function v32WireStuck() {
+  if (V32.stuckWired) return;
+  try {
+    window.addEventListener('scroll', v32StuckNow, { passive: true });
+    window.addEventListener('resize', v32StuckNow);
+    V32.stuckWired = true;
+  } catch (e) { }
+}
+
 function v32BackRow(main) {
   var row = document.createElement('div');
   row.className = 'v32back';
@@ -2203,12 +2228,12 @@ function v32BackRow(main) {
   try {
     if (typeof IntersectionObserver === 'function') {
       if (V32.io) V32.io.disconnect();
-      V32.io = new IntersectionObserver(function (ents) {
-        ents.forEach(function (en) { row.classList.toggle('is-stuck', !en.isIntersecting); });
-      }, { threshold: 0 });
+      V32.io = new IntersectionObserver(function () { v32StuckNow(); }, { threshold: 0 });
       V32.io.observe(sentinel);
     }
   } catch (e) { }
+  v32WireStuck();
+  v32StuckNow();
 }
 
 /* Every older way back on the screen leaves: one Back per screen. */

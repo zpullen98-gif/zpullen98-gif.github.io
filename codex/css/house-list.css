@@ -11,6 +11,9 @@
   .wrap .v28 .v28-soft, .wrap .v28 p.v28-soft { color: var(--parch2); font-size: 16px; }
   .wrap .v28 .v28-link { color: var(--gold-hi); text-decoration: underline; text-underline-offset: 3px; display: inline-flex; align-items: center; min-height: 44px; padding: 0; vertical-align: middle; }
   .wrap .v28 .v28-link:hover { color: var(--gold); }
+  /* a link drawn as a button (a door on a card) reads as the words around it: no grey face, the reading size */
+  .wrap .v28 button.v28-link { background: none; border: 0; margin: 0; font: inherit; cursor: pointer; text-align: left; }
+  .wrap .v28 button.v28-link:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
 
   /* the header */
   .wrap .v28-head { margin: 6px 0 10px; padding-bottom: 8px; }
@@ -136,16 +139,18 @@
   .wrap .v30-for { font-size: 16px; color: var(--parch); }
   .wrap .v28 .v30-open { background: none; border: 0; font: inherit; cursor: pointer; text-align: left; }
 
-  /* codex34: what a wine is made of, each component a closed disclosure in the card's own rule; Compare with, its doors 44px targets in gold */
-  .wrap .v34-comps, .wrap .v34-cmp { list-style: none; margin: 0 0 12px; padding: 0; }
-  .wrap .v34-cmp > li { padding: 8px 0; border-bottom: 1px solid var(--line); }
-  .wrap .v34-cmp > li:last-child { border-bottom: 0; }
-  .wrap .v34-body p { margin: 0 0 10px; font-size: 17px; line-height: 1.6; color: var(--parch); }
-  .wrap .v34-body .v28-dl { margin: 4px 0 10px; }
-  .wrap .v34-label { font-weight: 600; color: var(--parch); }
-  .wrap .v34-sub { display: block; margin-top: 3px; font-size: 17px; line-height: 1.55; color: var(--parch); }
-  .wrap .v28 .v34-door { background: none; border: 0; font: inherit; cursor: pointer; text-align: left; font-weight: 600; }
-  .wrap .v28 .v34-door:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
+  /* codex35 (written as codex34 before the layers were renumbered; codex38's Who makes it shares the rule): what a wine
+     is made of, each component a closed disclosure in the card's own rule; Compare with, its doors 44px targets in gold,
+     each same and different on a line of its own */
+  .wrap .v35-comps, .wrap .v35-cmp { list-style: none; margin: 0 0 12px; padding: 0; }
+  .wrap .v35-cmp > li { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 17px; line-height: 1.55; color: var(--parch); }
+  .wrap .v35-cmp > li:last-child { border-bottom: 0; }
+  .wrap .v35-body p { margin: 0 0 10px; font-size: 17px; line-height: 1.6; color: var(--parch); }
+  .wrap .v35-body .v28-dl { margin: 4px 0 10px; }
+  .wrap .v35-label { font-weight: 600; color: var(--parch); }
+  .wrap .v35-sub { display: block; margin-top: 3px; font-size: 17px; line-height: 1.55; color: var(--parch); }
+  .wrap .v28 .v35-door { background: none; border: 0; font: inherit; cursor: pointer; text-align: left; font-weight: 600; }
+  .wrap .v28 .v35-door:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
 
   /* the atlas row a card's door opened on */
   .wrap .refrow.v28-here { outline: 1px solid var(--gold-soft); outline-offset: 2px; }

@@ -4428,9 +4428,15 @@ const FLASHCARD_KINDS = ['part', 'line', 'term', 'mixUp', 'pairing', 'component'
 function plainText(v) {
     return typeof v === 'string' ? v.trim() : '';
 }
-/** Lower case, whitespace collapsed: how two option strings are told apart and how a stem is searched for its answer. */
+/**
+ * Lower case, whitespace collapsed, the curly quotes read as straight: how
+ * two option strings are told apart and how a stem is searched for its
+ * answer. Two wines may print one label with either apostrophe (Brennan's
+ * and Brennan\u2019s Essential), and a reader sees one answer, so the field
+ * keeps one of them and a question never offers both.
+ */
 function foldAnswer(s) {
-    return plainText(s).toLowerCase().replace(/\s+/g, ' ');
+    return plainText(s).toLowerCase().replace(/[\u2018\u2019\u02bc]/g, "'").replace(/[\u201c\u201d]/g, '"').replace(/\s+/g, ' ');
 }
 /** The value of a mark a person kept; nothing for her unkept mark, a missing one, or a value that is not a mark. */
 function keptValue(m) {
