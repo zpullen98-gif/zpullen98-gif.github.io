@@ -23,12 +23,13 @@ function dawnWriterIndex() {
   var writers = dawnWriterMatches();
   return '<div class="dawn-cast-opening"><p class="kick">Poets &amp; playwrights · Twelve voices</p><h2>The Lantern Stage</h2>' +
     '<p>Step into worlds of wit, wonder and human possibility. Follow a line to its writer, its dramatic setting, and the work that gave it life.</p>' +
-    '<p class="note">Each writer has ten selections and links for further reading. Characters speak in their own voices; translation and edition notes stay beside the words.</p></div>' +
+    '<p class="note">Explore each writer’s selections and links for further reading. Characters speak in their own voices; translation and edition notes stay beside the words.</p></div>' +
     '<form id="dawn-writer-search-form" class="dawn-search" role="search"><label for="dawn-writer-search">Find a writer or work</label><div><input id="dawn-writer-search" type="search" maxlength="180" value="' + esc(dawnWriterQuery) + '" placeholder="Try Shakespeare, Chekhov or Fences"><button class="btn" type="submit">Find</button></div></form>' +
     '<div class="dawn-results"><p role="status">' + writers.length + ' writer' + (writers.length === 1 ? '' : 's') + '</p>' +
     (dawnWriterQuery ? '<button class="keep" data-act="dawnWriterClear">Clear writer search</button>' : '') + '</div>' +
     '<div class="dawn-cast-grid">' + writers.map(function (p) {
-      return '<a class="dawn-person" href="#/anthology/writer-' + esc(p.id) + '"><span class="dawn-person-group">The Lantern Stage</span><strong>' + esc(p.name) + '</strong><span>' + p.quoteIds.length + ' selections · ' + p.works.length + ' reading links</span></a>';
+      var destination = p.studyId ? '#/poets/' + p.studyId : '#/anthology/writer-' + p.id;
+      return '<a class="dawn-person" href="' + esc(destination) + '"><span class="dawn-person-group">The Lantern Stage</span><strong>' + esc(p.name) + '</strong><span>' + p.quoteIds.length + ' selections · ' + (p.studyId ? 'Dedicated study' : p.works.length + ' reading links') + '</span></a>';
     }).join('') + '</div>' + (!writers.length ? '<p class="note">No writers match. Try a surname, a work’s title, or clear the search.</p>' : '');
 }
 function dawnWriterWorks(person) {
@@ -44,11 +45,12 @@ function dawnWriterWorks(person) {
 function dawnWriterProfile(id) {
   var person = dawnWriter(id);
   if (!person) return '<p class="note" role="status">That writer is not on this shelf.</p><p><a href="#/anthology/writers">Browse The Lantern Stage</a></p>';
-  var rows = person.quoteIds.map(dawnById).filter(Boolean);
+  var rows = (person.previousQuoteIds || person.quoteIds).map(dawnById).filter(Boolean);
   return '<p><a class="readmini" href="#/anthology/writers">Back to The Lantern Stage</a></p>' +
     '<div class="dawn-cast-opening"><p class="kick">The Lantern Stage</p><h2>' + esc(person.name) + '</h2><p>' + esc(person.intro) + '</p>' +
-    '<p class="note">' + rows.length + ' selections. Open Source &amp; context for the speaker, location, edition and evidence.</p></div>' +
-    dawnWriterWorks(person) + '<h3 class="dawn-selections-title">Ten lines to carry with you</h3><div class="dawn-grid">' + rows.map(function (q) { return dawnCard(q); }).join('') + '</div>';
+    '<p class="note">' + person.quoteIds.length + ' selections. Open Source &amp; context for the speaker, location, edition and evidence.</p></div>' +
+    (person.studyId ? '<div class="poet-study-invitation"><p>Continue into The Poets’ Study for 100 fresh passages, work-by-work reading links, context and questions.</p><a class="btn" href="#/poets/' + esc(person.studyId) + '">Enter ' + esc(person.name) + '’s study</a></div>' : '') +
+    dawnWriterWorks(person) + '<h3 class="dawn-selections-title">' + (person.studyId ? 'The earlier ten selections' : 'Ten lines to carry with you') + '</h3><div class="dawn-grid">' + rows.map(function (q) { return dawnCard(q); }).join('') + '</div>';
 }
 function dawnWriterAfter() {
   var form = document.getElementById('dawn-writer-search-form');

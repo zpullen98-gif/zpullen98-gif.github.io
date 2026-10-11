@@ -1,8 +1,5224 @@
 /* The Dawn Anthology. Sources checked 11 October 2026.
-   Short selections retain their writer, edition and historical context.
-   Latest research: .scripts/anthology-dramatists-audit.json.
-   Earlier records and evidence remain unchanged; newest selections open the shelf. */
+   Original wording, speaker, edition and context stay beside each selection.
+   Latest research: .scripts/anthology-poets-audit.json.
+   Earlier records remain unchanged; newest selections open the shelf. */
 var DAWN_QUOTES = [
+  {
+    "id": "study-shakespeare-hamlet-listening",
+    "studyWorkId": "hamlet",
+    "text": "Give every man thine ear, but few thy voice:\nTake each man’s censure, but reserve thy judgement.",
+    "speaker": "Polonius",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Hamlet",
+    "locator": "Act 1, scene 3; Project Gutenberg #100; excerpt",
+    "context": "Polonius gives Laertes instructions before he leaves for France. The advice values attentive listening, but the play also invites us to test the speaker’s later conduct against his own principles.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Hamlet, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_8.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "truth"
+    ],
+    "studyPrompt": "How do ear, voice, censure and judgement divide listening from agreement in these two lines?"
+  },
+  {
+    "id": "study-chaucer-canterbury-general-prologue-april",
+    "studyWorkId": "canterbury-general-prologue",
+    "text": "Whan that Aprille with his shoures sote\nThe droghte of Marche hath perced to the rote,",
+    "speaker": "Pilgrim narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: General Prologue",
+    "locator": "Group A, lines 1–2; Middle English; excerpt",
+    "context": "The opening turns seasonal renewal into the impulse for a journey. Its April rain begins a long sentence rather than a detached maxim.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#prologue"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "time"
+    ],
+    "studyPrompt": "Why begin a social and spiritual journey with water entering the earth?",
+    "gloss": "When April’s sweet showers have pierced March’s drought down to the root.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-macbeth-hidden-fires",
+    "studyWorkId": "macbeth",
+    "text": "Stars, hide your fires!\nLet not light see my black and deep desires.",
+    "speaker": "Macbeth",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Macbeth",
+    "locator": "Act 1, scene 4; Project Gutenberg #100; excerpt",
+    "context": "Duncan has named Malcolm his heir, and Macbeth privately sees the announcement as an obstacle. The contrast between light and concealment makes the audience witness a desire that his host and king cannot see.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Macbeth, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_20.4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "truth"
+    ],
+    "studyPrompt": "What does Macbeth already understand about his desire when he asks the stars to conceal it?"
+  },
+  {
+    "id": "study-chaucer-canterbury-knights-tale-dangerous-wishes",
+    "studyWorkId": "canterbury-knights-tale",
+    "text": "Som man desyreth for to han richesse,\nThat cause is of his mordre or greet siknesse.",
+    "speaker": "Arcite",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Knight’s Tale",
+    "locator": "Group A, lines 1255–1256; Middle English; excerpt",
+    "context": "Freed from prison but banished from Athens, Arcite questions whether people understand what will benefit them. His example connects an apparent good with an unforeseen cost.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#knight"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "power"
+    ],
+    "studyPrompt": "How does Arcite’s own release make this warning about desired goods personal?",
+    "gloss": "Someone may desire riches that become the cause of his murder or serious illness.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-king-lear-fools-counsel",
+    "studyWorkId": "king-lear",
+    "text": "Have more than thou showest,\nSpeak less than thou knowest,\nLend less than thou owest,\nRide more than thou goest,\nLearn more than thou trowest,",
+    "speaker": "The Fool",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "King Lear",
+    "locator": "Act 1, scene 4; Project Gutenberg #100; excerpt",
+    "context": "The Fool offers Lear a rhyming lesson in prudence after the king has given away his authority. In this passage, owest means possess and trowest means believe, making the verse a pointed challenge to self-confidence.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: King Lear, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_18.4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "language"
+    ],
+    "studyPrompt": "Why might Lear receive uncomfortable advice more readily as a joke or song than as direct criticism?"
+  },
+  {
+    "id": "study-chaucer-canterbury-millers-prologue-turn-the-leaf",
+    "studyWorkId": "canterbury-millers-prologue",
+    "text": "And therfore, who-so list it nat y-here,\nTurne over the leef, and chese another tale;\nFor he shal finde y-nowe, grete and smale,",
+    "speaker": "Pilgrim narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Miller’s Prologue",
+    "locator": "Group A, lines 3176–3178; Middle English; excerpt",
+    "context": "Before repeating the Miller’s story, the narrator gives offended readers an apparent exit. The gesture also draws attention to his decision to include the tale.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#millerpro"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "identity"
+    ],
+    "studyPrompt": "How does this invitation shape your sense of the narrator’s responsibility?",
+    "gloss": "Anyone who does not wish to hear it can turn the page and choose another tale; there are plenty, long and short.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-othello-reputation",
+    "studyWorkId": "othello",
+    "text": "Reputation, reputation, reputation! O, I have lost my reputation! I\nhave lost the immortal part of myself, and what remains is bestial.",
+    "speaker": "Cassio",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Othello",
+    "locator": "Act 2, scene 3; Project Gutenberg #100; excerpt",
+    "context": "Cassio has lost his position after the drunken fight engineered by Iago. His language gives social reputation a value greater than bodily life, leaving him vulnerable to the advice of the man who caused the disaster.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Othello, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_26.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "power"
+    ],
+    "studyPrompt": "What becomes difficult to judge when a person treats their reputation as the whole of their identity?"
+  },
+  {
+    "id": "study-chaucer-canterbury-millers-tale-misused-counsel",
+    "studyWorkId": "canterbury-millers-tale",
+    "text": "Werk al by conseil, and thou shalt nat rewe.",
+    "speaker": "Nicholas",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Miller’s Tale",
+    "locator": "Group A, line 3530; Middle English; excerpt",
+    "context": "Nicholas cites a maxim while persuading the carpenter to follow a fabricated plan for surviving a flood. Sounding wise is part of his deception.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#miller"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "power"
+    ],
+    "studyPrompt": "What evidence would distinguish trustworthy counsel from Nicholas’s performance of authority?",
+    "gloss": "Act with advice and you will not regret it.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-romeo-and-juliet-violent-delights",
+    "studyWorkId": "romeo-and-juliet",
+    "text": "These violent delights have violent ends,\nAnd in their triumph die; like fire and powder,\nWhich as they kiss consume.",
+    "speaker": "Friar Lawrence",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Romeo and Juliet",
+    "locator": "Act 2, scene 6; Project Gutenberg #100; excerpt",
+    "context": "Just before the wedding, the Friar warns Romeo about intensity that destroys itself. The warning is complicated by his own decision to help the hurried marriage in the hope of ending the families’ conflict.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Romeo and Juliet, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_30.6"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "attention"
+    ],
+    "studyPrompt": "How does the Friar’s participation in the wedding change the authority of his warning?"
+  },
+  {
+    "id": "study-chaucer-canterbury-wife-prologue-experience",
+    "studyWorkId": "canterbury-wife-prologue",
+    "text": "Experience, though noon auctoritee\nWere in this world, were right y-nough to me\nTo speke of wo that is in mariage;",
+    "speaker": "Alisoun, the Wife of Bath",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Wife of Bath’s Prologue",
+    "locator": "Group D, lines 1–3; Middle English; excerpt",
+    "context": "Alisoun opens by claiming that her own marriages give her standing to discuss marital trouble. Her speech immediately enters a contest with written authority.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#wifepro"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "truth"
+    ],
+    "studyPrompt": "What can lived experience establish that a cited authority cannot, and where might it be partial?",
+    "gloss": "Even if no written authority existed, experience alone would be enough for me to speak about the trouble in marriage.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-julius-caesar-fear-and-death",
+    "studyWorkId": "julius-caesar",
+    "text": "Cowards die many times before their deaths;\nThe valiant never taste of death but once.",
+    "speaker": "Caesar",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Julius Caesar",
+    "locator": "Act 2, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Caesar answers Calphurnia’s fear about the omens surrounding him. The impressive distinction between courage and fear is also part of his resistance to warnings that the audience has reason to take seriously.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Julius Caesar, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_17.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "courage",
+      "attention"
+    ],
+    "studyPrompt": "How does Caesar’s distinction between cowards and the valiant make it harder for him to accept Calphurnia’s warning?"
+  },
+  {
+    "id": "study-chaucer-canterbury-wife-tale-sovereignty",
+    "studyWorkId": "canterbury-wife-tale",
+    "text": "Wommen desyren to have sovereyntee\nAs wel over hir housbond as hir love,\nAnd for to been in maistrie him above;",
+    "speaker": "The knight in the Wife of Bath’s tale",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Wife of Bath’s Tale",
+    "locator": "Group D, lines 1038–1040; Middle English; excerpt",
+    "context": "The knight gives the court the answer taught by the old woman. The tale presents this as the answer to his quest, not a universal statement endorsed outside its fiction.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#wife"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "identity"
+    ],
+    "studyPrompt": "How does the knight’s later marriage test whether he understands the answer he can now repeat?",
+    "gloss": "Women desire authority over husband and lover, and to have mastery over him.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-antony-and-cleopatra-infinite-variety",
+    "studyWorkId": "antony-and-cleopatra",
+    "text": "Age cannot wither her, nor custom stale\nHer infinite variety.",
+    "speaker": "Enobarbus",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Antony and Cleopatra",
+    "locator": "Act 2, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Enobarbus rejects the suggestion that Antony will leave Cleopatra. His description presents her appeal as inexhaustible, while also showing how a powerful woman is interpreted through the fascination she produces in others.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Antony and Cleopatra, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_3.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "language"
+    ],
+    "studyPrompt": "What can we learn about Enobarbus as well as Cleopatra from the way he praises her?"
+  },
+  {
+    "id": "study-chaucer-canterbury-pardoner-prologue-motive",
+    "studyWorkId": "canterbury-pardoner-prologue",
+    "text": "For my entente is nat but for to winne,\nAnd no-thing for correccioun of sinne.",
+    "speaker": "The Pardoner",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Pardoner’s Prologue",
+    "locator": "Group C, lines 403–404; Middle English; excerpt",
+    "context": "The Pardoner explains his preaching business to the pilgrims. The plainness of the confession makes his later moral performance harder to receive innocently.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#pardonerpro"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "power"
+    ],
+    "studyPrompt": "What does this admission do to your judgement of his listeners as well as the speaker?",
+    "gloss": "My only intention is to make money, not to correct sin.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-coriolanus-city-and-people",
+    "studyWorkId": "coriolanus",
+    "text": "What is the city but the people?",
+    "speaker": "Sicinius",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Coriolanus",
+    "locator": "Act 3, scene 1; Project Gutenberg #100; excerpt",
+    "context": "Sicinius answers warnings that the conflict with Coriolanus will destroy Rome. His question identifies the city with its citizens, while the surrounding struggle shows how fiercely characters disagree over who can speak for them.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Coriolanus, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_6.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "justice"
+    ],
+    "studyPrompt": "What changes when a political community is defined by its inhabitants instead of its buildings or leaders?"
+  },
+  {
+    "id": "study-chaucer-canterbury-pardoners-tale-respect-age",
+    "studyWorkId": "canterbury-pardoners-tale",
+    "text": "But, sirs, to yow it is no curteisye\nTo speken to an old man vileinye,\nBut he trespasse in worde, or elles in dede.",
+    "speaker": "The old man in the Pardoner’s tale",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Pardoner’s Tale",
+    "locator": "Group C, lines 739–741; Middle English; excerpt",
+    "context": "The rioters insult an old man while searching for Death. He answers by appealing to courtesy before directing them towards the tree.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#pardoner"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "justice"
+    ],
+    "studyPrompt": "What does the rioters’ treatment of this stranger reveal before gold tests them?",
+    "gloss": "It is discourteous to insult an old man unless he has wronged you in speech or deed.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-titus-andronicus-razor-words",
+    "studyWorkId": "titus-andronicus",
+    "text": "These words are razors to my wounded heart.",
+    "speaker": "Titus",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Titus Andronicus",
+    "locator": "Act 1, scene 1; Project Gutenberg #100; excerpt",
+    "context": "Titus reacts when Saturninus mocks him after the dispute over Lavinia’s marriage, giving words a cutting edge within a scene already marked by family violence. This passage belongs to the opening act, often attributed to Shakespeare’s collaborator George Peele.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Titus Andronicus, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_34.1"
+      },
+      {
+        "label": "Folger Lost Plays Database: George Peele and the opening act",
+        "url": "https://lostplays.folger.edu/Category:George_Peele"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "grief"
+    ],
+    "studyPrompt": "How does the comparison of speech to a blade prepare us for the play’s later injuries?",
+    "authorCredit": "From a play attributed to William Shakespeare and George Peele"
+  },
+  {
+    "id": "study-chaucer-canterbury-nuns-priests-tale-widows-care",
+    "studyWorkId": "canterbury-nuns-priests-tale",
+    "text": "In pacience ladde a ful simple lyf,\nFor litel was hir catel and hir rente;\nBy housbondrye, of such as God hir sente,\nShe fond hir-self, and eek hir doghtren two.",
+    "speaker": "The Nun’s Priest as storyteller",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Nun’s Priest’s Tale",
+    "locator": "Group B, lines 4016–4019; Middle English; excerpt",
+    "context": "Before the animal debate begins, the widow’s limited means and careful household management establish the farmyard world. The narrator values sufficiency without making her wealthy.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#nunspriest"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "attention"
+    ],
+    "studyPrompt": "How does this household’s sufficiency compare with the Franklin’s abundance?",
+    "gloss": "She lived a simple, patient life with little property or income; through careful management of what God sent, she supported herself and two daughters.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-timon-of-athens-cold-kindness",
+    "studyWorkId": "timon-of-athens",
+    "text": "’Tis lack of kindly warmth they are not kind;",
+    "speaker": "Timon",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Timon of Athens",
+    "locator": "Act 2, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Timon explains the senators’ refusal to help by blaming age and cold blood. The pun on kindly and kind lets him rationalise rejection and continue trusting that another wealthy friend will rescue him.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Timon of Athens, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_33.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "truth"
+    ],
+    "studyPrompt": "How does Timon’s play on kindly and kind protect his expectations of friendship from the evidence Flavius brings?",
+    "authorCredit": "From a play attributed to William Shakespeare and Thomas Middleton"
+  },
+  {
+    "id": "study-chaucer-canterbury-franklins-tale-love-and-rule",
+    "studyWorkId": "canterbury-franklins-tale",
+    "text": "Love wol nat ben constreyned by maistrye;\nWhan maistrie comth, the god of love anon\nBeteth hise winges, and farewel! he is gon!",
+    "speaker": "The Franklin as storyteller",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Franklin’s Tale",
+    "locator": "Group F, lines 764–766; Middle English; excerpt",
+    "context": "After describing Dorigen and Arveragus’s agreement, the Franklin warns against domination. He gives Love wings to make coercion’s effect visible.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#franklin"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "power"
+    ],
+    "studyPrompt": "How does the image of departing wings sharpen the difference between agreement and control?",
+    "gloss": "Love will not be constrained by mastery; when domination comes, the god of love beats his wings and departs.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-troilus-and-cressida-value-and-will",
+    "studyWorkId": "troilus-and-cressida",
+    "text": "But value dwells not in particular will:\nIt holds his estimate and dignity\nAs well wherein ’tis precious of itself\nAs in the prizer.",
+    "speaker": "Hector",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Troilus and Cressida",
+    "locator": "Act 2, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Debating whether to return Helen, Hector rejects Troilus’s suggestion that something is worth whatever a person values it at. The argument asks whether desire alone can justify the immense human cost of keeping her.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Troilus and Cressida, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_35.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "truth"
+    ],
+    "studyPrompt": "How does Hector distinguish the prizer’s desire from a value that could justify the continuing war?"
+  },
+  {
+    "id": "study-chaucer-canterbury-clerks-tale-lineage",
+    "studyWorkId": "canterbury-clerks-tale",
+    "text": "For god it woot, that children ofte been\nUnlyk her worthy eldres hem bifore;\nBountee comth al of god, nat of the streen\nOf which they been engendred and y-bore;",
+    "speaker": "Walter",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Clerk’s Tale",
+    "locator": "Group E, lines 155–158; Middle English; excerpt",
+    "context": "Walter rejects the assumption that family rank guarantees worthy children before choosing Griselda. His later treatment of her exposes a gap between this principle and his conduct.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#clerk"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "truth"
+    ],
+    "studyPrompt": "How does Walter later fail to live by the moral distinction he can express here?",
+    "gloss": "Children are often unlike their worthy ancestors; goodness comes from God, not from the lineage into which they are born.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-henry-iv-part-1-honour-and-air",
+    "studyWorkId": "henry-iv-part-1",
+    "text": "What is honour? A word. What is in that word, “honour”? What is that\n“honour”? Air.",
+    "speaker": "Falstaff",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Henry IV, Part 1",
+    "locator": "Act 5, scene 1; Project Gutenberg #100; excerpt",
+    "context": "Before the battle of Shrewsbury, Falstaff questions the value of a reputation that cannot repair an injured body. His catechism exposes the cost of heroic language while also serving his determination to survive.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Henry IV, Part 1, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_9.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "courage",
+      "language"
+    ],
+    "studyPrompt": "Which parts of Falstaff’s argument would still deserve an answer if a less self-interested person spoke them?"
+  },
+  {
+    "id": "study-chaucer-canterbury-manciples-tale-tongue-and-friend",
+    "studyWorkId": "canterbury-manciples-tale",
+    "text": "My sone, keep wel thy tonge and keep thy freend.\nA wikked tonge is worse than a feend.",
+    "speaker": "The Manciple’s mother, as recalled by the Manciple",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Manciple’s Tale",
+    "locator": "Group H, lines 319–320; Middle English; excerpt",
+    "context": "The Manciple frames his closing counsel as something learned from his mother. Friendship depends here on disciplined speech.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#manciple"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "love"
+    ],
+    "studyPrompt": "How does giving the advice a maternal speaker affect its authority?",
+    "gloss": "My son, guard your tongue and keep your friend; a wicked tongue is worse than a devil.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-henry-iv-part-2-uneasy-crown",
+    "studyWorkId": "henry-iv-part-2",
+    "text": "Uneasy lies the head that wears a crown.",
+    "speaker": "King Henry IV",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Henry IV, Part 2",
+    "locator": "Act 3, scene 1; Project Gutenberg #100; excerpt",
+    "context": "Unable to sleep, the king imagines rest visiting people in poorer and more dangerous circumstances while passing him by. The line distils the burden of rule into an image of a body that ceremony cannot comfort.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Henry IV, Part 2, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_10.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "attention"
+    ],
+    "studyPrompt": "What can high status provide in this speech, and what basic human need can it fail to secure?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-sorrowful-verse",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "Thesiphone, thou help me for tendyte\nThise woful vers, that wepen as I wryte!",
+    "speaker": "The narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book I, lines 6–7; Middle English; excerpt",
+    "context": "The poem opens with an invocation to Tisiphone, a Fury, rather than a promise of easy romantic pleasure. Writing is imagined as sharing the sorrow it records.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "grief",
+      "imagination"
+    ],
+    "studyPrompt": "What expectations does invoking a Fury create before the love story begins?",
+    "gloss": "Tisiphone, help me compose these sorrowful verses that weep as I write them.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-henry-v-muse-of-fire",
+    "studyWorkId": "henry-v",
+    "text": "O for a Muse of fire, that would ascend\nThe brightest heaven of invention,",
+    "speaker": "Chorus",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Henry V",
+    "locator": "Prologue, before Act 1; Project Gutenberg #100; excerpt",
+    "context": "The Chorus begins by wishing for a stage equal to the scale of the history it will present. This invitation establishes imagination as work shared between the performers and the audience.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Henry V, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#chap11"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "language"
+    ],
+    "studyPrompt": "What does an audience contribute when a performance asks it to imagine more than it can physically show?"
+  },
+  {
+    "id": "study-chaucer-book-of-the-duchess-night-reading",
+    "studyWorkId": "book-of-the-duchess",
+    "text": "And bad oon reche me a book,\nA romaunce, and he hit me took\nTo rede and dryve the night away;",
+    "speaker": "The dreamer-narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Book of the Duchess",
+    "locator": "Lines 47–49; Middle English; excerpt",
+    "context": "Unable to sleep, the narrator requests a romance. The story of Ceyx and Alcyone will shape the dream that follows.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page277"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "attention"
+    ],
+    "studyPrompt": "How does the borrowed story prepare the narrator to encounter grief in his own dream?",
+    "gloss": "I asked someone to bring me a book, a romance, to read and pass the night.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-richard-ii-anointed-king",
+    "studyWorkId": "richard-ii",
+    "text": "Not all the water in the rough rude sea\nCan wash the balm off from an anointed king;",
+    "speaker": "Richard II",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Richard II",
+    "locator": "Act 3, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Returning from Ireland, Richard asserts that sacred consecration makes his authority secure. The surrounding action exposes the gap between that belief and the political support on which his actual safety depends.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Richard II, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_28.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "identity"
+    ],
+    "studyPrompt": "What happens when a person treats the legitimacy of a role as proof that they cannot lose it?"
+  },
+  {
+    "id": "study-chaucer-house-of-fame-dream-question",
+    "studyWorkId": "house-of-fame",
+    "text": "God turne us every dreem to gode!\nFor hit is wonder, by the rode,\nTo my wit, what causeth swevenes\nEither on morwes, or on evenes;",
+    "speaker": "The dreamer-narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The House of Fame",
+    "locator": "Book I, lines 1–4; Middle English; excerpt",
+    "context": "The poem begins with a blessing followed by uncertainty about the causes of dreams. Its exploration of knowledge opens by admitting a limit.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
+        "url": "https://www.gutenberg.org/cache/epub/45027/pg45027-images.html#page1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "imagination"
+    ],
+    "studyPrompt": "How does admitting uncertainty prepare you for the extraordinary journey that follows?",
+    "gloss": "May God turn every dream to good; I find it puzzling what causes dreams, whether morning or evening dreams.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-richard-iii-wise-and-young",
+    "studyWorkId": "richard-iii",
+    "text": "So wise so young, they say, do never live long.",
+    "speaker": "Richard, Duke of Gloucester",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Richard III",
+    "locator": "Act 3, scene 1; Project Gutenberg #100; excerpt",
+    "context": "Richard speaks aside after the young prince reflects on history and memory. The apparent proverb becomes ominous because the audience knows Richard’s ambitions and sees the child’s intelligence as a danger to him.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Richard III, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_29.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "power"
+    ],
+    "studyPrompt": "How does hearing this aside change a remark that might otherwise sound like ordinary folk wisdom?"
+  },
+  {
+    "id": "study-chaucer-parliament-of-fowls-old-books-new-knowledge",
+    "studyWorkId": "parliament-of-fowls",
+    "text": "For out of olde feldes, as men seith,\nCometh al this newe corn fro yeer to yere;\nAnd out of olde bokes, in good feith,\nCometh al this newe science that men lere.",
+    "speaker": "The dreamer-narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Parliament of Fowls",
+    "locator": "Lines 22–25; Middle English; excerpt",
+    "context": "The narrator compares reading old books with harvesting new grain from old fields. In this passage, science means knowledge or learning in a broad medieval sense.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page335"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "time"
+    ],
+    "studyPrompt": "What kind of active work is implied by comparing a reader with someone who cultivates a field?",
+    "gloss": "As new grain comes year after year from old fields, new knowledge comes from old books.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-alls-well-that-ends-well-remedies",
+    "studyWorkId": "alls-well-that-ends-well",
+    "text": "Our remedies oft in ourselves do lie,\nWhich we ascribe to heaven: the fated sky\nGives us free scope; only doth backward pull\nOur slow designs when we ourselves are dull.",
+    "speaker": "Helena",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "All’s Well That Ends Well",
+    "locator": "Act 1, scene 1; Gutenberg 100; excerpt",
+    "context": "After Parolles leaves, Helena weighs her love for the socially superior Bertram and imagines a course of action. Her confidence in human agency begins a plot whose later methods complicate that confidence.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_2.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "courage",
+      "power"
+    ],
+    "studyPrompt": "When does confidence in your own resourcefulness become a refusal to respect another person’s freedom?"
+  },
+  {
+    "id": "study-chaucer-truth-enough",
+    "studyWorkId": "truth",
+    "text": "Flee fro the prees, and dwelle with sothfastnesse,\nSuffyce unto thy good, though hit be smal;",
+    "speaker": "The poem’s advising voice",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Truth",
+    "locator": "Lines 1–2; Middle English; excerpt",
+    "context": "The opening counsels withdrawal from competitive bustle and acceptance of sufficient means. Its advice is framed by the poem’s larger religious account of a well-directed life.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page390"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "attention"
+    ],
+    "studyPrompt": "What distinction can you make between contentment and abandoning responsibilities?",
+    "gloss": "Leave the crowd and live with truth; be content with what you have, even if it is little.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-as-you-like-it-adversity",
+    "studyWorkId": "as-you-like-it",
+    "text": "Sweet are the uses of adversity,\nWhich, like the toad, ugly and venomous,\nWears yet a precious jewel in his head;",
+    "speaker": "Duke Senior",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "As You Like It",
+    "locator": "Act 2, scene 1; Gutenberg 100; excerpt",
+    "context": "The exiled duke turns the discomforts of forest life into an argument for learning from hardship. His image depends on the old belief that a toad carried a precious stone in its head.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_4.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "courage"
+    ],
+    "studyPrompt": "What does the jewel image reveal, and what suffering might the duke’s elegant account overlook?"
+  },
+  {
+    "id": "study-chaucer-gentilesse-virtue-over-title",
+    "studyWorkId": "gentilesse",
+    "text": "And, but his heir love vertu, as dide he,\nHe is noght gentil, thogh he riche seme,\nAl were he mytre, croune, or diademe.",
+    "speaker": "The poem’s moral speaker",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Gentilesse",
+    "locator": "Lines 12–14; Middle English; excerpt",
+    "context": "After describing the first source of true nobility, the poem tests a supposed heir by love of virtue. Wealth and ceremonial rank do not settle the matter.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page392"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "justice"
+    ],
+    "studyPrompt": "How does the list of high offices intensify the challenge to inherited prestige?",
+    "gloss": "Unless the heir shares that love of virtue, he is not noble however rich he seems, even with a mitre, crown or diadem.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-comedy-of-errors-drop-of-water",
+    "studyWorkId": "comedy-of-errors",
+    "text": "I to the world am like a drop of water\nThat in the ocean seeks another drop,",
+    "speaker": "Antipholus of Syracuse",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Comedy of Errors",
+    "locator": "Act 1, scene 2; Gutenberg 100; excerpt",
+    "context": "Searching for his mother and brother, Antipholus describes the risk of losing himself in the search for another person. The ocean image gives the comedy’s mistaken identities a foundation of grief.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_5.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "grief"
+    ],
+    "studyPrompt": "How does the image change if you imagine reunion rather than disappearance?"
+  },
+  {
+    "id": "study-chaucer-former-age-shared-faith",
+    "studyWorkId": "former-age",
+    "text": "Hir hertes were al oon, with-oute galles,\nEverich of hem his feith to other kepte.",
+    "speaker": "The poem’s narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Former Age",
+    "locator": "Lines 47–48; Middle English; excerpt",
+    "context": "Within the imagined golden age, mutual fidelity matters more than rich bedding or military equipment. The picture expresses a moral ideal rather than documented history.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page380"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "truth"
+    ],
+    "studyPrompt": "Why place this account of trust beside descriptions of material simplicity?",
+    "gloss": "Their hearts were united without bitterness, and each kept faith with the others.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-cymbeline-fear-no-more",
+    "studyWorkId": "cymbeline",
+    "text": "Fear no more the heat o’ th’ sun,\nNor the furious winter’s rages;\nThou thy worldly task hast done,\nHome art gone, and ta’en thy wages.",
+    "speaker": "Guiderius",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Cymbeline",
+    "locator": "Act 4, scene 2; Gutenberg 100; excerpt",
+    "context": "Guiderius sings over the apparently dead Fidele, who is actually Imogen under the effect of a drug. The funeral song imagines death as release, while the audience’s greater knowledge makes the grief doubly poignant.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_7.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "grief",
+      "hospitality"
+    ],
+    "studyPrompt": "How does knowing that Imogen lives change your response to a song about rest?"
+  },
+  {
+    "id": "study-chaucer-fortune-reason-remains",
+    "studyWorkId": "fortune",
+    "text": "Yit is me left the light of my resoun,\nTo knowen frend fro fo in thy mirour.\nSo muche hath yit thy whirling up and doun\nY-taught me for to knowen in an hour.",
+    "speaker": "The plaintiff addressing Fortune",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Fortune",
+    "locator": "Lines 9–12; Middle English; excerpt",
+    "context": "The plaintiff argues that reversal has not removed the power to judge. Fortune’s changes have exposed differences between genuine friends and enemies.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page383"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "courage"
+    ],
+    "studyPrompt": "What does the mirror image suggest about the kind of knowledge adversity can give?",
+    "gloss": "I still have reason’s light to recognise friend and enemy in your mirror; your changes have taught me that much in a single hour.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-loves-labours-lost-borrowed-learning",
+    "studyWorkId": "loves-labours-lost",
+    "text": "Small have continual plodders ever won,\nSave base authority from others’ books.",
+    "speaker": "Berowne",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Love’s Labour’s Lost",
+    "locator": "Act 1, scene 1; Gutenberg 100; excerpt",
+    "context": "Berowne resists the king’s rigid programme of study and mocks knowledge borrowed without experience. His eloquent case also serves his wish to escape an inconvenient oath.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_19.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "truth"
+    ],
+    "studyPrompt": "How can you test whether a borrowed idea has become knowledge you can use?"
+  },
+  {
+    "id": "study-chaucer-lack-of-steadfastness-word-as-bond",
+    "studyWorkId": "lack-of-steadfastness",
+    "text": "Som tyme this world was so stedfast and stable\nThat mannes word was obligacioun,",
+    "speaker": "The poem’s public moral voice",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Lak of Stedfastnesse",
+    "locator": "Lines 1–2; Middle English; excerpt",
+    "context": "The poem opens with a remembered ideal of reliable speech before criticising the present. Treat the claim about the past as the ballade’s rhetorical starting point.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page394"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "language"
+    ],
+    "studyPrompt": "How does beginning with an idealised past strengthen or limit the criticism that follows?",
+    "gloss": "Once the world was so firm and reliable that a person’s word was a binding obligation.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-measure-for-measure-doubts",
+    "studyWorkId": "measure-for-measure",
+    "text": "Our doubts are traitors,\nAnd make us lose the good we oft might win\nBy fearing to attempt.",
+    "speaker": "Lucio",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Measure for Measure",
+    "locator": "Act 1, scene 4; Gutenberg 100; excerpt",
+    "context": "Lucio urges Isabella to plead for Claudio before Angelo. His encouragement opens a necessary possibility, though Lucio’s own behaviour makes him a complicated spokesman for courage.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_21.4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "courage",
+      "power"
+    ],
+    "studyPrompt": "When is doubt useful preparation, and when does it prevent a worthwhile attempt?"
+  },
+  {
+    "id": "study-chaucer-adam-scrivener-careful-copying",
+    "studyWorkId": "adam-scrivener",
+    "text": "So ofte a daye I mot thy werk renewe,\nHit to correcte and eek to rubbe and scrape;\nAnd al is through thy negligence and rape.",
+    "speaker": "Chaucer’s speaker addressing Adam",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Chaucers Wordes unto Adam, His Owne Scriveyn",
+    "locator": "Lines 5–7; Middle English; excerpt",
+    "context": "The speaker complains that careless copying repeatedly forces him to revise and scrape the text. Here rape means haste, a sense distinct from its usual modern meaning.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page379"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "language"
+    ],
+    "studyPrompt": "What would a careful modern equivalent of Adam’s copying task require?",
+    "gloss": "So often I must redo your work, correcting it and rubbing and scraping, all because of your carelessness and haste.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-merchant-of-venice-glisters",
+    "studyWorkId": "merchant-of-venice",
+    "text": "All that glisters is not gold,\nOften have you heard that told.",
+    "speaker": "Prince of Morocco, reading the gold casket’s scroll",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Merchant of Venice",
+    "locator": "Act 2, scene 7; Gutenberg 100; excerpt",
+    "context": "Morocco discovers this warning after choosing the outwardly impressive gold casket. The test makes appearance unreliable, while the scene also invites scrutiny of the prejudice directed at the unsuccessful suitor.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_22.7"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "truth"
+    ],
+    "studyPrompt": "Which signs of value are you most tempted to trust before examining what they contain?"
+  },
+  {
+    "id": "study-chaucer-treatise-on-astrolabe-learner-attention",
+    "studyWorkId": "treatise-on-astrolabe",
+    "text": "I have perceived wel by certeyne evidences thyn abilite to lerne sciencez touchinge noumbres and proporciouns;",
+    "speaker": "Chaucer’s instructional voice, addressing Lowis",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "A Treatise on the Astrolabe",
+    "locator": "Prologue, printed lines 1–3; Middle English; excerpt",
+    "context": "The prologue begins by noticing the learner’s ability and particular interest. Instruction is motivated by evidence of curiosity rather than a generic programme.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
+        "url": "https://www.gutenberg.org/cache/epub/45027/pg45027-images.html#page175"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "hospitality"
+    ],
+    "studyPrompt": "What does the opening suggest a teacher should notice before choosing a lesson?",
+    "gloss": "I have recognised clear signs of your ability to learn about numbers and proportions.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-merry-wives-of-windsor-worlds-oyster",
+    "studyWorkId": "merry-wives-of-windsor",
+    "text": "Why then, the world’s mine oyster,\nWhich I with sword will open.",
+    "speaker": "Pistol",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Merry Wives of Windsor",
+    "locator": "Act 2, scene 2; Gutenberg 100; excerpt",
+    "context": "Denied a loan by Falstaff, Pistol imagines forcing the world to yield money. The familiar image of opportunity begins here as swaggering language about taking by force.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_23.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "language"
+    ],
+    "studyPrompt": "How does learning the original situation change a phrase often used as encouragement?"
+  },
+  {
+    "id": "study-chaucer-canterbury-general-prologue-pilgrimage",
+    "studyWorkId": "canterbury-general-prologue",
+    "text": "Than longen folk to goon on pilgrimages\n(And palmers for to seken straunge strondes)\nTo ferne halwes, couthe in sondry londes;",
+    "speaker": "Pilgrim narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: General Prologue",
+    "locator": "Group A, lines 12–14; Middle English; excerpt",
+    "context": "After the spring landscape, the narrator describes the desire for pilgrimage and distant shrines. Religious purpose and the attraction of unfamiliar places meet here.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#prologue"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "identity"
+    ],
+    "studyPrompt": "How do spiritual devotion and curiosity about distant places coexist in these lines?",
+    "gloss": "Then people long to go on pilgrimages, and pilgrims seek distant shores and shrines known in different lands.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-midsummer-nights-dream-fond-pageant",
+    "studyWorkId": "midsummer-nights-dream",
+    "text": "Shall we their fond pageant see?\nLord, what fools these mortals be!",
+    "speaker": "Puck",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "A Midsummer Night’s Dream",
+    "locator": "Act 3, scene 2; Gutenberg 100; excerpt",
+    "context": "Puck treats the lovers’ distress as entertainment after the enchantments have gone wrong. His distance makes the confusion funny while exposing how easily spectators dismiss another person’s pain.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_24.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "imagination"
+    ],
+    "studyPrompt": "What changes when you watch the lovers from their position instead of Puck’s?"
+  },
+  {
+    "id": "study-chaucer-canterbury-knights-tale-pity",
+    "studyWorkId": "canterbury-knights-tale",
+    "text": "Til at the laste aslaked was his mood;\nFor pitee renneth sone in gentil herte.",
+    "speaker": "The Knight as storyteller",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Knight’s Tale",
+    "locator": "Group A, lines 1760–1761; Middle English; excerpt",
+    "context": "Theseus’s anger at the fighters softens after the women plead for them. The storyteller associates nobility with a capacity to respond to another’s distress.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#knight"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "attention"
+    ],
+    "studyPrompt": "What role do the pleading women play in bringing about the change attributed to Theseus?",
+    "gloss": "At last his anger cooled, for compassion soon enters a noble heart.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-much-ado-about-nothing-sigh-no-more",
+    "studyWorkId": "much-ado-about-nothing",
+    "text": "Sigh no more, ladies, sigh no more,\nMen were deceivers ever;\nOne foot in sea, and one on shore,\nTo one thing constant never.",
+    "speaker": "Balthasar, singing",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Much Ado About Nothing",
+    "locator": "Act 2, scene 3; Gutenberg 100; excerpt",
+    "context": "Balthasar sings before Benedick overhears the staged conversation about Beatrice’s love. The song makes male inconstancy sound light, though the play later shows the damage caused by accepting stories of betrayal too easily.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_25.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "truth"
+    ],
+    "studyPrompt": "How might this song sound different after Hero’s public accusation?"
+  },
+  {
+    "id": "study-chaucer-canterbury-wife-prologue-perfection",
+    "studyWorkId": "canterbury-wife-prologue",
+    "text": "He spak to hem that wolde live parfitly;\nAnd lordinges, by your leve, that am nat I.\nI wol bistowe the flour of al myn age\nIn the actes and in fruit of mariage.",
+    "speaker": "Alisoun, the Wife of Bath",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Wife of Bath’s Prologue",
+    "locator": "Group D, lines 111–114; Middle English; excerpt",
+    "context": "Discussing Christ’s counsel of poverty, Alisoun distinguishes a call to perfection from the life she chooses. The argument uses scriptural interpretation to defend marriage.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#wifepro"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "language"
+    ],
+    "studyPrompt": "How does Alisoun turn an admission of imperfection into argumentative strength?",
+    "gloss": "He spoke to those who wished to live perfectly; with your permission, that is not me. I will spend my prime in married life.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-pericles-sea-and-grief",
+    "studyWorkId": "pericles",
+    "text": "We cannot but obey\nThe powers above us. Could I rage and roar\nAs doth the sea she lies in, yet the end\nMust be as ’tis.",
+    "speaker": "Pericles",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Pericles, Prince of Tyre",
+    "locator": "Act 3, scene 3; Gutenberg 100; excerpt",
+    "context": "Believing Thaisa dead, Pericles prepares to leave their infant with Cleon and Dionyza. His comparison of grief with the sea expresses an effort to endure loss without being able to reverse it.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_27.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "grief",
+      "courage"
+    ],
+    "studyPrompt": "Does the sea image make his acceptance feel settled, or reveal the force of feeling beneath it?",
+    "authorCredit": "From a play by William Shakespeare and George Wilkins"
+  },
+  {
+    "id": "study-chaucer-canterbury-wife-tale-earned-nobility",
+    "studyWorkId": "canterbury-wife-tale",
+    "text": "Loke who that is most vertuous alway,\nPrivee and apert, and most entendeth ay\nTo do the gentil dedes that he can,\nAnd tak him for the grettest gentil man.",
+    "speaker": "The old woman in the Wife of Bath’s tale",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Wife of Bath’s Tale",
+    "locator": "Group D, lines 1113–1116; Middle English; excerpt",
+    "context": "When her husband despises her birth, the old woman defines nobility through conduct in private and public. The argument turns attention from ancestry to repeated actions.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#wife"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "identity"
+    ],
+    "studyPrompt": "Why does the distinction between private and public behaviour matter to her definition?",
+    "gloss": "Look for the person who is always most virtuous, privately and openly, and most intent on noble deeds; call that person most noble.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-taming-of-the-shrew-speaking-anger",
+    "studyWorkId": "taming-of-the-shrew",
+    "text": "My tongue will tell the anger of my heart,\nOr else my heart, concealing it, will break;",
+    "speaker": "Katherina",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Taming of the Shrew",
+    "locator": "Act 4, scene 3; Gutenberg 100; excerpt",
+    "context": "After Petruchio prevents her from accepting the clothes she wants, Katherina insists on speaking her anger. The moment asserts an inner life against a pattern of deprivation and control.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_31.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "courage"
+    ],
+    "studyPrompt": "What is the difference between listening to anger and demanding that it be expressed politely?"
+  },
+  {
+    "id": "study-chaucer-canterbury-pardoner-prologue-preached-vice",
+    "studyWorkId": "canterbury-pardoner-prologue",
+    "text": "Thus can I preche agayn that same vyce\nWhich that I use, and that is avaryce.\nBut, though my-self be gilty in that sinne,\nYet can I maken other folk to twinne",
+    "speaker": "The Pardoner",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Pardoner’s Prologue",
+    "locator": "Group C, lines 427–430; Middle English; excerpt",
+    "context": "The Pardoner acknowledges that his own vice is the one his sermons attack. He nevertheless claims that his preaching can move others away from it.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#pardonerpro"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "language"
+    ],
+    "studyPrompt": "Can the audience distinguish a true lesson from a corrupt motive here?",
+    "gloss": "I can preach against the very vice I practise, greed; although guilty myself, I can make others leave it.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-tempest-dreams",
+    "studyWorkId": "tempest",
+    "text": "We are such stuff\nAs dreams are made on, and our little life\nIs rounded with a sleep.",
+    "speaker": "Prospero",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Tempest",
+    "locator": "Act 4, scene 1; Gutenberg 100; excerpt",
+    "context": "Prospero breaks off the masque and compares its vanishing figures with mortal life. His reflection grows out of a disturbed performance and his own troubled awareness of unfinished business.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_32.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "time",
+      "imagination"
+    ],
+    "studyPrompt": "How does a disappearing performance help you think about experiences that cannot be kept?"
+  },
+  {
+    "id": "study-chaucer-canterbury-pardoners-tale-changed-quest",
+    "studyWorkId": "canterbury-pardoners-tale",
+    "text": "No lenger thanne after Deeth they soughte,\nBut ech of hem so glad was of that sighte,\nFor that the florins been so faire and brighte,\nThat doun they sette hem by this precious hord.",
+    "speaker": "The Pardoner as storyteller",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Pardoner’s Tale",
+    "locator": "Group C, lines 772–775; Middle English; excerpt",
+    "context": "At the sight of the treasure, the rioters forget their search for Death. Their delight marks the change from an announced shared mission to the temptation that destroys them.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#pardoner"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "truth"
+    ],
+    "studyPrompt": "Why is forgetting Death at this moment so sharply ironic?",
+    "gloss": "They no longer searched for Death; each was so delighted by the bright, beautiful coins that they sat down beside the precious hoard.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-twelfth-night-greatness-letter",
+    "studyWorkId": "twelfth-night",
+    "text": "Some are born great, some achieve\ngreatness, and some have greatness thrust upon ’em.",
+    "speaker": "Malvolio, reading Maria’s forged letter",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Twelfth Night",
+    "locator": "Act 2, scene 5; Gutenberg 100; excerpt",
+    "context": "Malvolio reads a letter designed to make him believe Olivia loves him. Its famous encouragement is bait that flatters his ambition and prepares his public humiliation.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_36.5"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "truth"
+    ],
+    "studyPrompt": "What evidence does Malvolio ignore because the letter offers the future he wants?"
+  },
+  {
+    "id": "study-chaucer-canterbury-nuns-priests-tale-dream-dispute",
+    "studyWorkId": "canterbury-nuns-priests-tale",
+    "text": "Allas! and conne ye been agast of swevenis?\nNo-thing, god wot, but vanitee, in sweven is.",
+    "speaker": "Pertelote",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Nun’s Priest’s Tale",
+    "locator": "Group B, lines 4111–4112; Middle English; excerpt",
+    "context": "Pertelote rebukes Chauntecleer for fearing his dream. Her confident dismissal begins a long disagreement in which both birds marshal explanations.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#nunspriest"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "imagination"
+    ],
+    "studyPrompt": "How does the fox’s later arrival change the force of Pertelote’s certainty?",
+    "gloss": "Can you really be frightened by dreams? Dreams are nothing but emptiness, God knows.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-two-gentlemen-of-verona-home-keeping",
+    "studyWorkId": "two-gentlemen-of-verona",
+    "text": "Cease to persuade, my loving Proteus.\nHome-keeping youth have ever homely wits.",
+    "speaker": "Valentine",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Two Gentlemen of Verona",
+    "locator": "Act 1, scene 1; Gutenberg 100; excerpt",
+    "context": "Preparing to leave Verona, Valentine dismisses Proteus’s wish to remain at home for love. His proverb frames travel as education, although later events test whether movement produces wisdom.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_37.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "identity"
+    ],
+    "studyPrompt": "What kind of attention would make a journey educational rather than merely new?"
+  },
+  {
+    "id": "study-chaucer-canterbury-franklins-tale-patience",
+    "studyWorkId": "canterbury-franklins-tale",
+    "text": "Pacience is an heigh vertu certeyn;\nFor it venquisseth, as thise clerkes seyn,\nThinges that rigour sholde never atteyne.\nFor every word men may nat chyde or pleyne.",
+    "speaker": "The Franklin as storyteller",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Franklin’s Tale",
+    "locator": "Group F, lines 773–776; Middle English; excerpt",
+    "context": "The Franklin develops the couple’s marriage arrangement into advice about restraint. Patience is represented as effective where harshness cannot succeed.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#franklin"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "attention"
+    ],
+    "studyPrompt": "What does patience accomplish in this account, beyond merely enduring discomfort?",
+    "gloss": "Patience is a high virtue: it overcomes things that harshness could never achieve, and one cannot quarrel over every word.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-winters-tale-winter-story",
+    "studyWorkId": "winters-tale",
+    "text": "A sad tale’s best for winter. I have one\nOf sprites and goblins.",
+    "speaker": "Mamillius",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Winter’s Tale",
+    "locator": "Act 2, scene 1; Gutenberg 100; excerpt",
+    "context": "Mamillius begins a story for Hermione shortly before Leontes interrupts their domestic scene. The child’s taste for a ghost story acquires a darker force in light of the family’s coming losses.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_39.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "grief"
+    ],
+    "studyPrompt": "How does the unfinished story change the emotional atmosphere of the scene?"
+  },
+  {
+    "id": "study-chaucer-canterbury-clerks-tale-cruel-tests",
+    "studyWorkId": "canterbury-clerks-tale",
+    "text": "But as for me, I seye that yvel it sit\nTassaye a wyf whan that it is no nede,\nAnd putten her in anguish and in drede.",
+    "speaker": "The Clerk as storyteller",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Clerk’s Tale",
+    "locator": "Group E, lines 460–462; Middle English; excerpt",
+    "context": "The narrator interrupts Walter’s scheme with direct criticism. He distinguishes the ability to test a wife from any need or right to do so.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#clerk"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "power"
+    ],
+    "studyPrompt": "How does this explicit objection challenge a reading that simply praises obedience?",
+    "gloss": "For my part, I say it is wrong to test a wife unnecessarily and put her in anguish and fear.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-sonnets-18-living-lines",
+    "studyWorkId": "sonnets",
+    "text": "So long as men can breathe or eyes can see,\nSo long lives this, and this gives life to thee.",
+    "speaker": "Poetic speaker",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Sonnets",
+    "locator": "Sonnet 18, lines 13 to 14; Gutenberg 100; excerpt",
+    "context": "Sonnet 18 ends by giving the beloved a future in the poem’s continued reading. The promise relies on later readers doing the breathing and seeing that the couplet describes.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#chap01"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "time",
+      "language"
+    ],
+    "studyPrompt": "Does the poem preserve a person, an image of that person, or the act of praising them?"
+  },
+  {
+    "id": "study-chaucer-canterbury-manciples-tale-walled-tongue",
+    "studyWorkId": "canterbury-manciples-tale",
+    "text": "My sone, god of his endelees goodnesse\nWalled a tonge with teeth and lippes eke,\nFor man sholde him avyse what he speke.",
+    "speaker": "The Manciple’s mother, as recalled by the Manciple",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Manciple’s Tale",
+    "locator": "Group H, lines 322–324; Middle English; excerpt",
+    "context": "The mother’s imagined lesson uses the body as an ethical design. Teeth and lips become barriers that should make speech deliberate.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#manciple"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "attention"
+    ],
+    "studyPrompt": "What does the image of an enclosure suggest about a pause before speaking?",
+    "gloss": "God in his endless goodness enclosed the tongue with teeth and lips so that a person would consider what to say.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-hamlet-thinking",
+    "studyWorkId": "hamlet",
+    "text": "there is nothing either good or bad but\nthinking makes it so.",
+    "speaker": "Hamlet",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Hamlet",
+    "locator": "Act 2, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Hamlet explains why Denmark feels like a prison to him when Rosencrantz and Guildenstern disagree. He is describing a conflict of experience and interpretation within a conversation whose loyalties he distrusts.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Hamlet, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_8.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "truth"
+    ],
+    "studyPrompt": "How does the prison metaphor change when the same place feels safe to one person and oppressive to another?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-blind-intentions",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "O blinde world, O blinde entencioun!\nHow ofte falleth al theffect contraire\nOf surquidrye and foul presumpcioun;",
+    "speaker": "The narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book I, lines 211–213; Middle English; excerpt",
+    "context": "Troilus has mocked lovers before falling in love himself. The narrator uses the reversal to question the confidence with which people imagine themselves immune.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "identity"
+    ],
+    "studyPrompt": "How does knowing Troilus’s earlier mockery change the force of this generalisation?",
+    "gloss": "Blind world, blind purpose: how often the outcome contradicts arrogance and presumptuous confidence.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-macbeth-flower-serpent",
+    "studyWorkId": "macbeth",
+    "text": "look like the innocent flower,\nBut be the serpent under’t.",
+    "speaker": "Lady Macbeth",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Macbeth",
+    "locator": "Act 1, scene 5; Project Gutenberg #100; excerpt",
+    "context": "Lady Macbeth prepares her husband to welcome Duncan while hiding the intended murder. Hospitality becomes a performance that conceals betrayal, making a familiar sign of safety dangerously unreliable.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Macbeth, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_20.5"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "truth"
+    ],
+    "studyPrompt": "How do the flower and serpent images turn the expected welcome of a guest into a threat?"
+  },
+  {
+    "id": "study-chaucer-book-of-the-duchess-dawn-service",
+    "studyWorkId": "book-of-the-duchess",
+    "text": "And songen, everich in his wyse,\nThe moste solempne servyse\nBy note, that ever man, I trowe,\nHad herd;",
+    "speaker": "The dreamer-narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Book of the Duchess",
+    "locator": "Lines 301–304; Middle English; excerpt",
+    "context": "Within the dream, birds sing outside the narrator’s room. Their varied voices become an imagined ceremonial service.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page277"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "hospitality"
+    ],
+    "studyPrompt": "How does comparing birdsong with a service join the natural and ceremonial worlds?",
+    "gloss": "Each bird sang in its own way the most solemn musical service that, I believe, any person had heard.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-king-lear-feel-the-storm",
+    "studyWorkId": "king-lear",
+    "text": "Take physic, pomp;\nExpose thyself to feel what wretches feel,\nThat thou mayst shake the superflux to them\nAnd show the heavens more just.",
+    "speaker": "Lear",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "King Lear",
+    "locator": "Act 3, scene 4; Project Gutenberg #100; excerpt",
+    "context": "Outside the shelter during the storm, Lear recognises how little attention he has given to people without food or housing. Physic means a remedy, while superflux means excess: his suffering prompts a demand to redistribute what the powerful do not need.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: King Lear, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_18.4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "hospitality"
+    ],
+    "studyPrompt": "How does direct exposure to discomfort change Lear’s idea of what a ruler owes other people?"
+  },
+  {
+    "id": "study-chaucer-house-of-fame-bookish-hermit",
+    "studyWorkId": "house-of-fame",
+    "text": "And, also domb as any stoon,\nThou sittest at another boke,\nTil fully daswed is thy loke,\nAnd livest thus as an hermyte,\nAlthough thyn abstinence is lyte.",
+    "speaker": "The eagle",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The House of Fame",
+    "locator": "Book II, lines 656–660; Middle English; excerpt",
+    "context": "The eagle teases Geffrey about returning from work only to sit over another book. Reading is valuable, but the joke points towards experiences he has missed.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
+        "url": "https://www.gutenberg.org/cache/epub/45027/pg45027-images.html#page1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "identity"
+    ],
+    "studyPrompt": "What kind of knowledge might the eagle think Geffrey cannot gain by staying at his desk?",
+    "gloss": "Silent as a stone, you sit at another book until your eyes are dazed, living like a hermit even though you do little fasting.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-othello-seeming",
+    "studyWorkId": "othello",
+    "text": "Men should be what they seem;\nOr those that be not, would they might seem none!",
+    "speaker": "Iago",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Othello",
+    "locator": "Act 3, scene 3; Project Gutenberg #100; excerpt",
+    "context": "Iago performs moral reluctance while encouraging Othello to suspect Cassio and Desdemona. A statement that appears to praise honesty gains its dramatic force from the speaker’s systematic deception.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Othello, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_26.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "language"
+    ],
+    "studyPrompt": "How does a declaration of honesty make Iago’s insinuations harder for Othello to question?"
+  },
+  {
+    "id": "study-chaucer-parliament-of-fowls-valentines-assembly",
+    "studyWorkId": "parliament-of-fowls",
+    "text": "For this was on seynt Valentynes day,\nWhan every foul cometh ther to chese his make,\nOf every kinde, that men thenke may;",
+    "speaker": "The dreamer-narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Parliament of Fowls",
+    "locator": "Lines 309–311; Middle English; excerpt",
+    "context": "The narrator locates the birds’ gathering on Saint Valentine’s Day. The line is evidence of this poem’s imagined occasion, not proof that Chaucer invented every later custom.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page335"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "imagination"
+    ],
+    "studyPrompt": "What changes when the poem imagines love as a gathering of many different kinds of creatures?",
+    "gloss": "It was Saint Valentine’s Day, when birds of every imaginable kind come there to choose their mates.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-romeo-and-juliet-boundless-bounty",
+    "studyWorkId": "romeo-and-juliet",
+    "text": "My bounty is as boundless as the sea,\nMy love as deep; the more I give to thee,\nThe more I have, for both are infinite.",
+    "speaker": "Juliet",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Romeo and Juliet",
+    "locator": "Act 2, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Speaking from her window, Juliet imagines love as a gift that increases through giving. Her expansive language makes an intimate alternative to the city’s inherited rivalries and measures of family honour.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Romeo and Juliet, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_30.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "hospitality"
+    ],
+    "studyPrompt": "How does Juliet’s image of abundance differ from relationships based on debt, ownership or exchange?"
+  },
+  {
+    "id": "study-chaucer-truth-pilgrims-road",
+    "studyWorkId": "truth",
+    "text": "Her nis non hoom, her nis but wildernesse:\nForth, pilgrim, forth! Forth, beste, out of thy stal!\nKnow thy contree, look up, thank God of al;",
+    "speaker": "The poem’s advising voice",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Truth",
+    "locator": "Lines 17–19; Middle English; excerpt",
+    "context": "The poem turns from the hazards of worldly striving to an image of spiritual travel. Its home lies beyond the present wilderness within a Christian frame.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page390"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "courage",
+      "identity"
+    ],
+    "studyPrompt": "How does the journey image join acceptance of present limits with continued movement?",
+    "gloss": "This is not home but wilderness; move on, pilgrim, leave your stall, know your true country, look up and give thanks to God for everything.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-julius-caesar-fault-and-stars",
+    "studyWorkId": "julius-caesar",
+    "text": "The fault, dear Brutus, is not in our stars,\nBut in ourselves, that we are underlings.",
+    "speaker": "Cassius",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Julius Caesar",
+    "locator": "Act 1, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Cassius tries to turn Brutus’s unease about Caesar into a belief that accepting subordination is a personal failure. The appeal to agency is also a carefully directed effort to recruit a political ally.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Julius Caesar, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_17.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "identity"
+    ],
+    "studyPrompt": "What action does Cassius want this language of personal responsibility to make Brutus take?"
+  },
+  {
+    "id": "study-chaucer-gentilesse-unbequeathed-goodness",
+    "studyWorkId": "gentilesse",
+    "text": "Vyce may wel be heir to old richesse;\nBut ther may no man, as men may wel see,\nBequethe his heir his vertuous noblesse;",
+    "speaker": "The poem’s moral speaker",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Gentilesse",
+    "locator": "Lines 15–17; Middle English; excerpt",
+    "context": "The final stanza distinguishes property that can pass by inheritance from virtue that cannot. The possibility of a vicious wealthy heir makes the contrast concrete.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page392"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "truth"
+    ],
+    "studyPrompt": "What forms of teaching or example might still matter if virtue cannot simply be inherited?",
+    "gloss": "Vice may inherit old wealth, but no one can bequeath virtuous nobility to an heir.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-antony-and-cleopatra-fire-and-air",
+    "studyWorkId": "antony-and-cleopatra",
+    "text": "I am fire and air; my other elements\nI give to baser life.",
+    "speaker": "Cleopatra",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Antony and Cleopatra",
+    "locator": "Act 5, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Preparing for death rather than capture and public exhibition in Rome, Cleopatra imagines herself made of the lighter classical elements. Her language is part of a final act of self-presentation in which political defeat and theatrical command coexist.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Antony and Cleopatra, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_3.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "power"
+    ],
+    "studyPrompt": "How does Cleopatra’s elemental image attempt to control the meaning of an ending she cannot escape?"
+  },
+  {
+    "id": "study-chaucer-treatise-on-astrolabe-different-paths",
+    "studyWorkId": "treatise-on-astrolabe",
+    "text": "in alle thise langages, and in many mo, han thise conclusiouns ben suffisantly lerned and taught, and yit by diverse rewles, right as diverse pathes leden diverse folk the righte wey to Rome.",
+    "speaker": "Chaucer’s instructional voice",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "A Treatise on the Astrolabe",
+    "locator": "Prologue, printed lines 26–29; Middle English; excerpt",
+    "context": "Defending English instruction beside Greek, Arabic, Hebrew and Latin learning, the writer compares different rules of teaching with roads to one city. The historical comparison is about access to knowledge.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
+        "url": "https://www.gutenberg.org/cache/epub/45027/pg45027-images.html#page175"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "justice"
+    ],
+    "studyPrompt": "How does this comparison challenge the idea that a single learned language owns knowledge?",
+    "gloss": "These results have been adequately learned and taught in many languages and by different methods, just as different paths lead people to Rome.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-coriolanus-knowing-friends",
+    "studyWorkId": "coriolanus",
+    "text": "Nature teaches beasts to know their friends.",
+    "speaker": "Sicinius",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Coriolanus",
+    "locator": "Act 2, scene 1; Project Gutenberg #100; excerpt",
+    "context": "Sicinius responds when Menenius says the people do not love Martius. Their subsequent exchange about wolves and lambs exposes how easily each side can turn an image of natural behaviour into a judgement about its opponents.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Coriolanus, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_6.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "power"
+    ],
+    "studyPrompt": "What evidence of friendship would count for the citizens, and would Menenius accept the same evidence?"
+  },
+  {
+    "id": "study-chaucer-canterbury-general-prologue-welcome",
+    "studyWorkId": "canterbury-general-prologue",
+    "text": "The chambres and the stables weren wyde,\nAnd wel we weren esed atte beste.",
+    "speaker": "Pilgrim narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: General Prologue",
+    "locator": "Group A, lines 28–29; Middle English; excerpt",
+    "context": "The Tabard provides generous space and comfort before the pilgrims form their storytelling company. Hospitality gives the gathering a practical foundation.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#prologue"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "attention"
+    ],
+    "studyPrompt": "What does including the stables tell you about a medieval host’s responsibilities?",
+    "gloss": "The bedrooms and stables were spacious, and we were very well looked after.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-titus-andronicus-concealed-sorrow",
+    "studyWorkId": "titus-andronicus",
+    "text": "Sorrow concealed, like an oven stopped,\nDoth burn the heart to cinders where it is.",
+    "speaker": "Marcus",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Titus Andronicus",
+    "locator": "Act 2, scene 4; Project Gutenberg #100; excerpt",
+    "context": "Marcus has found Lavinia after her assault and mutilation and tries to put her suffering into words. The heat image acknowledges pain that cannot be voiced, while his long speech also raises the question of how to listen when another person cannot answer.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Titus Andronicus, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_34.4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "grief",
+      "attention"
+    ],
+    "studyPrompt": "What might attentive care require beyond finding an eloquent description of someone else’s suffering?",
+    "authorCredit": "From a play attributed to William Shakespeare and George Peele"
+  },
+  {
+    "id": "study-chaucer-canterbury-knights-tale-emelyes-wish",
+    "studyWorkId": "canterbury-knights-tale",
+    "text": "Sin thou are mayde, and keper of us alle,\nMy maydenhede thou kepe and wel conserve,\nAnd whyl I live a mayde, I wol thee serve.",
+    "speaker": "Emelye",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Knight’s Tale",
+    "locator": "Group A, lines 2328–2330; Middle English; excerpt",
+    "context": "Emelye prays to Diana before the tournament. Her desire to remain unmarried complicates the contest in which the men seek to win her.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#knight"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "power"
+    ],
+    "studyPrompt": "What changes when you read the tournament from Emelye’s stated point of view?",
+    "gloss": "Since you are a maiden and guardian of us all, preserve my maidenhood; while I remain a maiden I will serve you.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-timon-of-athens-borrowed-moonlight",
+    "studyWorkId": "timon-of-athens",
+    "text": "the moon’s an arrant thief,\nAnd her pale fire she snatches from the sun;",
+    "speaker": "Timon",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Timon of Athens",
+    "locator": "Act 4, scene 3; Project Gutenberg #100; excerpt",
+    "context": "Addressing the bandits, Timon redescribes the natural world as a system of theft. His luminous image forms part of an embittered argument that tries to make wrongdoing appear universal and therefore inescapable.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Timon of Athens, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_33.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "justice"
+    ],
+    "studyPrompt": "How does the beauty of an image affect our willingness to question the argument attached to it?",
+    "authorCredit": "From a play attributed to William Shakespeare and Thomas Middleton"
+  },
+  {
+    "id": "study-chaucer-canterbury-wife-prologue-age-and-mirth",
+    "studyWorkId": "canterbury-wife-prologue",
+    "text": "The flour is goon, ther is na-more to telle,\nThe bren, as I best can, now moste I selle;\nBut yet to be right mery wol I fonde.",
+    "speaker": "Alisoun, the Wife of Bath",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Wife of Bath’s Prologue",
+    "locator": "Group D, lines 477–479; Middle English; excerpt",
+    "context": "The Wife looks back on lost youth through the milling metaphor of flour and bran. She answers the loss with a declared intention to remain merry.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#wifepro"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "time",
+      "courage"
+    ],
+    "studyPrompt": "What does the flour-and-bran image allow Alisoun to say about ageing?",
+    "gloss": "The fine flour is gone; now I must sell the bran as best I can, but I will still try to be cheerful.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-troilus-and-cressida-wallet-of-time",
+    "studyWorkId": "troilus-and-cressida",
+    "text": "Time hath, my lord, a wallet at his back,\nWherein he puts alms for oblivion,\nA great-siz’d monster of ingratitudes.",
+    "speaker": "Ulysses",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Troilus and Cressida",
+    "locator": "Act 3, scene 3; Project Gutenberg #100; excerpt",
+    "context": "Ulysses answers Achilles’s fear that his achievements have been forgotten. By imagining past deeds swallowed by time, he puts pressure on Achilles to return to action and regain public attention.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Troilus and Cressida, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_35.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "time",
+      "power"
+    ],
+    "studyPrompt": "Is Ulysses helping Achilles understand reputation, manipulating his insecurity, or doing both?"
+  },
+  {
+    "id": "study-chaucer-canterbury-wife-tale-virtue-begins",
+    "studyWorkId": "canterbury-wife-tale",
+    "text": "Yet may the hye god, and so hope I,\nGrante me grace to liven vertuously.\nThanne am I gentil, whan that I biginne\nTo liven vertuously and weyve sinne.",
+    "speaker": "The old woman in the Wife of Bath’s tale",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Wife of Bath’s Tale",
+    "locator": "Group D, lines 1173–1176; Middle English; excerpt",
+    "context": "The old woman applies the argument about nobility to herself. Her claim makes moral standing something enacted rather than secured by lineage.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#wife"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "courage"
+    ],
+    "studyPrompt": "How does the verb begin make nobility a practice rather than a possession?",
+    "gloss": "I hope God will grant me grace to live virtuously; I am noble when I begin to live well and turn away from wrongdoing.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-henry-iv-part-1-discretion",
+    "studyWorkId": "henry-iv-part-1",
+    "text": "The better part of valour is\ndiscretion, in the which better part I have saved my life.",
+    "speaker": "Falstaff",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Henry IV, Part 1",
+    "locator": "Act 5, scene 4; Project Gutenberg #100; excerpt",
+    "context": "Having escaped danger by pretending to be dead, Falstaff reframes his survival as a form of courage. He then prepares to claim credit for Hotspur’s death, complicating the wisdom of his defence.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Henry IV, Part 1, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_9.4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "courage",
+      "truth"
+    ],
+    "studyPrompt": "How does Falstaff’s subsequent claim to have killed Hotspur complicate his defence of discretion?"
+  },
+  {
+    "id": "study-chaucer-canterbury-pardoner-prologue-vicious-storyteller",
+    "studyWorkId": "canterbury-pardoner-prologue",
+    "text": "For, though myself be a ful vicious man,\nA moral tale yet I yow telle can,\nWhich I am wont to preche, for to winne.",
+    "speaker": "The Pardoner",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Pardoner’s Prologue",
+    "locator": "Group C, lines 459–461; Middle English; excerpt",
+    "context": "Just before the tale begins, its teller states the contradiction the audience must carry into it. The final phrase keeps his desire for profit in sight.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#pardonerpro"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "language"
+    ],
+    "studyPrompt": "How does the purpose stated in the last line complicate the phrase moral tale?",
+    "gloss": "Though I am a very vicious man, I can still tell a moral tale, one I usually preach to make money.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-henry-iv-part-2-ordinary-courage",
+    "studyWorkId": "henry-iv-part-2",
+    "text": "A man can die but once. We owe God a death.\nI’ll ne’er bear a base mind.",
+    "speaker": "Feeble",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Henry IV, Part 2",
+    "locator": "Act 3, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Feeble accepts recruitment while other men seek to buy their way out of service. The scene gives an apparently unimpressive recruit a direct form of courage amid the corruption of those organising the levy.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Henry IV, Part 2, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_10.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "courage",
+      "justice"
+    ],
+    "studyPrompt": "How does the contrast between Feeble’s name and his words affect your judgement of the recruitment scene?"
+  },
+  {
+    "id": "study-chaucer-canterbury-nuns-priests-tale-open-eyes",
+    "studyWorkId": "canterbury-nuns-priests-tale",
+    "text": "For he that winketh, whan he sholde see,\nAl wilfully, god lat him never thee!",
+    "speaker": "Chauntecleer",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Nun’s Priest’s Tale",
+    "locator": "Group B, lines 4621–4622; Middle English; excerpt",
+    "context": "Having escaped the fox, Chauntecleer refuses to close his eyes and sing again. His maxim grows directly out of the mistake that nearly killed him.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#nunspriest"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "truth"
+    ],
+    "studyPrompt": "What has experience taught the rooster that his earlier learning did not prevent?",
+    "gloss": "May the person who deliberately closes his eyes when he ought to look never prosper.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-henry-v-breach",
+    "studyWorkId": "henry-v",
+    "text": "Once more unto the breach, dear friends, once more,\nOr close the wall up with our English dead.",
+    "speaker": "King Henry V",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Henry V",
+    "locator": "Act 3, scene 1; Project Gutenberg #100; excerpt",
+    "context": "At Harfleur, Henry urges his soldiers to renew an assault by joining intimate address to the prospect of death. The speech demonstrates the force of encouragement while making the danger demanded of its listeners explicit.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Henry V, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_11.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "courage",
+      "power"
+    ],
+    "studyPrompt": "How do the words dear friends alter a command whose alternative is death?"
+  },
+  {
+    "id": "study-chaucer-canterbury-franklins-tale-human-error",
+    "studyWorkId": "canterbury-franklins-tale",
+    "text": "For in this world, certein, ther no wight is,\nThat he ne dooth or seith som-tyme amis.",
+    "speaker": "The Franklin as storyteller",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Franklin’s Tale",
+    "locator": "Group F, lines 779–780; Middle English; excerpt",
+    "context": "The narrator grounds his appeal for tolerance in the universality of mistaken speech and action. The subsequent tale makes the consequences of a spoken promise severe.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#franklin"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "language"
+    ],
+    "studyPrompt": "How does this early claim affect your later judgement of Dorigen’s promise?",
+    "gloss": "There is certainly no one in this world who does not sometimes do or say something wrong.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-richard-ii-hollow-crown",
+    "studyWorkId": "richard-ii",
+    "text": "For within the hollow crown\nThat rounds the mortal temples of a king\nKeeps Death his court;",
+    "speaker": "Richard II",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Richard II",
+    "locator": "Act 3, scene 2; Project Gutenberg #100; excerpt",
+    "context": "As news of desertion and execution arrives, Richard imagines death occupying the very emblem of royal power. His earlier assurance about sacred kingship gives way to a theatrical account of its vulnerability.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Richard II, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_28.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "time"
+    ],
+    "studyPrompt": "How does placing a second court inside the crown change the meaning of that symbol?"
+  },
+  {
+    "id": "study-chaucer-canterbury-clerks-tale-limits-of-example",
+    "studyWorkId": "canterbury-clerks-tale",
+    "text": "This storie is seyd, nat for that wyves sholde\nFolwen Grisilde as in humilitee,\nFor it were importable, though they wolde;",
+    "speaker": "The Clerk as storyteller",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Clerk’s Tale",
+    "locator": "Group E, lines 1142–1144; Middle English; excerpt",
+    "context": "Near the ending, the Clerk refuses a literal instruction that wives should imitate Griselda’s humility. He calls that demand unbearable even for those willing to try.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#clerk"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "truth"
+    ],
+    "studyPrompt": "Why must the narrator state this limit after telling so much about endurance?",
+    "gloss": "This story is not told so that wives should imitate Griselda in humility; even if they wanted to, it would be unbearable.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-richard-iii-conscience-tongues",
+    "studyWorkId": "richard-iii",
+    "text": "My conscience hath a thousand several tongues,\nAnd every tongue brings in a several tale,\nAnd every tale condemns me for a villain.",
+    "speaker": "King Richard III",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Richard III",
+    "locator": "Act 5, scene 3; Project Gutenberg #100; excerpt",
+    "context": "Waking from the visitation of his victims’ ghosts, Richard finds the accusations continuing inside his own mind. The man who has controlled so many conversations can no longer reduce his inward voices to a single reassuring story.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Richard III, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_29.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "identity"
+    ],
+    "studyPrompt": "How does the multiplication of voices reverse Richard’s earlier command of language and audiences?"
+  },
+  {
+    "id": "study-chaucer-canterbury-manciples-tale-enough-speech",
+    "studyWorkId": "canterbury-manciples-tale",
+    "text": "My sone, of muchel speking yvel-avysed,\nTher lasse speking hadde y-nough suffysed,\nComth muchel harm, thus was me told and taught.",
+    "speaker": "The Manciple’s mother, as recalled by the Manciple",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Manciple’s Tale",
+    "locator": "Group H, lines 335–337; Middle English; excerpt",
+    "context": "The closing lesson measures speech by what the situation requires. Harm comes from continuing after less would have been sufficient.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#manciple"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "attention"
+    ],
+    "studyPrompt": "How can you distinguish necessary frankness from the needless speech criticised here?",
+    "gloss": "Much harm comes from excessive, ill-considered speech when fewer words would have been enough; that is what I was taught.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-alls-well-that-ends-well-trust",
+    "studyWorkId": "alls-well-that-ends-well",
+    "text": "Love all, trust a few,\nDo wrong to none.",
+    "speaker": "Countess",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "All’s Well That Ends Well",
+    "locator": "Act 1, scene 1; Gutenberg 100; excerpt",
+    "context": "The Countess sends Bertram to court with a blessing that asks moral conduct to match inherited privilege. His subsequent treatment of Helena tests how little good advice can guarantee good behaviour.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_2.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "justice"
+    ],
+    "studyPrompt": "How would you distinguish universal goodwill from trust that must be earned?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-what-is-love",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "If no love is, O god, what fele I so?\nAnd if love is, what thing and whiche is he!\nIf love be good, from whennes comth my wo?",
+    "speaker": "Troilus, in the Canticus Troili",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book I, lines 400–402; Middle English; excerpt",
+    "context": "Troilus’s song, adapted by Chaucer from Petrarch, begins with questions rather than a definition. The pleasure and pain of desire make its nature uncertain to him.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "language"
+    ],
+    "studyPrompt": "How do the repeated questions let you hear feeling before an argument is settled?",
+    "gloss": "If this is not love, what am I feeling? If it is love, what kind of thing is it? If love is good, where does my sorrow come from?",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-as-you-like-it-self-knowledge",
+    "studyWorkId": "as-you-like-it",
+    "text": "The fool doth think\nhe is wise, but the wise man knows himself to be a fool.",
+    "speaker": "Touchstone",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "As You Like It",
+    "locator": "Act 5, scene 1; Gutenberg 100; excerpt",
+    "context": "Touchstone quotes this saying while intimidating William, his rival for Audrey. The scene lets a sharp truth about humility sit inside a display of intellectual bullying.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_4.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "power"
+    ],
+    "studyPrompt": "How does the speaker’s treatment of William challenge the wisdom of his own maxim?"
+  },
+  {
+    "id": "study-chaucer-book-of-the-duchess-gentle-approach",
+    "studyWorkId": "book-of-the-duchess",
+    "text": "I am right sory if I have ought\nDestroubled yow out of your thought;\nFor-yive me if I have mis-take.",
+    "speaker": "The dreamer-narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Book of the Duchess",
+    "locator": "Lines 523–525; Middle English; excerpt",
+    "context": "The narrator has approached the absorbed knight and apologises for disturbing him. Conversation begins with an acknowledgement of the other person’s inward life.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page277"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "grief"
+    ],
+    "studyPrompt": "What does this apology offer the grieving knight before any attempt at consolation?",
+    "gloss": "I am very sorry if I have interrupted your thoughts; forgive me if I have made a mistake.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-comedy-of-errors-strange-welcome",
+    "studyWorkId": "comedy-of-errors",
+    "text": "There’s not a man I meet but doth salute me\nAs if I were their well-acquainted friend,\nAnd everyone doth call me by my name.",
+    "speaker": "Antipholus of Syracuse",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Comedy of Errors",
+    "locator": "Act 4, scene 3; Gutenberg 100; excerpt",
+    "context": "Strangers welcome Antipholus because they mistake him for his twin. Recognition without understanding makes hospitality feel uncanny instead of comforting.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_5.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "identity"
+    ],
+    "studyPrompt": "What makes a welcome feel personal when familiarity alone is not enough?"
+  },
+  {
+    "id": "study-chaucer-house-of-fame-natural-place",
+    "studyWorkId": "house-of-fame",
+    "text": "Geffrey, thou wost right wel this,\nThat every kindly thing that is,\nHath a kindly stede ther he\nMay best in hit conserved be;",
+    "speaker": "The eagle",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The House of Fame",
+    "locator": "Book II, lines 729–732; Middle English; excerpt",
+    "context": "The eagle begins a physical explanation for why sound reaches the House of Fame. This is medieval natural philosophy inside a comic dream, not a modern scientific account.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
+        "url": "https://www.gutenberg.org/cache/epub/45027/pg45027-images.html#page1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "language"
+    ],
+    "studyPrompt": "How does the eagle turn an apparently familiar principle into authority for an unfamiliar claim?",
+    "gloss": "Geffrey, you know that every natural thing has a natural place where it can best be preserved.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-cymbeline-broken-vows",
+    "studyWorkId": "cymbeline",
+    "text": "Men’s vows are women’s traitors! All good seeming,\nBy thy revolt, O husband, shall be thought\nPut on for villainy;",
+    "speaker": "Imogen",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Cymbeline",
+    "locator": "Act 3, scene 4; Gutenberg 100; excerpt",
+    "context": "After learning that Posthumus has ordered her death, Imogen fears his betrayal will discredit every appearance of male goodness. Her sweeping judgement emerges from a specific and devastating injury.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_7.4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "love"
+    ],
+    "studyPrompt": "How can one betrayal change the meaning of promises that were once reassuring?"
+  },
+  {
+    "id": "study-chaucer-parliament-of-fowls-gooses-advice",
+    "studyWorkId": "parliament-of-fowls",
+    "text": "My wit is sharp, I love no taryinge;\nI seye, I rede him, though he were my brother,\nBut she wol love him, lat him love another!",
+    "speaker": "The goose",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Parliament of Fowls",
+    "locator": "Lines 565–567; Middle English; excerpt",
+    "context": "Speaking for the water birds, the goose gives blunt advice to an unsuccessful lover. The noble birds’ response reveals a disagreement about both love and social authority.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page335"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "power"
+    ],
+    "studyPrompt": "Why do the noble birds reject the goose’s practical reasoning so strongly?",
+    "gloss": "I am sharp-witted and dislike delay: even if he were my brother, I would advise him to love someone else if she will not love him.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-loves-labours-lost-living-academy",
+    "studyWorkId": "loves-labours-lost",
+    "text": "They are the books, the arts, the academes,\nThat show, contain, and nourish, all the world;",
+    "speaker": "Berowne",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Love’s Labour’s Lost",
+    "locator": "Act 4, scene 3; Gutenberg 100; excerpt",
+    "context": "Berowne argues that women’s eyes teach more than the books the men vowed to study. The praise celebrates love’s imaginative energy while also rationalising their broken promises.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_19.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "imagination"
+    ],
+    "studyPrompt": "Does this praise treat women as fellow thinkers, or mainly as inspiration for men?"
+  },
+  {
+    "id": "study-chaucer-treatise-on-astrolabe-useful-repetition",
+    "studyWorkId": "treatise-on-astrolabe",
+    "text": "me semeth betre to wryten un-to a child twyes a good sentence, than he for-gete it ones.",
+    "speaker": "Chaucer’s instructional voice",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "A Treatise on the Astrolabe",
+    "locator": "Prologue, printed lines 34–35; Middle English; excerpt",
+    "context": "The writer explains why he repeats material for a child. Clarity and retention take priority over avoiding what an expert reader might find redundant.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
+        "url": "https://www.gutenberg.org/cache/epub/45027/pg45027-images.html#page175"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "language"
+    ],
+    "studyPrompt": "When would repeating an explanation help learning more than making it shorter?",
+    "gloss": "It seems better to me to write a useful explanation twice for a child than for the child to forget it once.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-measure-for-measure-giants-strength",
+    "studyWorkId": "measure-for-measure",
+    "text": "O, it is excellent\nTo have a giant’s strength; but it is tyrannous\nTo use it like a giant.",
+    "speaker": "Isabella",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Measure for Measure",
+    "locator": "Act 2, scene 2; Gutenberg 100; excerpt",
+    "context": "Isabella challenges Angelo’s readiness to exercise the full force of the law against her brother. She separates possession of power from the ethical choice of how to use it.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_21.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "justice"
+    ],
+    "studyPrompt": "What practical restraint would show that someone deserves the authority they hold?"
+  },
+  {
+    "id": "study-chaucer-canterbury-general-prologue-courtesy",
+    "studyWorkId": "canterbury-general-prologue",
+    "text": "He never yet no vileinye ne sayde\nIn al his lyf, un-to no maner wight.\nHe was a verray parfit gentil knight.",
+    "speaker": "Pilgrim narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: General Prologue",
+    "locator": "Group A, lines 70–72; Middle English; excerpt",
+    "context": "The Knight’s portrait follows an account of campaigns with an emphasis on courteous speech. The narrator’s ideal includes restraint towards other people.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#prologue"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "attention"
+    ],
+    "studyPrompt": "How does verbal courtesy qualify the military achievements listed earlier?",
+    "gloss": "He had never spoken an insulting word to anyone in his life; he was a truly accomplished, noble knight.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-merchant-of-venice-shared-humanity",
+    "studyWorkId": "merchant-of-venice",
+    "text": "If you prick us, do we not bleed? If you tickle us, do we not\nlaugh?",
+    "speaker": "Shylock",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Merchant of Venice",
+    "locator": "Act 3, scene 1; Gutenberg 100; excerpt",
+    "context": "Responding to Christian contempt, Shylock insists on Jewish bodily humanity. The speech then turns from shared vulnerability towards revenge, so its argument cannot be understood only as reconciliation.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_22.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "identity"
+    ],
+    "studyPrompt": "How does the speech’s later appeal to revenge complicate its appeal to common humanity?"
+  },
+  {
+    "id": "study-chaucer-canterbury-knights-tale-passing-through",
+    "studyWorkId": "canterbury-knights-tale",
+    "text": "This world nis but a thurghfare ful of wo,\nAnd we ben pilgrimes, passinge to and fro;\nDeeth is an ende of every worldly sore.",
+    "speaker": "Egeus",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Knight’s Tale",
+    "locator": "Group A, lines 2847–2849; Middle English; excerpt",
+    "context": "After Arcite dies, Egeus consoles Theseus by describing earthly life as a journey. This is a character’s response to grief within the tale.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#knight"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "grief",
+      "time"
+    ],
+    "studyPrompt": "How does this pilgrimage image echo the journey of the Canterbury storytellers?",
+    "gloss": "This world is only a passage full of sorrow; we are pilgrims travelling through it, and death ends every earthly pain.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-merry-wives-of-windsor-salt-of-youth",
+    "studyWorkId": "merry-wives-of-windsor",
+    "text": "we have some salt of our youth in\nus. We are the sons of women, Master Page.",
+    "speaker": "Shallow",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Merry Wives of Windsor",
+    "locator": "Act 2, scene 3; Gutenberg 100; excerpt",
+    "context": "Shallow claims that respectable older men retain a taste for youthful fighting. His boast unsettles the tidy distinction between official peacemakers and the quarrels they supervise.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_23.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "power"
+    ],
+    "studyPrompt": "When can nostalgia become an excuse for behaviour a person’s role should restrain?"
+  },
+  {
+    "id": "study-chaucer-canterbury-wife-prologue-painted-lion",
+    "studyWorkId": "canterbury-wife-prologue",
+    "text": "Who peyntede the leoun, tel me who?\nBy god, if wommen hadde writen stories,\nAs clerkes han with-inne hir oratories,\nThey wolde han writen of men more wikkednesse",
+    "speaker": "Alisoun, the Wife of Bath",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Wife of Bath’s Prologue",
+    "locator": "Group D, lines 692–695; Middle English; excerpt",
+    "context": "Reacting to Jankyn’s collection of wicked women, Alisoun invokes the fable of the painted lion. She asks how the picture changes when its subject controls the telling.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#wifepro"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "power"
+    ],
+    "studyPrompt": "Whose viewpoint controls the evidence in the book Alisoun is challenging?",
+    "gloss": "Who painted the lion? If women wrote stories as scholars do in their studies, they would write of more wrongdoing by men.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-midsummer-nights-dream-imagination",
+    "studyWorkId": "midsummer-nights-dream",
+    "text": "The lunatic, the lover, and the poet\nAre of imagination all compact:",
+    "speaker": "Theseus",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "A Midsummer Night’s Dream",
+    "locator": "Act 5, scene 1; Gutenberg 100; excerpt",
+    "context": "Theseus rejects the lovers’ extraordinary account and groups poetry with other imaginative distortions. The surrounding play gives the audience reasons to question his confidence in sober judgement.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_24.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "truth"
+    ],
+    "studyPrompt": "Which events in the play resist Theseus’s attempt to explain them away?"
+  },
+  {
+    "id": "study-chaucer-canterbury-wife-tale-free-choice",
+    "studyWorkId": "canterbury-wife-tale",
+    "text": "My lady and my love, and wyf so dere,\nI put me in your wyse governance;\nCheseth your-self, which may be most plesance,\nAnd most honour to yow and me also.",
+    "speaker": "The knight in the Wife of Bath’s tale",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Wife of Bath’s Tale",
+    "locator": "Group D, lines 1230–1233; Middle English; excerpt",
+    "context": "Asked to choose between different kinds of wife, the knight finally gives the choice to her. The turning point puts his earlier answer into practice.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#wife"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "power"
+    ],
+    "studyPrompt": "Is this speech a surrender of power, an act of trust, or a mixture of both?",
+    "gloss": "My lady, my love and dear wife, I place myself under your wise guidance; choose what brings the greatest pleasure and honour to us both.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-much-ado-about-nothing-dog-and-crow",
+    "studyWorkId": "much-ado-about-nothing",
+    "text": "I had rather hear my dog bark at a crow than a man swear\nhe loves me.",
+    "speaker": "Beatrice",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Much Ado About Nothing",
+    "locator": "Act 1, scene 1; Gutenberg 100; excerpt",
+    "context": "Beatrice answers Benedick’s hostility to love with a sharper declaration of her own. Their verbal contest allows attraction and self-protection to remain entangled.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_25.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "language"
+    ],
+    "studyPrompt": "What does the pleasure of Beatrice’s language reveal that her stated refusal conceals?"
+  },
+  {
+    "id": "study-chaucer-canterbury-nuns-priests-tale-foxs-lesson",
+    "studyWorkId": "canterbury-nuns-priests-tale",
+    "text": "Nay,’ quod the fox, ‘but god yeve him meschaunce,\nThat is so undiscreet of governaunce,\nThat Iangleth whan he sholde holde his pees.",
+    "speaker": "The fox",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Nun’s Priest’s Tale",
+    "locator": "Group B, lines 4623–4625; Middle English; excerpt",
+    "context": "The fox replies to Chauntecleer’s lesson with his own, regretting the speech that released his prey. Each survivor explains the failure from a different interest.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#nunspriest"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "truth"
+    ],
+    "studyPrompt": "Why can the fox’s sensible-sounding lesson serve a predatory purpose?",
+    "gloss": "May misfortune strike anyone who governs himself so poorly that he chatters when he should stay silent.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-pericles-show-honour",
+    "studyWorkId": "pericles",
+    "text": "If you were born to honour, show it now;\nIf put upon you, make the judgement good\nThat thought you worthy of it.",
+    "speaker": "Marina",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Pericles, Prince of Tyre",
+    "locator": "Act 4, scene 6; Gutenberg 100; excerpt",
+    "context": "Held in a brothel, Marina challenges the governor Lysimachus to make his conduct worthy of his public position. The appeal draws its urgency from her vulnerability and his power over the encounter.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_27.6"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "justice"
+    ],
+    "studyPrompt": "How does Marina convert an inherited or official title into a responsibility that must be demonstrated?",
+    "authorCredit": "From a play by William Shakespeare and George Wilkins"
+  },
+  {
+    "id": "study-chaucer-canterbury-franklins-tale-release",
+    "studyWorkId": "canterbury-franklins-tale",
+    "text": "I have wel lever ever to suffre wo\nThan I departe the love bitwix yow two.\nI yow relesse, madame, in-to your hond\nQuit every surement and every bond,",
+    "speaker": "Aurelius",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Franklin’s Tale",
+    "locator": "Group F, lines 1531–1534; Middle English; excerpt",
+    "context": "Seeing Dorigen’s distress and Arveragus’s conduct, Aurelius gives up his claim on her promise. The release begins a chain of relinquished obligations.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#franklin"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "justice"
+    ],
+    "studyPrompt": "What changes when Aurelius stops treating a promise as something to enforce?",
+    "gloss": "I would rather suffer sorrow than separate your love; madam, I release you completely from every pledge and bond.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-taming-of-the-shrew-mind-and-clothes",
+    "studyWorkId": "taming-of-the-shrew",
+    "text": "Our purses shall be proud, our garments poor\nFor ’tis the mind that makes the body rich;",
+    "speaker": "Petruchio",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Taming of the Shrew",
+    "locator": "Act 4, scene 3; Gutenberg 100; excerpt",
+    "context": "Petruchio presents disregard for expensive clothing as moral wisdom after denying Katherina the garments she likes. The attractive sentiment also functions as a justification for controlling her choices.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_31.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "truth"
+    ],
+    "studyPrompt": "How can a worthy principle become misleading when the person invoking it controls someone else’s options?"
+  },
+  {
+    "id": "study-chaucer-canterbury-clerks-tale-unnail-the-tongue",
+    "studyWorkId": "canterbury-clerks-tale",
+    "text": "O noble wyves, ful of heigh prudence,\nLat noon humilitee your tonge naille,",
+    "speaker": "Voice of the closing envoy",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Clerk’s Tale",
+    "locator": "Group E, lines 1183–1184; Middle English; excerpt",
+    "context": "The envoy turns from Griselda’s silence towards an exuberant address to wives. Its image makes humility sound like a physical restraint on speech.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#clerk"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "power"
+    ],
+    "studyPrompt": "What does the envoy add that the tale’s earlier account of patience cannot contain?",
+    "gloss": "Noble wives of great judgement, do not let humility nail your tongues in place.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-tempest-rarer-action",
+    "studyWorkId": "tempest",
+    "text": "the rarer action is\nIn virtue than in vengeance:",
+    "speaker": "Prospero",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Tempest",
+    "locator": "Act 5, scene 1; Gutenberg 100; excerpt",
+    "context": "Moved by Ariel’s description of the captives’ suffering, Prospero chooses restraint over revenge. The decision is presented as an active struggle with anger rather than its simple absence.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_32.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "courage"
+    ],
+    "studyPrompt": "What makes restraint an action here rather than a failure to act?"
+  },
+  {
+    "id": "study-chaucer-canterbury-manciples-tale-words-release",
+    "studyWorkId": "canterbury-manciples-tale",
+    "text": "But he that hath misseyd, I dar wel sayn,\nHe may by no wey clepe his word agayn.\nThing that is seyd, is seyd; and forth it gooth,",
+    "speaker": "The Manciple’s mother, as recalled by the Manciple",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Manciple’s Tale",
+    "locator": "Group H, lines 353–355; Middle English; excerpt",
+    "context": "The counsel turns to the difficulty of retrieving a spoken injury. Words acquire a life beyond the speaker’s later regret.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#manciple"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "time"
+    ],
+    "studyPrompt": "How does the verb goes change the way you imagine the consequences of speech?",
+    "gloss": "Someone who has spoken wrongly cannot call the words back: what is said is said and goes on.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-twelfth-night-witty-fool",
+    "studyWorkId": "twelfth-night",
+    "text": "Better a witty\nfool than a foolish wit.",
+    "speaker": "Feste, labelled Clown in this edition",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Twelfth Night",
+    "locator": "Act 1, scene 5; Gutenberg 100; excerpt",
+    "context": "Feste invokes the mysterious Quinapalus before challenging Olivia’s reasoning about grief. His licensed foolishness creates room for a pointed conversation.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_36.5"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "truth"
+    ],
+    "studyPrompt": "How does Feste use playfulness to say something a more solemn speaker might not be allowed to say?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-changed-conduct",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "Dede were his Iapes and his crueltee,\nHis heighe port and his manere estraunge,\nAnd ech of tho gan for a vertu chaunge.",
+    "speaker": "The narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book I, lines 1083–1085; Middle English; excerpt",
+    "context": "At the end of Book I, love is said to alter Troilus’s behaviour towards others. The account presents an ethical change alongside his private suffering.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "identity"
+    ],
+    "studyPrompt": "Which actions would you need to see before accepting the narrator’s description of this transformation?",
+    "gloss": "His jokes at others’ expense, cruelty, haughtiness and distant manner disappeared, and each changed into a virtue.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-two-gentlemen-of-verona-beauty-and-kindness",
+    "studyWorkId": "two-gentlemen-of-verona",
+    "text": "Is she kind as she is fair?\nFor beauty lives with kindness.",
+    "speaker": "Proteus, singing in this edition",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Two Gentlemen of Verona",
+    "locator": "Act 4, scene 2; Gutenberg 100; excerpt",
+    "context": "Proteus serenades Silvia while Julia, disguised as a page, listens to the lover who has deserted her. The song’s praise of kindness is set against the unkindness of the performance’s circumstances.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_37.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "truth"
+    ],
+    "studyPrompt": "How does Julia’s silent presence change the ethical meaning of the serenade?"
+  },
+  {
+    "id": "study-chaucer-book-of-the-duchess-fortune-chess",
+    "studyWorkId": "book-of-the-duchess",
+    "text": "My boldnesse is turned to shame,\nFor fals Fortune hath pleyd a game\nAtte ches with me, allas! the whyle!\nThe trayteresse fals and ful of gyle,\nThat al behoteth and no-thing halt,",
+    "speaker": "The Man in Black",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Book of the Duchess",
+    "locator": "Lines 617–621; Middle English; excerpt",
+    "context": "The knight explains his loss through a game of chess with Fortune. The metaphor both expresses his pain and delays the dreamer’s recognition of the death behind it.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page277"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "grief",
+      "imagination"
+    ],
+    "studyPrompt": "What can the chess metaphor communicate about loss, and what can it conceal?",
+    "gloss": "My confidence has turned to shame: false Fortune has played chess with me, a treacherous deceiver who promises everything and keeps nothing.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-winters-tale-freely-given",
+    "studyWorkId": "winters-tale",
+    "text": "You pay a great deal too dear for what’s given freely.",
+    "speaker": "Camillo",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Winter’s Tale",
+    "locator": "Act 1, scene 1; Gutenberg 100; excerpt",
+    "context": "Archidamus praises the welcome offered in Sicilia, and Camillo answers his elaborate thanks. The courteous exchange imagines hospitality as generosity rather than an account that must be balanced.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_39.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "love"
+    ],
+    "studyPrompt": "How can you receive generous hospitality without turning gratitude into a debt?"
+  },
+  {
+    "id": "study-chaucer-house-of-fame-undeserved-shame",
+    "studyWorkId": "house-of-fame",
+    "text": "Alas,' thoughte I, 'what aventures\nHan these sory creatures!\nFor they, amonges al the pres,\nShul thus be shamed gilteles!",
+    "speaker": "The dreamer-narrator, in thought",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The House of Fame",
+    "locator": "Book III, lines 1631–1634; Middle English; excerpt",
+    "context": "Fame grants a bad reputation to people who deserve praise. The dreamer notices the injustice rather than accepting reputation as evidence of character.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
+        "url": "https://www.gutenberg.org/cache/epub/45027/pg45027-images.html#page1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "truth"
+    ],
+    "studyPrompt": "What would you need besides reputation to judge the people in this scene fairly?",
+    "gloss": "Alas, I thought, what misfortunes these unhappy people have: among all the crowd they will be shamed without guilt.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-sonnets-29-dawn",
+    "studyWorkId": "sonnets",
+    "text": "Haply I think on thee, and then my state,\n(Like to the lark at break of day arising\nFrom sullen earth) sings hymns at heaven’s gate,",
+    "speaker": "Poetic speaker",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Sonnets",
+    "locator": "Sonnet 29, lines 10 to 12; Gutenberg 100; excerpt",
+    "context": "After comparing himself unhappily with others, the speaker remembers the beloved and imagines a lark rising from dark earth. The change is an inward revaluation rather than an actual change in social rank.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#chap01"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "attention"
+    ],
+    "studyPrompt": "What shifts in the speaker’s measure of wealth when the memory arrives?"
+  },
+  {
+    "id": "study-chaucer-parliament-of-fowls-time-to-choose",
+    "studyWorkId": "parliament-of-fowls",
+    "text": "Almighty quene, unto this yeer be doon\nI aske respit for to avysen me.\nAnd after that to have my choys al free;\nThis al and som, that I wolde speke and seye;",
+    "speaker": "The female eagle",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Parliament of Fowls",
+    "locator": "Lines 647–650; Middle English; excerpt",
+    "context": "After competing speeches by her suitors and the other birds, the female eagle asks Nature for a year’s delay. She makes time and free choice central to her answer.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page335"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "power"
+    ],
+    "studyPrompt": "How does this request answer the assumption that the debate must produce an immediate marriage?",
+    "gloss": "Almighty queen, I ask for time until this year is over to consider, and after that to have my choice entirely free; that is all I wish to say.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-hamlet-shaping-ends",
+    "studyWorkId": "hamlet",
+    "text": "There’s a divinity that shapes our ends,\nRough-hew them how we will.",
+    "speaker": "Hamlet",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Hamlet",
+    "locator": "Act 5, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Hamlet tells Horatio how he discovered the order for his execution and rewrote it against Rosencrantz and Guildenstern. His belief in providence accompanies a morally consequential account of his own intervention.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Hamlet, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_8.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "justice"
+    ],
+    "studyPrompt": "Does Hamlet’s appeal to providence clarify his responsibility for what happened or help him evade it?"
+  },
+  {
+    "id": "study-chaucer-treatise-on-astrolabe-instrument-limits",
+    "studyWorkId": "treatise-on-astrolabe",
+    "text": "For wel wot every astrologien that smalest fraccions ne wol nat ben shewed in so smal an instrument, as in subtil tables calculed for a cause.",
+    "speaker": "Chaucer’s instructional voice",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "A Treatise on the Astrolabe",
+    "locator": "Prologue, printed lines 53–55; Middle English; excerpt",
+    "context": "While outlining practical uses, the author distinguishes the small portable instrument from more detailed calculated tables. Knowing a tool includes knowing what it cannot display.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
+        "url": "https://www.gutenberg.org/cache/epub/45027/pg45027-images.html#page175"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "attention"
+    ],
+    "studyPrompt": "How can acknowledging an instrument’s limits make its teaching more trustworthy?",
+    "gloss": "Every astronomer knows that the smallest fractions cannot be shown on such a small instrument as they can in precisely calculated tables.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-macbeth-quickly-done",
+    "studyWorkId": "macbeth",
+    "text": "If it were done when ’tis done, then ’twere well\nIt were done quickly.",
+    "speaker": "Macbeth",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Macbeth",
+    "locator": "Act 1, scene 7; Project Gutenberg #100; excerpt",
+    "context": "While Duncan is being entertained in his castle, Macbeth imagines a murder that could end with the act itself. His conditional language immediately reveals the impossibility of separating violence from its consequences.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Macbeth, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_20.7"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "justice"
+    ],
+    "studyPrompt": "What does the repeated word done conceal about the difference between completing an action and ending its effects?"
+  },
+  {
+    "id": "study-chaucer-canterbury-general-prologue-table-service",
+    "studyWorkId": "canterbury-general-prologue",
+    "text": "Curteys he was, lowly, and servisable,\nAnd carf biforn his fader at the table.",
+    "speaker": "Pilgrim narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: General Prologue",
+    "locator": "Group A, lines 99–100; Middle English; excerpt",
+    "context": "The young Squire’s accomplishments end with the ordinary act of carving for his father. Service at table becomes one expression of courtesy.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#prologue"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "identity"
+    ],
+    "studyPrompt": "Why end a portrait of youthful brilliance with an act of service?",
+    "gloss": "He was courteous, humble and ready to serve, and carved the food before his father at table.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-king-lear-speak-what-we-feel",
+    "studyWorkId": "king-lear",
+    "text": "The weight of this sad time we must obey;\nSpeak what we feel, not what we ought to say.",
+    "speaker": "Edgar",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "King Lear",
+    "locator": "Act 5, scene 3; final speech in this edition; Project Gutenberg #100; excerpt",
+    "context": "Edgar speaks after the deaths that end the play, replacing the opening demand for ceremonial declarations with an appeal to truthful speech. This edition follows the Folio attribution; the Quarto gives the final speech to Albany.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: King Lear, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_18.3"
+      },
+      {
+        "label": "Internet Shakespeare Editions: First Quarto ending, assigned to Albany",
+        "url": "https://internetshakespeare.uvic.ca/doc/Lr_Q1/scene/24/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "grief",
+      "truth"
+    ],
+    "studyPrompt": "How does this final instruction answer the public love test with which the play began?"
+  },
+  {
+    "id": "study-chaucer-canterbury-knights-tale-necessity",
+    "studyWorkId": "canterbury-knights-tale",
+    "text": "Thanne is it wisdom, as it thinketh me,\nTo maken vertu of necessitee,\nAnd take it wel, that we may nat eschue,\nAnd namely that to us alle is due.",
+    "speaker": "Theseus",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Knight’s Tale",
+    "locator": "Group A, lines 3041–3044; Middle English; excerpt",
+    "context": "Theseus develops his final argument about the order of life and death. His counsel asks the mourners to accept what no one can escape.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#knight"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "grief",
+      "truth"
+    ],
+    "studyPrompt": "Does this counsel answer grief, govern it, or attempt both?",
+    "gloss": "I think it is wise to make a virtue of necessity and accept what we cannot avoid, especially what comes to everyone.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-othello-heart-and-sleeve",
+    "studyWorkId": "othello",
+    "text": "But I will wear my heart upon my sleeve\nFor daws to peck at: I am not what I am.",
+    "speaker": "Iago",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Othello",
+    "locator": "Act 1, scene 1; Project Gutenberg #100; excerpt",
+    "context": "Explaining his service to Othello, Iago says that revealing his real motives would expose him to attack. The familiar sleeve image occurs inside his defence of concealment, not an invitation to emotional openness.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Othello, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_26.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "truth"
+    ],
+    "studyPrompt": "How does knowing Iago’s private principle change every later occasion when another character calls him honest?"
+  },
+  {
+    "id": "study-chaucer-canterbury-nuns-priests-tale-fruit-and-chaff",
+    "studyWorkId": "canterbury-nuns-priests-tale",
+    "text": "Taketh the moralitee, good men.\nFor seint Paul seith, that al that writen is,\nTo our doctryne it is y-write, y-wis.\nTaketh the fruyt, and lat the chaf be stille.",
+    "speaker": "The Nun’s Priest as storyteller",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Nun’s Priest’s Tale",
+    "locator": "Group B, lines 4630–4633; Middle English; excerpt",
+    "context": "The storyteller closes by asking listeners to separate useful meaning from the surrounding material. His appeal to Saint Paul makes interpretation part of the tale’s ending.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#nunspriest"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "attention"
+    ],
+    "studyPrompt": "What counts as fruit in a story where the moral lessons themselves compete?",
+    "gloss": "Take the moral meaning: Saint Paul says that what is written is written for our instruction. Take the fruit and leave the chaff.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-romeo-and-juliet-wisely-and-slow",
+    "studyWorkId": "romeo-and-juliet",
+    "text": "Wisely and slow; they stumble that run fast.",
+    "speaker": "Friar Lawrence",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Romeo and Juliet",
+    "locator": "Act 2, scene 3; Project Gutenberg #100; excerpt",
+    "context": "The Friar answers Romeo’s wish to hurry after agreeing to help arrange the marriage. The play repeatedly places such warnings against plans made too quickly and messages that arrive too late.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Romeo and Juliet, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_30.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "time"
+    ],
+    "studyPrompt": "Where is deliberate patience possible in the play, and where do events make it increasingly difficult?"
+  },
+  {
+    "id": "study-chaucer-canterbury-franklins-tale-generosity-question",
+    "studyWorkId": "canterbury-franklins-tale",
+    "text": "Lordinges, this question wolde I aske now,\nWhich was the moste free, as thinketh yow?\nNow telleth me, er that ye ferther wende.",
+    "speaker": "The Franklin as storyteller",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: The Franklin’s Tale",
+    "locator": "Group F, lines 1621–1623; Middle English; excerpt",
+    "context": "The tale ends by asking its listeners to judge competing acts of generosity. The question leaves the moral comparison open for the company.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#franklin"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "hospitality"
+    ],
+    "studyPrompt": "Would your answer change if you judged sacrifice, freedom or compassion separately?",
+    "gloss": "Gentlemen, I ask you this: which was the most generous, in your view? Tell me before you go further.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-julius-caesar-lend-your-ears",
+    "studyWorkId": "julius-caesar",
+    "text": "Friends, Romans, countrymen, lend me your ears;\nI come to bury Caesar, not to praise him.",
+    "speaker": "Antony",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Julius Caesar",
+    "locator": "Act 3, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Antony begins the funeral address that will redirect the crowd’s loyalties after Brutus has justified the assassination. The apparent modesty of the opening prepares an argument whose emotional force soon exceeds that promise.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Julius Caesar, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_17.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "power"
+    ],
+    "studyPrompt": "How do the three forms of address make the audience feel connected before Antony advances his case?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-changing-language",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "Ye knowe eek, that in forme of speche is chaunge\nWith-inne a thousand yeer, and wordes tho\nThat hadden prys, now wonder nyce and straunge\nUs thinketh hem; and yet they spake hem so,",
+    "speaker": "The narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book II, lines 22–25; Middle English; excerpt",
+    "context": "Introducing the next stage of the romance, the narrator explains that language changes across centuries. The observation also prepares readers to encounter unfamiliar habits of courtship.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "time"
+    ],
+    "studyPrompt": "How does this passage alter your patience with unfamiliar Middle English words?",
+    "gloss": "Speech changes over a thousand years: words once valued now seem strange or foolish to us, though people really spoke that way.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-antony-and-cleopatra-unmeasured-love",
+    "studyWorkId": "antony-and-cleopatra",
+    "text": "There’s beggary in the love that can be reckoned.",
+    "speaker": "Antony",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Antony and Cleopatra",
+    "locator": "Act 1, scene 1; Project Gutenberg #100; excerpt",
+    "context": "Cleopatra asks Antony to measure his love, and he answers by rejecting measurement itself. Their exchange establishes a language of emotional immensity that will repeatedly collide with practical claims from Rome.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Antony and Cleopatra, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_3.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "language"
+    ],
+    "studyPrompt": "How does Antony’s refusal to measure love prepare the conflict between his language with Cleopatra and the claims of Rome?"
+  },
+  {
+    "id": "study-chaucer-book-of-the-duchess-plain-recognition",
+    "studyWorkId": "book-of-the-duchess",
+    "text": "She is deed!' 'Nay!' 'Yis, by my trouthe!'\n'Is that your los? by god, hit is routhe!",
+    "speaker": "The Man in Black and the dreamer, in dialogue",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Book of the Duchess",
+    "locator": "Lines 1309–1310; Middle English; excerpt",
+    "context": "After the long indirect account, the fact of the lady’s death is stated plainly. The dreamer finally recognises the meaning of the loss.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page277"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "grief",
+      "language"
+    ],
+    "studyPrompt": "Why might the plain exchange carry force after so much ornate and indirect speech?",
+    "gloss": "She is dead. No! Yes, truly. Is that your loss? By God, it is heartbreaking.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-coriolanus-action-and-eyes",
+    "studyWorkId": "coriolanus",
+    "text": "Action is eloquence, and the eyes of th’ ignorant\nMore learned than the ears",
+    "speaker": "Volumnia",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Coriolanus",
+    "locator": "Act 3, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Volumnia coaches Coriolanus in gestures of public humility so that he can regain political support. Her lesson recognises the power of visible conduct, but it also treats the audience with contempt and asks him to perform a feeling.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Coriolanus, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_6.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "power"
+    ],
+    "studyPrompt": "What do Volumnia’s proposed gestures reveal about her view of the citizens watching them?"
+  },
+  {
+    "id": "study-chaucer-house-of-fame-private-knowledge",
+    "studyWorkId": "house-of-fame",
+    "text": "Suffyceth me, as I were deed,\nThat no wight have my name in honde.\nI woot my-self best how I stonde;\nFor what I drye or what I thinke,\nI wol my-selven al hit drinke,",
+    "speaker": "The dreamer-narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The House of Fame",
+    "locator": "Book III, lines 1876–1880; Middle English; excerpt",
+    "context": "Asked whether he has come seeking fame, the dreamer says that he prefers his name to remain unknown. His desire for news coexists with reluctance to become news.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
+        "url": "https://www.gutenberg.org/cache/epub/45027/pg45027-images.html#page1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "attention"
+    ],
+    "studyPrompt": "How does the wish for privacy sit beside the dreamer’s curiosity about other people’s stories?",
+    "gloss": "It is enough for me that no one handles my name, as if I were dead; I know my own condition and will bear what I suffer or think myself.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-titus-andronicus-inverted-repentance",
+    "studyWorkId": "titus-andronicus",
+    "text": "If one good deed in all my life I did,\nI do repent it from my very soul.",
+    "speaker": "Aaron",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Titus Andronicus",
+    "locator": "Act 5, scene 3; Project Gutenberg #100; excerpt",
+    "context": "Facing punishment, Aaron turns the expected language of confession upside down. His defiance belongs to a play in which claims of civilisation and righteousness have repeatedly accompanied cruelty.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Titus Andronicus, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_34.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "identity"
+    ],
+    "studyPrompt": "How does this reversal of repentance challenge the moral authority claimed by the people judging Aaron?",
+    "authorCredit": "From a play attributed to William Shakespeare and George Peele"
+  },
+  {
+    "id": "study-chaucer-parliament-of-fowls-welcome-summer",
+    "studyWorkId": "parliament-of-fowls",
+    "text": "Now welcom somer, with thy sonne softe,\nThat hast this wintres weders over-shake,\nAnd driven awey the longe nightes blake!",
+    "speaker": "The departing birds, in their roundel",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Parliament of Fowls",
+    "locator": "Lines 680–682; Middle English; excerpt",
+    "context": "The birds close the gathering with a communal song welcoming summer. The song’s warmth remains beside the unresolved choice of the female eagle.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page335"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "time",
+      "imagination"
+    ],
+    "studyPrompt": "How can a joyful ending coexist with the fact that one central question remains unsettled?",
+    "gloss": "Welcome, summer, with your gentle sun: you have shaken off winter’s weather and driven away its long dark nights.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-timon-of-athens-friends-and-ends",
+    "studyWorkId": "timon-of-athens",
+    "text": "What viler thing upon the earth than friends\nWho can bring noblest minds to basest ends!",
+    "speaker": "Flavius",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Timon of Athens",
+    "locator": "Act 4, scene 3; Project Gutenberg #100; excerpt",
+    "context": "Flavius discovers the ruined Timon and condemns the companions who abandoned him. The steward’s continuing loyalty gives the audience an example of care that complicates Timon’s claim that everyone is corrupt.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Timon of Athens, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_33.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "justice"
+    ],
+    "studyPrompt": "What makes Flavius’s service different from the attention Timon received when he could afford lavish gifts?",
+    "authorCredit": "From a play attributed to William Shakespeare and Thomas Middleton"
+  },
+  {
+    "id": "study-chaucer-canterbury-general-prologue-careful-speech",
+    "studyWorkId": "canterbury-general-prologue",
+    "text": "Of studie took he most cure and most hede.\nNoght o word spak he more than was nede,\nAnd that was seyd in forme and reverence,\nAnd short and quik, and ful of hy sentence.",
+    "speaker": "Pilgrim narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: General Prologue",
+    "locator": "Group A, lines 303–306; Middle English; excerpt",
+    "context": "The Clerk’s learning appears in both sustained attention and economical speech. The passage describes a person’s habits, not merely the possession of books.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#prologue"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "language"
+    ],
+    "studyPrompt": "What would make speech both brief and full of meaning in a real teaching conversation?",
+    "gloss": "He gave study his greatest care; he spoke no more than needed, respectfully, briefly, vividly and with substance.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-troilus-and-cressida-untuned-string",
+    "studyWorkId": "troilus-and-cressida",
+    "text": "Take but degree away, untune that string,\nAnd hark what discord follows!",
+    "speaker": "Ulysses",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Troilus and Cressida",
+    "locator": "Act 1, scene 3; Project Gutenberg #100; excerpt",
+    "context": "Ulysses diagnoses the Greek army’s difficulties as a failure to respect rank. His musical analogy makes hierarchy sound like natural harmony, inviting us to examine whose authority that comparison protects.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Troilus and Cressida, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_35.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "language"
+    ],
+    "studyPrompt": "What does the musical metaphor reveal about cooperation, and what disagreements does it make harder to hear?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-purpose-of-tales",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "How-so it be that som men hem delyte\nWith subtil art hir tales for to endyte,\nYet for al that, in hir entencioun,\nHir tale is al for som conclusioun.",
+    "speaker": "Pandarus",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book II, lines 256–259; Middle English; excerpt",
+    "context": "Pandarus speaks to Criseyde before making his persuasive purpose clear. His account of artful storytelling doubles as a clue to his own methods.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "power"
+    ],
+    "studyPrompt": "What conclusion does Pandarus want, and how should that affect your trust in his story?",
+    "gloss": "However much some people enjoy composing stories with subtle skill, their story is still directed towards an intended conclusion.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-henry-iv-part-1-rehearsed-reform",
+    "studyWorkId": "henry-iv-part-1",
+    "text": "I know you all, and will awhile uphold\nThe unyok’d humour of your idleness.",
+    "speaker": "Prince Hal",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Henry IV, Part 1",
+    "locator": "Act 1, scene 2; Project Gutenberg #100; excerpt",
+    "context": "Alone after his companions leave, Hal reveals that his apparent irresponsibility is part of a plan for a more impressive public reformation. The audience learns that a friendship can look spontaneous to one person and strategic to another.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Henry IV, Part 1, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_9.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "power"
+    ],
+    "studyPrompt": "How does Hal’s private plan change the ethical meaning of his later warmth towards his companions?"
+  },
+  {
+    "id": "study-chaucer-book-of-the-duchess-dream-into-poem",
+    "studyWorkId": "book-of-the-duchess",
+    "text": "Thoghte I, 'this is so queynt a sweven,\nThat I wol, by processe of tyme,\nFonde to putte this sweven in ryme",
+    "speaker": "The dreamer-narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Book of the Duchess",
+    "locator": "Lines 1330–1332; Middle English; excerpt",
+    "context": "On waking with the earlier book still in his hand, the narrator decides to turn his own dream into verse. Reading has become an occasion for further making.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page277"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "language"
+    ],
+    "studyPrompt": "What has the narrator gained that makes writing the dream worth attempting?",
+    "gloss": "I thought: this is such a strange dream that, in time, I will try to put it into rhyme.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-henry-iv-part-2-former-self",
+    "studyWorkId": "henry-iv-part-2",
+    "text": "Presume not that I am the thing I was;\nFor God doth know, so shall the world perceive,\nThat I have turn’d away my former self;",
+    "speaker": "King Henry V",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Henry IV, Part 2",
+    "locator": "Act 5, scene 5; Project Gutenberg #100; excerpt",
+    "context": "The newly crowned king publicly rejects Falstaff’s familiar greeting. His declaration makes personal change part of royal authority, while the scene leaves the human cost of that change visible.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Henry IV, Part 2, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_10.5"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "power"
+    ],
+    "studyPrompt": "Why does the new king announce his altered identity in public, and what does Falstaff’s presence make that announcement cost?"
+  },
+  {
+    "id": "study-chaucer-house-of-fame-mixed-rumour",
+    "studyWorkId": "house-of-fame",
+    "text": "Thus saugh I fals and sooth compouned\nTogeder flee for oo tydinge.\nThus out at holes gonne wringe\nEvery tyding streight to Fame;",
+    "speaker": "The dreamer-narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The House of Fame",
+    "locator": "Book III, lines 2108–2111; Middle English; excerpt",
+    "context": "In the House of Rumour, a lie and a truth combine and leave as one report. The image makes the contamination of information visible.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
+        "url": "https://www.gutenberg.org/cache/epub/45027/pg45027-images.html#page1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "language"
+    ],
+    "studyPrompt": "How might a reader recognise a report that contains both a truth and a lie?",
+    "gloss": "I saw falsehood and truth fly together as one piece of news; every report squeezed out through holes and went straight to Fame.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-henry-v-ceremony",
+    "studyWorkId": "henry-v",
+    "text": "And what have kings, that privates have not too,\nSave ceremony, save general ceremony?",
+    "speaker": "King Henry V",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Henry V",
+    "locator": "Act 4, scene 1; Project Gutenberg #100; excerpt",
+    "context": "After speaking in disguise with soldiers before Agincourt, Henry questions the privileges and burdens of monarchy. His private complaint should be read alongside the ordinary soldiers’ fears and their arguments about the king’s responsibility.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Henry V, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_11.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "justice"
+    ],
+    "studyPrompt": "What does Henry understand about ordinary life here, and what might his account of royal suffering leave out?"
+  },
+  {
+    "id": "study-chaucer-parliament-of-fowls-reading-on",
+    "studyWorkId": "parliament-of-fowls",
+    "text": "I hope, y-wis, to rede so som day\nThat I shal mete som thing for to fare\nThe bet; and thus to rede I nil not spare.",
+    "speaker": "The waking narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Parliament of Fowls",
+    "locator": "Lines 697–699; Middle English; excerpt",
+    "context": "After the birds’ noise wakes him, the narrator returns to reading. The poem ends with hope that further reading will improve his understanding and life.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
+        "url": "https://www.gutenberg.org/cache/epub/43089/pg43089-images.html#page335"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "courage"
+    ],
+    "studyPrompt": "What has the dream taught the narrator to seek when he opens another book?",
+    "gloss": "I hope that one day my reading will lead me to something that helps me fare better; therefore I will not stop reading.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-richard-ii-prison-world",
+    "studyWorkId": "richard-ii",
+    "text": "I have been studying how I may compare\nThis prison where I live unto the world;",
+    "speaker": "Richard II",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Richard II",
+    "locator": "Act 5, scene 5; Project Gutenberg #100; excerpt",
+    "context": "Alone in prison, the deposed Richard tries to make his restricted surroundings contain the variety of the wider world. His thinking turns inward, producing both imaginative company and renewed conflict.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Richard II, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_28.5"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "identity"
+    ],
+    "studyPrompt": "When does imagination enlarge Richard’s experience, and when does it reproduce the divisions that have troubled him?"
+  },
+  {
+    "id": "study-chaucer-canterbury-general-prologue-seasonal-table",
+    "studyWorkId": "canterbury-general-prologue",
+    "text": "It snewed in his hous of mete and drinke,\nOf alle deyntees that men coude thinke.\nAfter the sondry sesons of the yeer,\nSo chaunged he his mete and his soper.",
+    "speaker": "Pilgrim narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: General Prologue",
+    "locator": "Group A, lines 345–348; Middle English; excerpt",
+    "context": "The Franklin’s portrait imagines food and drink falling like snow. Abundance is followed by the detail that his meals change with the seasons.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#prologue"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "time"
+    ],
+    "studyPrompt": "How do abundance and seasonal variation create different impressions of this host?",
+    "gloss": "His house overflowed with every delicacy, and he changed his meals and supper with the seasons of the year.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-richard-iii-horse-and-kingdom",
+    "studyWorkId": "richard-iii",
+    "text": "A horse! A horse! My kingdom for a horse!",
+    "speaker": "King Richard III",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Richard III",
+    "locator": "Act 5, scene 4; Project Gutenberg #100; excerpt",
+    "context": "On the battlefield at Bosworth, Richard needs a mount to continue fighting. The exchange compresses royal ambition into an urgent practical need, exposing how quickly political value changes when survival is at stake.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Richard III, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_29.4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "attention"
+    ],
+    "studyPrompt": "What does this sudden change in value reveal about the distance between possessing power and being able to act?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-own-woman",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "I am myn owene woman, wel at ese,\nI thank it god, as after myn estat;\nRight yong, and stonde unteyd in lusty lese,\nWith-outen Ialousye or swich debat;",
+    "speaker": "Criseyde, in inward reflection",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book II, lines 750–753; Middle English; excerpt",
+    "context": "The widowed Criseyde weighs the attraction of Troilus against the freedom she currently enjoys. Her deliberation should be read as a choice under social constraints, not simple indecision.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "love"
+    ],
+    "studyPrompt": "What would accepting love risk for the freedom Criseyde describes?",
+    "gloss": "I am my own woman, comfortably placed for my position, still young and free, without jealousy or such conflict.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-alls-well-that-ends-well-honesty",
+    "studyWorkId": "alls-well-that-ends-well",
+    "text": "the honour of a maid is her\nname; and no legacy is so rich as honesty.",
+    "speaker": "Mariana",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "All’s Well That Ends Well",
+    "locator": "Act 3, scene 5; Gutenberg 100; excerpt",
+    "context": "Mariana warns Diana about Bertram’s pursuit. Here honesty carries the period’s sense of sexual chastity and female reputation, so the line exposes a social pressure as well as praising integrity.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_2.5"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "power"
+    ],
+    "studyPrompt": "Whose reputation is most vulnerable in this scene, and who benefits from that imbalance?"
+  },
+  {
+    "id": "study-chaucer-canterbury-general-prologue-cooks-craft",
+    "studyWorkId": "canterbury-general-prologue",
+    "text": "He coude roste, and sethe, and broille, and frye,\nMaken mortreux, and wel bake a pye.",
+    "speaker": "Pilgrim narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: General Prologue",
+    "locator": "Group A, lines 383–384; Middle English; excerpt",
+    "context": "The Cook is introduced through a range of practical methods before the portrait turns less flattering. Technical competence is one part of the fuller character.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#prologue"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "attention"
+    ],
+    "studyPrompt": "What does this list show about the breadth of craft expected of a cook?",
+    "gloss": "He could roast, boil, broil and fry, make thick pottages and bake a pie skilfully.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-as-you-like-it-love-and-worms",
+    "studyWorkId": "as-you-like-it",
+    "text": "Men have died from time to time and worms have eaten them, but\nnot for love.",
+    "speaker": "Rosalind",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "As You Like It",
+    "locator": "Act 4, scene 1; Gutenberg 100; excerpt",
+    "context": "Disguised as Ganymede, Rosalind punctures Orlando’s claim that a lover can die from rejection. Her brisk realism challenges romantic exaggeration while she secretly participates in the courtship herself.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_4.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "language"
+    ],
+    "studyPrompt": "What becomes possible in a relationship when exaggerated language is gently challenged?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-cloud-over-love",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "For ever som mistrust, or nyce stryf,\nTher is in love, som cloud is over the sonne:",
+    "speaker": "Criseyde, in inward reflection",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book II, lines 780–781; Middle English; excerpt",
+    "context": "Continuing her private debate, Criseyde imagines mistrust as a cloud across love’s brightness. The image gives hesitation an intelligible emotional cause.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "imagination"
+    ],
+    "studyPrompt": "Why might the image of a cloud be more revealing than simply calling love dangerous?",
+    "gloss": "There is always some mistrust or foolish quarrel in love, some cloud over the sun.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-cymbeline-solitude",
+    "studyWorkId": "cymbeline",
+    "text": "society is no comfort\nTo one not sociable.",
+    "speaker": "Imogen",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Cymbeline",
+    "locator": "Act 4, scene 2; Gutenberg 100; excerpt",
+    "context": "Feeling unwell while living as Fidele, Imogen asks her hosts to leave her alone. Her need for solitude exists beside their sincere wish to care for her.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_7.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "attention"
+    ],
+    "studyPrompt": "How can a thoughtful host distinguish welcome company from unwanted attention?"
+  },
+  {
+    "id": "study-chaucer-canterbury-general-prologue-teach-by-doing",
+    "studyWorkId": "canterbury-general-prologue",
+    "text": "This noble ensample to his sheep he yaf,\nThat first he wroghte, and afterward he taughte;",
+    "speaker": "Pilgrim narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: General Prologue",
+    "locator": "Group A, lines 496–497; Middle English; excerpt",
+    "context": "The Parson’s willingness to visit distant parishioners leads into this account of his example. His teaching is grounded in prior conduct.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#prologue"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "attention"
+    ],
+    "studyPrompt": "Which earlier actions in the portrait make this praise convincing?",
+    "gloss": "He gave his flock this noble example: first he acted, and afterwards he taught.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-loves-labours-lost-jests-and-listeners",
+    "studyWorkId": "loves-labours-lost",
+    "text": "A jest’s prosperity lies in the ear\nOf him that hears it, never in the tongue\nOf him that makes it.",
+    "speaker": "Rosaline",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Love’s Labour’s Lost",
+    "locator": "Act 5, scene 2; Gutenberg 100; excerpt",
+    "context": "Rosaline asks Berowne to spend a year among the sick and learn whether his wit can comfort them. She makes the listener’s experience the measure of successful humour.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_19.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "hospitality"
+    ],
+    "studyPrompt": "How would you adapt a clever remark if your first responsibility were the listener’s comfort?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-blessed-light",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "O Blisful light, of whiche the bemes clere\nAdorneth al the thridde hevene faire!\nO sonnes leef, O Ioves doughter dere,\nPlesaunce of love, O goodly debonaire,\nIn gentil hertes ay redy to repaire!",
+    "speaker": "The narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book III, lines 1–5; Middle English; excerpt",
+    "context": "Book III opens with praise of Venus and love’s influence, using the medieval third heaven. The radiance marks the approach to the lovers’ greatest happiness.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "imagination"
+    ],
+    "studyPrompt": "How does the luminous invocation contrast with the Fury invoked in Book I?",
+    "gloss": "Blessed light whose beams adorn the third heaven, beloved of the sun and daughter of Jove: gentle pleasure of love, ready to enter noble hearts.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-measure-for-measure-faults-and-mercy",
+    "studyWorkId": "measure-for-measure",
+    "text": "They say best men are moulded out of faults,\nAnd, for the most, become much more the better\nFor being a little bad.",
+    "speaker": "Mariana",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Measure for Measure",
+    "locator": "Act 5, scene 1; Gutenberg 100; excerpt",
+    "context": "Mariana pleads for Angelo and asks Isabella to join her. Her hope for his reform is emotionally costly because the man she seeks to save has abused his authority.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_21.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "love"
+    ],
+    "studyPrompt": "What evidence of change would you need before accepting Mariana’s hopeful claim?"
+  },
+  {
+    "id": "study-chaucer-canterbury-general-prologue-busy-appearance",
+    "studyWorkId": "canterbury-general-prologue",
+    "text": "No-wher so bisy a man as he ther nas,\nAnd yet he semed bisier than he was.",
+    "speaker": "Pilgrim narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: General Prologue",
+    "locator": "Group A, lines 321–322; Middle English; excerpt",
+    "context": "The lawyer’s apparent busyness receives a tiny correction from the narrator. The second line opens a gap between professional display and actual activity.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#prologue"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "truth"
+    ],
+    "studyPrompt": "How does the second line make you reconsider the confident first one?",
+    "gloss": "Nowhere was there a man as busy as he, and yet he seemed busier than he really was.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-merchant-of-venice-little-candle",
+    "studyWorkId": "merchant-of-venice",
+    "text": "How far that little candle throws his beams!\nSo shines a good deed in a naughty world.",
+    "speaker": "Portia",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Merchant of Venice",
+    "locator": "Act 5, scene 1; Gutenberg 100; excerpt",
+    "context": "Returning to Belmont, Portia notices the light in her hall and makes goodness visible through a domestic image. The scene’s calm follows a trial whose distribution of mercy remains troubling.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_22.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "attention"
+    ],
+    "studyPrompt": "How does the comfort of Belmont affect your memory of what happened to Shylock?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-fear-and-assurance",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "I can no more, but thus thise ilke tweye\nThat night, be-twixen dreed and sikernesse,\nFelten in love the grete worthinesse.",
+    "speaker": "The narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book III, lines 1314–1316; Middle English; excerpt",
+    "context": "The lovers have come together, but the narrator keeps fear beside reassurance. Their happiness is not described as the complete disappearance of vulnerability.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "truth"
+    ],
+    "studyPrompt": "What does keeping fear in the sentence add to the account of fulfilment?",
+    "gloss": "I can say no more than this: those two that night, between fear and assurance, felt the great worth of love.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-midsummer-nights-dream-shadows",
+    "studyWorkId": "midsummer-nights-dream",
+    "text": "The best in this kind are but shadows; and the worst are no worse, if\nimagination amend them.",
+    "speaker": "Theseus",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "A Midsummer Night’s Dream",
+    "locator": "Act 5, scene 1; Gutenberg 100; excerpt",
+    "context": "During the mechanicals’ performance, Theseus proposes that spectators complete the actors’ imperfect work with imagination. Hippolyta immediately questions how much generosity the audience must supply.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_24.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "hospitality"
+    ],
+    "studyPrompt": "What does an audience owe an earnest performance that falls short of polished technique?"
+  },
+  {
+    "id": "study-chaucer-canterbury-general-prologue-hosts-supper",
+    "studyWorkId": "canterbury-general-prologue",
+    "text": "Greet chere made our hoste us everichon,\nAnd to the soper sette he us anon;\nAnd served us with vitaille at the beste.",
+    "speaker": "Pilgrim narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: General Prologue",
+    "locator": "Group A, lines 747–749; Middle English; excerpt",
+    "context": "Harry Bailly welcomes the travellers and feeds them before proposing the tale-telling game. Food and attention prepare the ground for shared entertainment.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#prologue"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "attention"
+    ],
+    "studyPrompt": "How does the sequence of welcome, seating and service establish confidence in the host?",
+    "gloss": "Our host warmly welcomed every one of us, seated us promptly for supper and served excellent provisions.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-much-ado-about-nothing-cupids-traps",
+    "studyWorkId": "much-ado-about-nothing",
+    "text": "If it prove so, then loving goes by haps:\nSome Cupid kills with arrows, some with traps.",
+    "speaker": "Hero",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Much Ado About Nothing",
+    "locator": "Act 3, scene 1; Gutenberg 100; excerpt",
+    "context": "After arranging for Beatrice to overhear praise of Benedick’s devotion, Hero celebrates the success of the trap. Affection here grows through a managed story rather than a direct declaration.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_25.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "truth"
+    ],
+    "studyPrompt": "What distinguishes this deception from the lies that later harm Hero?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-dawn-parting",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "Myn hertes lyf, my trist and my plesaunce,\nThat I was born, allas! what me is wo,\nThat day of us mot make desseveraunce!",
+    "speaker": "Criseyde",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book III, lines 1422–1424; Middle English; excerpt",
+    "context": "As dawn approaches after the lovers’ night together, Criseyde addresses Troilus. Daylight has a different emotional meaning for people who must conceal their relationship.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "time"
+    ],
+    "studyPrompt": "How does this scene reverse the usual association between dawn and hope?",
+    "gloss": "Life of my heart, my trust and joy: how unhappy I am that day must separate us.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-tempest-island-sounds",
+    "studyWorkId": "tempest",
+    "text": "Be not afeard. The isle is full of noises,\nSounds, and sweet airs, that give delight, and hurt not.",
+    "speaker": "Caliban",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Tempest",
+    "locator": "Act 3, scene 2; Gutenberg 100; excerpt",
+    "context": "Caliban reassures his frightened companions by describing the island’s music. His intimate, lyrical attention to place challenges the dehumanising ways others speak about him.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIII_32.2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "hospitality"
+    ],
+    "studyPrompt": "How does listening to Caliban alter your sense of who belongs on the island?"
+  },
+  {
+    "id": "study-chaucer-canterbury-general-prologue-meaning-and-delight",
+    "studyWorkId": "canterbury-general-prologue",
+    "text": "That is to seyn, that telleth in this cas\nTales of best sentence and most solas,\nShal have a soper at our aller cost\nHere in this place, sitting by this post,",
+    "speaker": "Harry Bailly, the Host",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales: General Prologue",
+    "locator": "Group A, lines 797–800; Middle English; excerpt",
+    "context": "The Host describes the prize for the best storyteller. His test combines meaningful substance with pleasure and ends in another communal supper.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
+        "url": "https://www.gutenberg.org/cache/epub/22120/pg22120-images.html#prologue"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "hospitality",
+      "language"
+    ],
+    "studyPrompt": "How might a tale excel in delight while remaining difficult to judge for its meaning?",
+    "gloss": "Whoever tells tales with the best meaning and greatest delight will receive a supper here at everyone’s expense.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-twelfth-night-daughters-and-brothers",
+    "studyWorkId": "twelfth-night",
+    "text": "I am all the daughters of my father’s house,\nAnd all the brothers too: and yet I know not.",
+    "speaker": "Viola",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Twelfth Night",
+    "locator": "Act 2, scene 4; Gutenberg 100; excerpt",
+    "context": "Speaking to Orsino as Cesario, Viola almost discloses her identity while mourning a brother she believes may be lost. The final uncertainty keeps the statement emotionally true without making it fully certain.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneII_36.4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "grief"
+    ],
+    "studyPrompt": "Which parts of Viola’s sentence can Orsino hear, and which meanings are available only to the audience?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-binding-love",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "Love, that of erthe and see hath governaunce,\nLove, that his hestes hath in hevene hye,\nLove, that with an holsom alliaunce\nHalt peples ioyned, as him list hem gye,",
+    "speaker": "Troilus, singing",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book III, lines 1744–1747; Middle English; excerpt",
+    "context": "Troilus sings of love as a power that joins the natural world and human communities. The song’s confidence arrives before the political exchange that separates the lovers.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "power"
+    ],
+    "studyPrompt": "What tension appears when this vision of harmony is read beside the war surrounding Troy?",
+    "gloss": "Love governs earth and sea, commands in high heaven, and holds peoples together through a sustaining bond.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-winters-tale-art-and-nature",
+    "studyWorkId": "winters-tale",
+    "text": "This is an art\nWhich does mend nature, change it rather, but\nThe art itself is nature.",
+    "speaker": "Polixenes",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Winter’s Tale",
+    "locator": "Act 4, scene 4; Gutenberg 100; excerpt",
+    "context": "Disguised at the sheep-shearing feast, Polixenes defends grafting flowers against Perdita’s objections. His openness to mixing kinds sits uneasily beside his later anger at his son’s socially unequal marriage.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_39.4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "power"
+    ],
+    "studyPrompt": "Why is Polixenes willing to defend mixture in a garden but resist it in his family?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-fortune-turns",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "But al to litel, weylawey the whyle,\nLasteth swich Ioye, y-thonked be Fortune!\nThat semeth trewest, whan she wol bygyle,",
+    "speaker": "The narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book IV, lines 1–3; Middle English; excerpt",
+    "context": "Book IV breaks the preceding happiness with an appeal to Fortune. The apparent dependability of good fortune becomes part of its capacity to deceive.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "time",
+      "truth"
+    ],
+    "studyPrompt": "How does the abrupt opening make the structure of the poem imitate Fortune’s change?",
+    "gloss": "Such joy lasts far too briefly, thanks to Fortune, who seems most trustworthy when she is about to deceive.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-sonnets-60-waves",
+    "studyWorkId": "sonnets",
+    "text": "Like as the waves make towards the pebbled shore,\nSo do our minutes hasten to their end,\nEach changing place with that which goes before,\nIn sequent toil all forwards do contend.",
+    "speaker": "Poetic speaker",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Sonnets",
+    "locator": "Sonnet 60, lines 1 to 4; Gutenberg 100; excerpt",
+    "context": "Sonnet 60 opens by giving passing time the motion of successive waves. The regular movement feels both inevitable and effortful, preparing the poem’s later struggle against decay.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#chap01"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "time",
+      "attention"
+    ],
+    "studyPrompt": "How does the sound and motion of the verse alter the way you imagine a minute passing?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-questioning-record",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "Allas! that they shulde ever cause finde\nTo speke hir harm; and if they on hir lye,\nY-wis, hem-self sholde han the vilanye.",
+    "speaker": "The narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book IV, lines 19–21; Middle English; excerpt",
+    "context": "Before recounting Criseyde’s departure, the narrator questions the stories that condemn her. He leaves open the possibility that inherited accounts themselves do harm.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "language"
+    ],
+    "studyPrompt": "What responsibility does this passage give you as a reader of Criseyde’s reputation?",
+    "gloss": "Alas that writers ever found a reason to speak badly of her; if they lie about her, the disgrace should belong to them.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-hamlet-true-self",
+    "studyWorkId": "hamlet",
+    "text": "This above all: to thine own self be true;\nAnd it must follow, as the night the day,\nThou canst not then be false to any man.",
+    "speaker": "Polonius",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Hamlet",
+    "locator": "Act 1, scene 3; Project Gutenberg #100; excerpt",
+    "context": "This closes Polonius’s advice to Laertes about conduct, reputation and judgement. Read the promise of personal integrity beside the play’s many examples of self-deception and calculated appearances.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Hamlet, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneI_8.3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "identity",
+      "truth"
+    ],
+    "studyPrompt": "How does Polonius’s later use of surveillance complicate the connection he makes between self-knowledge and honesty?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-pledged-faith",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "For, Pandarus, sin I have trouthe hir hight,\nI wol not been untrewe for no wight;\nBut as hir man I wol ay live and sterve,\nAnd never other creature serve.",
+    "speaker": "Troilus",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book IV, lines 445–448; Middle English; excerpt",
+    "context": "Pandarus proposes that Troilus could find another lover, but Troilus invokes the promise he has already made. His language casts love as binding service.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "identity"
+    ],
+    "studyPrompt": "What strength and what possible limitation appear in Troilus’s language of service?",
+    "gloss": "Pandarus, since I have pledged faith to her, I will not be untrue for anyone; I will live and die as her servant and serve no other.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-macbeth-walking-shadow",
+    "studyWorkId": "macbeth",
+    "text": "Life’s but a walking shadow; a poor player,\nThat struts and frets his hour upon the stage,\nAnd then is heard no more:",
+    "speaker": "Macbeth",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Macbeth",
+    "locator": "Act 5, scene 5; Project Gutenberg #100; excerpt",
+    "context": "After hearing that Lady Macbeth has died, Macbeth describes existence through the image of an actor’s brief performance. The speech belongs to a ruler emptied by loss and violence; its despair is part of his dramatic condition.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Macbeth, original English",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_20.5"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "time",
+      "grief"
+    ],
+    "studyPrompt": "How does the actor image connect Macbeth’s present emptiness with his earlier effort to control appearances?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-bear-and-leader",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "For thus men seyn, \"that oon thenketh the bere,\nBut al another thenketh his ledere.\"\nYour sire is wys, and seyd is, out of drede,\n\"Men may the wyse at-renne, and not at-rede.",
+    "speaker": "Troilus",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book IV, lines 1453–1456; Middle English; excerpt",
+    "context": "Troilus doubts Criseyde’s plan to persuade her father and return. Proverbs about the bear and its keeper express unequal control over a shared situation.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "power",
+      "truth"
+    ],
+    "studyPrompt": "Whose control does this proverb expose, and what does it miss about Criseyde’s position?",
+    "gloss": "The bear thinks one thing and its keeper another; your father is clever, and people may outrun the wise without outwitting them.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-midsummer-nights-dream-rare-vision",
+    "studyWorkId": "midsummer-nights-dream",
+    "text": "I have had a most rare vision. I have had a dream, past the wit\nof man to say what dream it was.",
+    "speaker": "Bottom",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "A Midsummer Night’s Dream",
+    "locator": "Act 4, scene 1; Gutenberg 100; excerpt",
+    "context": "Waking after his transformation and encounter with Titania, Bottom reaches for language that can hold an experience beyond his understanding. His comic confusion also protects a serious sense of wonder.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneIV_24.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "imagination",
+      "language"
+    ],
+    "studyPrompt": "What would Bottom’s experience lose if he could explain it neatly?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-mercy-for-criseyde",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "Ne me ne list this sely womman chyde\nFerther than the story wol devyse.\nHir name, allas! is publisshed so wyde,\nThat for hir gilt it oughte y-now suffyse.",
+    "speaker": "The narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book V, lines 1093–1096; Middle English; excerpt",
+    "context": "After describing Criseyde’s changed allegiance, the narrator limits his rebuke. Public repetition of her name and fault is itself presented as a punishment.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "justice",
+      "language"
+    ],
+    "studyPrompt": "How does the narrator’s restraint complicate the judgement the plot seems to invite?",
+    "gloss": "I do not wish to reproach this unfortunate woman beyond the story; her name is already spread so widely that it should be punishment enough.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-tempest-new-world",
+    "studyWorkId": "tempest",
+    "text": "O, wonder!\nHow many goodly creatures are there here!\nHow beauteous mankind is! O brave new world\nThat has such people in ’t!",
+    "speaker": "Miranda",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Tempest",
+    "locator": "Act 5, scene 1; Gutenberg 100; excerpt",
+    "context": "Miranda sees the assembled visitors and responds with astonished hope. The audience knows more about their betrayals than she does, and Prospero’s reply quietly marks the limits of her experience.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#sceneV_32.1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "attention",
+      "truth"
+    ],
+    "studyPrompt": "How can Miranda’s generous wonder remain valuable even when her judgement is incomplete?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-faithful-copying",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "And for ther is so greet diversitee\nIn English and in wryting of our tonge,\nSo preye I god that noon miswryte thee,\nNe thee mismetre for defaute of tonge.",
+    "speaker": "The narrator, addressing his book",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book V, lines 1793–1796; Middle English; excerpt",
+    "context": "Near the ending, the poet worries about differences in English and the transmission of verse. He asks future copying and reading to preserve both words and metre.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "language",
+      "truth"
+    ],
+    "studyPrompt": "What obligations does this appeal place on an editor, performer or modern reader?",
+    "gloss": "Because English speech and writing vary so much, I pray that no one copies you wrongly or spoils your metre through faulty language.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-sonnets-116-brief-hours",
+    "studyWorkId": "sonnets",
+    "text": "Love alters not with his brief hours and weeks,\nBut bears it out even to the edge of doom:",
+    "speaker": "Poetic speaker",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Sonnets",
+    "locator": "Sonnet 116, lines 11 to 12; Gutenberg 100; excerpt",
+    "context": "The speaker defines steadfast love by resisting personified Time. The sweeping claim is followed by a couplet that stakes the speaker’s authority as a writer on the argument.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#chap01"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "time"
+    ],
+    "studyPrompt": "Is this a description of ordinary love, an ideal to strive for, or a deliberately extreme argument?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-worldly-ending",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "Swich fyn hath, lo, this Troilus for love,\nSwich fyn hath al his grete worthinesse;\nSwich fyn hath his estat real above,\nSwich fyn his lust, swich fyn hath his noblesse;",
+    "speaker": "The narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book V, lines 1828–1831; Middle English; excerpt",
+    "context": "After Troilus’s death and upward vision, a repeated phrase measures the end of his earthly distinction. Love, royal status and achievement are subjected to the same limit.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "time",
+      "grief"
+    ],
+    "studyPrompt": "What does the repeated phrase such an end do that a single statement of mortality would not?",
+    "gloss": "Such an end has Troilus’s love, his great worth, his royal standing, his delight and his nobility.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
+  {
+    "id": "study-shakespeare-sonnets-130-false-compare",
+    "studyWorkId": "sonnets",
+    "text": "And yet by heaven I think my love as rare,\nAs any she belied with false compare.",
+    "speaker": "Poetic speaker",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Sonnets",
+    "locator": "Sonnet 130, lines 13 to 14; Gutenberg 100; excerpt",
+    "context": "After refusing conventional comparisons that make a woman into an impossible ideal, the speaker affirms the beloved’s value. The closing turn challenges praise that depends on falsifying an ordinary human body.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: complete original English text",
+        "url": "https://www.gutenberg.org/cache/epub/100/pg100-images.html#chap01"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "love",
+      "truth"
+    ],
+    "studyPrompt": "How can admiration become more generous when it gives up exaggeration?"
+  },
+  {
+    "id": "study-chaucer-troilus-and-criseyde-inviting-correction",
+    "studyWorkId": "troilus-and-criseyde",
+    "text": "O moral Gower, this book I directe\nTo thee, and to the philosophical Strode,\nTo vouchen sauf, ther nede is, to corecte,\nOf your benignitees and zeles gode.",
+    "speaker": "The narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book V, lines 1856–1859; Middle English; excerpt",
+    "context": "The poem addresses John Gower and Ralph Strode as readers who may correct it. Literary achievement closes with an invitation to responsible scrutiny.",
+    "sources": [
+      {
+        "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
+        "url": "https://www.gutenberg.org/cache/epub/44833/pg44833-images.html#page153"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "themes": [
+      "truth",
+      "language"
+    ],
+    "studyPrompt": "How does an invitation to correction change the authority of the work’s ending?",
+    "gloss": "Moral Gower and philosophical Strode, I direct this book to you; kindly correct it where correction is needed, from your goodwill and care.",
+    "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
+  },
   {
     "id": "stage-william-shakespeare-cannot-be-undone",
     "text": "What’s done cannot be undone.",

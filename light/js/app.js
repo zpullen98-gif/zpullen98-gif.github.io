@@ -114,7 +114,7 @@ var flRendered = false;   // true once the first navigate() has painted a view
    religious material is one tap away for a reader who wants it and appears
    nowhere in the morning for a reader who does not. */
 var NAV_CLUSTERS = [
-  ['mind',  'Mind',  ['year', 'anthology', 'vault', 'floor', 'astro']],
+  ['mind',  'Mind',  ['year', 'anthology', 'poets', 'vault', 'floor', 'astro']],
   ['body',  'Body',  ['body', 'videos', 'reset']],
   ['heart', 'Heart', ['reflect', 'journal', 'life']],
   ['soul',  'Soul',  ['library', 'hall', 'threads']]
@@ -273,7 +273,7 @@ function navigate() {
   var next = parseHash();
   /* the skip link: carry focus to the main column and change nothing else */
   if (next === flRoute && flRendered) { var col = document.getElementById('view'); if (col) col.focus(); return; }
-  var viewChanged = next.view !== flRoute.view || (next.view === 'anthology' && next.arg !== flRoute.arg);
+  var viewChanged = next.view !== flRoute.view || (['anthology', 'poets'].indexOf(next.view) > -1 && next.arg !== flRoute.arg);
   flRoute = next;
   render();
   flRendered = true;

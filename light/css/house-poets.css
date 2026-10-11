@@ -1,0 +1,31 @@
+/* The Poets' Study uses the existing library colours and reading faces. */
+.poet-door-grid,.poet-work-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px; }
+.poet-door,.poet-work-card { min-width: 0; padding: 25px; border: 1px solid var(--line); border-top: 3px solid var(--accent); background: var(--paper); overflow-wrap: anywhere; }
+.poet-door h2,.poet-author-opening h2 { font-family: var(--house-display,var(--serif)); font-weight: 500; }
+.poet-work-card h4,.poet-path h4 { font-family: var(--serif); font-size: 27px; font-weight: 500; line-height: 1.35; margin: 10px 0 18px; }
+.poet-section-title { font-family: var(--serif); font-size: 29px; font-weight: 500; }
+.poet-door p,.poet-author-opening p,.poet-work-card p,.poet-work-card li,.poet-path p,.poet-method { line-height: 1.8; }
+.poet-work-actions { display: flex; gap: 10px 22px; flex-wrap: wrap; }
+.poet-work-actions a,.poet-path a { display: inline-block; padding: 8px 0; text-underline-offset: 4px; }
+.poet-work-card summary { padding: 14px 0; min-height: 44px; cursor: pointer; color: var(--accent); }
+.poet-work-card details { border-top: 1px solid var(--line); font-size: 14px; }
+.poet-work-card details ul { padding-left: 20px; }
+.poet-author-opening,.poet-method,.poet-work-intro { margin: 28px 0; }
+.poet-method { padding: 24px 0; border-top: 1px solid var(--line); }
+.poet-method li { margin: 16px 0; padding-left: 8px; }
+.poet-work-intro { padding: 22px; background: var(--paper); border-left: 3px solid var(--accent); }
+.poet-work-intro h3 { font-family: var(--serif); font-size: 29px; font-weight: 500; }
+.poet-search { margin: 26px 0; }
+.poet-search label { display: block; font-size: 14px; margin-bottom: 8px; }
+.poet-search-line { display: flex; gap: 10px; }
+.poet-search input { min-width: 0; width: 100%; padding: 12px; }
+.poet-selects { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-top: 18px; }
+.poet-selects label { min-width: 0; }
+.poet-selects select { display: block; width: 100%; min-width: 0; margin-top: 8px; padding: 12px; font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); }
+.poet-path { padding-left: 28px; }
+.poet-path li { padding: 12px 0 24px 12px; border-bottom: 1px solid var(--line); }
+.poet-path li::marker { color: var(--accent); font-family: var(--serif); font-size: 26px; }
+.poet-earlier { margin-top: 28px; }
+.poet-study-invitation { margin: 22px 0; padding: 22px; background: var(--paper); border: 1px solid var(--line); border-left: 3px solid var(--accent); line-height: 1.8; }
+@media(max-width:650px) { .poet-door-grid,.poet-work-grid,.poet-selects { grid-template-columns: 1fr; } .poet-door,.poet-work-card { padding: 22px 20px; } .poet-search-line { flex-wrap: wrap; } .poet-search input { flex-basis: 100%; } }
+@media print { .poet-search,.poet-authors,.poet-sections { display: none; } .poet-work-grid { display: block; } .poet-work-card { break-inside: avoid; margin: 20px 0; } }

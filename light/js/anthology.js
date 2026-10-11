@@ -72,7 +72,7 @@ function dawnNorm(text) {
 function dawnSearchText(q) {
   var people = q.legacy || typeof dawnPeopleFor !== 'function' ? [] : dawnPeopleFor(q.id);
   var writers = typeof dawnWritersFor === 'function' ? dawnWritersFor(q.id) : [];
-  return [q.text, q.speaker, q.author || '', dawnCollection(q.collection), q.work, q.locator, q.context, q.tag || '', q.connection || '', people.concat(writers).map(function (p) { return p.name + ' ' + (p.aliases || []).join(' '); }).join(' ')].join(' ');
+  return [q.text, q.speaker, q.author || '', q.authorCredit || '', dawnCollection(q.collection), q.work, q.locator, q.context, q.gloss || '', q.studyPrompt || '', (q.themes || []).join(' '), q.tag || '', q.connection || '', people.concat(writers).map(function (p) { return p.name + ' ' + (p.aliases || []).join(' '); }).join(' ')].join(' ');
 }
 
 function dawnLegacyCard(q, expanded) {
@@ -106,7 +106,7 @@ function dawnCard(q, number, expanded) {
     '<p class="dawn-kicker">' + (number ? '<span>' + number + ' of 10</span> · ' : '') + esc(dawnCollection(q.collection)) + '</p>' +
     evidence + '<blockquote><p>“' + esc(q.text) + '”</p></blockquote>' +
     '<p class="dawn-speaker">' + esc(q.speaker) + '</p>' +
-    (q.author && q.author !== q.speaker ? '<p class="dawn-author">Written by ' + esc(q.author) + '</p>' : '') +
+    (q.author && q.author !== q.speaker ? '<p class="dawn-author">' + esc(q.authorCredit || 'Written by ' + q.author) + '</p>' : '') +
     '<p class="dawn-work"><cite>' + esc(q.work) + '</cite>' + (q.year ? ' · ' + esc(q.year) : '') + '</p>' +
     '<details' + (expanded ? ' open' : '') + '><summary>Source &amp; context<span class="sr-only"> for ' + esc(q.speaker) + '</span></summary>' +
       '<div class="dawn-provenance"><p class="dawn-locator">' + esc(q.locator) + '</p>' +
@@ -115,5 +115,9 @@ function dawnCard(q, number, expanded) {
       (q.originalText ? '<p class="dawn-original"><strong>Source wording' + (q.originalLanguage ? ' (' + esc(q.originalLanguage) + ')' : '') + '.</strong> ' + esc(q.originalText) + '</p>' : '') +
       (q.connection ? '<p><strong>The literary connection.</strong> ' + esc(q.connection) + '</p>' : '') +
       '<ul>' + links + '</ul><p class="dawn-checked">Sources checked ' + esc(q.verified) + '. External sources need a connection.</p></div></details>' +
-    castLinks + writerLinks + '<a class="dawn-permalink" href="#/anthology/' + esc(q.id) + '">Open this quotation<span class="sr-only"> by ' + esc(q.speaker) + '</span></a></article>';
+    (q.studyPrompt ? '<details class="poet-reflection"><summary>Study this passage</summary><div class="dawn-provenance">' +
+      (q.gloss ? '<p><strong>In plain English.</strong> ' + esc(q.gloss) + '</p><p class="note">An original reading aid, not a quotation or a substitute for the Middle English.</p>' : '') +
+      '<p><strong>Consider.</strong> ' + esc(q.studyPrompt) + '</p>' +
+      ((q.themes || []).length ? '<p class="note">Themes: ' + q.themes.map(esc).join(' · ') + '</p>' : '') + '</div></details>' : '') +
+    (typeof poetStudyLink === 'function' ? poetStudyLink(q) : '') + castLinks + writerLinks + '<a class="dawn-permalink" href="#/anthology/' + esc(q.id) + '">Open this quotation<span class="sr-only"> by ' + esc(q.speaker) + '</span></a></article>';
 }
