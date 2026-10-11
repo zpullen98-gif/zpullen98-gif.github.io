@@ -45,6 +45,9 @@ FL_VIEWS.anthology = {
   render: function (id) {
     var head = '<div class="dawn-opening"><p class="kick">Mind · Words to travel by</p><h1>The Dawn Anthology</h1>' +
       '<p class="note">Stories, distant worlds and voices from history. Read the words, meet their source, and carry one thought into the day.</p></div>';
+    head += '<nav class="dawn-shelf-nav" aria-label="Anthology shelves"><a href="#/anthology"' + (!id ? ' aria-current="page"' : '') + '>Browse quotations</a><a href="#/anthology/cast"' + (id === 'cast' || (id && id.indexOf('person-') === 0) ? ' aria-current="page"' : '') + '>Meet the cast</a><a href="#/today">Today’s ten</a></nav>';
+    if (id === 'cast') return head + dawnCastIndex();
+    if (id && id.indexOf('person-') === 0) return head + dawnCastProfile(id.slice(7));
     if (id) {
       var q = dawnById(id);
       return head + '<p><a class="readmini" href="#/anthology">Back to the anthology</a> <a class="readmini" href="#/today">Today’s ten</a></p>' +
@@ -54,7 +57,7 @@ FL_VIEWS.anthology = {
     var filters = [['all', 'All collections']].concat(DAWN_COLLECTIONS).map(function (c) {
       return '<button class="mchip' + (dawnFilter === c[0] ? ' on' : '') + '" data-act="dawnFilter" data-collection="' + c[0] + '" aria-pressed="' + (dawnFilter === c[0]) + '">' + esc(c[1]) + '</button>';
     }).join('');
-    return head + '<p class="dawn-intro">' + DAWN_QUOTES.length + ' source-checked quotations. Fictional dialogue is credited to its character and version; borrowed literature keeps its original author. Historical excerpts retain their setting.</p>' +
+    return head + '<p class="dawn-intro">' + DAWN_QUOTES.length + ' citable selections. Fictional dialogue is credited to its character and version; accounts retain their actual writer. Open the source notes for editions, translations and limits of the evidence.</p>' +
       '<form id="dawn-search-form" class="dawn-search" role="search"><label for="dawn-search">Find a quote, person or work</label>' +
       '<div><input id="dawn-search" type="search" maxlength="180" value="' + esc(dawnQuery) + '" placeholder="Try courage, Picard or Mandela"><button class="btn" type="submit">Search</button></div></form>' +
       '<div class="dawn-filters" role="group" aria-label="Quotation collections">' + filters + '</div>' +
@@ -68,6 +71,7 @@ FL_VIEWS.anthology = {
       '<details class="dawn-policy"><summary>How to read this collection</summary><p>Open Source &amp; context to check the original work, its location and the evidence. Book and screen versions are distinguished, translations are named where known, and literary references are identified as dialogue, adaptations or title allusions.</p><p>Today pairs your Year reading with nine selections from this anthology. They stay the same through your chosen day boundary. Your Year reading follows your chosen track; the new source panels belong to this collection.</p></details>';
   },
   after: function () {
+    dawnCastAfter();
     var form = document.getElementById('dawn-search-form');
     if (!form) return;
     form.addEventListener('submit', function (event) {
