@@ -73,6 +73,13 @@ function flSearch(query) {
     if (sHit(mo[1], q) || sHit(mo[2], q)) push('The Year', mo[0], mo[1], mo[2], '#/year');
   });
 
+  /* Source-checked fiction, literature and historical voices. */
+  if (typeof DAWN_QUOTES !== 'undefined') DAWN_QUOTES.forEach(function (entry) {
+    if (sHit(dawnSearchText(entry), q)) {
+      push('The Dawn Anthology', entry.speaker, entry.work, entry.text, '#/anthology/' + entry.id);
+    }
+  });
+
   /* --- the goal ladder --- */
   LIFE.forEach(function (tier) {
     tier[2].forEach(function (g) {
@@ -165,7 +172,7 @@ function flSearch(query) {
 
   /* Journal first, then the almanac, then everything else: ordered by how likely
      the reader is to be looking for it rather than by corpus size. */
-  var order = ['Your journal', 'The Year', 'Scripture', 'Threads', 'Traditions',
+  var order = ['Your journal', 'The Year', 'The Dawn Anthology', 'Scripture', 'Threads', 'Traditions',
                'A Life Well Lived', 'Practices', 'The Body', 'Astrology'];
   results.sort(function (a, b) { return order.indexOf(a.group) - order.indexOf(b.group); });
 

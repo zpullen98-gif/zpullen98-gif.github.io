@@ -11,13 +11,34 @@
    Add images to this registry, not the service worker's shell ASSETS. */
 var LEDGER_TEACHING_IMAGES = {
   'brennans-glassware': {
+    title: 'Glass shapes: a service reference',
+    purpose: 'Recognise nine vessel shapes and use their names when checking a printed drink specification.',
+    context: 'A representative shape study, not a record of current Brennan\'s glassware, capacity, fill level or drink assignments. Confirm the actual glass with the bar.',
+    reviewedOn: '2026-10-10',
+    sources: [{title:'Visual review of this illustration against its numbered vocabulary key; no current house vessel or capacity is asserted.'}],
     src: 'img/brennans/brennans-glassware-v1.webp', width: 1024, height: 1536,
     thumb: { src: 'img/brennans/brennans-glassware-v1.thumb.webp', width: 360, height: 540 },
     alt: 'Nine numbered glass and cup shapes, left to right across three rows: 1 rocks, 2 highball, 3 stemmed Irish coffee, 4 flute, 5 coupe, 6 Nick and Nora, 7 wine glass, 8 cup and saucer, 9 tall tumbler.',
     caption: 'Learn these common shapes. Confirm the glass for each drink with the bar.',
-    labels: ['Rocks', 'Highball', 'Stemmed Irish coffee', 'Flute', 'Coupe', 'Nick & Nora', 'Wine glass', 'Cup and saucer', 'Tall tumbler']
+    labels: ['Rocks', 'Highball', 'Stemmed Irish coffee', 'Flute', 'Coupe', 'Nick & Nora', 'Wine glass', 'Cup and saucer', 'Tall tumbler'],
+    notes: [
+      'A short, broad tumbler. Its appearance alone does not establish a serving size.',
+      'A tall straight-sided glass. Exact height, volume and house use vary.',
+      'A handled, stemmed hot-drink shape. Verify the actual vessel and suitability for hot service.',
+      'A narrow stemmed bowl. This is a shape reference, not an assignment to every sparkling drink.',
+      'A shallow, wide stemmed bowl, distinct from the deeper Nick & Nora beside it.',
+      'A smaller, deeper stemmed cocktail bowl with a narrower opening than the illustrated coupe.',
+      'A rounded bowl on a stem; wine-glass sizes and profiles differ.',
+      'A handled cup with a separate saucer. Cup capacity is not shown.',
+      'A generic tall tumbler. Names overlap with highball and Collins glassware; use the house specification.'
+    ]
   },
   'garnish-citrus': {
+    title: 'Citrus cuts: know the distinction',
+    purpose: 'Tell a peel, wheel and wedge apart, then match only the cut actually named in the drink specification.',
+    context: 'Representative prepared cuts. The picture does not prescribe house dimensions, garnish placement or a knife technique.',
+    reviewedOn: '2026-10-10',
+    sources: [{title:'Visual review of the eight prepared forms against the numbered key and reading cues. House finishing details remain to be confirmed.'}],
     src: 'img/plates/garnish-citrus-v1.webp', width: 1024, height: 1536,
     thumb: { src: 'img/plates/garnish-citrus-v1.thumb.webp', width: 360, height: 540 },
     alt: 'Eight citrus cuts in numbered reading order: lemon twist, orange twist, wide orange peel, lime wheel, lemon wheel, lime wedge, lemon wedge, and an orange half wheel.',
@@ -35,6 +56,11 @@ var LEDGER_TEACHING_IMAGES = {
     ]
   },
   'ice': {
+    title: 'Ice: four forms',
+    purpose: 'Recognise the ice form while keeping size, condition, technique and dilution separate in your observations.',
+    context: 'An illustrative form comparison, not measured dimensions, a dilution chart or proof that a drink is ready.',
+    reviewedOn: '2026-10-10',
+    sources: [{title:'Visual review of the four illustrated ice forms. The image supplies no measured temperature or dilution result.'}],
     src: 'img/plates/ice-v1.webp', width: 1024, height: 1024,
     thumb: { src: 'img/plates/ice-v1.thumb.webp', width: 360, height: 360 },
     alt: 'Four numbered ice forms at a common illustrative scale: one large cube, several smaller cubes, irregular cracked pieces, and finely crushed ice.',
@@ -48,6 +74,15 @@ var LEDGER_TEACHING_IMAGES = {
     ]
   },
   'bar-tools': {
+    title: 'Bar tools: know the working end',
+    purpose: 'Identify ten tools and explain the part each plays before practising with the actual equipment.',
+    context: 'Representative tools. The stylised jigger markings do not specify an amount; check the real markings and house procedure.',
+    reviewedOn: '2026-10-10',
+    sources: [
+      {title:'Visual review of this tool inventory and numbered descriptions; shapes and markings are illustrative.'},
+      {title:'Campari Academy: strainer types and uses (tools 5 to 7)',url:'https://www.campariacademy.com/en-uk/training/tools-techniques/cocktail-strainers/'},
+      {title:'Patron: a two-tin shaking and straining demonstration',url:'https://www.patrontequila.com/en-gb/cocktails/lab/pro-tips/shaking-straining.html'}
+    ],
     src: 'img/plates/bar-tools-v1.webp', width: 1024, height: 1536,
     thumb: { src: 'img/plates/bar-tools-v1.thumb.webp', width: 360, height: 540 },
     alt: 'Ten numbered bar tools, read across each row: shaking tins, mixing glass, jigger, barspoon, Hawthorne strainer, julep strainer, fine strainer, muddler, Y-peeler, and channel knife.',

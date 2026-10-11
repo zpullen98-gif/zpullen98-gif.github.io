@@ -7,7 +7,7 @@
    index.html. A file in one and not the other is the single most common way this
    app breaks offline while looking fine online. */
 
-const CACHE = 'oot-light-v89';
+const CACHE = 'oot-light-v91';
 
 /* Scripture lives in its own cache, deliberately NOT versioned with the shell.
    The library is ~12 MB; tying it to CACHE would throw it away and re-download it
@@ -49,6 +49,10 @@ const ASSETS = [
   './js/data-practice.js',
   './js/data-intent.js',
   './js/data-uplift.js',
+  './js/anthology.js',
+  './js/data-anthology.js',
+  './js/ui-anthology.js',
+  './css/house-anthology.css',
   './js/data-move.js',
   './js/data-life.js',
   './js/data-body.js',

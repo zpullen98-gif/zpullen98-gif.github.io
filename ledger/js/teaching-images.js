@@ -18,6 +18,10 @@
       image.width > 0 && image.height > 0 && image.width <= 4096 && image.height <= 4096;
   }
   function localPath(path) { return typeof path === 'string' && pathPattern.test(path); }
+  function sourceLink(value) {
+    try { if (typeof value !== 'string') return false; var url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password; }
+    catch (_) { return false; }
+  }
   Object.keys(source).forEach(function (id) {
     var entry = source[id];
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id) || !entry || !localPath(entry.src) ||
@@ -29,8 +33,16 @@
         entry.labels.some(function (label) { return typeof label !== 'string' || !label.trim(); }))) return;
     if (entry.notes && (!Array.isArray(entry.notes) || !entry.labels || entry.notes.length !== entry.labels.length ||
         entry.notes.some(function (note) { return typeof note !== 'string' || !note.trim(); }))) return;
+    if (['title','purpose','context'].some(function (name) { return entry[name] !== undefined && (typeof entry[name] !== 'string' || !entry[name].trim()); })) return;
+    if (entry.reviewedOn !== undefined && (typeof entry.reviewedOn !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(entry.reviewedOn) ||
+        !Number.isFinite(Date.parse(entry.reviewedOn)) || new Date(entry.reviewedOn).toISOString().slice(0,10) !== entry.reviewedOn)) return;
+    if (entry.sources && (!Array.isArray(entry.sources) || entry.sources.length > 12 || entry.sources.some(function (item) {
+      return !item || typeof item.title !== 'string' || !item.title.trim() || (item.url !== undefined && !sourceLink(item.url));
+    }))) return;
     entries[id] = Object.freeze({ src: entry.src, width: entry.width, height: entry.height,
       alt: entry.alt, caption: entry.caption,
+      title:entry.title || 'Teaching illustration', purpose:entry.purpose || '', context:entry.context || '', reviewedOn:entry.reviewedOn || '',
+      sources:Object.freeze((entry.sources || []).map(function (item) { return Object.freeze({title:item.title,url:item.url || ''}); })),
       labels: Object.freeze((entry.labels || []).slice()),
       notes: Object.freeze((entry.notes || []).slice()),
       thumb: entry.thumb && Object.freeze({src:entry.thumb.src,width:entry.thumb.width,height:entry.thumb.height}) });
@@ -79,7 +91,7 @@
     return new Response(bytes, { headers: { 'Content-Type':'image/webp', 'Content-Length':String(length) } });
   }
   async function keep(url, response) {
-    if (!scope.caches) return;
+    if (!scope.caches) return false;
     var cache = await scope.caches.open(cacheName);
     /* Cache key order gives an eviction queue. Replacing an entry moves it to
        the newest end; all writes are serial so concurrent pictures cannot
@@ -97,9 +109,16 @@
     while (rows.length > maxEntries || total > maxBytes) {
       var oldest = rows.shift(); total -= oldest.size; await cache.delete(oldest.key);
     }
+    // A successful put alone is not evidence the entry survived eviction or
+    // a storage failure. Read and validate the stored bytes before reporting it.
+    var persisted = await cache.match(url);
+    if (!persisted) return false;
+    var actual = new Uint8Array(await (await validated(persisted)).arrayBuffer());
+    var expected = new Uint8Array(await response.clone().arrayBuffer());
+    return actual.length === expected.length && actual.every(function (byte, i) { return byte === expected[i]; });
   }
   function queueKeep(url, response) {
-    writes = writes.catch(function () {}).then(function () { return keep(url, response); }).catch(function () {});
+    writes = writes.catch(function () {}).then(function () { return keep(url, response); }).catch(function () { return false; });
     return writes;
   }
   async function download(url) {
@@ -139,6 +158,7 @@
       '<img src="' + esc(entry.src) + '"' + responsive + ' width="' + entry.width + '" height="' + entry.height +
       '" alt="' + esc(entry.alt) + '" loading="lazy" decoding="async">' +
       '<figcaption>' + esc(entry.caption) + '</figcaption>' +
+      '<button type="button" class="teaching-image-enlarge" data-teaching-open="' + esc(id) + '">Enlarge illustration with its key</button>' +
       '<a class="teaching-image-open" href="' + esc(entry.src) + '" target="_blank" rel="noopener">Open full illustration (new tab)</a>' +
       '<p class="teaching-image-missing" hidden>The illustration is unavailable. The lesson remains below.</p></figure>';
   }
@@ -154,11 +174,132 @@
       entry.labels.map(function (label, i) { return '<li>' + (entry.notes.length ? '<strong>' + esc(label) + '</strong><span>' + esc(entry.notes[i]) + '</span>' : esc(label)) + '</li>'; }).join('') + '</ol>';
   }
   function lesson(id) { return entries[id] ? figure(id) + key(entries[id]) : ''; }
+  function metadata(entry) {
+    return '<div class="teaching-context">' + (entry.purpose ? '<p><strong>Study purpose.</strong> ' + esc(entry.purpose) + '</p>' : '') +
+      (entry.context ? '<p>' + esc(entry.context) + '</p>' : '') +
+      (entry.reviewedOn ? '<p class="teaching-review-date">Illustration and key reviewed <time datetime="' + esc(entry.reviewedOn) + '">' + esc(entry.reviewedOn) + '</time>.</p>' : '') +
+      (entry.sources.length ? '<h3>Sources and review context</h3><ul>' + entry.sources.map(function (item) {
+        return '<li>' + (item.url ? '<a href="' + esc(item.url) + '" target="_blank" rel="noopener noreferrer">' + esc(item.title) + ' (new tab)</a>' : esc(item.title)) + '</li>';
+      }).join('') + '</ul>' : '') + '</div>';
+  }
+  async function cached(path) {
+    var url = exactUrl(path);
+    if (!url || !scope.caches) return false;
+    try {
+      var hit = await (await scope.caches.open(cacheName)).match(url);
+      if (!hit) return false;
+      await validated(hit); return true;
+    } catch (_) { return false; }
+  }
+  async function saved(id) {
+    var entry = entries[id];
+    if (!entry) return {full:false,small:false};
+    return {full:await cached(entry.src), small:!!entry.thumb && await cached(entry.thumb.src)};
+  }
+  async function saveOffline(id) {
+    var entry = entries[id];
+    if (!entry || !scope.caches) return false;
+    try {
+      var url = new URL(entry.src, base).href;
+      var controller = scope.navigator && scope.navigator.serviceWorker && scope.navigator.serviceWorker.controller;
+      if (doc && controller && controller.scriptURL === new URL('sw.js', base).href) {
+        // The owning worker serialises writes across controlled pages. Wait for
+        // its response, then verify its saved bytes instead of racing its queue.
+        await validated(await scope.fetch(url, {cache:'reload'}));
+        return await cached(url);
+      }
+      var response = await serve(new Request(url));
+      return await queueKeep(url, response) && await cached(url);
+    } catch (_) { return false; }
+  }
+  var viewer = null, opener = null, statusCheck = 0;
+  function isViewerOpen() { return !!(viewer && viewer.open); }
+  function closeViewer() {
+    if (!viewer) return;
+    var old = viewer, restore = opener;
+    viewer = null; opener = null; statusCheck++;
+    if (old.open) old.close();
+    old.remove();
+    if (restore && restore.isConnected && typeof restore.focus === 'function') restore.focus();
+    else if (doc) { var main = doc.getElementById('view'); if (main && main.focus) main.focus(); }
+  }
+  async function refreshStatus(id, failure) {
+    var current = viewer, revision = ++statusCheck;
+    if (!current) return;
+    var state = await saved(id);
+    if (current !== viewer || revision !== statusCheck) return;
+    var status = current.querySelector('[data-teaching-save-status]');
+    if (!status) return;
+    var controller = scope.navigator && scope.navigator.serviceWorker && scope.navigator.serviceWorker.controller;
+    var controlled = controller && controller.scriptURL === new URL('sw.js', base).href;
+    status.textContent = state.full
+      ? (controlled ? 'Full illustration saved for offline on this device.' : 'Full illustration saved on this device. Finish opening the app online before relying on offline viewing.')
+      : failure ? 'The full illustration could not be saved. Check your connection or browser storage and try again. The written key remains available.'
+      : state.small ? 'Only the smaller illustration is saved on this device. Save the full illustration while online for a closer look later.'
+      : 'The full illustration is not saved on this device yet.';
+  }
+  function openViewer(id, trigger) {
+    var entry = entries[id];
+    if (!entry || !doc || !doc.createElement || !doc.body) return false;
+    var dialog = doc.createElement('dialog');
+    if (!dialog || typeof dialog.showModal !== 'function') return false;
+    closeViewer();
+    opener = trigger || doc.activeElement;
+    dialog.className = 'teaching-viewer';
+    dialog.setAttribute('aria-labelledby','teaching-viewer-title');
+    dialog.innerHTML = '<div class="teaching-viewer-top"><h2 id="teaching-viewer-title" tabindex="-1">' + esc(entry.title) + '</h2>' +
+      '<button type="button" class="teaching-viewer-close">Close illustration</button></div>' +
+      '<figure class="teaching-image" data-teaching-image="' + esc(id) + '"><img src="' + esc(entry.src) + '" width="' + entry.width + '" height="' + entry.height + '" alt="' + esc(entry.alt) + '" decoding="async">' +
+      '<figcaption>' + esc(entry.caption) + '</figcaption><p class="teaching-image-missing" hidden>The illustration is unavailable. The numbered key remains below.</p></figure>' +
+      '<h3 class="teaching-key-title">Read the numbered illustration</h3>' + key(entry) + metadata(entry) +
+      '<div class="teaching-save"><button type="button" data-teaching-save>Save full illustration for offline</button><p role="status" aria-live="polite" data-teaching-save-status>Checking the saved illustration...</p>' +
+      '<p class="teaching-review-date">Saved artwork belongs to this browser and may be removed if its storage is cleared or runs short.</p></div>' +
+      '<a class="teaching-image-open" href="' + esc(entry.src) + '" target="_blank" rel="noopener">Open full illustration (new tab)</a>';
+    viewer = dialog;
+    doc.body.appendChild(dialog);
+    dialog.addEventListener('cancel', function (event) { event.preventDefault(); closeViewer(); });
+    dialog.addEventListener('close', function () { if (viewer === dialog) closeViewer(); });
+    dialog.querySelector('.teaching-viewer-close').addEventListener('click', closeViewer);
+    dialog.querySelector('[data-teaching-save]').addEventListener('click', async function (event) {
+      var button = event.currentTarget;
+      button.disabled = true;
+      statusCheck++;
+      dialog.querySelector('[data-teaching-save-status]').textContent = 'Saving the full illustration...';
+      var success = await saveOffline(id);
+      if (viewer !== dialog) return;
+      button.disabled = false;
+      refreshStatus(id, !success);
+    });
+    dialog.querySelector('img').addEventListener('load', function () { if (viewer === dialog && !dialog.querySelector('[data-teaching-save]').disabled) refreshStatus(id); });
+    dialog.addEventListener('keydown', function (event) {
+      // Native modal inertness handles pointer focus; isolate keyboard shortcuts
+      // from the active study card as well, including letter/Space grading.
+      event.stopPropagation();
+      if (event.key === 'Escape') { event.preventDefault(); closeViewer(); return; }
+      if (event.key !== 'Tab') return;
+      var focusable = Array.prototype.filter.call(dialog.querySelectorAll('button:not([disabled]),a[href],input,select,textarea,[tabindex="0"]'), function (node) { return !node.hidden; });
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      if (!first) { event.preventDefault(); return; }
+      if (event.shiftKey && (doc.activeElement === first || !dialog.contains(doc.activeElement))) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && (doc.activeElement === last || !dialog.contains(doc.activeElement))) { event.preventDefault(); first.focus(); }
+    });
+    dialog.showModal();
+    dialog.querySelector('.teaching-viewer-close').focus();
+    refreshStatus(id);
+    return true;
+  }
   scope.LedgerTeaching = Object.freeze({ entries:entries, cacheName:cacheName, figure:figure, lesson:lesson, disclosure:disclosure, handles:handles, owns:owns, serve:serve,
+    open:openViewer, close:closeViewer, isViewerOpen:isViewerOpen, saved:saved, saveOffline:saveOffline,
     maxImageBytes:maxImageBytes, maxBytes:maxBytes, maxEntries:maxEntries,
     forget:function () { return scope.caches ? scope.caches.delete(cacheName) : Promise.resolve(false); } });
 
   if (!doc) return;
+  doc.addEventListener('click', function (event) {
+    var trigger = event.target && event.target.closest && event.target.closest('[data-teaching-open]');
+    if (!trigger) return;
+    if (openViewer(trigger.getAttribute('data-teaching-open'), trigger)) event.preventDefault();
+  });
+  if (scope.addEventListener) scope.addEventListener('hashchange', closeViewer);
   /* No image URL exists in a closed reference. Opening it is the request,
      independent of a browser's optional lazy-loading heuristics. The key is
      normal document text, so a failed or unsaved picture cannot hide it. */

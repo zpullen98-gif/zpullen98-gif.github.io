@@ -18,7 +18,7 @@
    WHAT IT DOES INSTEAD is give every morning the same shape, in the same
    order, whether it is day two or day two hundred:
 
-     Read      the voice, the turn, and two lines that lift
+     Read      the dated voice, the turn, and nine sourced anthology lines
      Breathe   five patterns on one disc; pick one, or start with the box
      Watch     two films from the yoga and workout shelf, dealt by the date
      then      the month's teaching, the day's movement, the practice, the
@@ -37,7 +37,6 @@
 var todayStep = 0;
 var todayKeptFired = null;     // the day key the kept event last went out for
 var todayForceMode = null;     // 'guided' | 'page' | null (= the saved preference)
-var liftSeed = 0;              // "Another" deals a fresh pair for the session; nothing is recorded
 var vidSeed = 0;               // the same, for the two films
 var TODAY_FILM_KINDS = ['yoga', 'workout'];   // the shelf the morning deals from; never the rehab films
 
@@ -117,12 +116,6 @@ FL_ACTS.todayMode = function (el) {
   todayStep = 0;
   render();
   window.scrollTo(0, 0);
-};
-
-FL_ACTS.liftAgain = function () {
-  liftSeed++;
-  render();
-  announce('Two more lines.');
 };
 
 FL_ACTS.vidAgain = function () {
@@ -301,55 +294,23 @@ function todayFilms(doy) {
 
 /* --- pieces --- */
 function todayVoice(m, d, e) {
-  return '<div class="q"><p class="qt">“' + esc(e.q) + '”</p>' +
+  return '<div class="q"><p class="dawn-dated">1 of 10 · Your dated Year reading</p><p class="qt">“' + esc(e.q) + '”</p>' +
     '<span class="qs">' + esc(e.s) + '</span><span class="qtr">' + esc(e.t) + '</span>' +
     provNote(e.n) + '<br>' +
     keepButton(m, d, true) + '</div>';
 }
 
-/* THE LIFT POOL. Every line the morning can deal is assembled here and nowhere
-   else. Entries are [line, source, kind, m?, d?]. Nothing is recorded per
-   lift, so the pool changing length, which shifts which line a given day
-   lands on, costs nobody anything.
-
-   The Classics ride in month by month as they land: every verified line,
-   mapped to the lift's shape and read DIRECTLY rather than through trackQ(),
-   so the lifts draw from that year whatever year the reader is on. The month
-   and day travel in slots 3 and 4 so the day's own voice is never also dealt
-   as a lift (todayLift below). */
-function todayLiftPool() {
-  var pool = (typeof UPLIFT === 'undefined') ? [] : UPLIFT.slice();
-  if (typeof Q_CLASSICS !== 'undefined' && Q_CLASSICS) {
-    for (var m = 1; m <= 12; m++) {
-      var arr = Q_CLASSICS[m] || [];
-      for (var i = 0; i < arr.length; i++) pool.push([arr[i][1], arr[i][2], 'classic', m, arr[i][0]]);
-    }
-  }
-  return pool;
-}
-
-/* Two lines from the pool, chosen by the day; "Another" walks the seed. When
-   the reader is on The Classics, the day's own voice is stepped over, so the
-   same sentence is never on the page twice. */
+/* The dated voice plus nine source-checked selections make Today's ten.
+   Do not feed the legacy UPLIFT bank into this collection: several entries
+   there explicitly have uncertain attributions and no primary-source links. */
 function todayLift(doy) {
-  var pool = todayLiftPool();
-  if (pool.length < 3) return '';
-  var n = pool.length;
-  var a = (doy + liftSeed * 13) % n;
-  var b = (doy * 7 + 3 + liftSeed * 17) % n;
   var md = doyToMD(doy);
-  var own = flActiveTrack().id === 'classics';
-  var isVoice = function (i) { var u = pool[i]; return own && u[2] === 'classic' && u[3] === md[0] && u[4] === md[1]; };
-  if (isVoice(a)) a = (a + 1) % n;
-  if (b === a || isVoice(b)) b = (b + 1) % n;
-  if (b === a) b = (b + 1) % n;
-  var one = function (i) {
-    var u = pool[i];
-    return '<div class="lift"><p class="lq">“' + esc(u[0]) + '”</p>' +
-      '<span class="ls">' + esc(u[1]) + '</span></div>';
-  };
-  return '<div class="label">A lift for the day</div>' + one(a) + one(b) +
-    '<div style="text-align:center;margin-top:4px"><button class="keep" data-act="liftAgain">Another</button></div>';
+  var quotes = dawnDaily(flToday(), dayEntry(md[0], md[1]).q);
+  return '<section class="dawn-today" id="today-anthology" tabindex="-1" aria-labelledby="today-anthology-title">' +
+    '<h2 id="today-anthology-title">Words to travel by</h2>' +
+    '<p class="px">Your dated reading above and these nine selections make today’s ten. Open a source to explore the scene, speech or original work. A new selection arrives with your next day.</p>' +
+    '<p><a class="readmini" href="#/anthology">Explore The Dawn Anthology</a></p>' +
+    '<div class="dawn-grid">' + quotes.map(function (q, i) { return dawnCard(q, i + 2); }).join('') + '</div></section>';
 }
 
 /* One short teaching for the month, in the app's own voice. */
@@ -471,13 +432,13 @@ function todayGuided(m, d, e, doy, p) {
     { label: 'The voice', body: function () {
         return todayVoice(m, d, e) +
           '<p class="mintro" style="margin-top:18px">Read it twice. The second time is the one that lands.</p>' +
-          '<p class="refl" style="margin-top:14px">' + esc(TURN_PROMPTS[doy % TURN_PROMPTS.length]) + '</p>';
+          '<p class="refl" style="margin-top:14px">' + esc(TURN_PROMPTS[doy % TURN_PROMPTS.length]) + '</p>' + todayLift(doy);
       } },
     { label: 'Sit with it', body: function () {
         return todayBreath();
       } },
     { label: 'Move', body: function () { return todayMove() + '<div id="today-films">' + todayFilms(doy) + '</div>'; } },
-    { label: 'The practice', body: function () { return todayPractice(p) + todayLift(doy); } }
+    { label: 'The practice', body: function () { return todayPractice(p); } }
   ];
 
   if (todayStep >= steps.length) {

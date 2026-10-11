@@ -1,0 +1,37 @@
+/* First Light's reading folios inherit the four house palettes. */
+.dawn-opening { border-bottom: 1px solid var(--line); margin-bottom: 22px; padding-bottom: 14px; }
+.dawn-opening .kick { margin-top: 0; }
+.dawn-intro { color: var(--faint); font-size: 15px; line-height: 1.75; }
+.dawn-search { margin: 26px 0 18px; }
+.dawn-search label { display: block; margin-bottom: 8px; font-size: 14px; }
+.dawn-search > div { display: flex; gap: 10px; }
+.dawn-search input { flex: 1; width: 100%; padding: 10px 12px; }
+.dawn-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.dawn-results { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; margin: 20px 0; font-size: 14px; }
+.dawn-results p { margin: 0; flex: 1; }
+.dawn-results a { padding: 12px 0; }
+.dawn-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
+.dawn-card { min-width: 0; padding: 26px; margin: 20px 0; border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 3px; background: var(--paper); color: var(--ink); box-shadow: var(--shadow); overflow-wrap: anywhere; }
+.dawn-grid .dawn-card { margin: 0; }
+.dawn-card .dawn-kicker { font-size: 11px; line-height: 1.7; letter-spacing: .055em; color: var(--accent); margin: 0 0 16px; }
+.dawn-card blockquote { margin: 0 0 18px; padding: 0; border: 0; }
+.dawn-card blockquote p { font-family: var(--serif); font-size: 28px; line-height: 1.4; font-style: italic; margin: 0; white-space: pre-line; }
+.dawn-card .dawn-speaker { font-weight: 700; font-size: 14px; line-height: 1.6; margin: 0 0 4px; }
+.dawn-card .dawn-work { font-size: 13px; line-height: 1.7; margin: 0 0 18px; color: var(--faint); }
+.dawn-card cite { font-style: normal; }
+.dawn-card details { border-top: 1px solid var(--line); }
+.dawn-card summary,.dawn-policy summary { padding: 13px 0; min-height: 44px; cursor: pointer; font-size: 14px; color: var(--accent); }
+.dawn-provenance { font-size: 14px; line-height: 1.7; }
+.dawn-provenance p { margin: 8px 0 14px; }
+.dawn-provenance .dawn-locator { font-weight: 700; }
+.dawn-provenance ul { padding-left: 18px; }
+.dawn-provenance a { display: inline-block; padding: 7px 0; text-underline-offset: 3px; }
+.dawn-provenance .dawn-checked { font-size: 12px; color: var(--faint); }
+.dawn-permalink { display: inline-block; padding: 12px 0 0; font-size: 12px; min-height: 44px; text-underline-offset: 3px; }
+.dawn-more { margin: 24px 0; }
+.dawn-policy { margin: 28px 0 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.75; }
+.dawn-today { margin: 26px 0; }
+.dawn-today h2 { font-family: var(--house-display, var(--serif)); font-size: 23px; font-weight: 500; }
+.dawn-dated { font-size: 12px; letter-spacing: .07em; color: var(--accent); margin: 0 0 12px; }
+@media(max-width:600px) { .dawn-grid { grid-template-columns: 1fr; } .dawn-card { padding: 23px 20px; } .dawn-search > div { flex-wrap: wrap; } .dawn-search input { flex-basis: 100%; } }
+@media print { .dawn-filters,.dawn-search,.dawn-more,.dawn-permalink { display: none; } .dawn-grid { display: block; } .dawn-card { break-inside: avoid; box-shadow: none; } }

@@ -1048,6 +1048,7 @@ function hsMadeOfHTML(h, id){
           + (say ? '<p><span class="hs-soft">' + esc(hsSay('say')) + ':</span> ' + esc(say) + '</p>' : '')
           + (explain ? hsParas(explain) : '')
           + (card ? '<dl class="hs-dl"><dt>' + esc(hsSay('cardFront')) + '</dt><dd>' + esc(card.front) + '</dd><dt>' + esc(hsSay('cardBack')) + '</dt><dd>' + esc(card.back) + '</dd></dl>' : '')
+          + (typeof methodComponentStudyHTML === 'function' ? methodComponentStudyHTML(c.id) : '')
           + (vids.length ? '<p class="hs-soft">' + esc(hsSay('videoNote')) + '</p><ul class="hs-vlist">' + vids.map(function(v){ return hsVideoLI(h, v, false, ords[v.id]); }).join('') + '</ul>' : '')
           + '</div></details></li>';
       }).join('') + '</ul>';
@@ -1519,6 +1520,7 @@ function hsCardHTML(h, id){
   out += '</section>';
   /* 8a. who makes it, what it is made of, and what to compare it with */
   if(item) out += hsWhoMakesHTML(h, id) + hsMadeOfHTML(h, id) + hsCompareHTML(h, item);
+  if(item && typeof methodHouseStudyHTML === 'function') out += methodHouseStudyHTML(id);
   /* 9. the five parts */
   if(parts.length) out += '<section class="hs-group"><h3 class="hs-h3">' + esc(hsSay('parts')) + '</h3><dl class="hs-dl">'
     + parts.map(function(p){ return '<dt>' + esc(p[0]) + '</dt><dd>' + esc(p[1]) + '</dd>'; }).join('') + '</dl></section>';
