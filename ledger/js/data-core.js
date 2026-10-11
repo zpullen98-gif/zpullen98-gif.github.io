@@ -574,14 +574,14 @@ const FAMILIES = {
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
-      "The sweetness arrives dissolved: stirred through where the drink is built on syrup or muddled sugar, or streaming up from the cube where the cube is the point. Grit in the last sip means the stir stopped early.",
-      "Cold and slightly softened, never watery: the first sip has lost its raw-spirit heat, and the last sip still tastes of the spirit rather than the melt.",
-      "The nose gets there first: expressed oils, a rinse, or bitters on the surface reach you before the liquid does.",
-      "The spirit is still the drink. Everything else frames it; nothing covers it.",
+      "Where dissolved sugar is intended, check for unwanted grit and even sweetness. A deliberately present sugar cube follows its own recipe.",
+      "Check the intended temperature and dilution by the bar’s tasting procedure. A particular melt pattern does not establish balance or strength.",
+      "Notice the actual aromatic finish: expressed oils, a rinse or bitters can frame the first impression. Use the finish the recipe names.",
+      "Describe the spirit alongside its sweetness and seasoning. Spirit-forward does not mean unsweetened or a known alcohol content.",
     ],
-    fault:"Rushed. Sugar half-dissolved and dilution skipped, so the first sip is hot and dry and the bottom of the glass is syrup. The water is an ingredient: stir until the drink has taken it.",
+    fault:"Uneven sweetness, unwanted grit or a harsh or thin result calls for a check of the measured ingredients, sugar preparation, temperature and dilution. Do not diagnose every fault from the last sip alone.",
     formula:"Spirit + sugar + bitters + water",
-    lesson:"The original 1806 definition of 'cocktail'. Dilution is an ingredient: the water comes from ice, and it belongs there.",
+    lesson:"Spirit, sugar, bitters and water are the classic structural reference. The particular drink decides the measures, source of water, aromatic finish and service. A family pattern helps you understand a recipe; it does not replace one.",
     parent:"Old Fashioned",
   },
   "Sour": {
@@ -589,14 +589,14 @@ const FAMILIES = {
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
-      "Bright, not sharp: the citrus lifts the first sip and the sweet catches it; neither lands alone, whatever ratio the house pours.",
-      "The citrus tastes cut today. Day-old juice reads dull and bottled reads bitter, and no ratio fixes either.",
-      "Chilled and textured to what the serve asks: a fine froth on a shaken one, smooth slush on a frozen one, clean and cold on a built one.",
-      "Served up, the surface is clean: double-strained, no ice shards, no pulp rafts.",
+      "Identify the acidity and sweetness, then check their balance against the named recipe. Ingredients can contribute more than one flavour or structural role.",
+      "Use the approved citrus preparation and handling procedure. Assess its intended flavour and condition; a blanket fresh-versus-bottled rule cannot describe every product or recipe.",
+      "Check temperature, dilution and the requested texture. A sour may be foamed, unfoamed or frozen, and the family name does not establish egg or dairy ingredients.",
+      "Use the specified strain. Fine straining is useful when the recipe calls for finer filtration; it is not compulsory for every sour served up.",
     ],
-    fault:"Tired juice, or a ratio that drifted. It tastes sharp up front and flat behind, the sweetness sitting on top of the drink instead of inside it, and the tell is that nobody orders a second.",
-    formula:"2 oz spirit + 3/4–1 oz citrus + 3/4 oz sweet",
-    lesson:"The biggest family in the canon. Balance lives in the citrus-to-sweet ratio; taste your citrus daily. Add orange liqueur and you have a New Orleans sour (Margarita, Sidecar). Add soda and it goes long (Collins, Fizz).",
+    fault:"An unexpectedly sharp, sweet, thin or flat result calls for checking the actual ingredients, measures and dilution. Taste using the house procedure before deciding what needs correction.",
+    formula:"Spirit + acid + sweet, with texture as specified",
+    lesson:"The Daiquiri illustrates rum, lime and sugar. A Sidecar brings sweetness and orange flavour through a liqueur; a fizz adds a sparkling element. These comparisons explain structure, while the particular recipe sets the proportions and method.",
     parent:"Daiquiri",
   },
   "Spirit & Vermouth": {
@@ -604,14 +604,14 @@ const FAMILIES = {
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
-      "The vermouth is alive: wine-fresh, kept cold, young enough to remember being opened. A drink on tired vermouth tastes dusty, and no stir saves it.",
-      "Silk at real cold: chilled until the vessel frosts, so it drinks smooth without the burn of under-dilution or the slack of over.",
-      "Stirred members pour bright as glass. Haze where none belongs means it was shaken, or the ice was wet.",
-      "The spirit leads and the wine frames it: you taste both, in that order, to the bottom of the glass.",
+      "Use the specified aromatised wine in its intended condition. Follow the producer’s opened-bottle guidance and the house’s dated stock controls.",
+      "Check the intended temperature, dilution and texture together. Frost on the vessel is not a required readiness test.",
+      "Assess appearance against the actual recipe. Haze alone cannot diagnose shaking, ice condition or ingredient quality.",
+      "Notice how the spirit, wine and any bitter ingredient work together. The wine style and its proportion depend on the particular drink.",
     ],
-    fault:"The vermouth died on a warm shelf weeks ago, and everything made with it is quietly flat. Refrigerate it, date it, and pour it like the wine it is.",
-    formula:"2 oz spirit + 1 oz aromatized wine (+ bitters)",
-    lesson:"Stirred whenever the glass holds only spirit and wine; the juiced cousins (the Bronx wing) shake. Vermouth is wine: refrigerate it, date the bottle, replace it monthly. A Manhattan on tired vermouth is a dead Manhattan.",
+    fault:"A dull or unbalanced result calls for checking the wine’s condition, the measured ingredients and dilution. Use the producer’s storage guidance rather than one replacement interval for every bottle.",
+    formula:"Spirit + aromatised wine, with bitters as specified",
+    lesson:"Compare the sweet-vermouth Manhattan with the dry-vermouth Martini, then the bitter-aperitif element of a Negroni. These overlapping teaching groups do not prescribe one ratio. Follow the named recipe for mixing and service, and clarify what a guest means by dry.",
     parent:"Manhattan",
   },
   "Highball": {
@@ -619,14 +619,14 @@ const FAMILIES = {
        mark the family's real forks. `fault` is the commonest failure and
        its diagnosis, the World Table's standards grammar. */
     marks:[
-      "Where it sparkles, it sparkles to the last sip: cold glass, cold bottle, a gentle build, one lift of the spoon, never a hard stir that beats the gas out.",
-      "A full column of ice. Half a glass of ice is a warmer drink with a swim in it, not a colder one.",
-      "The spirit stays present through the lengthener, long, never lost.",
-      "The rolled and juiced members pour even and seasoned through, with nothing separating in the glass.",
+      "Where carbonation belongs, use the specified chilled ingredients and gentle handling to preserve the intended sparkling finish. One spoon movement is not a rule for every recipe.",
+      "Use the recipe’s serving ice and vessel. Some long drinks use ice, while others are served without it.",
+      "Assess the base and lengthener together. A tall glass does not identify ingredients, strength or the correct proportion.",
+      "For the still and savoury drinks grouped here, check the intended texture, seasoning and mixing method rather than demanding bubbles.",
     ],
-    fault:"A warm glass and a hard stir. The sparkle is gone before it reaches the table, and what lands is flat mixer with spirit in it, in the one family whose entire point was the lift.",
-    formula:"2 oz spirit + 4–6 oz carbonated lengthener",
-    lesson:"Carbonation is fragile. Cold glass, cold mixer, gentle build, one lift of the barspoon, never a hard stir.",
+    fault:"Unexpectedly weak carbonation or poor balance calls for checking ingredient condition, temperature, measures and handling. Some long drinks are intentionally still, so start with the actual specification.",
+    formula:"Base + lengthener, sparkling or still as specified",
+    lesson:"This Library shelf groups several long-drink structures. Compare a whisky and soda, a sour base lengthened as a fizz, and an aperitif spritz. Their recipes decide proportions, serving ice and build order. Never seal and shake the carbonated addition.",
     parent:"Gin & Tonic",
   },
   "Egg & Cream": {

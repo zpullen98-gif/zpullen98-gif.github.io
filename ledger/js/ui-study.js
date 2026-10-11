@@ -20,6 +20,7 @@ function renderFamilies(){
     const body = isOpen ? '<div class="accordion-body">'
       + '<div class="small dim lh">'+esc(f.lesson)+'</div>'
       + familyMarksHTML(name, 'How to tell it went right')
+      + (typeof methodFamilyStudyHTML === 'function' ? methodFamilyStudyHTML(name) : '')
       + '<div class="eyebrow">Parent drink: '+esc(f.parent)+' · '+members.length+' in the ledger</div>'
       + '<div class="row">'+chips+'</div>'
       + '<div class="row">'+categoryVideoHTML(name,'family')+'</div></div>' : '';

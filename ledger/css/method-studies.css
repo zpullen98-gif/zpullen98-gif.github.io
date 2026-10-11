@@ -9,9 +9,14 @@
 .method-heading h2{font-size:clamp(1.45rem,3vw,2.1rem);line-height:1.25;margin:10px 0 16px;text-wrap:balance}
 .method-heading>p{max-width:720px;font-size:1.05rem;line-height:1.65}
 .method-caption,.method-figure figcaption{font-size:.84rem!important;color:var(--cream-dim);line-height:1.6}
+.method-collection{margin-bottom:34px;min-width:0}
+.method-collection+.method-collection{padding-top:26px;border-top:1px solid var(--house-line)}
+.method-collection-heading{margin-bottom:18px;padding-left:18px;border-left:2px solid var(--brass)}
+.method-collection-heading h3{font:500 clamp(1.2rem,2.5vw,1.55rem)/1.4 var(--house-display,Georgia,serif);color:var(--brass-2);margin:8px 0 10px;text-wrap:balance}
+.method-collection-heading p{max-width:720px;font-size:.98rem;line-height:1.7;margin:0}
 .method-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:24px}
 .method-card{display:flex;flex-direction:column;gap:12px;padding:24px;border:1px solid var(--house-line);background:var(--felt-2);color:var(--cream);text-decoration:none;min-width:0}
-.method-card h3{font:500 1.18rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0}
+.method-card h3,.method-card h4{font:500 1.18rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0}
 .method-card p{font-size:.96rem;line-height:1.7;margin:0}
 .method-card-preview{display:block;width:100%;height:auto;border:1px solid var(--house-line);background:#eee2c8}
 .method-card-action{padding-top:8px;margin-top:auto;color:var(--brass-2);text-decoration:underline;text-underline-offset:4px;font-size:.88rem}
@@ -42,11 +47,13 @@
 .method-inline-body>p{font-size:.98rem;line-height:1.7}
 .method-feedback{width:100%;margin-top:18px;min-width:0}
 .method-reading{display:flex;gap:10px;flex-wrap:wrap}
-.method-next{margin-top:26px}
+.method-next{display:grid;gap:14px;margin-top:26px}
+.method-next>.btn{justify-self:start;white-space:normal;text-align:left}
 .method-companions .teaching-reference{margin:10px 0}
 .method-content summary:focus-visible,.method-inline summary:focus-visible{outline:3px solid var(--brass-2);outline-offset:3px}
 @media(max-width:639px){
  .method-cards{grid-template-columns:1fr;gap:14px}.method-card{padding:20px}
+ .method-collection-heading{padding-left:12px}.method-collection{margin-bottom:28px}
  .method-door{padding:18px}.method-steps li{padding:16px 12px;grid-template-columns:30px minmax(0,1fr);gap:10px}
  .method-step-mark{width:28px;height:28px;font-size:.85rem}.method-content{gap:18px}
  .method-checks,.method-guest,.method-recall{padding:18px 16px}.method-inline-body{padding:0 12px 18px}

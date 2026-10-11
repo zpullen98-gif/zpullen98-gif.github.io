@@ -564,7 +564,8 @@ function renderNA(){
       + glassIcon(d.glass)
       + '<span class="bold">'+esc(d.name)+'</span><span class="chip">'+esc(d.cat)+'</span>'
       + '<span class="plusminus">'+(open?'−':'+')+'</span></button>'
-      + (open ? '<div class="drink-body">'+naTicketHTML(d)+videoRowHTML({src:'Zero Proof',name:d.name,group:d.cat,tier:null})+'</div>' : '')+'</div>';
+      + (open ? '<div class="drink-body">'+naTicketHTML(d)+videoRowHTML({src:'Zero Proof',name:d.name,group:d.cat,tier:null})
+        + (typeof methodInlineHTML === 'function' ? methodInlineHTML(methodIdsForRecord('Zero Proof','',d.name)) : '')+'</div>' : '')+'</div>';
   }).join('');
   return wrap('<div class="small dim lh" style="padding:0 4px">'+NA_DRINKS.length+' zero-proof drinks across '+NA_CATS.length+' families. Not consolation prizes: drinks built with the same structure, technique, and theater as anything else on the ledger. Every ticket carries a <span class="brass2">why it works</span> note explaining what replaces the alcohol.</div>'
     + '<div class="row"><button class="btn btn-brass" data-act="na-drill">Run the zero-proof drill</button>'

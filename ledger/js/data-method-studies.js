@@ -105,5 +105,374 @@ var LEDGER_METHOD_STUDIES = [
       ['Brennan’s cocktail menu','https://www.brennansneworleans.com/menus/cocktails/'],
       ['IBA: Champagne Cocktail, a general recipe','https://iba-world.com/iba-cocktail/champagne-cocktail/']
     ], reviewedOn:'2026-10-10'
+  },
+  {
+    "id": "spirit-forward",
+    "collection": "families",
+    "title": "Spirit-forward families in comparison",
+    "eyebrow": "Read what frames the spirit",
+    "intro": "Follow what frames the spirit: sweetener and bitters, aromatised wine, or a bitter aperitif. These overlapping comparisons help you ask a better guest question; they do not supply a house recipe.",
+    "image": "img/studies/spirit-forward-v1.svg",
+    "alt": "Three ingredient-role comparisons: A, an unbranded spirit bottle with sugar cubes and bitters; B, spirit and aromatised wine represented by separate bottles and grapes; C, spirit, bitter aperitif and aromatised wine. Bottle size is not a ratio.",
+    "imageCaption": "Ingredient and structure comparisons. Read A, B and C with the explanations below. Bottle sizes, vessels and colours are illustrative; they do not show proportions or Brennan’s presentation.",
+    "steps": [
+      [
+        "Old Fashioned pattern",
+        "A spirit is framed by sugar, bitters and water from the recipe and melting ice. These are ingredient roles, not an instruction to add a standard syrup measure to every related drink."
+      ],
+      [
+        "Spirit with aromatised wine",
+        "A Manhattan pairs whiskey and sweet vermouth; a Dry Martini pairs gin and dry vermouth. The wine style and amount change the result. Ask what a guest means by dry rather than assuming they want no vermouth."
+      ],
+      [
+        "A bitter aperitif changes the balance",
+        "The IBA Negroni adds Campari to gin and sweet vermouth. This named example shows bitterness, sweetness and wine character working together. Bitter and spirit-forward do not mean unsweetened or a known alcohol strength."
+      ]
+    ],
+    "checks": [
+      "Can you name the job of the sweetener, the wine and the bitter ingredient in each example?",
+      "Have you clarified what the guest means by dry, strong or bitter? These are different questions.",
+      "Are you describing the actual menu ingredients without turning a family pattern into a measured house build?"
+    ],
+    "recall": "What changes when wine replaces plain sweetener as a major partner? Why is spirit-forward not an exact alcohol-strength claim?",
+    "answer": "Wine changes acidity, sweetness and botanical flavour as well as the balance with the spirit. Strength depends on the actual ingredients, measures and dilution, which a family label cannot supply.",
+    "guest": "Would you prefer whiskey and aromatic bitters, or a drink with the wine character of vermouth? For a Martini order, clarify the guest’s meaning of dry rather than guessing.",
+    "house": "The currently published Classic Sazerac identifies rye, Peychaud’s and an Herbsaint rinse. To Each His Own identifies Calvados, Lillet Blanc and quince liqueur. Use the pair to notice an aromatic rinse versus a wine-based aperitif and liqueur; neither printed list gives a complete measured build.",
+    "confirm": "Lillet Blanc is a wine-based aperitif, not simply another name for dry vermouth. Confirm the house’s actual build and serving details. Do not relabel To Each His Own as a Martini.",
+    "houseIds": [
+      "b-olsmh04y",
+      "b-s0qz3e1g"
+    ],
+    "componentIds": [
+      "c-70rdihwo",
+      "c-hexgqdzk",
+      "c-r8v9mkjs",
+      "c-hs7ia447",
+      "c-7cihlfz8",
+      "c-gsjewrqw"
+    ],
+    "canonNames": [
+      "Old Fashioned",
+      "Manhattan",
+      "Martini",
+      "Negroni",
+      "Sazerac"
+    ],
+    "families": [
+      "Old Fashioned",
+      "Spirit & Vermouth"
+    ],
+    "references": [
+      "bar-tools"
+    ],
+    "reading": [
+      [
+        "Explore the cocktail families",
+        "#/families"
+      ],
+      [
+        "Practise stirring and rinsing",
+        "#/notes/studies/stir-rinse"
+      ]
+    ],
+    "sources": [
+      [
+        "Brennan’s current Cocktails and Wine by the Glass menu",
+        "https://www.brennansneworleans.com/menus/cocktails/"
+      ],
+      [
+        "IBA Old Fashioned",
+        "https://iba-world.com/iba-cocktail/old-fashioned/"
+      ],
+      [
+        "IBA Manhattan",
+        "https://iba-world.com/iba-cocktail/manhattan/"
+      ],
+      [
+        "IBA Dry Martini",
+        "https://iba-world.com/iba-cocktail/dry-martini/"
+      ],
+      [
+        "IBA Negroni",
+        "https://iba-world.com/iba-cocktail/negroni/"
+      ],
+      [
+        "Lillet producer FAQ",
+        "https://www.lillet.com/fr-be/faq/"
+      ]
+    ],
+    "reviewedOn": "2026-10-11"
+  },
+  {
+    "id": "sour-structure",
+    "collection": "families",
+    "title": "Sour structure and texture",
+    "eyebrow": "Balance first, texture by recipe",
+    "intro": "Locate acidity and sweetness before choosing a texture. A liqueur can bring several flavours at once, and foam is a separate recipe decision.",
+    "image": "img/studies/sour-structure-v1.svg",
+    "alt": "Three comparisons: A, a generic spirit bottle, lime and sugar; B, a liqueur bottle, lemon cross-section and orange peel; C, two generic surfaces, one plain and one foamed, beside an egg as one possible texture ingredient. No ingredient can be established from foam alone.",
+    "imageCaption": "Ingredient and structure comparisons. Read A, B and C with the explanations below. Bottle sizes, vessels and colours are illustrative; they do not show proportions or Brennan’s presentation.",
+    "steps": [
+      [
+        "Locate the acid and sweet",
+        "The Daiquiri gives a clear comparison: rum, lime and sugar. Taste and measure to the named recipe; an equal visual diagram is not an equal-parts formula."
+      ],
+      [
+        "A liqueur brings flavour and sweetness",
+        "The IBA Sidecar combines Cognac, triple sec and lemon. Here the orange liqueur contributes flavour and sweetness together. Changing a liqueur changes more than sweetness, so read the named recipe rather than copying a syrup ratio."
+      ],
+      [
+        "Texture is a separate choice",
+        "Egg white is optional in the IBA Whiskey Sour and absent from its Daiquiri. A sour does not require egg, dairy or a foam cap. Use the specified method and strain for the desired texture."
+      ]
+    ],
+    "checks": [
+      "Which ingredient supplies acidity, and which supplies sweetness? Could either do more than one job?",
+      "Is the texture ingredient named in this recipe, rather than guessed from the foam?",
+      "Does the chosen method and strain match the specified finish?"
+    ],
+    "recall": "A guest enjoys lemon but avoids egg. Can the word sour settle the order?",
+    "answer": "No. Check the particular ingredients and preparation with the bar. Sour describes a useful structural comparison; it is not an egg or allergen declaration.",
+    "guest": "Would you like something bright and citrus-led, or a softer texture? I can check which of our current options fits your preference.",
+    "house": "Old Buttermilk Sky expressly lists egg white; Five Minutes More lists lemon and two liqueurs without egg on the printed list. This is a contrast between documented ingredient lists, not proof that an omission establishes an egg-free preparation.",
+    "confirm": "Confirm ingredients, handling and any approved variation with the bar. Do not promise that removing egg leaves an otherwise identical drink or that a pale foam proves a particular ingredient.",
+    "houseIds": [
+      "b-2g19vrds",
+      "b-try910qa",
+      "b-j8tcv7ox"
+    ],
+    "componentIds": [
+      "c-22e097nj",
+      "c-h4oc3dqx",
+      "c-038e19qq",
+      "c-jp9rkxhp",
+      "c-xcjx03ic",
+      "c-7j93z4g0"
+    ],
+    "canonNames": [
+      "Daiquiri",
+      "Whiskey Sour",
+      "Margarita",
+      "Sidecar"
+    ],
+    "families": [
+      "Sour"
+    ],
+    "references": [
+      "bar-tools",
+      "garnish-citrus"
+    ],
+    "reading": [
+      [
+        "Explore the cocktail families",
+        "#/families"
+      ],
+      [
+        "Practise shaking and texture",
+        "#/notes/studies/shake-texture"
+      ]
+    ],
+    "sources": [
+      [
+        "Brennan’s current Cocktails and Wine by the Glass menu",
+        "https://www.brennansneworleans.com/menus/cocktails/"
+      ],
+      [
+        "IBA Daiquiri",
+        "https://iba-world.com/iba-cocktail/daiquiri/"
+      ],
+      [
+        "IBA Sidecar",
+        "https://iba-world.com/iba-cocktail/sidecar/"
+      ],
+      [
+        "IBA Whiskey Sour",
+        "https://iba-world.com/iba-cocktail/whiskey-sour/"
+      ]
+    ],
+    "reviewedOn": "2026-10-11"
+  },
+  {
+    "id": "long-sparkling",
+    "collection": "families",
+    "title": "Highball, fizz and spritz",
+    "eyebrow": "Follow the source of the bubbles",
+    "intro": "A glass shape cannot tell you how a drink is built. Compare a whisky highball, a Gin Fizz and a Spritz by their ingredients, serving ice and source of bubbles.",
+    "image": "img/studies/long-sparkling-v1.svg",
+    "alt": "Three named recipe concepts: A, a whisky-and-soda highball with serving ice; B, an IBA-style Gin Fizz with bubbles and no serving ice; C, an aperitif, sparkling-wine and soda spritz over ice. Vessels and colours are illustrative.",
+    "imageCaption": "Ingredient and structure comparisons. Read A, B and C with the explanations below. Bottle sizes, vessels and colours are illustrative; they do not show proportions or Brennan’s presentation.",
+    "steps": [
+      [
+        "Whisky highball example",
+        "Whisky lengthened with soda illustrates a simple highball. Suntory’s example chills the glass and ingredients, mixes the whisky with ice and introduces chilled soda. Its particulars are a recipe, not a rule for every long drink."
+      ],
+      [
+        "Gin Fizz example",
+        "The IBA Gin Fizz shakes gin, lemon and sweetener before soda is added. It specifies service without ice. Neither egg nor cream is required by that particular fizz recipe."
+      ],
+      [
+        "Spritz example",
+        "The IBA Spritz combines Prosecco, Aperol and soda over ice. Other products and recipes use different components, including ready-mixed spritzes. Identify what supplies the wine, bitter flavour and bubbles."
+      ]
+    ],
+    "checks": [
+      "Which ingredient supplies the bubbles in this particular recipe?",
+      "Does its serving ice and mixing method match the named recipe, rather than the glass shape?",
+      "Is this a separately mixed drink or a ready-to-serve product, and has the actual house procedure been checked?"
+    ],
+    "recall": "Why can’t the same tall glass establish a highball or fizz, and why should you not automatically add soda to every spritz?",
+    "answer": "Structure and the particular recipe matter more than silhouette. Some fizz recipes have no serving ice; some spritz products already contain the complete sparkling mixture. Follow the ordered drink’s approved build.",
+    "guest": "Would you prefer a simple spirit-and-soda drink, citrus with bubbles, or a bittersweet sparkling aperitif? Then check the current menu and the guest’s preferred flavours.",
+    "house": "Bodrum lists rum, pistachio, cream, lime and sparkling water. Chandon Garden Spritz names bitter orange liqueur and Chandon Brut sparkling wine. These are different ingredient combinations, and the printed lists do not establish the house’s vessel, proportions or assembly.",
+    "confirm": "Chandon sells a ready-to-serve Garden Spritz product. Confirm the actual bottle and house procedure rather than converting the menu wording into a two-bottle recipe. No sealed shaking after adding the carbonated element.",
+    "houseIds": [
+      "b-6h7gqptn",
+      "b-o4yfzgkn",
+      "b-e6zfgyhu"
+    ],
+    "componentIds": [
+      "c-0hsrngp2",
+      "c-z1m8cztp",
+      "c-uk2f0dw5",
+      "c-p38h630z",
+      "c-rbld6gvy",
+      "c-qpooqtnh"
+    ],
+    "canonNames": [
+      "Whiskey Highball",
+      "Gin & Tonic",
+      "Gin Fizz",
+      "Ramos Gin Fizz",
+      "Aperol Spritz"
+    ],
+    "families": [
+      "Highball"
+    ],
+    "references": [
+      "ice",
+      "brennans-glassware"
+    ],
+    "reading": [
+      [
+        "Explore the cocktail families",
+        "#/families"
+      ],
+      [
+        "Practise building with bubbles",
+        "#/notes/studies/build-bubbles"
+      ]
+    ],
+    "sources": [
+      [
+        "Brennan’s Bubbles menu",
+        "https://www.brennansneworleans.com/menus/bubbles-at-brennans/"
+      ],
+      [
+        "House of Suntory whisky highball",
+        "https://house.suntory.com/cocktails/whisky-highball"
+      ],
+      [
+        "IBA Gin Fizz",
+        "https://iba-world.com/iba-cocktail/gin-fizz/"
+      ],
+      [
+        "IBA Spritz",
+        "https://iba-world.com/iba-cocktail/spritz/"
+      ],
+      [
+        "Chandon Garden Spritz producer page",
+        "https://www.chandon.com/en-int/chandon-garden-spritz"
+      ]
+    ],
+    "reviewedOn": "2026-10-11"
+  },
+  {
+    "id": "zero-proof",
+    "collection": "families",
+    "title": "Zero-proof, equal hospitality",
+    "eyebrow": "Choose flavour with the same care",
+    "intro": "Offer the same care, curiosity and precision to every guest. Explore aroma, acidity, sweetness, bitterness and texture, then check the actual menu and the guest’s needs.",
+    "image": "img/studies/zero-proof-v1.svg",
+    "alt": "Three ingredient-role studies: A, tea in a cup and aromatic leaves; B, fruit, citrus and a sweetener bowl; C, an unbranded bitter-alternative bottle and a sparkling drink. The artwork makes no alcohol-content or ingredient-suitability claim.",
+    "imageCaption": "Ingredient and structure comparisons. Read A, B and C with the explanations below. Bottle sizes, vessels and colours are illustrative; they do not show proportions or Brennan’s presentation.",
+    "steps": [
+      [
+        "Find aroma and a satisfying texture",
+        "Tea is one possible tool: its aroma and tannin can add flavour and a drying sensation. Match tea and infusion to the recipe. This is a general option, not an ingredient claimed for Brennan’s two Temperance drinks."
+      ],
+      [
+        "Balance fruit, citrus and sweetness",
+        "Fruit can bring acidity, sweetness and aroma at once. Identify the separate jobs of juice, citrus and syrup in the actual recipe, then assess the balance. Removing alcohol from another recipe does not automatically create the intended result."
+      ],
+      [
+        "Consider bitter flavour and bubbles",
+        "A suitable non-alcoholic bitter ingredient or sparkling element can add another direction. Ask what the guest enjoys, and verify the actual products and preparation for their needs. Spirit-free does not by itself establish exact alcohol content or ingredient suitability."
+      ]
+    ],
+    "checks": [
+      "Have you asked about flavour preferences with the same care as for any cocktail order?",
+      "Have you checked the complete recipe and actual products for the guest’s stated needs?",
+      "Can you describe the offered drink without guessing alcohol content, ingredients or an approved substitution?"
+    ],
+    "recall": "What needs checking when a guest choosing a spirit-free drink also avoids egg?",
+    "answer": "The complete recipe and handling. Brennan’s Oh! What It Seemed to Be explicitly lists egg white. Do not assume a spirit-free sour is vegan or offer an unapproved substitution; return with a confirmed option.",
+    "guest": "Would you enjoy something sparkling and fruit-led, or a lemon-and-spice drink with a softer texture? If you have ingredients or alcohol levels you need us to avoid, I’ll check the details with the bar.",
+    "house": "Personality pairs the named Wölffer sparkling rosé with tart cherry and brown sugar syrup. Oh! What It Seemed to Be lists a Lyre’s agave alternative, fig and cinnamon syrups, lemon and egg white. Both sit in the menu’s Temperance section, but their structures and ingredient questions differ.",
+    "confirm": "No exact finished ABV, zero-alcohol guarantee, vegan status or allergy assurance can be derived from these menu lists. Lyre’s product pages can vary by market and product; verify the bottle used at the bar.",
+    "houseIds": [
+      "b-qicnv77v",
+      "b-j8tcv7ox"
+    ],
+    "componentIds": [
+      "c-jex1ygvo",
+      "c-8qhlo98v",
+      "c-bp3jmiyt",
+      "c-io5nnzg8",
+      "c-h4oc3dqx",
+      "c-038e19qq",
+      "c-jp9rkxhp"
+    ],
+    "canonNames": [],
+    "families": [],
+    "zeroProofNames": [
+      "Arnold Palmer",
+      "Sober Sour",
+      "Nojito",
+      "Phony Negroni",
+      "Virgin Mary",
+      "Cucumber Basil Cooler"
+    ],
+    "references": [
+      "garnish-citrus"
+    ],
+    "reading": [
+      [
+        "Explore the Zero Proof library",
+        "#/na"
+      ],
+      [
+        "Compare sour structure",
+        "#/notes/studies/sour-structure"
+      ]
+    ],
+    "sources": [
+      [
+        "Brennan’s current Cocktails and Wine by the Glass menu",
+        "https://www.brennansneworleans.com/menus/cocktails/"
+      ],
+      [
+        "Seedlip: tea in non-alcoholic cocktails",
+        "https://www.seedlipdrinks.com/en-gb/journal/how-to-use-tea-in-non-alcoholic-cocktails/"
+      ],
+      [
+        "Campari Academy: non-alcoholic infusions",
+        "https://www.campariacademy.com/de-de/training/products-category/notes-collection/"
+      ],
+      [
+        "Lyre’s Agave Blanco producer page, UK market",
+        "https://lyres.com/en-uk/products/agave-blanco-spirit-uk"
+      ]
+    ],
+    "reviewedOn": "2026-10-11"
   }
 ];
