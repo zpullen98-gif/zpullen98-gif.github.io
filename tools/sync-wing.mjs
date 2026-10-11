@@ -54,8 +54,10 @@ const NEW_DIRS = ['js/', 'css/', 'fonts/', 'icons/'];
 const NEW_FILES = ['index.html', 'sw.js', 'manifest.webmanifest'];
 /* Each wing's own image folder, where a new teaching image is welcome too, but
    only a web image: a README or a tool that lands beside the art stays a note.
-   Without this the source's js could name art that the site never received. */
-const NEW_MEDIA_DIRS = { ledger: ['img/'], codex: ['assets/'] };
+   Without this the source's js could name art that the site never received.
+   The Codex's maps/ holds its atlas sheets, which its js names by path
+   (maps/atlas-v3/<id>.svg), so a new edition of the atlas is carried too. */
+const NEW_MEDIA_DIRS = { ledger: ['img/'], codex: ['assets/', 'maps/'] };
 const MEDIA = /\.(?:webp|png|jpe?g|avif|svg)$/i;
 
 const MARKER = /^(?:<{7}|>{7})(?: |$)/m;
