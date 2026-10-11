@@ -1,7 +1,7 @@
 /* The Dawn Anthology. Sources checked 11 October 2026.
-   Short excerpts; edition and dramatic context are part of the record.
-   See .scripts/anthology-audit.json and anthology-expansion-audit.json
-   for research scope, evidence distinctions and exclusions. */
+   Short selections retain their writer, edition and dramatic context.
+   Research scope and evidence: .scripts/anthology-cast-audit.json.
+   The first 109 entries preserve the earlier anthology unchanged. */
 var DAWN_QUOTES = [
   {
     "id": "trek-picard-no-mistakes",
@@ -1964,5 +1964,12605 @@ var DAWN_QUOTES = [
       }
     ],
     "verified": "2026-10-11"
+  },
+  {
+    "id": "history-washington-knowledge",
+    "text": "Knowledge is in every Country the surest basis of public happiness.",
+    "speaker": "George Washington",
+    "collection": "history",
+    "work": "First Annual Address to Congress",
+    "locator": "8 January 1790; paragraph on science and literature",
+    "year": 1790,
+    "context": "Washington connects public education with the ability to judge government and protect rights. Original capitalisation is retained.",
+    "sources": [
+      {
+        "label": "Mount Vernon: primary document transcript",
+        "url": "https://www.mountvernon.org/education/primary-source-collections/primary-source-collections/article/first-annual-address-to-congress-january-8-1790"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-washington-discipline",
+    "text": "A free people ought not only to be armed but disciplined",
+    "speaker": "George Washington",
+    "collection": "history",
+    "work": "First Annual Address to Congress",
+    "locator": "8 January 1790; national defence paragraph; opening clause",
+    "year": 1790,
+    "context": "A historical argument for an organised national defence. Washington is speaking about military discipline, not offering a general slogan about personal freedom.",
+    "sources": [
+      {
+        "label": "Mount Vernon: primary document transcript",
+        "url": "https://www.mountvernon.org/education/primary-source-collections/primary-source-collections/article/first-annual-address-to-congress-january-8-1790"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-washington-different-optics",
+    "text": "Men see thro’ different Optics",
+    "speaker": "George Washington",
+    "collection": "history",
+    "work": "Newburgh Address",
+    "locator": "15 March 1783; paragraph discussing the anonymous army address; phrase excerpt",
+    "year": 1783,
+    "context": "Washington recognises differing viewpoints while urging officers to reject mutiny and hear advocates of moderation. The eighteenth-century spelling is retained.",
+    "sources": [
+      {
+        "label": "Mount Vernon: primary document transcript",
+        "url": "https://www.mountvernon.org/education/primary-source-collections/primary-source-collections/article/newburgh-address-george-washington-to-officers-of-the-army-march-15-1783"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-washington-free-speech",
+    "text": "dumb & silent we may be led, like sheep, to the Slaughter.",
+    "speaker": "George Washington",
+    "collection": "history",
+    "work": "Newburgh Address",
+    "locator": "15 March 1783; paragraph defending freedom of speech; closing clause",
+    "year": 1783,
+    "context": "A warning about suppressing voices that urge moderation. The often circulated modern version changes the wording; this preserves the source transcript.",
+    "sources": [
+      {
+        "label": "Mount Vernon: primary document transcript",
+        "url": "https://www.mountvernon.org/education/primary-source-collections/primary-source-collections/article/newburgh-address-george-washington-to-officers-of-the-army-march-15-1783"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-washington-conscience",
+    "text": "All possess alike liberty of conscience and immunities of citizenship.",
+    "speaker": "George Washington",
+    "collection": "history",
+    "work": "Letter to the Hebrew Congregation in Newport",
+    "locator": "18 August 1790; reply to Moses Seixas",
+    "year": 1790,
+    "context": "Washington affirms religious liberty to Newport’s Jewish community. This is an aspiration within a republic whose citizenship and rights were still profoundly unequal.",
+    "sources": [
+      {
+        "label": "Mount Vernon: primary document transcript",
+        "url": "https://www.mountvernon.org/education/primary-source-collections/primary-source-collections/article/to-the-hebrew-congregation-in-newport-rhode-island"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-washington-light-paths",
+    "text": "May the father of all mercies scatter light and not darkness in our paths",
+    "speaker": "George Washington",
+    "collection": "history",
+    "work": "Letter to the Hebrew Congregation in Newport",
+    "locator": "18 August 1790; closing blessing; opening clause",
+    "year": 1790,
+    "context": "The opening of Washington’s blessing for the community, followed in the original by a wish that people be useful in their several callings.",
+    "sources": [
+      {
+        "label": "Mount Vernon: primary document transcript",
+        "url": "https://www.mountvernon.org/education/primary-source-collections/primary-source-collections/article/to-the-hebrew-congregation-in-newport-rhode-island"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-washington-happiness-home",
+    "text": "I should enjoy more real happiness and felicity in one month with you, at home",
+    "speaker": "George Washington",
+    "collection": "history",
+    "work": "Letter to Martha Washington",
+    "locator": "18 June 1775; Philadelphia; second paragraph; clause excerpt",
+    "year": 1775,
+    "context": "Writing after his appointment to command the Continental Army, Washington tells Martha how strongly he values their life together. The sentence continues by contrasting it with years away.",
+    "sources": [
+      {
+        "label": "Mount Vernon: primary document transcript",
+        "url": "https://www.mountvernon.org/education/primary-source-collections/primary-source-collections/article/george-washington-to-martha-washington-june-18-1775"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-washington-virtue-happiness",
+    "text": "an indissoluble union between virtue and happiness",
+    "speaker": "George Washington",
+    "collection": "history",
+    "work": "First Inaugural Address",
+    "locator": "30 April 1789; paragraph on public morality; phrase excerpt",
+    "year": 1789,
+    "context": "Washington links moral conduct with public wellbeing in the new republic. This short phrase belongs to a longer argument about responsible government.",
+    "sources": [
+      {
+        "label": "Mount Vernon: primary document transcript",
+        "url": "https://www.mountvernon.org/education/primary-source-collections/primary-source-collections/article/washington-s-first-inaugural-address-april-30-1789"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-washington-honesty",
+    "text": "honesty is always the best policy.",
+    "speaker": "George Washington",
+    "collection": "history",
+    "work": "Farewell Address",
+    "locator": "Dated 17 September 1796; published 19 September; paragraph on existing alliances",
+    "year": 1796,
+    "context": "Washington applies an established maxim to keeping international commitments as well as private promises. This was a published letter, not a delivered speech.",
+    "sources": [
+      {
+        "label": "Mount Vernon: primary document transcript",
+        "url": "https://www.mountvernon.org/education/primary-source-collections/primary-source-collections/article/washington-s-farewell-address-1796"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-jefferson-books",
+    "text": "I cannot live without books",
+    "speaker": "Thomas Jefferson",
+    "collection": "history",
+    "work": "Letter to John Adams",
+    "locator": "10 June 1815; opening clause of the sentence about books",
+    "year": 1815,
+    "context": "Jefferson writes after selling his library to Congress. This is a clause excerpt; the original continues that fewer books will suffice for amusement.",
+    "sources": [
+      {
+        "label": "Thomas Jefferson Foundation: sourced original letter excerpt",
+        "url": "https://www.monticello.org/encyclopedia/i-cannot-live-without-books-quotation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-jefferson-honesty",
+    "text": "honesty is the 1st chapter in the book of wisdom.",
+    "speaker": "Thomas Jefferson",
+    "collection": "history",
+    "work": "Letter to Nathaniel Macon",
+    "locator": "12 January 1819; closing clause of paragraph on speculation",
+    "year": 1819,
+    "context": "Jefferson criticises speculative finance and fraudulent bankruptcies, hoping future generations will learn honesty. The original abbreviation “1st” is retained.",
+    "sources": [
+      {
+        "label": "Thomas Jefferson Foundation: sourced original letter excerpt",
+        "url": "https://www.monticello.org/encyclopedia/honesty-first-chapter-book-wisdom"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-jefferson-plain-dealing",
+    "text": "follow truth, justice, and plain-dealing",
+    "speaker": "Thomas Jefferson",
+    "collection": "history",
+    "work": "Letter to Peter Carr",
+    "locator": "19 August 1785; advice about difficult circumstances; phrase excerpt",
+    "year": 1785,
+    "context": "Advice to his young nephew about finding a way through uncertainty by acting honestly. This does not imply that Jefferson consistently lived up to his own principles.",
+    "sources": [
+      {
+        "label": "Thomas Jefferson Foundation: sourced original letter excerpt",
+        "url": "https://www.monticello.org/encyclopedia/follow-truth-quotation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-jefferson-truth-leads",
+    "text": "we are not afraid to follow truth wherever it may lead",
+    "speaker": "Thomas Jefferson",
+    "collection": "history",
+    "work": "Letter to William Roscoe",
+    "locator": "27 December 1820; discussion of the University of Virginia; clause excerpt",
+    "year": 1820,
+    "context": "Jefferson describes the intellectual freedom he wants for the university. The original continues with a defence of answering error through reason.",
+    "sources": [
+      {
+        "label": "Thomas Jefferson Foundation: sourced original letter excerpt",
+        "url": "https://www.monticello.org/encyclopedia/follow-truth-quotation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-jefferson-future-dreams",
+    "text": "I like the dreams of the future better than the history of the past.",
+    "speaker": "Thomas Jefferson",
+    "collection": "history",
+    "work": "Letter to John Adams",
+    "locator": "1 August 1816; closing paragraph",
+    "year": 1816,
+    "context": "A hopeful line within a letter whose broader claims about progress and Europe reflect Jefferson’s own period and prejudices. Adams’s reply was more sceptical.",
+    "sources": [
+      {
+        "label": "Thomas Jefferson Foundation: sourced original letter excerpt",
+        "url": "https://www.monticello.org/encyclopedia/dreams-future-quotation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-jefferson-discussion",
+    "text": "education & free discussion are the antidotes of both.",
+    "speaker": "Thomas Jefferson",
+    "collection": "history",
+    "work": "Letter to John Adams",
+    "locator": "1 August 1816; same closing paragraph; complete sentence",
+    "year": 1816,
+    "context": "“Both” refers to the bigotry and misguided enthusiasm discussed immediately before this sentence. Jefferson advocates learning and open discussion as correctives.",
+    "sources": [
+      {
+        "label": "Thomas Jefferson Foundation: sourced original letter excerpt",
+        "url": "https://www.monticello.org/encyclopedia/dreams-future-quotation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-jefferson-do-today",
+    "text": "Never put off till tomorrow what you can do to-day.",
+    "speaker": "Thomas Jefferson",
+    "collection": "history",
+    "work": "Letter to Thomas Jefferson Smith",
+    "locator": "21 February 1825; Decalogue of Canons, item 1",
+    "year": 1825,
+    "context": "One of the practical maxims Jefferson compiled and sent for a young namesake. The collection draws on earlier traditions; authorship of every maxim is not claimed.",
+    "sources": [
+      {
+        "label": "Thomas Jefferson Foundation: sourced original letter excerpt",
+        "url": "https://www.monticello.org/encyclopedia/canons-conduct"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-jefferson-willingly",
+    "text": "Nothing is troublesome that we do willingly.",
+    "speaker": "Thomas Jefferson",
+    "collection": "history",
+    "work": "Letter to Thomas Jefferson Smith",
+    "locator": "21 February 1825; Decalogue of Canons, item 7",
+    "year": 1825,
+    "context": "A maxim Jefferson included in his practical advice to a young namesake, inviting reflection on the attitude brought to a task.",
+    "sources": [
+      {
+        "label": "Thomas Jefferson Foundation: sourced original letter excerpt",
+        "url": "https://www.monticello.org/encyclopedia/canons-conduct"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-jefferson-smooth-handle",
+    "text": "Take things always by their smooth handle.",
+    "speaker": "Thomas Jefferson",
+    "collection": "history",
+    "work": "Letter to Thomas Jefferson Smith",
+    "locator": "21 February 1825; Decalogue of Canons, item 9",
+    "year": 1825,
+    "context": "Jefferson passes on an old ethical image: approach a difficulty by the part that can be grasped constructively. The maxim is a compilation, not a claim of original invention.",
+    "sources": [
+      {
+        "label": "Thomas Jefferson Foundation: sourced original letter excerpt",
+        "url": "https://www.monticello.org/encyclopedia/canons-conduct"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-jefferson-knowledge",
+    "text": "that knolege is power, that knolege is safety, and that knolege is happiness.",
+    "speaker": "Thomas Jefferson",
+    "collection": "history",
+    "work": "Letter to George Ticknor",
+    "locator": "25 November 1817; Poplar Forest; closing clause of university passage",
+    "year": 1817,
+    "context": "Jefferson argues for public support of a Virginia university. His original spelling is preserved; he used an older maxim rather than inventing the phrase about knowledge and power.",
+    "sources": [
+      {
+        "label": "Thomas Jefferson Foundation: archival letter extract",
+        "url": "https://tjrs.monticello.org/letter/1564"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-lincoln-compromise",
+    "text": "Persuade your neighbors to compromise whenever you can",
+    "speaker": "Abraham Lincoln",
+    "collection": "history",
+    "work": "Notes for a lecture on law",
+    "locator": "Undated manuscript, catalogued 1850-1860; paragraph on discouraging litigation",
+    "year": 1850,
+    "context": "Lincoln advises young lawyers to seek practical agreement. The exact date and whether the lecture was delivered are unknown; the year shown marks the start of the catalogue range.",
+    "sources": [
+      {
+        "label": "Institutional transcript of Lincoln’s original text",
+        "url": "https://www.loc.gov/resource/mal.0045500/?st=text"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-lincoln-friends",
+    "text": "We are not enemies, but friends.",
+    "speaker": "Abraham Lincoln",
+    "collection": "history",
+    "work": "First Inaugural Address",
+    "locator": "4 March 1861; closing paragraph",
+    "year": 1861,
+    "context": "Lincoln appeals against civil war. The address also contains compromises on slavery; this appeal to fellowship is not a summary of all its policies.",
+    "sources": [
+      {
+        "label": "Institutional transcript of Lincoln’s original text",
+        "url": "https://www.loc.gov/resource/mal.0773800/?st=text"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-lincoln-bonds-affection",
+    "text": "Though passion may have strained, it must not break our bonds of affection.",
+    "speaker": "Abraham Lincoln",
+    "collection": "history",
+    "work": "First Inaugural Address",
+    "locator": "4 March 1861; closing paragraph",
+    "year": 1861,
+    "context": "An appeal to preserve human ties amid political conflict, from the same closing paragraph as his address to fellow citizens as friends.",
+    "sources": [
+      {
+        "label": "Institutional transcript of Lincoln’s original text",
+        "url": "https://www.loc.gov/resource/mal.0773800/?st=text"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-lincoln-right-might",
+    "text": "LET US HAVE FAITH THAT RIGHT MAKES MIGHT",
+    "speaker": "Abraham Lincoln",
+    "collection": "history",
+    "work": "Cooper Union Address",
+    "locator": "27 February 1860; final sentence; first clause",
+    "year": 1860,
+    "context": "Lincoln concludes a constitutional argument against slavery’s expansion. Capitalisation follows the National Park Service transcript.",
+    "sources": [
+      {
+        "label": "Institutional transcript of Lincoln’s original text",
+        "url": "https://home.nps.gov/liho/learn/historyculture/cooperunionaddress.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-lincoln-dare-duty",
+    "text": "DARE TO DO OUR DUTY AS WE UNDERSTAND IT.",
+    "speaker": "Abraham Lincoln",
+    "collection": "history",
+    "work": "Cooper Union Address",
+    "locator": "27 February 1860; final sentence; closing clause",
+    "year": 1860,
+    "context": "His call to act on a reasoned sense of duty follows detailed historical argument. It is not a licence to ignore evidence or the rights of others.",
+    "sources": [
+      {
+        "label": "Institutional transcript of Lincoln’s original text",
+        "url": "https://home.nps.gov/liho/learn/historyculture/cooperunionaddress.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-lincoln-think-anew",
+    "text": "As our case is new, so we must think anew and act anew.",
+    "speaker": "Abraham Lincoln",
+    "collection": "history",
+    "work": "Second Annual Message to Congress",
+    "locator": "1 December 1862; concluding appeal",
+    "year": 1862,
+    "context": "Lincoln asks Congress to meet the Civil War’s crisis with new thinking. This was a written annual message; Congress heard it read by officials.",
+    "sources": [
+      {
+        "label": "Institutional transcript of Lincoln’s original text",
+        "url": "https://millercenter.org/the-presidency/presidential-speeches/december-1-1862-second-annual-message"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-theodore-square-deal",
+    "text": "I stand for the square deal.",
+    "speaker": "Theodore Roosevelt",
+    "collection": "history",
+    "work": "The New Nationalism",
+    "locator": "31 August 1910; Osawatomie, Kansas; paragraph on fair rules",
+    "year": 1910,
+    "context": "Roosevelt immediately explains that fair play may require changing the rules to widen opportunity, not merely following existing arrangements.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full original address",
+        "url": "https://www.presidency.ucsb.edu/documents/remarks-osawatomie-kansas-the-new-nationalism"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-theodore-public-welfare",
+    "text": "The object of government is the welfare of the people.",
+    "speaker": "Theodore Roosevelt",
+    "collection": "history",
+    "work": "The New Nationalism",
+    "locator": "31 August 1910; paragraph on the purpose of government",
+    "year": 1910,
+    "context": "A statement of public purpose in his programme for social and economic reform.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full original address",
+        "url": "https://www.presidency.ucsb.edu/documents/remarks-osawatomie-kansas-the-new-nationalism"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-theodore-practical-training",
+    "text": "practical training for daily life and work.",
+    "speaker": "Theodore Roosevelt",
+    "collection": "history",
+    "work": "The New Nationalism",
+    "locator": "31 August 1910; paragraph on labour protection and schooling; phrase excerpt",
+    "year": 1910,
+    "context": "Roosevelt urges schools to join book learning with usable skills. The original also advocates workplace safety and limits on child labour.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full original address",
+        "url": "https://www.presidency.ucsb.edu/documents/remarks-osawatomie-kansas-the-new-nationalism"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-theodore-power-responsibility",
+    "text": "Power invariably means both responsibility and danger.",
+    "speaker": "Theodore Roosevelt",
+    "collection": "history",
+    "work": "Inaugural Address",
+    "locator": "4 March 1905; paragraph on national growth",
+    "year": 1905,
+    "context": "Roosevelt connects growing power with accountability and risk. The address’s wider imperial and racial assumptions belong to its historical setting.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full original address",
+        "url": "https://www.presidency.ucsb.edu/documents/inaugural-address-45"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-theodore-self-government",
+    "text": "We know that self-government is difficult.",
+    "speaker": "Theodore Roosevelt",
+    "collection": "history",
+    "work": "Inaugural Address",
+    "locator": "4 March 1905; final paragraph",
+    "year": 1905,
+    "context": "A compact acknowledgement that responsible citizenship takes work, from his appeal for character and public duty.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full original address",
+        "url": "https://www.presidency.ucsb.edu/documents/inaugural-address-45"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-theodore-duties",
+    "text": "We have duties to others and duties to ourselves",
+    "speaker": "Theodore Roosevelt",
+    "collection": "history",
+    "work": "Inaugural Address",
+    "locator": "4 March 1905; paragraph on international responsibility; opening clause",
+    "year": 1905,
+    "context": "The sentence continues that neither duty can be shirked. The excerpt invites reflection on balancing personal and shared responsibilities.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full original address",
+        "url": "https://www.presidency.ucsb.edu/documents/inaugural-address-45"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-theodore-truthful-criticism",
+    "text": "The liar is no whit better than the thief",
+    "speaker": "Theodore Roosevelt",
+    "collection": "history",
+    "work": "The Man with the Muck-Rake",
+    "locator": "14 April 1906; House office building cornerstone ceremony; clause excerpt",
+    "year": 1906,
+    "context": "In an address supporting the exposure of wrongdoing, Roosevelt insists criticism remain truthful and warns against slander.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full original address",
+        "url": "https://www.presidency.ucsb.edu/documents/remarks-the-laying-the-cornerstone-the-office-building-the-house-representatives-the-man"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-theodore-look-upward",
+    "text": "There are beautiful things above and round about them",
+    "speaker": "Theodore Roosevelt",
+    "collection": "history",
+    "work": "The Man with the Muck-Rake",
+    "locator": "14 April 1906; paragraph discussing Bunyan’s muck-rake image; clause excerpt",
+    "year": 1906,
+    "context": "Roosevelt urges reformers to keep sight of worthwhile things while confronting wrongdoing. This sentence is his commentary, not a direct quotation from Bunyan.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full original address",
+        "url": "https://www.presidency.ucsb.edu/documents/remarks-the-laying-the-cornerstone-the-office-building-the-house-representatives-the-man"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-fdr-unity-purpose",
+    "text": "Our strength is our unity of purpose.",
+    "speaker": "Franklin D. Roosevelt",
+    "collection": "history",
+    "work": "Four Freedoms address",
+    "locator": "6 January 1941; final paragraph",
+    "year": 1941,
+    "context": "Roosevelt ends his annual message by connecting shared purpose with the defence of freedom.",
+    "sources": [
+      {
+        "label": "National Archives: original document and transcript",
+        "url": "https://www.archives.gov/milestone-documents/president-franklin-roosevelts-annual-message-to-congress"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-fdr-enough",
+    "text": "it is whether we provide enough for those who have too little.",
+    "speaker": "Franklin D. Roosevelt",
+    "collection": "history",
+    "work": "Second Inaugural Address",
+    "locator": "20 January 1937; paragraph defining the test of progress; second clause",
+    "year": 1937,
+    "context": "Roosevelt measures progress by whether people with too little receive enough, rather than by the accumulation of those already prosperous.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full address transcript",
+        "url": "https://www.presidency.ucsb.edu/documents/inaugural-address-7"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-fdr-hardheartedness",
+    "text": "Hard-headedness will not so easily excuse hardheartedness.",
+    "speaker": "Franklin D. Roosevelt",
+    "collection": "history",
+    "work": "Second Inaugural Address",
+    "locator": "20 January 1937; paragraph on the moral climate",
+    "year": 1937,
+    "context": "An appeal to combine practical judgement with compassion in responding to poverty.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full address transcript",
+        "url": "https://www.presidency.ucsb.edu/documents/inaugural-address-7"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-fdr-changing-conditions",
+    "text": "New conditions impose new requirements upon Government and those who conduct Government.",
+    "speaker": "Franklin D. Roosevelt",
+    "collection": "history",
+    "work": "Commonwealth Club campaign address",
+    "locator": "23 September 1932; San Francisco; passage on rights and government",
+    "year": 1932,
+    "context": "The presidential candidate argues that public responsibilities must adapt when economic conditions change.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full address transcript",
+        "url": "https://www.presidency.ucsb.edu/documents/campaign-address-progressive-government-the-commonwealth-club-san-francisco-california"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-fdr-right-life",
+    "text": "Every man has a right to life",
+    "speaker": "Franklin D. Roosevelt",
+    "collection": "history",
+    "work": "Commonwealth Club campaign address",
+    "locator": "23 September 1932; economic declaration of rights; first clause",
+    "year": 1932,
+    "context": "Roosevelt immediately explains this as including an opportunity to earn a comfortable living. The gendered wording is historical.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full address transcript",
+        "url": "https://www.presidency.ucsb.edu/documents/campaign-address-progressive-government-the-commonwealth-club-san-francisco-california"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-fdr-economic-freedom",
+    "text": "true individual freedom cannot exist without economic security and independence.",
+    "speaker": "Franklin D. Roosevelt",
+    "collection": "history",
+    "work": "State of the Union radio address",
+    "locator": "11 January 1944; introduction to the proposed economic bill of rights; clause excerpt",
+    "year": 1944,
+    "context": "Roosevelt connects freedom with material security while proposing economic rights. He broadcast the message from the White House after sending it to Congress.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full address transcript",
+        "url": "https://www.presidency.ucsb.edu/documents/state-the-union-radio-address-the-nation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-fdr-wishful-thinking",
+    "text": "We cannot have stabilization by wishful thinking.",
+    "speaker": "Franklin D. Roosevelt",
+    "collection": "history",
+    "work": "State of the Union radio address",
+    "locator": "11 January 1944; price and currency stabilisation proposals",
+    "year": 1944,
+    "context": "A call for concrete action on wartime economic problems. The sentence concerns public policy, not a clinical claim about positive thinking.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full address transcript",
+        "url": "https://www.presidency.ucsb.edu/documents/state-the-union-radio-address-the-nation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-eisenhower-disarmament",
+    "text": "Disarmament, with mutual honor and confidence, is a continuing imperative.",
+    "speaker": "Dwight D. Eisenhower",
+    "collection": "history",
+    "work": "Farewell Address",
+    "locator": "17 January 1961; closing discussion of peace",
+    "year": 1961,
+    "context": "After a career in military command and the presidency, Eisenhower argues that disarmament remains essential.",
+    "sources": [
+      {
+        "label": "National Archives: original document and transcript",
+        "url": "https://www.archives.gov/milestone-documents/president-dwight-d-eisenhowers-farewell-address"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-eisenhower-liberty-security",
+    "text": "security and liberty may prosper together.",
+    "speaker": "Dwight D. Eisenhower",
+    "collection": "history",
+    "work": "Farewell Address",
+    "locator": "17 January 1961; paragraph on an informed citizenry; closing clause",
+    "year": 1961,
+    "context": "He asks citizens to keep defence institutions aligned with peaceful democratic aims. The short excerpt retains the purpose of that warning.",
+    "sources": [
+      {
+        "label": "National Archives: original document and transcript",
+        "url": "https://www.archives.gov/milestone-documents/president-dwight-d-eisenhowers-farewell-address"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-eisenhower-world-in-arms",
+    "text": "This world in arms is not spending money alone.",
+    "speaker": "Dwight D. Eisenhower",
+    "collection": "history",
+    "work": "The Chance for Peace",
+    "locator": "16 April 1953; American Society of Newspaper Editors; arms-cost passage",
+    "year": 1953,
+    "context": "Eisenhower argues that armaments also consume labour, scientific talent and opportunities for children.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full address transcript",
+        "url": "https://www.presidency.ucsb.edu/documents/address-the-chance-for-peace-delivered-before-the-american-society-newspaper-editors"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-eisenhower-common-hunger",
+    "text": "all humanity shares the common hunger for peace and fellowship and justice.",
+    "speaker": "Dwight D. Eisenhower",
+    "collection": "history",
+    "work": "The Chance for Peace",
+    "locator": "16 April 1953; first principle; closing clause",
+    "year": 1953,
+    "context": "Part of his argument that no people should be treated collectively as an enemy.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full address transcript",
+        "url": "https://www.presidency.ucsb.edu/documents/address-the-chance-for-peace-delivered-before-the-american-society-newspaper-editors"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-eisenhower-principles",
+    "text": "A people that values its privileges above its principles soon loses both.",
+    "speaker": "Dwight D. Eisenhower",
+    "collection": "history",
+    "work": "First Inaugural Address",
+    "locator": "20 January 1953; concluding appeal",
+    "year": 1953,
+    "context": "Eisenhower warns that protecting advantages without honouring principles undermines both.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full address transcript",
+        "url": "https://www.presidency.ucsb.edu/documents/inaugural-address-3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-eisenhower-leaders-serve",
+    "text": "we, the people, elect leaders not to rule but to serve.",
+    "speaker": "Dwight D. Eisenhower",
+    "collection": "history",
+    "work": "First Inaugural Address",
+    "locator": "20 January 1953; explanation of democratic faith; clause excerpt",
+    "year": 1953,
+    "context": "The clause places service at the heart of political leadership.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full address transcript",
+        "url": "https://www.presidency.ucsb.edu/documents/inaugural-address-3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-eisenhower-difficult-task",
+    "text": "Your task will not be an easy one.",
+    "speaker": "Dwight D. Eisenhower",
+    "collection": "history",
+    "work": "D-Day Order of the Day",
+    "locator": "6 June 1944; address to Allied Expeditionary Force",
+    "year": 1944,
+    "context": "Before the Normandy landings, Eisenhower acknowledges the danger without disguising it. This is a wartime order to troops.",
+    "sources": [
+      {
+        "label": "National Archives: original document and transcript",
+        "url": "https://www.archives.gov/milestone-documents/general-eisenhowers-order-of-the-day"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-eisenhower-confidence",
+    "text": "I have full confidence in your courage, devotion to duty and skill in battle.",
+    "speaker": "Dwight D. Eisenhower",
+    "collection": "history",
+    "work": "D-Day Order of the Day",
+    "locator": "6 June 1944; closing paragraph",
+    "year": 1944,
+    "context": "His confidence is directed to the Allied service personnel preparing for the landings, not a generic quotation detached from war.",
+    "sources": [
+      {
+        "label": "National Archives: original document and transcript",
+        "url": "https://www.archives.gov/milestone-documents/general-eisenhowers-order-of-the-day"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-eisenhower-patience",
+    "text": "In this quest, I know that we must not lack patience.",
+    "speaker": "Dwight D. Eisenhower",
+    "collection": "history",
+    "work": "Atoms for Peace",
+    "locator": "8 December 1953; United Nations General Assembly",
+    "year": 1953,
+    "context": "Eisenhower describes the patient steps required to move from nuclear fear towards peace.",
+    "sources": [
+      {
+        "label": "Miller Center: original address transcript",
+        "url": "https://millercenter.org/the-presidency/presidential-speeches/december-8-1953-atoms-peace"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-eisenhower-avenues-peace",
+    "text": "every new avenue of peace, no matter how dimly discernible, should be explored.",
+    "speaker": "Dwight D. Eisenhower",
+    "collection": "history",
+    "work": "Atoms for Peace",
+    "locator": "8 December 1953; passage introducing a new proposal; clause excerpt",
+    "year": 1953,
+    "context": "He proposes exploring international cooperation on peaceful atomic energy, even when a route forward is uncertain.",
+    "sources": [
+      {
+        "label": "Miller Center: original address transcript",
+        "url": "https://millercenter.org/the-presidency/presidential-speeches/december-8-1953-atoms-peace"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-kennedy-negotiate-fear",
+    "text": "Let us never negotiate out of fear.",
+    "speaker": "John F. Kennedy",
+    "collection": "history",
+    "work": "Inaugural Address",
+    "locator": "20 January 1961; paragraph calling for a renewed start",
+    "year": 1961,
+    "context": "One half of Kennedy’s balanced appeal: he immediately adds that nations should never fear to negotiate.",
+    "sources": [
+      {
+        "label": "National Archives: address transcript",
+        "url": "https://www.archives.gov/milestone-documents/president-john-f-kennedys-inaugural-address"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-kennedy-fear-negotiate",
+    "text": "But let us never fear to negotiate.",
+    "speaker": "John F. Kennedy",
+    "collection": "history",
+    "work": "Inaugural Address",
+    "locator": "20 January 1961; same paragraph; following sentence",
+    "year": 1961,
+    "context": "Kennedy urges diplomacy without intimidation, pairing this line with his warning against negotiating out of fear.",
+    "sources": [
+      {
+        "label": "National Archives: address transcript",
+        "url": "https://www.archives.gov/milestone-documents/president-john-f-kennedys-inaugural-address"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-kennedy-human-destiny",
+    "text": "No problem of human destiny is beyond human beings.",
+    "speaker": "John F. Kennedy",
+    "collection": "history",
+    "work": "American University commencement address",
+    "locator": "10 June 1963; first section on attitudes towards peace",
+    "year": 1963,
+    "context": "Kennedy challenges fatalism about the Cold War and calls for practical steps towards peace.",
+    "sources": [
+      {
+        "label": "Miller Center: original address transcript",
+        "url": "https://millercenter.org/the-presidency/presidential-speeches/june-10-1963-american-university-commencement"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-kennedy-same-air",
+    "text": "We all breathe the same air.",
+    "speaker": "John F. Kennedy",
+    "collection": "history",
+    "work": "American University commencement address",
+    "locator": "10 June 1963; passage on shared human interests",
+    "year": 1963,
+    "context": "Kennedy follows this sentence with concern for children and recognition of mortality, stressing common humanity across opposing nations.",
+    "sources": [
+      {
+        "label": "Miller Center: original address transcript",
+        "url": "https://millercenter.org/the-presidency/presidential-speeches/june-10-1963-american-university-commencement"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-kennedy-shared-rights",
+    "text": "the rights of every man are diminished when the rights of one man are threatened.",
+    "speaker": "John F. Kennedy",
+    "collection": "history",
+    "work": "Address on Civil Rights",
+    "locator": "11 June 1963; opening paragraphs; clause excerpt",
+    "year": 1963,
+    "context": "Kennedy frames the denial of equal rights to Black Americans as a national moral issue.",
+    "sources": [
+      {
+        "label": "Miller Center: original address transcript",
+        "url": "https://millercenter.org/the-presidency/presidential-speeches/june-11-1963-address-civil-rights"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-kennedy-moral-issue",
+    "text": "We are confronted primarily with a moral issue.",
+    "speaker": "John F. Kennedy",
+    "collection": "history",
+    "work": "Address on Civil Rights",
+    "locator": "11 June 1963; paragraph introducing the moral question",
+    "year": 1963,
+    "context": "The issue here is racial equality and the obligation to treat fellow citizens as one wishes to be treated.",
+    "sources": [
+      {
+        "label": "Miller Center: original address transcript",
+        "url": "https://millercenter.org/the-presidency/presidential-speeches/june-11-1963-address-civil-rights"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-kennedy-poetry-cleanses",
+    "text": "When power corrupts, poetry cleanses.",
+    "speaker": "John F. Kennedy",
+    "collection": "history",
+    "work": "Remarks at Amherst College",
+    "locator": "26 October 1963; tribute to Robert Frost",
+    "year": 1963,
+    "context": "Kennedy describes art’s capacity to challenge power, broaden sympathy and correct arrogance.",
+    "sources": [
+      {
+        "label": "Miller Center: original address transcript",
+        "url": "https://millercenter.org/the-presidency/presidential-speeches/october-26-1963-remarks-amherst-college"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-elizabeth-cherish",
+    "text": "To build and to cherish is much more difficult.",
+    "speaker": "Queen Elizabeth II",
+    "collection": "history",
+    "work": "Christmas Broadcast 1957",
+    "locator": "25 December 1957; sentence after the contrast with hatred and destruction",
+    "year": 1957,
+    "context": "In her first televised Christmas message, Elizabeth speaks about the patient work of building relationships and the Commonwealth.",
+    "sources": [
+      {
+        "label": "Royal Household: official speech transcript",
+        "url": "https://www.royal.uk/christmas-broadcast-1957"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-elizabeth-hate-destroy",
+    "text": "It has always been easy to hate and destroy.",
+    "speaker": "Queen Elizabeth II",
+    "collection": "history",
+    "work": "Christmas Broadcast 1957",
+    "locator": "25 December 1957; sentence before the appeal to build and cherish",
+    "year": 1957,
+    "context": "A warning against the ease of destructive behaviour, immediately followed by an appeal to build and cherish.",
+    "sources": [
+      {
+        "label": "Royal Household: official speech transcript",
+        "url": "https://www.royal.uk/christmas-broadcast-1957"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-elizabeth-whole-ourselves",
+    "text": "To accomplish that we must give nothing less than the whole of ourselves.",
+    "speaker": "Queen Elizabeth II",
+    "collection": "history",
+    "work": "Twenty-first birthday broadcast",
+    "locator": "21 April 1947; Cape Town; paragraph introducing the service pledge",
+    "year": 1947,
+    "context": "Speaking as Princess Elizabeth, she calls her generation to service. The speech uses the imperial language of its period, which this excerpt does not erase.",
+    "sources": [
+      {
+        "label": "Royal Household: official speech transcript",
+        "url": "https://www.royal.uk/21st-birthday-speech-21-april-1947"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-elizabeth-time-action",
+    "text": "the time for words has now moved to the time for action.",
+    "speaker": "Queen Elizabeth II",
+    "collection": "history",
+    "work": "COP26 evening reception message",
+    "locator": "1 November 2021; closing appeal; clause excerpt",
+    "year": 2021,
+    "context": "Her recorded climate conference message asks leaders to act for future generations. The excerpt begins within a longer sentence.",
+    "sources": [
+      {
+        "label": "Royal Household: official speech transcript",
+        "url": "https://www.royal.uk/queen%E2%80%99s-speech-cop26-evening-reception"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-elizabeth-ordinary-inspiration",
+    "text": "But to be inspirational you don't have to save lives or win medals.",
+    "speaker": "Queen Elizabeth II",
+    "collection": "history",
+    "work": "Christmas Broadcast 2016",
+    "locator": "25 December 2016; paragraph on ordinary volunteers",
+    "year": 2016,
+    "context": "Elizabeth recognises carers, volunteers and good neighbours as examples of quiet dedication.",
+    "sources": [
+      {
+        "label": "Royal Household: official speech transcript",
+        "url": "https://www.royal.uk/christmas-broadcast-2016"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-elizabeth-love-grows",
+    "text": "love begins small but always grows.",
+    "speaker": "Queen Elizabeth II",
+    "collection": "history",
+    "work": "Christmas Broadcast 2016",
+    "locator": "25 December 2016; closing sentence; clause excerpt",
+    "year": 2016,
+    "context": "Part of her closing reflection on giving and receiving inspiration. This is Elizabeth’s wording, distinct from the Mother Teresa quotation earlier in the speech.",
+    "sources": [
+      {
+        "label": "Royal Household: official speech transcript",
+        "url": "https://www.royal.uk/christmas-broadcast-2016"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-elizabeth-goodwill",
+    "text": "Goodwill is better than resentment, tolerance is better than revenge",
+    "speaker": "Queen Elizabeth II",
+    "collection": "history",
+    "work": "Christmas Broadcast 1974",
+    "locator": "25 December 1974; Christmas message paragraph; two opening clauses",
+    "year": 1974,
+    "context": "In a difficult year of conflict and natural disasters, she urges goodwill and compassion in daily life. The original sentence continues with compassion and concern for others.",
+    "sources": [
+      {
+        "label": "Royal Household: official speech transcript",
+        "url": "https://www.royal.uk/christmas-broadcast-1974"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-elizabeth-neighbour",
+    "text": "Everyone is our neighbour, no matter what race, creed or colour.",
+    "speaker": "Queen Elizabeth II",
+    "collection": "history",
+    "work": "Christmas Broadcast 2004",
+    "locator": "25 December 2004; paragraph explaining the Good Samaritan",
+    "year": 2004,
+    "context": "She draws an inclusive lesson from the Good Samaritan story, applying it to relations across cultures and religions.",
+    "sources": [
+      {
+        "label": "Royal Household: official speech transcript",
+        "url": "https://www.royal.uk/christmas-broadcast-2004"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-elizabeth-action-reflection",
+    "text": "We all need to get the balance right between action and reflection.",
+    "speaker": "Queen Elizabeth II",
+    "collection": "history",
+    "work": "Christmas Broadcast 2013",
+    "locator": "25 December 2013; opening reflection on enforced rest",
+    "year": 2013,
+    "context": "Elizabeth recommends making time to reflect amid daily distractions, including contemplation and keeping a diary.",
+    "sources": [
+      {
+        "label": "Royal Household: official speech transcript",
+        "url": "https://www.royal.uk/christmas-broadcast-2013"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-elizabeth-looking-back",
+    "text": "But reflection is not just about looking back.",
+    "speaker": "Queen Elizabeth II",
+    "collection": "history",
+    "work": "Christmas Broadcast 2013",
+    "locator": "25 December 2013; transition to the next Commonwealth Games",
+    "year": 2013,
+    "context": "A forward-looking companion to her call for reflection, introducing hopes for the following year.",
+    "sources": [
+      {
+        "label": "Royal Household: official speech transcript",
+        "url": "https://www.royal.uk/christmas-broadcast-2013"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-churchill-blood-toil",
+    "text": "I have nothing to offer but blood, toil, tears and sweat.",
+    "speaker": "Winston Churchill",
+    "collection": "history",
+    "work": "His Majesty’s Government",
+    "locator": "13 May 1940; House of Commons; Hansard vol. 360, col. 1502",
+    "year": 1940,
+    "context": "Churchill’s first Commons address as prime minister acknowledges the sacrifices of resisting Nazi Germany.",
+    "sources": [
+      {
+        "label": "UK Parliament: Hansard original debate",
+        "url": "https://api.parliament.uk/historic-hansard/commons/1940/may/13/his-majestys-government-1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-churchill-long-struggle",
+    "text": "We have before us many, many long months of struggle and of suffering.",
+    "speaker": "Winston Churchill",
+    "collection": "history",
+    "work": "His Majesty’s Government",
+    "locator": "13 May 1940; House of Commons; Hansard vol. 360, col. 1502",
+    "year": 1940,
+    "context": "He combines resolve with a frank warning that the war will be prolonged and costly.",
+    "sources": [
+      {
+        "label": "UK Parliament: Hansard original debate",
+        "url": "https://api.parliament.uk/historic-hansard/commons/1940/may/13/his-majestys-government-1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-churchill-evacuations",
+    "text": "Wars are not won by evacuations.",
+    "speaker": "Winston Churchill",
+    "collection": "history",
+    "work": "War Situation",
+    "locator": "4 June 1940; House of Commons; Hansard vol. 361, col. 791",
+    "year": 1940,
+    "context": "Discussing Dunkirk, Churchill distinguishes a successful rescue from a completed victory. It is a reminder to assess achievements accurately.",
+    "sources": [
+      {
+        "label": "UK Parliament: Hansard original debate",
+        "url": "https://api.parliament.uk/historic-hansard/commons/1940/jun/04/war-situation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-churchill-never-surrender",
+    "text": "we shall never surrender",
+    "speaker": "Winston Churchill",
+    "collection": "history",
+    "work": "War Situation",
+    "locator": "4 June 1940; closing paragraph; clause excerpt",
+    "year": 1940,
+    "context": "Part of his pledge to resist Nazi invasion following the evacuation from Dunkirk. The historical military setting is essential to the line.",
+    "sources": [
+      {
+        "label": "UK Parliament: Hansard original debate",
+        "url": "https://api.parliament.uk/historic-hansard/commons/1940/jun/04/war-situation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-churchill-brace-duty",
+    "text": "Let us therefore brace ourselves to our duty",
+    "speaker": "Winston Churchill",
+    "collection": "history",
+    "work": "War Situation: Their Finest Hour",
+    "locator": "18 June 1940; House of Commons; closing sentence; opening clause",
+    "year": 1940,
+    "context": "Churchill calls for resolve after France’s defeat. Hansard uses the singular “duty”, unlike some widely circulated versions.",
+    "sources": [
+      {
+        "label": "UK Parliament: Hansard original debate",
+        "url": "https://api.parliament.uk/historic-hansard/commons/1940/jun/18/war-situation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-churchill-finest-hour",
+    "text": "This was their finest hour.",
+    "speaker": "Winston Churchill",
+    "collection": "history",
+    "work": "War Situation: Their Finest Hour",
+    "locator": "18 June 1940; closing sentence; imagined future verdict",
+    "year": 1940,
+    "context": "Churchill imagines what later generations might say of those facing the coming Battle of Britain. It is a future judgement within his speech.",
+    "sources": [
+      {
+        "label": "UK Parliament: Hansard original debate",
+        "url": "https://api.parliament.uk/historic-hansard/commons/1940/jun/18/war-situation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-churchill-honour-sense",
+    "text": "never give in except to convictions of honour and good sense.",
+    "speaker": "Winston Churchill",
+    "collection": "history",
+    "work": "Speech at Harrow School",
+    "locator": "29 October 1941; lesson drawn from the preceding ten months; clause excerpt",
+    "year": 1941,
+    "context": "His famous call for persistence includes an explicit exception for honour and sound judgement, which slogan versions often omit.",
+    "sources": [
+      {
+        "label": "America’s National Churchill Museum: full speech transcript",
+        "url": "https://www.nationalchurchillmuseum.org/never-give-in-never-never-never.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-churchill-appearances",
+    "text": "appearances are often very deceptive",
+    "speaker": "Winston Churchill",
+    "collection": "history",
+    "work": "Speech at Harrow School",
+    "locator": "29 October 1941; paragraph before the persistence passage; clause excerpt",
+    "year": 1941,
+    "context": "Churchill reflects on the changing appearance of wartime fortune. This is his wording before a separately credited quotation from Kipling.",
+    "sources": [
+      {
+        "label": "America’s National Churchill Museum: full speech transcript",
+        "url": "https://www.nationalchurchillmuseum.org/never-give-in-never-never-never.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-churchill-iron-curtain",
+    "text": "From Stettin in the Baltic to Trieste in the Adriatic, an iron curtain has descended across the Continent.",
+    "speaker": "Winston Churchill",
+    "collection": "history",
+    "work": "The Sinews of Peace",
+    "locator": "5 March 1946; Westminster College, Fulton, Missouri",
+    "year": 1946,
+    "context": "Churchill’s historical description of Soviet influence in postwar Europe, delivered as a private visitor after leaving office. This is a period diagnosis, not a timeless motivational maxim.",
+    "sources": [
+      {
+        "label": "America’s National Churchill Museum: full speech transcript",
+        "url": "https://www.nationalchurchillmuseum.org/sinews-of-peace-iron-curtain-speech.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-mandela-against-domination",
+    "text": "I have fought against white domination, and I have fought against black domination.",
+    "speaker": "Nelson Mandela",
+    "collection": "history",
+    "work": "I Am Prepared to Die",
+    "locator": "Statement from the dock, Pretoria Supreme Court, 20 April 1964; final paragraph",
+    "year": 1964,
+    "context": "Mandela rejects racial domination in his Rivonia Trial defence statement. This is part of his argument for a democratic society, not a claim that apartheid was already over.",
+    "sources": [
+      {
+        "label": "Nelson Mandela Foundation: O’Malley Archives",
+        "url": "https://omalley.nelsonmandela.org/index.php/site/q/03lv01538/04lv01600/05lv01630/06lv01631.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-mandela-equal-opportunities",
+    "text": "all persons live together in harmony and with equal opportunities.",
+    "speaker": "Nelson Mandela",
+    "collection": "history",
+    "work": "I Am Prepared to Die",
+    "locator": "Statement from the dock, 20 April 1964; clause in final paragraph",
+    "year": 1964,
+    "context": "This clause describes the society Mandela hoped to help achieve. The extract begins partway through the sentence.",
+    "sources": [
+      {
+        "label": "Nelson Mandela Foundation: O’Malley Archives",
+        "url": "https://omalley.nelsonmandela.org/index.php/site/q/03lv01538/04lv01600/05lv01630/06lv01631.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-mandela-humble-servant",
+    "text": "I stand here before you not as a prophet but as a humble servant of you, the people.",
+    "speaker": "Nelson Mandela",
+    "collection": "history",
+    "work": "Speech on His Release from Prison",
+    "locator": "Cape Town, 11 February 1990; opening address",
+    "year": 1990,
+    "context": "Speaking after his release, Mandela places the people at the centre of the struggle. The occasion precedes the negotiations that ended apartheid.",
+    "sources": [
+      {
+        "label": "United Nations: Mandela Day speech transcript",
+        "url": "https://www.un.org/en/events/mandeladay/speech_on_his_release_from_prison.shtml"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-mandela-march-freedom",
+    "text": "Our march to freedom is irreversible.",
+    "speaker": "Nelson Mandela",
+    "collection": "history",
+    "work": "Speech on His Release from Prison",
+    "locator": "Cape Town, 11 February 1990; closing call",
+    "year": 1990,
+    "context": "Mandela urges continued collective action after his release. He does not suggest the work of securing freedom has been completed.",
+    "sources": [
+      {
+        "label": "United Nations: Mandela Day speech transcript",
+        "url": "https://www.un.org/en/events/mandeladay/speech_on_his_release_from_prison.shtml"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-mandela-reward-not-money",
+    "text": "This reward will not be measured in money.",
+    "speaker": "Nelson Mandela",
+    "collection": "history",
+    "work": "Nobel Lecture",
+    "locator": "Oslo, 10 December 1993; paragraph on the reward shared by South Africans",
+    "year": 1993,
+    "context": "The reward he describes is liberty and peace through a democratic society. He is discussing the outcome of the struggle, not denying the practical importance of money.",
+    "sources": [
+      {
+        "label": "Nobel Prize: Mandela’s lecture",
+        "url": "https://www.nobelprize.org/prizes/peace/1993/mandela/lecture/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-mandela-learning-mistakes",
+    "text": "But mistakes are an inevitable element of any process of learning.",
+    "speaker": "Nelson Mandela",
+    "collection": "history",
+    "work": "Opening of the Second Session of the Democratic Parliament",
+    "locator": "Cape Town, 17 February 1995; opening reflection on government experience",
+    "year": 1995,
+    "context": "Mandela acknowledges mistakes in a new democratic government and immediately insists that officials learn from them and improve their performance.",
+    "sources": [
+      {
+        "label": "South African Government: parliamentary address",
+        "url": "https://www.gov.za/news/speeches/president-nelson-mandela-opening-second-session-democratic-parliament-17-feb-1995"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-mandela-own-errors",
+    "text": "None of us should therefore feel ashamed for having committed errors.",
+    "speaker": "Nelson Mandela",
+    "collection": "history",
+    "work": "Opening of the Second Session of the Democratic Parliament",
+    "locator": "Cape Town, 17 February 1995; opening reflection on government experience",
+    "year": 1995,
+    "context": "The next sentence requires learning from mistakes and improving performance. This is an invitation to honest learning, not an excuse to avoid accountability.",
+    "sources": [
+      {
+        "label": "South African Government: parliamentary address",
+        "url": "https://www.gov.za/news/speeches/president-nelson-mandela-opening-second-session-democratic-parliament-17-feb-1995"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-degaulle-hope",
+    "text": "Must hope disappear?",
+    "speaker": "Charles de Gaulle",
+    "collection": "history",
+    "work": "Appeal of 18 June 1940",
+    "locator": "BBC appeal from London, 18 June 1940; PDF p. 2; English translation by The Dawn Anthology",
+    "year": 1940,
+    "context": "One of the questions immediately answered by his rejection of final defeat. This uses the published text of the appeal; no recording of the original broadcast survives. Translated here from the French transcript; this is not a quotation from a published English edition.",
+    "sources": [
+      {
+        "label": "Fondation Charles de Gaulle: original French transcript",
+        "url": "https://www.charles-de-gaulle.org/wp-content/uploads/2017/03/Appel-a-la-resistance-sur-les-ondes-de-la-BBC-Londres.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "originalText": "L'espérance doit-elle disparaître ?",
+    "originalLanguage": "French",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "history-degaulle-flame",
+    "text": "Whatever happens, the flame of French resistance must not go out and will not go out.",
+    "speaker": "Charles de Gaulle",
+    "collection": "history",
+    "work": "Appeal of 18 June 1940",
+    "locator": "BBC appeal from London, 18 June 1940; penultimate paragraph, PDF p. 3; English translation by The Dawn Anthology",
+    "year": 1940,
+    "context": "A call to continue French resistance during the Second World War. It is not the later poster’s separate phrase about losing a battle. Translated here from the French transcript; this is not a quotation from a published English edition.",
+    "sources": [
+      {
+        "label": "Fondation Charles de Gaulle: original French transcript",
+        "url": "https://www.charles-de-gaulle.org/wp-content/uploads/2017/03/Appel-a-la-resistance-sur-les-ondes-de-la-BBC-Londres.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "originalText": "Quoi qu'il arrive, la flamme de la résistance française ne doit pas s'éteindre et ne s'éteindra pas.",
+    "originalLanguage": "French",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "history-degaulle-paris-liberated",
+    "text": "Paris outraged! Paris broken! Paris martyred! but Paris liberated!",
+    "speaker": "Charles de Gaulle",
+    "collection": "history",
+    "work": "Address at the Hôtel de Ville, Paris",
+    "locator": "25 August 1944; PDF p. 1, celebrated Paris passage; English translation by The Dawn Anthology",
+    "year": 1944,
+    "context": "Spoken on the liberation of Paris. These words express de Gaulle’s wartime rhetoric; they are not a complete account of all the Allied and resistance forces involved. Translated here from the French transcript; this is not a quotation from a published English edition.",
+    "sources": [
+      {
+        "label": "Fondation Charles de Gaulle: original French transcript",
+        "url": "https://www.charles-de-gaulle.org/wp-content/uploads/2017/03/Discours-de-lHotel-de-Ville-de-Paris.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "originalText": "Paris outragé ! Paris brisé ! Paris martyrisé ! mais Paris libéré !",
+    "originalLanguage": "French",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "history-degaulle-greater-moments",
+    "text": "There are moments here that transcend each of our poor lives.",
+    "speaker": "Charles de Gaulle",
+    "collection": "history",
+    "work": "Address at the Hôtel de Ville, Paris",
+    "locator": "25 August 1944; PDF p. 1, opening passage; English translation by The Dawn Anthology",
+    "year": 1944,
+    "context": "De Gaulle describes the shared emotion of returning to liberated Paris. The modest description of individual lives belongs to that collective moment. Translated here from the French transcript; this is not a quotation from a published English edition.",
+    "sources": [
+      {
+        "label": "Fondation Charles de Gaulle: original French transcript",
+        "url": "https://www.charles-de-gaulle.org/wp-content/uploads/2017/03/Discours-de-lHotel-de-Ville-de-Paris.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "originalText": "Il y a là des minutes qui dépassent chacune de nos pauvres vies.",
+    "originalLanguage": "French",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "history-degaulle-patient-success",
+    "text": "a somewhat delayed success is better than a rapid but unfortunate completion.",
+    "speaker": "Charles de Gaulle",
+    "collection": "history",
+    "work": "Bayeux constitutional speech",
+    "locator": "16 June 1946; PDF p. 2, clause on drafting a constitution; English translation by The Dawn Anthology",
+    "year": 1946,
+    "context": "He prefers a sound constitution to a hurried settlement. The lower-case opening marks an excerpt from the middle of a sentence. Translated here from the French transcript; this is not a quotation from a published English edition.",
+    "sources": [
+      {
+        "label": "Fondation Charles de Gaulle: original French transcript",
+        "url": "https://www.charles-de-gaulle.org/wp-content/uploads/2017/03/Discours-de-Bayeux-16-juin-1946.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "originalText": "une réussite quelque peu différée vaut mieux qu'un achèvement rapide mais fâcheux.",
+    "originalLanguage": "French",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "history-degaulle-as-we-are",
+    "text": "Let us take ourselves as we are.",
+    "speaker": "Charles de Gaulle",
+    "collection": "history",
+    "work": "Bayeux constitutional speech",
+    "locator": "16 June 1946; PDF p. 4, concluding paragraph; English translation by The Dawn Anthology",
+    "year": 1946,
+    "context": "An appeal to design institutions for the actual people and circumstances of the time, rather than an abstract ideal. Translated here from the French transcript; this is not a quotation from a published English edition.",
+    "sources": [
+      {
+        "label": "Fondation Charles de Gaulle: original French transcript",
+        "url": "https://www.charles-de-gaulle.org/wp-content/uploads/2017/03/Discours-de-Bayeux-16-juin-1946.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "originalText": "Prenons-nous tels que nous sommes.",
+    "originalLanguage": "French",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "history-degaulle-political-peace",
+    "text": "only a political agreement could therefore restore peace.",
+    "speaker": "Charles de Gaulle",
+    "collection": "history",
+    "work": "Phnom Penh speech",
+    "locator": "1 September 1966; PDF p. 2, paragraph on ending the Vietnam conflict; English translation by The Dawn Anthology",
+    "year": 1966,
+    "context": "This clause states his diplomatic position on the Vietnam War. It follows a warning against a wider catastrophe. Translated here from the French transcript; this is not a quotation from a published English edition.",
+    "sources": [
+      {
+        "label": "Fondation Charles de Gaulle: original French transcript",
+        "url": "https://www.charles-de-gaulle.org/wp-content/uploads/2017/03/Discours-de-Phnom-Penh.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "originalText": "seul un accord politique pourrait donc rétablir la paix.",
+    "originalLanguage": "French",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "history-degaulle-time-to-hope",
+    "text": "there is still time to hope.",
+    "speaker": "Charles de Gaulle",
+    "collection": "history",
+    "work": "Phnom Penh speech",
+    "locator": "1 September 1966; PDF p. 2, same paragraph on a political agreement; English translation by The Dawn Anthology",
+    "year": 1966,
+    "context": "His hope concerns negotiations over Indochina and the conditions for peace, not a promise that events would improve automatically. Translated here from the French transcript; this is not a quotation from a published English edition.",
+    "sources": [
+      {
+        "label": "Fondation Charles de Gaulle: original French transcript",
+        "url": "https://www.charles-de-gaulle.org/wp-content/uploads/2017/03/Discours-de-Phnom-Penh.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "originalText": "il est encore temps d'espérer.",
+    "originalLanguage": "French",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "history-degaulle-passion-reason",
+    "text": "We shall fight for France with passion, but also with reason.",
+    "speaker": "Charles de Gaulle",
+    "collection": "history",
+    "work": "First Bayeux speech",
+    "locator": "Bayeux, 14 June 1944; paragraph on continued military effort; English translation by The Dawn Anthology",
+    "year": 1944,
+    "context": "A wartime promise after the Normandy landings. Passion is paired with judgement in continuing the liberation of France. Translated here from the French transcript; this is not a quotation from a published English edition.",
+    "sources": [
+      {
+        "label": "Fondation Charles de Gaulle: original French transcript",
+        "url": "https://www.charles-de-gaulle.org/blog/2024/06/10/discours-du-general-de-gaulle-a-bayeux-14-juin-1944/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "originalText": "Nous combattrons pour la France avec passion, mais aussi avec raison.",
+    "originalLanguage": "French",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "history-degaulle-with-allies",
+    "text": "alongside the Allies, with the Allies, as an ally.",
+    "speaker": "Charles de Gaulle",
+    "collection": "history",
+    "work": "First Bayeux speech",
+    "locator": "Bayeux, 14 June 1944; clause in final paragraph; English translation by The Dawn Anthology",
+    "year": 1944,
+    "context": "This excerpt states the relationship he sought with the Allies: cooperation alongside an independent French role. It is a clause, not a standalone sentence in the original. Translated here from the French transcript; this is not a quotation from a published English edition.",
+    "sources": [
+      {
+        "label": "Fondation Charles de Gaulle: original French transcript",
+        "url": "https://www.charles-de-gaulle.org/blog/2024/06/10/discours-du-general-de-gaulle-a-bayeux-14-juin-1944/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "originalText": "aux côtés des Alliés, avec les Alliés, comme un allié.",
+    "originalLanguage": "French",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "history-cromwell-fallibility",
+    "text": "I beseech you, in the bowels of Christ, think it possible you may be mistaken.",
+    "speaker": "Oliver Cromwell",
+    "collection": "history",
+    "work": "Letter to the General Assembly of the Kirk of Scotland",
+    "locator": "Musselburgh, 3 August 1650; letter 129, PDF p. 2; Carlyle’s 1846 edition, institutional transcription",
+    "year": 1650,
+    "context": "A religious and political appeal during his invasion of Scotland. The old phrase about Christ expresses earnest compassion; the letter also argues forcefully for Cromwell’s own position.",
+    "sources": [
+      {
+        "label": "Cromwell Association and Cromwell Museum: original document transcription",
+        "url": "https://www.olivercromwell.org/Letters_and_Speeches/Letters/Letter_129.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-cromwell-bethink",
+    "text": "Bethink yourselves; we hope we do.",
+    "speaker": "Oliver Cromwell",
+    "collection": "history",
+    "work": "Letter to the General Assembly of the Kirk of Scotland",
+    "locator": "Musselburgh, 3 August 1650; letter 129, PDF p. 2; Carlyle’s 1846 edition, institutional transcription",
+    "year": 1650,
+    "context": "A call to examine one’s own judgement in the same contentious letter. “Bethink” means to consider or reflect.",
+    "sources": [
+      {
+        "label": "Cromwell Association and Cromwell Museum: original document transcription",
+        "url": "https://www.olivercromwell.org/Letters_and_Speeches/Letters/Letter_129.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-cromwell-helpers",
+    "text": "We look at Ministers as helpers of, not lords over, God’s people.",
+    "speaker": "Oliver Cromwell",
+    "collection": "history",
+    "work": "Letter to the Governor of Edinburgh Castle",
+    "locator": "Edinburgh, 12 September 1650; letter 141, PDF p. 1; Carlyle’s 1846 edition, institutional transcription",
+    "year": 1650,
+    "context": "Cromwell challenges Scottish ministers’ claims to control religious judgement. This historical argument does not mean his regime practised unrestricted modern religious liberty.",
+    "sources": [
+      {
+        "label": "Cromwell Association and Cromwell Museum: original document transcription",
+        "url": "https://www.olivercromwell.org/Letters_and_Speeches/Letters/Letter_141.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-cromwell-judge-abuse",
+    "text": "When he doth abuse it, judge.",
+    "speaker": "Oliver Cromwell",
+    "collection": "history",
+    "work": "Letter to the Governor of Edinburgh Castle",
+    "locator": "Edinburgh, 12 September 1650; letter 141, PDF p. 3; Carlyle’s 1846 edition, institutional transcription",
+    "year": 1650,
+    "context": "The “it” is a person’s natural liberty. He argues against removing liberty merely because it might be abused, then distinguishes actual misconduct.",
+    "sources": [
+      {
+        "label": "Cromwell Association and Cromwell Museum: original document transcription",
+        "url": "https://www.olivercromwell.org/Letters_and_Speeches/Letters/Letter_141.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-cromwell-patience",
+    "text": "Lay weight upon their patience; but break it not!",
+    "speaker": "Oliver Cromwell",
+    "collection": "history",
+    "work": "Letter from Boston on the needs of his troops",
+    "locator": "Boston, 11 September 1643; letter 16, PDF p. 1; Carlyle’s 1846 edition, institutional transcription",
+    "year": 1643,
+    "context": "Cromwell asks for practical financial support for unpaid troops. Patience is treated as a resource with limits, rather than an excuse to neglect people.",
+    "sources": [
+      {
+        "label": "Cromwell Association and Cromwell Museum: original document transcription",
+        "url": "https://www.olivercromwell.org/Letters_and_Speeches/Letters/Letter_16%20.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-cromwell-real-help",
+    "text": "Think of that which may be a real help.",
+    "speaker": "Oliver Cromwell",
+    "collection": "history",
+    "work": "Letter from Boston on the needs of his troops",
+    "locator": "Boston, 11 September 1643; letter 16, PDF p. 1; Carlyle’s 1846 edition, institutional transcription",
+    "year": 1643,
+    "context": "This follows his warning not to break the patience of unpaid soldiers. The request is for concrete help, especially money already owed.",
+    "sources": [
+      {
+        "label": "Cromwell Association and Cromwell Museum: original document transcription",
+        "url": "https://www.olivercromwell.org/Letters_and_Speeches/Letters/Letter_16%20.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-cromwell-conscience",
+    "text": "Liberty of Conscience is a natural right; and he that would have it, ought to give it;",
+    "speaker": "Oliver Cromwell",
+    "collection": "history",
+    "work": "Speech to the First Protectorate Parliament",
+    "locator": "12 September 1654; speech 5, PDF p. 9; Carlyle’s 1846 edition, institutional transcription",
+    "year": 1654,
+    "context": "A passage on reciprocity in religious conscience. His historical toleration had limits, and the speech also defends his restriction of Parliament; this is not a claim of modern universal equality.",
+    "sources": [
+      {
+        "label": "Cromwell Association and Cromwell Museum: original document transcription",
+        "url": "https://www.olivercromwell.org/Letters_and_Speeches/speeches/Speech_5.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-cromwell-mind",
+    "text": "The mind is the man.",
+    "speaker": "Oliver Cromwell",
+    "collection": "history",
+    "work": "Opening address to the Second Protectorate Parliament",
+    "locator": "17 September 1656; speech 7, PDF p. 17; Carlyle’s 1846 edition, institutional transcription",
+    "year": 1656,
+    "context": "In an argument for moral and religious reform, Cromwell identifies character with the inner life. The surrounding passage has a seventeenth-century Puritan setting.",
+    "sources": [
+      {
+        "label": "Cromwell Association and Cromwell Museum: original document transcription",
+        "url": "https://www.olivercromwell.org/Letters_and_Speeches/speeches/Speech_7.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-cromwell-need-compassion",
+    "text": "I need pity, I know what I feel.",
+    "speaker": "Oliver Cromwell",
+    "collection": "history",
+    "work": "Letter to Richard Mayor",
+    "locator": "Alnwick, 17 July 1650; letter 127, PDF p. 1; Carlyle’s 1846 edition, institutional transcription",
+    "year": 1650,
+    "context": "Writing to his son’s father-in-law amid public duties and family concerns, Cromwell admits the strain of responsibility.",
+    "sources": [
+      {
+        "label": "Cromwell Association and Cromwell Museum: original document transcription",
+        "url": "https://www.olivercromwell.org/Letters_and_Speeches/Letters/Letter_127.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "history-cromwell-welcome-letter",
+    "text": "Your Letter was very welcome to me.",
+    "speaker": "Oliver Cromwell",
+    "collection": "history",
+    "work": "Letter to Dorothy Cromwell",
+    "locator": "Aboard the John, 13 August 1649; letter 102, PDF p. 1; Carlyle’s 1846 edition, institutional transcription",
+    "year": 1649,
+    "context": "An affectionate opening to his daughter-in-law Dorothy, whom he calls his daughter. The wider letter reflects his Puritan faith and the Irish campaign.",
+    "sources": [
+      {
+        "label": "Cromwell Association and Cromwell Museum: original document transcription",
+        "url": "https://www.olivercromwell.org/Letters_and_Speeches/Letters/Letter_102.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-marcus-grandfather",
+    "text": "From my grandfather Verus I learned good morals and the government of my temper.",
+    "speaker": "Marcus Aurelius",
+    "collection": "wisdom",
+    "work": "Meditations",
+    "locator": "Book 1, section 1; George Long translation",
+    "year": "2nd century CE",
+    "context": "Marcus begins by acknowledging teachers within his family, making gratitude part of philosophical practice. The English wording is George Long's public-domain translation of Marcus's Greek notes.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Meditations, Book 1",
+        "url": "https://classics.mit.edu/Antoninus/meditations.1.one.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-marcus-common-interest",
+    "text": "Labour not unwillingly, nor without regard to the common interest",
+    "speaker": "Marcus Aurelius",
+    "collection": "wisdom",
+    "work": "Meditations",
+    "locator": "Book 3, section 5; opening clause; George Long translation",
+    "year": "2nd century CE",
+    "context": "A reminder to work willingly with attention to the people affected by one's work. The English wording is George Long's public-domain translation of Marcus's Greek notes.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Meditations, Book 3",
+        "url": "https://classics.mit.edu/Antoninus/meditations.3.three.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-marcus-morning-work",
+    "text": "I am rising to the work of a human being.",
+    "speaker": "Marcus Aurelius",
+    "collection": "wisdom",
+    "work": "Meditations",
+    "locator": "Book 5, section 1; George Long translation",
+    "year": "2nd century CE",
+    "context": "Marcus answers his reluctance to leave bed by recalling his responsibilities to others. The passage also acknowledges the need for rest. The English wording is George Long's public-domain translation of Marcus's Greek notes.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Meditations, Book 5",
+        "url": "https://classics.mit.edu/Antoninus/meditations.5.five.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-marcus-accept-help",
+    "text": "Be not ashamed to be helped",
+    "speaker": "Marcus Aurelius",
+    "collection": "wisdom",
+    "work": "Meditations",
+    "locator": "Book 7, section 7; opening clause; George Long translation",
+    "year": "2nd century CE",
+    "context": "Competence includes accepting assistance. The surrounding military comparison concerns shared effort. The English wording is George Long's public-domain translation of Marcus's Greek notes.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Meditations, Book 7",
+        "url": "https://classics.mit.edu/Antoninus/meditations.7.seven.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-marcus-purpose",
+    "text": "nothing should be done without a purpose.",
+    "speaker": "Marcus Aurelius",
+    "collection": "wisdom",
+    "work": "Meditations",
+    "locator": "Book 8, section 17; closing clause; George Long translation",
+    "year": "2nd century CE",
+    "context": "Marcus redirects blame towards useful action and correction. This is philosophical counsel, not a promise that every obstacle is controllable. The English wording is George Long's public-domain translation of Marcus's Greek notes.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Meditations, Book 8",
+        "url": "https://classics.mit.edu/Antoninus/meditations.8.eight.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-jesus-mercy",
+    "text": "Blessed are the merciful: for they shall obtain mercy.",
+    "speaker": "Jesus, as recorded in Matthew",
+    "collection": "wisdom",
+    "work": "Gospel according to Matthew",
+    "locator": "Matthew 5:7; King James Version",
+    "year": "1st-century Gospel; KJV 1611",
+    "context": "The Beatitudes connect receiving mercy with showing mercy to others. These are words attributed to Jesus in Christian scripture, quoted in the King James translation, not a surviving verbatim recording.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Matthew 5, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Matthew+5&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-jesus-peacemakers",
+    "text": "Blessed are the peacemakers: for they shall be called the children of God.",
+    "speaker": "Jesus, as recorded in Matthew",
+    "collection": "wisdom",
+    "work": "Gospel according to Matthew",
+    "locator": "Matthew 5:9; King James Version",
+    "year": "1st-century Gospel; KJV 1611",
+    "context": "The Sermon on the Mount honours those who work for peace. These are words attributed to Jesus in Christian scripture, quoted in the King James translation, not a surviving verbatim recording.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Matthew 5, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Matthew+5&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-jesus-treasure",
+    "text": "For where your treasure is, there will your heart be also.",
+    "speaker": "Jesus, as recorded in Matthew",
+    "collection": "wisdom",
+    "work": "Gospel according to Matthew",
+    "locator": "Matthew 6:21; King James Version",
+    "year": "1st-century Gospel; KJV 1611",
+    "context": "The contrast between earthly and heavenly treasure asks what a person ultimately values. These are words attributed to Jesus in Christian scripture, quoted in the King James translation, not a surviving verbatim recording.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Matthew 6, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Matthew+6&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-jesus-today",
+    "text": "Sufficient unto the day is the evil thereof.",
+    "speaker": "Jesus, as recorded in Matthew",
+    "collection": "wisdom",
+    "work": "Gospel according to Matthew",
+    "locator": "Matthew 6:34; King James Version",
+    "year": "1st-century Gospel; KJV 1611",
+    "context": "The teaching redirects anxious attention from tomorrow to today's difficulties; it is not a prohibition on planning. These are words attributed to Jesus in Christian scripture, quoted in the King James translation, not a surviving verbatim recording.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Matthew 6, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Matthew+6&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-jesus-seek",
+    "text": "seek, and ye shall find",
+    "speaker": "Jesus, as recorded in Matthew",
+    "collection": "wisdom",
+    "work": "Gospel according to Matthew",
+    "locator": "Matthew 7:7; King James Version",
+    "year": "1st-century Gospel; KJV 1611",
+    "context": "An excerpt from Jesus's teaching about asking, seeking and prayer. These are words attributed to Jesus in Christian scripture, quoted in the King James translation, not a surviving verbatim recording.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Matthew 7, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Matthew+7&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-jesus-fruits",
+    "text": "Ye shall know them by their fruits.",
+    "speaker": "Jesus, as recorded in Matthew",
+    "collection": "wisdom",
+    "work": "Gospel according to Matthew",
+    "locator": "Matthew 7:16; King James Version",
+    "year": "1st-century Gospel; KJV 1611",
+    "context": "Jesus warns against false prophets and directs listeners to conduct and its results. These are words attributed to Jesus in Christian scripture, quoted in the King James translation, not a surviving verbatim recording.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Matthew 7, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Matthew+7&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-jesus-give",
+    "text": "freely ye have received, freely give.",
+    "speaker": "Jesus, as recorded in Matthew",
+    "collection": "wisdom",
+    "work": "Gospel according to Matthew",
+    "locator": "Matthew 10:8; King James Version",
+    "year": "1st-century Gospel; KJV 1611",
+    "context": "Jesus instructs the Twelve as they set out on their mission. Generosity belongs to that religious setting. These are words attributed to Jesus in Christian scripture, quoted in the King James translation, not a surviving verbatim recording.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Matthew 10, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Matthew+10&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-jesus-wise-gentle",
+    "text": "be ye therefore wise as serpents, and harmless as doves.",
+    "speaker": "Jesus, as recorded in Matthew",
+    "collection": "wisdom",
+    "work": "Gospel according to Matthew",
+    "locator": "Matthew 10:16; King James Version",
+    "year": "1st-century Gospel; KJV 1611",
+    "context": "Prudence and harmlessness are paired as the disciples prepare to face hostility. These are words attributed to Jesus in Christian scripture, quoted in the King James translation, not a surviving verbatim recording.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Matthew 10, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Matthew+10&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-jesus-rest",
+    "text": "Come unto me, all ye that labour and are heavy laden",
+    "speaker": "Jesus, as recorded in Matthew",
+    "collection": "wisdom",
+    "work": "Gospel according to Matthew",
+    "locator": "Matthew 11:28; King James Version",
+    "year": "1st-century Gospel; KJV 1611",
+    "context": "An invitation to those carrying burdens, within Matthew's account of Jesus's relationship with the Father. These are words attributed to Jesus in Christian scripture, quoted in the King James translation, not a surviving verbatim recording.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Matthew 11, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Matthew+11&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-jesus-light-burden",
+    "text": "For my yoke is easy, and my burden is light.",
+    "speaker": "Jesus, as recorded in Matthew",
+    "collection": "wisdom",
+    "work": "Gospel according to Matthew",
+    "locator": "Matthew 11:30; King James Version",
+    "year": "1st-century Gospel; KJV 1611",
+    "context": "The image of a yoke describes discipleship and accompanies a promise of rest. These are words attributed to Jesus in Christian scripture, quoted in the King James translation, not a surviving verbatim recording.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Matthew 11, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Matthew+11&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-moses-calling",
+    "text": "Who am I, that I should go unto Pharaoh",
+    "speaker": "Moses, as recorded in Exodus",
+    "collection": "wisdom",
+    "work": "Exodus",
+    "locator": "Exodus 3:11; King James Version",
+    "year": "Hebrew biblical tradition; KJV 1611",
+    "context": "Moses questions his fitness for the mission to confront Pharaoh. The story presents hesitation before accepting responsibility. This is speech attributed to Moses in the biblical narrative, in the King James translation; its ancient oral wording cannot be independently recovered.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Exodus 3, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Exodus+3&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-moses-speech",
+    "text": "I am slow of speech, and of a slow tongue.",
+    "speaker": "Moses, as recorded in Exodus",
+    "collection": "wisdom",
+    "work": "Exodus",
+    "locator": "Exodus 4:10; King James Version",
+    "year": "Hebrew biblical tradition; KJV 1611",
+    "context": "Moses voices his difficulty with public speech. The narrative answers this objection with support rather than presenting confidence as effortless. This is speech attributed to Moses in the biblical narrative, in the King James translation; its ancient oral wording cannot be independently recovered.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Exodus 4, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Exodus+4&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-moses-stand-still",
+    "text": "Fear ye not, stand still",
+    "speaker": "Moses, as recorded in Exodus",
+    "collection": "wisdom",
+    "work": "Exodus",
+    "locator": "Exodus 14:13; King James Version",
+    "year": "Hebrew biblical tradition; KJV 1611",
+    "context": "Moses reassures the people at the sea while Pharaoh's forces approach. This is speech attributed to Moses in the biblical narrative, in the King James translation; its ancient oral wording cannot be independently recovered.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Exodus 14, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Exodus+14&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-moses-hold-peace",
+    "text": "The Lord shall fight for you, and ye shall hold your peace.",
+    "speaker": "Moses, as recorded in Exodus",
+    "collection": "wisdom",
+    "work": "Exodus",
+    "locator": "Exodus 14:14; King James Version",
+    "year": "Hebrew biblical tradition; KJV 1611",
+    "context": "A reassurance within the specific deliverance story at the sea, not a general instruction to remain passive in danger. This is speech attributed to Moses in the biblical narrative, in the King James translation; its ancient oral wording cannot be independently recovered.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Exodus 14, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Exodus+14&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-moses-whole-heart",
+    "text": "thou shalt love the Lord thy God with all thine heart",
+    "speaker": "Moses, as recorded in Deuteronomy",
+    "collection": "wisdom",
+    "work": "Deuteronomy",
+    "locator": "Deuteronomy 6:5; King James Version",
+    "year": "Hebrew biblical tradition; KJV 1611",
+    "context": "An excerpt from Moses's address calling Israel to wholehearted covenant faithfulness. This is speech attributed to Moses in the biblical narrative, in the King James translation; its ancient oral wording cannot be independently recovered.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Deuteronomy 6, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Deuteronomy+6&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-moses-teach-children",
+    "text": "And thou shalt teach them diligently unto thy children",
+    "speaker": "Moses, as recorded in Deuteronomy",
+    "collection": "wisdom",
+    "work": "Deuteronomy",
+    "locator": "Deuteronomy 6:7; King James Version",
+    "year": "Hebrew biblical tradition; KJV 1611",
+    "context": "The surrounding speech places teaching within everyday family life, travel and rest. This is speech attributed to Moses in the biblical narrative, in the King James translation; its ancient oral wording cannot be independently recovered.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Deuteronomy 6, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Deuteronomy+6&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-moses-stranger",
+    "text": "Love ye therefore the stranger: for ye were strangers in the land of Egypt.",
+    "speaker": "Moses, as recorded in Deuteronomy",
+    "collection": "wisdom",
+    "work": "Deuteronomy",
+    "locator": "Deuteronomy 10:19; King James Version",
+    "year": "Hebrew biblical tradition; KJV 1611",
+    "context": "Hospitality is grounded in remembering the community's own experience of being strangers. This is speech attributed to Moses in the biblical narrative, in the King James translation; its ancient oral wording cannot be independently recovered.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Deuteronomy 10, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Deuteronomy+10&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-moses-walk",
+    "text": "to walk in all his ways, and to love him",
+    "speaker": "Moses, as recorded in Deuteronomy",
+    "collection": "wisdom",
+    "work": "Deuteronomy",
+    "locator": "Deuteronomy 10:12; King James Version",
+    "year": "Hebrew biblical tradition; KJV 1611",
+    "context": "An excerpt from the account of what covenant faithfulness requires of Israel. This is speech attributed to Moses in the biblical narrative, in the King James translation; its ancient oral wording cannot be independently recovered.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Deuteronomy 10, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Deuteronomy+10&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-moses-near-word",
+    "text": "But the word is very nigh unto thee",
+    "speaker": "Moses, as recorded in Deuteronomy",
+    "collection": "wisdom",
+    "work": "Deuteronomy",
+    "locator": "Deuteronomy 30:14; King James Version",
+    "year": "Hebrew biblical tradition; KJV 1611",
+    "context": "Moses presents the commandment as something the people can hear, remember and practise. This is speech attributed to Moses in the biblical narrative, in the King James translation; its ancient oral wording cannot be independently recovered.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Deuteronomy 30, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Deuteronomy+30&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-moses-choose-life",
+    "text": "therefore choose life, that both thou and thy seed may live",
+    "speaker": "Moses, as recorded in Deuteronomy",
+    "collection": "wisdom",
+    "work": "Deuteronomy",
+    "locator": "Deuteronomy 30:19; King James Version",
+    "year": "Hebrew biblical tradition; KJV 1611",
+    "context": "The appeal belongs to the covenant choice between blessing and its opposite, with the next generation in view. This is speech attributed to Moses in the biblical narrative, in the King James translation; its ancient oral wording cannot be independently recovered.",
+    "sources": [
+      {
+        "label": "Bible Gateway: Deuteronomy 30, King James Version",
+        "url": "https://www.biblegateway.com/passage/?search=Deuteronomy+30&version=KJV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-muhammad-intentions",
+    "text": "The reward of deeds depends upon the intentions",
+    "speaker": "Muhammad, as reported in hadith",
+    "collection": "wisdom",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 1; reported through Umar ibn al-Khattab; M. Muhsin Khan translation",
+    "year": "7th-century teaching; 9th-century compilation",
+    "context": "The report concerns the motive behind an action, illustrated by migration. These words are attributed to Muhammad through Umar ibn al-Khattab in al-Bukhari's later hadith collection, translated by M. Muhsin Khan. They are not Qur'anic verses or a contemporary transcript.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Sahih al-Bukhari 1",
+        "url": "https://sunnah.com/bukhari:1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-muhammad-brother",
+    "text": "None of you will have faith till he wishes for his (Muslim) brother what he likes for himself.",
+    "speaker": "Muhammad, as reported in hadith",
+    "collection": "wisdom",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 13; reported through Anas; M. Muhsin Khan translation",
+    "year": "7th-century teaching; 9th-century compilation",
+    "context": "This report links faith with concern for another person's good. The parenthetical wording belongs to the cited English translation. These words are attributed to Muhammad through Anas in al-Bukhari's later hadith collection, translated by M. Muhsin Khan. They are not Qur'anic verses or a contemporary transcript.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Sahih al-Bukhari 13",
+        "url": "https://sunnah.com/bukhari:13"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-muhammad-hospitality",
+    "text": "should entertain his guest generously",
+    "speaker": "Muhammad, as reported in hadith",
+    "collection": "wisdom",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 6018; reported through Abu Huraira; M. Muhsin Khan translation",
+    "year": "7th-century teaching; 9th-century compilation",
+    "context": "An excerpt from a report linking faith with care for neighbours, generosity to guests and responsible speech. These words are attributed to Muhammad through Abu Huraira in al-Bukhari's later hadith collection, translated by M. Muhsin Khan. They are not Qur'anic verses or a contemporary transcript.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Sahih al-Bukhari 6018",
+        "url": "https://sunnah.com/bukhari:6018"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-muhammad-goodness",
+    "text": "Enjoining, all that is good is a Sadaqa.",
+    "speaker": "Muhammad, as reported in hadith",
+    "collection": "wisdom",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 6021; reported through Jabir ibn Abdullah; M. Muhsin Khan translation",
+    "year": "7th-century teaching; 9th-century compilation",
+    "context": "Good conduct is associated with sadaqa, or charitable giving. The translation's unusual comma is retained. These words are attributed to Muhammad through Jabir ibn Abdullah in al-Bukhari's later hadith collection, translated by M. Muhsin Khan. They are not Qur'anic verses or a contemporary transcript.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Sahih al-Bukhari 6021",
+        "url": "https://sunnah.com/bukhari:6021"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-muhammad-anger",
+    "text": "Do not become angry.",
+    "speaker": "Muhammad, as reported in hadith",
+    "collection": "wisdom",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 6116; reported through Abu Huraira; M. Muhsin Khan translation",
+    "year": "7th-century teaching; 9th-century compilation",
+    "context": "A man repeatedly requests advice and receives the same brief answer each time. These words are attributed to Muhammad through Abu Huraira in al-Bukhari's later hadith collection, translated by M. Muhsin Khan. They are not Qur'anic verses or a contemporary transcript.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Sahih al-Bukhari 6116",
+        "url": "https://sunnah.com/bukhari:6116"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-muhammad-strength",
+    "text": "the strong is the one who controls himself while in anger.",
+    "speaker": "Muhammad, as reported in hadith",
+    "collection": "wisdom",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 6114; reported through Abu Huraira; M. Muhsin Khan translation",
+    "year": "7th-century teaching; 9th-century compilation",
+    "context": "The report contrasts control of one's own anger with physically overpowering other people. These words are attributed to Muhammad through Abu Huraira in al-Bukhari's later hadith collection, translated by M. Muhsin Khan. They are not Qur'anic verses or a contemporary transcript.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Sahih al-Bukhari 6114",
+        "url": "https://sunnah.com/bukhari:6114"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-muhammad-time",
+    "text": "There are two blessings that many people are deceived into losing: health and free time.",
+    "speaker": "Muhammad, as reported in hadith",
+    "collection": "wisdom",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 6412; reported through Ibn Abbas; M. Muhsin Khan translation",
+    "year": "7th-century teaching; 9th-century compilation",
+    "context": "The report asks listeners to recognise blessings that can easily be neglected. These words are attributed to Muhammad through Ibn Abbas in al-Bukhari's later hadith collection, translated by M. Muhsin Khan. They are not Qur'anic verses or a contemporary transcript.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Sahih al-Bukhari 6412",
+        "url": "https://sunnah.com/bukhari:6412"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-muhammad-ease",
+    "text": "Facilitate things to people (concerning religious matters), and do not make it hard for them",
+    "speaker": "Muhammad, as reported in hadith",
+    "collection": "wisdom",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 69; reported through Anas ibn Malik; M. Muhsin Khan translation",
+    "year": "7th-century teaching; 9th-century compilation",
+    "context": "Advice about teaching religious matters without driving people away; the parenthesis is the translator's clarification. These words are attributed to Muhammad through Anas ibn Malik in al-Bukhari's later hadith collection, translated by M. Muhsin Khan. They are not Qur'anic verses or a contemporary transcript.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Sahih al-Bukhari 69",
+        "url": "https://sunnah.com/bukhari:69"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-muhammad-kindness",
+    "text": "should be kind and lenient in all matters.",
+    "speaker": "Muhammad, as reported in hadith",
+    "collection": "wisdom",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 6024; reported through Aisha; M. Muhsin Khan translation",
+    "year": "7th-century teaching; 9th-century compilation",
+    "context": "A short clause from a report in which Muhammad counsels Aisha after a hostile greeting, emphasising a restrained response. These words are attributed to Muhammad through Aisha in al-Bukhari's later hadith collection, translated by M. Muhsin Khan. They are not Qur'anic verses or a contemporary transcript.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Sahih al-Bukhari 6024",
+        "url": "https://sunnah.com/bukhari:6024"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-muhammad-moderation",
+    "text": "Do good deeds properly, sincerely and moderately",
+    "speaker": "Muhammad, as reported in hadith",
+    "collection": "wisdom",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 6464; reported through Aisha; M. Muhsin Khan translation",
+    "year": "7th-century teaching; 9th-century compilation",
+    "context": "The wider report values steady, manageable practice and states that deeds alone do not secure Paradise. These words are attributed to Muhammad through Aisha in al-Bukhari's later hadith collection, translated by M. Muhsin Khan. They are not Qur'anic verses or a contemporary transcript.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Sahih al-Bukhari 6464",
+        "url": "https://sunnah.com/bukhari:6464"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-seneca-hour",
+    "text": "hold every hour in your grasp",
+    "speaker": "Seneca",
+    "collection": "wisdom",
+    "work": "Moral Letters to Lucilius",
+    "locator": "Letter 1, section 2; Richard M. Gummere translation",
+    "year": "1st century CE",
+    "context": "Seneca asks Lucilius to use the time available instead of endlessly deferring meaningful work. The wording is Richard M. Gummere's public-domain English translation of Seneca's Latin letters.",
+    "sources": [
+      {
+        "label": "Wikisource: Gummere edition, Letter 1",
+        "url": "https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-seneca-postponing",
+    "text": "While we are postponing, life speeds by.",
+    "speaker": "Seneca",
+    "collection": "wisdom",
+    "work": "Moral Letters to Lucilius",
+    "locator": "Letter 1, section 2; Richard M. Gummere translation",
+    "year": "1st century CE",
+    "context": "An observation about the cost of delay within a letter devoted to attention and time. The wording is Richard M. Gummere's public-domain English translation of Seneca's Latin letters.",
+    "sources": [
+      {
+        "label": "Wikisource: Gummere edition, Letter 1",
+        "url": "https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-seneca-digest",
+    "text": "You must linger among a limited number of master-thinkers, and digest their works",
+    "speaker": "Seneca",
+    "collection": "wisdom",
+    "work": "Moral Letters to Lucilius",
+    "locator": "Letter 2, section 2; Richard M. Gummere translation",
+    "year": "1st century CE",
+    "context": "Seneca uses digestion as an image for sustained reading, warning against collecting impressions without understanding. The wording is Richard M. Gummere's public-domain English translation of Seneca's Latin letters.",
+    "sources": [
+      {
+        "label": "Wikisource: Gummere edition, Letter 2",
+        "url": "https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-seneca-everywhere",
+    "text": "Everywhere means nowhere.",
+    "speaker": "Seneca",
+    "collection": "wisdom",
+    "work": "Moral Letters to Lucilius",
+    "locator": "Letter 2, section 2; Richard M. Gummere translation",
+    "year": "1st century CE",
+    "context": "A compressed warning against restless reading. It is not a condemnation of travelling or exploring. The wording is Richard M. Gummere's public-domain English translation of Seneca's Latin letters.",
+    "sources": [
+      {
+        "label": "Wikisource: Gummere edition, Letter 2",
+        "url": "https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-seneca-trust",
+    "text": "When friendship is settled, you must trust",
+    "speaker": "Seneca",
+    "collection": "wisdom",
+    "work": "Moral Letters to Lucilius",
+    "locator": "Letter 3, section 2; Richard M. Gummere translation",
+    "year": "1st century CE",
+    "context": "Seneca distinguishes thoughtful choice of friends from suspicion after a friendship has been established. The wording is Richard M. Gummere's public-domain English translation of Seneca's Latin letters.",
+    "sources": [
+      {
+        "label": "Wikisource: Gummere edition, Letter 3",
+        "url": "https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-seneca-speak",
+    "text": "Speak as boldly with him as with yourself.",
+    "speaker": "Seneca",
+    "collection": "wisdom",
+    "work": "Moral Letters to Lucilius",
+    "locator": "Letter 3, section 2; Richard M. Gummere translation",
+    "year": "1st century CE",
+    "context": "Advice about candour with a trusted friend, following deliberation about whom to trust. The wording is Richard M. Gummere's public-domain English translation of Seneca's Latin letters.",
+    "sources": [
+      {
+        "label": "Wikisource: Gummere edition, Letter 3",
+        "url": "https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-seneca-learn-teach",
+    "text": "I am glad to learn in order that I may teach.",
+    "speaker": "Seneca",
+    "collection": "wisdom",
+    "work": "Moral Letters to Lucilius",
+    "locator": "Letter 6, section 4; Richard M. Gummere translation",
+    "year": "1st century CE",
+    "context": "Learning becomes more valuable when it can be shared. The wording is Richard M. Gummere's public-domain English translation of Seneca's Latin letters.",
+    "sources": [
+      {
+        "label": "Wikisource: Gummere edition, Letter 6",
+        "url": "https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_6"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-seneca-share",
+    "text": "No good thing is pleasant to possess, without friends to share it.",
+    "speaker": "Seneca",
+    "collection": "wisdom",
+    "work": "Moral Letters to Lucilius",
+    "locator": "Letter 6, section 4; Richard M. Gummere translation",
+    "year": "1st century CE",
+    "context": "Seneca values friendship as part of the enjoyment and use of good things. The wording is Richard M. Gummere's public-domain English translation of Seneca's Latin letters.",
+    "sources": [
+      {
+        "label": "Wikisource: Gummere edition, Letter 6",
+        "url": "https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_6"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-seneca-companions",
+    "text": "Associate with those who will make a better man of you.",
+    "speaker": "Seneca",
+    "collection": "wisdom",
+    "work": "Moral Letters to Lucilius",
+    "locator": "Letter 7, section 8; Richard M. Gummere translation",
+    "year": "1st century CE",
+    "context": "Seneca recommends company that encourages better conduct after describing the brutalising influence of arena crowds. The wording is Richard M. Gummere's public-domain English translation of Seneca's Latin letters.",
+    "sources": [
+      {
+        "label": "Wikisource: Gummere edition, Letter 7",
+        "url": "https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_7"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-seneca-teachers-learn",
+    "text": "men learn while they teach.",
+    "speaker": "Seneca",
+    "collection": "wisdom",
+    "work": "Moral Letters to Lucilius",
+    "locator": "Letter 7, section 8; Richard M. Gummere translation",
+    "year": "1st century CE",
+    "context": "Teaching and learning are presented as reciprocal parts of friendship. The wording is Richard M. Gummere's public-domain English translation of Seneca's Latin letters.",
+    "sources": [
+      {
+        "label": "Wikisource: Gummere edition, Letter 7",
+        "url": "https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_7"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-confucius-learning",
+    "text": "Is it not pleasant to learn with a constant perseverance and application?",
+    "speaker": "Confucius, as recorded in the Analects",
+    "collection": "wisdom",
+    "work": "Confucian Analects",
+    "locator": "Book I, chapter 1.1; James Legge translation; edition's numbering",
+    "year": "Ancient Chinese transmitted collection; Legge translation",
+    "context": "Learning is presented as repeated, attentive practice rather than collecting facts. The Analects preserves sayings attributed to Confucius through later transmission; this is James Legge's English wording. Chapter numbers follow this edition and can differ from other editions.",
+    "sources": [
+      {
+        "label": "Wikisource: The Chinese Classics, Analects Book I",
+        "url": "https://en.wikisource.org/wiki/The_Chinese_Classics/Volume_1/Confucian_Analects/I"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-confucius-friends",
+    "text": "Is it not delightful to have friends coming from distant quarters?",
+    "speaker": "Confucius, as recorded in the Analects",
+    "collection": "wisdom",
+    "work": "Confucian Analects",
+    "locator": "Book I, chapter 1.2; James Legge translation; edition's numbering",
+    "year": "Ancient Chinese transmitted collection; Legge translation",
+    "context": "The opening of the Analects celebrates welcoming people who have travelled to be together. The Analects preserves sayings attributed to Confucius through later transmission; this is James Legge's English wording. Chapter numbers follow this edition and can differ from other editions.",
+    "sources": [
+      {
+        "label": "Wikisource: The Chinese Classics, Analects Book I",
+        "url": "https://en.wikisource.org/wiki/The_Chinese_Classics/Volume_1/Confucian_Analects/I"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-confucius-thought",
+    "text": "Learning without thought is labour lost; thought without learning is perilous.",
+    "speaker": "Confucius, as recorded in the Analects",
+    "collection": "wisdom",
+    "work": "Confucian Analects",
+    "locator": "Book II, chapter 15; James Legge translation; edition's numbering",
+    "year": "Ancient Chinese transmitted collection; Legge translation",
+    "context": "The saying asks students to combine study with reflection. The Analects preserves sayings attributed to Confucius through later transmission; this is James Legge's English wording. Chapter numbers follow this edition and can differ from other editions.",
+    "sources": [
+      {
+        "label": "Wikisource: The Chinese Classics, Analects Book II",
+        "url": "https://en.wikisource.org/wiki/The_Chinese_Classics/Volume_1/Confucian_Analects/II"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-confucius-impartial",
+    "text": "The superior man is catholic and no partisan.",
+    "speaker": "Confucius, as recorded in the Analects",
+    "collection": "wisdom",
+    "work": "Confucian Analects",
+    "locator": "Book II, chapter 14; James Legge translation; edition's numbering",
+    "year": "Ancient Chinese transmitted collection; Legge translation",
+    "context": "In Legge's older English, catholic means broad or inclusive, not membership of a church. The contrast concerns impartial character and factional loyalty. The Analects preserves sayings attributed to Confucius through later transmission; this is James Legge's English wording. Chapter numbers follow this edition and can differ from other editions.",
+    "sources": [
+      {
+        "label": "Wikisource: The Chinese Classics, Analects Book II",
+        "url": "https://en.wikisource.org/wiki/The_Chinese_Classics/Volume_1/Confucian_Analects/II"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-confucius-virtue-neighbours",
+    "text": "Virtue is not left to stand alone. He who practises it will have neighbors.",
+    "speaker": "Confucius, as recorded in the Analects",
+    "collection": "wisdom",
+    "work": "Confucian Analects",
+    "locator": "Book IV, chapter 25; James Legge translation; edition's numbering",
+    "year": "Ancient Chinese transmitted collection; Legge translation",
+    "context": "The teaching connects ethical practice with the company it attracts. The source's spelling of neighbors is retained. The Analects preserves sayings attributed to Confucius through later transmission; this is James Legge's English wording. Chapter numbers follow this edition and can differ from other editions.",
+    "sources": [
+      {
+        "label": "Wikisource: The Chinese Classics, Analects Book IV",
+        "url": "https://en.wikisource.org/wiki/The_Chinese_Classics/Volume_1/Confucian_Analects/IV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-confucius-caution",
+    "text": "The cautious seldom err.",
+    "speaker": "Confucius, as recorded in the Analects",
+    "collection": "wisdom",
+    "work": "Confucian Analects",
+    "locator": "Book IV, chapter 23; James Legge translation; edition's numbering",
+    "year": "Ancient Chinese transmitted collection; Legge translation",
+    "context": "Restraint in conduct is praised as a way of reducing avoidable mistakes. The Analects preserves sayings attributed to Confucius through later transmission; this is James Legge's English wording. Chapter numbers follow this edition and can differ from other editions.",
+    "sources": [
+      {
+        "label": "Wikisource: The Chinese Classics, Analects Book IV",
+        "url": "https://en.wikisource.org/wiki/The_Chinese_Classics/Volume_1/Confucian_Analects/IV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-confucius-fellow-travellers",
+    "text": "When I walk along with two others, they may serve me as my teachers.",
+    "speaker": "Confucius, as recorded in the Analects",
+    "collection": "wisdom",
+    "work": "Confucian Analects",
+    "locator": "Book VII, chapter 21; James Legge translation; edition's numbering",
+    "year": "Ancient Chinese transmitted collection; Legge translation",
+    "context": "The following sentence urges learning from others' strengths while recognising faults one should avoid. The Analects preserves sayings attributed to Confucius through later transmission; this is James Legge's English wording. Chapter numbers follow this edition and can differ from other editions.",
+    "sources": [
+      {
+        "label": "Wikisource: The Chinese Classics, Analects Book VII",
+        "url": "https://en.wikisource.org/wiki/The_Chinese_Classics/Volume_1/Confucian_Analects/VII"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-confucius-arts",
+    "text": "Let relaxation and enjoyment be found in the polite arts.",
+    "speaker": "Confucius, as recorded in the Analects",
+    "collection": "wisdom",
+    "work": "Confucian Analects",
+    "locator": "Book VII, chapter 6.4; James Legge translation; edition's numbering",
+    "year": "Ancient Chinese transmitted collection; Legge translation",
+    "context": "Artistic cultivation appears alongside duty, goodness and virtue in this four-part teaching. The Analects preserves sayings attributed to Confucius through later transmission; this is James Legge's English wording. Chapter numbers follow this edition and can differ from other editions.",
+    "sources": [
+      {
+        "label": "Wikisource: The Chinese Classics, Analects Book VII",
+        "url": "https://en.wikisource.org/wiki/The_Chinese_Classics/Volume_1/Confucian_Analects/VII"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-confucius-ability",
+    "text": "The superior man is distressed by his want of ability.",
+    "speaker": "Confucius, as recorded in the Analects",
+    "collection": "wisdom",
+    "work": "Confucian Analects",
+    "locator": "Book XV, chapter 18; James Legge translation; edition's numbering",
+    "year": "Ancient Chinese transmitted collection; Legge translation",
+    "context": "The continuation contrasts improving one's ability with worrying about being unrecognised. The Analects preserves sayings attributed to Confucius through later transmission; this is James Legge's English wording. Chapter numbers follow this edition and can differ from other editions.",
+    "sources": [
+      {
+        "label": "Wikisource: The Chinese Classics, Analects Book XV",
+        "url": "https://en.wikisource.org/wiki/The_Chinese_Classics/Volume_1/Confucian_Analects/XV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-confucius-reciprocity",
+    "text": "What you do not want done to yourself, do not do to others.",
+    "speaker": "Confucius, as recorded in the Analects",
+    "collection": "wisdom",
+    "work": "Confucian Analects",
+    "locator": "Book XV, chapter 23; James Legge translation; edition's numbering",
+    "year": "Ancient Chinese transmitted collection; Legge translation",
+    "context": "The response to a question about lifelong practice makes reciprocity a guide to conduct. The Analects preserves sayings attributed to Confucius through later transmission; this is James Legge's English wording. Chapter numbers follow this edition and can differ from other editions.",
+    "sources": [
+      {
+        "label": "Wikisource: The Chinese Classics, Analects Book XV",
+        "url": "https://en.wikisource.org/wiki/The_Chinese_Classics/Volume_1/Confucian_Analects/XV"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-aristotle-summer",
+    "text": "one swallow does not make a summer",
+    "speaker": "Aristotle",
+    "collection": "wisdom",
+    "work": "Nicomachean Ethics",
+    "locator": "Book 1, chapter 7; W. D. Ross translation; excerpt",
+    "year": "4th century BCE",
+    "context": "A good life is judged over time; a single favourable moment does not establish lasting flourishing. The exact English clause is from W. D. Ross's translation of Aristotle's Greek text.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Nicomachean Ethics, Book 1",
+        "url": "https://classics.mit.edu/Aristotle/nicomachaen.1.i.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-aristotle-action",
+    "text": "the end aimed at is not knowledge but action.",
+    "speaker": "Aristotle",
+    "collection": "wisdom",
+    "work": "Nicomachean Ethics",
+    "locator": "Book 1, chapter 3; W. D. Ross translation; excerpt",
+    "year": "4th century BCE",
+    "context": "Ethical study is directed towards how people live, rather than information alone. The exact English clause is from W. D. Ross's translation of Aristotle's Greek text.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Nicomachean Ethics, Book 1",
+        "url": "https://classics.mit.edu/Aristotle/nicomachaen.1.i.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-aristotle-building",
+    "text": "men become builders by building and lyreplayers by playing the lyre",
+    "speaker": "Aristotle",
+    "collection": "wisdom",
+    "work": "Nicomachean Ethics",
+    "locator": "Book 2, chapter 1; W. D. Ross translation; excerpt",
+    "year": "4th century BCE",
+    "context": "Learning a craft illustrates Aristotle's claim that practice forms abilities and habits. The exact English clause is from W. D. Ross's translation of Aristotle's Greek text.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Nicomachean Ethics, Book 2",
+        "url": "https://classics.mit.edu/Aristotle/nicomachaen.2.ii.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-aristotle-just-acts",
+    "text": "we become just by doing just acts",
+    "speaker": "Aristotle",
+    "collection": "wisdom",
+    "work": "Nicomachean Ethics",
+    "locator": "Book 2, chapter 1; W. D. Ross translation; excerpt",
+    "year": "4th century BCE",
+    "context": "The argument connects character with repeated action; the following discussion also distinguishes good practice from bad practice. The exact English clause is from W. D. Ross's translation of Aristotle's Greek text.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Nicomachean Ethics, Book 2",
+        "url": "https://classics.mit.edu/Aristotle/nicomachaen.2.ii.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-aristotle-deliberation",
+    "text": "to deliberate well about what is good and expedient for himself",
+    "speaker": "Aristotle",
+    "collection": "wisdom",
+    "work": "Nicomachean Ethics",
+    "locator": "Book 6, chapter 5; W. D. Ross translation; excerpt",
+    "year": "4th century BCE",
+    "context": "This describes practical wisdom concerning a good life as a whole, not merely technical efficiency. The exact English clause is from W. D. Ross's translation of Aristotle's Greek text.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Nicomachean Ethics, Book 6",
+        "url": "https://classics.mit.edu/Aristotle/nicomachaen.6.vi.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-aristotle-practical",
+    "text": "practical wisdom is concerned with action",
+    "speaker": "Aristotle",
+    "collection": "wisdom",
+    "work": "Nicomachean Ethics",
+    "locator": "Book 6, chapter 7; W. D. Ross translation; excerpt",
+    "year": "4th century BCE",
+    "context": "Practical wisdom requires attention to particular situations, as well as general principles. The exact English clause is from W. D. Ross's translation of Aristotle's Greek text.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Nicomachean Ethics, Book 6",
+        "url": "https://classics.mit.edu/Aristotle/nicomachaen.6.vi.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-aristotle-friends",
+    "text": "without friends no one would choose to live",
+    "speaker": "Aristotle",
+    "collection": "wisdom",
+    "work": "Nicomachean Ethics",
+    "locator": "Book 8, chapter 1; W. D. Ross translation; excerpt",
+    "year": "4th century BCE",
+    "context": "Aristotle introduces friendship as a central human good even for someone with other advantages. The exact English clause is from W. D. Ross's translation of Aristotle's Greek text.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Nicomachean Ethics, Book 8",
+        "url": "https://classics.mit.edu/Aristotle/nicomachaen.8.viii.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-aristotle-community",
+    "text": "Friendship seems too to hold states together",
+    "speaker": "Aristotle",
+    "collection": "wisdom",
+    "work": "Nicomachean Ethics",
+    "locator": "Book 8, chapter 1; W. D. Ross translation; excerpt",
+    "year": "4th century BCE",
+    "context": "The discussion extends friendship beyond private affection to the shared life of a community. The exact English clause is from W. D. Ross's translation of Aristotle's Greek text.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Nicomachean Ethics, Book 8",
+        "url": "https://classics.mit.edu/Aristotle/nicomachaen.8.viii.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-aristotle-living-active",
+    "text": "happiness lies in living and being active",
+    "speaker": "Aristotle",
+    "collection": "wisdom",
+    "work": "Nicomachean Ethics",
+    "locator": "Book 9, chapter 9; W. D. Ross translation; excerpt",
+    "year": "4th century BCE",
+    "context": "The claim appears in an argument about why a flourishing person still needs friends. The exact English clause is from W. D. Ross's translation of Aristotle's Greek text.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Nicomachean Ethics, Book 9",
+        "url": "https://classics.mit.edu/Aristotle/nicomachaen.9.ix.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-aristotle-another-self",
+    "text": "his friend is another self",
+    "speaker": "Aristotle",
+    "collection": "wisdom",
+    "work": "Nicomachean Ethics",
+    "locator": "Book 9, chapter 9; W. D. Ross translation; excerpt",
+    "year": "4th century BCE",
+    "context": "Aristotle compares the value of a friend's existence with the value of one's own, within a discussion of virtuous friendship. The exact English clause is from W. D. Ross's translation of Aristotle's Greek text.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Nicomachean Ethics, Book 9",
+        "url": "https://classics.mit.edu/Aristotle/nicomachaen.9.ix.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-socrates-examination",
+    "text": "the life which is unexamined is not worth living",
+    "speaker": "Socrates in Plato's Apology",
+    "collection": "wisdom",
+    "work": "Plato, Apology",
+    "locator": "Socrates considers the possibility of giving up philosophical examination; Benjamin Jowett translation",
+    "year": "4th-century BCE literary account",
+    "context": "The passage defends a life of ethical questioning during Plato's account of Socrates's trial. Socrates left no writings. This is Plato's literary presentation of his teacher, in Benjamin Jowett's translation, not an independently verified transcript.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Plato's Apology",
+        "url": "https://classics.mit.edu/Plato/apology.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-socrates-limits",
+    "text": "I neither know nor think that I know.",
+    "speaker": "Socrates in Plato's Apology",
+    "collection": "wisdom",
+    "work": "Plato, Apology",
+    "locator": "Reflection on questioning a politician; Benjamin Jowett translation",
+    "year": "4th-century BCE literary account",
+    "context": "Socrates distinguishes not knowing from mistakenly claiming wisdom. Socrates left no writings. This is Plato's literary presentation of his teacher, in Benjamin Jowett's translation, not an independently verified transcript.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Plato's Apology",
+        "url": "https://classics.mit.edu/Plato/apology.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-socrates-together",
+    "text": "Let us consider the matter together",
+    "speaker": "Socrates in Plato's Crito",
+    "collection": "wisdom",
+    "work": "Plato, Crito",
+    "locator": "Discussion with Crito about escaping prison; Benjamin Jowett translation",
+    "year": "4th-century BCE literary account",
+    "context": "A difficult decision is approached through shared examination rather than urgency alone. Socrates left no writings. This is Plato's literary presentation of his teacher, in Benjamin Jowett's translation, not an independently verified transcript.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Plato's Crito",
+        "url": "https://classics.mit.edu/Plato/crito.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-socrates-no-wrong",
+    "text": "Then we must do no wrong?",
+    "speaker": "Socrates in Plato's Crito",
+    "collection": "wisdom",
+    "work": "Plato, Crito",
+    "locator": "Argument about justice and retaliation; Benjamin Jowett translation",
+    "year": "4th-century BCE literary account",
+    "context": "Socrates asks Crito to accept a principle that will shape the debate about escape. Socrates left no writings. This is Plato's literary presentation of his teacher, in Benjamin Jowett's translation, not an independently verified transcript.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Plato's Crito",
+        "url": "https://classics.mit.edu/Plato/crito.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-socrates-wisdom-virtue",
+    "text": "is not all true virtue the companion of wisdom",
+    "speaker": "Socrates in Plato's Phaedo",
+    "collection": "wisdom",
+    "work": "Plato, Phaedo",
+    "locator": "Discussion of virtue and philosophical purification; Benjamin Jowett translation",
+    "year": "4th-century BCE literary account",
+    "context": "A question about whether virtue can be separated from understanding. Socrates left no writings. This is Plato's literary presentation of his teacher, in Benjamin Jowett's translation, not an independently verified transcript.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Plato's Phaedo",
+        "url": "https://classics.mit.edu/Plato/phaedo.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-socrates-truth-desire",
+    "text": "our desire is of the truth.",
+    "speaker": "Socrates in Plato's Phaedo",
+    "collection": "wisdom",
+    "work": "Plato, Phaedo",
+    "locator": "Socrates imagines what lovers of wisdom say to one another; Benjamin Jowett translation",
+    "year": "4th-century BCE literary account",
+    "context": "The line occurs within a philosophical argument about the soul and knowledge, not a modern scientific claim. Socrates left no writings. This is Plato's literary presentation of his teacher, in Benjamin Jowett's translation, not an independently verified transcript.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Plato's Phaedo",
+        "url": "https://classics.mit.edu/Plato/phaedo.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-socrates-uncertainty",
+    "text": "Some things I have said of which I am not altogether confident.",
+    "speaker": "Socrates in Plato's Meno",
+    "collection": "wisdom",
+    "work": "Plato, Meno",
+    "locator": "After the geometrical questioning of the attendant; Benjamin Jowett translation",
+    "year": "4th-century BCE literary account",
+    "context": "Socrates admits uncertainty while continuing to defend the value of investigation. Socrates left no writings. This is Plato's literary presentation of his teacher, in Benjamin Jowett's translation, not an independently verified transcript.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Plato's Meno",
+        "url": "https://classics.mit.edu/Plato/meno.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-socrates-enquire",
+    "text": "I will gladly enquire with you into the nature of virtue.",
+    "speaker": "Socrates in Plato's Meno",
+    "collection": "wisdom",
+    "work": "Plato, Meno",
+    "locator": "Answer to Meno's challenge about the possibility of enquiry; Benjamin Jowett translation",
+    "year": "4th-century BCE literary account",
+    "context": "Socrates invites joint investigation after discussing recollection. Socrates left no writings. This is Plato's literary presentation of his teacher, in Benjamin Jowett's translation, not an independently verified transcript.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Plato's Meno",
+        "url": "https://classics.mit.edu/Plato/meno.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-socrates-truth",
+    "text": "But I have no particular liking for anything but the truth.",
+    "speaker": "Socrates in Plato's Euthyphro",
+    "collection": "wisdom",
+    "work": "Plato, Euthyphro",
+    "locator": "Discussion of offerings to the gods; Benjamin Jowett translation",
+    "year": "4th-century BCE literary account",
+    "context": "Socrates presses for a coherent definition rather than accepting a flattering exchange. Socrates left no writings. This is Plato's literary presentation of his teacher, in Benjamin Jowett's translation, not an independently verified transcript.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Plato's Euthyphro",
+        "url": "https://classics.mit.edu/Plato/euthyfro.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-socrates-piety",
+    "text": "what is the pious, and what is piety?",
+    "speaker": "Socrates in Plato's Euthyphro",
+    "collection": "wisdom",
+    "work": "Plato, Euthyphro",
+    "locator": "Renewed question about the definition of piety; Benjamin Jowett translation",
+    "year": "4th-century BCE literary account",
+    "context": "The repeated question illustrates the demand for understanding what a moral term means. Socrates left no writings. This is Plato's literary presentation of his teacher, in Benjamin Jowett's translation, not an independently verified transcript.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Plato's Euthyphro",
+        "url": "https://classics.mit.edu/Plato/euthyfro.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-plato-enquire",
+    "text": "we must first enquire whether what you are saying is the truth.",
+    "speaker": "Socrates in Plato's Republic",
+    "collection": "wisdom",
+    "work": "Plato, Republic",
+    "locator": "Book 1; Debate with Thrasymachus about justice; Benjamin Jowett translation",
+    "year": "4th century BCE",
+    "context": "Socrates asks for an argument to be examined before accepting its conclusion. This is a philosophical dialogue written by Plato, with Socrates as its speaker. It is not a quotation from a surviving speech by Plato or a verbatim transcript of Socrates.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Republic, Book 1",
+        "url": "https://classics.mit.edu/Plato/republic.2.i.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-plato-beginning",
+    "text": "the beginning is the most important part of any work",
+    "speaker": "Socrates in Plato's Republic",
+    "collection": "wisdom",
+    "work": "Plato, Republic",
+    "locator": "Book 2; Discussion of the guardians' early education; Benjamin Jowett translation",
+    "year": "4th century BCE",
+    "context": "The passage concerns how early influences form character, especially in children. This is a philosophical dialogue written by Plato, with Socrates as its speaker. It is not a quotation from a surviving speech by Plato or a verbatim transcript of Socrates.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Republic, Book 2",
+        "url": "https://classics.mit.edu/Plato/republic.3.ii.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-plato-goodness",
+    "text": "God is not the author of all things, but of good only.",
+    "speaker": "Socrates in Plato's Republic",
+    "collection": "wisdom",
+    "work": "Plato, Republic",
+    "locator": "Book 2; Proposed principles for stories about the gods; Benjamin Jowett translation",
+    "year": "4th century BCE",
+    "context": "The line belongs to Plato's philosophical discussion of how poets should represent divine goodness. This is a philosophical dialogue written by Plato, with Socrates as its speaker. It is not a quotation from a surviving speech by Plato or a verbatim transcript of Socrates.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Republic, Book 2",
+        "url": "https://classics.mit.edu/Plato/republic.3.ii.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-plato-simplicity",
+    "text": "the true simplicity of a rightly and nobly ordered mind and character",
+    "speaker": "Socrates in Plato's Republic",
+    "collection": "wisdom",
+    "work": "Plato, Republic",
+    "locator": "Book 3; Discussion of rhythm, style and education; Benjamin Jowett translation",
+    "year": "4th century BCE",
+    "context": "Simplicity here means an ordered character, not ignorance or lack of thought. This is a philosophical dialogue written by Plato, with Socrates as its speaker. It is not a quotation from a surviving speech by Plato or a verbatim transcript of Socrates.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Republic, Book 3",
+        "url": "https://classics.mit.edu/Plato/republic.4.iii.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-plato-music",
+    "text": "simplicity in music was the parent of temperance in the soul",
+    "speaker": "Socrates in Plato's Republic",
+    "collection": "wisdom",
+    "work": "Plato, Republic",
+    "locator": "Book 3; Comparison of musical and physical education; Benjamin Jowett translation",
+    "year": "4th century BCE",
+    "context": "The dialogue links cultural training with self-restraint. This is ancient educational philosophy, not a clinical claim. This is a philosophical dialogue written by Plato, with Socrates as its speaker. It is not a quotation from a surviving speech by Plato or a verbatim transcript of Socrates.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Republic, Book 3",
+        "url": "https://classics.mit.edu/Plato/republic.4.iii.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-plato-own-work",
+    "text": "justice was doing one's own business, and not being a busybody",
+    "speaker": "Socrates in Plato's Republic",
+    "collection": "wisdom",
+    "work": "Plato, Republic",
+    "locator": "Book 4; Provisional definition of justice in the city; Benjamin Jowett translation",
+    "year": "4th century BCE",
+    "context": "The definition arises within the dialogue's hierarchical division of civic roles; its political assumptions are part of its context. This is a philosophical dialogue written by Plato, with Socrates as its speaker. It is not a quotation from a surviving speech by Plato or a verbatim transcript of Socrates.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Republic, Book 4",
+        "url": "https://classics.mit.edu/Plato/republic.5.iv.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-plato-inner-life",
+    "text": "he sets in order his own inner life",
+    "speaker": "Socrates in Plato's Republic",
+    "collection": "wisdom",
+    "work": "Plato, Republic",
+    "locator": "Book 4; Justice in the individual soul; Benjamin Jowett translation",
+    "year": "4th century BCE",
+    "context": "Socrates moves from the organisation of a city to harmony among a person's motives. This is a philosophical dialogue written by Plato, with Socrates as its speaker. It is not a quotation from a surviving speech by Plato or a verbatim transcript of Socrates.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Republic, Book 4",
+        "url": "https://classics.mit.edu/Plato/republic.5.iv.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-plato-free-learning",
+    "text": "knowledge which is acquired under compulsion obtains no hold on the mind.",
+    "speaker": "Socrates in Plato's Republic",
+    "collection": "wisdom",
+    "work": "Plato, Republic",
+    "locator": "Book 7; How the future philosopher should be educated; Benjamin Jowett translation",
+    "year": "4th century BCE",
+    "context": "The contrast concerns learning freely and the limited value of forcing knowledge upon a student. This is a philosophical dialogue written by Plato, with Socrates as its speaker. It is not a quotation from a surviving speech by Plato or a verbatim transcript of Socrates.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Republic, Book 7",
+        "url": "https://classics.mit.edu/Plato/republic.8.vii.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-plato-harmony",
+    "text": "justice imparts harmony and friendship",
+    "speaker": "Socrates in Plato's Republic",
+    "collection": "wisdom",
+    "work": "Plato, Republic",
+    "locator": "Book 1; Debate about the effects of justice and injustice; Benjamin Jowett translation",
+    "year": "4th century BCE",
+    "context": "The dialogue contrasts mutual trust with conflict and division. This is a philosophical dialogue written by Plato, with Socrates as its speaker. It is not a quotation from a surviving speech by Plato or a verbatim transcript of Socrates.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Republic, Book 1",
+        "url": "https://classics.mit.edu/Plato/republic.2.i.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-plato-play",
+    "text": "let early education be a sort of amusement",
+    "speaker": "Socrates in Plato's Republic",
+    "collection": "wisdom",
+    "work": "Plato, Republic",
+    "locator": "Book 7; Advice on educating children; Benjamin Jowett translation",
+    "year": "4th century BCE",
+    "context": "Socrates argues that learning through play helps reveal a learner's natural inclinations. This is a philosophical dialogue written by Plato, with Socrates as its speaker. It is not a quotation from a surviving speech by Plato or a verbatim transcript of Socrates.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Republic, Book 7",
+        "url": "https://classics.mit.edu/Plato/republic.8.vii.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "wisdom-epictetus-control",
+    "text": "Some things are in our control and others not.",
+    "speaker": "Epictetus, as transmitted by Arrian",
+    "collection": "wisdom",
+    "work": "Enchiridion",
+    "locator": "1",
+    "year": "2nd century CE",
+    "context": "Arrian transmitted the teaching of Epictetus; this is an English translation of that ancient report, not a surviving recording. Elizabeth Carter translation as credited by the Internet Classics Archive. The opening distinction concerns one's choices and actions.",
+    "sources": [
+      {
+        "label": "Elizabeth Carter translation",
+        "url": "https://classics.mit.edu/Epictetus/epicench.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-epictetus-small-beginnings",
+    "text": "Begin therefore from little things.",
+    "speaker": "Epictetus, as transmitted by Arrian",
+    "collection": "wisdom",
+    "work": "Enchiridion",
+    "locator": "12",
+    "year": "2nd century CE",
+    "context": "Arrian transmitted the teaching of Epictetus; this is an English translation of that ancient report, not a surviving recording. Elizabeth Carter translation as credited by the Internet Classics Archive. Epictetus recommends beginning the practice of equanimity with small everyday losses.",
+    "sources": [
+      {
+        "label": "Elizabeth Carter translation",
+        "url": "https://classics.mit.edu/Epictetus/epicench.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-epictetus-virtue-tranquillity",
+    "text": "What is the product of virtue? Tranquillity.",
+    "speaker": "Epictetus, as transmitted by Arrian",
+    "collection": "wisdom",
+    "work": "Discourses",
+    "locator": "1.4, Of Progress or Improvement",
+    "year": "2nd century CE",
+    "context": "Arrian transmitted the teaching of Epictetus; this is an English translation of that ancient report, not a surviving recording. George Long's 1877 translation. The teacher distinguishes practising virtue from merely reading philosophical books.",
+    "sources": [
+      {
+        "label": "George Long translation (1877)",
+        "url": "https://en.wikisource.org/wiki/The_Discourses_of_Epictetus;_with_the_Encheiridion_and_Fragments/Book_1/Chapter_4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-epictetus-training-results",
+    "text": "I wish to see the effect of the Halteres.",
+    "speaker": "Epictetus, as transmitted by Arrian",
+    "collection": "wisdom",
+    "work": "Discourses",
+    "locator": "1.4, athlete and training weights analogy",
+    "year": "2nd century CE",
+    "context": "Arrian transmitted the teaching of Epictetus; this is an English translation of that ancient report, not a surviving recording. George Long's 1877 translation. In an imagined exchange with an athlete, Epictetus asks to see the results of training. Halteres are exercise weights; his analogy concerns applying philosophy.",
+    "sources": [
+      {
+        "label": "George Long translation (1877)",
+        "url": "https://en.wikisource.org/wiki/The_Discourses_of_Epictetus;_with_the_Encheiridion_and_Fragments/Book_1/Chapter_4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-epictetus-habits-actions",
+    "text": "Every habit and faculty is maintained and increased by the corresponding actions",
+    "speaker": "Epictetus, as transmitted by Arrian",
+    "collection": "wisdom",
+    "work": "Discourses",
+    "locator": "2.18, opening",
+    "year": "2nd century CE",
+    "context": "Arrian transmitted the teaching of Epictetus; this is an English translation of that ancient report, not a surviving recording. George Long's 1877 translation. The discussion links repeated actions to habits, illustrated by reading, writing and physical exercise.",
+    "sources": [
+      {
+        "label": "George Long translation (1877)",
+        "url": "https://en.wikisource.org/wiki/The_Discourses_of_Epictetus;_with_the_Encheiridion_and_Fragments/Book_2/Chapter_18"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-epictetus-anger-days",
+    "text": "count the days on which you have not been angry.",
+    "speaker": "Epictetus, as transmitted by Arrian",
+    "collection": "wisdom",
+    "work": "Discourses",
+    "locator": "2.18, practice against anger",
+    "year": "2nd century CE",
+    "context": "Arrian transmitted the teaching of Epictetus; this is an English translation of that ancient report, not a surviving recording. George Long's 1877 translation. A brief excerpt from advice to interrupt habitual anger and observe one's progress.",
+    "sources": [
+      {
+        "label": "George Long translation (1877)",
+        "url": "https://en.wikisource.org/wiki/The_Discourses_of_Epictetus;_with_the_Encheiridion_and_Fragments/Book_2/Chapter_18"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-epictetus-useful-practice",
+    "text": "Every thing which is difficult and dangerous is not suitable for practice",
+    "speaker": "Epictetus, as transmitted by Arrian",
+    "collection": "wisdom",
+    "work": "Discourses",
+    "locator": "3.12, About Exercise",
+    "year": "2nd century CE",
+    "context": "Arrian transmitted the teaching of Epictetus; this is an English translation of that ancient report, not a surviving recording. George Long's 1877 translation. The argument is that difficulty and danger alone do not make an exercise worthwhile; practice should serve a considered purpose.",
+    "sources": [
+      {
+        "label": "George Long translation (1877)",
+        "url": "https://en.wikisource.org/wiki/The_Discourses_of_Epictetus;_with_the_Encheiridion_and_Fragments/Book_3/Chapter_12"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-epictetus-contrary-habit",
+    "text": "we ought to oppose to this habit a contrary habit",
+    "speaker": "Epictetus, as transmitted by Arrian",
+    "collection": "wisdom",
+    "work": "Discourses",
+    "locator": "3.12, replacing a habit",
+    "year": "2nd century CE",
+    "context": "Arrian transmitted the teaching of Epictetus; this is an English translation of that ancient report, not a surviving recording. George Long's 1877 translation. The specific habit under discussion is directing desire and aversion towards things outside one's choice.",
+    "sources": [
+      {
+        "label": "George Long translation (1877)",
+        "url": "https://en.wikisource.org/wiki/The_Discourses_of_Epictetus;_with_the_Encheiridion_and_Fragments/Book_3/Chapter_12"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-epictetus-chosen-character",
+    "text": "First say to yourself Who you wish to be",
+    "speaker": "Epictetus, as transmitted by Arrian",
+    "collection": "wisdom",
+    "work": "Discourses",
+    "locator": "3.23, opening",
+    "year": "2nd century CE",
+    "context": "Arrian transmitted the teaching of Epictetus; this is an English translation of that ancient report, not a surviving recording. George Long's 1877 translation. Epictetus follows this with advice to align one's actions with that choice, using athletic preparation as an example.",
+    "sources": [
+      {
+        "label": "George Long translation (1877)",
+        "url": "https://en.wikisource.org/wiki/The_Discourses_of_Epictetus;_with_the_Encheiridion_and_Fragments/Book_3/Chapter_23"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-epictetus-good-or-praise",
+    "text": "Do you wish to do good or to be praised?",
+    "speaker": "Epictetus, as transmitted by Arrian",
+    "collection": "wisdom",
+    "work": "Discourses",
+    "locator": "3.23, purpose of public speaking",
+    "year": "2nd century CE",
+    "context": "Arrian transmitted the teaching of Epictetus; this is an English translation of that ancient report, not a surviving recording. George Long's 1877 translation. The teacher challenges a speaker to distinguish helping an audience from seeking applause.",
+    "sources": [
+      {
+        "label": "George Long translation (1877)",
+        "url": "https://en.wikisource.org/wiki/The_Discourses_of_Epictetus;_with_the_Encheiridion_and_Fragments/Book_3/Chapter_23"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "wisdom-buddha-hatred-love",
+    "text": "hatred ceases by love",
+    "speaker": "The Buddha, traditionally attributed in the Dhammapada",
+    "collection": "wisdom",
+    "work": "Dhammapada",
+    "locator": "Chapter 1, verse 5; F. Max Müller translation (1881)",
+    "year": "Ancient Buddhist tradition; English translation 1881",
+    "context": "A short clause from the verse contrasting resentment with the ending of hatred. The Pali Buddhist tradition transmits these teachings as the Buddha's words; this is a later canonical collection, not a contemporary transcript. The quoted English is from the original Müller translation reproduced by Dharma & Dao.",
+    "sources": [
+      {
+        "label": "Dhammapada, original F. Max Müller translation",
+        "url": "https://www.dharmadao.press/dhammapada/1/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-buddha-earnestness",
+    "text": "Earnestness is the path of immortality",
+    "speaker": "The Buddha, traditionally attributed in the Dhammapada",
+    "collection": "wisdom",
+    "work": "Dhammapada",
+    "locator": "Chapter 2, verse 21; F. Max Müller translation (1881)",
+    "year": "Ancient Buddhist tradition; English translation 1881",
+    "context": "Müller's next word identifies this immortality with Nirvana. This is religious language about liberation, not a claim of physical invulnerability. The Pali Buddhist tradition transmits these teachings as the Buddha's words; this is a later canonical collection, not a contemporary transcript. The quoted English is from the original Müller translation reproduced by Dharma & Dao.",
+    "sources": [
+      {
+        "label": "Dhammapada, original F. Max Müller translation",
+        "url": "https://www.dharmadao.press/dhammapada/2/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-buddha-tamed-mind",
+    "text": "a tamed mind brings happiness.",
+    "speaker": "The Buddha, traditionally attributed in the Dhammapada",
+    "collection": "wisdom",
+    "work": "Dhammapada",
+    "locator": "Chapter 3, verse 35; F. Max Müller translation (1881)",
+    "year": "Ancient Buddhist tradition; English translation 1881",
+    "context": "The verse describes training a restless mind; it is spiritual instruction rather than a medical claim. The Pali Buddhist tradition transmits these teachings as the Buddha's words; this is a later canonical collection, not a contemporary transcript. The quoted English is from the original Müller translation reproduced by Dharma & Dao.",
+    "sources": [
+      {
+        "label": "Dhammapada, original F. Max Müller translation",
+        "url": "https://www.dharmadao.press/dhammapada/3/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-buddha-virtue-perfume",
+    "text": "the perfume of virtue is unsurpassed.",
+    "speaker": "The Buddha, traditionally attributed in the Dhammapada",
+    "collection": "wisdom",
+    "work": "Dhammapada",
+    "locator": "Chapter 4, verse 55; F. Max Müller translation (1881)",
+    "year": "Ancient Buddhist tradition; English translation 1881",
+    "context": "A floral metaphor compares fine scents with the influence of virtuous conduct. The Pali Buddhist tradition transmits these teachings as the Buddha's words; this is a later canonical collection, not a contemporary transcript. The quoted English is from the original Müller translation reproduced by Dharma & Dao.",
+    "sources": [
+      {
+        "label": "Dhammapada, original F. Max Müller translation",
+        "url": "https://www.dharmadao.press/dhammapada/4/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-buddha-self-craft",
+    "text": "wise people fashion themselves.",
+    "speaker": "The Buddha, traditionally attributed in the Dhammapada",
+    "collection": "wisdom",
+    "work": "Dhammapada",
+    "locator": "Chapter 6, verse 80; F. Max Müller translation (1881)",
+    "year": "Ancient Buddhist tradition; English translation 1881",
+    "context": "The surrounding verse compares inner training with the skilled work of water engineers, fletchers and carpenters. The Pali Buddhist tradition transmits these teachings as the Buddha's words; this is a later canonical collection, not a contemporary transcript. The quoted English is from the original Müller translation reproduced by Dharma & Dao.",
+    "sources": [
+      {
+        "label": "Dhammapada, original F. Max Müller translation",
+        "url": "https://www.dharmadao.press/dhammapada/6/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-buddha-words-sense",
+    "text": "one word of sense is better",
+    "speaker": "The Buddha, traditionally attributed in the Dhammapada",
+    "collection": "wisdom",
+    "work": "Dhammapada",
+    "locator": "Chapter 8, verse 100; F. Max Müller translation (1881)",
+    "year": "Ancient Buddhist tradition; English translation 1881",
+    "context": "The comparison is with a long speech made up of meaningless words. The Pali Buddhist tradition transmits these teachings as the Buddha's words; this is a later canonical collection, not a contemporary transcript. The quoted English is from the original Müller translation reproduced by Dharma & Dao.",
+    "sources": [
+      {
+        "label": "Dhammapada, original F. Max Müller translation",
+        "url": "https://www.dharmadao.press/dhammapada/8/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-buddha-small-good",
+    "text": "Let no man think lightly of good",
+    "speaker": "The Buddha, traditionally attributed in the Dhammapada",
+    "collection": "wisdom",
+    "work": "Dhammapada",
+    "locator": "Chapter 9, verse 122; F. Max Müller translation (1881)",
+    "year": "Ancient Buddhist tradition; English translation 1881",
+    "context": "The verse goes on to compare accumulated good actions with drops filling a water pot. The Pali Buddhist tradition transmits these teachings as the Buddha's words; this is a later canonical collection, not a contemporary transcript. The quoted English is from the original Müller translation reproduced by Dharma & Dao.",
+    "sources": [
+      {
+        "label": "Dhammapada, original F. Max Müller translation",
+        "url": "https://www.dharmadao.press/dhammapada/9/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-buddha-self-responsibility",
+    "text": "Self is the lord of self",
+    "speaker": "The Buddha, traditionally attributed in the Dhammapada",
+    "collection": "wisdom",
+    "work": "Dhammapada",
+    "locator": "Chapter 12, verse 160; F. Max Müller translation (1881)",
+    "year": "Ancient Buddhist tradition; English translation 1881",
+    "context": "This teaching concerns personal responsibility and disciplined conduct. It should not be read as a complete statement of Buddhist doctrine about self. The Pali Buddhist tradition transmits these teachings as the Buddha's words; this is a later canonical collection, not a contemporary transcript. The quoted English is from the original Müller translation reproduced by Dharma & Dao.",
+    "sources": [
+      {
+        "label": "Dhammapada, original F. Max Müller translation",
+        "url": "https://www.dharmadao.press/dhammapada/12/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-buddha-anger-love",
+    "text": "Let a man overcome anger by love",
+    "speaker": "The Buddha, traditionally attributed in the Dhammapada",
+    "collection": "wisdom",
+    "work": "Dhammapada",
+    "locator": "Chapter 17, verse 223; F. Max Müller translation (1881)",
+    "year": "Ancient Buddhist tradition; English translation 1881",
+    "context": "The verse pairs this counsel with responding to wrongdoing through goodness, generosity and truth. The Pali Buddhist tradition transmits these teachings as the Buddha's words; this is a later canonical collection, not a contemporary transcript. The quoted English is from the original Müller translation reproduced by Dharma & Dao.",
+    "sources": [
+      {
+        "label": "Dhammapada, original F. Max Müller translation",
+        "url": "https://www.dharmadao.press/dhammapada/17/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-buddha-personal-effort",
+    "text": "You yourself must make an effort.",
+    "speaker": "The Buddha, traditionally attributed in the Dhammapada",
+    "collection": "wisdom",
+    "work": "Dhammapada",
+    "locator": "Chapter 20, verse 276; F. Max Müller translation (1881)",
+    "year": "Ancient Buddhist tradition; English translation 1881",
+    "context": "The next sentence distinguishes the practitioner's effort from the guidance offered by teachers. The Pali Buddhist tradition transmits these teachings as the Buddha's words; this is a later canonical collection, not a contemporary transcript. The quoted English is from the original Müller translation reproduced by Dharma & Dao.",
+    "sources": [
+      {
+        "label": "Dhammapada, original F. Max Müller translation",
+        "url": "https://www.dharmadao.press/dhammapada/20/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "tradition",
+    "daily": false
+  },
+  {
+    "id": "wisdom-zeno-careful-speech",
+    "text": "Better to trip with the feet than with the tongue.",
+    "speaker": "Zeno, as reported by Diogenes Laertius",
+    "collection": "wisdom",
+    "work": "Lives of the Eminent Philosophers",
+    "locator": "7.26",
+    "year": "3rd century CE account",
+    "context": "Diogenes Laertius reports this saying centuries after Zeno. It is a later ancient attribution, not a surviving text written by Zeno.",
+    "sources": [
+      {
+        "label": "Robert Drew Hicks translation (1925)",
+        "url": "https://en.wikisource.org/wiki/Lives_of_the_Eminent_Philosophers/Book_VII"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "wisdom-zeno-shipwreck",
+    "text": "I made a prosperous voyage when I suffered shipwreck.",
+    "speaker": "Zeno, as reported by Diogenes Laertius",
+    "collection": "wisdom",
+    "work": "Lives of the Eminent Philosophers",
+    "locator": "7.4",
+    "year": "3rd century CE account",
+    "context": "The biographer links this retrospective saying with the shipwreck and philosophical apprenticeship in Zeno's story, while recording different traditions about its occasion. It is a later ancient attribution.",
+    "sources": [
+      {
+        "label": "Robert Drew Hicks translation (1925)",
+        "url": "https://en.wikisource.org/wiki/Lives_of_the_Eminent_Philosophers/Book_VII"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "wisdom-zeno-friend",
+    "text": "A second self",
+    "speaker": "Zeno, as reported by Diogenes Laertius",
+    "collection": "wisdom",
+    "work": "Lives of the Eminent Philosophers",
+    "locator": "7.23, answer to the question of who is a friend",
+    "year": "3rd century CE account",
+    "context": "This is the complete English phrase before the translator's parenthetical Latin gloss. The answer is reported by a biographer writing centuries after Zeno, not preserved in Zeno's own manuscript.",
+    "sources": [
+      {
+        "label": "Robert Drew Hicks translation (1925)",
+        "url": "https://en.wikisource.org/wiki/Lives_of_the_Eminent_Philosophers/Book_VII"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "wisdom-zeno-one-community",
+    "text": "we should consider all men to be of one community and one polity",
+    "speaker": "Plutarch, describing Zeno's Republic",
+    "collection": "wisdom",
+    "work": "On the Fortune or the Virtue of Alexander",
+    "locator": "First discourse, section 6",
+    "year": "1st–2nd century CE account",
+    "context": "Plutarch's later account summarises the political ideal of Zeno's lost Republic. These are Plutarch's words about Zeno, not a direct quotation from the lost work. His surrounding praise of Alexander is rhetorical and should not be taken as a neutral account of conquest.",
+    "sources": [
+      {
+        "label": "Perseus: Frank Cole Babbitt translation",
+        "url": "https://beta.perseus.tufts.edu/urn:cts:greekLit:tlg0007.tlg087.perseus-eng3:1/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "wisdom-zeno-divine-law",
+    "text": "Zeno's view is that the law of nature is divine",
+    "speaker": "Velleius in Cicero's dialogue, describing Zeno",
+    "collection": "wisdom",
+    "work": "On the Nature of the Gods",
+    "locator": "1.14.36",
+    "year": "45 BCE",
+    "context": "Cicero puts this report in the mouth of the Epicurean Velleius, who criticises Zeno's theology. It is a hostile ancient account of Zeno's doctrine, not Zeno speaking. Included for historical understanding.",
+    "sources": [
+      {
+        "label": "LacusCurtius: H. Rackham's Loeb translation (1933)",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cicero/de_Natura_Deorum/1A*.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "wisdom-zeno-nature-causation",
+    "text": "to live in the light of a knowledge of the natural sequence of causation.",
+    "speaker": "Cicero's dialogue narrator, explaining Zeno",
+    "collection": "wisdom",
+    "work": "On Ends",
+    "locator": "4.6.14",
+    "year": "45 BCE",
+    "context": "The narrator offers this formulation while examining Stoic explanations of Zeno's ideal of life. It is Cicero's later account, not a surviving sentence by Zeno.",
+    "sources": [
+      {
+        "label": "LacusCurtius: H. Rackham's Loeb translation (1931)",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cicero/de_Finibus/4*.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "wisdom-zeno-life-virtue",
+    "text": "no life happy but the life of virtue.",
+    "speaker": "Cicero's dialogue narrator, describing Zeno",
+    "collection": "wisdom",
+    "work": "On Ends",
+    "locator": "4.21.60",
+    "year": "45 BCE",
+    "context": "A short clause from Cicero's account of Zeno's position in a critical comparison of Stoic and older philosophical views. It reports a doctrine rather than Zeno's own wording.",
+    "sources": [
+      {
+        "label": "LacusCurtius: H. Rackham's Loeb translation (1931)",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cicero/de_Finibus/4*.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "wisdom-zeno-confidence",
+    "text": "Zeno did not care for those things over which Antigonus had power.",
+    "speaker": "Epictetus, as transmitted by Arrian, describing Zeno",
+    "collection": "wisdom",
+    "work": "Discourses",
+    "locator": "2.13, Of Anxiety",
+    "year": "2nd century CE account",
+    "context": "Epictetus tells a later story contrasting Zeno's confidence with the king's wish for approval. This is an instructive ancient account, not an eyewitness record or a direct saying by Zeno.",
+    "sources": [
+      {
+        "label": "George Long translation (1877)",
+        "url": "https://en.wikisource.org/wiki/The_Discourses_of_Epictetus;_with_the_Encheiridion_and_Fragments/Book_2/Chapter_13"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "wisdom-zeno-model-character",
+    "text": "represent to yourself how Socrates or Zeno would behave",
+    "speaker": "Epictetus, as transmitted by Arrian",
+    "collection": "wisdom",
+    "work": "Enchiridion",
+    "locator": "33, preparing to meet someone of higher rank",
+    "year": "2nd century CE account",
+    "context": "Epictetus names Zeno and Socrates as examples to consult in imagination before an important encounter. The advice is Epictetus's, about Zeno as a model; it is not a saying by Zeno.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Elizabeth Carter translation",
+        "url": "https://classics.mit.edu/Epictetus/epicench.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "wisdom-zeno-secret-syllogism",
+    "text": "No one entrusts a secret to a drunken man",
+    "speaker": "Zeno, as quoted and challenged by Seneca",
+    "collection": "wisdom",
+    "work": "Moral Letters to Lucilius",
+    "locator": "Letter 83, section 9",
+    "year": "1st century CE account",
+    "context": "Seneca attributes this premise of an argument against drunkenness to Zeno, then challenges the argument's logic and ambiguity. It is included as a historical reasoning exercise, not an endorsed conclusion or a surviving original by Zeno.",
+    "sources": [
+      {
+        "label": "Wikisource: Richard M. Gummere translation",
+        "url": "https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_83"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-alexander-read-events",
+    "text": "conjecturing from the observation of facts what was likely to occur",
+    "speaker": "Arrian",
+    "collection": "history",
+    "work": "The Anabasis of Alexander",
+    "locator": "Book VII, Chapter XXVIII; E. J. Chinnock translation (1884); excerpt",
+    "year": "2nd century CE",
+    "context": "Arrian praises Alexander’s capacity to infer events from observation. This is the historian’s judgement, written centuries later, not Alexander’s own maxim.",
+    "sources": [
+      {
+        "label": "Arrian, translated by E. J. Chinnock (1884)",
+        "url": "https://en.wikisource.org/wiki/The_Anabasis_of_Alexander/Book_VII/Chapter_XXVIII"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-alexander-keep-agreements",
+    "text": "very steadfast in keeping the agreements and settlements which he made",
+    "speaker": "Arrian",
+    "collection": "history",
+    "work": "The Anabasis of Alexander",
+    "locator": "Book VII, Chapter XXVIII; E. J. Chinnock translation (1884); excerpt",
+    "year": "2nd century CE",
+    "context": "A clause from Arrian’s favourable character portrait of Alexander. It records a biographer’s assessment and should be read beside his criticism of the king’s violence.",
+    "sources": [
+      {
+        "label": "Arrian, translated by E. J. Chinnock (1884)",
+        "url": "https://en.wikisource.org/wiki/The_Anabasis_of_Alexander/Book_VII/Chapter_XXVIII"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-alexander-confession",
+    "text": "the only cure for sin is for the sinner to confess it",
+    "speaker": "Arrian",
+    "collection": "history",
+    "work": "The Anabasis of Alexander",
+    "locator": "Book VII, Chapter XXIX; E. J. Chinnock translation (1884); excerpt",
+    "year": "2nd century CE",
+    "context": "Arrian reflects on Alexander’s repentance and states his own moral judgement. The words belong to the historian, not to Alexander.",
+    "sources": [
+      {
+        "label": "Arrian, translated by E. J. Chinnock (1884)",
+        "url": "https://en.wikisource.org/wiki/The_Anabasis_of_Alexander/Book_VII/Chapter_XXIX"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-alexander-danger-of-flattery",
+    "text": "they will always have associates urging them to do wrong",
+    "speaker": "Arrian",
+    "collection": "history",
+    "work": "The Anabasis of Alexander",
+    "locator": "Book VII, Chapter XXIX; E. J. Chinnock translation (1884); excerpt",
+    "year": "2nd century CE",
+    "context": "Arrian warns that rulers, including Alexander, are surrounded by companions who encourage bad conduct. This is a caution about power and flattery.",
+    "sources": [
+      {
+        "label": "Arrian, translated by E. J. Chinnock (1884)",
+        "url": "https://en.wikisource.org/wiki/The_Anabasis_of_Alexander/Book_VII/Chapter_XXIX"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-alexander-admiration-with-criticism",
+    "text": "I am not ashamed to admire Alexander himself.",
+    "speaker": "Arrian",
+    "collection": "history",
+    "work": "The Anabasis of Alexander",
+    "locator": "Book VII, Chapter XXX; E. J. Chinnock translation (1884); excerpt",
+    "year": "2nd century CE",
+    "context": "Arrian admires Alexander while explicitly censuring some of his actions. This closing judgement invites critical reading, rather than unqualified hero worship.",
+    "sources": [
+      {
+        "label": "Arrian, translated by E. J. Chinnock (1884)",
+        "url": "https://en.wikisource.org/wiki/The_Anabasis_of_Alexander/Book_VII/Chapter_XXX"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-alexander-shared-labour",
+    "text": "But now the labours are common to you and me",
+    "speaker": "Arrian",
+    "collection": "history",
+    "work": "The Anabasis of Alexander",
+    "locator": "Book V, Chapter XXVI; E. J. Chinnock translation (1884); excerpt",
+    "year": "2nd century CE",
+    "context": "In Arrian’s reconstructed speech at the Hyphasis, Alexander claims to share his army’s hardships. This is a later historian’s attributed speech, not a surviving transcript.",
+    "sources": [
+      {
+        "label": "Arrian, translated by E. J. Chinnock (1884)",
+        "url": "https://en.wikisource.org/wiki/The_Anabasis_of_Alexander/Book_V/Chapter_XXVI"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-alexander-limits-of-ambition",
+    "text": "there is no end to labours except the labours themselves",
+    "speaker": "Arrian",
+    "collection": "history",
+    "work": "The Anabasis of Alexander",
+    "locator": "Book V, Chapter XXVI; E. J. Chinnock translation (1884); excerpt",
+    "year": "2nd century CE",
+    "context": "Alexander’s appeal for further conquest, as reconstructed by Arrian, links endless effort to glory. His exhausted troops resist; this is a question about the limits of ambition, not advice to ignore fatigue.",
+    "sources": [
+      {
+        "label": "Arrian, translated by E. J. Chinnock (1884)",
+        "url": "https://en.wikisource.org/wiki/The_Anabasis_of_Alexander/Book_V/Chapter_XXVI"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-alexander-listen-to-companions",
+    "text": "because by them alone he suffered himself to be conquered.",
+    "speaker": "Arrian",
+    "collection": "history",
+    "work": "The Anabasis of Alexander",
+    "locator": "Book V, Chapter XXIX; E. J. Chinnock translation (1884); excerpt",
+    "year": "2nd century CE",
+    "context": "Arrian describes the soldiers’ joy when Alexander finally accepts that they will go no farther. The clause concerns a leader yielding to his own people.",
+    "sources": [
+      {
+        "label": "Arrian, translated by E. J. Chinnock (1884)",
+        "url": "https://en.wikisource.org/wiki/The_Anabasis_of_Alexander/Book_V/Chapter_XXIX"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-alexander-shared-thirst",
+    "text": "immediately poured it upon the ground in the sight of all.",
+    "speaker": "Arrian",
+    "collection": "history",
+    "work": "The Anabasis of Alexander",
+    "locator": "Book VI, Chapter XXVI; E. J. Chinnock translation (1884); excerpt",
+    "year": "2nd century CE",
+    "context": "Arrian’s famous account has Alexander refuse water that cannot be shared with his thirsty army. Arrian himself notes competing locations for the story. This is an ancient anecdote, not practical guidance about hydration.",
+    "sources": [
+      {
+        "label": "Arrian, translated by E. J. Chinnock (1884)",
+        "url": "https://en.wikisource.org/wiki/The_Anabasis_of_Alexander/Book_VI/Chapter_XXVI"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-alexander-acknowledge-wrong",
+    "text": "he did not obstinately persevere in evil",
+    "speaker": "Arrian",
+    "collection": "history",
+    "work": "The Anabasis of Alexander",
+    "locator": "Book IV, Chapter IX; E. J. Chinnock translation (1884); excerpt",
+    "year": "2nd century CE",
+    "context": "Arrian says Alexander acknowledged the wrong of killing Clitus. The historian’s criticism and the victim’s death must remain part of this account of remorse.",
+    "sources": [
+      {
+        "label": "Arrian, translated by E. J. Chinnock (1884)",
+        "url": "https://en.wikisource.org/wiki/The_Anabasis_of_Alexander/Book_IV/Chapter_IX"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-caesar-deliberation",
+    "text": "he would take time to deliberate",
+    "speaker": "Julius Caesar",
+    "collection": "history",
+    "work": "The Gallic Wars",
+    "locator": "Book 1, Chapter 7; McDevitte and Bohn translation; excerpt",
+    "year": "1st century BCE",
+    "context": "Caesar describes his reply to Helvetian envoys in the third person. His delay also allows troops to gather; the passage concerns tactical deliberation, not a detached moral aphorism.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Caesar, McDevitte and Bohn translation",
+        "url": "https://classics.mit.edu/Caesar/gallic.1.1.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-caesar-personal-wrongs",
+    "text": "he forgives both the injuries of the republic and his private wrongs",
+    "speaker": "Julius Caesar",
+    "collection": "history",
+    "work": "The Gallic Wars",
+    "locator": "Book 1, Chapter 20; McDevitte and Bohn translation; excerpt",
+    "year": "1st century BCE",
+    "context": "Caesar presents himself as sparing Dumnorix after Divitiacus pleads for his brother. This is Caesar’s own political self-presentation, not independent proof of habitual clemency.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Caesar, McDevitte and Bohn translation",
+        "url": "https://classics.mit.edu/Caesar/gallic.1.1.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-caesar-urgent-demands",
+    "text": "Caesar had every thing to do at one time",
+    "speaker": "Julius Caesar",
+    "collection": "history",
+    "work": "The Gallic Wars",
+    "locator": "Book 2, Chapter 20; McDevitte and Bohn translation; excerpt",
+    "year": "1st century BCE",
+    "context": "Caesar describes the sudden attack by the Nervii and the many demands of command. His third-person narrative introduces the importance of experienced colleagues.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Caesar, McDevitte and Bohn translation",
+        "url": "https://classics.mit.edu/Caesar/gallic.2.2.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-caesar-trained-judgement",
+    "text": "they could suggest to themselves what ought to be done",
+    "speaker": "Julius Caesar",
+    "collection": "history",
+    "work": "The Gallic Wars",
+    "locator": "Book 2, Chapter 20; McDevitte and Bohn translation; excerpt",
+    "year": "1st century BCE",
+    "context": "Caesar credits the soldiers’ training and experience with enabling initiative during a sudden attack. These written words describe the troops, rather than a speech to them.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Caesar, McDevitte and Bohn translation",
+        "url": "https://classics.mit.edu/Caesar/gallic.2.2.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-caesar-wishful-thinking",
+    "text": "in most cases men willingly believe what they wish.",
+    "speaker": "Julius Caesar",
+    "collection": "history",
+    "work": "The Gallic Wars",
+    "locator": "Book 3, Chapter 18; McDevitte and Bohn translation; excerpt",
+    "year": "1st century BCE",
+    "context": "Caesar explains why an enemy accepted misleading information. The observation comes from a partisan account of conquest and is useful as a prompt to examine one’s own assumptions.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Caesar, McDevitte and Bohn translation",
+        "url": "https://classics.mit.edu/Caesar/gallic.3.3.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-caesar-love-of-liberty",
+    "text": "all men likewise, by nature, love liberty and hate the condition of slavery",
+    "speaker": "Julius Caesar",
+    "collection": "history",
+    "work": "The Gallic Wars",
+    "locator": "Book 3, Chapter 10; McDevitte and Bohn translation; excerpt",
+    "year": "1st century BCE",
+    "context": "Caesar recognises the desire for freedom while preparing to suppress resistance to Roman rule. The contradiction is part of the passage, not something to hide.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Caesar, McDevitte and Bohn translation",
+        "url": "https://classics.mit.edu/Caesar/gallic.3.3.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-caesar-unverified-reports",
+    "text": "since they yield to mere unauthorized reports",
+    "speaker": "Julius Caesar",
+    "collection": "history",
+    "work": "The Gallic Wars",
+    "locator": "Book 4, Chapter 5; McDevitte and Bohn translation; excerpt",
+    "year": "1st century BCE",
+    "context": "Caesar criticises decisions made from hearsay in his description of the Gauls. The general lesson concerns checking evidence; his broad characterisation of a people is a conqueror’s stereotype.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Caesar, McDevitte and Bohn translation",
+        "url": "https://classics.mit.edu/Caesar/gallic.4.4.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-caesar-answers-we-want",
+    "text": "most people give to their questions answers framed agreeably to their wishes.",
+    "speaker": "Julius Caesar",
+    "collection": "history",
+    "work": "The Gallic Wars",
+    "locator": "Book 4, Chapter 5; McDevitte and Bohn translation; excerpt",
+    "year": "1st century BCE",
+    "context": "Caesar describes the distortion of information by expectation. Read it as a warning about confirmation bias, without adopting his surrounding ethnic generalisations.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Caesar, McDevitte and Bohn translation",
+        "url": "https://classics.mit.edu/Caesar/gallic.4.4.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-caesar-admitting-uncertainty",
+    "text": "We, in our inquiries about that matter, ascertained nothing",
+    "speaker": "Julius Caesar",
+    "collection": "history",
+    "work": "The Gallic Wars",
+    "locator": "Book 5, Chapter 13; McDevitte and Bohn translation; excerpt",
+    "year": "1st century BCE",
+    "context": "Caesar distinguishes an unconfirmed report about exceptionally long winter nights from observations his party actually made. This excerpt models admitting what an enquiry has not established.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Caesar, McDevitte and Bohn translation",
+        "url": "https://classics.mit.edu/Caesar/gallic.5.5.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-caesar-planning-before-crisis",
+    "text": "which generally happens to those who are compelled to take council in the action itself.",
+    "speaker": "Julius Caesar",
+    "collection": "history",
+    "work": "The Gallic Wars",
+    "locator": "Book 5, Chapter 33; McDevitte and Bohn translation; excerpt",
+    "year": "1st century BCE",
+    "context": "Caesar criticises Titurius for being unprepared when an ambush begins. The checked English edition spells the word “council”; the excerpt preserves that spelling. It is a judgement in Caesar’s narrative, not a direct battlefield quotation.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Caesar, McDevitte and Bohn translation",
+        "url": "https://classics.mit.edu/Caesar/gallic.5.5.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-hannibal-practical-sense",
+    "text": "conducted his plans with sound practical sense.",
+    "speaker": "Polybius",
+    "collection": "history",
+    "work": "Histories",
+    "locator": "Book 3, section 48.10; W. R. Paton translation; excerpt",
+    "year": "2nd century BCE",
+    "context": "Polybius rejects fanciful stories that divine guides led Hannibal across the Alps. He instead emphasises preparation and practical judgement.",
+    "sources": [
+      {
+        "label": "LacusCurtius: Polybius, W. R. Paton translation",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/3*.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-hannibal-ask-local-guides",
+    "text": "he employed as guides and pioneers natives of the country",
+    "speaker": "Polybius",
+    "collection": "history",
+    "work": "Histories",
+    "locator": "Book 3, section 48.11; W. R. Paton translation; excerpt",
+    "year": "2nd century BCE",
+    "context": "Polybius says Hannibal used people who knew the route. This is the historian’s account of informed preparation, not words spoken by Hannibal.",
+    "sources": [
+      {
+        "label": "LacusCurtius: Polybius, W. R. Paton translation",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/3*.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-hannibal-difficult-circumstances",
+    "text": "He had to deal with circumstances of such an exceptional and complex nature",
+    "speaker": "Polybius",
+    "collection": "history",
+    "work": "Histories",
+    "locator": "Book 9, section 24.2; W. R. Paton translation; excerpt",
+    "year": "2nd century BCE",
+    "context": "Polybius explains why judging Hannibal’s character requires attention to circumstances and advisers. This continuous clause is historical analysis, not Hannibal’s self-description.",
+    "sources": [
+      {
+        "label": "LacusCurtius: Polybius, W. R. Paton translation",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/9*.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-hannibal-careful-judgement",
+    "text": "it is very difficult to discover the man's real nature.",
+    "speaker": "Polybius",
+    "collection": "history",
+    "work": "Histories",
+    "locator": "Book 9, section 24.2; W. R. Paton translation; excerpt",
+    "year": "2nd century BCE",
+    "context": "Polybius warns against easy conclusions about Hannibal’s character from wartime actions alone. The surrounding discussion includes both admiration and accusations.",
+    "sources": [
+      {
+        "label": "LacusCurtius: Polybius, W. R. Paton translation",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/9*.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-hannibal-shared-command",
+    "text": "holding them together under his personal command, like a good ship's captain",
+    "speaker": "Polybius",
+    "collection": "history",
+    "work": "Histories",
+    "locator": "Book 11, section 19.3; W. R. Paton translation; excerpt",
+    "year": "2nd century BCE",
+    "context": "Polybius uses a ship’s captain as an image for Hannibal’s cohesion of an army drawn from many peoples. The praise belongs to the historian.",
+    "sources": [
+      {
+        "label": "LacusCurtius: Polybius, W. R. Paton translation",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/11*.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-hannibal-fortune-changes",
+    "text": "I learnt by actual experience how fickle Fortune is",
+    "speaker": "Polybius",
+    "collection": "history",
+    "work": "Histories",
+    "locator": "Book 15, section 6.8; W. R. Paton translation; excerpt",
+    "year": "2nd century BCE",
+    "context": "In Polybius’s reconstructed peace conference before Zama, Hannibal argues from reversals in his own fortunes. It is an ancient attributed speech, not a surviving verbatim record.",
+    "sources": [
+      {
+        "label": "LacusCurtius: Polybius, W. R. Paton translation",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/15*.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-hannibal-least-evil",
+    "text": "ever to choose the most good and the least evil.",
+    "speaker": "Polybius",
+    "collection": "history",
+    "work": "Histories",
+    "locator": "Book 15, section 7.5; W. R. Paton translation; excerpt",
+    "year": "2nd century BCE",
+    "context": "Polybius places this counsel in Hannibal’s appeal to Scipio for negotiated peace before Zama. The historical setting and literary reconstruction are essential to the attribution.",
+    "sources": [
+      {
+        "label": "LacusCurtius: Polybius, W. R. Paton translation",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/15*.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-hannibal-loyalty",
+    "text": "no one ever dreamt of conspiring against him",
+    "speaker": "Polybius",
+    "collection": "history",
+    "work": "Histories",
+    "locator": "Book 23, section 13.2; W. R. Paton translation; excerpt",
+    "year": "2nd century BCE",
+    "context": "Polybius’s retrospective tribute credits Hannibal with extraordinary loyalty across a diverse following. It is the author’s assessment, not a claim that every detail is independently proven.",
+    "sources": [
+      {
+        "label": "LacusCurtius: Polybius, W. R. Paton translation",
+        "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/23*.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-hannibal-composure",
+    "text": "perfectly self-possessed in the presence of danger.",
+    "speaker": "Livy",
+    "collection": "history",
+    "work": "From the Founding of the City",
+    "locator": "Book 21, section 4; English translation reproduced on Wikisource; excerpt",
+    "year": "1st century BCE / 1st century CE",
+    "context": "Livy’s portrait of Hannibal praises composure while also making strongly hostile moral accusations. This is an ancient Roman portrayal, not the commander’s own speech.",
+    "sources": [
+      {
+        "label": "Wikisource: Livy, Book 21",
+        "url": "https://en.wikisource.org/wiki/From_the_Founding_of_the_City/Book_21"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-hannibal-practice-and-observation",
+    "text": "gaining by practice or observation the experience necessary",
+    "speaker": "Livy",
+    "collection": "history",
+    "work": "From the Founding of the City",
+    "locator": "Book 21, section 4; English translation reproduced on Wikisource; excerpt",
+    "year": "1st century BCE / 1st century CE",
+    "context": "Livy describes how Hannibal learned during his service under Hasdrubal. The fragment concerns preparation through observation and experience, not a quotation spoken by Hannibal.",
+    "sources": [
+      {
+        "label": "Wikisource: Livy, Book 21",
+        "url": "https://en.wikisource.org/wiki/From_the_Founding_of_the_City/Book_21"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-frederick-clear-laws",
+    "text": "Good laws must be clearly expressed.",
+    "speaker": "Frederick II of Prussia",
+    "collection": "history",
+    "work": "Forms of Government and the Duties of Rulers",
+    "locator": "Paragraph on the administration of justice; excerpt",
+    "year": "1777",
+    "context": "Frederick argues that clear laws are a ruler’s duty. This is a statement of his ideal of monarchy, not evidence that his government always fulfilled it.",
+    "sources": [
+      {
+        "label": "German History in Documents and Images: translated primary document",
+        "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/frederick-ii-the-great-forms-of-government-and-the-duties-of-rulers-1777"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-frederick-proportionate-punishment",
+    "text": "Punishments should never be excessive.",
+    "speaker": "Frederick II of Prussia",
+    "collection": "history",
+    "work": "Forms of Government and the Duties of Rulers",
+    "locator": "Paragraph on the administration of justice; excerpt",
+    "year": "1777",
+    "context": "Frederick’s essay argues for proportionate punishment. The historical setting is an eighteenth-century absolute monarchy.",
+    "sources": [
+      {
+        "label": "German History in Documents and Images: translated primary document",
+        "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/frederick-ii-the-great-forms-of-government-and-the-duties-of-rulers-1777"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-frederick-law-before-violence",
+    "text": "Violence should never displace the laws.",
+    "speaker": "Frederick II of Prussia",
+    "collection": "history",
+    "work": "Forms of Government and the Duties of Rulers",
+    "locator": "Paragraph on the administration of justice; excerpt",
+    "year": "1777",
+    "context": "A legal principle stated in Frederick’s essay on government. His own military campaigns and political practices remain open to critical examination.",
+    "sources": [
+      {
+        "label": "German History in Documents and Images: translated primary document",
+        "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/frederick-ii-the-great-forms-of-government-and-the-duties-of-rulers-1777"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-frederick-not-all-wicked",
+    "text": "But it is not true, that all Men are wicked:",
+    "speaker": "Frederick II of Prussia",
+    "collection": "history",
+    "work": "Anti-Machiavel",
+    "locator": "Chapter XVIII, Frederick’s rebuttal; 1741 English translation; excerpt",
+    "year": "1741",
+    "context": "Frederick challenges Machiavelli’s generalisation about human wickedness. The work was originally published in French in 1740, with editorial intervention by Voltaire; this is the 1741 English wording.",
+    "sources": [
+      {
+        "label": "German History in Documents and Images: translated primary document",
+        "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/frederick-ii-anti-machiavel-or-an-examination-of-machiavels-prince%20-1741"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-frederick-own-character",
+    "text": "No Man can well act any Part but his own",
+    "speaker": "Frederick II of Prussia",
+    "collection": "history",
+    "work": "Anti-Machiavel",
+    "locator": "Chapter XVIII, Frederick’s rebuttal; 1741 English translation; excerpt",
+    "year": "1741",
+    "context": "Frederick argues that a ruler cannot successfully substitute a performed virtue for real character. This is a clause from his rebuttal, not the Machiavelli text printed beside it.",
+    "sources": [
+      {
+        "label": "German History in Documents and Images: translated primary document",
+        "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/frederick-ii-anti-machiavel-or-an-examination-of-machiavels-prince%20-1741"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-frederick-first-servant",
+    "text": "The sovereign is the first servant of the State.",
+    "speaker": "Frederick II of Prussia",
+    "collection": "history",
+    "work": "Political Testament",
+    "locator": "Passage on the sovereign’s duties; excerpt",
+    "year": "1752",
+    "context": "Frederick describes royal service in advice to his successor. “Servant” here belongs to his theory of absolute monarchy, rather than modern democratic accountability.",
+    "sources": [
+      {
+        "label": "German History in Documents and Images: translated primary document",
+        "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/political-testament-of-frederick-ii-the-great-1752"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-frederick-sound-reasoning",
+    "text": "all measures taken must be based on sound reasoning",
+    "speaker": "Frederick II of Prussia",
+    "collection": "history",
+    "work": "Political Testament",
+    "locator": "Passage on a coherent system of government; excerpt",
+    "year": "1752",
+    "context": "A continuous clause from Frederick’s advice on government. It expresses an ideal of consistent, reasoned administration.",
+    "sources": [
+      {
+        "label": "German History in Documents and Images: translated primary document",
+        "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/political-testament-of-frederick-ii-the-great-1752"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-frederick-limits-of-command",
+    "text": "he cannot enter into all details",
+    "speaker": "Frederick II of Prussia",
+    "collection": "history",
+    "work": "Political Testament",
+    "locator": "Passage on the need for help in governing; excerpt",
+    "year": "1752",
+    "context": "Frederick acknowledges that a ruler needs assistance. The surrounding passage still demands personal oversight and prompt justice.",
+    "sources": [
+      {
+        "label": "German History in Documents and Images: translated primary document",
+        "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/political-testament-of-frederick-ii-the-great-1752"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-frederick-books-for-learning",
+    "text": "every child has his own book",
+    "speaker": "Frederick II, in a royal decree",
+    "collection": "history",
+    "work": "General School Regulations for the Prussian Countryside",
+    "locator": "Section 21; royal decree of 12 August 1763; excerpt",
+    "year": "1763",
+    "context": "A requirement in the school regulations issued in Frederick’s name. It concerns access to learning materials; it is an official decree, not an independently recorded personal remark.",
+    "sources": [
+      {
+        "label": "German History in Documents and Images: translated primary document",
+        "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/friedrich-der-grosse-koeniglich-preussisches-general-land-schul-reglement-1763"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-frederick-equal-diligence",
+    "text": "teach the children of the poor and rich with equal diligence and fidelity.",
+    "speaker": "Frederick II, in a royal decree",
+    "collection": "history",
+    "work": "General School Regulations for the Prussian Countryside",
+    "locator": "Section 8; royal decree of 12 August 1763; excerpt",
+    "year": "1763",
+    "context": "The decree requires equal diligence towards pupils of different means. This provision accompanies arrangements for school fees and support for poor families.",
+    "sources": [
+      {
+        "label": "German History in Documents and Images: translated primary document",
+        "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/friedrich-der-grosse-koeniglich-preussisches-general-land-schul-reglement-1763"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-charlemagne-welcome-foreigners",
+    "text": "He liked foreigners, and was at great pains to take them under his protection.",
+    "speaker": "Einhard",
+    "collection": "history",
+    "work": "Life of Charlemagne",
+    "locator": "Chapter 21; Samuel Epes Turner translation (1880); excerpt",
+    "year": "9th century",
+    "context": "Einhard, who knew Charlemagne’s court, describes the king’s reception of foreigners. This is a favourable biographical account, not Charlemagne’s spoken words.",
+    "sources": [
+      {
+        "label": "Fordham University Internet Medieval Sourcebook",
+        "url": "https://sourcebooks.fordham.edu/basis/einhard.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-charlemagne-learning-through-life",
+    "text": "He most zealously cultivated the liberal arts",
+    "speaker": "Einhard",
+    "collection": "history",
+    "work": "Life of Charlemagne",
+    "locator": "Chapter 25; Samuel Epes Turner translation (1880); excerpt",
+    "year": "9th century",
+    "context": "Einhard describes Charlemagne’s continuing studies with teachers. The passage concerns a ruler’s willingness to remain a student.",
+    "sources": [
+      {
+        "label": "Fordham University Internet Medieval Sourcebook",
+        "url": "https://sourcebooks.fordham.edu/basis/einhard.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-charlemagne-hospitality",
+    "text": "no one shall refuse shelter and fire and water to pilgrims",
+    "speaker": "Charlemagne, in an imperial capitulary",
+    "collection": "history",
+    "work": "Capitulary of 802",
+    "locator": "Chapter 27; Ernest F. Henderson translation (1896); excerpt",
+    "year": "802",
+    "context": "An imperial order directs hospitality to people travelling on religious journeys. This is the language of an official enactment, not a personal remark.",
+    "sources": [
+      {
+        "label": "Yale Law School Avalon Project",
+        "url": "https://avalon.law.yale.edu/medieval/capitula.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-charlemagne-mutual-charity",
+    "text": "all should live together in mutual charity and perfect peace.",
+    "speaker": "Charlemagne, in an imperial capitulary",
+    "collection": "history",
+    "work": "Capitulary of 802",
+    "locator": "Chapter 1; Ernest F. Henderson translation (1896); excerpt",
+    "year": "802",
+    "context": "The capitulary sets an ideal of peaceful relations within the Christian empire. It is a prescriptive claim, not proof of peaceful conditions under Charlemagne.",
+    "sources": [
+      {
+        "label": "Yale Law School Avalon Project",
+        "url": "https://avalon.law.yale.edu/medieval/capitula.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-charlemagne-study-your-purpose",
+    "text": "each one ought to study what he desires to accomplish",
+    "speaker": "Charlemagne, in a royal letter",
+    "collection": "history",
+    "work": "De litteris colendis",
+    "locator": "Letter to Abbot Baugulf; Dana C. Munro translation; excerpt",
+    "year": "c. 780–800",
+    "context": "A royal letter encourages learning among clergy. Its exact date is uncertain; it survives as a written directive, not an oral quotation.",
+    "sources": [
+      {
+        "label": "Fordham University Internet Medieval Sourcebook",
+        "url": "https://sourcebooks.web.fordham.edu/source/carol-baugulf.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-charlemagne-understanding",
+    "text": "far more dangerous are errors of the understanding.",
+    "speaker": "Charlemagne, in a royal letter",
+    "collection": "history",
+    "work": "De litteris colendis",
+    "locator": "Letter to Abbot Baugulf; Dana C. Munro translation; excerpt",
+    "year": "c. 780–800",
+    "context": "The letter connects careful language with understanding Scripture. This clause warns that misunderstanding can be more serious than faulty expression.",
+    "sources": [
+      {
+        "label": "Fordham University Internet Medieval Sourcebook",
+        "url": "https://sourcebooks.web.fordham.edu/source/carol-baugulf.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-charlemagne-careful-preparation",
+    "text": "all should be prepared and made with the greatest cleanliness.",
+    "speaker": "Carolingian royal chancery",
+    "collection": "history",
+    "work": "Capitulare de villis",
+    "locator": "Provision on food preparation; James Harvey Robinson edition (1904); excerpt",
+    "year": "c. 800",
+    "context": "This estate ordinance is traditionally associated with Charlemagne, though its precise origin and dating are debated. It demands cleanliness in preparation; it is not a verified personal saying.",
+    "sources": [
+      {
+        "label": "Fordham University Internet Medieval Sourcebook",
+        "url": "https://sourcebooks.web.fordham.edu/source/carol-devillis.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-charlemagne-clear-inventories",
+    "text": "so that we may know what and how much of each thing we have.",
+    "speaker": "Carolingian royal chancery",
+    "collection": "history",
+    "work": "Capitulare de villis",
+    "locator": "Provision on annual inventories; James Harvey Robinson edition (1904); excerpt",
+    "year": "c. 800",
+    "context": "A royal estate regulation associated with Charlemagne calls for orderly inventories. Its practical concern is accountable stewardship; attribution to his personal authorship would be too strong.",
+    "sources": [
+      {
+        "label": "Fordham University Internet Medieval Sourcebook",
+        "url": "https://sourcebooks.web.fordham.edu/source/carol-devillis.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-charlemagne-thoughtful-speech",
+    "text": "Hasty in speech he never was, but slow:",
+    "speaker": "Anonymous poet of The Song of Roland",
+    "collection": "history",
+    "work": "The Song of Roland",
+    "locator": "Laisse X, line 140; C. K. Scott Moncrieff translation (1919); excerpt",
+    "year": "c. 1100",
+    "context": "The epic’s narrator portrays Charlemagne as measured in speech. This is a medieval literary characterisation, written centuries after the historical king.",
+    "sources": [
+      {
+        "label": "Wikisource: The Song of Roland, 1919 translation",
+        "url": "https://en.wikisource.org/wiki/The_Song_of_Roland/The_Song_of_Roland"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-charlemagne-uncertain-intentions",
+    "text": "But I know not what purpose in his heart is.",
+    "speaker": "Charlemagne in The Song of Roland",
+    "collection": "history",
+    "work": "The Song of Roland",
+    "locator": "Laisse XIII, line 191; C. K. Scott Moncrieff translation (1919); excerpt",
+    "year": "c. 1100",
+    "context": "The fictionalised emperor weighs an adversary’s proposal and acknowledges uncertainty. These are words in a medieval epic, not authenticated speech by the historical Charlemagne.",
+    "sources": [
+      {
+        "label": "Wikisource: The Song of Roland, 1919 translation",
+        "url": "https://en.wikisource.org/wiki/The_Song_of_Roland/The_Song_of_Roland"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-attila-temperance",
+    "text": "In everything else, too, he showed himself temperate;",
+    "speaker": "Priscus",
+    "collection": "history",
+    "work": "Account of the embassy to Attila",
+    "locator": "Banquet scene; J. B. Bury translation; excerpt",
+    "year": "5th century",
+    "context": "Priscus, an eyewitness visitor to Attila’s court in 449, contrasts the ruler’s personal restraint with lavish arrangements for guests. This is Priscus’s observation, not Attila’s own speech.",
+    "sources": [
+      {
+        "label": "Georgetown University: Priscus at the court of Attila",
+        "url": "https://faculty.georgetown.edu/jod/texts/priscus.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-attila-simple-dress",
+    "text": "His dress, too, was quite simple, affecting only to be clean.",
+    "speaker": "Priscus",
+    "collection": "history",
+    "work": "Account of the embassy to Attila",
+    "locator": "Banquet scene; J. B. Bury translation; excerpt",
+    "year": "5th century",
+    "context": "Priscus describes Attila’s unadorned clothing at a banquet. This narrow observation does not cancel the coercion and violence of the wider historical setting.",
+    "sources": [
+      {
+        "label": "Georgetown University: Priscus at the court of Attila",
+        "url": "https://faculty.georgetown.edu/jod/texts/priscus.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-attila-protection",
+    "text": "lenient to those who were once received into his protection.",
+    "speaker": "Jordanes",
+    "collection": "history",
+    "work": "The Origin and Deeds of the Goths",
+    "locator": "Chapter XXXV, section 182; Charles C. Mierow translation (1908); excerpt",
+    "year": "551",
+    "context": "Jordanes’s portrait includes clemency towards people under Attila’s protection alongside a severe account of his conquests. This is a sixth-century historical account, not a recorded saying.",
+    "sources": [
+      {
+        "label": "Fordham University: Jordanes, Getica",
+        "url": "https://sourcebooks.web.fordham.edu/source/jordanes-historygoths.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-attila-legendary-confidence",
+    "text": "his assurance was increased by finding the sword of Mars",
+    "speaker": "Jordanes",
+    "collection": "history",
+    "work": "The Origin and Deeds of the Goths",
+    "locator": "Chapter XXXV, section 183; Charles C. Mierow translation (1908); excerpt",
+    "year": "551",
+    "context": "Jordanes recounts a legend about a supposedly sacred sword and Attila’s confidence. The tale is presented as evidence about historical storytelling, not proof of supernatural favour.",
+    "sources": [
+      {
+        "label": "Fordham University: Jordanes, Getica",
+        "url": "https://sourcebooks.web.fordham.edu/source/jordanes-historygoths.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-attila-welcome-prepared",
+    "text": "Till nothing should be lacking to cheer the strangers’ mood.",
+    "speaker": "Anonymous poet of The Nibelungenlied",
+    "collection": "history",
+    "work": "The Lay of the Nibelungs",
+    "locator": "Adventure 22, stanza 1364; Alice Horton translation, revised by Edward Bell (1901); excerpt",
+    "year": "c. 1200",
+    "context": "The epic describes the preparations by Etzel’s court for his wedding. Etzel is a literary transformation of Attila, not an accurate reconstruction of his historical household.",
+    "sources": [
+      {
+        "label": "Wikisource: The Lay of the Nibelungs, 1901 edition",
+        "url": "https://en.wikisource.org/wiki/The_Lay_of_the_Nibelungs/Chapter_22"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-attila-generous-feast",
+    "text": "Whatever any wanted, that presently he had.",
+    "speaker": "Anonymous poet of The Nibelungenlied",
+    "collection": "history",
+    "work": "The Lay of the Nibelungs",
+    "locator": "Adventure 22, stanza 1370; Alice Horton translation, revised by Edward Bell (1901); excerpt",
+    "year": "c. 1200",
+    "context": "A poetic description of abundance at Etzel’s wedding. This is medieval literary hospitality, not eyewitness evidence about fifth-century Attila.",
+    "sources": [
+      {
+        "label": "Wikisource: The Lay of the Nibelungs, 1901 edition",
+        "url": "https://en.wikisource.org/wiki/The_Lay_of_the_Nibelungs/Chapter_22"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-attila-kind-message",
+    "text": "All that is good and kindly I bid my friends, by you;",
+    "speaker": "Etzel in The Nibelungenlied",
+    "collection": "history",
+    "work": "The Lay of the Nibelungs",
+    "locator": "Adventure 23, stanza 1410; Alice Horton translation, revised by Edward Bell (1901); excerpt",
+    "year": "c. 1200",
+    "context": "The fictionalised Attila sends a friendly invitation through messengers. The audience knows the visit will be entangled with Kriemhilda’s revenge.",
+    "sources": [
+      {
+        "label": "Wikisource: The Lay of the Nibelungs, 1901 edition",
+        "url": "https://en.wikisource.org/wiki/The_Lay_of_the_Nibelungs/Chapter_23"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-attila-overcome-distance",
+    "text": "That we are still such strangers hath caused me mickle pain.",
+    "speaker": "Etzel in The Nibelungenlied",
+    "collection": "history",
+    "work": "The Lay of the Nibelungs",
+    "locator": "Adventure 23, stanza 1406; Alice Horton translation, revised by Edward Bell (1901); excerpt",
+    "year": "c. 1200",
+    "context": "Etzel wishes to know his wife’s relatives better. This medieval literary portrayal must remain distinct from authentic words of Attila.",
+    "sources": [
+      {
+        "label": "Wikisource: The Lay of the Nibelungs, 1901 edition",
+        "url": "https://en.wikisource.org/wiki/The_Lay_of_the_Nibelungs/Chapter_23"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-attila-make-amends",
+    "text": "I’ll gladly make atonement, however they think good;",
+    "speaker": "Etzel in The Nibelungenlied",
+    "collection": "history",
+    "work": "The Lay of the Nibelungs",
+    "locator": "Adventure 31, stanza 1862; Alice Horton translation, revised by Edward Bell (1901); excerpt",
+    "year": "c. 1200",
+    "context": "The epic’s Etzel offers to make amends if his guests have been wronged. The quotation belongs to the poem’s imagined host, not a verified historical speech.",
+    "sources": [
+      {
+        "label": "Wikisource: The Lay of the Nibelungs, 1901 edition",
+        "url": "https://en.wikisource.org/wiki/The_Lay_of_the_Nibelungs/Chapter_31"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-attila-guests-safe",
+    "text": "To leave my guests in freedom, I charge ye to take heed.",
+    "speaker": "Etzel in The Nibelungenlied",
+    "collection": "history",
+    "work": "The Lay of the Nibelungs",
+    "locator": "Adventure 31, stanza 1897; Alice Horton translation, revised by Edward Bell (1901); excerpt",
+    "year": "c. 1200",
+    "context": "Etzel orders safe conduct for guests after a killing during the games. His judgement of the killing is part of the poem’s tragic irony, not a model historical verdict.",
+    "sources": [
+      {
+        "label": "Wikisource: The Lay of the Nibelungs, 1901 edition",
+        "url": "https://en.wikisource.org/wiki/The_Lay_of_the_Nibelungs/Chapter_31"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-zizka-prepare-supplies",
+    "text": "Have bread, beer, fodder for the horses ready",
+    "speaker": "Jan Žižka",
+    "collection": "history",
+    "work": "Letter to the allies of Domažlice",
+    "locator": "Translated in Lectures on the Historians of Bohemia, Lecture II (1905); excerpt",
+    "year": "15th century",
+    "context": "Žižka asks allies to prepare supplies for a relief force. The letter also calls for weapons: this practical clause is not a modern hospitality slogan.",
+    "sources": [
+      {
+        "label": "Wikisource: Francis Lützow’s primary-document translation",
+        "url": "https://en.wikisource.org/wiki/Lectures_on_The_Historians_of_Bohemia/Lecture_2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-zizka-ready-and-resolute",
+    "text": "Therefore trust in God and be ready.",
+    "speaker": "Jan Žižka",
+    "collection": "history",
+    "work": "Letter to the allies of Domažlice",
+    "locator": "Translated in Lectures on the Historians of Bohemia, Lecture II (1905); excerpt",
+    "year": "15th century",
+    "context": "The closing exhortation of Žižka’s letter combines religious confidence with readiness. The checked source does not settle the letter’s precise date.",
+    "sources": [
+      {
+        "label": "Wikisource: Francis Lützow’s primary-document translation",
+        "url": "https://en.wikisource.org/wiki/Lectures_on_The_Historians_of_Bohemia/Lecture_2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-zizka-discard-quarrels",
+    "text": "to discard all quarrels, dissensions, and bitterness",
+    "speaker": "Jan Žižka",
+    "collection": "history",
+    "work": "Letter to the citizens of Prague",
+    "locator": "Translated in The Hussite Wars, Chapter IV (1914); excerpt",
+    "year": "1422",
+    "context": "Žižka recognises Korybutovič’s leadership and asks the Praguers to end disputes. The religious letter also threatens punishment for disorder; this clause is not a promise of unrestricted toleration.",
+    "sources": [
+      {
+        "label": "Wikisource: Francis Lützow’s primary-document translation",
+        "url": "https://en.wikisource.org/wiki/The_Hussite_Wars/Chapter_4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-zizka-orderly-hearing",
+    "text": "in an orderly fashion and state his case.",
+    "speaker": "Jan Žižka",
+    "collection": "history",
+    "work": "Letter to the citizens of Prague",
+    "locator": "Translated in The Hussite Wars, Chapter IV (1914); excerpt",
+    "year": "1422",
+    "context": "Žižka directs people with disputes to established civic authorities, rather than riots. The excerpt belongs to his appeal for public order in Prague.",
+    "sources": [
+      {
+        "label": "Wikisource: Francis Lützow’s primary-document translation",
+        "url": "https://en.wikisource.org/wiki/The_Hussite_Wars/Chapter_4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-zizka-acknowledge-harm",
+    "text": "There we must do penance at the place where we sinned.",
+    "speaker": "Jan Žižka",
+    "collection": "history",
+    "work": "Letter to Bartoš and Bernard of Valečov",
+    "locator": "26 March 1423; Thomas A. Fudge translation (2002), document 94; excerpt",
+    "year": "1423",
+    "context": "Žižka calls for an assembly at Německý Brod and acknowledges wrongdoing there. The letter’s repentance should not erase the wartime harm behind it.",
+    "sources": [
+      {
+        "label": "AHISTO, Masaryk University: primary letter and English translation",
+        "url": "https://nlp.fi.muni.cz/projekty/ahisto/portal/regest/fffee8ab09"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-zizka-consult-in-person",
+    "text": "when we get together we can talk about this matter.",
+    "speaker": "Jan Žižka",
+    "collection": "history",
+    "work": "Letter to Bartoš and Bernard of Valečov",
+    "locator": "26 March 1423; Thomas A. Fudge translation (2002), document 94; excerpt",
+    "year": "1423",
+    "context": "Žižka asks colleagues to meet and discuss decisions affecting their neighbours. This closing clause supports consultation within a particular military alliance.",
+    "sources": [
+      {
+        "label": "AHISTO, Masaryk University: primary letter and English translation",
+        "url": "https://nlp.fi.muni.cz/projekty/ahisto/portal/regest/fffee8ab09"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-zizka-check-rumours",
+    "text": "we make affirmation and beseech you as beloved neighbours that you not believe this.",
+    "speaker": "Jan Žižka and fellow Táborite captains",
+    "collection": "history",
+    "work": "Letter to unnamed neighbours from Prachatice",
+    "locator": "22 November 1420, assigned date; Thomas A. Fudge translation (2002), document 47; excerpt",
+    "year": "1420",
+    "context": "The captains deny a rumour that they have become the recipients’ enemies. The letter survives in a contemporary German translation and remains religiously polemical, rather than a universal declaration of peace.",
+    "sources": [
+      {
+        "label": "AHISTO, Masaryk University: primary letter and English translation",
+        "url": "https://nlp.fi.muni.cz/projekty/ahisto/portal/regest/6a6be198cf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-zizka-written-reply",
+    "text": "Please reply to this letter in writing.",
+    "speaker": "Jan Žižka and fellow Táborite captains",
+    "collection": "history",
+    "work": "Letter to unnamed neighbours from Prachatice",
+    "locator": "22 November 1420, assigned date; Thomas A. Fudge translation (2002), document 47; excerpt",
+    "year": "1420",
+    "context": "The captains ask for a clear written answer. The next sentence threatens to treat silence as hostility; this is historical evidence of communication under pressure, not recommended modern etiquette.",
+    "sources": [
+      {
+        "label": "AHISTO, Masaryk University: primary letter and English translation",
+        "url": "https://nlp.fi.muni.cz/projekty/ahisto/portal/regest/6a6be198cf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-zizka-trusted-messenger",
+    "text": "We implore you to extend to Pavel your trust",
+    "speaker": "Ambrož and the council of Hradec Králové",
+    "collection": "history",
+    "work": "Warning letter to Jan Žižka",
+    "locator": "22 November, assigned to 1423; Thomas A. Fudge translation (2002), document 99; excerpt",
+    "year": "c. 1423",
+    "context": "Žižka’s associates ask him to hear a named messenger carrying a warning about an alleged assassination plot. These are their words to him, not his own words.",
+    "sources": [
+      {
+        "label": "AHISTO: warning letter to Žižka and English translation",
+        "url": "https://www.rbmonline.cz/portal/regest/6bacfa4cc7"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-zizka-community-purpose",
+    "text": "the well being of the communities of the faithful.",
+    "speaker": "Ambrož and the council of Hradec Králové",
+    "collection": "history",
+    "work": "Warning letter to Jan Žižka",
+    "locator": "22 November, assigned to 1423; Thomas A. Fudge translation (2002), document 99; excerpt",
+    "year": "c. 1423",
+    "context": "In their closing prayer, Žižka’s correspondents connect his safety to the welfare of their religious communities. This is a contemporary account of what his allies hoped from him.",
+    "sources": [
+      {
+        "label": "AHISTO: warning letter to Žižka and English translation",
+        "url": "https://www.rbmonline.cz/portal/regest/6bacfa4cc7"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-william-protection-from-wrong",
+    "text": "I will not suffer any person to do you wrong;",
+    "speaker": "William I, in the London charter",
+    "collection": "history",
+    "work": "Charter to the City of London",
+    "locator": "Modern English transcription of charter COL/CH/01/001/a; excerpt",
+    "year": "1067",
+    "context": "William’s surviving charter promises protection to London’s citizens after the Conquest. This is a royal document, not a personal conversational remark.",
+    "sources": [
+      {
+        "label": "The London Archives: William Charter",
+        "url": "https://www.thelondonarchives.org/your-research/william-1-charter-to-the-city-of-london"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-william-inheritance",
+    "text": "every child shall be his father’s heir",
+    "speaker": "William I, in the London charter",
+    "collection": "history",
+    "work": "Charter to the City of London",
+    "locator": "Modern English transcription of charter COL/CH/01/001/a; excerpt",
+    "year": "1067",
+    "context": "A clause safeguarding inheritance under the charter granted to London. The historical promise is specific to the city’s rights and does not establish a modern universal equality.",
+    "sources": [
+      {
+        "label": "The London Archives: William Charter",
+        "url": "https://www.thelondonarchives.org/your-research/william-1-charter-to-the-city-of-london"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-william-peace-between-peoples",
+    "text": "peace and security to be observed between the English and the Normans.",
+    "speaker": "Compiler of the Statutes of William",
+    "collection": "history",
+    "work": "Statutes of William the Conqueror",
+    "locator": "Article 1; Ernest F. Henderson translation (1896); excerpt",
+    "year": "11th–12th century tradition",
+    "context": "The transmitted law collection attributes this policy to William. These compiled statutes should not be treated as a verbatim personal speech or proof that conquest brought peace to everyone.",
+    "sources": [
+      {
+        "label": "Yale Law School Avalon Project",
+        "url": "https://avalon.law.yale.edu/medieval/lawwill.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-william-continuity-of-law",
+    "text": "all shall hold and keep the law of Edward the king",
+    "speaker": "Compiler of the Statutes of William",
+    "collection": "history",
+    "work": "Statutes of William the Conqueror",
+    "locator": "Article 7; Ernest F. Henderson translation (1896); excerpt",
+    "year": "11th–12th century tradition",
+    "context": "The legal collection represents William as maintaining Edward’s law while adding provisions of his own. It is evidence of a claim to legal continuity after conquest.",
+    "sources": [
+      {
+        "label": "Yale Law School Avalon Project",
+        "url": "https://avalon.law.yale.edu/medieval/lawwill.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-william-right-law",
+    "text": "to enact and to preserve right law",
+    "speaker": "Worcester chronicler, traditionally cited as Florence of Worcester",
+    "collection": "history",
+    "work": "Chronicle: account of William’s coronation oath",
+    "locator": "Entry for 1066; University of Pennsylvania Translations and Reprints, coronation oaths section; excerpt",
+    "year": "12th century",
+    "context": "The chronicler reports the oath William took in 1066. This is an account of a promise, not a surviving word-for-word transcript of the ceremony.",
+    "sources": [
+      {
+        "label": "Wikisource scan transcription: University of Pennsylvania source edition",
+        "url": "https://en.wikisource.org/wiki/Page:Translations_and_reprints_from_the_original_sources_of_European_history_-_Vol._1-2.djvu/147"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-william-just-judgements",
+    "text": "straitly to forbid violence and unjust judgments.",
+    "speaker": "Worcester chronicler, traditionally cited as Florence of Worcester",
+    "collection": "history",
+    "work": "Chronicle: account of William’s coronation oath",
+    "locator": "Entry for 1066; University of Pennsylvania Translations and Reprints, coronation oaths section; excerpt",
+    "year": "12th century",
+    "context": "Part of the chronicler’s reported coronation oath. “Straitly” means strictly; the legal ideal should be compared with the violence of William’s reign.",
+    "sources": [
+      {
+        "label": "Wikisource scan transcription: University of Pennsylvania source edition",
+        "url": "https://en.wikisource.org/wiki/Page:Translations_and_reprints_from_the_original_sources_of_European_history_-_Vol._1-2.djvu/147"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-william-good-and-evil",
+    "text": "These things have we written concerning him, both good and evil",
+    "speaker": "Anonymous Anglo-Saxon chronicler",
+    "collection": "history",
+    "work": "The Anglo-Saxon Chronicle",
+    "locator": "Entry for 1087; English translation reproduced by Avalon; excerpt",
+    "year": "1087 annal",
+    "context": "The chronicler deliberately includes both favourable and hostile judgements of William. These are the writer’s words about him, inviting a balanced historical reading.",
+    "sources": [
+      {
+        "label": "Yale Law School Avalon Project: Anglo-Saxon Chronicle",
+        "url": "https://avalon.law.yale.edu/medieval/ang11.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-william-cost-of-rule",
+    "text": "Assuredly in his time had men much distress, and very many sorrows.",
+    "speaker": "Anonymous Anglo-Saxon chronicler",
+    "collection": "history",
+    "work": "The Anglo-Saxon Chronicle",
+    "locator": "Entry for 1087; English translation reproduced by Avalon; excerpt",
+    "year": "1087 annal",
+    "context": "A contemporary assessment of suffering under William’s rule. The line keeps the costs of conquest visible alongside promises of law and order.",
+    "sources": [
+      {
+        "label": "Yale Law School Avalon Project: Anglo-Saxon Chronicle",
+        "url": "https://avalon.law.yale.edu/medieval/ang11.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-william-adhere-to-justice",
+    "text": "to adhere to justice on all occasions",
+    "speaker": "Orderic Vitalis",
+    "collection": "history",
+    "work": "Ecclesiastical History",
+    "locator": "Book VII, Chapter XV; Thomas Forester translation, volume II, p. 412; excerpt",
+    "year": "12th century",
+    "context": "Orderic places this advice in William’s deathbed discourse. The long speech is a later literary reconstruction within a chronicle, not authenticated final words.",
+    "sources": [
+      {
+        "label": "Thomas Forester translation of Orderic Vitalis, transcribed by Mel Lockie",
+        "url": "https://www.melocki.org.uk/ordericus/Book7.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-william-reckoning",
+    "text": "I have persecuted its native inhabitants beyond all reason.",
+    "speaker": "Orderic Vitalis",
+    "collection": "history",
+    "work": "Ecclesiastical History",
+    "locator": "Book VII, Chapter XV; Thomas Forester translation, volume II, p. 413; excerpt",
+    "year": "12th century",
+    "context": "In Orderic’s constructed deathbed speech, William acknowledges oppression in England. This is the historian’s moral reckoning through an attributed speech, not a verified confession.",
+    "sources": [
+      {
+        "label": "Thomas Forester translation of Orderic Vitalis, transcribed by Mel Lockie",
+        "url": "https://www.melocki.org.uk/ordericus/Book7.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-khalid-mutah",
+    "text": "On the day of Mu'tah, nine swords were broken in my hand and only a Yemenite sword of mine remained in my hand.",
+    "speaker": "Al-Bukhari",
+    "collection": "history",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 4266; Book 64, Hadith 300",
+    "year": "9th century CE",
+    "context": "A report attributed through Qays to Khalid about the battle of Mu’tah. This is a transmitted religious-historical account compiled in the ninth century, not a surviving personal document or a general instruction to seek combat.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Arabic text and English translation of the named report",
+        "url": "https://sunnah.com/bukhari:4266"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-khalid-recognition",
+    "text": "What an excellent slave of Allah is Khalid bin Al-Walid, a sword from among the swords of Allah.",
+    "speaker": "Al-Tirmidhi",
+    "collection": "history",
+    "work": "Jami at-Tirmidhi",
+    "locator": "Hadith 3846; Book 49, Hadith 246",
+    "year": "9th century CE",
+    "context": "Abu Hurairah’s report of Muhammad praising Khalid. The displayed Darussalam grade is Hasan; the Arabic compiler’s note also discusses a gap in transmission. The religious praise is presented as a tradition, not Khalid’s own claim.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Arabic text and English translation of the named report",
+        "url": "https://sunnah.com/tirmidhi:3846"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-khalid-fair-assessment",
+    "text": "But you are unfair in asking Zakat from Khalid as he is keeping his armor for Allah's Cause",
+    "speaker": "Al-Bukhari",
+    "collection": "history",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 1468; Book 24, Hadith 70; clause excerpt",
+    "year": "9th century CE",
+    "context": "Abu Huraira reports Muhammad correcting an accusation against Khalid because his equipment was dedicated to a religious military purpose. Read as a particular historical assessment, not a modern tax ruling.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Arabic text and English translation of the named report",
+        "url": "https://sunnah.com/bukhari:1468"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-khalid-respect",
+    "text": "None should revile my Companions.",
+    "speaker": "Muslim ibn al-Hajjaj",
+    "collection": "history",
+    "work": "Sahih Muslim",
+    "locator": "Hadith 2541a; Book 44, Hadith 317; first sentence",
+    "year": "9th century CE",
+    "context": "Abu Sa’id reports Muhammad rebuking Khalid after an altercation with Abd al-Rahman ibn Awf. This is a lesson addressed to Khalid about restraint, not a saying by him.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Arabic text and English translation of the named report",
+        "url": "https://sunnah.com/muslim:2541a"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-khalid-refuse-wrong",
+    "text": "By Allah, I will not kill my captive",
+    "speaker": "Al-Bukhari",
+    "collection": "history",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 4339; Book 64, Hadith 368; clause excerpt",
+    "year": "9th century CE",
+    "context": "Abdullah ibn Umar, identified in the report as Salim’s father, refuses Khalid’s order during the Banu Jadhima episode. An account about resisting wrongful command; these are not Khalid’s words.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Arabic text and English translation of the named report",
+        "url": "https://sunnah.com/bukhari:4339"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-khalid-accountability",
+    "text": "O Allah! I am free from what Khalid has done.",
+    "speaker": "Al-Bukhari",
+    "collection": "history",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 4339; Book 64, Hadith 368; Muhammad’s response",
+    "year": "9th century CE",
+    "context": "Ibn Umar’s report ends with Muhammad publicly disavowing Khalid’s actions towards Banu Jadhima. Included so admiration for military ability does not erase a serious critical tradition.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Arabic text and English translation of the named report",
+        "url": "https://sunnah.com/bukhari:4339"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-khalid-ask-before-assuming",
+    "text": "Is this unlawful to eat?",
+    "speaker": "Al-Bukhari",
+    "collection": "history",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 5391; Book 70, Hadith 19; Khalid’s question",
+    "year": "9th century CE",
+    "context": "Khalid asks about roasted mastigure after Muhammad withdraws his hand. The reply distinguishes personal unfamiliarity from prohibition, and the account says Khalid eats it. A transmitted dialogue, not dietary advice.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Arabic text and English translation of the named report",
+        "url": "https://sunnah.com/bukhari:5391"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-khalid-name-the-dish",
+    "text": "who rarely started eating any (unfamiliar) food before it was described and named for him.",
+    "speaker": "Al-Bukhari",
+    "collection": "history",
+    "work": "Sahih al-Bukhari",
+    "locator": "Hadith 5391; Book 70, Hadith 19; narrative excerpt",
+    "year": "9th century CE",
+    "context": "Khalid’s reported visit to Maimuna describes Muhammad’s custom of finding out what a dish contains. A useful hospitality parallel: explain unfamiliar food clearly. The wording and parentheses follow the cited translation.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Arabic text and English translation of the named report",
+        "url": "https://sunnah.com/bukhari:5391"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-khalid-admit-distress",
+    "text": "I have nightmares.",
+    "speaker": "Malik ibn Anas",
+    "collection": "history",
+    "work": "Muwatta Malik",
+    "locator": "Book 51, Hadith 9; report transmitted by Yahya ibn Sa’id",
+    "year": "8th century CE",
+    "context": "This complete admission is attributed to Khalid in an early transmitted account. Yahya ibn Sa’id says he had heard it, so the displayed chain is not an eyewitness record. The passage concerns asking for spiritual support, not proof of a medical treatment.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Arabic text and English translation of the named report",
+        "url": "https://sunnah.com/malik/51/9"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-khalid-hospitality-and-choice",
+    "text": "The drink is yours, but if you wish, you may let Khalid have it.",
+    "speaker": "Al-Tirmidhi",
+    "collection": "history",
+    "work": "Ash-Shama’il al-Muhammadiyah",
+    "locator": "Hadith 204; Book 30, Hadith 2",
+    "year": "9th century CE",
+    "context": "Ibn Abbas is said to be offered a choice about passing milk to Khalid. This is a later transmitted hospitality story, not Khalid’s speech. The cited edition grades the chain Da’if Isnad (weak); retained explicitly as an account of uncertain transmission.",
+    "sources": [
+      {
+        "label": "Sunnah.com: Arabic text and English translation of the named report",
+        "url": "https://sunnah.com/shamail:204"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-napoleon-purpose",
+    "text": "every war should have a definite object",
+    "speaker": "Compiler of Napoleon’s Maxims of War",
+    "collection": "history",
+    "work": "The Officer’s Manual: Napoleon’s Maxims of War",
+    "locator": "Maxim V; clause excerpt; D’Aguilar translation, 1862 reprint",
+    "year": 1862,
+    "context": "A maxim attributed to Napoleon in a posthumous military compilation. The wording belongs to this English edition; it is not a dated, independently recorded speech. Consider the purpose before committing resources.",
+    "sources": [
+      {
+        "label": "Primary text in the cited edition",
+        "url": "https://www.readingroo.ms/5/0/7/5/50750/50750-h/50750-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-napoleon-fortitude",
+    "text": "The first qualification of a soldier is fortitude under fatigue and privation.",
+    "speaker": "Compiler of Napoleon’s Maxims of War",
+    "collection": "history",
+    "work": "The Officer’s Manual: Napoleon’s Maxims of War",
+    "locator": "Maxim LVIII; first sentence; D’Aguilar translation, 1862 reprint",
+    "year": 1862,
+    "context": "The compilation places endurance before dramatic courage. This is historical military advice, not a recommendation to neglect health or recovery. Exact wording is documented in the posthumous collection.",
+    "sources": [
+      {
+        "label": "Primary text in the cited edition",
+        "url": "https://www.readingroo.ms/5/0/7/5/50750/50750-h/50750-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-napoleon-serve-france",
+    "text": "But you, my friends, continue to serve France.",
+    "speaker": "Baron Fain",
+    "collection": "history",
+    "work": "Manuscrit de 1814",
+    "locator": "Napoleon’s farewell at Fontainebleau, 20 April 1814; Fain version, pp. 251–252",
+    "year": 1830,
+    "context": "Fain reports Napoleon asking the Old Guard to continue serving France as he leaves for exile. Fondation Napoléon prints more than one version; this excerpt follows its translation of Fain’s account.",
+    "sources": [
+      {
+        "label": "Primary text in the cited edition",
+        "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/napoleons-adieux-to-the-old-guard-at-fontainebleau-20-april-1814"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-napoleon-farewell",
+    "text": "Would that I could press you all to my heart.",
+    "speaker": "Baron Fain",
+    "collection": "history",
+    "work": "Manuscrit de 1814",
+    "locator": "Napoleon’s farewell at Fontainebleau, 20 April 1814; Fain version, pp. 251–252",
+    "year": 1830,
+    "context": "A reported farewell expressing affection for companions. This is the Fain version translated by Fondation Napoléon, not a claim that every surviving account records identical words.",
+    "sources": [
+      {
+        "label": "Primary text in the cited edition",
+        "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/napoleons-adieux-to-the-old-guard-at-fontainebleau-20-april-1814"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-napoleon-teach-and-learn",
+    "text": "Will you teach me English Backgammon?",
+    "speaker": "Catherine Younghusband",
+    "collection": "history",
+    "work": "Letter to her aunt from St Helena",
+    "locator": "4 January 1816; account of the new-year dinner",
+    "year": 1816,
+    "context": "Younghusband’s contemporary letter reports Napoleon asking to learn a game. The original letter is held by the National Army Museum. Even a famous commander can be a beginner.",
+    "sources": [
+      {
+        "label": "Primary text in the cited edition",
+        "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/letter-from-mrs-catherine-younghusband-to-her-aunt-st-helena-4-january-1816/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-napoleon-thoughtful-gift",
+    "text": "Carry these to the little girl who sings so well, from me",
+    "speaker": "Catherine Younghusband",
+    "collection": "history",
+    "work": "Letter to her aunt from St Helena",
+    "locator": "4 January 1816; sweets sent to Emily",
+    "year": 1816,
+    "context": "Younghusband reports Napoleon sending sweets to a girl who had sung for him. A small hospitality gesture in a firsthand letter, not a general assessment of his political conduct.",
+    "sources": [
+      {
+        "label": "Primary text in the cited edition",
+        "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/letter-from-mrs-catherine-younghusband-to-her-aunt-st-helena-4-january-1816/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-napoleon-growth",
+    "text": "Everything in nature has a regular course, and different degrees of growth.",
+    "speaker": "Napoleon Bonaparte",
+    "collection": "history",
+    "work": "Napoleon’s Letters to Josephine",
+    "locator": "Series B, no. 2; Marmirolo, 17 July 1796; Henry Foljambe Hall translation, 1901",
+    "year": 1796,
+    "context": "In a personal letter Napoleon argues that his affection has deepened over time. This is a romantic observation in a particular relationship, not a scientific law.",
+    "sources": [
+      {
+        "label": "Primary text in the cited edition",
+        "url": "https://www.gutenberg.org/files/37499/37499-h/37499-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-napoleon-companionship",
+    "text": "I am only happy when by your side.",
+    "speaker": "Napoleon Bonaparte",
+    "collection": "history",
+    "work": "Napoleon’s Letters to Josephine",
+    "locator": "Series B, no. 2; Marmirolo, 17 July 1796; Henry Foljambe Hall translation, 1901",
+    "year": 1796,
+    "context": "A brief expression of longing from his letter to Josephine. The fuller letter is passionate and possessive; the excerpt is offered as historical correspondence, not a model for dependence.",
+    "sources": [
+      {
+        "label": "Primary text in the cited edition",
+        "url": "https://www.gutenberg.org/files/37499/37499-h/37499-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-napoleon-clemency",
+    "text": "This trait of clemency would have been well placed on a day of rejoicing",
+    "speaker": "Napoleon Bonaparte",
+    "collection": "history",
+    "work": "Correspondance générale de Napoléon Bonaparte",
+    "locator": "Letter to Marie-Louise, 30 May 1813; passage quoted in the introduction to volume XIII",
+    "year": 1813,
+    "context": "Napoleon regrets that a condemned man was not pardoned before a celebration. The edition’s introduction also explains his tight control of Marie-Louise’s regency. The date identifies the letter; the webpage repeats a catalogue number inconsistently, so that number is not asserted.",
+    "sources": [
+      {
+        "label": "Primary text in the cited edition",
+        "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/alone-already-so-alone/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-napoleon-courage-with-limits",
+    "text": "you lack everything, but you are rich in courage.",
+    "speaker": "Louis-Alexandre Berthier",
+    "collection": "history",
+    "work": "Berthier’s report to the Directory of Napoleon’s Italian-campaign proclamation",
+    "locator": "1796 address, as transmitted in Berthier’s 1797 account and discussed by Peter Hicks",
+    "year": 1797,
+    "context": "Berthier’s contemporary account attributes these words to Napoleon addressing under-equipped troops before invading Italy. The better-known “Soldiers, you are naked” version was dictated much later. Courage does not remove responsibility for adequate supplies.",
+    "sources": [
+      {
+        "label": "Primary text in the cited edition",
+        "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/talking-point-with-peter-hicks-soldiers-you-are-naked/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-wellington-shared-credit",
+    "text": "the cordial and timely assistance I received from them",
+    "speaker": "Arthur Wellesley, Duke of Wellington",
+    "collection": "history",
+    "work": "Waterloo dispatch to Earl Bathurst",
+    "locator": "19 June 1815; acknowledgement of Blücher and the Prussian army; clause excerpt",
+    "year": 1815,
+    "context": "Wellington attributes the successful outcome to the help of his allies. The subject is the Prussian army: this excerpt preserves an acknowledgement of shared achievement.",
+    "sources": [
+      {
+        "label": "Wellington’s dispatches: primary text",
+        "url": "https://en.wikisource.org/wiki/Wellington%27s_Waterloo_dispatch_to_Lord_Bathurst,_19_June_1815"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-wellington-cost-of-victory",
+    "text": "I am sorry to add that ours has been immense.",
+    "speaker": "Arthur Wellesley, Duke of Wellington",
+    "collection": "history",
+    "work": "Waterloo dispatch to Earl Bathurst",
+    "locator": "19 June 1815; passage on casualties; clause excerpt",
+    "year": 1815,
+    "context": "Here “ours” means the allied army’s loss. An official victory report pauses to recognise the human cost; the words are not an expression of personal success.",
+    "sources": [
+      {
+        "label": "Wellington’s dispatches: primary text",
+        "url": "https://en.wikisource.org/wiki/Wellington%27s_Waterloo_dispatch_to_Lord_Bathurst,_19_June_1815"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-wellington-real-costs",
+    "text": "founded on a necessary expense really incurred",
+    "speaker": "Arthur Wellesley, Duke of Wellington",
+    "collection": "history",
+    "work": "Dispatches of the Duke of Wellington",
+    "locator": "To Lieutenant General Decken, 8 June 1815; clause excerpt",
+    "year": 1815,
+    "context": "Wellington says he cannot allow a demand unless it rests on a real, necessary expense. A practical example of checking the basis of a budget before accepting it.",
+    "sources": [
+      {
+        "label": "Wellington’s dispatches: primary text",
+        "url": "https://www.wtj.com/archives/wellington/1815_06c.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-wellington-care-for-resources",
+    "text": "the principal object of all is to take care of the horses",
+    "speaker": "Arthur Wellesley, Duke of Wellington",
+    "collection": "history",
+    "work": "Dispatches of the Duke of Wellington",
+    "locator": "To the Earl of Mulgrave, 12 June 1815; clause excerpt",
+    "year": 1815,
+    "context": "Discussing pontoon transport, Wellington recognises that the horses make the whole undertaking possible. Care for the living resources on which a plan depends comes before impressive equipment.",
+    "sources": [
+      {
+        "label": "Wellington’s dispatches: primary text",
+        "url": "https://www.wtj.com/archives/wellington/1815_06c.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-wellington-correct-a-mistake",
+    "text": "your Lordship will observe that I had misunderstood him",
+    "speaker": "Arthur Wellesley, Duke of Wellington",
+    "collection": "history",
+    "work": "Dispatches of the Duke of Wellington",
+    "locator": "To Earl Bathurst, 13 June 1815; clause excerpt",
+    "year": 1815,
+    "context": "Wellington corrects his earlier reading of an engineer’s estimate for works at Ostend. Clear leadership includes admitting when the facts have changed your understanding.",
+    "sources": [
+      {
+        "label": "Wellington’s dispatches: primary text",
+        "url": "https://www.wtj.com/archives/wellington/1815_06d.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-wellington-explain-the-cost",
+    "text": "I wish to have your sanction to its being undertaken",
+    "speaker": "Arthur Wellesley, Duke of Wellington",
+    "collection": "history",
+    "work": "Dispatches of the Duke of Wellington",
+    "locator": "To Earl Bathurst, 13 June 1815; clause excerpt",
+    "year": 1815,
+    "context": "The estimate for Ostend is much greater than Wellington had represented. He seeks approval after explaining the true cost, a concrete example of informed authorisation.",
+    "sources": [
+      {
+        "label": "Wellington’s dispatches: primary text",
+        "url": "https://www.wtj.com/archives/wellington/1815_06d.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-wellington-question-the-plan",
+    "text": "doubt the expediency of our attacking the enemy in their fortified position",
+    "speaker": "Arthur Wellesley, Duke of Wellington",
+    "collection": "history",
+    "work": "Dispatch to Earl Bathurst",
+    "locator": "2 July 1815; assessment of Paris; clause excerpt",
+    "year": 1815,
+    "context": "Wellington questions the usefulness of an immediate attack on fortified Paris while further allied forces approach. The passage weighs circumstances rather than treating bold action as automatically wise.",
+    "sources": [
+      {
+        "label": "Wellington’s dispatches: primary text",
+        "url": "https://en.wikisource.org/wiki/Wellingon%27s_dispatch_to_Lord_Bathurst,_2_July_1815"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-wellington-know-your-authority",
+    "text": "I had no authority to speak on this subject",
+    "speaker": "Arthur Wellesley, Duke of Wellington",
+    "collection": "history",
+    "work": "Dispatch to Earl Bathurst",
+    "locator": "2 July 1815; account of negotiations with French commissioners; clause excerpt",
+    "year": 1815,
+    "context": "Wellington distinguishes his personal judgement about France’s political future from authority to commit his government. Context matters: this was a negotiation during the allied advance on Paris.",
+    "sources": [
+      {
+        "label": "Wellington’s dispatches: primary text",
+        "url": "https://en.wikisource.org/wiki/Wellingon%27s_dispatch_to_Lord_Bathurst,_2_July_1815"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-wellington-truth-before-favour",
+    "text": "Who never sold the truth to serve the hour,",
+    "speaker": "Alfred, Lord Tennyson",
+    "collection": "history",
+    "work": "Ode on the Death of the Duke of Wellington",
+    "locator": "Section 7; single line; Maud collection text",
+    "year": 1852,
+    "context": "Tennyson’s commemorative idealisation of Wellington, not a saying by Wellington or a neutral verdict on every part of his career. The poet praises truthfulness above convenience.",
+    "sources": [
+      {
+        "label": "Tennyson’s poem in Maud, and other poems",
+        "url": "https://en.wikisource.org/wiki/Maud,_and_other_poems/Ode_on_the_Death_of_the_Duke_of_Wellington"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-wellington-path-of-duty",
+    "text": "The path of duty was the way to glory:",
+    "speaker": "Alfred, Lord Tennyson",
+    "collection": "history",
+    "work": "Ode on the Death of the Duke of Wellington",
+    "locator": "Section 8; single line; Maud collection text",
+    "year": 1852,
+    "context": "A line from Tennyson’s public elegy for Wellington. Its elevated moral portrait is literary commemoration, not Wellington’s own maxim.",
+    "sources": [
+      {
+        "label": "Tennyson’s poem in Maud, and other poems",
+        "url": "https://en.wikisource.org/wiki/Maud,_and_other_poems/Ode_on_the_Death_of_the_Duke_of_Wellington"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-genghis-friend-at-risk",
+    "text": "I am afraid you’ll come to harm because of me.",
+    "speaker": "Anonymous Mongol chronicler",
+    "collection": "history",
+    "work": "The Secret History of the Mongols",
+    "locator": "§91; de Rachewiltz/Street edition, p. 26",
+    "year": "13th century",
+    "context": "The chronicle gives young Temüjin, later Genghis Khan, these words to Bo’orchu while recovering stolen horses. This is transmitted dialogue, not a surviving recording of his speech.",
+    "sources": [
+      {
+        "label": "The Secret History of the Mongols",
+        "url": "https://sourcebooks.web.fordham.edu/basis/The%20Secret%20History%20of%20the%20Mongols_%20A%20Mongolian%20Epic%20Chronicle%20of.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-genghis-welcome-correction",
+    "text": "You urged me to carry out what was right,",
+    "speaker": "Anonymous Mongol chronicler",
+    "collection": "history",
+    "work": "The Secret History of the Mongols",
+    "locator": "§205; de Rachewiltz/Street edition, p. 130",
+    "year": "13th century",
+    "context": "Genghis thanks Bo’orchu and Muqali for their guidance in the medieval chronicle. The speech also awards exceptional privileges, so its praise of advice should not be mistaken for a modern statement of equal accountability.",
+    "sources": [
+      {
+        "label": "The Secret History of the Mongols",
+        "url": "https://sourcebooks.web.fordham.edu/basis/The%20Secret%20History%20of%20the%20Mongols_%20A%20Mongolian%20Epic%20Chronicle%20of.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-genghis-value-candour",
+    "text": "Chinghiz lauded him for his sincerity and candour.",
+    "speaker": "Li Chih-Ch’ang",
+    "collection": "history",
+    "work": "Travels of Ch’ang Ch’un to the West",
+    "locator": "Meeting with Genghis, 1222; Bretschneider translation, p. 86",
+    "year": "13th century",
+    "context": "Li reports Genghis Khan’s response when the Taoist master says there is no medicine of immortality. A disciple’s account of the encounter, translated by E. Bretschneider in 1888.",
+    "sources": [
+      {
+        "label": "Travels of Ch’ang Ch’un to the West",
+        "url": "https://depts.washington.edu/silkroad/texts/changchun.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-genghis-admit-confusion",
+    "text": "there are still some points in your doctrine not quite clear to my mind.",
+    "speaker": "Li Chih-Ch’ang",
+    "collection": "history",
+    "work": "Travels of Ch’ang Ch’un to the West",
+    "locator": "Audience of March 1223; Bretschneider translation, p. 97",
+    "year": "13th century",
+    "context": "Li attributes this admission to Genghis while he delays the master’s departure to seek further explanation. Reported dialogue in a disciple’s narrative, not an autograph statement.",
+    "sources": [
+      {
+        "label": "Travels of Ch’ang Ch’un to the West",
+        "url": "https://depts.washington.edu/silkroad/texts/changchun.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-genghis-leadership-tradition",
+    "text": "'Tis because we are without a chief, that our neighbors oppress us.",
+    "speaker": "William of Rubruck",
+    "collection": "history",
+    "work": "Journey to the Eastern Parts of the World",
+    "locator": "Account of Chingis and Unc Chan; Rockhill translation",
+    "year": "1253–1255",
+    "context": "Rubruck records this story about Genghis Khan’s rise decades after his death. The surrounding tale contains legendary and mistaken details; these are Rubruck’s reported words, not authenticated speech.",
+    "sources": [
+      {
+        "label": "Journey to the Eastern Parts of the World",
+        "url": "https://depts.washington.edu/silkroad/texts/rubruck.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-genghis-compulsory-service",
+    "text": "no one man should be free from service",
+    "speaker": "William of Rubruck",
+    "collection": "history",
+    "work": "Journey to the Eastern Parts of the World",
+    "locator": "Geographical inquiries at Möngke’s court; Rockhill translation",
+    "year": "1253–1255",
+    "context": "Rubruck attributes compulsory service to Genghis Khan, with exemption only when a man is too old to work. A contemporary-era report of imperial obligation, not advice to ignore rest or personal freedom.",
+    "sources": [
+      {
+        "label": "Journey to the Eastern Parts of the World",
+        "url": "https://depts.washington.edu/silkroad/texts/rubruck.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-genghis-conquerors-reputation",
+    "text": "he did no harm to the people or their property",
+    "speaker": "Marco Polo and Rustichello of Pisa",
+    "collection": "history",
+    "work": "The Book of Ser Marco Polo",
+    "locator": "Book I, chapter XLVII; Yule/Cordier edition",
+    "year": "c. 1298",
+    "context": "Polo’s later account idealises Genghis’s treatment of conquered peoples. This is evidence of a favourable medieval portrayal, not proof that his campaigns were harmless; the chapter also contains chronological errors.",
+    "sources": [
+      {
+        "label": "The Book of Ser Marco Polo",
+        "url": "https://www.gutenberg.org/files/10636/old/10636-h/10636-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-genghis-growing-ambition",
+    "text": "he began to think of conquering a great part of the world.",
+    "speaker": "Marco Polo and Rustichello of Pisa",
+    "collection": "history",
+    "work": "The Book of Ser Marco Polo",
+    "locator": "Book I, chapter XLVII; Yule/Cordier edition",
+    "year": "c. 1298",
+    "context": "Polo narrates Genghis Khan’s expanding ambition long after the events. Read as a later account, with the human costs of conquest in view, rather than a verified recollection of his private thoughts.",
+    "sources": [
+      {
+        "label": "The Book of Ser Marco Polo",
+        "url": "https://www.gutenberg.org/files/10636/old/10636-h/10636-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-genghis-cost-of-glory",
+    "text": "What have I gained by all my victories,",
+    "speaker": "Genghis Khan, in Voltaire’s play",
+    "collection": "history",
+    "work": "The Orphan of China",
+    "locator": "Act IV, scene II; English edition in The Works of Voltaire, vol. VIII",
+    "year": "1755",
+    "context": "Voltaire’s fictional Genghis questions the value of conquest. This Enlightenment tragedy is a later literary portrayal, not a historical quotation.",
+    "sources": [
+      {
+        "label": "The Orphan of China",
+        "url": "https://oll-resources.s3.us-east-2.amazonaws.com/oll3/store/titles/2187/Voltaire_0060-08_EBk_v6.0.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-genghis-wisdom-and-strength",
+    "text": "Let wisdom reign, and still direct our valor;",
+    "speaker": "Genghis Khan, in Voltaire’s play",
+    "collection": "history",
+    "work": "The Orphan of China",
+    "locator": "Act V, scene VI; English edition in The Works of Voltaire, vol. VIII",
+    "year": "1755",
+    "context": "At the play’s close, Voltaire gives Genghis a moral transformation and submission to wise government. A fictional resolution, not evidence of the historical ruler’s conduct.",
+    "sources": [
+      {
+        "label": "The Orphan of China",
+        "url": "https://oll-resources.s3.us-east-2.amazonaws.com/oll3/store/titles/2187/Voltaire_0060-08_EBk_v6.0.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-sacagawea-rescue",
+    "text": "caught and preserved most of the light articles which were washed overboard",
+    "speaker": "Meriwether Lewis",
+    "collection": "history",
+    "work": "Journals of the Lewis and Clark Expedition",
+    "locator": "1805-05-16; Meriwether Lewis journal, University of Nebraska edition",
+    "year": 1805,
+    "context": "Lewis recalls Sacagawea rescuing supplies from the boat accident two days earlier. The source date is 16 May, although the accident happened on 14 May. This is his account of her actions.",
+    "sources": [
+      {
+        "label": "University of Nebraska: journal entry, 1805-05-16",
+        "url": "https://lewisandclarkjournals.unl.edu/item/lc.jrn.1805-05-16"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-sacagawea-river",
+    "text": "or bird woman's River",
+    "speaker": "Meriwether Lewis",
+    "collection": "history",
+    "work": "Journals of the Lewis and Clark Expedition",
+    "locator": "1805-05-20; Meriwether Lewis journal, University of Nebraska edition",
+    "year": 1805,
+    "context": "Lewis records a river name honouring Sacagawea. The spelling and naming reflect the expedition journal; this excerpt is not speech by Sacagawea.",
+    "sources": [
+      {
+        "label": "University of Nebraska: journal entry, 1805-05-20",
+        "url": "https://lewisandclarkjournals.unl.edu/item/lc.jrn.1805-05-20"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-sacagawea-landmark",
+    "text": "this hill she says her nation calls the beaver's head",
+    "speaker": "Meriwether Lewis",
+    "collection": "history",
+    "work": "Journals of the Lewis and Clark Expedition",
+    "locator": "1805-08-08; Meriwether Lewis journal, University of Nebraska edition",
+    "year": 1805,
+    "context": "Lewis reports Sacagawea recognising a landmark in country familiar from her childhood. These are the recorder's English words, not a surviving transcript of her own language.",
+    "sources": [
+      {
+        "label": "University of Nebraska: journal entry, 1805-08-08",
+        "url": "https://lewisandclarkjournals.unl.edu/item/lc.jrn.1805-08-08"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-sacagawea-reunion",
+    "text": "the meeting of those people was really affecting",
+    "speaker": "Meriwether Lewis",
+    "collection": "history",
+    "work": "Journals of the Lewis and Clark Expedition",
+    "locator": "1805-08-17; Meriwether Lewis journal, University of Nebraska edition",
+    "year": 1805,
+    "context": "Lewis describes Sacagawea's reunion with her people, particularly a woman captured at the same time who had escaped. His account is valuable testimony but remains an outsider's perspective.",
+    "sources": [
+      {
+        "label": "University of Nebraska: journal entry, 1805-08-17",
+        "url": "https://lewisandclarkjournals.unl.edu/item/lc.jrn.1805-08-17"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-sacagawea-nation",
+    "text": "She made signs to me that they were her nation",
+    "speaker": "William Clark",
+    "collection": "history",
+    "work": "Journals of the Lewis and Clark Expedition",
+    "locator": "1805-08-17; William Clark journal, University of Nebraska edition",
+    "year": 1805,
+    "context": "Clark records Sacagawea recognising approaching Shoshone people. This separate observation complements Lewis's account of the reunion without inventing direct dialogue.",
+    "sources": [
+      {
+        "label": "University of Nebraska: journal entry, 1805-08-17",
+        "url": "https://lewisandclarkjournals.unl.edu/item/lc.jrn.1805-08-17"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-sacagawea-peace",
+    "text": "a woman with a party of men is a token of peace",
+    "speaker": "William Clark",
+    "collection": "history",
+    "work": "Journals of the Lewis and Clark Expedition",
+    "locator": "1805-10-13; William Clark journal, University of Nebraska edition",
+    "year": 1805,
+    "context": "Clark reflects on how Sacagawea's presence helped convey peaceful intentions. The entry records his interpretation of encounters, not a universal rule about every Indigenous nation.",
+    "sources": [
+      {
+        "label": "University of Nebraska: journal entry, 1805-10-13",
+        "url": "https://lewisandclarkjournals.unl.edu/item/lc.jrn.1805-10-13"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-sacagawea-food",
+    "text": "in favour of a place where there is plenty of Potas.",
+    "speaker": "William Clark",
+    "collection": "history",
+    "work": "Journals of the Lewis and Clark Expedition",
+    "locator": "1805-11-24; William Clark journal, University of Nebraska edition",
+    "year": 1805,
+    "context": "Clark records Sacagawea's preference, under the nickname Janey, during the discussion of a winter camp. The original abbreviated spelling is retained; the surrounding record lists other party members' views.",
+    "sources": [
+      {
+        "label": "University of Nebraska: journal entry, 1805-11-24",
+        "url": "https://lewisandclarkjournals.unl.edu/item/lc.jrn.1805-11-24"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-sacagawea-ocean",
+    "text": "she had traveled a long way with us to see the great waters",
+    "speaker": "Meriwether Lewis",
+    "collection": "history",
+    "work": "Journals of the Lewis and Clark Expedition",
+    "locator": "1806-01-06; Meriwether Lewis journal, University of Nebraska edition",
+    "year": 1806,
+    "context": "Lewis reports Sacagawea arguing to join the journey to see the ocean and a stranded whale. This is indirect speech in his journal, so it is attributed to the recorder.",
+    "sources": [
+      {
+        "label": "University of Nebraska: journal entry, 1806-01-06",
+        "url": "https://lewisandclarkjournals.unl.edu/item/lc.jrn.1806-01-06"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-sacagawea-knowledge",
+    "text": "she had been in this plain frequently and knew it well",
+    "speaker": "William Clark",
+    "collection": "history",
+    "work": "Journals of the Lewis and Clark Expedition",
+    "locator": "1806-07-06; William Clark journal, University of Nebraska edition",
+    "year": 1806,
+    "context": "Clark credits Sacagawea's knowledge of the country when the trail became difficult to follow. The account shows a specific contribution rather than claiming she guided every part of the expedition.",
+    "sources": [
+      {
+        "label": "University of Nebraska: journal entry, 1806-07-06",
+        "url": "https://lewisandclarkjournals.unl.edu/item/lc.jrn.1806-07-06"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-sacagawea-pilot",
+    "text": "has been of great Service to me as a pilot through this Country",
+    "speaker": "William Clark",
+    "collection": "history",
+    "work": "Journals of the Lewis and Clark Expedition",
+    "locator": "1806-07-13; William Clark journal, University of Nebraska edition",
+    "year": 1806,
+    "context": "Clark praises Sacagawea's help and records her recommendation of a mountain gap. The journal preserves his wording and capitalisation, not her own spoken words.",
+    "sources": [
+      {
+        "label": "University of Nebraska: journal entry, 1806-07-13",
+        "url": "https://lewisandclarkjournals.unl.edu/item/lc.jrn.1806-07-13"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-shackleton-knowledge",
+    "text": "Every step will be an advance in geographical science.",
+    "speaker": "Ernest Shackleton",
+    "collection": "history",
+    "work": "South: The Story of Shackleton's Last Expedition, 1914-1917",
+    "locator": "Preface; Macmillan, New York, 1920 edition",
+    "year": 1920,
+    "context": "In the expedition prospectus reproduced in his preface, Shackleton sets out the scientific value he hoped the crossing would have. This is an intended programme, not a claim that the crossing succeeded.",
+    "sources": [
+      {
+        "label": "Wikisource: original South text, Preface",
+        "url": "https://en.wikisource.org/wiki/South:_the_story_of_Shackleton's_last_expedition,_1914-1917/Preface"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-shackleton-unreality",
+    "text": "Everything wears an aspect of unreality.",
+    "speaker": "Ernest Shackleton",
+    "collection": "history",
+    "work": "South: The Story of Shackleton's Last Expedition, 1914-1917",
+    "locator": "Chapter 2; Macmillan, New York, 1920 edition",
+    "year": 1920,
+    "context": "Shackleton describes polar mirages that make distant ice and water difficult to distinguish. Wonder is accompanied by the practical need to test appearances.",
+    "sources": [
+      {
+        "label": "Wikisource: original South text, Chapter 2",
+        "url": "https://en.wikisource.org/wiki/South:_the_story_of_Shackleton's_last_expedition,_1914-1917/Chapter_2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-shackleton-humility",
+    "text": "Human effort is not futile, but man fights against the giant forces of Nature in a spirit of humility.",
+    "speaker": "Ernest Shackleton",
+    "collection": "history",
+    "work": "South: The Story of Shackleton's Last Expedition, 1914-1917",
+    "locator": "Chapter 4; Macmillan, New York, 1920 edition",
+    "year": 1920,
+    "context": "After the ship is crushed, Shackleton describes the ice moving around the camp. The passage balances persistence with respect for forces beyond human control.",
+    "sources": [
+      {
+        "label": "Wikisource: original South text, Chapter 4",
+        "url": "https://en.wikisource.org/wiki/South:_the_story_of_Shackleton's_last_expedition,_1914-1917/Chapter_4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-shackleton-food",
+    "text": "The collection of food was now the all-important consideration.",
+    "speaker": "Ernest Shackleton",
+    "collection": "history",
+    "work": "South: The Story of Shackleton's Last Expedition, 1914-1917",
+    "locator": "Chapter 5; Macmillan, New York, 1920 edition",
+    "year": 1920,
+    "context": "At Ocean Camp, attention turns to feeding the party and constructing a workable stove. This is the expedition leader's practical account of care under difficult conditions.",
+    "sources": [
+      {
+        "label": "Wikisource: original South text, Chapter 5",
+        "url": "https://en.wikisource.org/wiki/South:_the_story_of_Shackleton's_last_expedition,_1914-1917/Chapter_5"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-shackleton-reconnoitre",
+    "text": "Wild and I would go ahead for two miles or so to reconnoitre the next day's route",
+    "speaker": "Ernest Shackleton",
+    "collection": "history",
+    "work": "South: The Story of Shackleton's Last Expedition, 1914-1917",
+    "locator": "Chapter 6; Macmillan, New York, 1920 edition",
+    "year": 1920,
+    "context": "A continuous excerpt describing the work leaders did after the others had turned in. The surrounding paragraph explains how they marked a safer route for the heavy boats.",
+    "sources": [
+      {
+        "label": "Wikisource: original South text, Chapter 6",
+        "url": "https://en.wikisource.org/wiki/South:_the_story_of_Shackleton's_last_expedition,_1914-1917/Chapter_6"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-shackleton-variation",
+    "text": "the slightest variation was of great value.",
+    "speaker": "Ernest Shackleton",
+    "collection": "history",
+    "work": "South: The Story of Shackleton's Last Expedition, 1914-1917",
+    "locator": "Chapter 7; Macmillan, New York, 1920 edition",
+    "year": 1920,
+    "context": "Shackleton describes rearranging a very restricted menu. Even a small change in a meal could give the men something to anticipate.",
+    "sources": [
+      {
+        "label": "Wikisource: original South text, Chapter 7",
+        "url": "https://en.wikisource.org/wiki/South:_the_story_of_Shackleton's_last_expedition,_1914-1917/Chapter_7"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-shackleton-care",
+    "text": "Those of us who were comparatively fit had to wait until the weaker members of the party had been supplied",
+    "speaker": "Ernest Shackleton",
+    "collection": "history",
+    "work": "South: The Story of Shackleton's Last Expedition, 1914-1917",
+    "locator": "Chapter 8; Macmillan, New York, 1920 edition",
+    "year": 1920,
+    "context": "On landing at Elephant Island, the fitter men wait while the weaker men receive hot milk. This excerpt ends before the sentence continues; the setting is practical hospitality in an emergency.",
+    "sources": [
+      {
+        "label": "Wikisource: original South text, Chapter 8",
+        "url": "https://en.wikisource.org/wiki/South:_the_story_of_Shackleton's_last_expedition,_1914-1917/Chapter_8"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-shackleton-hope",
+    "text": "Each day brought its little round of troubles, but also compensation in the form of food and growing hope.",
+    "speaker": "Ernest Shackleton",
+    "collection": "history",
+    "work": "South: The Story of Shackleton's Last Expedition, 1914-1917",
+    "locator": "Chapter 9; Macmillan, New York, 1920 edition",
+    "year": 1920,
+    "context": "During the James Caird voyage, small meals and progress help sustain the crew. The passage acknowledges discomfort as well as confidence.",
+    "sources": [
+      {
+        "label": "Wikisource: original South text, Chapter 9",
+        "url": "https://en.wikisource.org/wiki/South:_the_story_of_Shackleton's_last_expedition,_1914-1917/Chapter_9"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-shackleton-memories",
+    "text": "That was all of tangible things; but in memories we were rich.",
+    "speaker": "Ernest Shackleton",
+    "collection": "history",
+    "work": "South: The Story of Shackleton's Last Expedition, 1914-1917",
+    "locator": "Chapter 10; Macmillan, New York, 1920 edition",
+    "year": 1920,
+    "context": "After crossing South Georgia, Shackleton compares the little equipment they still possess with the experiences they carry. These are his own narrative words, before the following literary allusion.",
+    "sources": [
+      {
+        "label": "Wikisource: original South text, Chapter 10",
+        "url": "https://en.wikisource.org/wiki/South:_the_story_of_Shackleton's_last_expedition,_1914-1917/Chapter_10"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-shackleton-rescue",
+    "text": "My mind was bent upon the rescue of the party on Elephant Island at the earliest possible moment.",
+    "speaker": "Ernest Shackleton",
+    "collection": "history",
+    "work": "South: The Story of Shackleton's Last Expedition, 1914-1917",
+    "locator": "Chapter 11; Macmillan, New York, 1920 edition",
+    "year": 1920,
+    "context": "After reaching help, Shackleton keeps his attention on the men still awaiting rescue. The chapter records several attempts and the assistance of others.",
+    "sources": [
+      {
+        "label": "Wikisource: original South text, Chapter 11",
+        "url": "https://en.wikisource.org/wiki/South:_the_story_of_Shackleton's_last_expedition,_1914-1917/Chapter_11"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-magellan-counsel",
+    "text": "all my affairs are discussed and communicated generally to all",
+    "speaker": "Ferdinand Magellan, as preserved by João de Barros",
+    "collection": "history",
+    "work": "The First Voyage Round the World",
+    "locator": "Magellan's Order of the Day in the Straits; Lord Stanley of Alderley translation, Hakluyt Society, 1874",
+    "year": 1874,
+    "context": "Magellan describes his approach to consultation in the order dated 21 November 1520. The text survives here through Barros, not as an autograph; this is Lord Stanley’s 1874 English translation.",
+    "sources": [
+      {
+        "label": "Wikisource: Magellan's Order of the Day in the Straits",
+        "url": "https://en.wikisource.org/wiki/The_First_Voyage_Round_the_World/Magellan's_Order_of_the_Day_in_the_Straits"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-magellan-opinions",
+    "text": "that you give me your opinions in writing each one for himself",
+    "speaker": "Ferdinand Magellan, as preserved by João de Barros",
+    "collection": "history",
+    "work": "The First Voyage Round the World",
+    "locator": "Magellan's Order of the Day in the Straits; Lord Stanley of Alderley translation, Hakluyt Society, 1874",
+    "year": 1874,
+    "context": "The order requests individual written recommendations about continuing or returning. Its surrounding discussion acknowledges that the punishment of earlier mutineers made crew members afraid to speak freely.",
+    "sources": [
+      {
+        "label": "Wikisource: Magellan's Order of the Day in the Straits",
+        "url": "https://en.wikisource.org/wiki/The_First_Voyage_Round_the_World/Magellan's_Order_of_the_Day_in_the_Straits"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-magellan-provisions",
+    "text": "ordered provisions to be served out more sparingly among his crews",
+    "speaker": "Maximilianus Transylvanus",
+    "collection": "history",
+    "work": "The First Voyage Round the World",
+    "locator": "Letter of Maximilian, the Transylvan; Lord Stanley of Alderley translation, Hakluyt Society, 1874",
+    "year": 1874,
+    "context": "Maximilian reports Magellan rationing supplies for a long voyage. This early account draws on returning survivors; it is not a statement spoken by Magellan.",
+    "sources": [
+      {
+        "label": "Wikisource: Letter of Maximilian, the Transylvan",
+        "url": "https://en.wikisource.org/wiki/The_First_Voyage_Round_the_World/Letter_of_Maximilian,_the_Transylvan"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-magellan-examine",
+    "text": "he gave orders that they should be all carefully examined",
+    "speaker": "Maximilianus Transylvanus",
+    "collection": "history",
+    "work": "The First Voyage Round the World",
+    "locator": "Letter of Maximilian, the Transylvan; Lord Stanley of Alderley translation, Hakluyt Society, 1874",
+    "year": 1874,
+    "context": "The passage describes Magellan sending ships to examine possible channels. It presents exploration as patient observation, in an early account that also records conflict within the expedition.",
+    "sources": [
+      {
+        "label": "Wikisource: Letter of Maximilian, the Transylvan",
+        "url": "https://en.wikisource.org/wiki/The_First_Voyage_Round_the_World/Letter_of_Maximilian,_the_Transylvan"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-magellan-letters",
+    "text": "He left letters in the place from which he sailed",
+    "speaker": "The unnamed Genoese pilot",
+    "collection": "history",
+    "work": "The First Voyage Round the World",
+    "locator": "The Genoese Pilot's Account of Magellan's Voyage; Lord Stanley of Alderley translation, Hakluyt Society, 1874",
+    "year": 1874,
+    "context": "The pilot records Magellan leaving instructions for a missing ship in the straits. This is a report of his actions, with the recorder’s identity left as the edition presents it.",
+    "sources": [
+      {
+        "label": "Wikisource: The Genoese Pilot's Account of Magellan's Voyage",
+        "url": "https://en.wikisource.org/wiki/The_First_Voyage_Round_the_World/The_Genoese_Pilot's_Account_of_Magellan's_Voyage"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-magellan-channels",
+    "text": "Fernando de Magalhāes sent to discover what there was further in",
+    "speaker": "The unnamed Genoese pilot",
+    "collection": "history",
+    "work": "The First Voyage Round the World",
+    "locator": "The Genoese Pilot's Account of Magellan's Voyage; Lord Stanley of Alderley translation, Hakluyt Society, 1874",
+    "year": 1874,
+    "context": "The expedition explores several possible channels before it knows which one leads through. The historical spelling belongs to the translated source, not a modern quotation attributed directly to Magellan.",
+    "sources": [
+      {
+        "label": "Wikisource: The Genoese Pilot's Account of Magellan's Voyage",
+        "url": "https://en.wikisource.org/wiki/The_First_Voyage_Round_the_World/The_Genoese_Pilot's_Account_of_Magellan's_Voyage"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-magellan-signals",
+    "text": "his ships should not go away and separate from one another",
+    "speaker": "Antonio Pigafetta",
+    "collection": "history",
+    "work": "The First Voyage Round the World",
+    "locator": "Pigafetta's Account of Magellan's Voyage; Lord Stanley of Alderley translation, Hakluyt Society, 1874",
+    "year": 1874,
+    "context": "Pigafetta explains the purpose of Magellan’s written signalling rules during storms. The account stresses coordination rather than solitary heroism.",
+    "sources": [
+      {
+        "label": "Wikisource: Pigafetta's Account of Magellan's Voyage",
+        "url": "https://en.wikisource.org/wiki/The_First_Voyage_Round_the_World/Pigafetta's_Account_of_Magellan's_Voyage"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-magellan-watch",
+    "text": "ordered that three watches should be kept at night",
+    "speaker": "Antonio Pigafetta",
+    "collection": "history",
+    "work": "The First Voyage Round the World",
+    "locator": "Pigafetta's Account of Magellan's Voyage; Lord Stanley of Alderley translation, Hakluyt Society, 1874",
+    "year": 1874,
+    "context": "Pigafetta describes the rotating watch system in Magellan’s fleet. The setting is the opening account of preparations and shipboard organisation.",
+    "sources": [
+      {
+        "label": "Wikisource: Pigafetta's Account of Magellan's Voyage",
+        "url": "https://en.wikisource.org/wiki/The_First_Voyage_Round_the_World/Pigafetta's_Account_of_Magellan's_Voyage"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-magellan-winter",
+    "text": "stayed there five months waiting for the sun to return towards us",
+    "speaker": "The unnamed Portuguese narrator",
+    "collection": "history",
+    "work": "The First Voyage Round the World",
+    "locator": "Narrative of the Anonymous Portuguese; Lord Stanley of Alderley translation, Hakluyt Society, 1874",
+    "year": 1874,
+    "context": "An early voyage narrative describes wintering at Saint Julian. These are the narrator’s words about the expedition, not Magellan’s own speech.",
+    "sources": [
+      {
+        "label": "Wikisource: Narrative of the Anonymous Portuguese",
+        "url": "https://en.wikisource.org/wiki/The_First_Voyage_Round_the_World/Narrative_of_the_Anonymous_Portuguese"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-magellan-sight",
+    "text": "there are many islands in between, and one must sail by sight",
+    "speaker": "The unnamed Portuguese narrator",
+    "collection": "history",
+    "work": "The First Voyage Round the World",
+    "locator": "Narrative of the Anonymous Portuguese; Lord Stanley of Alderley translation, Hakluyt Society, 1874",
+    "year": 1874,
+    "context": "The narrator explains navigation through the spice islands. This passage comes from the wider voyage account, whose later stages took place after Magellan’s death.",
+    "sources": [
+      {
+        "label": "Wikisource: Narrative of the Anonymous Portuguese",
+        "url": "https://en.wikisource.org/wiki/The_First_Voyage_Round_the_World/Narrative_of_the_Anonymous_Portuguese"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-earhart-travel",
+    "text": "I think possibly I gained as much from travel as from curricula.",
+    "speaker": "Amelia Earhart",
+    "collection": "history",
+    "work": "The Fun of It",
+    "locator": "Chapter 1; Harcourt, Brace and Company, 1932",
+    "year": 1932,
+    "context": "Earhart looks back on family journeys during her school years, reflecting on the education travel gave her.",
+    "sources": [
+      {
+        "label": "Wikisource: The Fun of It, chapter 1",
+        "url": "https://en.wikisource.org/wiki/The_Fun_of_It/Chapter_1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-earhart-books",
+    "text": "Books have meant much to me.",
+    "speaker": "Amelia Earhart",
+    "collection": "history",
+    "work": "The Fun of It",
+    "locator": "Chapter 1; Harcourt, Brace and Company, 1932",
+    "year": 1932,
+    "context": "In her account of childhood, Earhart recalls reading and her mother reading aloud. This is a complete sentence from the memoir.",
+    "sources": [
+      {
+        "label": "Wikisource: The Fun of It, chapter 1",
+        "url": "https://en.wikisource.org/wiki/The_Fun_of_It/Chapter_1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-earhart-first-flight",
+    "text": "As soon as we left the ground, I knew I myself had to fly.",
+    "speaker": "Amelia Earhart",
+    "collection": "history",
+    "work": "The Fun of It",
+    "locator": "Chapter 2; Harcourt, Brace and Company, 1932",
+    "year": 1932,
+    "context": "Earhart recalls her first flight with Frank Hawks. The wording is from her 1932 memoir, rather than a transcript made during that flight.",
+    "sources": [
+      {
+        "label": "Wikisource: The Fun of It, chapter 2",
+        "url": "https://en.wikisource.org/wiki/The_Fun_of_It/Chapter_2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-earhart-experience",
+    "text": "The diploma is really only a permit to gain experience",
+    "speaker": "Amelia Earhart",
+    "collection": "history",
+    "work": "The Fun of It",
+    "locator": "Chapter 3; Harcourt, Brace and Company, 1932",
+    "year": 1932,
+    "context": "While comparing pilot training with other professions, Earhart distinguishes earning a qualification from becoming fully competent. This continuous excerpt ends before the sentence continues.",
+    "sources": [
+      {
+        "label": "Wikisource: The Fun of It, chapter 3",
+        "url": "https://en.wikisource.org/wiki/The_Fun_of_It/Chapter_3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-earhart-curiosity",
+    "text": "Curiosity is a great starter.",
+    "speaker": "Amelia Earhart",
+    "collection": "history",
+    "work": "The Fun of It",
+    "locator": "Chapter 4; Harcourt, Brace and Company, 1932",
+    "year": 1932,
+    "context": "Earhart recalls arranging the meeting that led to her invitation to cross the Atlantic aboard Friendship.",
+    "sources": [
+      {
+        "label": "Wikisource: The Fun of It, chapter 4",
+        "url": "https://en.wikisource.org/wiki/The_Fun_of_It/Chapter_4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-earhart-preparation",
+    "text": "preparations are apt to be long drawn out and worrisome",
+    "speaker": "Amelia Earhart",
+    "collection": "history",
+    "work": "The Fun of It",
+    "locator": "Chapter 4; Harcourt, Brace and Company, 1932",
+    "year": 1932,
+    "context": "Earhart describes the work behind an expedition, including testing the aircraft and its instruments. This excerpt is practical rather than a promise that enthusiasm removes difficulty.",
+    "sources": [
+      {
+        "label": "Wikisource: The Fun of It, chapter 4",
+        "url": "https://en.wikisource.org/wiki/The_Fun_of_It/Chapter_4"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-earhart-hospitality",
+    "text": "I hope some day to return to Trepassey really to enjoy its fishing and hunting",
+    "speaker": "Amelia Earhart",
+    "collection": "history",
+    "work": "The Fun of It",
+    "locator": "Chapter 5; Harcourt, Brace and Company, 1932",
+    "year": 1932,
+    "context": "Earhart immediately adds her wish to meet the hospitable local people again. The original passage contrasts that welcome with the strain of preparing for the 1928 crossing.",
+    "sources": [
+      {
+        "label": "Wikisource: The Fun of It, chapter 5",
+        "url": "https://en.wikisource.org/wiki/The_Fun_of_It/Chapter_5"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-earhart-signs",
+    "text": "At such a time, a name on a sign may be a real life saver.",
+    "speaker": "Amelia Earhart",
+    "collection": "history",
+    "work": "The Fun of It",
+    "locator": "Chapter 6; Harcourt, Brace and Company, 1932",
+    "year": 1932,
+    "context": "In her chapter on flying across the United States, Earhart advocates clear ground signs for pilots who need to identify their position.",
+    "sources": [
+      {
+        "label": "Wikisource: The Fun of It, chapter 6",
+        "url": "https://en.wikisource.org/wiki/The_Fun_of_It/Chapter_6"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-earhart-choice",
+    "text": "I chose to fly the Atlantic because I wanted to.",
+    "speaker": "Amelia Earhart",
+    "collection": "history",
+    "work": "The Fun of It",
+    "locator": "Chapter 17; Harcourt, Brace and Company, 1932",
+    "year": 1932,
+    "context": "In the postscript dated 25 May 1932, Earhart explains her decision to attempt a solo Atlantic crossing.",
+    "sources": [
+      {
+        "label": "Wikisource: The Fun of It, chapter 17",
+        "url": "https://en.wikisource.org/wiki/The_Fun_of_It/Chapter_17"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-earhart-confidence",
+    "text": "that confidence helped immeasurably in sustaining my own.",
+    "speaker": "Amelia Earhart",
+    "collection": "history",
+    "work": "The Fun of It",
+    "locator": "Chapter 17; Harcourt, Brace and Company, 1932",
+    "year": 1932,
+    "context": "Earhart credits Bernt Balchen’s confidence while he prepared her aircraft. The passage recognises the contribution of technical colleagues to an achievement often described as solitary.",
+    "sources": [
+      {
+        "label": "Wikisource: The Fun of It, chapter 17",
+        "url": "https://en.wikisource.org/wiki/The_Fun_of_It/Chapter_17"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-livingstone-learning",
+    "text": "But still I have something to learn",
+    "speaker": "David Livingstone",
+    "collection": "history",
+    "work": "Letter to George Drummond",
+    "locator": "20 June 1843; Livingstone Online manuscript liv_000526",
+    "year": 1843,
+    "context": "Livingstone acknowledges that knowing vocabulary does not always mean being able to use it when needed. The letter describes his efforts to learn local languages.",
+    "sources": [
+      {
+        "label": "Livingstone Online: letter to George Drummond",
+        "url": "https://livingstoneonline.org/livingstone/manuscript/liv:000526/view"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": true
+  },
+  {
+    "id": "cast-livingstone-language",
+    "text": "I had to speak long before I knew what to say.",
+    "speaker": "David Livingstone",
+    "collection": "history",
+    "work": "Letter to George Drummond",
+    "locator": "20 June 1843; Livingstone Online manuscript liv_000526",
+    "year": 1843,
+    "context": "Livingstone recalls learning through practical contact while treating patients. The sentence belongs to his letter, whose surrounding discussion also expresses the assumptions of a nineteenth-century missionary.",
+    "sources": [
+      {
+        "label": "Livingstone Online: letter to George Drummond",
+        "url": "https://livingstoneonline.org/livingstone/manuscript/liv:000526/view"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-livingstone-freedom",
+    "text": "Let who will go for slavery I vote for the freeman.",
+    "speaker": "David Livingstone",
+    "collection": "history",
+    "work": "Letter to Charles Livingstone",
+    "locator": "8 November 1854; Livingstone Online manuscript liv_000827",
+    "year": 1854,
+    "context": "Livingstone argues against slavery after observing households in Portuguese-controlled Angola. The letter’s criticism coexists with paternalistic colonial language; the quotation does not erase that context.",
+    "sources": [
+      {
+        "label": "Livingstone Online: letter to Charles Livingstone",
+        "url": "https://livingstoneonline.org/livingstone/manuscript/liv:000827/view"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-livingstone-encouragement",
+    "text": "I encouraged them to persevere",
+    "speaker": "David Livingstone",
+    "collection": "history",
+    "work": "Letter to Charles Livingstone",
+    "locator": "8 November 1854; Livingstone Online manuscript liv_000827",
+    "year": 1854,
+    "context": "Livingstone describes meeting coffee growers while advocating agriculture as an alternative to slave trading. This is a brief continuous excerpt from his account of those encounters.",
+    "sources": [
+      {
+        "label": "Livingstone Online: letter to Charles Livingstone",
+        "url": "https://livingstoneonline.org/livingstone/manuscript/liv:000827/view"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-livingstone-correction",
+    "text": "on further investigation felt ashamed that I had done it.",
+    "speaker": "David Livingstone",
+    "collection": "history",
+    "work": "Letter to John Washington",
+    "locator": "12 February 1858; Livingstone Online manuscript liv_001228",
+    "year": 1858,
+    "context": "Livingstone admits that he had sent an unfairly sharp letter before properly investigating a problem with a chronometer. The excerpt preserves his admission rather than turning it into an invented maxim.",
+    "sources": [
+      {
+        "label": "Livingstone Online: letter to John Washington",
+        "url": "https://livingstoneonline.org/livingstone/manuscript/liv:001228/view"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": true
+  },
+  {
+    "id": "cast-livingstone-return",
+    "text": "I am ready to go back to Africa again.",
+    "speaker": "David Livingstone",
+    "collection": "history",
+    "work": "Letter to William Thompson",
+    "locator": "17, 18 September 1856; Livingstone Online manuscript liv_000918",
+    "year": 1856,
+    "context": "Writing from Mauritius after illness, Livingstone explains his wish to resume work. The date and location belong to the surviving correspondence.",
+    "sources": [
+      {
+        "label": "Livingstone Online: letter to William Thompson",
+        "url": "https://livingstoneonline.org/livingstone/manuscript/liv:000918/view"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": true
+  },
+  {
+    "id": "cast-livingstone-hospitality",
+    "text": "I have been most kindly and hospitably entertained by Major General Hay",
+    "speaker": "David Livingstone",
+    "collection": "history",
+    "work": "Letter to William Thompson",
+    "locator": "17, 18 September 1856; Livingstone Online manuscript liv_000918",
+    "year": 1856,
+    "context": "Livingstone thanks the host whose home provided a place to recover. This continuous excerpt ends before his description of the house’s setting.",
+    "sources": [
+      {
+        "label": "Livingstone Online: letter to William Thompson",
+        "url": "https://livingstoneonline.org/livingstone/manuscript/liv:000918/view"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": true
+  },
+  {
+    "id": "cast-livingstone-instruction",
+    "text": "I feel the benefit often of your instructions",
+    "speaker": "David Livingstone",
+    "collection": "history",
+    "work": "Letter to James R. Bennett",
+    "locator": "22 December 1841; Livingstone Online manuscript liv_000499",
+    "year": 1841,
+    "context": "Livingstone credits the teaching he received before working in southern Africa. This excerpt recognises continuing dependence on teachers and colleagues.",
+    "sources": [
+      {
+        "label": "Livingstone Online: letter to James R. Bennett",
+        "url": "https://livingstoneonline.org/livingstone/manuscript/liv:000499/view"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": true
+  },
+  {
+    "id": "cast-livingstone-care",
+    "text": "he must leave fees out of the question",
+    "speaker": "David Livingstone",
+    "collection": "history",
+    "work": "Letter to James R. Bennett",
+    "locator": "22 December 1841; Livingstone Online manuscript liv_000499",
+    "year": 1841,
+    "context": "Livingstone describes the circumstances of medical practice in his letter to Bennett. This is historical correspondence about his work, not present-day clinical advice.",
+    "sources": [
+      {
+        "label": "Livingstone Online: letter to James R. Bennett",
+        "url": "https://livingstoneonline.org/livingstone/manuscript/liv:000499/view"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-livingstone-limits",
+    "text": "I am deficient in the trading instinct.",
+    "speaker": "David Livingstone",
+    "collection": "history",
+    "work": "Letter to Lord John Russell",
+    "locator": "28 November 1865; Livingstone Online manuscript liv_002664",
+    "year": 1865,
+    "context": "Discussing how donated money should be managed, Livingstone acknowledges a limit in his own expertise and suggests that a mercantile firm could administer it better.",
+    "sources": [
+      {
+        "label": "Livingstone Online: letter to Lord John Russell",
+        "url": "https://livingstoneonline.org/livingstone/manuscript/liv:002664/view"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": true
+  },
+  {
+    "id": "cast-marco-evidence",
+    "text": "He will distinguish what he saw from what he heard.",
+    "speaker": "Rustichello’s narrative about Marco Polo",
+    "collection": "history",
+    "work": "Il Milione",
+    "locator": "Chapter 1; Italian text, Antonio Lanza edition (1982), via Wikisource",
+    "year": "c. 1298",
+    "context": "The prologue promises to separate personal observation from reports. This is the narrative voice presenting Polo’s travels, not a recorded remark spoken by him. New English translation prepared for The Dawn Anthology (2026) from the cited Italian text.",
+    "sources": [
+      {
+        "label": "Wikisource: Italian chapter 1",
+        "url": "https://it.wikisource.org/wiki/Milione/1"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false,
+    "originalText": "le cose vedute dirà di veduta e l’altre per udita",
+    "originalLanguage": "Italian",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "cast-marco-languages",
+    "text": "He learnt the customs of the Tartars, their languages and their writing.",
+    "speaker": "Rustichello’s narrative about Marco Polo",
+    "collection": "history",
+    "work": "Il Milione",
+    "locator": "Chapter 15; Italian text, Antonio Lanza edition (1982), via Wikisource",
+    "year": "c. 1298",
+    "context": "The narrator describes Marco learning at the Khan’s court. The historical name Tartars is retained from the passage. New English translation prepared for The Dawn Anthology (2026) from the cited Italian text.",
+    "sources": [
+      {
+        "label": "Wikisource: Italian chapter 15",
+        "url": "https://it.wikisource.org/wiki/Milione/15"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false,
+    "originalText": "aparò li costumi de’ Tartari e loro lingue e loro lettere",
+    "originalLanguage": "Italian",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "cast-marco-wonders",
+    "text": "and also all the wonders and new things he had found",
+    "speaker": "Rustichello’s narrative about Marco Polo",
+    "collection": "history",
+    "work": "Il Milione",
+    "locator": "Chapter 16; Italian text, Antonio Lanza edition (1982), via Wikisource",
+    "year": "c. 1298",
+    "context": "The narrator describes Marco returning from an embassy with observations beyond his formal assignment. This is a continuous excerpt, not a complete sentence. New English translation prepared for The Dawn Anthology (2026) from the cited Italian text.",
+    "sources": [
+      {
+        "label": "Wikisource: Italian chapter 16",
+        "url": "https://it.wikisource.org/wiki/Milione/16"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false,
+    "originalText": "e ancora tutte le meraviglie e le nuove cose ch’egli avea trovate",
+    "originalLanguage": "Italian",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "cast-marco-craft",
+    "text": "The people of Tabriz live by trade and crafts, making cloth of silk and gold.",
+    "speaker": "Marco Polo and Rustichello da Pisa",
+    "collection": "history",
+    "work": "Il Milione",
+    "locator": "Chapter 25; Italian text, Antonio Lanza edition (1982), via Wikisource",
+    "year": "c. 1298",
+    "context": "The travel narrative describes the trade and textile crafts of Tabriz, called Toris in this Italian text. It is a medieval description, not a current city guide. New English translation prepared for The Dawn Anthology (2026) from the cited Italian text.",
+    "sources": [
+      {
+        "label": "Wikisource: Italian chapter 25",
+        "url": "https://it.wikisource.org/wiki/Milione/25"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "originalText": "Gli uomini di Tor(i)s vivoro di mercatantia e d’arti, cioè di lavorare drappi a seta e a oro.",
+    "originalLanguage": "Italian",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "cast-marco-salt",
+    "text": "People travel thirty days to obtain this salt, because it is the best in the world.",
+    "speaker": "Marco Polo and Rustichello da Pisa",
+    "collection": "history",
+    "work": "Il Milione",
+    "locator": "Chapter 45; Italian text, Antonio Lanza edition (1982), via Wikisource",
+    "year": "c. 1298",
+    "context": "The narrative describes the salt trade near Tahican. Its praise of the salt expresses the source’s judgement, not a tested modern ranking. New English translation prepared for The Dawn Anthology (2026) from the cited Italian text.",
+    "sources": [
+      {
+        "label": "Wikisource: Italian chapter 45",
+        "url": "https://it.wikisource.org/wiki/Milione/45"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "originalText": "E vengono da la lunga 30 giornate per questo sale, perch’è lo migliore del mondo",
+    "originalLanguage": "Italian",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "cast-marco-provisions",
+    "text": "There is nothing to eat unless you bring it with you.",
+    "speaker": "Marco Polo and Rustichello da Pisa",
+    "collection": "history",
+    "work": "Il Milione",
+    "locator": "Chapter 49; Italian text, Antonio Lanza edition (1982), via Wikisource",
+    "year": "c. 1298",
+    "context": "In the account of the high plateau beyond Badakhshan, provisions become essential. The sentence is translated from a continuous clause in the medieval text. New English translation prepared for The Dawn Anthology (2026) from the cited Italian text.",
+    "sources": [
+      {
+        "label": "Wikisource: Italian chapter 49",
+        "url": "https://it.wikisource.org/wiki/Milione/49"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "originalText": "né non si truova che mangiare, s’altri nol vi porta",
+    "originalLanguage": "Italian",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "cast-marco-merchants",
+    "text": "There are many merchants here who travel throughout the world.",
+    "speaker": "Marco Polo and Rustichello da Pisa",
+    "collection": "history",
+    "work": "Il Milione",
+    "locator": "Chapter 50; Italian text, Antonio Lanza edition (1982), via Wikisource",
+    "year": "c. 1298",
+    "context": "The account of Kashgar describes a network of travelling merchants. Its broad language belongs to the narrator’s account of the trading world. New English translation prepared for The Dawn Anthology (2026) from the cited Italian text.",
+    "sources": [
+      {
+        "label": "Wikisource: Italian chapter 50",
+        "url": "https://it.wikisource.org/wiki/Milione/50"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "originalText": "e sonvi molti mercanti che cercano tutto il mondo",
+    "originalLanguage": "Italian",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "cast-marco-trade",
+    "text": "They have an abundance of everything and live by trade and crafts.",
+    "speaker": "Marco Polo and Rustichello da Pisa",
+    "collection": "history",
+    "work": "Il Milione",
+    "locator": "Chapter 54; Italian text, Antonio Lanza edition (1982), via Wikisource",
+    "year": "c. 1298",
+    "context": "The narrator describes the prosperity of Pein. As throughout the travel book, observation, inherited reports and cultural assumptions need to be read together. New English translation prepared for The Dawn Anthology (2026) from the cited Italian text.",
+    "sources": [
+      {
+        "label": "Wikisource: Italian chapter 54",
+        "url": "https://it.wikisource.org/wiki/Milione/54"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "originalText": "Egli ànno abondanza di tutte cose e vivoro di mercatantie e d’arti.",
+    "originalLanguage": "Italian",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "cast-marco-desert",
+    "text": "Then they take a month’s provisions for themselves and their animals.",
+    "speaker": "Marco Polo and Rustichello da Pisa",
+    "collection": "history",
+    "work": "Il Milione",
+    "locator": "Chapter 56; Italian text, Antonio Lanza edition (1982), via Wikisource",
+    "year": "c. 1298",
+    "context": "The account of Lop describes resting and supplying people and animals before a desert crossing. Other parts of the chapter recount spirits, explicitly within the book’s medieval world view. New English translation prepared for The Dawn Anthology (2026) from the cited Italian text.",
+    "sources": [
+      {
+        "label": "Wikisource: Italian chapter 56",
+        "url": "https://it.wikisource.org/wiki/Milione/56"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "originalText": "poscia prende vivande per uno mese per loro e per loro bestie",
+    "originalLanguage": "Italian",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "cast-marco-gardens",
+    "text": "There are many rivers, springs and meadows here.",
+    "speaker": "Marco Polo and Rustichello da Pisa",
+    "collection": "history",
+    "work": "Il Milione",
+    "locator": "Chapter 74; Italian text, Antonio Lanza edition (1982), via Wikisource",
+    "year": "c. 1298",
+    "context": "The account describes the grounds around the Khan’s palace at Giandu, usually identified as Shangdu. This is an excerpt from the travel narrative, not a claim to reproduce Marco’s spoken English. New English translation prepared for The Dawn Anthology (2026) from the cited Italian text.",
+    "sources": [
+      {
+        "label": "Wikisource: Italian chapter 74",
+        "url": "https://it.wikisource.org/wiki/Milione/74"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "originalText": "quivi àe fiumi e fontane e prati assai",
+    "originalLanguage": "Italian",
+    "translation": "New English translation for The Dawn Anthology, 2026"
+  },
+  {
+    "id": "cast-ibn-battuta-leaving-home",
+    "text": "forsook my home as birds forsake their nests",
+    "speaker": "Ibn Battuta, as recorded by Ibn Juzayy",
+    "collection": "history",
+    "work": "The Rihla (Travels of Ibn Battuta)",
+    "locator": "Opening departure passage; Gibb translation, p. 8, excerpted by UC Berkeley ORIAS",
+    "year": "c. 1355",
+    "context": "A short clause from the account of leaving Tangier for pilgrimage. The Rihla was dictated retrospectively to Ibn Juzayy, rather than written as a contemporary daily diary.",
+    "sources": [
+      {
+        "label": "UC Berkeley ORIAS: quoted travel narrative",
+        "url": "https://orias.berkeley.edu/resources-teachers/travels-ibn-battuta/journey/across-north-africa-cairo-1325"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-ibn-battuta-kindly-welcome",
+    "text": "continued to comfort me with friendly talk until I entered the city",
+    "speaker": "Ibn Battuta, as recorded by Ibn Juzayy",
+    "collection": "history",
+    "work": "The Rihla (Travels of Ibn Battuta)",
+    "locator": "Arrival at Tunis; Gibb translation, p. 13, excerpted by UC Berkeley ORIAS",
+    "year": "c. 1355",
+    "context": "Ibn Battuta remembers a fellow pilgrim noticing his loneliness at Tunis and offering companionship. These are the traveller’s translated narrative words, not dialogue spoken by the unnamed pilgrim.",
+    "sources": [
+      {
+        "label": "UC Berkeley ORIAS: quoted travel narrative",
+        "url": "https://orias.berkeley.edu/resources-teachers/travels-ibn-battuta/journey/across-north-africa-cairo-1325"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-ibn-battuta-first-kindness",
+    "text": "This was the first alms I received on my journey.",
+    "speaker": "Ibn Battuta, as recorded by Ibn Juzayy",
+    "collection": "history",
+    "work": "The Rihla (Travels of Ibn Battuta)",
+    "locator": "Travels in Asia and Africa 1325–1354; H. A. R. Gibb, 1929, pp. 43–45; departure from North Africa",
+    "year": "c. 1355",
+    "context": "Ibn Battuta recalls the first material assistance of his journey. Fordham reproduces the primary text in Gibb’s abridged 1929 English translation.",
+    "sources": [
+      {
+        "label": "Fordham: Gibb’s primary-text translation",
+        "url": "https://sourcebooks.web.fordham.edu/source/1354-ibnbattuta.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-ibn-battuta-shared-meal",
+    "text": "The shaykh rose and embraced me, and calling for food invited me to eat.",
+    "speaker": "Ibn Battuta, as recorded by Ibn Juzayy",
+    "collection": "history",
+    "work": "The Rihla (Travels of Ibn Battuta)",
+    "locator": "Travels in Asia and Africa 1325–1354; H. A. R. Gibb, 1929, pp. 47–50; al-Murshidi’s hospice",
+    "year": "c. 1355",
+    "context": "The traveller describes being welcomed and fed by a religious host near Alexandria. The passage belongs to his retrospective travel account, in Gibb’s 1929 translation.",
+    "sources": [
+      {
+        "label": "Fordham: Gibb’s primary-text translation",
+        "url": "https://sourcebooks.web.fordham.edu/source/1354-ibnbattuta.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-ibn-battuta-cairo-crossroads",
+    "text": "the meeting-place of comer and goer, the stopping-place of feeble and strong",
+    "speaker": "Ibn Battuta, as recorded by Ibn Juzayy",
+    "collection": "history",
+    "work": "The Rihla (Travels of Ibn Battuta)",
+    "locator": "Cairo description; Gibb translation, vol. I, p. 41, excerpted by UC Berkeley ORIAS",
+    "year": "c. 1355",
+    "context": "This poetic description of Cairo evokes a city receiving people of different circumstances. It is the traveller’s praise, rather than a demographic claim.",
+    "sources": [
+      {
+        "label": "UC Berkeley ORIAS: quoted travel narrative",
+        "url": "https://orias.berkeley.edu/resources-teachers/travels-ibn-battuta/journey/cairo-1326"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-ibn-battuta-anatolian-hospitality",
+    "text": "Nowhere in the world will you find men so eager to welcome strangers",
+    "speaker": "Ibn Battuta, as recorded by Ibn Juzayy",
+    "collection": "history",
+    "work": "The Rihla (Travels of Ibn Battuta)",
+    "locator": "Young Brotherhood passage; Gibb translation as excerpted by UC Berkeley ORIAS",
+    "year": "c. 1355",
+    "context": "Ibn Battuta praises the hospitality of the Anatolian brotherhoods that welcomed and fed travellers. The sweeping comparison is his personal judgement. The linked teaching page does not give a page number for this particular excerpt.",
+    "sources": [
+      {
+        "label": "UC Berkeley ORIAS: quoted travel narrative",
+        "url": "https://orias.berkeley.edu/resources-teachers/travels-ibn-battuta/journey/anatolia-1330-1331"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-ibn-battuta-golden-light",
+    "text": "so that it glows like a mass of light",
+    "speaker": "Ibn Battuta, as recorded by Ibn Juzayy",
+    "collection": "history",
+    "work": "The Rihla (Travels of Ibn Battuta)",
+    "locator": "Dome of the Rock description; Gibb translation, vol. I, p. 79, excerpted by UC Berkeley ORIAS",
+    "year": "c. 1355",
+    "context": "A clause describing gilded decoration in the Dome of the Rock. The online lesson places the quotation near an Al-Aqsa heading; the quoted description itself concerns the Dome of the Rock.",
+    "sources": [
+      {
+        "label": "UC Berkeley ORIAS: quoted travel narrative",
+        "url": "https://orias.berkeley.edu/resources-teachers/travels-ibn-battuta/journey/cairo-jerusalem-damascus-medina-and-mecca-1326"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-ibn-battuta-care-for-students",
+    "text": "The townsfolk supply their needs of food and clothing",
+    "speaker": "Ibn Battuta, as recorded by Ibn Juzayy",
+    "collection": "history",
+    "work": "The Rihla (Travels of Ibn Battuta)",
+    "locator": "Great Mosque of Damascus; Gibb translation, vol. I, p. 129, excerpted by UC Berkeley ORIAS",
+    "year": "c. 1355",
+    "context": "The needs are those of students at the mosque. The continuing sentence explains that the students do not have to beg for this support.",
+    "sources": [
+      {
+        "label": "UC Berkeley ORIAS: quoted travel narrative",
+        "url": "https://orias.berkeley.edu/resources-teachers/travels-ibn-battuta/journey/cairo-jerusalem-damascus-medina-and-mecca-1326"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-ibn-battuta-homeward",
+    "text": "memories of my homeland, affection for my family and dear friends, who drew me toward my land",
+    "speaker": "Ibn Battuta, as recorded by Ibn Juzayy",
+    "collection": "history",
+    "work": "The Rihla (Travels of Ibn Battuta)",
+    "locator": "Home to Morocco section; primary narrative excerpt reproduced by UC Berkeley ORIAS",
+    "year": "c. 1355",
+    "context": "A clause explaining his desire to return home. The linked lesson reproduces the translated passage but supplies no translator or page reference for this particular quotation; that limit is retained here rather than supplying an invented pinpoint.",
+    "sources": [
+      {
+        "label": "UC Berkeley ORIAS: quoted travel narrative",
+        "url": "https://orias.berkeley.edu/resources-teachers/travels-ibn-battuta/journey/return-home-1346-1349"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-ibn-battuta-stay-together",
+    "text": "After that we neither went on ahead nor lagged behind.",
+    "speaker": "Ibn Battuta, as recorded by Ibn Juzayy",
+    "collection": "history",
+    "work": "The Rihla (Travels of Ibn Battuta)",
+    "locator": "Sahara caravan incident; primary narrative excerpt reproduced by UC Berkeley ORIAS",
+    "year": "c. 1355",
+    "context": "Ibn Battuta describes staying with a caravan after a fellow traveller disappeared. The lesson reproduces this translated sentence without an edition or page for this particular excerpt. The lesson’s African material draws on Hamdun and King and Ross Dunn; no exact translator is asserted for this line.",
+    "sources": [
+      {
+        "label": "UC Berkeley ORIAS: quoted travel narrative",
+        "url": "https://orias.berkeley.edu/resources-teachers/travels-ibn-battuta/journey/journey-mali-1350-1351"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-christopher-columbus-chart-the-journey",
+    "text": "I intend to draw up a nautical chart",
+    "speaker": "Christopher Columbus",
+    "collection": "history",
+    "work": "Journal of the First Voyage",
+    "locator": "Prologue; Fordham excerpt",
+    "year": 1492,
+    "context": "An intention to record the voyage, preserved through the later journal tradition. Columbus’s original log is lost; the surviving text is not an autograph.",
+    "sources": [
+      {
+        "label": "Journal of the First Voyage",
+        "url": "https://sourcebooks.web.fordham.edu/source/columbus1.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-christopher-columbus-test-navigation",
+    "text": "make many trials in navigation",
+    "speaker": "Christopher Columbus",
+    "collection": "history",
+    "work": "Journal of the First Voyage",
+    "locator": "Prologue; Fordham excerpt",
+    "year": 1492,
+    "context": "Columbus proposes repeated navigational trials and record keeping. The prologue also anticipates lost sleep; it is a historical description, not advice to neglect rest.",
+    "sources": [
+      {
+        "label": "Journal of the First Voyage",
+        "url": "https://sourcebooks.web.fordham.edu/source/columbus1.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-christopher-columbus-islanders-generosity",
+    "text": "They never refuse to give whatever they have, whenever they are asked;",
+    "speaker": "Christopher Columbus",
+    "collection": "history",
+    "work": "Letter to Luis de Santángel",
+    "locator": "Description of islanders; King’s College London edition",
+    "year": 1493,
+    "context": "Columbus describes Indigenous generosity in a self-promoting report. This praise coexists in the same letter with his admission that he seized people by force; it does not excuse conquest.",
+    "sources": [
+      {
+        "label": "Letter to Luis de Santángel",
+        "url": "https://ems.kcl.ac.uk/content/etext/e022.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-christopher-columbus-local-knowledge",
+    "text": "they are of subtle intelligence and can find their way around those seas",
+    "speaker": "Christopher Columbus",
+    "collection": "history",
+    "work": "Letter to Luis de Santángel",
+    "locator": "Description of Indigenous navigation; King’s College London edition",
+    "year": 1493,
+    "context": "Recognition of the islanders’ navigational knowledge, amid a colonial report that also misrepresents and exploits them. The wording is the translation in the cited scholarly edition.",
+    "sources": [
+      {
+        "label": "Letter to Luis de Santángel",
+        "url": "https://ems.kcl.ac.uk/content/etext/e022.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-christopher-columbus-open-to-judgement",
+    "text": "with submission to superior judgment",
+    "speaker": "Christopher Columbus",
+    "collection": "history",
+    "work": "Letter concerning the colonisation and commerce of Española",
+    "locator": "Opening; undated letter",
+    "year": "c. 1493–1494",
+    "context": "An acknowledgement of judgement before Columbus proposes colonial regulations. Dating differs between editions; Fordham suggests 1494, while the American Journeys edition argues for early 1493.",
+    "sources": [
+      {
+        "label": "Letter concerning the colonisation and commerce of Española",
+        "url": "https://sourcebooks.web.fordham.edu/source/columbus2.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-christopher-columbus-shared-accountability",
+    "text": "so that it shall not pass through the hands of only one person",
+    "speaker": "Christopher Columbus",
+    "collection": "history",
+    "work": "Letter concerning the colonisation and commerce of Española",
+    "locator": "Proposed regulation 6",
+    "year": "c. 1493–1494",
+    "context": "Columbus proposes multiple witnesses for handling the crown’s gold. This is a financial-control proposal within a colonial extraction programme, not a claim that his rule was just.",
+    "sources": [
+      {
+        "label": "Letter concerning the colonisation and commerce of Española",
+        "url": "https://sourcebooks.web.fordham.edu/source/columbus2.asp"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-christopher-columbus-make-time-for-rest",
+    "text": "I ordered the people to land to rest themselves.",
+    "speaker": "Christopher Columbus",
+    "collection": "history",
+    "work": "Account of the Third Voyage",
+    "locator": "Cecil Jane translation, vol. 2, p. 14",
+    "year": 1498,
+    "context": "Columbus reports allowing his crew to rest after seeking a harbour for repairs and water. Quoted in the UC Davis collection from Cecil Jane’s edition.",
+    "sources": [
+      {
+        "label": "Account of the Third Voyage",
+        "url": "https://nutritionalgeography.faculty.ucdavis.edu/exploration-accounts/chistopher-columbus/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-christopher-columbus-bread-and-fruit",
+    "text": "They caused bread to be brought and fruit of many kinds",
+    "speaker": "Christopher Columbus",
+    "collection": "history",
+    "work": "Account of the Third Voyage",
+    "locator": "Cecil Jane translation, vol. 2, p. 22",
+    "year": 1498,
+    "context": "An account of Indigenous hospitality on the South American coast. The hospitality belongs to the people receiving the visitors, not to Columbus.",
+    "sources": [
+      {
+        "label": "Account of the Third Voyage",
+        "url": "https://nutritionalgeography.faculty.ucdavis.edu/exploration-accounts/chistopher-columbus/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-christopher-columbus-sail-on",
+    "text": "Sail on! and on!",
+    "speaker": "Columbus, in Joaquin Miller’s poem",
+    "collection": "history",
+    "work": "Columbus",
+    "locator": "Stanza 3; 1904 anthology edition",
+    "year": "1904 edition",
+    "context": "Miller invents this refrain for a heroic literary Columbus. It is a poem’s dialogue, not a line verified in the explorer’s journal.",
+    "sources": [
+      {
+        "label": "Columbus",
+        "url": "https://en.wikisource.org/wiki/Poems_That_Every_Child_Should_Know/Columbus"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-christopher-columbus-shoreless-seas",
+    "text": "Before him only shoreless seas.",
+    "speaker": "Joaquin Miller",
+    "collection": "history",
+    "work": "Columbus",
+    "locator": "Stanza 1; Poems That Every Child Should Know",
+    "year": "1904 edition",
+    "context": "A nineteenth-century poetic portrayal of Columbus facing uncertainty. The poem’s heroic perspective is not a balanced history of the voyage or its consequences.",
+    "sources": [
+      {
+        "label": "Columbus",
+        "url": "https://en.wikisource.org/wiki/Poems_That_Every_Child_Should_Know/Columbus"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-hernan-cortes-heed-the-pilots",
+    "text": "the pilots advised the Captain not to set sail",
+    "speaker": "Council of the Villa Rica de la Vera Cruz",
+    "collection": "history",
+    "work": "First Letter of Relation",
+    "locator": "Weather delays departure; MacNutt translation",
+    "year": 1519,
+    "context": "The council’s account reports pilots warning Cortés about unsafe weather. The so-called First Letter is the council’s letter, not Cortés’s lost first dispatch.",
+    "sources": [
+      {
+        "label": "First Letter of Relation",
+        "url": "https://en.wikisource.org/wiki/Letters_of_Cortes_to_Emperor_Charles_V_-_Vol_1/First_Letter,_July_10,_1519"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-hernan-cortes-anchoring-risk",
+    "text": "the coast was very bad and rough for anchoring",
+    "speaker": "Council of the Villa Rica de la Vera Cruz",
+    "collection": "history",
+    "work": "First Letter of Relation",
+    "locator": "Attempt to recover Spanish captives; MacNutt translation",
+    "year": 1519,
+    "context": "The council explains why Cortés initially changed a rescue plan after navigational advice. A partisan contemporary account about him, not his own surviving words.",
+    "sources": [
+      {
+        "label": "First Letter of Relation",
+        "url": "https://en.wikisource.org/wiki/Letters_of_Cortes_to_Emperor_Charles_V_-_Vol_1/First_Letter,_July_10,_1519"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-hernan-cortes-food-houses",
+    "text": "There are houses where they supply food and drink for payment.",
+    "speaker": "Hernán Cortés",
+    "collection": "history",
+    "work": "Second Letter of Relation",
+    "locator": "Description of Tenochtitlan’s marketplace; MacNutt translation",
+    "year": 1520,
+    "context": "Cortés describes food service in the Mexica capital. These are observations of Indigenous urban life, in a letter written to justify his conquest.",
+    "sources": [
+      {
+        "label": "Second Letter of Relation",
+        "url": "https://en.wikisource.org/wiki/Letters_of_Cortes_to_Emperor_Charles_V_-_Vol_1/Second_Letter,_October_30,_1520"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-hernan-cortes-market-order",
+    "text": "Each kind of merchandise is sold in its respective street,",
+    "speaker": "Hernán Cortés",
+    "collection": "history",
+    "work": "Second Letter of Relation",
+    "locator": "Description of Tenochtitlan’s marketplace; MacNutt translation",
+    "year": 1520,
+    "context": "His report notices the organisation of a great Indigenous market. Its commercial sophistication belongs to the city he describes, not to the invading Spaniards.",
+    "sources": [
+      {
+        "label": "Second Letter of Relation",
+        "url": "https://en.wikisource.org/wiki/Letters_of_Cortes_to_Emperor_Charles_V_-_Vol_1/Second_Letter,_October_30,_1520"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-hernan-cortes-logistics",
+    "text": "the bringing of thirteen small ships overland a distance of about eighteen leagues.",
+    "speaker": "Hernán Cortés",
+    "collection": "history",
+    "work": "Third Letter of Relation",
+    "locator": "Transport of the brigantines; MacNutt translation",
+    "year": 1522,
+    "context": "Cortés describes a military feat supported by thousands of Indigenous carriers and allies. Read with their labour and the siege’s devastation in view.",
+    "sources": [
+      {
+        "label": "Third Letter of Relation",
+        "url": "https://en.wikisource.org/wiki/Letters_of_Cortes_to_Emperor_Charles_V_-_Vol_2/Third_letter,_May_15,_1522"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-hernan-cortes-admitting-deception",
+    "text": "I disguised the failure of the catapult",
+    "speaker": "Hernán Cortés",
+    "collection": "history",
+    "work": "Third Letter of Relation",
+    "locator": "The failed catapult during the siege; MacNutt translation",
+    "year": 1522,
+    "context": "An explicit admission that he concealed a failed weapon by claiming compassion. A lesson in reading a commander’s self-presentation critically, not an endorsement of deception.",
+    "sources": [
+      {
+        "label": "Third Letter of Relation",
+        "url": "https://en.wikisource.org/wiki/Letters_of_Cortes_to_Emperor_Charles_V_-_Vol_2/Third_letter,_May_15,_1522"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-hernan-cortes-necessity-and-ingenuity",
+    "text": "nothing exercises a man's ingenuity like necessity",
+    "speaker": "Hernán Cortés",
+    "collection": "history",
+    "work": "Fourth Letter of Relation",
+    "locator": "Obtaining materials for artillery; MacNutt translation",
+    "year": 1524,
+    "context": "Cortés uses this observation while explaining local artillery production. The immediate context is armed colonial control, rather than an innocent general maxim.",
+    "sources": [
+      {
+        "label": "Fourth Letter of Relation",
+        "url": "https://en.wikisource.org/wiki/Letters_of_Cortes_to_Emperor_Charles_V_-_Vol_2/Fourth_Letter,_October_15,_1524"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-hernan-cortes-bring-supplies",
+    "text": "it was better to give to them rather than to take from them.",
+    "speaker": "Hernán Cortés",
+    "collection": "history",
+    "work": "Fourth Letter of Relation",
+    "locator": "Provisioning the Honduras expedition; MacNutt translation",
+    "year": 1524,
+    "context": "He says he bought provisions in Cuba to avoid demanding them from local people. This particular logistical claim does not cancel the coercion and enslavement described elsewhere in the letter.",
+    "sources": [
+      {
+        "label": "Fourth Letter of Relation",
+        "url": "https://en.wikisource.org/wiki/Letters_of_Cortes_to_Emperor_Charles_V_-_Vol_2/Fourth_Letter,_October_15,_1524"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-hernan-cortes-use-your-bearings",
+    "text": "I consulted my compass by which I had often guided myself",
+    "speaker": "Hernán Cortés",
+    "collection": "history",
+    "work": "Fifth Letter of Relation",
+    "locator": "Journey towards Çagoatespan; MacNutt translation",
+    "year": 1526,
+    "context": "Lost in dense forest, Cortés combines a compass with the direction given by Indigenous guides. The account makes their local knowledge essential to the route.",
+    "sources": [
+      {
+        "label": "Fifth Letter of Relation",
+        "url": "https://en.wikisource.org/wiki/Letters_of_Cortes_to_Emperor_Charles_V_-_Vol_2/Fifth_Letter,_September_3,_1526"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-hernan-cortes-check-uncertainty",
+    "text": "I shall endeavour to ascertain the secret of this",
+    "speaker": "Hernán Cortés",
+    "collection": "history",
+    "work": "Fifth Letter of Relation",
+    "locator": "Uncertainty about Yucatán’s waterways; MacNutt translation",
+    "year": 1526,
+    "context": "He promises to investigate whether connecting waterways make Yucatán an island. The conjecture is not accepted geography; the useful point is the stated need to check it.",
+    "sources": [
+      {
+        "label": "Fifth Letter of Relation",
+        "url": "https://en.wikisource.org/wiki/Letters_of_Cortes_to_Emperor_Charles_V_-_Vol_2/Fifth_Letter,_September_3,_1526"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-leif-erikson-difficult-message",
+    "text": "he considered that message a difficult one to proclaim in Greenland.",
+    "speaker": "Anonymous saga writer",
+    "collection": "history",
+    "work": "The Saga of Erik the Red",
+    "locator": "Chapter 5; J. Sephton translation (1880)",
+    "year": "13th century",
+    "context": "The medieval saga describes Leif’s hesitation about King Olaf’s Christian mission. Written centuries after Leif’s life, this is a transmitted account, not a contemporary transcript.",
+    "sources": [
+      {
+        "label": "The Saga of Erik the Red",
+        "url": "https://sagadb.org/eiriks_saga_rauda.en"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-leif-erikson-winter-sustenance",
+    "text": "gave them sustenance during the winter.",
+    "speaker": "Anonymous saga writer",
+    "collection": "history",
+    "work": "The Saga of Erik the Red",
+    "locator": "Chapter 5; J. Sephton translation (1880)",
+    "year": "13th century",
+    "context": "The saga credits Leif with taking rescued sailors home and feeding them through the winter. This is a medieval account of his hospitality, not his own words.",
+    "sources": [
+      {
+        "label": "The Saga of Erik the Red",
+        "url": "https://sagadb.org/eiriks_saga_rauda.en"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-leif-erikson-winter-with-olaf",
+    "text": "he adopted Christianity, and passed the winter with the king.",
+    "speaker": "Snorri Sturluson",
+    "collection": "history",
+    "work": "Heimskringla: Saga of Olaf Tryggvason",
+    "locator": "Chapter XCIII; Samuel Laing translation (1844)",
+    "year": "c. 1230",
+    "context": "Snorri’s account places Leif at King Olaf’s court during his conversion. It was written centuries after the events and records a tradition about Leif.",
+    "sources": [
+      {
+        "label": "Heimskringla: Saga of Olaf Tryggvason",
+        "url": "https://en.wikisource.org/wiki/Heimskringla/King_Olaf_Trygvason%27s_Saga/Part_II"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-leif-erikson-rescue-at-sea",
+    "text": "he took up the crew of a ship which had been lost",
+    "speaker": "Snorri Sturluson",
+    "collection": "history",
+    "work": "Heimskringla: Saga of Olaf Tryggvason",
+    "locator": "Chapter CIV; Samuel Laing translation (1844)",
+    "year": "c. 1230",
+    "context": "A medieval account of Leif rescuing a shipwrecked crew. Snorri transmits the rescue tradition; this is not an eyewitness statement or Leif’s speech.",
+    "sources": [
+      {
+        "label": "Heimskringla: Saga of Olaf Tryggvason",
+        "url": "https://en.wikisource.org/wiki/Heimskringla/King_Olaf_Trygvason%27s_Saga/Part_II"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-leif-erikson-look-beyond-the-helm",
+    "text": "I am paying attention to my steering, but also to something else. What do you see?",
+    "speaker": "Anonymous saga writer, reporting Leif",
+    "collection": "history",
+    "work": "The Saga of the Greenlanders",
+    "locator": "Chapter 4; Eiður Eyþórsson translation (2024)",
+    "year": "Medieval saga",
+    "context": "The saga gives Leif these words as he notices what proves to be stranded people. The dialogue is a later saga tradition, not a verified transcript of Leif’s voice.",
+    "sources": [
+      {
+        "label": "The Saga of the Greenlanders",
+        "url": "https://wevikings.com/library/greenlanders-saga/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-leif-erikson-ask-if-true",
+    "text": "Is that true, my foster father?",
+    "speaker": "Anonymous saga writer, reporting Leif",
+    "collection": "history",
+    "work": "The Saga of the Greenlanders",
+    "locator": "Chapter 4; Eiður Eyþórsson translation (2024)",
+    "year": "Medieval saga",
+    "context": "Leif questions Tyrkir’s report of grapes in Vinland. The question belongs to medieval narrative about Leif, written long after his voyage.",
+    "sources": [
+      {
+        "label": "The Saga of the Greenlanders",
+        "url": "https://wevikings.com/library/greenlanders-saga/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-leif-erikson-peaceful-corner",
+    "text": "I do not love the bloody game of war",
+    "speaker": "Leif, in R. M. Ballantyne’s novel",
+    "collection": "history",
+    "work": "The Norsemen in the West",
+    "locator": "Opening conversation with Karlsefin",
+    "year": 1872,
+    "context": "Ballantyne’s fictional Leif welcomes a quiet life in Greenland. This is Victorian historical fiction, not an authenticated saying of the explorer.",
+    "sources": [
+      {
+        "label": "The Norsemen in the West",
+        "url": "https://www.gutenberg.org/files/21753/21753-h/21753-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-leif-erikson-avoid-overwork",
+    "text": "always being careful not to overwork them",
+    "speaker": "Leif, in R. M. Ballantyne’s novel",
+    "collection": "history",
+    "work": "The Norsemen in the West",
+    "locator": "Leif’s advice to Karlsefin about the settlement",
+    "year": 1872,
+    "context": "The novelist imagines Leif advising Karlsefin to give his people work, leisure and care. This humane management advice is a literary portrayal, not saga testimony.",
+    "sources": [
+      {
+        "label": "The Norsemen in the West",
+        "url": "https://www.gutenberg.org/files/21753/21753-h/21753-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-leif-erikson-freedom-and-dignity",
+    "text": "Take the freedom and dignity which befit a man of your accomplishments",
+    "speaker": "Leif, in Ottilie A. Liljencrantz’s novel",
+    "collection": "history",
+    "work": "The Thrall of Leif the Lucky",
+    "locator": "Chapter XXIX",
+    "year": 1902,
+    "context": "Liljencrantz’s fictional Leif grants Alwin freedom and friendship. The emancipation scene belongs to the novel and must not be presented as a historical incident.",
+    "sources": [
+      {
+        "label": "The Thrall of Leif the Lucky",
+        "url": "https://www.gutenberg.org/cache/epub/4581/pg4581-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-leif-erikson-heart-desires",
+    "text": "Go the way your heart desires, without further hindrance.",
+    "speaker": "Leif, in Ottilie A. Liljencrantz’s novel",
+    "collection": "history",
+    "work": "The Thrall of Leif the Lucky",
+    "locator": "Chapter XXX",
+    "year": 1902,
+    "context": "In the novel, Leif releases Helga from his opposition to her chosen marriage after learning of her disinheritance. These are the novelist’s words for Leif.",
+    "sources": [
+      {
+        "label": "The Thrall of Leif the Lucky",
+        "url": "https://www.gutenberg.org/cache/epub/4581/pg4581-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-francis-drake-wind-and-timing",
+    "text": "The wind commands me away.",
+    "speaker": "Francis Drake",
+    "collection": "history",
+    "work": "Letter to Francis Walsingham",
+    "locator": "2 April 1587; Folger, Elizabethan Court Day by Day, 1587, p. 18",
+    "year": 1587,
+    "context": "Drake writes from the Elizabeth Bonaventure as conditions permit departure. The letter’s practical urgency is preserved here in the Folger compilation.",
+    "sources": [
+      {
+        "label": "Letter to Francis Walsingham",
+        "url": "https://folgerpedia.folger.edu/mediawiki/media/images_pedia_folgerpedia_mw/5/5c/ECDbD_1587.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-francis-drake-prayer-and-preparation",
+    "text": "Cease not to pray continually, and provide strongly to defend to prevent the worst",
+    "speaker": "Francis Drake",
+    "collection": "history",
+    "work": "Letter to John Wolley",
+    "locator": "27 April 1587, postscript; Folger, Elizabethan Court Day by Day, 1587, p. 21",
+    "year": 1587,
+    "context": "After the raid on Cadiz, Drake pairs prayer with practical defensive preparation. This is a wartime letter, not a neutral maxim about present-day nations.",
+    "sources": [
+      {
+        "label": "Letter to John Wolley",
+        "url": "https://folgerpedia.folger.edu/mediawiki/media/images_pedia_folgerpedia_mw/5/5c/ECDbD_1587.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-francis-drake-respect-an-opponent",
+    "text": "they are determined to sell their lives with blows",
+    "speaker": "Francis Drake",
+    "collection": "history",
+    "work": "Letter to Lord Henry Seymour",
+    "locator": "21 July 1588; Folger, Elizabethan Court Day by Day, 1588, p. 30",
+    "year": 1588,
+    "context": "Reporting the Armada’s arrival, Drake qualifies this judgement with 'as far as we perceive'. He recognises his opponents’ determination rather than dismissing them.",
+    "sources": [
+      {
+        "label": "Letter to Lord Henry Seymour",
+        "url": "https://folgerpedia.folger.edu/images/1/15/ECDbD_1588.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-francis-drake-within-a-command",
+    "text": "I am commanded to send these prisoners ashore by my Lord Admiral",
+    "speaker": "Francis Drake",
+    "collection": "history",
+    "work": "Letter to Francis Walsingham",
+    "locator": "31 July 1588; Folger, Elizabethan Court Day by Day, 1588, p. 33",
+    "year": 1588,
+    "context": "Drake reports following Lord Admiral Howard’s instructions concerning Spanish prisoners. A documented glimpse of command responsibilities during the Armada campaign.",
+    "sources": [
+      {
+        "label": "Letter to Francis Walsingham",
+        "url": "https://folgerpedia.folger.edu/images/1/15/ECDbD_1588.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "cast-francis-drake-help-for-posterity",
+    "text": "that Posterity be not deprived of such help",
+    "speaker": "Francis Drake",
+    "collection": "history",
+    "work": "Dedicatory epistle printed in Sir Francis Drake Revived",
+    "locator": "Dedicatory epistle, 1 January 1592 Old Style (1593); 1910 edition transcription",
+    "year": 1593,
+    "context": "Drake’s dedicatory letter frames recording experience as a resource for those who follow. Dated 1 January 1592 in the old calendar, it was published after his death with the voyage account.",
+    "sources": [
+      {
+        "label": "Dedicatory epistle printed in Sir Francis Drake Revived",
+        "url": "https://www.gutenberg.org/cache/epub/2854/pg2854-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-francis-drake-hear-experience",
+    "text": "after he had heard the opinions of those of best service with him",
+    "speaker": "Philip Nichols, compiler",
+    "collection": "history",
+    "work": "Sir Francis Drake Revived",
+    "locator": "Planning with John Drake and the Cimaroons; voyage of 1572–1573",
+    "year": 1626,
+    "context": "Nichols’s compiled report describes Drake consulting experienced companions before choosing his next move. This is a partisan expedition account assembled from participants’ reports, not Drake’s own wording.",
+    "sources": [
+      {
+        "label": "Sir Francis Drake Revived",
+        "url": "https://www.gutenberg.org/cache/epub/2854/pg2854-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-francis-drake-gentle-encounter",
+    "text": "our General, with all his company, used all means possible gently to entreat them",
+    "speaker": "Sir Francis Drake (the explorer’s nephew), compiler",
+    "collection": "history",
+    "work": "The World Encompassed",
+    "locator": "California encounter, June 1579; National Humanities Center excerpt, p. 3",
+    "year": 1628,
+    "context": "The nephew’s compilation from Fletcher’s and other voyage notes describes Drake’s treatment of the Coastal Miwok. Its surrounding claims that Indigenous people worshipped Europeans are the visitors’ interpretation, not established Indigenous belief.",
+    "sources": [
+      {
+        "label": "The World Encompassed",
+        "url": "https://nationalhumanitiescenter.org/pds/amerbegin/contact/text5/drake.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-francis-drake-change-the-route",
+    "text": "thought it necessary to lose no time",
+    "speaker": "Sir Francis Drake (the explorer’s nephew), compiler",
+    "collection": "history",
+    "work": "The World Encompassed",
+    "locator": "Decision to cross the Pacific, July 1579; National Humanities Center excerpt, p. 6",
+    "year": 1628,
+    "context": "The voyage account describes Drake abandoning a northern passage after worsening cold and contrary winds, then turning towards the Moluccas with the company’s consent. The decision is reported by later compilers.",
+    "sources": [
+      {
+        "label": "The World Encompassed",
+        "url": "https://nationalhumanitiescenter.org/pds/amerbegin/contact/text5/drake.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-francis-drake-toast-to-return",
+    "text": "Let us go down and drink a cup of sack\nTo our return!",
+    "speaker": "Drake, in Alfred Noyes’s poem",
+    "collection": "history",
+    "work": "Drake",
+    "locator": "Collected Poems edition, p. 275",
+    "year": 1913,
+    "context": "Noyes imagines Drake inviting Thomas Doughty below for wine during an uneasy conversation. It is hospitality inside a dramatic poem, not recorded historical dialogue.",
+    "sources": [
+      {
+        "label": "Drake",
+        "url": "https://www.gutenberg.org/cache/epub/30501/pg30501-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-francis-drake-free-land",
+    "text": "To die, as I have lived, in a free land.",
+    "speaker": "Drake, in Alfred Noyes’s poem",
+    "collection": "history",
+    "work": "Drake",
+    "locator": "Collected Poems edition, p. 268",
+    "year": 1913,
+    "context": "The poem imagines Drake choosing the western ocean if England falls to Spanish rule. This is Noyes’s romantic national portrayal, not Drake’s authenticated words or an account of Indigenous freedom.",
+    "sources": [
+      {
+        "label": "Drake",
+        "url": "https://www.gutenberg.org/cache/epub/30501/pg30501-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "storybook-dumbledore-dreams-life",
+    "text": "It does not do to dwell on dreams and forget to live.",
+    "speaker": "Albus Dumbledore",
+    "collection": "wizarding",
+    "work": "Harry Potter and the Philosopher's Stone (J. K. Rowling)",
+    "locator": "The Mirror of Erised",
+    "year": 1997,
+    "context": "Dumbledore cautions Harry against losing his present life in the mirror's image of his lost family.",
+    "sources": [
+      {
+        "label": "Official Harry Potter site: quoted novel passage",
+        "url": "https://www.harrypotter.com/features/what-harry-potter-and-the-philosophers-stone-teaches-us-about-death"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-dumbledore-next-adventure",
+    "text": "death is but the next great adventure.",
+    "speaker": "Albus Dumbledore",
+    "collection": "wizarding",
+    "work": "Harry Potter and the Philosopher's Stone (J. K. Rowling)",
+    "locator": "Discussion of Nicolas and Perenelle Flamel",
+    "year": 1997,
+    "context": "A short clause in Dumbledore's explanation of the Flamels' acceptance of mortality; the original sentence qualifies it with a well-organised mind.",
+    "sources": [
+      {
+        "label": "Official Harry Potter site: quoted novel passage",
+        "url": "https://www.harrypotter.com/features/what-harry-potter-and-the-philosophers-stone-teaches-us-about-death"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-dumbledore-choices",
+    "text": "It is our choices, Harry, that show what we truly are.",
+    "speaker": "Albus Dumbledore",
+    "collection": "wizarding",
+    "work": "Harry Potter and the Chamber of Secrets (J. K. Rowling)",
+    "locator": "Dumbledore on character and choice",
+    "year": 1998,
+    "context": "This is the sentence-length excerpt printed in the official article; the novel continues the comparison with abilities.",
+    "sources": [
+      {
+        "label": "Official Harry Potter site: quoted novel passage",
+        "url": "https://www.harrypotter.com/features/what-makes-a-witch-or-wizard-powerful"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-dumbledore-unsought-power",
+    "text": "best suited to power are those who have never sought it.",
+    "speaker": "Albus Dumbledore",
+    "collection": "wizarding",
+    "work": "Harry Potter and the Deathly Hallows (J. K. Rowling)",
+    "locator": "Dumbledore's reflection on leadership",
+    "year": 2007,
+    "context": "A short clause from Dumbledore's reflection that people who reluctantly take responsibility may prove good leaders. It is not a guarantee that reluctance alone makes a leader worthy.",
+    "sources": [
+      {
+        "label": "Official Harry Potter site: quoted novel passage",
+        "url": "https://www.harrypotter.com/features/what-makes-a-witch-or-wizard-powerful"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-dumbledore-music",
+    "text": "A magic beyond all we do here!",
+    "speaker": "Albus Dumbledore",
+    "collection": "wizarding",
+    "work": "Harry Potter and the Philosopher's Stone (J. K. Rowling)",
+    "locator": "After the Hogwarts school song",
+    "year": 1997,
+    "context": "Dumbledore is speaking about music. His delight brings warmth and playfulness to the school feast.",
+    "sources": [
+      {
+        "label": "Official Harry Potter site: quoted novel passage",
+        "url": "https://www.harrypotter.com/features/throwaway-dumbledore-remarks-that-got-us-thinking"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-dumbledore-mercy",
+    "text": "The time may come when you will be very glad you saved Pettigrew’s life.",
+    "speaker": "Albus Dumbledore",
+    "collection": "wizarding",
+    "work": "Harry Potter and the Prisoner of Azkaban (J. K. Rowling)",
+    "locator": "After Pettigrew's escape",
+    "year": 1999,
+    "context": "Dumbledore responds to Harry's doubt about having spared Pettigrew. The story later returns to the consequences of that mercy.",
+    "sources": [
+      {
+        "label": "Official Harry Potter site: quoted novel passage",
+        "url": "https://www.harrypotter.com/features/throwaway-dumbledore-remarks-that-got-us-thinking"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-dumbledore-lemon",
+    "text": "Would you care for a sherbet lemon?",
+    "speaker": "Albus Dumbledore",
+    "collection": "wizarding",
+    "work": "Harry Potter and the Philosopher's Stone (J. K. Rowling)",
+    "locator": "Dumbledore offers McGonagall a sweet",
+    "year": 1997,
+    "context": "A small gesture of hospitality in a serious conversation, reproduced by the official Harry Potter site.",
+    "sources": [
+      {
+        "label": "Official Harry Potter site: quoted novel passage",
+        "url": "https://www.harrypotter.com/features/7-things-that-put-the-twinkle-in-dumbledores-eye"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-dumbledore-socks",
+    "text": "One can never have enough socks",
+    "speaker": "Albus Dumbledore",
+    "collection": "wizarding",
+    "work": "Harry Potter and the Philosopher's Stone (J. K. Rowling)",
+    "locator": "Dumbledore's answer about the Mirror of Erised",
+    "year": 1997,
+    "context": "Dumbledore offers an evasive, playful answer about what he sees in the mirror. The context matters: it is not the story's final account of his deepest wish.",
+    "sources": [
+      {
+        "label": "Official Harry Potter site: quoted novel passage",
+        "url": "https://www.harrypotter.com/features/7-things-that-put-the-twinkle-in-dumbledores-eye"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-dumbledore-forgiveness",
+    "text": "Can you forgive me for not trusting you?",
+    "speaker": "Albus Dumbledore",
+    "collection": "wizarding",
+    "work": "Harry Potter and the Deathly Hallows (J. K. Rowling)",
+    "locator": "King's Cross",
+    "year": 2007,
+    "context": "Dumbledore acknowledges his own failure while discussing the Deathly Hallows with Harry. This actual novel quotation is reproduced inside an official speculative essay.",
+    "sources": [
+      {
+        "label": "Official Harry Potter site: quoted novel passage",
+        "url": "https://www.harrypotter.com/features/what-if-dumbledore-had-told-harry-that-he-was-the-chosen-one-from-the-beginning"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-dumbledore-manners",
+    "text": "But it would have been better manners to drink it, you know.",
+    "speaker": "Albus Dumbledore",
+    "collection": "wizarding",
+    "work": "Harry Potter and the Half-Blood Prince (J. K. Rowling)",
+    "locator": "Dumbledore's visit to the Dursleys",
+    "year": 2005,
+    "context": "After conjured glasses repeatedly nudge the Dursleys, Dumbledore vanishes them and delivers this mischievous rebuke. The scene is comic fiction, not a model for pressuring a guest to drink.",
+    "sources": [
+      {
+        "label": "Official Harry Potter site: quoted novel passage",
+        "url": "https://www.harrypotter.com/features/exploring-the-lighter-side-of-albus-dumbledore"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "storybook-luke-skywalker-rescue",
+    "text": "I'm Luke Skywalker. I'm here to rescue you.",
+    "speaker": "Luke Skywalker",
+    "collection": "star-wars",
+    "work": "Star Wars: A New Hope",
+    "locator": "Death Star detention cell; Luke introduces himself to Leia",
+    "year": 1977,
+    "context": "Luke arrives in disguise to help Leia escape; his awkward introduction has become a signature expression of his willingness to help.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/databank/luke-skywalker"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-luke-skywalker-surprises",
+    "text": "You'll find I'm full of surprises.",
+    "speaker": "Luke Skywalker",
+    "collection": "star-wars",
+    "work": "Star Wars: The Empire Strikes Back",
+    "locator": "Cloud City duel",
+    "year": 1980,
+    "context": "Luke answers Vader during their duel. The confidence belongs to a young hero who still has much to learn.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/databank/luke-skywalker"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-luke-skywalker-still-good",
+    "text": "There is still good in him.",
+    "speaker": "Luke Skywalker",
+    "collection": "star-wars",
+    "work": "Star Wars: Return of the Jedi",
+    "locator": "Luke on his father",
+    "year": 1983,
+    "context": "Luke believes his father can turn away from the dark side; the official quotation feature identifies this as his conviction about Vader.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/jedi-at-40-star-wars-return-of-the-jedi-quotes"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-luke-skywalker-overconfidence",
+    "text": "Your overconfidence is your weakness.",
+    "speaker": "Luke Skywalker",
+    "collection": "star-wars",
+    "work": "Star Wars: Return of the Jedi",
+    "locator": "Confrontation with the Emperor",
+    "year": 1983,
+    "context": "Luke challenges the Emperor's certainty. The Emperor responds by disparaging Luke's trust in his friends.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/jedi-at-40-star-wars-return-of-the-jedi-quotes"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-luke-skywalker-not-leave",
+    "text": "I’ll not leave you here. I’ve got to save you.",
+    "speaker": "Luke Skywalker",
+    "collection": "star-wars",
+    "work": "Star Wars: Return of the Jedi",
+    "locator": "Luke tries to take his father from the second Death Star",
+    "year": 1983,
+    "context": "An expression of loyalty in the final rescue; the official source prints this contraction.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/jedi-at-40-star-wars-return-of-the-jedi-quotes"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-luke-skywalker-expectations",
+    "text": "This is not going to go the way you think.",
+    "speaker": "Luke Skywalker",
+    "collection": "star-wars",
+    "work": "Star Wars: The Last Jedi",
+    "locator": "Luke's warning",
+    "year": 2017,
+    "context": "The official quotation feature reproduces Luke's warning against an easy, confident prediction.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/21-the-last-jedi-quotes-to-use-in-everyday-life"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-luke-skywalker-mistaken",
+    "text": "Impressive. Every word in that sentence was wrong.",
+    "speaker": "Luke Skywalker",
+    "collection": "star-wars",
+    "work": "Star Wars: The Last Jedi",
+    "locator": "Luke challenges an explanation",
+    "year": 2017,
+    "context": "A deliberately cutting line from the film. Kept for character study rather than as a model for teaching a beginner.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/21-the-last-jedi-quotes-to-use-in-everyday-life"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "storybook-luke-skywalker-good-in-you",
+    "text": "I feel the good in you.",
+    "speaker": "Luke Skywalker",
+    "collection": "star-wars",
+    "work": "Star Wars: Return of the Jedi",
+    "locator": "Luke addresses Vader",
+    "year": 1983,
+    "context": "Luke appeals to the part of his father that has not surrendered to the dark side.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/15-more-star-wars-quotes-to-use-in-everyday-life"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-luke-skywalker-breathe",
+    "text": "Breathe. Just breathe.",
+    "speaker": "Luke Skywalker",
+    "collection": "star-wars",
+    "work": "Star Wars: The Last Jedi",
+    "locator": "Luke guides Rey's attention",
+    "year": 2017,
+    "context": "A brief instruction from Jedi training, quoted in Lucasfilm's official feature on preparation and persistence.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/13-star-wars-quotes-rundisney-rival-run"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-darth-vader-easy",
+    "text": "All too easy.",
+    "speaker": "Darth Vader",
+    "collection": "star-wars",
+    "work": "Star Wars: The Empire Strikes Back",
+    "locator": "Cloud City duel",
+    "year": 1980,
+    "context": "Vader prematurely assumes that Luke has been defeated. The scene exposes the danger of underestimating another person.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/40-quotes-star-wars-the-empire-strikes-back"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "storybook-darth-vader-impressive",
+    "text": "Impressive. Most impressive.",
+    "speaker": "Darth Vader",
+    "collection": "star-wars",
+    "work": "Star Wars: The Empire Strikes Back",
+    "locator": "Cloud City duel",
+    "year": 1980,
+    "context": "Vader recognises Luke's unexpected ability during their confrontation.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/40-quotes-star-wars-the-empire-strikes-back"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-darth-vader-father",
+    "text": "I am your father.",
+    "speaker": "Darth Vader",
+    "collection": "star-wars",
+    "work": "Star Wars: The Empire Strikes Back",
+    "locator": "Cloud City revelation; sentence excerpt",
+    "year": 1980,
+    "context": "The official feature prints this core sentence of the famous revelation. The fuller film line begins with a denial, not Luke's name.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/40-quotes-star-wars-the-empire-strikes-back"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-darth-vader-rule",
+    "text": "Join me, and together we can rule the galaxy as father and son.",
+    "speaker": "Darth Vader",
+    "collection": "star-wars",
+    "work": "Star Wars: The Empire Strikes Back",
+    "locator": "Vader's offer to Luke",
+    "year": 1980,
+    "context": "Vader mixes a newly revealed family bond with an invitation to seize power. Presented as a temptation within the drama.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/40-quotes-star-wars-the-empire-strikes-back"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "storybook-darth-vader-made-me",
+    "text": "I am what you made me.",
+    "speaker": "Darth Vader",
+    "collection": "star-wars",
+    "work": "Obi-Wan Kenobi",
+    "locator": "Part III",
+    "year": 2022,
+    "context": "Vader confronts his former teacher with bitterness about their shared past.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/obi-wan-kenobi-disney-plus-quotes"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "storybook-darth-vader-anakin",
+    "text": "You didn’t kill Anakin Skywalker. I did.",
+    "speaker": "Darth Vader",
+    "collection": "star-wars",
+    "work": "Obi-Wan Kenobi",
+    "locator": "Part VI",
+    "year": 2022,
+    "context": "Vader's self-description separates his present identity from Anakin. The official commentary leaves his motive open to interpretation.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/obi-wan-kenobi-disney-plus-quotes"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "storybook-darth-vader-faith",
+    "text": "I find your lack of faith disturbing.",
+    "speaker": "Darth Vader",
+    "collection": "star-wars",
+    "work": "Star Wars: A New Hope",
+    "locator": "Imperial officers' conference",
+    "year": 1977,
+    "context": "A threat delivered while abusing his power over an officer. Included as a famous villain line, not a hospitality lesson.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/25-great-star-wars-a-new-hope-quotes"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "storybook-darth-vader-master",
+    "text": "Now I am the master.",
+    "speaker": "Darth Vader",
+    "collection": "star-wars",
+    "work": "Star Wars: A New Hope",
+    "locator": "Duel with Obi-Wan Kenobi; final sentence excerpt",
+    "year": 1977,
+    "context": "Vader claims mastery over his former teacher. The scene complicates that claim through Obi-Wan's choice.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/25-great-star-wars-a-new-hope-quotes"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "storybook-darth-vader-own-eyes",
+    "text": "Just for once, let me look on you with my own eyes.",
+    "speaker": "Darth Vader",
+    "collection": "star-wars",
+    "work": "Star Wars: Return of the Jedi",
+    "locator": "Anakin asks Luke to remove his mask",
+    "year": 1983,
+    "context": "This is the redeemed Anakin Skywalker, after turning against the Emperor. His request replaces domination with a final moment of connection.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/fathers-and-father-figures-in-star-wars"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "storybook-darth-vader-surrounded",
+    "text": "All I am surrounded by is fear. And dead men.",
+    "speaker": "Darth Vader",
+    "collection": "star-wars",
+    "work": "Star Wars: Vader Down",
+    "locator": "Vrogas Vas confrontation; comic quotation",
+    "year": 2015,
+    "context": "The official retrospective quotes Vader facing Rebel forces on Vrogas Vas. This threatening boast is reserved for character study.",
+    "sources": [
+      {
+        "label": "Lucasfilm: official quotation and scene commentary",
+        "url": "https://www.starwars.com/news/comic-book-galaxy-marvel-darth-vader-and-more"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-gandalf-wounds",
+    "text": "Alas! There are some wounds that cannot be wholly cured",
+    "speaker": "Gandalf",
+    "collection": "middle-earth",
+    "work": "The Return of the King",
+    "locator": "Book VI, Chapter 7; quoted by Tolkien in his September 1963 letter to Eileen Elgar",
+    "year": 1955,
+    "context": "Gandalf recognises the lasting wounds Frodo carries after the quest. Tolkien quotes his own novel while explaining Frodo's departure over the Sea.",
+    "sources": [
+      {
+        "label": "The Tolkien Estate: Tolkien's letter quoting Gandalf",
+        "url": "https://www.tolkienestate.com/letters/letter-to-eileen-elgar-september-1963/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-gandalf-mercy",
+    "text": "Many that live deserve death. And some that die deserve life. Can you give it to them?",
+    "speaker": "Gandalf",
+    "collection": "middle-earth",
+    "work": "The Fellowship of the Ring",
+    "locator": "Gandalf's counsel about Gollum; McKellen's E-Post of 27 March 2001",
+    "year": 2001,
+    "context": "Ian McKellen explicitly confirms that he spoke these lines during filming. The exchange also originates in Tolkien's novel; this citation is the actor's first-hand confirmation, rather than a screenplay page.",
+    "sources": [
+      {
+        "label": "Ian McKellen: official E-Post confirming the spoken lines",
+        "url": "https://www.mckellen.com/epost/l010327.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-gandalf-such-times",
+    "text": "So do all who live to see such times, but that is not for them to decide.",
+    "speaker": "Gandalf",
+    "collection": "middle-earth",
+    "work": "The Fellowship of the Ring",
+    "locator": "Film dialogue reproduced in McKellen's New Year E-Post, 2 January 2002",
+    "year": 2001,
+    "context": "Gandalf answers Frodo's wish that the Ring had never come to him. The wording here is the film exchange reproduced on Ian McKellen's own website.",
+    "sources": [
+      {
+        "label": "Ian McKellen: official New Year dialogue excerpt",
+        "url": "https://www.mckellen.com/epost/lotr/l020102.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-gandalf-adventure",
+    "text": "I am looking for someone to share in an adventure",
+    "speaker": "Gandalf",
+    "collection": "middle-earth",
+    "work": "The Hobbit",
+    "locator": "Chapter 1: An Unexpected Party",
+    "year": 1937,
+    "context": "A continuous excerpt from Gandalf's invitation to Bilbo, whose comfortable routine is about to change. J. R. R. Tolkien's novel, verified in the publisher's excerpt.",
+    "sources": [
+      {
+        "label": "Penguin Random House: The Hobbit publisher excerpt",
+        "url": "https://www.penguinrandomhouseretail.com/book/?isbn=9780345339683"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-gandalf-good-morning",
+    "text": "What a lot of things you do use Good morning for!",
+    "speaker": "Gandalf",
+    "collection": "middle-earth",
+    "work": "The Hobbit",
+    "locator": "Chapter 1: An Unexpected Party",
+    "year": 1937,
+    "context": "Gandalf notices how Bilbo turns the same greeting into a polite dismissal. Tolkien's comic exchange invites attention to what hospitality means beyond the words themselves.",
+    "sources": [
+      {
+        "label": "Penguin Random House: The Hobbit publisher excerpt",
+        "url": "https://www.penguinrandomhouseretail.com/book/?isbn=9780345339683"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-jon-forgive",
+    "text": "But what I can forgive, I do.",
+    "speaker": "Jon Snow",
+    "collection": "thrones",
+    "work": "Game of Thrones: The Dragon and the Wolf",
+    "locator": "Season 7, Episode 7; screenplay PDF page 38",
+    "year": 2017,
+    "context": "Jon tells Theon that he can belong to both families, without pretending that every wrong is Jon's to forgive. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 38",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-707-the-dragon-and-the-wolf-2017.pdf#page=38"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-jon-lies",
+    "text": "And lies won’t help us in this fight.",
+    "speaker": "Jon Snow",
+    "collection": "thrones",
+    "work": "Game of Thrones: The Dragon and the Wolf",
+    "locator": "Season 7, Episode 7; screenplay PDF page 23",
+    "year": 2017,
+    "context": "Jon defends keeping his word during the negotiations over the army of the dead. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 23",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-707-the-dragon-and-the-wolf-2017.pdf#page=23"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-jon-grenn",
+    "text": "Grenn came from a farm.",
+    "speaker": "Jon Snow",
+    "collection": "thrones",
+    "work": "Game of Thrones: The Children",
+    "locator": "Season 4, Episode 10; screenplay PDF page 6",
+    "year": 2014,
+    "context": "Jon honours Grenn beside the giant king Mag. The exchange treats an ordinary man's sacrifice as worthy of the same remembrance. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Story Factory. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Story Factory archive), PDF page 6",
+        "url": "https://storyfactory.uk/wp-content/uploads/2019/05/Game-of-Thrones-S04E10-The-Children.pdf#page=6"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-jon-toast",
+    "text": "Here’s to us, then.",
+    "speaker": "Jon Snow",
+    "collection": "thrones",
+    "work": "Game of Thrones: Mother's Mercy",
+    "locator": "Season 5, Episode 10; screenplay PDF page 6",
+    "year": 2015,
+    "context": "Jon and Sam share a rueful toast amid fear and isolation, sustaining their friendship before the next difficult decision. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 6",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-510-mothers-mercy-2015.pdf#page=6"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-jon-thousands",
+    "text": "Thousands of men don’t have to die.",
+    "speaker": "Jon Snow",
+    "collection": "thrones",
+    "work": "Game of Thrones: Battle of the Bastards",
+    "locator": "Season 6, Episode 9; screenplay PDF page 12",
+    "year": 2016,
+    "context": "Jon proposes single combat to Ramsay as a way to spare their armies. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 12",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-609-battle-of-the-bastards-2016.pdf#page=12"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-jon-asked",
+    "text": "You’re right. I should have asked you.",
+    "speaker": "Jon Snow",
+    "collection": "thrones",
+    "work": "Game of Thrones: Battle of the Bastards",
+    "locator": "Season 6, Episode 9; screenplay PDF page 16",
+    "year": 2016,
+    "context": "Jon acknowledges Sansa's criticism that he failed to ask for her knowledge of Ramsay. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 16",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-609-battle-of-the-bastards-2016.pdf#page=16"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-jon-mercy",
+    "text": "The world we need is a world of mercy.",
+    "speaker": "Jon Snow",
+    "collection": "thrones",
+    "work": "Game of Thrones: The Iron Throne",
+    "locator": "Season 8, Episode 6; screenplay PDF page 19",
+    "year": 2019,
+    "context": "Jon challenges Daenerys after the destruction of King's Landing. This sentence is present in the screenplay; the citation does not claim it survived into the final cut. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 19",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-806-the-iron-throne-2019.pdf#page=19"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-jon-remorse",
+    "text": "It doesn’t feel right.",
+    "speaker": "Jon Snow",
+    "collection": "thrones",
+    "work": "Game of Thrones: The Iron Throne",
+    "locator": "Season 8, Episode 6; screenplay PDF page 32",
+    "year": 2019,
+    "context": "After killing Daenerys, Jon admits to Tyrion that certainty has not followed his decision. A scene of remorse rather than an endorsement of violence. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 32",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-806-the-iron-throne-2019.pdf#page=32"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-jon-bravery",
+    "text": "I thought he was brave.",
+    "speaker": "Jon Snow",
+    "collection": "thrones",
+    "work": "Game of Thrones: Pilot draft dated 27 March 2009",
+    "locator": "27 March 2009 draft; screenplay PDF page 7",
+    "year": 2009,
+    "context": "Jon sees courage in the condemned man's fear, questioning Robb's easy judgement. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug; this is the early pilot draft, not a claim about the final broadcast.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 7",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-101-winter-is-coming-2011.pdf#page=7"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-jon-oath",
+    "text": "I'm ready to swear your oath.",
+    "speaker": "Jon Snow",
+    "collection": "thrones",
+    "work": "Game of Thrones: Pilot draft dated 27 March 2009",
+    "locator": "27 March 2009 draft; screenplay PDF page 39",
+    "year": 2009,
+    "context": "Young Jon asks Benjen to let him join the Night's Watch. Benjen immediately questions whether Jon understands what he would sacrifice. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug; this is the early pilot draft, not a claim about the final broadcast.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 39",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-101-winter-is-coming-2011.pdf#page=39"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-dany-north",
+    "text": "I’m coming to save the North.",
+    "speaker": "Daenerys Targaryen",
+    "collection": "thrones",
+    "work": "Game of Thrones: The Dragon and the Wolf",
+    "locator": "Season 7, Episode 7; screenplay PDF page 36",
+    "year": 2017,
+    "context": "Daenerys explains the purpose she claims for travelling north beside Jon. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 36",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-707-the-dragon-and-the-wolf-2017.pdf#page=36"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-dany-worthy",
+    "text": "I hope I prove worthy of her admiration.",
+    "speaker": "Daenerys Targaryen",
+    "collection": "thrones",
+    "work": "Game of Thrones: The Children",
+    "locator": "Season 4, Episode 10; screenplay PDF page 21",
+    "year": 2014,
+    "context": "Daenerys responds to a former tutor whose pupil admires her; the petition that follows tests what liberation has actually delivered. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Story Factory. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Story Factory archive), PDF page 21",
+        "url": "https://storyfactory.uk/wp-content/uploads/2019/05/Game-of-Thrones-S04E10-The-Children.pdf#page=21"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-dany-freedom",
+    "text": "But freedom means making your own choices.",
+    "speaker": "Daenerys Targaryen",
+    "collection": "thrones",
+    "work": "Game of Thrones: The Children",
+    "locator": "Season 4, Episode 10; screenplay PDF page 22",
+    "year": 2014,
+    "context": "Daenerys permits a former slave to enter a time-limited service contract. Barristan immediately warns that the masters may exploit this concession. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Story Factory. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Story Factory archive), PDF page 22",
+        "url": "https://storyfactory.uk/wp-content/uploads/2019/05/Game-of-Thrones-S04E10-The-Children.pdf#page=22"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-dany-home",
+    "text": "We have to go home.",
+    "speaker": "Daenerys Targaryen",
+    "collection": "thrones",
+    "work": "Game of Thrones: Mother's Mercy",
+    "locator": "Season 5, Episode 10; screenplay PDF page 35",
+    "year": 2015,
+    "context": "Stranded with the wounded Drogon, Daenerys asks him to return her to Meereen. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 35",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-510-mothers-mercy-2015.pdf#page=35"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-dany-people",
+    "text": "My people need me.",
+    "speaker": "Daenerys Targaryen",
+    "collection": "thrones",
+    "work": "Game of Thrones: Mother's Mercy",
+    "locator": "Season 5, Episode 10; screenplay PDF page 36",
+    "year": 2015,
+    "context": "Daenerys insists that her responsibilities continue while she is far from the city. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 36",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-510-mothers-mercy-2015.pdf#page=36"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-dany-better",
+    "text": "We’re going to leave the world better than we found it.",
+    "speaker": "Daenerys Targaryen",
+    "collection": "thrones",
+    "work": "Game of Thrones: Battle of the Bastards",
+    "locator": "Season 6, Episode 9; screenplay PDF page 25",
+    "year": 2016,
+    "context": "Daenerys asks Yara to abandon predatory customs as part of their alliance. Her later conduct makes this promise an invitation to judge leadership by results. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 25",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-609-battle-of-the-bastards-2016.pdf#page=25"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-dany-choose",
+    "text": "They don’t get to choose.",
+    "speaker": "Daenerys Targaryen",
+    "collection": "thrones",
+    "work": "Game of Thrones: The Iron Throne",
+    "locator": "Season 8, Episode 6; screenplay PDF page 19",
+    "year": 2019,
+    "context": "Daenerys denies a voice to people who disagree with her vision. This is a warning about absolute certainty and power. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 19",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-806-the-iron-throne-2019.pdf#page=19"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-dany-right",
+    "text": "I know what is right.",
+    "speaker": "Daenerys Targaryen",
+    "collection": "thrones",
+    "work": "Game of Thrones: The Iron Throne",
+    "locator": "Season 8, Episode 6; screenplay PDF page 19",
+    "year": 2019,
+    "context": "A continuous sentence from Daenerys's defence of her new world after King's Landing. The surrounding scene exposes the danger of treating personal certainty as moral authority. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug. This cites the written script rather than a broadcast transcript.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 19",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-806-the-iron-throne-2019.pdf#page=19"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-dany-not-queen",
+    "text": "I don't want to be his queen.",
+    "speaker": "Daenerys Targaryen",
+    "collection": "thrones",
+    "work": "Game of Thrones: Pilot draft dated 27 March 2009",
+    "locator": "27 March 2009 draft; screenplay PDF page 17",
+    "year": 2009,
+    "context": "A frightened Daenerys tells Viserys that she does not consent to the marriage he has arranged. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug; this is the early pilot draft, not a claim about the final broadcast.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 17",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-101-winter-is-coming-2011.pdf#page=17"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-dany-wind",
+    "text": "he has given me the wind.",
+    "speaker": "Daenerys Targaryen",
+    "collection": "thrones",
+    "work": "Game of Thrones: Pilot draft dated 27 March 2009",
+    "locator": "27 March 2009 draft; screenplay PDF page 53",
+    "year": 2009,
+    "context": "A continuous excerpt from Daenerys's thanks for her wedding horse, spoken to Illyrio to translate to Drogo. The gift offers a moment of freedom within a coercive situation. Wording checked in David Benioff and D. B. Weiss's screenplay, preserved by Script Slug; this is the early pilot draft, not a claim about the final broadcast.",
+    "sources": [
+      {
+        "label": "Benioff and Weiss screenplay (Script Slug archive), PDF page 53",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/game-of-thrones-101-winter-is-coming-2011.pdf#page=53"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-grindelwald-hold",
+    "text": "Do you think you can hold me?",
+    "speaker": "Gellert Grindelwald",
+    "collection": "wizarding",
+    "work": "Fantastic Beasts and Where to Find Them",
+    "locator": "Final shooting script dated 18 August 2015; PDF page 123",
+    "year": 2016,
+    "context": "After his disguise is exposed, Grindelwald challenges his captors. A moment of defiance by the antagonist. Verified in the production screenplay by J. K. Rowling, archived at Script Slug; the source establishes written dialogue rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "Final shooting script, Script Slug archive, PDF page 123",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/fantastic-beasts-and-where-to-find-them-2016.pdf#page=123"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-grindelwald-free",
+    "text": "I want you to be free.",
+    "speaker": "Gellert Grindelwald, disguised as Percival Graves",
+    "collection": "wizarding",
+    "work": "Fantastic Beasts and Where to Find Them",
+    "locator": "Final shooting script dated 18 August 2015; PDF page 120",
+    "year": 2016,
+    "context": "As Graves, Grindelwald exploits Credence's need for protection. The apparent offer of freedom conceals his own purposes. Verified in the production screenplay by J. K. Rowling, archived at Script Slug; the source establishes written dialogue rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "Final shooting script, Script Slug archive, PDF page 120",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/fantastic-beasts-and-where-to-find-them-2016.pdf#page=120"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-grindelwald-control",
+    "text": "You can control it, Credence.",
+    "speaker": "Gellert Grindelwald, disguised as Percival Graves",
+    "collection": "wizarding",
+    "work": "Fantastic Beasts and Where to Find Them",
+    "locator": "Final shooting script dated 18 August 2015; PDF page 110",
+    "year": 2016,
+    "context": "Grindelwald tries to direct the frightened young man's power while still posing as Graves. Verified in the production screenplay by J. K. Rowling, archived at Script Slug; the source establishes written dialogue rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "Final shooting script, Script Slug archive, PDF page 110",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/fantastic-beasts-and-where-to-find-them-2016.pdf#page=110"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-grindelwald-cowards",
+    "text": "The disapproval of cowards is praise to the brave.",
+    "speaker": "Gellert Grindelwald",
+    "collection": "wizarding",
+    "work": "Fantastic Beasts: The Crimes of Grindelwald",
+    "locator": "Final shooting script dated 16 November 2017; PDF page 50",
+    "year": 2018,
+    "context": "Grindelwald flatters an accomplice after a killing. In context this is manipulative rhetoric, not independent moral counsel. Verified in the production screenplay by J. K. Rowling, archived at Script Slug; the source establishes written dialogue rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "Final shooting script, Script Slug archive, PDF page 50",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/fantastic-beasts-the-crimes-of-grindelwald-2018.pdf#page=50"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-grindelwald-freely",
+    "text": "He must come to me freely",
+    "speaker": "Gellert Grindelwald",
+    "collection": "wizarding",
+    "work": "Fantastic Beasts: The Crimes of Grindelwald",
+    "locator": "Final shooting script dated 16 November 2017; PDF page 38",
+    "year": 2018,
+    "context": "A continuous clause revealing Grindelwald's plan to win Credence's allegiance without disclosing his purpose. Verified in the production screenplay by J. K. Rowling, archived at Script Slug; the source establishes written dialogue rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "Final shooting script, Script Slug archive, PDF page 38",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/fantastic-beasts-the-crimes-of-grindelwald-2018.pdf#page=38"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-grindelwald-ourselves",
+    "text": "We want only freedom. Freedom to be ourselves.",
+    "speaker": "Gellert Grindelwald",
+    "collection": "wizarding",
+    "work": "Fantastic Beasts: The Crimes of Grindelwald",
+    "locator": "Final shooting script dated 16 November 2017; PDF page 15",
+    "year": 2018,
+    "context": "Grindelwald tells his followers to soften the language of their domination project. The scene exposes the gap between the slogan and the intent. Verified in the production screenplay by J. K. Rowling, archived at Script Slug; the source establishes written dialogue rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "Final shooting script, Script Slug archive, PDF page 15",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/fantastic-beasts-the-crimes-of-grindelwald-2018.pdf#page=15"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-grindelwald-tea",
+    "text": "They make a good cup of tea.",
+    "speaker": "Gellert Grindelwald",
+    "collection": "wizarding",
+    "work": "Fantastic Beasts: The Secrets of Dumbledore",
+    "locator": "Final shooting script dated 21 March 2022; PDF page 3",
+    "year": 2022,
+    "context": "During his tense meeting with Dumbledore, Grindelwald grudgingly concedes a pleasure of Muggle life. Verified in the production screenplay by J. K. Rowling and Steve Kloves, archived at Script Slug; the source establishes written dialogue rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "Final shooting script, Script Slug archive, PDF page 3",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/fantastic-beasts-the-secrets-of-dumbledore-2022.pdf#page=3"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-grindelwald-pain",
+    "text": "His pain is his power.",
+    "speaker": "Gellert Grindelwald",
+    "collection": "wizarding",
+    "work": "Fantastic Beasts: The Secrets of Dumbledore",
+    "locator": "Final shooting script dated 21 March 2022; PDF page 40",
+    "year": 2022,
+    "context": "Grindelwald views Credence's suffering as a resource. This is a stark example of treating another person as a means. Verified in the production screenplay by J. K. Rowling and Steve Kloves, archived at Script Slug; the source establishes written dialogue rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "Final shooting script, Script Slug archive, PDF page 40",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/fantastic-beasts-the-secrets-of-dumbledore-2022.pdf#page=40"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-grindelwald-love",
+    "text": "Who will love you now, Dumbledore?",
+    "speaker": "Gellert Grindelwald",
+    "collection": "wizarding",
+    "work": "Fantastic Beasts: The Secrets of Dumbledore",
+    "locator": "Final shooting script dated 21 March 2022; PDF page 93",
+    "year": 2022,
+    "context": "Grindelwald's personal taunt follows the breaking of their bond. Verified in the production screenplay by J. K. Rowling and Steve Kloves, archived at Script Slug; the source establishes written dialogue rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "Final shooting script, Script Slug archive, PDF page 93",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/fantastic-beasts-the-secrets-of-dumbledore-2022.pdf#page=93"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-grindelwald-greater-good",
+    "text": "For the Greater Good",
+    "speaker": "Gellert Grindelwald's motto",
+    "collection": "wizarding",
+    "work": "Harry Potter: Nurmengard",
+    "locator": "Inscription over the prison entrance, documented in the official encyclopedia",
+    "year": 2007,
+    "context": "The official Harry Potter encyclopedia identifies this as Grindelwald's slogan, inscribed above the prison he built for his opponents. It is presented as a warning about a justification for oppression; no dialogue scene is claimed.",
+    "sources": [
+      {
+        "label": "HarryPotter.com: official Nurmengard Castle fact file",
+        "url": "https://www.harrypotter.com/fact-file/locations/nurmengard-castle"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-saruman-late",
+    "text": "The hour is later than you think.",
+    "speaker": "Saruman the White",
+    "collection": "middle-earth",
+    "work": "The Lord of the Rings: The Fellowship of the Ring",
+    "locator": "Production screenplay; PDF page 52",
+    "year": 2001,
+    "context": "Saruman warns Gandalf about the gathering threat, before revealing his allegiance. Written dialogue from the New Line screenplay by Fran Walsh, Philippa Boyens, Peter Jackson, archived at Script Slug. The record verifies the screenplay wording rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "New Line screenplay, Script Slug archive, PDF page 52",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-lord-of-the-rings-the-fellowship-of-the-ring-2001.pdf#page=52"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-saruman-join",
+    "text": "We must join with Sauron.",
+    "speaker": "Saruman the White",
+    "collection": "middle-earth",
+    "work": "The Lord of the Rings: The Fellowship of the Ring",
+    "locator": "Production screenplay; PDF page 53",
+    "year": 2001,
+    "context": "Saruman urges accommodation with the enemy. Study this as a warning about rationalising complicity. Written dialogue from the New Line screenplay by Fran Walsh, Philippa Boyens, Peter Jackson, archived at Script Slug. The record verifies the screenplay wording rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "New Line screenplay, Script Slug archive, PDF page 53",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-lord-of-the-rings-the-fellowship-of-the-ring-2001.pdf#page=53"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-saruman-ill-turn",
+    "text": "One ill turn deserves another.",
+    "speaker": "Saruman the White",
+    "collection": "middle-earth",
+    "work": "The Lord of the Rings: The Fellowship of the Ring",
+    "locator": "Production screenplay; PDF page 86",
+    "year": 2001,
+    "context": "Saruman threatens the imprisoned Gandalf. Retaliation is the antagonist's choice, not advice. Written dialogue from the New Line screenplay by Fran Walsh, Philippa Boyens, Peter Jackson, archived at Script Slug. The record verifies the screenplay wording rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "New Line screenplay, Script Slug archive, PDF page 86",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-lord-of-the-rings-the-fellowship-of-the-ring-2001.pdf#page=86"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-saruman-greed",
+    "text": "The Dwarves delved too greedily and too deep.",
+    "speaker": "Saruman the White",
+    "collection": "middle-earth",
+    "work": "The Lord of the Rings: The Fellowship of the Ring",
+    "locator": "Production screenplay; PDF page 114",
+    "year": 2001,
+    "context": "Saruman reflects on the danger awakened beneath Moria. Written dialogue from the New Line screenplay by Fran Walsh, Philippa Boyens, Peter Jackson, archived at Script Slug. The record verifies the screenplay wording rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "New Line screenplay, Script Slug archive, PDF page 114",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-lord-of-the-rings-the-fellowship-of-the-ring-2001.pdf#page=114"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-saruman-new-order",
+    "text": "A new order will rise.",
+    "speaker": "Saruman the White",
+    "collection": "middle-earth",
+    "work": "The Lord of the Rings: The Two Towers",
+    "locator": "Production screenplay; PDF page 23",
+    "year": 2002,
+    "context": "Saruman announces his programme of domination. Written dialogue from the New Line screenplay by Fran Walsh, Philippa Boyens, Stephen Sinclair and Peter Jackson, archived at Script Slug. The record verifies the screenplay wording rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "New Line screenplay, Script Slug archive, PDF page 23",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-lord-of-the-rings-the-two-towers-2002.pdf#page=23"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-saruman-forests",
+    "text": "The forests will fall.",
+    "speaker": "Saruman the White",
+    "collection": "middle-earth",
+    "work": "The Lord of the Rings: The Two Towers",
+    "locator": "Production screenplay; PDF page 23",
+    "year": 2002,
+    "context": "Saruman's destruction of nature is part of his pursuit of power. Written dialogue from the New Line screenplay by Fran Walsh, Philippa Boyens, Stephen Sinclair and Peter Jackson, archived at Script Slug. The record verifies the screenplay wording rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "New Line screenplay, Script Slug archive, PDF page 23",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-lord-of-the-rings-the-two-towers-2002.pdf#page=23"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-saruman-no-dawn",
+    "text": "There will be no dawn for Men.",
+    "speaker": "Saruman the White",
+    "collection": "middle-earth",
+    "work": "The Lord of the Rings: The Two Towers",
+    "locator": "Production screenplay; PDF page 134",
+    "year": 2002,
+    "context": "Saruman declares his intended destruction of human resistance. Written dialogue from the New Line screenplay by Fran Walsh, Philippa Boyens, Stephen Sinclair and Peter Jackson, archived at Script Slug. The record verifies the screenplay wording rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "New Line screenplay, Script Slug archive, PDF page 134",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-lord-of-the-rings-the-two-towers-2002.pdf#page=134"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-saruman-opposition",
+    "text": "We have only to remove those who oppose us.",
+    "speaker": "Saruman the White",
+    "collection": "middle-earth",
+    "work": "The Lord of the Rings: The Two Towers",
+    "locator": "Production screenplay; PDF page 25",
+    "year": 2002,
+    "context": "Saruman tries to justify eliminating opposition. This is a critical study of coercive rhetoric. Written dialogue from the New Line screenplay by Fran Walsh, Philippa Boyens, Stephen Sinclair and Peter Jackson, archived at Script Slug. The record verifies the screenplay wording rather than a final-cut transcript.",
+    "sources": [
+      {
+        "label": "New Line screenplay, Script Slug archive, PDF page 25",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-lord-of-the-rings-the-two-towers-2002.pdf#page=25"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-saruman-lee-opposition",
+    "text": "Tolkien places Gandalf in opposition to Saruman",
+    "speaker": "Christopher Lee, on Saruman",
+    "collection": "middle-earth",
+    "work": "The Return of the King production notes",
+    "locator": "Opening discussion of the story's relevance; Christopher Lee's comment",
+    "year": 2003,
+    "context": "The actor contrasts the two wizards as moral opposites. This is Lee's interpretation of Saruman, not fictional dialogue. Original studio production notes are preserved by TheOneRing.net.",
+    "sources": [
+      {
+        "label": "Studio production notes, archived by TheOneRing.net",
+        "url": "https://archives.theonering.net/features/newsroom/files/rotk_prod_notes.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-saruman-mckellen-appearance",
+    "text": "he had the air of a stern yet benign Pope",
+    "speaker": "Ian McKellen, on Christopher Lee's Saruman",
+    "collection": "middle-earth",
+    "work": "Tribute to Christopher Lee",
+    "locator": "Paragraph beginning 'It's what made his Saruman so effective'",
+    "year": 2015,
+    "context": "McKellen contrasts Saruman's reassuring appearance with his cruel ambitions. Firsthand reflection by Lee's co-star, republished by The Independent on 12 June with its author's permission. This is an account of a performance, not Saruman's dialogue.",
+    "sources": [
+      {
+        "label": "Ian McKellen's authorised tribute, The Independent",
+        "url": "https://www.independent.co.uk/voices/comment/ian-mckellen-when-we-weren-t-facing-off-onset-christopher-lee-was-a-true-gentleman-and-touchingly-nervous-10317133.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-rorschach-justice",
+    "text": "Of course it does. Justice matters.",
+    "speaker": "Rorschach",
+    "collection": "comics",
+    "work": "Watchmen",
+    "locator": "Alex Tse screenplay, 10 November 2006; PDF page 32",
+    "year": 2006,
+    "context": "Rorschach disagrees with the Comedian's cynicism. Verified in a pre-release production screenplay archived at Script Slug, not asserted to be a transcript of the 2009 film.",
+    "sources": [
+      {
+        "label": "Alex Tse's 2006 screenplay, PDF page 32",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/watchmen-2009.pdf#page=32"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-rorschach-compromise",
+    "text": "Never. Not even in the face of Armageddon. Never compromise.",
+    "speaker": "Rorschach",
+    "collection": "comics",
+    "work": "Watchmen",
+    "locator": "Alex Tse screenplay, 10 November 2006; PDF page 129",
+    "year": 2006,
+    "context": "His refusal to conceal mass murder puts him at odds with the other characters. The story also questions the costs of his absolutism. Verified in a pre-release production screenplay archived at Script Slug, not asserted to be a transcript of the 2009 film.",
+    "sources": [
+      {
+        "label": "Alex Tse's 2006 screenplay, PDF page 129",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/watchmen-2009.pdf#page=129"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-rorschach-identity",
+    "text": "I think he kind of lost any sense of his own identity.",
+    "speaker": "Jackie Earle Haley, on Rorschach",
+    "collection": "comics",
+    "work": "Watchmen: Jackie Earle Haley interview",
+    "locator": "Rob Carnevale's question about connecting with the character",
+    "year": 2009,
+    "context": "The actor links Rorschach's fractured identity to his neglected childhood. This is Haley's interpretation, not dialogue.",
+    "sources": [
+      {
+        "label": "Original interview: Watchmen: Jackie Earle Haley interview",
+        "url": "https://www.indielondon.co.uk/Film-Review/watchmen-jackie-earle-haley-interview/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-rorschach-mask",
+    "text": "To me, that’s why that mask is his face.",
+    "speaker": "Jackie Earle Haley, on Rorschach",
+    "collection": "comics",
+    "work": "Watchmen: Jackie Earle Haley interview",
+    "locator": "Answer about connecting with the character; concluding sentence",
+    "year": 2009,
+    "context": "Haley sees the vigilante identity as replacing Walter Kovacs's damaged sense of self. Firsthand performance commentary.",
+    "sources": [
+      {
+        "label": "Original interview: Watchmen: Jackie Earle Haley interview",
+        "url": "https://www.indielondon.co.uk/Film-Review/watchmen-jackie-earle-haley-interview/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-rorschach-satire",
+    "text": "everybody will understand that this is satirical.",
+    "speaker": "Alan Moore, on Rorschach",
+    "collection": "comics",
+    "work": "The Grand Return of Watchmen Author Alan Moore",
+    "locator": "Discussion of Rorschach's creation",
+    "year": 2022,
+    "context": "Moore recalls what he intended readers to recognise, then explains that some admired the character instead. This is the creator's recollection, not the character's words.",
+    "sources": [
+      {
+        "label": "Original interview: The Grand Return of Watchmen Author Alan Moore",
+        "url": "https://www.gq.com/story/alan-moore-interview"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-rorschach-no-compromise",
+    "text": "I realised there was no way that he would compromise",
+    "speaker": "Alan Moore, on Rorschach",
+    "collection": "comics",
+    "work": "Alan Moore interview, Strange Things Are Happening",
+    "locator": "Vincent Eno and El Csawza interview; character-writing question",
+    "year": 1988,
+    "context": "Moore describes discovering why Rorschach's story would end tragically. Originally published in volume 1, number 2, May/June 1988; preserved by John Coulthart.",
+    "sources": [
+      {
+        "label": "Original interview: Alan Moore interview, Strange Things Are Happening",
+        "url": "https://www.johncoulthart.com/feuilleton/2006/02/20/alan-moore-interview-1988/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-rorschach-likeness",
+    "text": "Certainly in many ways I’m like Rorschach",
+    "speaker": "Alan Moore, on Rorschach",
+    "collection": "comics",
+    "work": "Interview: Alan Moore",
+    "locator": "Jared Wilson interview; question about autobiographical characters",
+    "year": 2012,
+    "context": "Moore jokingly connects Rorschach's stubbornness with his own conflicts in the comics business. A limited comparison, not endorsement of the character's violence.",
+    "sources": [
+      {
+        "label": "Original interview: Interview: Alan Moore",
+        "url": "https://leftlion.co.uk/features/2012/08/alan-moore-interview-watchmen-dodgems-logic-v-for-vendetta-league/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-rorschach-self-destruction",
+    "text": "he wouldn’t be able to live with any sort of moral compromises",
+    "speaker": "Alan Moore, on Rorschach",
+    "collection": "comics",
+    "work": "Creating Comics: A Turn of the Millennium Interview with Alan Moore",
+    "locator": "Daniel Whiston interview, 9 September 2002; discussion of characters surprising their writers",
+    "year": 2002,
+    "context": "Moore explains the self-destructive rigidity behind Rorschach's ending. The interview was conducted on 9 September 2002, originally published by Engine Comics, and republished by downthetubes with permission in 2017.",
+    "sources": [
+      {
+        "label": "Original interview: Creating Comics: A Turn of the Millennium Interview with Alan Moore",
+        "url": "https://downthetubes.net/creating-comics-a-turn-of-the-millennium-interview-with-alan-moore-part-one/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-rorschach-moral-position",
+    "text": "Rorschach is the least morally compromised of all the characters.",
+    "speaker": "Alan Moore, on Rorschach",
+    "collection": "comics",
+    "work": "The wizard of Watchmen",
+    "locator": "Question about Rorschach's popularity",
+    "year": 2009,
+    "context": "Moore immediately qualifies this judgement by stressing the character's psychological disturbance. Read it as part of the novel's moral ambiguity, not a declaration that Rorschach is a model to follow.",
+    "sources": [
+      {
+        "label": "Original interview: The wizard of Watchmen",
+        "url": "https://www.salon.com/2009/03/05/alan_moore_q_a/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-rorschach-ambiguity",
+    "text": "He is also psychotic, which, again, raises an ambiguity to the thing.",
+    "speaker": "Alan Moore, on Rorschach",
+    "collection": "comics",
+    "work": "The wizard of Watchmen",
+    "locator": "Same answer about Rorschach's popularity",
+    "year": 2009,
+    "context": "Moore's own description complicates his preceding comment about Rorschach's lack of compromise. It is the author's character analysis, not a clinical judgement about a real person.",
+    "sources": [
+      {
+        "label": "Original interview: The wizard of Watchmen",
+        "url": "https://www.salon.com/2009/03/05/alan_moore_q_a/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-manhattan-life",
+    "text": "I don't think your life is a joke.",
+    "speaker": "Dr. Manhattan",
+    "collection": "comics",
+    "work": "Watchmen",
+    "locator": "Alex Tse screenplay, 10 November 2006; PDF page 114",
+    "year": 2006,
+    "context": "On Mars, Jon responds to Laurie's distress about her parentage by affirming that her existence matters. Verified in a pre-release production screenplay archived at Script Slug, not asserted to be a transcript of the 2009 film.",
+    "sources": [
+      {
+        "label": "Alex Tse's 2006 screenplay, PDF page 114",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/watchmen-2009.pdf#page=114"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-manhattan-humanity",
+    "text": "He’s growing away from humanity gradually.",
+    "speaker": "Alan Moore, on Dr. Manhattan",
+    "collection": "comics",
+    "work": "Alan Moore interview, Strange Things Are Happening",
+    "locator": "Question about creating Dr. Manhattan",
+    "year": 1988,
+    "context": "Moore describes a changing relationship with humanity, not a simple absence of feeling. Interview by Vincent Eno and El Csawza, May/June 1988, preserved by John Coulthart.",
+    "sources": [
+      {
+        "label": "Original interview: Alan Moore interview, Strange Things Are Happening",
+        "url": "https://www.johncoulthart.com/feuilleton/2006/02/20/alan-moore-interview-1988/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-manhattan-not-cold",
+    "text": "It’s not a cold unemotional thing",
+    "speaker": "Alan Moore, on Dr. Manhattan",
+    "collection": "comics",
+    "work": "Alan Moore interview, Strange Things Are Happening",
+    "locator": "Conclusion of the answer about Dr. Manhattan",
+    "year": 1988,
+    "context": "The creator distinguishes Jon's unfamiliar perspective from mere emotional coldness. First-person creative commentary, not fictional dialogue.",
+    "sources": [
+      {
+        "label": "Original interview: Alan Moore interview, Strange Things Are Happening",
+        "url": "https://www.johncoulthart.com/feuilleton/2006/02/20/alan-moore-interview-1988/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-manhattan-simultaneous",
+    "text": "where all of time was happening simultaneously.",
+    "speaker": "Alan Moore, on Dr. Manhattan",
+    "collection": "comics",
+    "work": "Interview: Alan Moore",
+    "locator": "Jared Wilson interview; discussion of Dr. Manhattan's viewpoint",
+    "year": 2012,
+    "context": "Moore explains the imaginative viewpoint he devised for this character. This is a description of fiction, not a scientific claim about human perception.",
+    "sources": [
+      {
+        "label": "Original interview: Interview: Alan Moore",
+        "url": "https://leftlion.co.uk/features/2012/08/alan-moore-interview-watchmen-dodgems-logic-v-for-vendetta-league/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-manhattan-time-nature",
+    "text": "time may have a very different nature than that which we perceive",
+    "speaker": "Alan Moore, on Dr. Manhattan",
+    "collection": "comics",
+    "work": "An Interview with Alan Moore",
+    "locator": "Discussion of timelessness in earlier work",
+    "year": 2013,
+    "context": "Moore identifies a recurring artistic idea in Dr. Manhattan and his other creations. His speculative philosophy is presented as his interpretation, not established physics.",
+    "sources": [
+      {
+        "label": "Original interview: An Interview with Alan Moore",
+        "url": "https://www.thebeliever.net/an-interview-with-alan-moore/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-manhattan-imaginative-projection",
+    "text": "you have to kind of project yourself into this transhuman state",
+    "speaker": "Alan Moore, on Dr. Manhattan",
+    "collection": "comics",
+    "work": "An Interview with Alan Moore",
+    "locator": "Question about conjuring a fictional character",
+    "year": 2013,
+    "context": "The author explains his imaginative work when writing a figure such as Dr. Manhattan. This concerns the craft of fiction, not a quotation spoken by Jon.",
+    "sources": [
+      {
+        "label": "Original interview: An Interview with Alan Moore",
+        "url": "https://www.thebeliever.net/an-interview-with-alan-moore/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-manhattan-no-reference",
+    "text": "Dr. Manhattan is unlike anything I have a reference for.",
+    "speaker": "Billy Crudup, on Dr. Manhattan",
+    "collection": "comics",
+    "work": "Comic-Con: Watchmen arrives",
+    "locator": "Billy Crudup's answer about the challenges of the role",
+    "year": 2008,
+    "context": "The actor describes the difficulty of portraying a consciousness unlike his own. Firsthand panel reporting from Comic-Con, 25 July 2008.",
+    "sources": [
+      {
+        "label": "Original interview: Comic-Con: Watchmen arrives",
+        "url": "https://www.latimes.com/archives/blogs/hero-complex-blog/story/2008-07-25/comic-con-watchmen-arrives"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-manhattan-plain-sight",
+    "text": "For Cal, we wanted him hiding in plain sight.",
+    "speaker": "Nicole Kassell, on Dr. Manhattan",
+    "collection": "comics",
+    "work": "Watchmen Episode 8: Inside the Arrival of Dr. Manhattan",
+    "locator": "Nick Schager interview; discussion of Cal's identity",
+    "year": 2019,
+    "context": "The director explains the HBO adaptation's decision to conceal Jon as Angela's husband. This is production commentary about A God Walks Into Abar, not character dialogue.",
+    "sources": [
+      {
+        "label": "Original interview: Watchmen Episode 8: Inside the Arrival of Dr. Manhattan",
+        "url": "https://www.thedailybeast.com/watchmen-episode-8-inside-the-arrival-of-dr-manhattan-a-full-frontal-god-among-men/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-manhattan-unselfconscious",
+    "text": "He’s completely oblivious and confident; it just doesn’t matter to him.",
+    "speaker": "Nicole Kassell, on Dr. Manhattan",
+    "collection": "comics",
+    "work": "Watchmen Episode 8: Inside the Arrival of Dr. Manhattan",
+    "locator": "Question about the character's lack of embarrassment",
+    "year": 2019,
+    "context": "Kassell explains Jon's indifference to social expectations about his body. The statement describes the character in the HBO adaptation.",
+    "sources": [
+      {
+        "label": "Original interview: Watchmen Episode 8: Inside the Arrival of Dr. Manhattan",
+        "url": "https://www.thedailybeast.com/watchmen-episode-8-inside-the-arrival-of-dr-manhattan-a-full-frontal-god-among-men/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-manhattan-solid-time",
+    "text": "time was a solid and that nobody was going anywhere.",
+    "speaker": "Alan Moore, on the ideas behind Dr. Manhattan",
+    "collection": "comics",
+    "work": "The Alan Moore Jerusalem interview tapes, number 10",
+    "locator": "Dominic Wells interview; opening recollection",
+    "year": 2016,
+    "context": "Moore recalls his personal interpretation of time and connects it with ideas he had already explored through Dr. Manhattan. This is his speculative belief, not character dialogue or a scientific conclusion.",
+    "sources": [
+      {
+        "label": "Original interview: The Alan Moore Jerusalem interview tapes, number 10",
+        "url": "https://londonhollywood.wordpress.com/2016/10/16/the-alan-moore-jerusalem-interview-tapes-10-doctor-manhattan-was-right-on-time/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-dandelion-metaphors",
+    "text": "I’m using metaphors and circumlocution.",
+    "speaker": "Dandelion",
+    "collection": "witcher",
+    "work": "Season of Storms",
+    "locator": "Conversation after Geralt's bail",
+    "year": 2018,
+    "context": "Dandelion admits his expansive language is not meant literally, after Geralt challenges his claim that everyone knows the news. Andrzej Sapkowski's novel, translated from Polish by David French. Verified in the publisher's English excerpt; the year is the English edition.",
+    "sources": [
+      {
+        "label": "Orbit/Hachette: original novel excerpt",
+        "url": "https://www.hachettebookgroup.com/landing-page/season-of-storms/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-dandelion-support",
+    "text": "I shall support you financially",
+    "speaker": "Dandelion",
+    "collection": "witcher",
+    "work": "Season of Storms",
+    "locator": "Conversation near the cooper's workshop",
+    "year": 2018,
+    "context": "The bard offers practical help when his friend has little money. The dialogue is interrupted immediately afterwards. Andrzej Sapkowski's novel, translated from Polish by David French. Verified in the publisher's English excerpt; the year is the English edition.",
+    "sources": [
+      {
+        "label": "Orbit/Hachette: original novel excerpt",
+        "url": "https://www.hachettebookgroup.com/landing-page/season-of-storms/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-dandelion-bathhouse",
+    "text": "Visit a bathhouse. And a barber.",
+    "speaker": "Dandelion",
+    "collection": "witcher",
+    "work": "Season of Storms",
+    "locator": "End of the publisher's excerpt",
+    "year": 2018,
+    "context": "Before Geralt visits the sorceress, his friend offers blunt advice about arriving presentably. Andrzej Sapkowski's novel, translated from Polish by David French. Verified in the publisher's English excerpt; the year is the English edition.",
+    "sources": [
+      {
+        "label": "Orbit/Hachette: original novel excerpt",
+        "url": "https://www.hachettebookgroup.com/landing-page/season-of-storms/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-dandelion-happiness",
+    "text": "He wants to just bring happiness to everyone he meets",
+    "speaker": "Joey Batey, on Jaskier",
+    "collection": "witcher",
+    "work": "The Witcher Season 4 Cast Is Gearing Up for Battle",
+    "locator": "Jaskier section",
+    "year": 2025,
+    "context": "The actor describes the bard's kindly motive beneath his mishaps. Netflix calls this adaptation of Dandelion Jaskier. These are the actor's words, not dialogue.",
+    "sources": [
+      {
+        "label": "Netflix: original cast interviews",
+        "url": "https://www.netflix.com/tudum/articles/the-witcher-season-4-cast"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-dandelion-trust",
+    "text": "Geralt already knows that he can trust Jaskier",
+    "speaker": "Lauren Schmidt Hissrich, on Jaskier",
+    "collection": "witcher",
+    "work": "The Witcher Season 4 Cast Is Gearing Up for Battle",
+    "locator": "Jaskier section",
+    "year": 2025,
+    "context": "The showrunner describes the trust that makes the bard central to Geralt's travelling companions. This is commentary on Netflix's adaptation of Dandelion.",
+    "sources": [
+      {
+        "label": "Netflix: original cast interviews",
+        "url": "https://www.netflix.com/tudum/articles/the-witcher-season-4-cast"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-dandelion-spy",
+    "text": "I’m not sure he’s inherently built to be a spy",
+    "speaker": "Joey Batey, on Jaskier",
+    "collection": "witcher",
+    "work": "The Witcher Season 3 cast interview",
+    "locator": "Uncle Jaskier section; final answer",
+    "year": 2023,
+    "context": "Batey contrasts the bard's talents with the dangerous political work he has taken on. This concerns Netflix's adaptation of Dandelion.",
+    "sources": [
+      {
+        "label": "Netflix: original Season 3 cast interview",
+        "url": "https://www.netflix.com/tudum/articles/witcher-season-3-henry-cavill-interview"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-dandelion-good",
+    "text": "trying to do his best to do something good.",
+    "speaker": "Joey Batey, on Jaskier",
+    "collection": "witcher",
+    "work": "The Witcher Season 3 cast interview",
+    "locator": "Uncle Jaskier section; final sentence",
+    "year": 2023,
+    "context": "Batey describes Jaskier's attempt to help amid war despite his limitations as a spy. Actor commentary rather than character dialogue.",
+    "sources": [
+      {
+        "label": "Netflix: original Season 3 cast interview",
+        "url": "https://www.netflix.com/tudum/articles/witcher-season-3-henry-cavill-interview"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-dandelion-understanding",
+    "text": "it’s through Jaskier that you really understand the world",
+    "speaker": "Laurence Fishburne, on Jaskier",
+    "collection": "witcher",
+    "work": "Laurence Fishburne Brings Bite to The Witcher as Fan Favorite Regis",
+    "locator": "Question about Regis and Jaskier",
+    "year": 2025,
+    "context": "Fishburne explains why the bard helps him follow the story's world and tone. This is a co-star's interpretation of Netflix's Dandelion adaptation.",
+    "sources": [
+      {
+        "label": "Netflix: original Laurence Fishburne interview",
+        "url": "https://www.netflix.com/tudum/features/the-witcher-season-4-laurence-fishburne-regis"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-dandelion-mercury",
+    "text": "Season 2 we got into late Freddie Mercury",
+    "speaker": "Joey Batey, on Jaskier",
+    "collection": "witcher",
+    "work": "The Witcher Season 3's Easter Eggs",
+    "locator": "Did real-life musicians inspire Jaskier?",
+    "year": 2022,
+    "context": "During Netflix's 2022 set visit, Batey explains a performance reference for the bard's angry songs in Season 2. The article carries a 2024 update date. This is an actor's creative comparison, not a song lyric.",
+    "sources": [
+      {
+        "label": "Netflix: 2022 set interview, published in behind-the-scenes feature",
+        "url": "https://www.netflix.com/tudum/articles/the-witcher-season-3-easter-eggs-behind-the-scenes"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-dandelion-feelings",
+    "text": "use the music and his art as a way of now exploring his own feelings",
+    "speaker": "Joey Batey, on Jaskier",
+    "collection": "witcher",
+    "work": "The Witcher Season 3's Easter Eggs",
+    "locator": "Did real-life musicians inspire Jaskier?",
+    "year": 2022,
+    "context": "Batey describes the bard's movement from showmanship towards personal expression in Season 3. From the same 2022 set interview, in an article updated in 2024; no lyric is quoted.",
+    "sources": [
+      {
+        "label": "Netflix: 2022 set interview, published in behind-the-scenes feature",
+        "url": "https://www.netflix.com/tudum/articles/the-witcher-season-3-easter-eggs-behind-the-scenes"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-geralt-happiness",
+    "text": "Pour me a gill of happiness, Granny",
+    "speaker": "Geralt of Rivia",
+    "collection": "witcher",
+    "work": "Season of Storms",
+    "locator": "Publisher's excerpt; conversation with the drink seller",
+    "year": 2018,
+    "context": "The weary witcher orders a drink in a deliberately fanciful way. A moment of dry humour, not a claim that alcohol brings happiness. Andrzej Sapkowski's novel, in David French's English translation published in 2018.",
+    "sources": [
+      {
+        "label": "Orbit/Hachette: original novel excerpt",
+        "url": "https://www.hachettebookgroup.com/landing-page/season-of-storms/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-geralt-hesitating",
+    "text": "Am I hesitating? I am not.",
+    "speaker": "Geralt of Rivia",
+    "collection": "witcher",
+    "work": "Crossroads of Ravens",
+    "locator": "Chapter 2; closing exchange in the licensed Gizmodo excerpt",
+    "year": 2025,
+    "context": "Young Geralt answers Preston Holt when challenged to help recover a missing child. His defensive answer shows the distance between resolve and inexperience. Novel by Andrzej Sapkowski, translated by David French; the publisher links to this authorised chapter excerpt.",
+    "sources": [
+      {
+        "label": "Orbit-authorised novel excerpt at Gizmodo",
+        "url": "https://gizmodo.com/witcher-crossroads-of-ravens-preview-young-geralt-2000639064"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-geralt-warmth",
+    "text": "I wanted him to be warm",
+    "speaker": "Henry Cavill, on Geralt",
+    "collection": "witcher",
+    "work": "How Henry Cavill Brings More Emotion to Geralt in The Witcher Season 2",
+    "locator": "Discussion of Geralt's relationship with Ciri",
+    "year": 2021,
+    "context": "Cavill explains that he sought warmth alongside toughness when portraying Geralt as Ciri's guardian. This is the actor's creative intention, not character dialogue.",
+    "sources": [
+      {
+        "label": "Netflix: original Henry Cavill interview",
+        "url": "https://www.netflix.com/tudum/articles/how-henry-cavill-brings-more-emotion-to-geralt-in-the-witcher-season-2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-geralt-sensitivity",
+    "text": "We wanted it to be sensitive, because I believe that real men are very sensitive.",
+    "speaker": "Henry Cavill, on Geralt",
+    "collection": "witcher",
+    "work": "How Henry Cavill Brings More Emotion to Geralt in The Witcher Season 2",
+    "locator": "Concluding discussion of Geralt and Vesemir",
+    "year": 2021,
+    "context": "Cavill discusses building a caring relationship between Geralt and his mentor with fellow actor Kim Bodnia. A firsthand account of the performance.",
+    "sources": [
+      {
+        "label": "Netflix: original Henry Cavill interview",
+        "url": "https://www.netflix.com/tudum/articles/how-henry-cavill-brings-more-emotion-to-geralt-in-the-witcher-season-2"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-geralt-more-than-hunter",
+    "text": "Geralt is not only a monster hunter",
+    "speaker": "Tomasz Bagiński, on Geralt",
+    "collection": "witcher",
+    "work": "Liam Hemsworth Carries Geralt into The Witcher Season 4",
+    "locator": "Redefining Geralt section",
+    "year": 2025,
+    "context": "The producer stresses the character's intellectual and philosophical life alongside his physical skills. This is production commentary, not fictional dialogue.",
+    "sources": [
+      {
+        "label": "Netflix: original production interviews",
+        "url": "https://www.netflix.com/tudum/features/liam-hemsworth-the-witcher-geralt-transformation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-geralt-human-again",
+    "text": "he discovers himself as a human again after all those years of hunting monsters.",
+    "speaker": "Tomasz Bagiński, on Geralt",
+    "collection": "witcher",
+    "work": "Liam Hemsworth Carries Geralt into The Witcher Season 4",
+    "locator": "Redefining Geralt section; discussion of emotional change",
+    "year": 2025,
+    "context": "Bagiński describes Geralt's renewed emotional connection in Season 4. The statement concerns the Netflix adaptation's character development.",
+    "sources": [
+      {
+        "label": "Netflix: original production interviews",
+        "url": "https://www.netflix.com/tudum/features/liam-hemsworth-the-witcher-geralt-transformation"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-geralt-quiet-thought",
+    "text": "the man who says less because that seems like he's thinking more.",
+    "speaker": "Henry Cavill, on Geralt",
+    "collection": "witcher",
+    "work": "All the news and reveals that broke out of WitcherCon",
+    "locator": "Henry Cavill on Geralt's journey, 9 July",
+    "year": 2021,
+    "context": "Cavill explains his deliberately restrained portrayal in Season 1. The insight is about acting choices rather than a line spoken by Geralt.",
+    "sources": [
+      {
+        "label": "Netflix: official WitcherCon panel record",
+        "url": "https://about.netflix.com/en/news/all-the-news-and-reveals-that-broke-out-of-witchercon"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-geralt-intellect",
+    "text": "He's not just a big old white-haired brute.",
+    "speaker": "Henry Cavill, on Geralt",
+    "collection": "witcher",
+    "work": "All the news and reveals that broke out of WitcherCon",
+    "locator": "Henry Cavill on Geralt's journey; concluding sentence",
+    "year": 2021,
+    "context": "Cavill argues that Geralt should become more articulate and philosophical among people he knows. This actor's comment challenges a reductive reading of the character.",
+    "sources": [
+      {
+        "label": "Netflix: official WitcherCon panel record",
+        "url": "https://about.netflix.com/en/news/all-the-news-and-reveals-that-broke-out-of-witchercon"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-deadpool-maximum-effort",
+    "text": "Maximum effort.",
+    "speaker": "Deadpool",
+    "collection": "comics",
+    "work": "Deadpool",
+    "locator": "Final shooting script, 16 November 2015, PDF p. 89",
+    "year": 2016,
+    "context": "Wade steels himself before pursuing Vanessa's captors. The famous catchphrase is in the final shooting script.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/deadpool-2016.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-deadpool-beautiful-love",
+    "text": "Love... is a beautiful thing.",
+    "speaker": "Deadpool",
+    "collection": "comics",
+    "work": "Deadpool",
+    "locator": "Final shooting script, 16 November 2015, PDF p. 3",
+    "year": 2016,
+    "context": "Deadpool counsels his taxi driver while revealing his own heartbreak.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/deadpool-2016.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-deadpool-hold-on",
+    "text": "Find someone to hold... and someone to hold on to you.",
+    "speaker": "Deadpool",
+    "collection": "comics",
+    "work": "Deadpool",
+    "locator": "Final shooting script, 16 November 2015, PDF p. 116",
+    "year": 2016,
+    "context": "Deadpool's closing address turns his chaotic story toward companionship.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/deadpool-2016.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-deadpool-hold-tight",
+    "text": "So hold onto love tight.",
+    "speaker": "Deadpool",
+    "collection": "comics",
+    "work": "Deadpool",
+    "locator": "Final shooting script, 16 November 2015, PDF p. 4",
+    "year": 2016,
+    "context": "A short excerpt from his exuberant advice to Dopinder. The surrounding advice is reckless, not a model for conduct.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/deadpool-2016.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-deadpool-everyone-matters",
+    "text": "Everyone wants to matter.",
+    "speaker": "Deadpool",
+    "collection": "comics",
+    "work": "Deadpool & Wolverine",
+    "locator": "2024 studio scriptbook, PDF p. 137",
+    "year": 2024,
+    "context": "Wade's closing reflection after returning to his friends. Scriptbook wording verified against the character label.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/deadpool-and-wolverine-2024.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-deadpool-feelings-swim",
+    "text": "Feelings can swim, you know.",
+    "speaker": "Deadpool",
+    "collection": "comics",
+    "work": "Deadpool & Wolverine",
+    "locator": "2024 studio scriptbook, PDF p. 76",
+    "year": 2024,
+    "context": "Wade tells Logan that alcohol will not drown his emotions. An excerpt from the minivan conversation.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/deadpool-and-wolverine-2024.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-deadpool-save-world",
+    "text": "Time to save the world.",
+    "speaker": "Deadpool",
+    "collection": "comics",
+    "work": "Deadpool & Wolverine",
+    "locator": "2024 studio scriptbook, PDF p. 127",
+    "year": 2024,
+    "context": "A brief excerpt as Deadpool steps in to save his world; the preceding profanity is outside the selection.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/deadpool-and-wolverine-2024.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-deadpool-best-wolverine",
+    "text": "You were the best Wolverine.",
+    "speaker": "Deadpool",
+    "collection": "comics",
+    "work": "Deadpool & Wolverine",
+    "locator": "2024 studio scriptbook, PDF p. 126",
+    "year": 2024,
+    "context": "Wade acknowledges the Logan who has joined him before their final act of teamwork.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/deadpool-and-wolverine-2024.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-deadpool-drivers-seat",
+    "text": "No matter what happens, you are in the driver’s seat (and eventually they are going to get your drive-thru chimichanga order right).",
+    "speaker": "Deadpool",
+    "work": "Deadpool’s Affirmations: Feel Yourself to Heal Yourself",
+    "locator": "Rob Kutner and Marvel; publisher’s Look Inside preview, unnumbered image 15",
+    "year": 2025,
+    "context": "An in-character affirmation in the licensed humour book pairs self-direction with an absurdly ordinary frustration. This is book narration, not a film quotation.",
+    "sources": [
+      {
+        "label": "Penguin Random House book and preview",
+        "url": "https://www.penguinrandomhouse.com/books/786420/deadpools-affirmations-by-rob-kutner-and-marvel/9780593984826/"
+      },
+      {
+        "label": "Original publisher preview page",
+        "url": "https://insight.penguinrandomhouse.com/masterimage.do?pContentType=JPG&pName=masterimage&pISBN=9780593984819&pPageID=15"
+      }
+    ],
+    "kind": "portrayal",
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-deadpool-reynolds-unpredictable",
+    "text": "Deadpool can be philosophical in one moment and then have the brain of a half-eaten ham sandwich in the next",
+    "speaker": "Ryan Reynolds",
+    "work": "Deadpool & Wolverine press conference",
+    "locator": "Opening actor comments in D23, “5 Things to Know”, 24 July 2024",
+    "year": 2024,
+    "context": "Reynolds describes Deadpool’s abrupt changes of tone at the film’s global press conference. These are the performer’s words about the character, not Deadpool dialogue.",
+    "sources": [
+      {
+        "label": "Original interview or performer’s own account",
+        "url": "https://d23.com/5-things-to-know-about-marvel-studios-deadpool-wolverine/"
+      }
+    ],
+    "kind": "account",
+    "daily": false,
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-wolverine-not-made",
+    "text": "Don’t be what they made you.",
+    "speaker": "Wolverine",
+    "collection": "comics",
+    "work": "Logan",
+    "locator": "Final shooting draft, 23 August 2016, PDF p. 125 (script p. 124)",
+    "year": 2017,
+    "context": "Logan's final counsel to Laura asks her to choose a life beyond the violence imposed on her.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/logan-2017.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-wolverine-feels-like",
+    "text": "So this is what it feels like.",
+    "speaker": "Wolverine",
+    "collection": "comics",
+    "work": "Logan",
+    "locator": "Final shooting draft, 23 August 2016, PDF p. 125 (script p. 124)",
+    "year": 2017,
+    "context": "Logan's final moment with Laura. The line's ambiguity is preserved rather than assigning it a single meaning.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/logan-2017.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-wolverine-fighting-friends",
+    "text": "Don’t waste this life fighting your friends.",
+    "speaker": "Wolverine",
+    "collection": "comics",
+    "work": "X-Men: Days of Future Past",
+    "locator": "Simon Kinberg screenplay, PDF p. 47 (script p. 45)",
+    "year": 2014,
+    "context": "Logan warns Erik that constant conflict can end in isolation. A screenplay scene, not guaranteed final-film dialogue.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/x-men-days-of-future-past-2014.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-wolverine-kill-refusal",
+    "text": "I won’t kill him.",
+    "speaker": "Wolverine",
+    "collection": "comics",
+    "work": "The Wolverine",
+    "locator": "Christopher McQuarrie development screenplay, PDF p. 115",
+    "year": 2013,
+    "context": "Logan refuses the demand to kill in a contest. This undated development version differs substantially from the released film.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-wolverine-2013.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-wolverine-own-path",
+    "text": "It’s time to be on your own.",
+    "speaker": "Wolverine",
+    "collection": "comics",
+    "work": "The Wolverine",
+    "locator": "Christopher McQuarrie development screenplay, PDF p. 127",
+    "year": 2013,
+    "context": "Logan encourages Yukio's independence at the ship. This is an early screenplay portrayal, not a quotation verified in the final film.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-wolverine-2013.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-wolverine-help-mariko",
+    "text": "Right now I need to help Mariko.",
+    "speaker": "Wolverine",
+    "collection": "comics",
+    "work": "The Wolverine",
+    "locator": "Christopher McQuarrie development screenplay, PDF p. 85",
+    "year": 2013,
+    "context": "Logan puts Mariko's needs first in this early screenplay's version of their story.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-wolverine-2013.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-wolverine-an-x-man",
+    "text": "I’m an X-man.",
+    "speaker": "Wolverine",
+    "collection": "comics",
+    "work": "Deadpool & Wolverine",
+    "locator": "2nd blue revision, 17 April 2024, PDF p. 129 (script p. 127)",
+    "year": 2024,
+    "context": "Logan accepts the team identity symbolised by his suit as the two heroes try to save Wade’s world. A short excerpt from the revised shooting script, not a claim about the released dialogue.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/deadpool-and-wolverine-2024.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-wolverine-your-own-wish",
+    "text": "But is it what you want?",
+    "speaker": "Wolverine",
+    "collection": "comics",
+    "work": "The Wolverine",
+    "locator": "Christopher McQuarrie development screenplay, PDF p. 37",
+    "year": 2013,
+    "context": "Logan asks Mariko whether her planned marriage reflects her own wishes. This early development script differs substantially from the released film.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-wolverine-2013.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-wolverine-claremont-better",
+    "text": "a soul and an intellect which is forever striving to be something better.",
+    "speaker": "Chris Claremont",
+    "work": "Chris Claremont talks with Hugh Sheridan at New York Comic Con",
+    "locator": "Original interview published 4 November 2016; first answer about Wolverine",
+    "year": 2016,
+    "context": "Claremont describes the inward struggle that counters Wolverine’s violent instincts. These are the writer’s words about the character rather than Wolverine dialogue.",
+    "sources": [
+      {
+        "label": "Original interview or performer’s own account",
+        "url": "https://bleedingcool.com/comics/film-rights-owned-marvel-x-men-probably-still-paramount-book-canon-chris-claremont-talks-shop-nycc/"
+      }
+    ],
+    "kind": "account",
+    "daily": false,
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-wolverine-jackman-trust",
+    "text": "to actually open up and to actually trust and learn to rely on other people",
+    "speaker": "Hugh Jackman",
+    "work": "Interview: Hugh Jackman on Lessons He’s Learned from Wolverine",
+    "locator": "Alex Billington interview, 22 May 2014; answer about lessons learned from Logan",
+    "year": 2014,
+    "context": "Jackman identifies Wolverine’s gradual willingness to depend on others as a lesson of the character’s journey. This is the actor’s interpretation, not a line from the films.",
+    "sources": [
+      {
+        "label": "Original interview or performer’s own account",
+        "url": "https://www.firstshowing.net/2014/interview-hugh-jackman-on-lessons-hes-learned-from-wolverine/"
+      }
+    ],
+    "kind": "account",
+    "daily": false,
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-professor-x-still-time",
+    "text": "You still have time.",
+    "speaker": "Charles Xavier / Professor X",
+    "collection": "comics",
+    "work": "Logan",
+    "locator": "Final shooting draft, 23 August 2016, PDF p. 78 (script p. 77)",
+    "year": 2017,
+    "context": "Charles encourages Logan to appreciate the family warmth offered by their hosts.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/logan-2017.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-professor-x-feel-moment",
+    "text": "Take a moment and feel it.",
+    "speaker": "Charles Xavier / Professor X",
+    "collection": "comics",
+    "work": "Logan",
+    "locator": "Final shooting draft, 23 August 2016, PDF p. 78 (script p. 77)",
+    "year": 2017,
+    "context": "Charles urges Logan to notice the safety and affection in the farmhouse, despite their dangerous journey.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/logan-2017.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-professor-x-hope-power",
+    "text": "Hope, Charles. It’s our greatest power.",
+    "speaker": "Charles Xavier / Professor X",
+    "collection": "comics",
+    "work": "X-Men: Days of Future Past",
+    "locator": "Simon Kinberg screenplay, PDF p. 77 (script p. 75)",
+    "year": 2014,
+    "context": "The older Xavier addresses his younger self in this screenplay version. This wording differs from popular film paraphrases.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/x-men-days-of-future-past-2014.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-professor-x-not-alone",
+    "text": "we're not as alone as you think.",
+    "speaker": "Charles Xavier / Professor X",
+    "collection": "comics",
+    "work": "X2: X-Men United",
+    "locator": "Production draft, 30 April 2002, PDF p. 19 (script p. 18)",
+    "year": 2003,
+    "context": "An excerpt from Xavier's explanation of the many mutants revealed by Cerebro. The lower-case opening preserves the source clause.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/x2-x-men-united-2003.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-professor-x-gifts",
+    "text": "You're not the only one with gifts.",
+    "speaker": "Charles Xavier / Professor X",
+    "collection": "comics",
+    "work": "X-Men",
+    "locator": "Production screenplay with February 2000 revision pages, PDF p. 40",
+    "year": 2000,
+    "context": "Xavier telepathically introduces Logan to the school and its inhabitants.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/x-men-2000.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-professor-x-always-there",
+    "text": "And I will always be there, old friend.",
+    "speaker": "Professor X",
+    "collection": "comics",
+    "work": "X-Men",
+    "locator": "Production screenplay, PDF p. 160, final chess scene",
+    "year": 2000,
+    "context": "Xavier promises to oppose Magneto’s violent campaign without abandoning their bond. Quoted from the production screenplay.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/x-men-2000.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-professor-x-truth-vengeance",
+    "text": "There is no truth in vengeance.",
+    "speaker": "Professor X",
+    "collection": "comics",
+    "work": "X2: X-Men United",
+    "locator": "Michael Dougherty and Dan Harris draft, 30 April 2002, PDF p. 29 (script p. 28)",
+    "year": 2003,
+    "context": "Xavier answers Magneto during the prison visit about Logan’s past. The scanned screenplay page was checked directly.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/x2-x-men-united-2003.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-professor-x-stewart-vulnerability",
+    "text": "exploring a Charles damaged, rather than a Charles in super-control as he always was.",
+    "speaker": "Patrick Stewart",
+    "work": "TIME interview about Logan",
+    "locator": "Alex Fitzpatrick interview, 8 March 2017; answer about portraying Xavier differently",
+    "year": 2017,
+    "context": "An excerpt from Stewart’s account of portraying Charles Xavier’s vulnerability in Logan. It describes this version of the character; it is not medical guidance or dialogue from the film.",
+    "sources": [
+      {
+        "label": "Original interview or performer’s own account",
+        "url": "https://time.com/4694953/patrick-stewart-logan-charles-xavier-american-citizenship/"
+      }
+    ],
+    "kind": "account",
+    "daily": false,
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-professor-x-stewart-optimists",
+    "text": "Because both of them were optimists.",
+    "speaker": "Patrick Stewart",
+    "work": "TIME interview about Logan",
+    "locator": "Alex Fitzpatrick interview, 8 March 2017; answer about hope for humanity",
+    "year": 2017,
+    "context": "Stewart explains why playing both Charles Xavier and Jean-Luc Picard was satisfying. A performer’s reflection about two characters, not a quotation spoken by Xavier.",
+    "sources": [
+      {
+        "label": "Original interview or performer’s own account",
+        "url": "https://time.com/4694953/patrick-stewart-logan-charles-xavier-american-citizenship/"
+      }
+    ],
+    "kind": "account",
+    "daily": false,
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-professor-x-mcavoy-hope",
+    "text": "he believes there is good in everyone, there is always hope.",
+    "speaker": "James McAvoy",
+    "work": "Magneto and Professor X: An Oral History",
+    "locator": "Rotten Tomatoes interview, 10 June 2019; “Playing Erik and Charles for Eight Years and Four Films”",
+    "year": 2019,
+    "context": "McAvoy describes the conviction Charles loses and regains in Days of Future Past. This excerpt is the actor’s interpretation of Professor X, not scripted dialogue.",
+    "sources": [
+      {
+        "label": "Original interview or performer’s own account",
+        "url": "https://editorial.rottentomatoes.com/article/magneto-and-professor-x-an-oral-history-with-michael-fassbender-and-james-mcavoy/"
+      }
+    ],
+    "kind": "account",
+    "daily": false,
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-magneto-decide-ending",
+    "text": "We can decide how this ends.",
+    "speaker": "Magneto",
+    "collection": "comics",
+    "work": "X-Men: Days of Future Past",
+    "locator": "Simon Kinberg screenplay, PDF p. 50 (script p. 48)",
+    "year": 2014,
+    "context": "Erik urges Charles to treat time travel as a chance to change their future.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/x-men-days-of-future-past-2014.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-magneto-understanding-fear",
+    "text": "Mankind has always feared what it doesn't understand.",
+    "speaker": "Magneto",
+    "collection": "comics",
+    "work": "X-Men",
+    "locator": "Production screenplay with February 2000 revision pages, PDF p. 62",
+    "year": 2000,
+    "context": "Magneto addresses Senator Kelly about prejudice. The context includes coercion and should not be mistaken for an endorsement of his methods.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/x-men-2000.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-magneto-promise-no-killing",
+    "text": "No killing. You have my word.",
+    "speaker": "Magneto",
+    "collection": "comics",
+    "work": "X-Men: Days of Future Past",
+    "locator": "Production screenplay, PDF p. 39 (script p. 37)",
+    "year": 2014,
+    "context": "After the Pentagon escape, Erik promises Charles that the guards have survived. A conditional alliance in the screenplay, not a blanket endorsement of Magneto’s later actions.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/x-men-days-of-future-past-2014.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-magneto-god-among-insects",
+    "text": "You are a God among insects.",
+    "speaker": "Magneto",
+    "collection": "comics",
+    "work": "X2: X-Men United",
+    "locator": "Michael Dougherty and Dan Harris draft, 30 April 2002, PDF p. 71 (script p. 70)",
+    "year": 2003,
+    "context": "Magneto flatters Pyro with a supremacist comparison while drawing him toward his cause. Kept as a study of manipulation and excluded from daily inspiration. Capitalisation follows the scanned script.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/x2-x-men-united-2003.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-magneto-fassbender-better-future",
+    "text": "both of these characters want a better future for their people",
+    "speaker": "Michael Fassbender",
+    "work": "Magneto and Professor X: An Oral History",
+    "locator": "Rotten Tomatoes interview, 10 June 2019; “What Draws The Two Men To Each Other”",
+    "year": 2019,
+    "context": "Fassbender describes a shared aim of Magneto and Professor X before distinguishing their opposing methods. The actor’s account does not endorse Magneto’s violence.",
+    "sources": [
+      {
+        "label": "Original interview or performer’s own account",
+        "url": "https://editorial.rottentomatoes.com/article/magneto-and-professor-x-an-oral-history-with-michael-fassbender-and-james-mcavoy/"
+      }
+    ],
+    "kind": "account",
+    "daily": false,
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-magneto-cure-speech",
+    "text": "They wish to cure us, but I say to you, we are the cure",
+    "speaker": "Magneto",
+    "work": "X-Men: The Last Stand",
+    "locator": "Forest speech; dialogue confirmed by Ian McKellen in E-Posts, 19 September 2006, “Speech”",
+    "year": 2006,
+    "context": "Magneto rallies opposition to the proposed mutant cure. McKellen explicitly confirms the cited words in his own answer. The speech belongs to a militant fictional character and is kept out of daily inspiration.",
+    "sources": [
+      {
+        "label": "Ian McKellen’s first-person confirmation",
+        "url": "https://mckellen.com/epost/x3/060919.htm"
+      }
+    ],
+    "kind": "portrayal",
+    "daily": false,
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-magneto-what-have-i-done",
+    "text": "What have I done?",
+    "speaker": "Magneto",
+    "work": "X-Men: The Last Stand",
+    "locator": "Final battle; dialogue confirmed in Ian McKellen’s E-Posts, 19 September 2006, “What Have I Done?”",
+    "year": 2006,
+    "context": "Magneto reacts to the destructive consequences of unleashing Jean’s power. McKellen’s own explanation connects the line with Xavier’s warnings and the loss of his friend.",
+    "sources": [
+      {
+        "label": "Ian McKellen’s first-person confirmation",
+        "url": "https://mckellen.com/epost/x3/060919.htm"
+      }
+    ],
+    "kind": "portrayal",
+    "daily": false,
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-magneto-mckellen-interdependence",
+    "text": "friendship and interdependence of Xavier and Magneto",
+    "speaker": "Ian McKellen",
+    "work": "X2 E-Posts",
+    "locator": "30 April 2002; reply to Andrea La-Rosa about Xavier and Magneto’s relationship",
+    "year": 2002,
+    "context": "A phrase from McKellen’s explanation of the relationship underlying the characters’ disagreement. These are the performer’s words about Magneto and Xavier.",
+    "sources": [
+      {
+        "label": "Original interview or performer’s own account",
+        "url": "https://mckellen.com/epost/x2/020430.htm"
+      }
+    ],
+    "kind": "account",
+    "daily": false,
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-magneto-mckellen-understanding",
+    "text": "I prefer to try and understand the characters I play rather than to pass judgment on them",
+    "speaker": "Ian McKellen",
+    "work": "X2 E-Posts",
+    "locator": "30 April 2002; reply to Paul C comparing Gandalf with Magneto",
+    "year": 2002,
+    "context": "McKellen explains his approach to playing Magneto when asked to compare him with Gandalf. Understanding a character’s motives is an acting method, not approval of the character’s actions.",
+    "sources": [
+      {
+        "label": "Original interview or performer’s own account",
+        "url": "https://mckellen.com/epost/x2/020430.htm"
+      }
+    ],
+    "kind": "account",
+    "daily": false,
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-magneto-claremont-mentor",
+    "text": "embrace the role of teacher and mentor",
+    "speaker": "Chris Claremont",
+    "work": "Chris Claremont talks with Hugh Sheridan at New York Comic Con",
+    "locator": "Original interview published 4 November 2016; question about Magneto’s evolution",
+    "year": 2016,
+    "context": "Claremont describes his intended redemption arc for Magneto as headmaster, with the New Mutants helping hold him accountable. This is the writer’s account of his creative intention.",
+    "sources": [
+      {
+        "label": "Original interview or performer’s own account",
+        "url": "https://bleedingcool.com/comics/film-rights-owned-marvel-x-men-probably-still-paramount-book-canon-chris-claremont-talks-shop-nycc/"
+      }
+    ],
+    "kind": "account",
+    "daily": false,
+    "collection": "comics",
+    "verified": "2026-10-11"
+  },
+  {
+    "id": "cast-thor-finish-started",
+    "text": "You must finish what you've started.",
+    "speaker": "Thor",
+    "collection": "comics",
+    "work": "Thor",
+    "locator": "Screenplay by Ashley Miller, Zack Stentz and Don Payne, PDF p. 108",
+    "year": 2011,
+    "context": "Thor encourages Jane Foster's research. The undated screenplay version is cited rather than a final-film transcript.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/thor-2011.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-thor-live-stories",
+    "text": "Live and tell those stories yourself.",
+    "speaker": "Thor",
+    "collection": "comics",
+    "work": "Thor",
+    "locator": "Screenplay, PDF p. 124",
+    "year": 2011,
+    "context": "Thor urges Sif to survive instead of making a last stand. Wording verified in the screenplay.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/thor-2011.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-thor-good-wine",
+    "text": "Now that was just a waste of good wine.",
+    "speaker": "Thor",
+    "collection": "comics",
+    "work": "Thor",
+    "locator": "Screenplay, PDF p. 12",
+    "year": 2011,
+    "context": "Thor rebukes Loki's prank with an attendant's wine before the coronation in this screenplay version.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/thor-2011.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-thor-still-worthy",
+    "text": "Still worthy.",
+    "speaker": "Thor",
+    "collection": "comics",
+    "work": "Avengers: Endgame",
+    "locator": "Awards screenplay, PDF p. 86 (script p. 84)",
+    "year": 2019,
+    "context": "Thor recalls Mjolnir during his reunion with Frigga and recognises that his worth remains.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/avengers-endgame-2019.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-thor-something-good",
+    "text": "Let me do something good.",
+    "speaker": "Thor",
+    "collection": "comics",
+    "work": "Avengers: Endgame",
+    "locator": "Awards screenplay, PDF p. 112 (script p. 110)",
+    "year": 2019,
+    "context": "Thor begs to use the Gauntlet, eager to make amends. His friends recognise that he is not in condition to wield it.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/avengers-endgame-2019.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-thor-who-i-am",
+    "text": "It’s time for me to be who I am rather than who I’m supposed to be.",
+    "speaker": "Thor",
+    "collection": "comics",
+    "work": "Avengers: Endgame",
+    "locator": "Thor's farewell to Valkyrie; D23 anniversary retrospective, moment 10",
+    "year": 2019,
+    "context": "Thor steps aside as ruler of New Asgard and acknowledges Valkyrie's leadership. The studio's retrospective quotes the released-film line.",
+    "sources": [
+      {
+        "label": "Disney D23: Thor's ten moments",
+        "url": "https://d23.com/celebrate-thors-10-year-mcu-anniversary-with-his-top-10-moments/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-thor-friends-banner",
+    "text": "Banner, we’re friends.",
+    "speaker": "Thor",
+    "collection": "comics",
+    "work": "Thor: Ragnarok",
+    "locator": "Contest of Champions; D23 anniversary retrospective, moment 2",
+    "year": 2017,
+    "context": "Thor tries to reach his friend Bruce Banner during the arena fight with Hulk.",
+    "sources": [
+      {
+        "label": "Disney D23: Thor's ten moments",
+        "url": "https://d23.com/celebrate-thors-10-year-mcu-anniversary-with-his-top-10-moments/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-thor-good-man",
+    "text": "I’d rather be a good man than a great king.",
+    "speaker": "Thor",
+    "collection": "comics",
+    "work": "Thor: The Dark World",
+    "locator": "Thor's conversation with Odin; Disney retrospective, moment 2",
+    "year": 2013,
+    "context": "Thor prefers character to royal status. The wording is quoted in Disney's official selection of Thor moments.",
+    "sources": [
+      {
+        "label": "Disney: twelve Thor moments",
+        "url": "https://www.disney.ph/article-12-thor-moments-we-cant-get-enough-of"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-thor-towards-problems",
+    "text": "I choose to run towards my problems, and not away from them.",
+    "speaker": "Thor",
+    "collection": "comics",
+    "work": "Thor: Ragnarok",
+    "locator": "Thor appeals to Valkyrie; Disney retrospective, moment 9",
+    "year": 2017,
+    "context": "Thor explains his decision to confront danger while trying to recruit Valkyrie.",
+    "sources": [
+      {
+        "label": "Disney: twelve Thor moments",
+        "url": "https://www.disney.ph/article-12-thor-moments-we-cant-get-enough-of"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-thor-together",
+    "text": "No. We can, together.",
+    "speaker": "Thor",
+    "collection": "comics",
+    "work": "The Avengers",
+    "locator": "Joss Whedon's screenplay, PDF p. 107",
+    "year": 2012,
+    "context": "Thor offers Loki a chance to stop the invasion together. Loki answers the offer with betrayal.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-avengers-2012.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-thanos-inevitable",
+    "text": "I am...inevitable.",
+    "speaker": "Thanos",
+    "collection": "comics",
+    "work": "Avengers: Endgame",
+    "locator": "Christopher Markus and Stephen McFeely screenplay, PDF p. 135 (script p. 133)",
+    "year": 2019,
+    "context": "Thanos announces his certainty just before discovering that Tony has taken the stones. Villainous hubris, excluded from daily inspiration.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/avengers-endgame-2019.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-thanos-his-own-adversary",
+    "text": "Thanos’ biggest bad guy is not any of the heroes. It’s Thanos.",
+    "speaker": "Donny Cates",
+    "collection": "comics",
+    "work": "Exclusive Interview: Donny Cates on His Upcoming Thanos Book",
+    "locator": "Answer about taking the character further",
+    "year": 2017,
+    "context": "Cates identifies self-sabotage as a recurring part of Thanos’ pursuit of power. This is the writer’s analysis, not dialogue from a comic.",
+    "sources": [
+      {
+        "label": "Original creator interview",
+        "url": "https://monkeysfightingrobots.co/donny-cates-interview-thanos/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-thanos-power-is-not-enough",
+    "text": "I’ve gotten where I want to be and it’s not enough.",
+    "speaker": "Donny Cates",
+    "collection": "comics",
+    "work": "Exclusive Interview: Donny Cates on His Upcoming Thanos Book",
+    "locator": "Answer about drawing on personal experience",
+    "year": 2017,
+    "context": "Cates imagines Thanos’ dissatisfaction after attaining power while explaining the themes of his run. The phrasing belongs to this interview, not a cited comic scene.",
+    "sources": [
+      {
+        "label": "Original creator interview",
+        "url": "https://monkeysfightingrobots.co/donny-cates-interview-thanos/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-thanos-power-without-contentment",
+    "text": "he can have anything he wants, and he’s still unhappy and cruel.",
+    "speaker": "Tini Howard",
+    "collection": "comics",
+    "work": "Avengers Creators Assemble: Jen and Sylvia Soska and Tini Howard",
+    "locator": "Tini Howard interview; answer about a compelling villain",
+    "year": 2019,
+    "context": "Howard explains why unlimited power has not brought Thanos contentment or kindness. These are the author’s words about the antagonist.",
+    "sources": [
+      {
+        "label": "Original creator interview",
+        "url": "https://comicbook.com/marvel/news/avengers-creators-interview-tini-howard-jen-sylvia-soska/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-thanos-vulnerability-not-softness",
+    "text": "We get vulnerability, but no softness.",
+    "speaker": "Tini Howard",
+    "collection": "comics",
+    "work": "Avengers Creators Assemble: Jen and Sylvia Soska and Tini Howard",
+    "locator": "Tini Howard interview; answer about a softer side",
+    "year": 2019,
+    "context": "Howard distinguishes an exposed weakness from compassion in her portrayal of Thanos. Her analysis does not excuse his cruelty.",
+    "sources": [
+      {
+        "label": "Original creator interview",
+        "url": "https://comicbook.com/marvel/news/avengers-creators-interview-tini-howard-jen-sylvia-soska/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-thanos-depths-of-wisdom",
+    "text": "Because I gaze into the depths of wisdom.",
+    "speaker": "Thanos",
+    "collection": "comics",
+    "work": "The Thanos Quest #1",
+    "locator": "Reproduced Marvel page; second panel, first Thanos balloon",
+    "year": 1990,
+    "context": "Jim Starlin’s Thanos claims privileged knowledge while serving Death. This is the villain’s self-description, not an endorsement of his supposed wisdom.",
+    "sources": [
+      {
+        "label": "Original Marvel comic page reproduced in the oral history",
+        "url": "https://www.inverse.com/entertainment/infinity-gauntlet-comic-oral-history"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-thanos-the-snap-and-contempt",
+    "text": "To me, the snap was an act of disdain and contempt",
+    "speaker": "Jim Starlin",
+    "collection": "comics",
+    "work": "The Oral History of The Infinity Gauntlet",
+    "locator": "The Infinity Gauntlet section; origin of the snap",
+    "year": 2021,
+    "context": "Starlin recalls diners summoning waiters with a finger snap and explains how that discourtesy helped inspire Thanos’ destructive gesture. This is a creator’s account, not character dialogue.",
+    "sources": [
+      {
+        "label": "Original creator interview",
+        "url": "https://www.inverse.com/entertainment/infinity-gauntlet-comic-oral-history"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-thanos-perceived-mistake",
+    "text": "is out to fix a mistake he perceives in his past choices.",
+    "speaker": "Christopher Cantwell",
+    "collection": "comics",
+    "work": "X-Men Monday #226: Christopher Cantwell Talks Thanos",
+    "locator": "Opening answer about the 2023 series",
+    "year": 2023,
+    "context": "Cantwell describes Thanos’ own interpretation of his past after imprisonment in a black hole. A perceived mistake is not repentance; the interview introduces another dangerous pursuit.",
+    "sources": [
+      {
+        "label": "Original creator interview",
+        "url": "https://aiptcomics.com/2023/11/06/x-men-monday-christopher-cantwell-thanos/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-thanos-a-characters-perspective",
+    "text": "It’s all about perspective and finding that lens for the character.",
+    "speaker": "Christopher Cantwell",
+    "collection": "comics",
+    "work": "X-Men Monday #226: Christopher Cantwell Talks Thanos",
+    "locator": "Serious answer about writing villains and anti-heroes",
+    "year": 2023,
+    "context": "After distinguishing several Marvel characters’ moral positions, Cantwell discusses understanding Thanos’ viewpoint as a writer. Understanding an antagonist does not make his choices admirable.",
+    "sources": [
+      {
+        "label": "Original creator interview",
+        "url": "https://aiptcomics.com/2023/11/06/x-men-monday-christopher-cantwell-thanos/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-thanos-take-him-as-he-is",
+    "text": "Pay him no mind. I’ll take him as he is.",
+    "speaker": "Thanos",
+    "collection": "comics",
+    "work": "Genis-Vell: Captain Marvel #2",
+    "locator": "Marvel preview; second story page, middle panel",
+    "year": 2022,
+    "context": "In Peter David’s story, Thanos comes for a disorientated Genis-Vell after threatening those nearby. The apparently accepting words serve his own agenda, rather than an example of generous hospitality.",
+    "sources": [
+      {
+        "label": "Marvel comic preview; dialogue inspected in the panel",
+        "url": "https://comicon.com/2022/08/23/thanos-comes-for-captain-marvel-in-genis-vell-captain-marvel-2-preview/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-iron-man-know-what",
+    "text": "I know what I have to do.",
+    "speaker": "Tony Stark / Iron Man",
+    "collection": "comics",
+    "work": "Iron Man",
+    "locator": "Production screenplay with 2007 revisions, PDF p. 145",
+    "year": 2008,
+    "context": "Tony tells Pepper he has found a responsibility worth pursuing, despite his uncertainty about succeeding.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/iron-man-2008.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-iron-man-better-heart",
+    "text": "I need to build a better heart.",
+    "speaker": "Tony Stark / Iron Man",
+    "collection": "comics",
+    "work": "Iron Man",
+    "locator": "Production screenplay with 2007 revisions, PDF p. 77",
+    "year": 2008,
+    "context": "Tony describes the practical need for a replacement reactor; the screenplay gives the line an additional moral resonance.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/iron-man-2008.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-iron-man-lost-way",
+    "text": "We’ve lost our way.",
+    "speaker": "Tony Stark / Iron Man",
+    "collection": "comics",
+    "work": "Iron Man",
+    "locator": "Production screenplay with 2007 revisions, PDF p. 72",
+    "year": 2008,
+    "context": "Tony publicly questions his company's weapons business after captivity. This is draft screenplay wording.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/iron-man-2008.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-iron-man-genius",
+    "text": "Genius, billionaire, playboy, philanthropist.",
+    "speaker": "Tony Stark / Iron Man",
+    "collection": "comics",
+    "work": "The Avengers",
+    "locator": "Joss Whedon's screenplay, PDF p. 73",
+    "year": 2012,
+    "context": "Tony's boast in his argument with Steve Rogers about what remains of him without the armour.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-avengers-2012.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-iron-man-have-hulk",
+    "text": "We have a Hulk.",
+    "speaker": "Tony Stark / Iron Man",
+    "collection": "comics",
+    "work": "The Avengers",
+    "locator": "Joss Whedon's screenplay, PDF p. 102",
+    "year": 2012,
+    "context": "Tony answers Loki's confidence in his invading army with confidence in his teammate.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-avengers-2012.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-iron-man-following",
+    "text": "Following’s not really my style.",
+    "speaker": "Tony Stark / Iron Man",
+    "collection": "comics",
+    "work": "The Avengers",
+    "locator": "Joss Whedon's screenplay, PDF p. 61",
+    "year": 2012,
+    "context": "Tony resists Captain America's insistence that they follow instructions, revealing his independent streak.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-avengers-2012.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-iron-man-resentment",
+    "text": "Resentment is corrosive.",
+    "speaker": "Tony Stark / Iron Man",
+    "collection": "comics",
+    "work": "Avengers: Endgame",
+    "locator": "Awards screenplay, PDF p. 40 (script p. 38)",
+    "year": 2019,
+    "context": "Tony sets aside his resentment when he returns to help Steve and the remaining Avengers.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/avengers-endgame-2019.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-iron-man-second-time",
+    "text": "No amount of money ever bought a second of time.",
+    "speaker": "Tony Stark / Iron Man",
+    "collection": "comics",
+    "work": "Avengers: Endgame",
+    "locator": "Awards screenplay, PDF p. 101 (script p. 99)",
+    "year": 2019,
+    "context": "Tony repeats a maxim he remembers from his father while unknowingly speaking to that father in the past.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/avengers-endgame-2019.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-iron-man-identity",
+    "text": "I am Iron Man.",
+    "speaker": "Tony Stark / Iron Man",
+    "collection": "comics",
+    "work": "Iron Man",
+    "locator": "Final press conference; Marvel's 15th-anniversary interview",
+    "year": 2008,
+    "context": "Tony publicly acknowledges his identity. Marvel's interview with Jon Favreau and Kevin Feige confirms the famous improvised closing line.",
+    "sources": [
+      {
+        "label": "Marvel Studios official article",
+        "url": "https://www.marvel.com/articles/movies/iron-man-kevin-feige-jon-favreau-15-anniversary-interview"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-iron-man-love-3000",
+    "text": "I love you 3000.",
+    "speaker": "Tony Stark / Iron Man",
+    "collection": "comics",
+    "work": "Avengers: Endgame",
+    "locator": "Tony's recorded farewell; Marvel's MCU relationships retrospective",
+    "year": 2019,
+    "context": "Tony's affectionate sign-off to Morgan echoes her earlier words to him.",
+    "sources": [
+      {
+        "label": "Marvel Studios official article",
+        "url": "https://www.marvel.com/articles/movies/love-relationships-mcu"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-superman-human",
+    "text": "I’m as human as anyone.",
+    "speaker": "Superman / Clark Kent",
+    "collection": "comics",
+    "work": "Superman",
+    "locator": "James Gunn screenplay, PDF p. 127 (script p. 126)",
+    "year": 2025,
+    "context": "Superman answers Lex's claim that he can never be human. Quoted from Gunn's screenplay.",
+    "sources": [
+      {
+        "label": "Author-written screenplay (version identified)",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/superman-2025.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-superman-mistakes",
+    "text": "I screw up all the time.",
+    "speaker": "Superman / Clark Kent",
+    "collection": "comics",
+    "work": "Superman",
+    "locator": "James Gunn screenplay, PDF p. 127 (script p. 126)",
+    "year": 2025,
+    "context": "A short excerpt from Superman's admission that uncertainty and fallibility are part of his humanity.",
+    "sources": [
+      {
+        "label": "Author-written screenplay (version identified)",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/superman-2025.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-superman-punk-rock",
+    "text": "But maybe that’s the real punk rock.",
+    "speaker": "Superman / Clark Kent",
+    "collection": "comics",
+    "work": "Superman",
+    "locator": "James Gunn screenplay, PDF p. 59 (script p. 58)",
+    "year": 2025,
+    "context": "Clark responds to Lois after their exchange about trusting people and being kind.",
+    "sources": [
+      {
+        "label": "Author-written screenplay (version identified)",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/superman-2025.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-superman-never-lie",
+    "text": "I never lie.",
+    "speaker": "Superman / Clark Kent",
+    "collection": "comics",
+    "work": "Superman",
+    "locator": "Mankiewicz shooting-script transcription, PDF p. 90",
+    "year": 1978,
+    "context": "Superman reassures Lois during her interview. Source is the explicitly labelled G.R. reformat of the shooting script, not an original manuscript scan.",
+    "sources": [
+      {
+        "label": "Author-written screenplay (version identified)",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/superman-1978.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-superman-never-drink",
+    "text": "I never drink when I fly.",
+    "speaker": "Superman / Clark Kent",
+    "collection": "comics",
+    "work": "Superman",
+    "locator": "Mankiewicz shooting-script transcription, PDF p. 88",
+    "year": 1978,
+    "context": "Superman declines Lois's offer of wine. This lighthearted line comes from the G.R. reformat of the script.",
+    "sources": [
+      {
+        "label": "Author-written screenplay (version identified)",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/superman-1978.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-superman-truth-justice",
+    "text": "I'm here to fight for truth justice, and the American way.",
+    "speaker": "Superman / Clark Kent",
+    "collection": "comics",
+    "work": "Superman",
+    "locator": "Mankiewicz shooting-script transcription, PDF p. 89",
+    "year": 1978,
+    "context": "Superman explains his purpose to Lois. The source transcription omits a comma between truth and justice; its wording and punctuation are preserved.",
+    "sources": [
+      {
+        "label": "Author-written screenplay (version identified)",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/superman-1978.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-superman-seems",
+    "text": "It’s never as bad as it seems.",
+    "speaker": "Superman / Clark Kent",
+    "collection": "comics",
+    "work": "All-Star Superman",
+    "locator": "Issue 10, Superman reassures a distressed young woman; reproduced by DC",
+    "year": 2008,
+    "context": "Superman's words of reassurance in Grant Morrison and Frank Quitely's comic, quoted and attributed in DC's Being Superman feature.",
+    "sources": [
+      {
+        "label": "DC publisher: original dialogue reproduced",
+        "url": "https://www.dc.com/blog/2018/04/19/being-superman"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-superman-stronger",
+    "text": "You’re much stronger than you think you are. Trust me.",
+    "speaker": "Superman / Clark Kent",
+    "collection": "comics",
+    "work": "All-Star Superman",
+    "locator": "Issue 10, Superman reassures a distressed young woman; reproduced by DC",
+    "year": 2008,
+    "context": "The continuation of Superman's reassurance, presented as a separate short selection from the same scene.",
+    "sources": [
+      {
+        "label": "DC publisher: original dialogue reproduced",
+        "url": "https://www.dc.com/blog/2018/04/19/being-superman"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-superman-everyone-wins",
+    "text": "I like games where everyone wins.",
+    "speaker": "Superman / Clark Kent",
+    "collection": "comics",
+    "work": "DC K.O.",
+    "locator": "Issue 5, Superman's exchange with Darkseid; reproduced by DC",
+    "year": 2026,
+    "context": "Superman rejects victory that gives one person absolute power. The publisher's feature explicitly attributes these words to him.",
+    "sources": [
+      {
+        "label": "DC publisher: original dialogue reproduced",
+        "url": "https://www.dc.com/blog/2026-03-06/come-out-writing-superman-s-mic-drop-moment"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-superman-no-king",
+    "text": "I am not a King Omega. Because we don’t need one.",
+    "speaker": "Superman / Clark Kent",
+    "collection": "comics",
+    "work": "DC K.O.",
+    "locator": "Issue 5, Superman gives up the King Omega crown; reproduced by DC",
+    "year": 2026,
+    "context": "Superman refuses supreme power after restoring his allies, in a story by Scott Snyder and Joshua Williamson.",
+    "sources": [
+      {
+        "label": "DC publisher: original dialogue reproduced",
+        "url": "https://www.dc.com/blog/2026-03-06/come-out-writing-superman-s-mic-drop-moment"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words"
+  },
+  {
+    "id": "cast-batman-believe-good",
+    "text": "This city just showed you it's full of people ready to believe in good.",
+    "speaker": "Batman",
+    "collection": "comics",
+    "work": "The Dark Knight",
+    "locator": "Screenplay by Jonathan Nolan and Christopher Nolan, PDF p. 132",
+    "year": 2008,
+    "context": "Batman rebuts the Joker after the ferry passengers refuse to murder one another.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-dark-knight-2008.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-batman-gotham-needs",
+    "text": "I'm whatever Gotham needs me to be.",
+    "speaker": "Batman",
+    "collection": "comics",
+    "work": "The Dark Knight",
+    "locator": "Screenplay, PDF p. 139",
+    "year": 2008,
+    "context": "Batman accepts the burden of preserving Gotham's faith after Harvey Dent's fall. His decision carries a moral cost.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-dark-knight-2008.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-batman-defines-me",
+    "text": "It’s not who I am underneath... But what I do that defines me.",
+    "speaker": "Batman",
+    "collection": "comics",
+    "work": "Batman Begins",
+    "locator": "Screenplay by Christopher Nolan and David S. Goyer, PDF p. 137",
+    "year": 2005,
+    "context": "Batman repeats Rachel's earlier lesson so that she recognises Bruce. The ellipsis marks the script's pause and intervening stage direction.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/batman-begins-2005.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-batman-justice-beyond-pain",
+    "text": "justice is about more than my own pain and anger.",
+    "speaker": "Batman",
+    "collection": "comics",
+    "work": "Batman Begins",
+    "locator": "Screenplay, PDF p. 146",
+    "year": 2005,
+    "context": "An excerpt from Bruce's acknowledgement to Rachel that justice reaches beyond his personal grievance.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/batman-begins-2005.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-batman-hero-anyone",
+    "text": "A hero can be anyone. That was always the point.",
+    "speaker": "Batman",
+    "collection": "comics",
+    "work": "The Dark Knight Rises",
+    "locator": "Screenplay by Jonathan Nolan and Christopher Nolan, PDF p. 158",
+    "year": 2012,
+    "context": "Batman answers Gordon's question about revealing the hero's identity. This is screenplay wording.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-dark-knight-rises-2012.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-batman-not-yet",
+    "text": "Not everything. Not yet.",
+    "speaker": "Batman",
+    "collection": "comics",
+    "work": "The Dark Knight Rises",
+    "locator": "Screenplay, PDF p. 144",
+    "year": 2012,
+    "context": "Batman declines Selina's invitation to flee when she tells him he has already given Gotham everything.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-dark-knight-rises-2012.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-batman-vengeance-past",
+    "text": "Vengeance won't change the past ... mine or anyone else's.",
+    "speaker": "Batman",
+    "collection": "comics",
+    "work": "The Batman",
+    "locator": "October shooting draft pages with later revisions; PDF p. 128 (script p. 126)",
+    "year": 2022,
+    "context": "Bruce reflects as emergency workers help flood survivors, recognising the limits of vengeance.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-batman-2022.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-batman-people-hope",
+    "text": "People need hope.",
+    "speaker": "Batman",
+    "collection": "comics",
+    "work": "The Batman",
+    "locator": "October shooting draft pages with later revisions; PDF p. 128 (script p. 126)",
+    "year": 2022,
+    "context": "An excerpt from Bruce's closing voice-over as he helps evacuate injured people.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/the-batman-2022.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-batman-being-happy",
+    "text": "I didn't count on being happy.",
+    "speaker": "Batman",
+    "collection": "comics",
+    "work": "Batman: Mask of the Phantasm",
+    "locator": "Final screenplay titled Masks, 21 December 1992, PDF p. 61",
+    "year": 1993,
+    "context": "At his parents' grave, Bruce struggles to reconcile his vow with the possibility of a life with Andrea.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/batman-mask-of-the-phantasm-1993.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-batman-changing-plan",
+    "text": "I'm changing the plan.",
+    "speaker": "Batman",
+    "collection": "comics",
+    "work": "Batman: Mask of the Phantasm",
+    "locator": "Final screenplay titled Masks, 21 December 1992, PDF p. 69",
+    "year": 1993,
+    "context": "Bruce proposes a different future with Andrea. This line belongs to the animated-film screenplay's flashback.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/batman-mask-of-the-phantasm-1993.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-john-constantine-open-mind",
+    "text": "How open is your mind?",
+    "speaker": "John Constantine",
+    "collection": "comics",
+    "work": "Constantine",
+    "locator": "Early production draft, 14 November 2002, PDF p. 50",
+    "year": 2005,
+    "context": "John challenges Detective Angela Dodson to consider his supernatural explanation. This is the 2002 screenplay draft, not a transcript of the finished film.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/constantine-2005.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-john-constantine-make-difference",
+    "text": "Some people are born to make a difference.",
+    "speaker": "John Constantine",
+    "collection": "comics",
+    "work": "Constantine",
+    "locator": "Early production draft, 14 November 2002, PDF p. 119",
+    "year": 2005,
+    "context": "Excerpt from John's closing reflection after his confrontation with Hell. This is the 2002 screenplay draft.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/constantine-2005.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-john-constantine-mysterious",
+    "text": "God does work in mysterious ways.",
+    "speaker": "John Constantine",
+    "collection": "comics",
+    "work": "Constantine",
+    "locator": "Early production draft, 14 November 2002, PDF p. 119",
+    "year": 2005,
+    "context": "John's closing narration in the early production screenplay; the story's supernatural claim is fictional.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/constantine-2005.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-john-constantine-face-danger",
+    "text": "It’s easier to deny danger than face it.",
+    "speaker": "John Constantine",
+    "collection": "comics",
+    "work": "Constantine: Non Est Asylum",
+    "locator": "Pilot, second blue revisions, 9 July 2014, PDF p. 13 (script p. 9)",
+    "year": 2014,
+    "context": "John warns Liv outside the car-rental office. Quoted from the pilot production script.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/constantine-101-non-est-asylum-2014.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-john-constantine-help-each-other",
+    "text": "We can help each other here.",
+    "speaker": "John Constantine",
+    "collection": "comics",
+    "work": "Constantine: Non Est Asylum",
+    "locator": "Pilot, second blue revisions, 9 July 2014, PDF p. 19",
+    "year": 2014,
+    "context": "John asks Papa Midnite for an exchange of information in the pilot screenplay.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/constantine-101-non-est-asylum-2014.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-john-constantine-nasty-piece",
+    "text": "I’m a nasty piece of work. Ask anybody.",
+    "speaker": "John Constantine",
+    "collection": "comics",
+    "work": "Constantine: Non Est Asylum",
+    "locator": "Pilot, second blue revisions, 9 July 2014, PDF p. 14",
+    "year": 2014,
+    "context": "Excerpt from John's warning to the mysterious figure in the sinkhole, who proves to be the angel Manny.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/constantine-101-non-est-asylum-2014.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-john-constantine-vision-clues",
+    "text": "Stay in the vision. Look for clues.",
+    "speaker": "John Constantine",
+    "collection": "comics",
+    "work": "Constantine: The Darkness Beneath",
+    "locator": "Production episode 103; broadcast S1E2; PDF p. 45 (script p. 36)",
+    "year": 2014,
+    "context": "John guides Zed's supernatural investigation. The script numbers this episode 103 although it aired second.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/constantine-102-the-darkness-beneath-2014.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-john-constantine-trust-light",
+    "text": "It takes trust to turn darkness to light.",
+    "speaker": "John Constantine",
+    "collection": "comics",
+    "work": "Constantine: The Darkness Beneath",
+    "locator": "Production episode 103; broadcast S1E2; PDF p. 62",
+    "year": 2014,
+    "context": "Excerpt from John's closing voice-over about trust and its risks. This is production-script wording.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/constantine-102-the-darkness-beneath-2014.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-john-constantine-leap-faith",
+    "text": "To take a leap of faith.",
+    "speaker": "John Constantine",
+    "collection": "comics",
+    "work": "Constantine: The Darkness Beneath",
+    "locator": "Production episode 103; broadcast S1E2; PDF p. 61 (script p. 51)",
+    "year": 2014,
+    "context": "A brief excerpt as John reflects to Zed on the attraction and danger of belief without proof.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/constantine-102-the-darkness-beneath-2014.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-john-constantine-open-senses",
+    "text": "Open your senses.",
+    "speaker": "John Constantine",
+    "collection": "comics",
+    "work": "Constantine: The Darkness Beneath",
+    "locator": "Production episode 103; broadcast S1E2; PDF p. 25 (script p. 19)",
+    "year": 2014,
+    "context": "John instructs Zed during a fictional psychic exercise. A line from the production script, not real-world medical or spiritual instruction.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/constantine-102-the-darkness-beneath-2014.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-lucifer-morningstar-word-bond",
+    "text": "My word is my bond.",
+    "speaker": "Lucifer Morningstar",
+    "collection": "comics",
+    "work": "Lucifer: Pilot",
+    "locator": "Production script, March 2015 revisions, PDF p. 50",
+    "year": 2016,
+    "context": "Tom Kapinos's pilot portrayal. Lucifer reassures Linda as he postpones their bargain.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/lucifer-101-pilot-2016.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-lucifer-morningstar-tried-matters",
+    "text": "You tried. That’s what matters.",
+    "speaker": "Lucifer Morningstar",
+    "collection": "comics",
+    "work": "Lucifer: Pilot",
+    "locator": "Production script, March 2015 revisions, PDF p. 50",
+    "year": 2016,
+    "context": "Lucifer responds to Linda before leaving with Chloe. This is the script's wording, not a claim about the released episode.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/lucifer-101-pilot-2016.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-lucifer-morningstar-desire",
+    "text": "What is your deepest, darkest desire?",
+    "speaker": "Lucifer Morningstar",
+    "collection": "comics",
+    "work": "Lucifer: Pilot",
+    "locator": "Production script, March 2015 revisions, PDF p. 51",
+    "year": 2016,
+    "context": "Lucifer interrogates actor Grey Cooper using his fictional power to draw out hidden desires.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/lucifer-101-pilot-2016.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-lucifer-morningstar-interesting-live",
+    "text": "Besides, you're far too interesting to let die.",
+    "speaker": "Lucifer Morningstar",
+    "collection": "comics",
+    "work": "Lucifer: Pilot",
+    "locator": "Production script, March 2015 revisions, PDF p. 63",
+    "year": 2016,
+    "context": "Lucifer explains to the recovering Chloe why he intervened to save her. This version calls her Chloe Dancer.",
+    "sources": [
+      {
+        "label": "Author-written screenplay PDF",
+        "url": "https://assets.scriptslug.com/live/pdf/scripts/lucifer-101-pilot-2016.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal"
+  },
+  {
+    "id": "cast-lucifer-old-patterns",
+    "text": "this LUCIFER is about coming back home and being drawn into old conflicts",
+    "speaker": "Holly Black",
+    "collection": "comics",
+    "work": "Lucifer: Ten Questions with the Creators",
+    "locator": "DC interview; answer about the series’ theme",
+    "year": 2015,
+    "context": "The comics writer describes Lucifer’s return to old family patterns. These are Black’s words about her portrayal, not dialogue spoken by Lucifer.",
+    "sources": [
+      {
+        "label": "Original creator or performer interview",
+        "url": "https://www.dc.com/blog/2015/11/19/lucifer-ten-questions-with-the-creators"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-lucifer-paradox-of-evil",
+    "text": "I am interested in looking at the paradox of evil.",
+    "speaker": "Holly Black",
+    "collection": "comics",
+    "work": "Lucifer: Ten Questions with the Creators",
+    "locator": "DC interview; answer about the series’ theme",
+    "year": 2015,
+    "context": "Black explains the question driving her Lucifer series, contrasting it with Mike Carey’s focus on free will. This is the author’s account of her work.",
+    "sources": [
+      {
+        "label": "Original creator or performer interview",
+        "url": "https://www.dc.com/blog/2015/11/19/lucifer-ten-questions-with-the-creators"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-lucifer-experience-for-good",
+    "text": "He realized that he could use the experience he had on Earth for the greater good.",
+    "speaker": "Tom Ellis",
+    "collection": "comics",
+    "work": "Tom Ellis Answers All Our Burning Questions About Lucifer’s Final Season",
+    "locator": "Netflix interview; answer about resolving Lucifer’s relationship with God",
+    "year": 2021,
+    "context": "Ellis describes Lucifer’s final movement from selfishness towards helping others. This is the actor’s interpretation of the television ending, not a line from an episode.",
+    "sources": [
+      {
+        "label": "Original creator or performer interview",
+        "url": "https://about.netflix.com/en/news/tom-ellis-answers-all-our-burning-questions-about-lucifers-final-season"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-lucifer-find-a-calling",
+    "text": "It was about people's callings.",
+    "speaker": "Tom Ellis",
+    "collection": "comics",
+    "work": "Tom Ellis Answers All Our Burning Questions About Lucifer’s Final Season",
+    "locator": "Netflix interview; answer about Amenadiel becoming God",
+    "year": 2021,
+    "context": "Ellis explains why Lucifer’s ending centres on his work in hell while Amenadiel becomes God. His comment concerns the characters’ different purposes.",
+    "sources": [
+      {
+        "label": "Original creator or performer interview",
+        "url": "https://about.netflix.com/en/news/tom-ellis-answers-all-our-burning-questions-about-lucifers-final-season"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-lucifer-charm-can-deceive",
+    "text": "The devil arrives in a limousine.",
+    "speaker": "Gwendoline Christie",
+    "collection": "comics",
+    "work": "How Gwendoline Christie Made Lucifer Into a David Bowie Junkie-Angel",
+    "locator": "Tudum interview; answer about inspirations for the role",
+    "year": 2022,
+    "context": "Christie describes the polished charm she gave Lucifer in The Sandman. A performer’s metaphor about concealed evil, not Lucifer’s dialogue or a claim about real religion.",
+    "sources": [
+      {
+        "label": "Original creator or performer interview",
+        "url": "https://www.netflix.com/tudum/articles/the-sandman-gwendoline-christie-lucifer-morningstar-interview"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-lucifer-absence-of-empathy",
+    "text": "absence and a lack of empathy, disconnection, isolation and total bitterness.",
+    "speaker": "Gwendoline Christie",
+    "collection": "comics",
+    "work": "How Gwendoline Christie Made Lucifer Into a David Bowie Junkie-Angel",
+    "locator": "Tudum interview; answer about shaping the performance",
+    "year": 2022,
+    "context": "Christie explains the inner emptiness behind her portrayal of Lucifer. This is an interpretation of a fictional antagonist, not an aspiration or a clinical judgement.",
+    "sources": [
+      {
+        "label": "Original creator or performer interview",
+        "url": "https://www.netflix.com/tudum/articles/the-sandman-gwendoline-christie-lucifer-morningstar-interview"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-dream-remake",
+    "text": "I will make it again.",
+    "speaker": "Dream (Morpheus)",
+    "collection": "comics",
+    "work": "The Sandman (Netflix television adaptation)",
+    "locator": "Season 1; Dream’s promise to Lucienne, official recap transcript",
+    "year": 2022,
+    "context": "Dream returns to his ruined realm and promises to rebuild it. Wording is checked against Netflix’s character-labelled recap transcript.",
+    "sources": [
+      {
+        "label": "Netflix: official excerpt",
+        "url": "https://www.netflix.com/tudum/videos/the-sandman-season-1-recap"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": true
+  },
+  {
+    "id": "cast-dream-new-age",
+    "text": "Tomorrow the rebuilding will begin. New dreams, new nightmares, a new age.",
+    "speaker": "Dream (Morpheus)",
+    "collection": "comics",
+    "work": "The Sandman (Netflix television adaptation)",
+    "locator": "Season 1; closing rebuilding declaration, official recap transcript",
+    "year": 2022,
+    "context": "Dream describes renewing his realm and its creations. The line includes nightmares as part of the fictional balance of dreaming, not a promise of unbroken happiness.",
+    "sources": [
+      {
+        "label": "Netflix: official excerpt",
+        "url": "https://www.netflix.com/tudum/videos/the-sandman-season-1-recap"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": true
+  },
+  {
+    "id": "cast-dream-lightbringer",
+    "text": "Until that day, Lightbringer.",
+    "speaker": "Dream (Morpheus)",
+    "collection": "comics",
+    "work": "The Sandman (Netflix television adaptation)",
+    "locator": "Season 1, A Hope in Hell; response to Lucifer, official recap transcript",
+    "year": 2022,
+    "context": "A restrained answer to Lucifer’s threat. Kept with its dramatic context in the library; it is not general advice for handling real conflict.",
+    "sources": [
+      {
+        "label": "Netflix: official excerpt",
+        "url": "https://www.netflix.com/tudum/videos/the-sandman-season-1-recap"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-dream-king",
+    "text": "I’m the king of dreams. Ruler of the nightmare realm.",
+    "speaker": "Dream (Morpheus)",
+    "collection": "comics",
+    "work": "The Sandman (Netflix television adaptation)",
+    "locator": "Season 1 teaser; DC’s Dream Come True section, 6 June 2022",
+    "year": 2022,
+    "context": "Tom Sturridge speaks as Dream in the official teaser. This is the television portrayal, not a quotation assigned to a particular comic panel.",
+    "sources": [
+      {
+        "label": "DC: quoted screen dialogue",
+        "url": "https://www.dc.com/blog/2022/06/06/the-sandman-teaser-is-here-and-its-an-absolute-dream"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-dream-make-right",
+    "text": "If I’ve committed a wrong, I must make it right.",
+    "speaker": "Dream (Morpheus)",
+    "collection": "comics",
+    "work": "The Sandman (Netflix television adaptation)",
+    "locator": "Season 2, episode 1, Season of Mists; conversation with Death",
+    "year": 2025,
+    "context": "DC quotes Dream confronting his treatment of Nada. The source also identifies the line’s comic connection, but this entry cites the television exchange and preserves its accountability setting.",
+    "sources": [
+      {
+        "label": "DC: quoted screen dialogue",
+        "url": "https://www.dc.com/blog/2025-07-30/the-sandman-has-one-of-dc-s-most-toxic-breakups"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": true
+  },
+  {
+    "id": "cast-dream-not-dare",
+    "text": "Seems our brother chose to live in the one place he knew I would not dare to go",
+    "speaker": "Dream (Morpheus)",
+    "collection": "comics",
+    "work": "The Sandman (Netflix television adaptation)",
+    "locator": "Season 2, episode 6; discovery of Destruction’s refuge",
+    "year": 2025,
+    "context": "Dream recognises that his brother lives near the son he has avoided. Netflix explicitly assigns these words to Dream in the episode. The excerpt opens a difficult family context rather than celebrating avoidance.",
+    "sources": [
+      {
+        "label": "Netflix: official excerpt",
+        "url": "https://www.netflix.com/tudum/articles/the-sandman-season-2-ending-explained"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-dream-hope",
+    "text": "I am hope.",
+    "speaker": "Dream (Morpheus)",
+    "collection": "comics",
+    "work": "The Sandman (Netflix television adaptation)",
+    "locator": "Season 1, episode 4, A Hope in Hell; the Oldest Game",
+    "year": 2022,
+    "context": "Dream’s answer in the contest of transformations. The original work is the Netflix episode; the wording is corroborated by Héctor M. Varela Rios’s 2022 scholarly discussion at the University of Chicago. This is textual corroboration of screen dialogue, not inspection of the original comic.",
+    "sources": [
+      {
+        "label": "University of Chicago: episode quotation and analysis",
+        "url": "https://divinity.uchicago.edu/sightings/articles/sandman-and-decolonializing-hope"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": true
+  },
+  {
+    "id": "cast-dream-kills-hope",
+    "text": "What is it that kills hope?",
+    "speaker": "Dream (Morpheus)",
+    "collection": "comics",
+    "work": "The Sandman (Netflix television adaptation)",
+    "locator": "Season 1, episode 4, A Hope in Hell; question to Lucifer",
+    "year": 2022,
+    "context": "The question follows Dream’s declaration of hope during the Oldest Game. Verified in the same University of Chicago scholarly account of the episode; its author goes on to question how the fantasy relates to lasting change in real life.",
+    "sources": [
+      {
+        "label": "University of Chicago: episode quotation and analysis",
+        "url": "https://divinity.uchicago.edu/sightings/articles/sandman-and-decolonializing-hope"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "portrayal",
+    "daily": false
+  },
+  {
+    "id": "cast-dream-dreams-as-hope",
+    "text": "dreams are not lies; dreams are a form of hope.",
+    "speaker": "Allan Heinberg",
+    "collection": "comics",
+    "work": "Interview on The Sandman, Netflix Tudum",
+    "locator": "Allan Heinberg interview, 6 August 2022; answer about Dream and John Dee",
+    "year": 2022,
+    "context": "The showrunner explains the meaning of Dream’s confrontation with John Dee. These are Heinberg’s interview words about the character’s message, not an exact transcript of Dream’s dialogue.",
+    "sources": [
+      {
+        "label": "Original showrunner interview",
+        "url": "https://www.netflix.com/tudum/articles/the-sandman-24-hour-diner-explained-neil-gaiman"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
+  },
+  {
+    "id": "cast-dream-compassion",
+    "text": "Dream has compassion because he knows the monster that John’s father was.",
+    "speaker": "Allan Heinberg",
+    "collection": "comics",
+    "work": "Interview on The Sandman, Netflix Tudum",
+    "locator": "Allan Heinberg interview, 6 August 2022; end of answer about Dream’s mercy",
+    "year": 2022,
+    "context": "Heinberg explains why his adaptation has Dream show mercy to John Dee. This is the writer’s interpretation of a fictional character and is clearly credited as an account.",
+    "sources": [
+      {
+        "label": "Original showrunner interview",
+        "url": "https://www.netflix.com/tudum/articles/the-sandman-24-hour-diner-explained-neil-gaiman"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "account",
+    "daily": false
   }
 ];

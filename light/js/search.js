@@ -54,7 +54,9 @@ function flSearch(query) {
   var counts = {};
   var push = function (group, title, sub, snippet, href) {
     counts[group] = (counts[group] || 0) + 1;
-    if (results.length < SEARCH_MAX * 4) {
+    /* Keep enough from each group for the final priority sort. A large
+       anthology must not crowd the reader's own writing out of the buffer. */
+    if (counts[group] <= SEARCH_MAX) {
       results.push({ group: group, title: title, sub: sub, snippet: snippet, href: href });
     }
   };
@@ -75,6 +77,7 @@ function flSearch(query) {
 
   /* Source-checked fiction, literature and historical voices. */
   if (typeof DAWN_QUOTES !== 'undefined') DAWN_QUOTES.forEach(function (entry) {
+    if (entry.kind === 'tradition' && FL.prefs.canonLines !== 'on') return;
     if (sHit(dawnSearchText(entry), q)) {
       push('The Dawn Anthology', entry.speaker, entry.work, entry.text, '#/anthology/' + entry.id);
     }
@@ -184,6 +187,7 @@ function flSearch(query) {
    is not scanned, which is honest, and the UI says so rather than pretending the
    whole library was searched. */
 function sSearchScripture(q, push) {
+  if (FL.prefs.canonLines !== 'on') return;
   if (typeof FL_TEXT === 'undefined' || typeof FL_LIBRARY === 'undefined') return;
 
   Object.keys(FL_TEXT).forEach(function (work) {
