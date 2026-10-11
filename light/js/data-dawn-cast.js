@@ -38,6 +38,8 @@ var DAWN_CAST = [
     "group": "leaders",
     "aliases": [],
     "quoteIds": [
+      "history-washington-truth-light",
+      "history-washington-friendship-growth",
       "history-washington-peace",
       "history-washington-knowledge",
       "history-washington-discipline",
@@ -56,6 +58,8 @@ var DAWN_CAST = [
     "group": "leaders",
     "aliases": [],
     "quoteIds": [
+      "history-jefferson-sharing-ideas",
+      "history-jefferson-friendship-differences",
       "history-jefferson-books",
       "history-jefferson-honesty",
       "history-jefferson-plain-dealing",
@@ -74,6 +78,8 @@ var DAWN_CAST = [
     "group": "leaders",
     "aliases": [],
     "quoteIds": [
+      "history-lincoln-resolution-study",
+      "history-lincoln-liberty-meaning",
       "history-lincoln-diligence",
       "history-lincoln-government",
       "history-lincoln-charity",
@@ -92,6 +98,8 @@ var DAWN_CAST = [
     "group": "leaders",
     "aliases": [],
     "quoteIds": [
+      "history-theodore-canyon-preservation",
+      "history-theodore-guard-future",
       "history-theodore-arena",
       "history-theodore-error",
       "history-theodore-square-deal",
@@ -110,6 +118,8 @@ var DAWN_CAST = [
     "group": "leaders",
     "aliases": [],
     "quoteIds": [
+      "history-fdr-imagination-and-facts",
+      "history-fdr-courage-of-the-young",
       "history-fdr-human-rights",
       "history-fdr-fear",
       "history-fdr-clear-eyes",
@@ -128,6 +138,8 @@ var DAWN_CAST = [
     "group": "leaders",
     "aliases": [],
     "quoteIds": [
+      "history-eisenhower-honest-eyes",
+      "history-eisenhower-climate-of-freedom",
       "history-eisenhower-disarmament",
       "history-eisenhower-liberty-security",
       "history-eisenhower-world-in-arms",
@@ -146,6 +158,8 @@ var DAWN_CAST = [
     "group": "leaders",
     "aliases": [],
     "quoteIds": [
+      "history-kennedy-discomfort-of-thought",
+      "history-kennedy-opportunities-for-peace",
       "history-kennedy-moon",
       "history-kennedy-new-sea",
       "history-kennedy-service",
@@ -166,6 +180,8 @@ var DAWN_CAST = [
       "Elizabeth II"
     ],
     "quoteIds": [
+      "history-elizabeth-pull-of-home",
+      "history-elizabeth-rebuild-trust",
       "history-elizabeth-cherish",
       "history-elizabeth-hate-destroy",
       "history-elizabeth-whole-ourselves",
@@ -184,6 +200,8 @@ var DAWN_CAST = [
     "group": "leaders",
     "aliases": [],
     "quoteIds": [
+      "history-churchill-human-societies",
+      "history-churchill-hope-and-patience",
       "history-churchill-gratitude",
       "history-churchill-blood-toil",
       "history-churchill-long-struggle",
@@ -202,6 +220,8 @@ var DAWN_CAST = [
     "group": "leaders",
     "aliases": [],
     "quoteIds": [
+      "history-mandela-valued-treasure",
+      "history-mandela-room-to-grow",
       "history-mandela-new-age",
       "history-mandela-together",
       "history-mandela-justice",
@@ -220,6 +240,8 @@ var DAWN_CAST = [
     "group": "leaders",
     "aliases": [],
     "quoteIds": [
+      "history-degaulle-dignity-guaranteed",
+      "history-degaulle-gentle-sympathy",
       "history-degaulle-hope",
       "history-degaulle-flame",
       "history-degaulle-paris-liberated",
@@ -238,6 +260,8 @@ var DAWN_CAST = [
     "group": "leaders",
     "aliases": [],
     "quoteIds": [
+      "history-cromwell-humble-seeker",
+      "history-cromwell-soul-prospers",
       "history-cromwell-fallibility",
       "history-cromwell-bethink",
       "history-cromwell-helpers",

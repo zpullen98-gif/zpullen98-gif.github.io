@@ -41,7 +41,7 @@ function dawnCastIndex() {
     '<div class="dawn-results"><p role="status">' + people.length + ' character' + (people.length === 1 ? '' : 's') + '</p>' +
     (dawnCastQuery || dawnCastGroup !== 'all' ? '<button class="keep" data-act="dawnCastClear">Clear character filters</button>' : '') + '</div>' +
     '<div class="dawn-cast-grid">' + people.map(function (p) {
-      return '<a class="dawn-person" href="#/anthology/person-' + esc(p.id) + '"><span class="dawn-person-group">' + esc(dawnCastGroupName(p.group)) + '</span><strong>' + esc(p.name) + '</strong><span>' + (p.group === 'host' ? 'Awaiting original text' : p.quoteIds.length + ' of 10 selections') + '</span></a>';
+      return '<a class="dawn-person" href="#/anthology/person-' + esc(p.id) + '"><span class="dawn-person-group">' + esc(dawnCastGroupName(p.group)) + '</span><strong>' + esc(p.name) + '</strong><span>' + (p.group === 'host' ? 'Awaiting original text' : p.quoteIds.length + ' selections') + '</span></a>';
     }).join('') + '</div>' + (!people.length ? '<p class="note">No characters match. Try a surname or clear the filters.</p>' : '');
 }
 function dawnCastProfile(id) {

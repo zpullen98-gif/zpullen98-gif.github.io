@@ -1,8 +1,478 @@
 /* The Dawn Anthology. Sources checked 11 October 2026.
-   Short selections retain their writer, edition and dramatic context.
-   Research scope and evidence: .scripts/anthology-cast-audit.json.
-   The first 109 entries preserve the earlier anthology unchanged. */
+   Short selections retain their writer, edition and historical context.
+   Latest research: .scripts/anthology-leaders-expansion-audit.json.
+   Earlier records and evidence remain unchanged; newest selections open the shelf. */
 var DAWN_QUOTES = [
+  {
+    "id": "history-washington-truth-light",
+    "text": "truth will ultimately prevail where pains is taken to bring it to light.",
+    "speaker": "George Washington",
+    "collection": "history",
+    "work": "Letter to Charles Mynn Thruston",
+    "locator": "10 August 1794; Philadelphia; paragraph on opposition to federal law; closing clause; Library of Congress transcript PDF, page 142",
+    "year": 1794,
+    "context": "Washington argues that concealed and exaggerated facts can mislead well-meaning people. The letter defends his administration amid unrest in Kentucky and the Whiskey Rebellion; this is his political judgment, not a promise that truth wins without effort.",
+    "sources": [
+      {
+        "label": "Library of Congress: George Washington Papers, letter transcript",
+        "url": "https://tile.loc.gov/storage-services/service/mss/mgw/mgw2/019/019.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-jefferson-sharing-ideas",
+    "text": "He who receives an idea from me, receives instruction himself without lessening mine",
+    "speaker": "Thomas Jefferson",
+    "collection": "history",
+    "work": "Letter to Isaac McPherson",
+    "locator": "13 August 1813; passage comparing shared ideas with candlelight; first clause",
+    "year": 1813,
+    "context": "In a discussion of patents, Jefferson distinguishes an idea from a possession that another person can take away. The next clause compares sharing an idea to lighting another candle; the letter also allows that society may grant limited exclusive rights to encourage useful inventions.",
+    "sources": [
+      {
+        "label": "University of Chicago Press: primary letter extract in The Founders’ Constitution",
+        "url": "https://press-pubs.uchicago.edu/founders/documents/v1ch16s25.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-lincoln-resolution-study",
+    "text": "Always bear in mind that your own resolution to succeed, is more important than any other one thing",
+    "speaker": "Abraham Lincoln",
+    "collection": "history",
+    "work": "Letter to Isham Reavis, Jr.",
+    "locator": "5 November 1855; Springfield; closing advice before the signature; terminal manuscript dash omitted",
+    "year": 1855,
+    "context": "Unable to take Reavis as an apprentice because of his travel, Lincoln recommends legal books, sustained study and advice from another lawyer. His encouragement belongs to that practical educational guidance, rather than a guarantee that determination alone overcomes every obstacle.",
+    "sources": [
+      {
+        "label": "Papers of Abraham Lincoln: full letter and documentary notes",
+        "url": "https://papersofabrahamlincoln.org/documents/D200867"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-theodore-canyon-preservation",
+    "text": "Leave it as it is. You cannot improve on it.",
+    "speaker": "Theodore Roosevelt",
+    "collection": "history",
+    "work": "Remarks at Grand Canyon, Arizona",
+    "locator": "6 May 1903; paragraph opposing buildings on the canyon’s brink; two consecutive sentences",
+    "year": 1903,
+    "context": "Roosevelt asks that the canyon’s grandeur be preserved for future visitors and generations. He is speaking about this landscape, not opposing all change; elsewhere the same speech promotes irrigation and resource use and contains paternalistic language about Native Americans.",
+    "sources": [
+      {
+        "label": "American Presidency Project: complete Grand Canyon remarks",
+        "url": "https://www.presidency.ucsb.edu/documents/remarks-grand-canyon-arizona"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-fdr-imagination-and-facts",
+    "text": "We need enthusiasm, imagination and the ability to face facts, even unpleasant ones, bravely.",
+    "speaker": "Franklin D. Roosevelt",
+    "collection": "history",
+    "work": "Address at Oglethorpe University in Atlanta, Georgia",
+    "locator": "22 May 1932; final paragraph, first sentence; complete sentence",
+    "year": 1932,
+    "context": "Speaking as New York governor and a presidential candidate during the Depression, Roosevelt calls for imaginative economic reform grounded in an honest account of hardship.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full Oglethorpe address",
+        "url": "https://www.presidency.ucsb.edu/documents/address-oglethorpe-university-atlanta-georgia"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-eisenhower-honest-eyes",
+    "text": "You must have courage to look at all about you with honest eyes--above all, yourself.",
+    "speaker": "Dwight D. Eisenhower",
+    "collection": "history",
+    "work": "Remarks at the Dartmouth College Commencement Exercises",
+    "locator": "14 June 1953; Hanover, New Hampshire; courage section, paragraph on honest self-examination, first sentence; complete sentence",
+    "year": 1953,
+    "context": "Eisenhower connects courage with admitting one's own failures. He then asks graduates to confront racial and religious prejudice in their country; the informal address also defends access to books and ideas.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full Dartmouth remarks",
+        "url": "https://www.presidency.ucsb.edu/documents/remarks-the-dartmouth-college-commencement-exercises-hanover-new-hampshire"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-kennedy-discomfort-of-thought",
+    "text": "We enjoy the comfort of opinion without the discomfort of thought.",
+    "speaker": "John F. Kennedy",
+    "collection": "history",
+    "work": "Commencement Address at Yale University",
+    "locator": "11 June 1962; paragraph on myth as an enemy of truth, final sentence; complete sentence",
+    "year": 1962,
+    "context": "Kennedy criticizes inherited assumptions in public debate before discussing federal spending, debt, and economic confidence. His appeal for thought is part of a specific argument for examining policy in detail.",
+    "sources": [
+      {
+        "label": "John F. Kennedy Presidential Library: full Yale commencement address",
+        "url": "https://www.jfklibrary.org/archives/other-resources/john-f-kennedy-speeches/yale-university-19620611"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-elizabeth-pull-of-home",
+    "text": "There is a timeless simplicity to the pull of home.",
+    "speaker": "Queen Elizabeth II",
+    "collection": "history",
+    "work": "Christmas Broadcast 2017",
+    "locator": "25 December 2017; paragraph on warmth, shared stories and returning home",
+    "year": 2017,
+    "context": "Reflecting on a year that included the Manchester bombing and the Grenfell Tower fire, Elizabeth describes the sense of belonging associated with home. Her message also remembers those whose homes and families were shattered.",
+    "sources": [
+      {
+        "label": "Royal Household: official Christmas Broadcast 2017 transcript",
+        "url": "https://www.royal.uk/christmas-broadcast-2017"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-churchill-human-societies",
+    "text": "Human beings and human societies are not structures that are built, or machines that are forged.",
+    "speaker": "Winston Churchill",
+    "collection": "history",
+    "work": "MIT Mid-Century Convocation address",
+    "locator": "31 March 1949; Boston Garden; humanities and human nature passage, first sentence of the paragraph comparing societies with plants; complete sentence",
+    "year": 1949,
+    "context": "Addressing MIT's convocation, Churchill argues that technical progress needs the guidance of the humanities. He follows this sentence with an image of societies as living plants requiring care. The wider address defends Western cooperation in the Cold War.",
+    "sources": [
+      {
+        "label": "MIT: archival recording and transcript of the convocation address",
+        "url": "https://infinite.mit.edu/video/sir-winston-churchill-mit-%E2%80%93-1949-mid-century-convocation-speech/"
+      },
+      {
+        "label": "International Churchill Society: full official text released by the MIT News Office",
+        "url": "https://winstonchurchill.org/resources/speeches/1946-1963-elder-statesman/mit-mid-century-convocation/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-mandela-valued-treasure",
+    "text": "But our most valued treasure is our people, especially the youth.",
+    "speaker": "Nelson Mandela",
+    "collection": "history",
+    "work": "Launch of the National Campaign for Learning and Teaching",
+    "locator": "Soweto, 20 February 1997; first substantive paragraph, second sentence",
+    "year": 1997,
+    "context": "At the launch of an education campaign, Mandela places people before natural resources as South Africa's greatest asset. He calls on government, teachers, students and parents to turn human potential into opportunities to learn.",
+    "sources": [
+      {
+        "label": "South African History Online: Office of the President speech transcript, R-0086966",
+        "url": "https://sahistory.org.za/archive/address-president-nelson-mandela-launch-national-campaign-learning-and-teaching-soweto-20"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-degaulle-dignity-guaranteed",
+    "text": "everyone’s freedom, security and dignity are honoured and guaranteed there",
+    "speaker": "Charles de Gaulle",
+    "collection": "history",
+    "work": "Address at Oxford",
+    "locator": "Oxford Union, 25 November 1941; clause in the concluding argument of the Foundation's published excerpt",
+    "year": 1941,
+    "context": "De Gaulle argues that military victory must be followed by a social order that protects each person's freedom and dignity. The word 'there' refers to that proposed order. This is a new English translation of a French clause.",
+    "sources": [
+      {
+        "label": "Fondation de la France Libre: Oxford speech excerpt and historical setting",
+        "url": "https://francelibre.net/le-discours-doxford-du-general-de-gaulle-25-novembre-1941/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "originalText": "la liberté, la sécurité, la dignité de chacun y soient exaltées et garanties",
+    "originalLanguage": "French",
+    "translation": "New English translation for this anthology; 'exaltées' rendered 'honoured', and 'y' retained as 'there'. Not an English utterance by de Gaulle."
+  },
+  {
+    "id": "history-cromwell-humble-seeker",
+    "text": "And thus to be a seeker is to be of the best sect next to a finder;",
+    "speaker": "Oliver Cromwell",
+    "collection": "history",
+    "work": "Letter to Bridget Ireton",
+    "locator": "London, 25 October 1646; letter 38, PDF p. 1; opening clause of the sentence about religious seeking; Carlyle's 1846 edition in institutional transcription",
+    "year": 1646,
+    "context": "Writing to his daughter Bridget, Cromwell discusses her sister Elizabeth Claypole's religious searching. The search he means is Christian spiritual self-examination, connected in the following clause with humility and faith.",
+    "sources": [
+      {
+        "label": "Cromwell Association and Cromwell Museum: Letter 38 transcription",
+        "url": "https://www.olivercromwell.org/Letters_and_Speeches/Letters/Letter_38.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-washington-friendship-growth",
+    "text": "true friendship is a plant of slow growth",
+    "speaker": "George Washington",
+    "collection": "history",
+    "work": "Letter to Bushrod Washington",
+    "locator": "15 January 1783; Newburgh; paragraph beginning with advice to be courteous; clause excerpt",
+    "year": 1783,
+    "context": "Washington advises his nephew, a law student in Philadelphia, to give friendship time to prove itself through adversity. The cited university edition is an early-access transcription, explicitly marked as not yet a final edited version.",
+    "sources": [
+      {
+        "label": "University of Virginia Press: complete letter, Founders Early Access",
+        "url": "https://rotunda.upress.virginia.edu/founders/default.xqy?keys=FOEA-print-01-02-02-4429&printable=yes"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-jefferson-friendship-differences",
+    "text": "I never considered a difference of opinion in politics, in religion, in philosophy, as cause for withdrawing from a friend.",
+    "speaker": "Thomas Jefferson",
+    "collection": "history",
+    "work": "Letter to William Hamilton of Woodlands",
+    "locator": "22 April 1800; Philadelphia; paragraph explaining an apparent social slight; Library of Congress transcript PDF, page 2",
+    "year": 1800,
+    "context": "Jefferson repairs a misunderstanding about an unreturned visit and describes his response to strained political friendships. This is his account of his own conduct in a partisan letter, not independent evidence that he always lived up to the principle.",
+    "sources": [
+      {
+        "label": "Library of Congress: letter transcript from Paul Leicester Ford’s edition",
+        "url": "https://tile.loc.gov/storage-services/service/mss/mtj/mtj1/022/022_0228_0229.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-lincoln-liberty-meaning",
+    "text": "We all declare for liberty; but in using the same word we do not all mean the same thing.",
+    "speaker": "Abraham Lincoln",
+    "collection": "history",
+    "work": "Address at the Sanitary Fair in Baltimore",
+    "locator": "18 April 1864; paragraph defining liberty; second sentence",
+    "year": 1864,
+    "context": "Lincoln distinguishes freedom to direct one’s own life and labour from the claimed freedom to control other people and their labour. He is challenging slavery, not suggesting that these opposing meanings are equally defensible.",
+    "sources": [
+      {
+        "label": "American Presidency Project: complete Baltimore address",
+        "url": "https://www.presidency.ucsb.edu/documents/address-sanitary-fair-baltimore-lecture-liberty"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-theodore-guard-future",
+    "text": "We are coming to recognize as never before the right of the Nation to guard its own future in the essential matter of natural resources.",
+    "speaker": "Theodore Roosevelt",
+    "collection": "history",
+    "work": "Conservation as a National Duty",
+    "locator": "13 May 1908; Conference of Governors, White House; paragraph 40 in the University of Maryland edition; first sentence",
+    "year": 1908,
+    "context": "Roosevelt argues for public responsibility when private profit exhausts resources needed by later generations. His conservation programme combines protection with planned use; the wider speech also ranks peoples through the racial and colonial assumptions of its era.",
+    "sources": [
+      {
+        "label": "University of Maryland, Voices of Democracy: authenticated speech text",
+        "url": "https://voicesofdemocracy.umd.edu/theodore-roosevelt-conservation-as-a-national-duty-speech-text/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-fdr-courage-of-the-young",
+    "text": "We need the courage of the young.",
+    "speaker": "Franklin D. Roosevelt",
+    "collection": "history",
+    "work": "Address at Oglethorpe University in Atlanta, Georgia",
+    "locator": "22 May 1932; final paragraph, third sentence; complete sentence",
+    "year": 1932,
+    "context": "Roosevelt asks graduating students to help remake an economic order that has left millions without work. His appeal places a public responsibility on youth facing the Depression.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full Oglethorpe address",
+        "url": "https://www.presidency.ucsb.edu/documents/address-oglethorpe-university-atlanta-georgia"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-eisenhower-climate-of-freedom",
+    "text": "We seek peace, knowing that peace is the climate of freedom.",
+    "speaker": "Dwight D. Eisenhower",
+    "collection": "history",
+    "work": "Second Inaugural Address",
+    "locator": "21 January 1957; paragraph explaining the pursuit of peace, first sentence; White House release text; complete sentence",
+    "year": 1957,
+    "context": "At his second public inauguration, Eisenhower links peace with freedom and survival in the nuclear age. The address calls for justice and international assistance alongside military preparedness.",
+    "sources": [
+      {
+        "label": "American Presidency Project: White House release of the second inaugural address",
+        "url": "https://www.presidency.ucsb.edu/documents/second-inaugural-address"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-kennedy-opportunities-for-peace",
+    "text": "We have achieved new opportunities which we cannot afford to waste.",
+    "speaker": "John F. Kennedy",
+    "collection": "history",
+    "work": "Address at the University of Maine",
+    "locator": "19 October 1963; Orono; paragraph assessing progress after the Cuban missile crisis, third sentence; complete sentence",
+    "year": 1963,
+    "context": "A year after the Cuban missile crisis, Kennedy assesses limited agreements with the Soviet Union. The opportunities are diplomatic: he urges further efforts for peace while warning that tensions and fundamental disagreements remain.",
+    "sources": [
+      {
+        "label": "American Presidency Project: full University of Maine address",
+        "url": "https://www.presidency.ucsb.edu/documents/address-the-university-maine"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-elizabeth-rebuild-trust",
+    "text": "It takes patience and time to rebuild trust, and progress often comes through small steps.",
+    "speaker": "Queen Elizabeth II",
+    "collection": "history",
+    "work": "Christmas Broadcast 2019",
+    "locator": "25 December 2019; paragraph following the recollection of D-Day anniversary commemorations",
+    "year": 2019,
+    "context": "Elizabeth reflects on former wartime enemies meeting in friendship at the seventy-fifth anniversary of D-Day. Rebuilding trust is described as the patient work of reconciliation.",
+    "sources": [
+      {
+        "label": "Royal Household: official Christmas Broadcast 2019 transcript",
+        "url": "https://www.royal.uk/queen%E2%80%99s-christmas-broadcast-2019"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-churchill-hope-and-patience",
+    "text": "We need not abandon hope or patience.",
+    "speaker": "Winston Churchill",
+    "collection": "history",
+    "work": "MIT Mid-Century Convocation address",
+    "locator": "31 March 1949; Boston Garden; closing discussion of time and relations with Russia, paragraph-opening sentence; complete sentence",
+    "year": 1949,
+    "context": "Churchill argues that another war is avoidable while urging Western unity and resistance to Soviet pressure. He distinguishes his opposition to the Soviet government from hostility toward the Russian people.",
+    "sources": [
+      {
+        "label": "MIT: archival recording and transcript of the convocation address",
+        "url": "https://infinite.mit.edu/video/sir-winston-churchill-mit-%E2%80%93-1949-mid-century-convocation-speech/"
+      },
+      {
+        "label": "International Churchill Society: full official text released by the MIT News Office",
+        "url": "https://winstonchurchill.org/resources/speeches/1946-1963-elder-statesman/mit-mid-century-convocation/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-mandela-room-to-grow",
+    "text": "every person is valued for who they are and is able to have the opportunity to grow and to have genuine choices.",
+    "speaker": "Nelson Mandela",
+    "collection": "history",
+    "work": "Message from Mr Nelson Mandela, Nelson Mandela Foundation Annual Report 2005",
+    "locator": "2005 annual report, printed p. 1 (PDF p. 3); clause within the paragraph stating his continuing commitments; message not dated to a specific day",
+    "year": 2005,
+    "context": "In his own opening message to the Foundation's annual report, Mandela explains how its work will continue after he reduces his public commitments. This clause sets personal worth, growth and choice alongside freedom from poverty, oppression and bigotry.",
+    "sources": [
+      {
+        "label": "Nelson Mandela Foundation: Annual Report 2005, Mandela's opening message",
+        "url": "https://www.nelsonmandela.org/uploads/files/Annual_Report_2005.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "history-degaulle-gentle-sympathy",
+    "text": "May they at least bring some relief.",
+    "speaker": "Charles de Gaulle",
+    "collection": "history",
+    "work": "Letter to Colonel Émile Mayer",
+    "locator": "Paris, 11 August 1933; first paragraph, final sentence; Foundation transcription, PDF p. 5",
+    "year": 1933,
+    "context": "Writing after the death of Mayer's wife, de Gaulle acknowledges how little expressions of sympathy can console the bereaved. 'They' means those expressions of sympathy: his hope is that they may ease his friend's pain. New English translation from the French.",
+    "sources": [
+      {
+        "label": "Fondation Charles de Gaulle: letters to Colonel Émile Mayer, 1925–1938",
+        "url": "https://www.charles-de-gaulle.org/wp-content/uploads/2017/09/Acceder-aux-lettres.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "originalText": "Puissent-ils au moins servir d'adoucissements.",
+    "originalLanguage": "French",
+    "translation": "New English translation for this anthology. The pronoun refers to expressions of sympathy in the preceding sentence; 'adoucissements' is rendered 'relief'. Not a published historical English translation."
+  },
+  {
+    "id": "history-cromwell-soul-prospers",
+    "text": "It joys me to hear thy soul prospereth: the Lord increase His favours to thee more and more.",
+    "speaker": "Oliver Cromwell",
+    "collection": "history",
+    "work": "Letter to Elizabeth Cromwell",
+    "locator": "Edinburgh, 3 May 1651; letter 158, PDF p. 1; sentence following his explanation that he loves to write to his wife; Carlyle's 1846 edition in institutional transcription",
+    "year": 1651,
+    "context": "In a personal letter written during the Scottish campaign, Cromwell expresses joy at his wife's spiritual well-being. His prayer sits alongside gratitude for her counsel and example within their household.",
+    "sources": [
+      {
+        "label": "Cromwell Association and Cromwell Museum: Letter 158 transcription",
+        "url": "https://www.olivercromwell.org/Letters_and_Speeches/Letters/Letter_158.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
   {
     "id": "trek-picard-no-mistakes",
     "text": "It is possible to commit no mistakes and still lose.",
