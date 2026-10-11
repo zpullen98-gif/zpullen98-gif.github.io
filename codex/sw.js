@@ -1,6 +1,6 @@
 /* The Sommelier's Codex: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-codex-v139';
+const CACHE = 'oot-codex-v140';
 importScripts('./js/data-teaching-images.js?v=4', './js/teaching-cache.js?v=1');
 
 /* Both the reviewed SVG atlas and original JPG maps stay out of ASSETS.
@@ -28,6 +28,18 @@ const LEGACY_MAPS = 'codexmaps-v1';
    one visit. Again no hyphen after "codex", so activate never reaps it. */
 const LIST = 'codexlist-v1';
 const LIST_RE = /\/shared\/packs\/[a-z0-9-]+\.winelist\.v\d+\.json$/;
+
+/* The regions' reading (js/regions/<sheet>.json, one file per atlas sheet
+   and one for the map-less countries, written by build-regions.cjs) stays
+   out of ASSETS: together near 2 MB, it would be downloaded in full at every
+   install and every bump. js/data-regions.js, the index, is in ASSETS and
+   carries each file's stamp; codex39 asks for js/regions/<sheet>.json?v=<stamp>
+   the first time a page of that sheet opens. The file is kept here, matched
+   by its exact address, so a new stamp is a new fetch and the older copy of
+   that file is dropped once the new one is stored; with no network the last
+   copy kept answers. Not under the oot-codex- prefix, so activate never reaps it. */
+const REGIONS_ROOT = new URL('./js/regions/', self.location.href);
+const REGIONS_CACHE = 'codexregions-v1-' + encodeURIComponent(new URL('./', self.location.href).pathname);
 
 const ASSETS = [
   './',
@@ -121,6 +133,9 @@ const ASSETS = [
   './js/data-culinary-studies.js',
   './js/codex37.js',
   './js/codex38.js',
+  './js/data-regions.js',
+  './js/data-service-ref.js',
+  './js/codex39.js',
   './js/boot.js',
   './fonts/cinzel-normal-400-900-latin.woff2',
   './fonts/cinzel-normal-400-900-latin-ext.woff2',
@@ -218,6 +233,22 @@ self.addEventListener('fetch', e => {
      Empty or missing art never blocks installation or a written lesson. */
   if (CodexTeachingCache.owns(url.href, self.location.href)) {
     e.respondWith(CodexTeachingCache.respond(e.request, self.location.href));
+    return;
+  }
+
+  if (url.pathname.startsWith(REGIONS_ROOT.pathname)) {
+    e.respondWith(caches.open(REGIONS_CACHE).then(c =>
+      c.match(e.request).then(hit => hit || fetch(e.request).then(res => {
+        if (!res.ok) return res;
+        const copy = res.clone();
+        return c.keys()
+          .then(keys => Promise.all(keys.filter(k => new URL(k.url).pathname === url.pathname && k.url !== e.request.url).map(k => c.delete(k))))
+          .then(() => c.put(e.request, copy))
+          .then(() => res, () => res);
+      }).catch(err => c.match(e.request, { ignoreSearch: true }).then(old => {
+        if (old) return old;
+        throw err;
+      })))));
     return;
   }
 
