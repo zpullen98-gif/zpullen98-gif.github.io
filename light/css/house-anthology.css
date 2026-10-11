@@ -7,6 +7,10 @@
 .dawn-search > div { display: flex; gap: 10px; }
 .dawn-search input { flex: 1; width: 100%; padding: 10px 12px; }
 .dawn-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.dawn-filter-shelves { display: grid; gap: 18px; }
+.dawn-filter-shelves > .mchip { justify-self: start; }
+.dawn-filter-shelf { min-width: 0; margin: 0; padding: 14px 0 0; border: 0; border-top: 1px solid var(--line); }
+.dawn-filter-shelf legend { padding: 0 12px 0 0; color: var(--faint); font-size: 12px; letter-spacing: .04em; }
 .dawn-results { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; margin: 20px 0; font-size: 14px; }
 .dawn-results p { margin: 0; flex: 1; }
 .dawn-results a { padding: 12px 0; }
@@ -30,9 +34,6 @@
 .dawn-permalink { display: inline-block; padding: 12px 0 0; font-size: 12px; min-height: 44px; text-underline-offset: 3px; }
 .dawn-more { margin: 24px 0; }
 .dawn-policy { margin: 28px 0 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.75; }
-.dawn-today { margin: 26px 0; }
-.dawn-today h2 { font-family: var(--house-display, var(--serif)); font-size: 23px; font-weight: 500; }
-.dawn-dated { font-size: 12px; letter-spacing: .07em; color: var(--accent); margin: 0 0 12px; }
 .dawn-shelf-nav { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 0 0 28px; border-bottom: 1px solid var(--line); }
 .dawn-shelf-nav a { padding: 12px 0; min-height: 44px; font-size: 14px; text-underline-offset: 5px; }
 .dawn-shelf-nav a[aria-current] { color: var(--accent); font-weight: 700; border-bottom: 2px solid var(--accent); }
@@ -50,4 +51,4 @@
 @media(max-width:720px) { .dawn-cast-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media(max-width:360px) { .dawn-cast-grid { grid-template-columns: 1fr; } }
 @media(max-width:600px) { .dawn-grid { grid-template-columns: 1fr; } .dawn-card { padding: 23px 20px; } .dawn-search > div { flex-wrap: wrap; } .dawn-search input { flex-basis: 100%; } }
-@media print { .dawn-filters,.dawn-search,.dawn-more,.dawn-permalink { display: none; } .dawn-grid { display: block; } .dawn-card { break-inside: avoid; box-shadow: none; } }
+@media print { .dawn-filter-shelves,.dawn-search,.dawn-more,.dawn-permalink { display: none; } .dawn-grid { display: block; } .dawn-card { break-inside: avoid; box-shadow: none; } }

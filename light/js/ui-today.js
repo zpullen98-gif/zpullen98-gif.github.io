@@ -18,7 +18,7 @@
    WHAT IT DOES INSTEAD is give every morning the same shape, in the same
    order, whether it is day two or day two hundred:
 
-     Read      the dated voice, the turn, and nine sourced anthology lines
+     Read      the dated voice, the turn, and two lines for a lift
      Breathe   five patterns on one disc; pick one, or start with the box
      Watch     two films from the yoga and workout shelf, dealt by the date
      then      the month's teaching, the day's movement, the practice, the
@@ -37,6 +37,7 @@
 var todayStep = 0;
 var todayKeptFired = null;     // the day key the kept event last went out for
 var todayForceMode = null;     // 'guided' | 'page' | null (= the saved preference)
+var liftSeed = 0, liftDay = ''; // Another changes only this session's pair
 var vidSeed = 0;               // the same, for the two films
 var TODAY_FILM_KINDS = ['yoga', 'workout'];   // the shelf the morning deals from; never the rehab films
 
@@ -116,6 +117,15 @@ FL_ACTS.todayMode = function (el) {
   todayStep = 0;
   render();
   window.scrollTo(0, 0);
+};
+
+FL_ACTS.liftAgain = function () {
+  var shelf = document.getElementById('today-lift-lines');
+  if (!shelf) return;
+  todayLiftDay(); liftSeed++;
+  var now = flShiftedNow();
+  shelf.innerHTML = todayLiftLines(doyOf(now.getMonth() + 1, now.getDate()));
+  announce('Two more lines.');
 };
 
 FL_ACTS.vidAgain = function () {
@@ -294,23 +304,58 @@ function todayFilms(doy) {
 
 /* --- pieces --- */
 function todayVoice(m, d, e) {
-  return '<div class="q"><p class="dawn-dated">1 of 10 · Your dated Year reading</p><p class="qt">“' + esc(e.q) + '”</p>' +
+  return '<div class="q"><p class="qt">“' + esc(e.q) + '”</p>' +
     '<span class="qs">' + esc(e.s) + '</span><span class="qtr">' + esc(e.t) + '</span>' +
     provNote(e.n) + '<br>' +
-    keepButton(m, d, true) + '</div>';
+    keepButton(m, d, true) +
+    '<p><a class="readmini" href="#/anthology/' + dawnYearId(flActiveTrack().id, m, d) + '">Find this in The Dawn Anthology</a></p></div>';
 }
 
-/* The dated voice plus nine source-checked selections make Today's ten.
-   Do not feed the legacy UPLIFT bank into this collection: several entries
-   there explicitly have uncertain attributions and no primary-source links. */
-function todayLift(doy) {
+/* Restore the original lift shelf: film/voice lines and The Classics.
+   Read the existing records directly; retain their citation caveats and notes.
+   New source-led collections remain in the Anthology for deliberate browsing. */
+function todayLiftPool() {
+  var pool = typeof UPLIFT === 'undefined' ? [] : UPLIFT.map(function (u, i) {
+    return { text: u[0], source: u[1], note: '', id: dawnLiftId(i) };
+  });
+  if (typeof Q_CLASSICS !== 'undefined') {
+    for (var m = 1; m <= 12; m++) (Q_CLASSICS[m] || []).forEach(function (e) {
+      pool.push({ text: e[1], source: e[2], note: e[4] || '', id: dawnYearId('classics', m, e[0]) });
+    });
+  }
+  return pool;
+}
+function todayLiftDay() {
+  var day = flToday();
+  if (liftDay !== day) { liftDay = day; liftSeed = 0; }
+}
+function todayLiftQuotes(doy) {
+  todayLiftDay();
   var md = doyToMD(doy);
-  var quotes = dawnDaily(flToday(), dayEntry(md[0], md[1]).q);
-  return '<section class="dawn-today" id="today-anthology" tabindex="-1" aria-labelledby="today-anthology-title">' +
-    '<h2 id="today-anthology-title">Words to travel by</h2>' +
-    '<p class="px">Your dated reading above and these nine selections make today’s ten. Open a source to explore the scene, speech or original work. A new selection arrives with your next day.</p>' +
-    '<p><a class="readmini" href="#/anthology">Explore The Dawn Anthology</a></p>' +
-    '<div class="dawn-grid">' + quotes.map(function (q, i) { return dawnCard(q, i + 2); }).join('') + '</div></section>';
+  var seen = {}, selected = [], pool = todayLiftPool(), n = pool.length;
+  seen[dawnNorm(dayEntry(md[0], md[1]).q)] = true;
+  if (!n) return selected;
+  [doy + liftSeed * 13, doy * 7 + 3 + liftSeed * 17].forEach(function (start) {
+    for (var step = 0; step < n; step++) {
+      var q = pool[(start + step) % n], key = dawnNorm(q.text);
+      if (!seen[key]) { selected.push(q); seen[key] = true; break; }
+    }
+  });
+  return selected;
+}
+function todayLiftLines(doy) {
+  return todayLiftQuotes(doy).map(function (q) {
+    return '<article class="lift" data-lift-id="' + esc(q.id) + '"><p class="lq">“' + esc(q.text) + '”</p>' +
+      '<span class="ls">' + esc(q.source) + '</span>' + provNote(q.note) +
+      '<p><a class="readmini" href="#/anthology/' + esc(q.id) + '">Read the citation in The Dawn Anthology</a></p></article>';
+  }).join('');
+}
+function todayLift(doy) {
+  return '<section id="today-lift" aria-labelledby="today-lift-title">' +
+    '<h2 class="label" id="today-lift-title">A lift for the day</h2>' +
+    '<div id="today-lift-lines">' + todayLiftLines(doy) + '</div>' +
+    '<div style="text-align:center;margin-top:4px"><button class="keep" data-act="liftAgain">Another</button></div>' +
+    '<p><a class="readmini" href="#/anthology">Explore The Dawn Anthology</a></p></section>';
 }
 
 /* One short teaching for the month, in the app's own voice. */
@@ -432,13 +477,13 @@ function todayGuided(m, d, e, doy, p) {
     { label: 'The voice', body: function () {
         return todayVoice(m, d, e) +
           '<p class="mintro" style="margin-top:18px">Read it twice. The second time is the one that lands.</p>' +
-          '<p class="refl" style="margin-top:14px">' + esc(TURN_PROMPTS[doy % TURN_PROMPTS.length]) + '</p>' + todayLift(doy);
+          '<p class="refl" style="margin-top:14px">' + esc(TURN_PROMPTS[doy % TURN_PROMPTS.length]) + '</p>';
       } },
     { label: 'Sit with it', body: function () {
         return todayBreath();
       } },
     { label: 'Move', body: function () { return todayMove() + '<div id="today-films">' + todayFilms(doy) + '</div>'; } },
-    { label: 'The practice', body: function () { return todayPractice(p); } }
+    { label: 'The practice', body: function () { return todayPractice(p) + todayLift(doy); } }
   ];
 
   if (todayStep >= steps.length) {

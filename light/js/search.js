@@ -62,22 +62,13 @@ function flSearch(query) {
   };
 
   /* --- the almanac --- */
-  var track = FL.prefs.track || 'philosophers';
-  var TQ = trackQ();
-  Object.keys(TQ).forEach(function (m) {
-    TQ[m].forEach(function (e) {
-      if (sHit(e[1], q) || sHit(e[2], q) || sHit(e[3], q)) {
-        push('The Year', trackMonths()[m - 1][0] + ' ' + e[0], e[2] + ' · ' + e[3], e[1], '#/year');
-      }
-    });
-  });
   trackMonths().forEach(function (mo, i) {
     if (sHit(mo[1], q) || sHit(mo[2], q)) push('The Year', mo[0], mo[1], mo[2], '#/year');
   });
 
-  /* Source-checked fiction, literature and historical voices. */
-  if (typeof DAWN_QUOTES !== 'undefined') DAWN_QUOTES.forEach(function (entry) {
-    if (entry.kind === 'tradition' && FL.prefs.canonLines !== 'on') return;
+  /* One home for all quotation shelves, including every Year and the Lift. */
+  if (typeof dawnLibrary === 'function') dawnLibrary().forEach(function (entry) {
+    if ((entry.kind === 'tradition' || entry.faithSource) && FL.prefs.canonLines !== 'on') return;
     if (sHit(dawnSearchText(entry), q)) {
       push('The Dawn Anthology', entry.speaker, entry.work, entry.text, '#/anthology/' + entry.id);
     }
