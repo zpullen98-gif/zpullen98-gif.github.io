@@ -1,8 +1,2452 @@
 /* The Dawn Anthology. Sources checked 11 October 2026.
    Short selections retain their writer, edition and historical context.
-   Latest research: .scripts/anthology-leaders-expansion-audit.json.
+   Latest research: .scripts/anthology-dramatists-audit.json.
    Earlier records and evidence remain unchanged; newest selections open the shelf. */
 var DAWN_QUOTES = [
+  {
+    "id": "stage-william-shakespeare-cannot-be-undone",
+    "text": "What’s done cannot be undone.",
+    "speaker": "Lady Macbeth",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Macbeth",
+    "locator": "Act 5; scene 1, line 71; Folger text; excerpt",
+    "year": "c. 1606",
+    "context": "Sleepwalking, Lady Macbeth relives the murders and discovers that washing cannot erase their consequences. This is a scene of guilt, not a serene statement of acceptance.",
+    "sources": [
+      {
+        "label": "Folger Shakespeare Library: edited full text",
+        "url": "https://www.folger.edu/explore/shakespeares-works/macbeth/read/5/1/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-sophocles-seek",
+    "text": "who seeks shall find;",
+    "speaker": "Creon",
+    "author": "Sophocles",
+    "collection": "stage",
+    "work": "Oedipus the King",
+    "locator": "Opening report from Delphi, in answer to where Laius’s killer can be found; F. Storr translation; excerpt",
+    "year": "5th century BCE",
+    "context": "Creon urges an investigation of the former king’s murder. The search ultimately exposes Oedipus himself; discovery brings truth at a terrible cost.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: F. Storr translation",
+        "url": "https://classics.mit.edu/Sophocles/oedipus.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-euripides-passion",
+    "text": "but passion, that cause of direst woes to mortal man, hath triumphed o’er my sober thoughts.",
+    "speaker": "Medea",
+    "author": "Euripides",
+    "collection": "stage",
+    "work": "Medea",
+    "locator": "Farewell to the children before she takes them into the house; E. P. Coleridge translation; excerpt",
+    "year": "431 BCE",
+    "context": "Medea understands the horror of the murder she is contemplating, yet lets revenge overcome her judgement. This is a tragic diagnosis of destructive passion, not an endorsement of it.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: E. P. Coleridge translation",
+        "url": "https://classics.mit.edu/Euripides/medea.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-moliere-prose",
+    "text": "I have been speaking prose these forty years without being aware of it",
+    "speaker": "Monsieur Jourdain",
+    "author": "Molière",
+    "collection": "stage",
+    "work": "The Shopkeeper Turned Gentleman (Le Bourgeois gentilhomme)",
+    "locator": "Act II, scene VI; excerpt from the prose lesson",
+    "year": 1670,
+    "context": "Jourdain discovers that everyday speech has a literary name. His delight is part of a satire of social pretension and expensive lessons, not a claim that ordinary speech lacks value.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Shopkeeper Turned Gentleman (Le Bourgeois gentilhomme)",
+        "url": "https://www.gutenberg.org/cache/epub/7279/pg7279-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Charles Heron Wall; English prose translation, Project Gutenberg #7279"
+  },
+  {
+    "id": "stage-ibsen-destiny",
+    "text": "I want for once in my life to have power to mould a human destiny.",
+    "speaker": "Hedda Tesman",
+    "author": "Henrik Ibsen",
+    "collection": "stage",
+    "work": "Hedda Gabler",
+    "locator": "Act II; speaking to Mrs. Elvsted",
+    "year": 1890,
+    "context": "Hedda admits her desire to control another life. The line reveals a dangerous longing for power within the drama, not a model for treating other people.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Hedda Gabler",
+        "url": "https://www.gutenberg.org/cache/epub/4093/pg4093-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Edmund Gosse and William Archer; 1907 translation, Project Gutenberg #4093"
+  },
+  {
+    "id": "stage-chekhov-peace",
+    "text": "Help me first to make peace with myself.",
+    "speaker": "Ivan (Vanya) Voitski",
+    "author": "Anton Chekhov",
+    "collection": "stage",
+    "work": "Uncle Vanya",
+    "locator": "Act II; reply to Helena",
+    "year": 1897,
+    "context": "Helena asks Vanya to stop quarreling and make peace. His answer exposes the self-disgust beneath his outward resentment.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Uncle Vanya",
+        "url": "https://www.gutenberg.org/cache/epub/1756/pg1756-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Marian Fell; Plays, first series (1912), Project Gutenberg #1756"
+  },
+  {
+    "id": "stage-hugo-beautiful",
+    "text": "The beautiful is as useful as the useful.",
+    "speaker": "Bishop Myriel",
+    "author": "Victor Hugo",
+    "collection": "stage",
+    "work": "Les Misérables",
+    "locator": "Part I (Fantine), Book I, chapter VI",
+    "year": 1862,
+    "context": "The Bishop defends growing flowers alongside vegetables. His answer makes beauty part of humane daily life rather than a dispensable luxury.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Les Misérables",
+        "url": "https://www.gutenberg.org/cache/epub/135/pg135-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Isabel F. Hapgood; English translation, Project Gutenberg #135"
+  },
+  {
+    "id": "stage-samuel-beckett-nothing-done",
+    "text": "Nothing to be done.",
+    "speaker": "Estragon",
+    "author": "Samuel Beckett",
+    "collection": "stage",
+    "work": "Waiting for Godot",
+    "locator": "Act I, opening line; English translation by Samuel Beckett; Grove Press publisher excerpt",
+    "year": 1954,
+    "context": "Estragon struggles with his boot as the play begins. The small physical frustration opens into the larger uncertainty of waiting.",
+    "sources": [
+      {
+        "label": "Grove Atlantic: publisher excerpt",
+        "url": "https://groveatlantic.com/book/waiting-for-godot/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-tennessee-williams-magic",
+    "text": "I don’t want realism. I want magic!",
+    "speaker": "Blanche DuBois",
+    "author": "Tennessee Williams",
+    "collection": "stage",
+    "work": "A Streetcar Named Desire",
+    "locator": "Scene 9; wording printed in Sydney Theatre Company’s Tropes of Tennessee education sheet and Mountview’s licensed production page",
+    "year": 1947,
+    "context": "Blanche defends the illusions through which she has tried to survive. Her plea belongs to a vulnerable character under pressure, rather than a simple instruction to disregard reality.",
+    "sources": [
+      {
+        "label": "Sydney Theatre Company: Tropes of Tennessee",
+        "url": "https://www.sydneytheatre.com.au/-/media/project/sydney-theatre-company/sydney-theatre-company/pdf/2015/education/suddnely-last-summer/tropes-of-tennessee.pdf"
+      },
+      {
+        "label": "Mountview: licensed production quotation",
+        "url": "https://www.mountview.org.uk/whats-on/show/a-streetcar-named-desire/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-arthur-miller-salesman-dream",
+    "text": "A salesman is got to dream, boy.",
+    "speaker": "Charley",
+    "author": "Arthur Miller",
+    "collection": "stage",
+    "work": "Death of a Salesman",
+    "locator": "Requiem, Charley’s defence of Willy; Library of America excerpt",
+    "year": 1949,
+    "context": "At Willy Loman’s funeral, Charley describes the precarious hope on which a salesman’s livelihood depends. His sympathy does not make Willy’s dream harmless.",
+    "sources": [
+      {
+        "label": "Library of America: Death of a Salesman excerpt",
+        "url": "https://www.loa.org/writers/194-arthur-miller/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-august-wilson-fastball",
+    "text": "Death ain’t nothing but a fastball on the outside corner.",
+    "speaker": "Troy Maxson",
+    "author": "August Wilson",
+    "collection": "stage",
+    "work": "Fences",
+    "locator": "Act I, scene 1; text page 15 in Ford’s Theatre scene selections, PDF page 6",
+    "year": 1985,
+    "context": "Troy turns death into a baseball opponent, borrowing the language of the game in which racial exclusion thwarted his ambitions. The bravado is part of his vivid storytelling.",
+    "sources": [
+      {
+        "label": "Ford’s Theatre: Fences scene selections",
+        "url": "https://fords-theatre.s3.amazonaws.com/files/resources/fences-intro-scene-selections.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-geoffrey-chaucer-learn-and-teach",
+    "text": "And gladly wolde he lerne, and gladly teche.",
+    "speaker": "Narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales",
+    "locator": "General Prologue, line 308; portrait of the Clerk; Middle English; excerpt",
+    "year": "Late 14th century",
+    "context": "The narrator describes a scholar whose money goes on books and whose learning is shared. Gloss: he would gladly learn and gladly teach.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Walter W. Skeat’s Middle English edition",
+        "url": "https://www.gutenberg.org/files/22120/22120-h/22120-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-william-shakespeare-nothing",
+    "text": "Nothing will come of nothing.",
+    "speaker": "King Lear",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "King Lear",
+    "locator": "Act 1; scene 1, line 99; Folger text; excerpt",
+    "year": "c. 1605–1606",
+    "context": "Lear demands a public profession of love before dividing his kingdom. Cordelia refuses empty flattery; his response exposes how badly he confuses love with performance.",
+    "sources": [
+      {
+        "label": "Folger Shakespeare Library: edited full text",
+        "url": "https://www.folger.edu/explore/shakespeares-works/king-lear/read/1/1/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-sophocles-time-and-justice",
+    "text": "for time alone reveals the just;",
+    "speaker": "Creon",
+    "author": "Sophocles",
+    "collection": "stage",
+    "work": "Oedipus the King",
+    "locator": "Creon’s defence against Oedipus’s accusation of conspiracy; F. Storr translation; excerpt",
+    "year": "5th century BCE",
+    "context": "Creon asks not to be condemned on suspicion. His appeal to time contrasts patient judgement with Oedipus’s fear that his friends have become enemies.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: F. Storr translation",
+        "url": "https://classics.mit.edu/Sophocles/oedipus.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-euripides-wisdom",
+    "text": "Sophistry is not wisdom",
+    "speaker": "Chorus",
+    "author": "Euripides",
+    "collection": "stage",
+    "work": "The Bacchae (The Bacchantes)",
+    "locator": "First choral ode after Cadmus and Teiresias depart, before Dionysus is brought in bound; E. P. Coleridge translation; excerpt",
+    "year": "5th century BCE",
+    "context": "The Chorus distinguishes clever argument from wisdom as it condemns Pentheus’s rejection of Dionysus. Its religious loyalty matters: this is a dramatic voice, not a universal ban on questioning.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: E. P. Coleridge translation",
+        "url": "https://classics.mit.edu/Euripides/bacchan.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-moliere-eat-live",
+    "text": "We must eat to live, and not live to eat.",
+    "speaker": "Valère",
+    "author": "Molière",
+    "collection": "stage",
+    "work": "The Miser (L’Avare)",
+    "locator": "Act III, scene V; the dinner preparations",
+    "year": 1668,
+    "context": "Valère quotes a saying he attributes to an ancient while flattering Harpagon’s parsimony. Molière puts an older maxim into dialogue; he did not originate it.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Miser (L’Avare)",
+        "url": "https://www.gutenberg.org/cache/epub/6923/pg6923-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Charles Heron Wall; English prose translation, Project Gutenberg #6923"
+  },
+  {
+    "id": "stage-ibsen-convention",
+    "text": "people don't do such things.",
+    "speaker": "Judge Brack",
+    "author": "Henrik Ibsen",
+    "collection": "stage",
+    "work": "Hedda Gabler",
+    "locator": "Act IV; closing words, excerpt",
+    "year": 1890,
+    "context": "Brack’s shocked words follow Hedda’s death. His assumption about acceptable conduct collapses at the play’s end; the line is his reaction, not Ibsen speaking personally.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Hedda Gabler",
+        "url": "https://www.gutenberg.org/cache/epub/4093/pg4093-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Edmund Gosse and William Archer; 1907 translation, Project Gutenberg #4093"
+  },
+  {
+    "id": "stage-chekhov-rest",
+    "text": "We shall rest.",
+    "speaker": "Sonia",
+    "author": "Anton Chekhov",
+    "collection": "stage",
+    "work": "Uncle Vanya",
+    "locator": "Act IV; final speech and closing words",
+    "year": 1897,
+    "context": "Sonia consoles Uncle Vanya with her faith in rest beyond their suffering. The promise belongs to a character sustaining another person through sorrow.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Uncle Vanya",
+        "url": "https://www.gutenberg.org/cache/epub/1756/pg1756-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Marian Fell; Plays, first series (1912), Project Gutenberg #1756"
+  },
+  {
+    "id": "stage-hugo-transparent",
+    "text": "To love a being is to render that being transparent.",
+    "speaker": "Marius Pontmercy, in the notebook read by Cosette",
+    "author": "Victor Hugo",
+    "collection": "stage",
+    "work": "Les Misérables",
+    "locator": "Part IV, Book V, chapter IV, A Heart Beneath a Stone",
+    "year": 1862,
+    "context": "The line appears in the notebook of reflections that Cosette reads, not in a speech by Hugo. The surrounding chapter treats love through religious and celestial imagery.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Les Misérables",
+        "url": "https://www.gutenberg.org/cache/epub/135/pg135-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Isabel F. Hapgood; English translation, Project Gutenberg #135"
+  },
+  {
+    "id": "stage-samuel-beckett-waiting",
+    "text": "We’re waiting for Godot.",
+    "speaker": "Vladimir",
+    "author": "Samuel Beckett",
+    "collection": "stage",
+    "work": "Waiting for Godot",
+    "locator": "Act I, answer to Estragon’s proposal to leave; English translation by Samuel Beckett; Grove Press excerpt",
+    "year": 1954,
+    "context": "Vladimir reminds Estragon why they remain by the tree. The promise of a meeting holds them in place although Godot’s arrival is uncertain.",
+    "sources": [
+      {
+        "label": "Grove Atlantic: publisher excerpt",
+        "url": "https://groveatlantic.com/book/waiting-for-godot/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-tennessee-williams-soft",
+    "text": "It isn’t enough to be soft.",
+    "speaker": "Blanche DuBois",
+    "author": "Tennessee Williams",
+    "collection": "stage",
+    "work": "A Streetcar Named Desire",
+    "locator": "Scene 5, Blanche’s speech to Stella; Library of America publisher excerpt",
+    "year": 1947,
+    "context": "Blanche fears losing the attractiveness on which she has relied for shelter and protection. The line reveals the harsh social bargain she feels trapped inside.",
+    "sources": [
+      {
+        "label": "Library of America: publisher excerpt",
+        "url": "https://www.loa.org/writers/281-tennessee-williams/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-arthur-miller-territory",
+    "text": "It comes with the territory.",
+    "speaker": "Charley",
+    "author": "Arthur Miller",
+    "collection": "stage",
+    "work": "Death of a Salesman",
+    "locator": "Requiem, final sentence of Charley’s speech; Library of America excerpt",
+    "year": 1949,
+    "context": "Charley concludes his defence of Willy by treating the need to dream as part of a salesman’s working life. This brief line depends on that funeral context.",
+    "sources": [
+      {
+        "label": "Library of America: Death of a Salesman excerpt",
+        "url": "https://www.loa.org/writers/194-arthur-miller/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-august-wilson-chance",
+    "text": "Give everybody a chance to drive the truck.",
+    "speaker": "Troy Maxson",
+    "author": "August Wilson",
+    "collection": "stage",
+    "work": "Fences",
+    "locator": "Act I, scene 1; text page 10 in Ford’s Theatre scene selections, PDF page 4",
+    "year": 1985,
+    "context": "Troy explains his complaint against a sanitation department that assigns driving jobs to white workers. His demand concerns equal opportunity at work.",
+    "sources": [
+      {
+        "label": "Ford’s Theatre: Fences scene selections",
+        "url": "https://fords-theatre.s3.amazonaws.com/files/resources/fences-intro-scene-selections.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-geoffrey-chaucer-keep-trouthe",
+    "text": "Trouthe is the hyeste thing that man may kepe",
+    "speaker": "Arveragus, in the Franklin’s tale",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Canterbury Tales",
+    "locator": "The Franklin’s Tale, line 1479; Middle English; excerpt",
+    "year": "Late 14th century",
+    "context": "Arveragus tells Dorigen to honour a promise whose fulfilment would wound them both. Trouthe includes fidelity and one’s pledged word; the tale then tests what generosity requires of each person.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Walter W. Skeat’s Middle English edition",
+        "url": "https://www.gutenberg.org/files/22120/22120-h/22120-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-william-shakespeare-gardens",
+    "text": "Our bodies are our gardens, to the which our wills are gardeners.",
+    "speaker": "Iago",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Othello",
+    "locator": "Act 1; scene 3, lines 362–363; Folger text; excerpt",
+    "year": "c. 1603–1604",
+    "context": "Iago uses this image of self-command while manipulating the lovesick Roderigo. The garden metaphor is memorable, but its speaker is the play’s deceiver.",
+    "sources": [
+      {
+        "label": "Folger Shakespeare Library: edited full text",
+        "url": "https://www.folger.edu/explore/shakespeares-works/othello/read/1/3/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-sophocles-unexpected",
+    "text": "Nought is too strange to look for;",
+    "speaker": "Ajax",
+    "author": "Sophocles",
+    "collection": "stage",
+    "work": "Ajax",
+    "locator": "Ajax’s speech on change after he enters carrying the sword; R. C. Trevelyan translation; excerpt",
+    "year": "5th century BCE",
+    "context": "Ajax appears to soften toward Tecmessa and the gods. The speech is tragically deceptive: his language of change conceals the death he is preparing.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: R. C. Trevelyan translation",
+        "url": "https://classics.mit.edu/Sophocles/ajax.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-euripides-oath",
+    "text": "My tongue an oath did take, but not my heart.",
+    "speaker": "Hippolytus",
+    "author": "Euripides",
+    "collection": "stage",
+    "work": "Hippolytus",
+    "locator": "Exchange with the Nurse after she reveals Phaedra’s desire; Greek line 612; E. P. Coleridge translation; excerpt",
+    "year": "428 BCE",
+    "context": "Hippolytus protests that an oath was obtained before he knew the secret it would protect. The conflict between spoken promise and inward assent becomes central to the tragedy.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: E. P. Coleridge translation",
+        "url": "https://classics.mit.edu/Euripides/hippolytus.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-moliere-dowry",
+    "text": "Without dowry!",
+    "speaker": "Harpagon",
+    "author": "Molière",
+    "collection": "stage",
+    "work": "The Miser (L’Avare)",
+    "locator": "Act I, scene VII; repeated reply about Élise’s proposed marriage",
+    "year": 1668,
+    "context": "Harpagon repeats the financial advantage of a marriage while ignoring his daughter’s feelings. The short refrain exposes his priorities.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Miser (L’Avare)",
+        "url": "https://www.gutenberg.org/cache/epub/6923/pg6923-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Charles Heron Wall; English prose translation, Project Gutenberg #6923"
+  },
+  {
+    "id": "stage-ibsen-ghosts",
+    "text": "I almost think we are all of us ghosts",
+    "speaker": "Mrs. Alving",
+    "author": "Henrik Ibsen",
+    "collection": "stage",
+    "work": "Ghosts",
+    "locator": "Act II; excerpt from the conversation with Pastor Manders",
+    "year": 1881,
+    "context": "Mrs. Alving calls inherited prejudices and lifeless beliefs ghosts. The metaphor concerns the persistence of the past within apparently respectable lives.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Ghosts",
+        "url": "https://www.gutenberg.org/cache/epub/8121/pg8121-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "William Archer; English translation, Project Gutenberg #8121"
+  },
+  {
+    "id": "stage-chekhov-faith",
+    "text": "One must know how to bear one’s cross, and one must have faith.",
+    "speaker": "Nina Zarietchnaya",
+    "author": "Anton Chekhov",
+    "collection": "stage",
+    "work": "The Seagull",
+    "locator": "Act IV; speaking to Treplieff",
+    "year": 1896,
+    "context": "Nina describes what she has learned about a life in the theatre after disappointment. Her emphasis has shifted from fame to endurance.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Seagull",
+        "url": "https://www.gutenberg.org/cache/epub/1754/pg1754-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Marian Fell; Plays, first series (1912), Project Gutenberg #1754, titled The Sea-Gull"
+  },
+  {
+    "id": "stage-hugo-prayers",
+    "text": "Certain thoughts are prayers.",
+    "speaker": "Marius Pontmercy, in the notebook read by Cosette",
+    "author": "Victor Hugo",
+    "collection": "stage",
+    "work": "Les Misérables",
+    "locator": "Part IV, Book V, chapter IV, A Heart Beneath a Stone",
+    "year": 1862,
+    "context": "A brief sentence from the love-notebook discovered by Cosette. Its spiritual image belongs to the novel’s meditation on inward devotion.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Les Misérables",
+        "url": "https://www.gutenberg.org/cache/epub/135/pg135-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Isabel F. Hapgood; English translation, Project Gutenberg #135"
+  },
+  {
+    "id": "stage-samuel-beckett-together",
+    "text": "Together again at last!",
+    "speaker": "Vladimir",
+    "author": "Samuel Beckett",
+    "collection": "stage",
+    "work": "Waiting for Godot",
+    "locator": "Act I, opening reunion; English translation by Samuel Beckett; Grove Press excerpt",
+    "year": 1954,
+    "context": "Vladimir welcomes Estragon back after a night apart. Affection and irritation coexist in their enduring, difficult companionship.",
+    "sources": [
+      {
+        "label": "Grove Atlantic: publisher excerpt",
+        "url": "https://groveatlantic.com/book/waiting-for-godot/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-tennessee-williams-self-sufficient",
+    "text": "I never was hard or self-sufficient enough.",
+    "speaker": "Blanche DuBois",
+    "author": "Tennessee Williams",
+    "collection": "stage",
+    "work": "A Streetcar Named Desire",
+    "locator": "Scene 5, Blanche’s speech to Stella; Library of America publisher excerpt",
+    "year": 1947,
+    "context": "Blanche admits her dependence on other people before explaining how she has sought refuge. The confession exposes vulnerability behind her performance of confidence.",
+    "sources": [
+      {
+        "label": "Library of America: publisher excerpt",
+        "url": "https://www.loa.org/writers/281-tennessee-williams/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-arthur-miller-name",
+    "text": "Because it is my name!",
+    "speaker": "John Proctor",
+    "author": "Arthur Miller",
+    "collection": "stage",
+    "work": "The Crucible",
+    "locator": "Act IV; Penguin Classics text page 133, quoted in publisher’s teacher guide page 17",
+    "year": 1953,
+    "context": "Proctor refuses a public written confession that would purchase his life through a lie. The play links his name to his remaining sense of integrity.",
+    "sources": [
+      {
+        "label": "Penguin Random House: The Crucible teaching guide",
+        "url": "https://images.penguinrandomhouse.com/promo_image/9780142437339_5079.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-august-wilson-style",
+    "text": "Style ain’t nothing but keeping the same idea from beginning to end.",
+    "speaker": "Toledo",
+    "author": "August Wilson",
+    "collection": "stage",
+    "work": "Ma Rainey’s Black Bottom",
+    "locator": "Act I, rehearsal-room exchange; Samuel French acting-edition preview page 19",
+    "year": 1984,
+    "context": "Toledo answers Levee’s boast about musical style. The musicians’ exchange sets individual ambition against the discipline and tensions of playing together.",
+    "sources": [
+      {
+        "label": "Concord Theatricals: authorised Ma Rainey preview",
+        "url": "https://shop.concordtheatricals.co.uk/api/v1/product/document/113806"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-geoffrey-chaucer-little-book",
+    "text": "Go, litel book, go litel myn tragedie,",
+    "speaker": "Narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book V, line 1786; Middle English; excerpt",
+    "year": "Late 14th century",
+    "context": "The narrator sends his tragic poem into the world near its conclusion. Gloss: go, little book, my little tragedy. This edition spells book and tragedie in this way.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Middle English full text",
+        "url": "https://www.gutenberg.org/cache/epub/257/pg257-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-william-shakespeare-food-of-love",
+    "text": "If music be the food of love, play on.",
+    "speaker": "Orsino",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Twelfth Night",
+    "locator": "Act 1; scene 1, line 1; Folger text; excerpt",
+    "year": "c. 1601–1602",
+    "context": "The lovesick duke asks for so much music that desire might exhaust itself. The opening is sensuous and beautiful, while also gently exposing his self-absorption.",
+    "sources": [
+      {
+        "label": "Folger Shakespeare Library: edited full text",
+        "url": "https://www.folger.edu/explore/shakespeares-works/twelfth-night/read/1/1/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-sophocles-gifts",
+    "text": "Foes’ gifts are no gifts: profit bring they none.",
+    "speaker": "Ajax",
+    "author": "Sophocles",
+    "collection": "stage",
+    "work": "Ajax",
+    "locator": "Same speech on change; reflection on the sword received from Hector; R. C. Trevelyan translation; excerpt",
+    "year": "5th century BCE",
+    "context": "Ajax repeats a proverb while contemplating Hector’s sword, which he will use to end his own life. The ominous gift embodies the continuing bond between enemies.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: R. C. Trevelyan translation",
+        "url": "https://classics.mit.edu/Sophocles/ajax.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-euripides-clearness",
+    "text": "Explain thyself; wisdom is shown in clearness, not in obscurity.",
+    "speaker": "Menelaus",
+    "author": "Euripides",
+    "collection": "stage",
+    "work": "Orestes",
+    "locator": "Menelaus questions Orestes about his sickness and guilty conscience; E. P. Coleridge translation; excerpt",
+    "year": "408 BCE",
+    "context": "Menelaus asks Orestes to explain the suffering that followed his mother’s murder. The advice to speak clearly arises in a strained encounter where family loyalty is tested.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: E. P. Coleridge translation",
+        "url": "https://classics.mit.edu/Euripides/orestes.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-moliere-casket",
+    "text": "And I to see my dear casket",
+    "speaker": "Harpagon",
+    "author": "Molière",
+    "collection": "stage",
+    "work": "The Miser (L’Avare)",
+    "locator": "Act V, scene VI; final line",
+    "year": 1668,
+    "context": "As the reunited family turns to its shared happiness, Harpagon turns to his money-box. The edition prints this closing line without a final punctuation mark.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Miser (L’Avare)",
+        "url": "https://www.gutenberg.org/cache/epub/6923/pg6923-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Charles Heron Wall; English prose translation, Project Gutenberg #6923"
+  },
+  {
+    "id": "stage-ibsen-light",
+    "text": "And then we are, one and all, so pitifully afraid of the light.",
+    "speaker": "Mrs. Alving",
+    "author": "Henrik Ibsen",
+    "collection": "stage",
+    "work": "Ghosts",
+    "locator": "Act II; continuation of the ghosts speech",
+    "year": 1881,
+    "context": "Mrs. Alving challenges the fear of facing inherited beliefs and concealed truths. The light belongs to her argument with Pastor Manders.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Ghosts",
+        "url": "https://www.gutenberg.org/cache/epub/8121/pg8121-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "William Archer; English translation, Project Gutenberg #8121"
+  },
+  {
+    "id": "stage-chekhov-calling",
+    "text": "I do not fear life.",
+    "speaker": "Nina Zarietchnaya",
+    "author": "Anton Chekhov",
+    "collection": "stage",
+    "work": "The Seagull",
+    "locator": "Act IV; final clause of her statement about her calling",
+    "year": 1896,
+    "context": "This clause completes Nina’s thought about finding courage in her work. Her hard-won confidence stands beside Treplieff’s uncertainty.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Seagull",
+        "url": "https://www.gutenberg.org/cache/epub/1754/pg1754-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Marian Fell; Plays, first series (1912), Project Gutenberg #1754, titled The Sea-Gull"
+  },
+  {
+    "id": "stage-hugo-book-edifice",
+    "text": "this will kill that.",
+    "speaker": "Claude Frollo",
+    "author": "Victor Hugo",
+    "collection": "stage",
+    "work": "Notre-Dame de Paris",
+    "locator": "Book V, chapter I, Abbas Beati Martini; excerpt",
+    "year": 1831,
+    "context": "Frollo points from a printed book to the cathedral. The next chapter unfolds his fear that print will displace architecture as a vessel of collective thought.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Notre-Dame de Paris",
+        "url": "https://www.gutenberg.org/cache/epub/2610/pg2610-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Isabel F. Hapgood; English translation, Project Gutenberg #2610; also known as The Hunchback of Notre Dame"
+  },
+  {
+    "id": "stage-samuel-beckett-sun",
+    "text": "The sun shone, having no alternative, on the nothing new.",
+    "speaker": "Narrator",
+    "author": "Samuel Beckett",
+    "collection": "stage",
+    "work": "Murphy",
+    "locator": "Chapter 1, opening sentence; original English; Grove Press 2011 edition excerpt",
+    "year": 1938,
+    "context": "The opening turns the familiar renewal of sunrise into a dry joke about repetition and necessity. This is the novel’s narrator, not an autobiographical declaration.",
+    "sources": [
+      {
+        "label": "Grove Atlantic: publisher excerpt",
+        "url": "https://groveatlantic.com/book/murphy/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-tennessee-williams-cut-loose",
+    "text": "Mr. Shannon, please go down and cut it loose!",
+    "speaker": "Hannah Jelkes",
+    "author": "Tennessee Williams",
+    "collection": "stage",
+    "work": "The Night of the Iguana",
+    "locator": "Act III, scene near the end; American Repertory Theater 2017 toolkit page 11",
+    "year": 1961,
+    "context": "Hannah asks Shannon to free a captive iguana. Her compassion turns into a specific request for action instead of remaining an abstract sentiment.",
+    "sources": [
+      {
+        "label": "American Repertory Theater: authorised scene in education toolkit",
+        "url": "https://american-rep-assets.s3.amazonaws.com/wp-content/uploads/2019/10/27142927/Iguana-Toolkit-FINAL_0.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-arthur-miller-penitence",
+    "text": "Is there no good penitence but it be public?",
+    "speaker": "John Proctor",
+    "author": "Arthur Miller",
+    "collection": "stage",
+    "work": "The Crucible",
+    "locator": "Act IV; Penguin Classics text page 132, quoted in publisher’s teacher guide page 17",
+    "year": 1953,
+    "context": "Proctor questions the court’s demand for a public display of confession. The line challenges an institution’s claim to judge inward repentance.",
+    "sources": [
+      {
+        "label": "Penguin Random House: The Crucible teaching guide",
+        "url": "https://images.penguinrandomhouse.com/promo_image/9780142437339_5079.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-august-wilson-music",
+    "text": "If you know music then you play it.",
+    "speaker": "Toledo",
+    "author": "August Wilson",
+    "collection": "stage",
+    "work": "Ma Rainey’s Black Bottom",
+    "locator": "Act I, rehearsal-room argument; Samuel French acting-edition preview page 24",
+    "year": 1984,
+    "context": "Toledo challenges Levee’s dismissal of the music they have been hired to perform. It is an argument about musicianship within an exploitative recording business.",
+    "sources": [
+      {
+        "label": "Concord Theatricals: authorised Ma Rainey preview",
+        "url": "https://shop.concordtheatricals.co.uk/api/v1/product/document/113806"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-geoffrey-chaucer-attempt",
+    "text": "For he that nought nassayeth, nought nacheveth.",
+    "speaker": "Diomedes",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Troilus and Criseyde",
+    "locator": "Book V, line 784; inward resolve as he courts Criseyde; Middle English; excerpt",
+    "year": "Late 14th century",
+    "context": "The familiar thought is that a person who attempts nothing achieves nothing. Here Diomedes uses it to justify pursuing Criseyde while she grieves for Troilus, so the proverb has an opportunistic context.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Middle English full text",
+        "url": "https://www.gutenberg.org/cache/epub/257/pg257-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-william-shakespeare-dancing-star",
+    "text": "there was a star danced, and under that was I born.",
+    "speaker": "Beatrice",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Much Ado About Nothing",
+    "locator": "Act 2; scene 1, lines 328–329; Folger text; excerpt",
+    "year": "c. 1598–1599",
+    "context": "Beatrice answers Don Pedro’s observation that she was born in a merry hour. Her playful astrology gives wit and delight a place alongside the comedy’s painful misunderstandings.",
+    "sources": [
+      {
+        "label": "Folger Shakespeare Library: edited full text",
+        "url": "https://www.folger.edu/explore/shakespeares-works/much-ado-about-nothing/read/2/1/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-sophocles-hospitality",
+    "text": "Wherefore no alien in adversity\nShall seek in vain my succor",
+    "speaker": "Theseus",
+    "author": "Sophocles",
+    "collection": "stage",
+    "work": "Oedipus at Colonus",
+    "locator": "Theseus’s first address to Oedipus, recalling his own exile; F. Storr translation; excerpt",
+    "year": "5th century BCE",
+    "context": "Theseus remembers being an exile and offers practical protection to a vulnerable stranger. The excerpt stops before he includes Oedipus directly in that promise.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: F. Storr translation",
+        "url": "https://classics.mit.edu/Sophocles/colonus.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-euripides-mortal-thoughts",
+    "text": "Mortals should think mortal thoughts.",
+    "speaker": "Heracles",
+    "author": "Euripides",
+    "collection": "stage",
+    "work": "Alcestis",
+    "locator": "Heracles’s speech to the grieving servant while he is a guest in Admetus’s house; Richard Aldington translation; excerpt",
+    "year": "438 BCE",
+    "context": "A drunken Heracles urges the servant to enjoy life, unaware that the household is mourning Alcestis. His failure to understand his hosts makes the maxim deliberately uncomfortable.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Richard Aldington translation",
+        "url": "https://classics.mit.edu/Euripides/alcestis.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-moliere-galley",
+    "text": "What the deuce did he want to go in that galley for?",
+    "speaker": "Géronte",
+    "author": "Molière",
+    "collection": "stage",
+    "work": "The Impostures of Scapin",
+    "locator": "Act II, scene XI; the invented ransom story",
+    "year": 1671,
+    "context": "Scapin invents an account of Géronte’s son being abducted aboard a Turkish galley to extract money from Géronte. The repeated question is part of the deception; the alleged capture did not occur.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Impostures of Scapin",
+        "url": "https://www.gutenberg.org/cache/epub/8776/pg8776-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Charles Heron Wall; English prose translation, Project Gutenberg #8776"
+  },
+  {
+    "id": "stage-ibsen-air-castles",
+    "text": "Castles in the air.",
+    "speaker": "Hilda Wangel",
+    "author": "Henrik Ibsen",
+    "collection": "stage",
+    "work": "The Master Builder",
+    "locator": "Act III; naming what she and Solness should build",
+    "year": 1892,
+    "context": "Hilda’s imagined buildings turn ambition into a dream. The play connects that dream with dangerous demands upon Solness, so the image carries both enchantment and warning.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Master Builder",
+        "url": "https://www.gutenberg.org/cache/epub/4070/pg4070-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Edmund Gosse and William Archer; English translation, Project Gutenberg #4070"
+  },
+  {
+    "id": "stage-chekhov-burden",
+    "text": "I shouldered a load that broke my back.",
+    "speaker": "Nicholas Ivanoff",
+    "author": "Anton Chekhov",
+    "collection": "stage",
+    "work": "Ivanov",
+    "locator": "Act IV; explaining his exhaustion to Sasha",
+    "year": 1889,
+    "context": "Ivanoff describes the collapse of his earlier energy and ambitions. His account is part of a troubled character’s self-examination, not a diagnosis of the author.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Ivanov",
+        "url": "https://www.gutenberg.org/cache/epub/1755/pg1755-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Marian Fell; Plays, first series (1912), Project Gutenberg #1755, titled Ivanoff; revised four-act text (1889), following the 1887 first version"
+  },
+  {
+    "id": "stage-hugo-architect",
+    "text": "Time is the architect, the nation is the builder.",
+    "speaker": "Narrator",
+    "author": "Victor Hugo",
+    "collection": "stage",
+    "work": "Notre-Dame de Paris",
+    "locator": "Book III, chapter I, Notre-Dame",
+    "year": 1831,
+    "context": "The narrator describes great buildings as the accumulated work of peoples and generations. The sentence concerns collective architectural history.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Notre-Dame de Paris",
+        "url": "https://www.gutenberg.org/cache/epub/2610/pg2610-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Isabel F. Hapgood; English translation, Project Gutenberg #2610; also known as The Hunchback of Notre Dame"
+  },
+  {
+    "id": "stage-samuel-beckett-wandering",
+    "text": "But a wandering to find home",
+    "speaker": "Murphy",
+    "author": "Samuel Beckett",
+    "collection": "stage",
+    "work": "Murphy",
+    "locator": "Chapter 1, Murphy’s reply to Neary; original English; Grove Press 2011 edition excerpt",
+    "year": 1938,
+    "context": "Murphy answers Neary’s abstract account of life with an image of wandering. The line is character dialogue within a comic and philosophical conversation.",
+    "sources": [
+      {
+        "label": "Grove Atlantic: publisher excerpt",
+        "url": "https://groveatlantic.com/book/murphy/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-tennessee-williams-compassion",
+    "text": "No, it’s not an attractive creature. Nevertheless I think it should be cut loose.",
+    "speaker": "Hannah Jelkes",
+    "author": "Tennessee Williams",
+    "collection": "stage",
+    "work": "The Night of the Iguana",
+    "locator": "Act III, same closing scene; American Repertory Theater 2017 toolkit page 12",
+    "year": 1961,
+    "context": "After inspecting the iguana, Hannah refuses to make its appearance a condition of compassion. The scene links the animal’s confinement with the characters’ own distress.",
+    "sources": [
+      {
+        "label": "American Repertory Theater: authorised scene in education toolkit",
+        "url": "https://american-rep-assets.s3.amazonaws.com/wp-content/uploads/2019/10/27142927/Iguana-Toolkit-FINAL_0.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-arthur-miller-goodness",
+    "text": "He have his goodness now.",
+    "speaker": "Elizabeth Proctor",
+    "author": "Arthur Miller",
+    "collection": "stage",
+    "work": "The Crucible",
+    "locator": "Act IV, closing speech; Penguin Classics text page 134, quoted in publisher’s teacher guide pages 15 and 17",
+    "year": 1953,
+    "context": "Elizabeth responds after John rejects a false confession and is led away to die. Her words acknowledge his recovered integrity without erasing the tragedy.",
+    "sources": [
+      {
+        "label": "Penguin Random House: The Crucible teaching guide",
+        "url": "https://images.penguinrandomhouse.com/promo_image/9780142437339_5079.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-august-wilson-find-out",
+    "text": "A lot of things you got to find out on your own.",
+    "speaker": "Wining Boy",
+    "author": "August Wilson",
+    "collection": "stage",
+    "work": "The Piano Lesson",
+    "locator": "Act I, scene 2; Samuel French acting-edition preview page 40",
+    "year": 1987,
+    "context": "Wining Boy describes his encounter with the Ghosts of the Yellow Dog. His answer preserves the personal character of an experience another person cannot simply borrow.",
+    "sources": [
+      {
+        "label": "Concord Theatricals: authorised Piano Lesson preview",
+        "url": "https://shop.concordtheatricals.com/api/v1/product/document/114971"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-geoffrey-chaucer-craft-to-learn",
+    "text": "The lyf so short, the craft so long to lerne,",
+    "speaker": "Narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Parliament of Fowls",
+    "locator": "Opening line; Middle English; excerpt",
+    "year": "Late 14th century",
+    "context": "The narrator begins a dream vision by lamenting the difficulty of learning love. Gloss: life is short, the art takes long to learn. The craft here is love before it becomes a general motto for learning.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Walter W. Skeat’s edition, volume I",
+        "url": "https://www.gutenberg.org/files/43089/43089-h/43089-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-william-shakespeare-true-love",
+    "text": "The course of true love never did run smooth.",
+    "speaker": "Lysander",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "A Midsummer Night’s Dream",
+    "locator": "Act 1; scene 1, line 136; Folger text; excerpt",
+    "year": "c. 1595–1596",
+    "context": "Lysander consoles Hermia after her father and Theseus oppose their marriage. The famous line introduces a catalogue of obstacles, before the lovers enter the enchanted wood.",
+    "sources": [
+      {
+        "label": "Folger Shakespeare Library: edited full text",
+        "url": "https://www.folger.edu/explore/shakespeares-works/a-midsummer-nights-dream/read/1/1/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-sophocles-changing-fortunes",
+    "text": "Sweet turns to bitter, hate once more to love.",
+    "speaker": "Oedipus",
+    "author": "Sophocles",
+    "collection": "stage",
+    "work": "Oedipus at Colonus",
+    "locator": "Oedipus’s answer about future hostility between Thebes and Athens; F. Storr translation; excerpt",
+    "year": "5th century BCE",
+    "context": "Oedipus warns Theseus that alliances and feelings can change with time. His promise that his burial will protect Athens gives the reflection a political and sacred setting.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: F. Storr translation",
+        "url": "https://classics.mit.edu/Sophocles/colonus.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-euripides-discernment",
+    "text": "sound judgment and discernment are the best of seers.",
+    "speaker": "First Messenger",
+    "author": "Euripides",
+    "collection": "stage",
+    "work": "Helen",
+    "locator": "The old messenger’s farewell after the real Helen is recognised; E. P. Coleridge translation; excerpt",
+    "year": "412 BCE",
+    "context": "Learning that the Greeks fought for a phantom, the messenger questions diviners who never exposed the illusion. His preference for discernment sits within a play full of divine intervention.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: E. P. Coleridge translation",
+        "url": "https://classics.mit.edu/Euripides/helen.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-moliere-listening",
+    "text": "I prefer listening to myself.",
+    "speaker": "Scapin",
+    "author": "Molière",
+    "collection": "stage",
+    "work": "The Impostures of Scapin",
+    "locator": "Act III, scene I; reply to Silvestre",
+    "year": 1671,
+    "context": "Silvestre warns Scapin that another trick could earn him a beating. Scapin dismisses the warning with the confidence that makes him both ingenious and reckless.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Impostures of Scapin",
+        "url": "https://www.gutenberg.org/cache/epub/8776/pg8776-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Charles Heron Wall; English prose translation, Project Gutenberg #8776"
+  },
+  {
+    "id": "stage-ibsen-impossible",
+    "text": "Do the impossible once again!",
+    "speaker": "Hilda Wangel",
+    "author": "Henrik Ibsen",
+    "collection": "stage",
+    "work": "The Master Builder",
+    "locator": "Act III; urging Solness to climb",
+    "year": 1892,
+    "context": "Hilda urges Solness to repeat his earlier climb despite his fear of heights. It is a charged dramatic demand with tragic consequences, not a practical instruction to ignore danger.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Master Builder",
+        "url": "https://www.gutenberg.org/cache/epub/4070/pg4070-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Edmund Gosse and William Archer; English translation, Project Gutenberg #4070"
+  },
+  {
+    "id": "stage-chekhov-spade",
+    "text": "I always call a spade a spade",
+    "speaker": "Dr. Lvoff",
+    "author": "Anton Chekhov",
+    "collection": "stage",
+    "work": "Ivanov",
+    "locator": "Act III; excerpt from his accusation against Ivanoff",
+    "year": 1889,
+    "context": "Lvoff presents himself as plain-speaking while accusing Ivanoff of cruelty. The conflict asks whether moral certainty can outrun understanding; the trailing semicolon is outside this excerpt.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Ivanov",
+        "url": "https://www.gutenberg.org/cache/epub/1755/pg1755-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Marian Fell; Plays, first series (1912), Project Gutenberg #1755, titled Ivanoff; revised four-act text (1889), following the 1887 first version"
+  },
+  {
+    "id": "stage-hugo-melancholy",
+    "text": "Melancholy is the pleasure of being sad.",
+    "speaker": "Narrator",
+    "author": "Victor Hugo",
+    "collection": "stage",
+    "work": "Toilers of the Sea",
+    "locator": "Part III (Déruchette), Book I, chapter I, The Harbour Bell",
+    "year": 1866,
+    "context": "The narrator distinguishes stages of grief while returning to Lethierry’s distress. The aphorism is part of that psychological description, not advice to cultivate sadness.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Toilers of the Sea",
+        "url": "https://www.gutenberg.org/cache/epub/32338/pg32338-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "W. Moy Thomas; Everyman’s Library edition, edited and introduced by Ernest Rhys, Project Gutenberg #32338"
+  },
+  {
+    "id": "stage-samuel-beckett-first-walk",
+    "text": "First learn to walk, then you can take swimming lessons.",
+    "speaker": "Molloy",
+    "author": "Samuel Beckett",
+    "collection": "stage",
+    "work": "Molloy",
+    "locator": "Part I, seashore passage before the sucking-stones episode; English translation by Patrick Bowles in collaboration with Samuel Beckett; Grove 2009 excerpt",
+    "year": 1955,
+    "context": "Molloy quotes his own maxim just before recalling a voyage in an oarless skiff. His unstable account makes the apparent common sense comic and unreliable.",
+    "sources": [
+      {
+        "label": "Grove Atlantic: publisher excerpt",
+        "url": "https://groveatlantic.com/book/three-novels/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-tennessee-williams-course-events",
+    "text": "But I continue to be interested in the course of events.",
+    "speaker": "Tennessee Williams",
+    "author": "Tennessee Williams",
+    "collection": "stage",
+    "work": "New Orleans Notebooks",
+    "locator": "Notebook entry, Sunday 14 September 1941; edited by Margaret Bradham Thornton, The Paris Review 176, Spring 2006",
+    "year": 1941,
+    "context": "After a difficult day in New Orleans and painful reflections on prejudice, loneliness, and his progress as an artist, Williams records a continuing curiosity about life.",
+    "sources": [
+      {
+        "label": "The Paris Review: authorised New Orleans notebook selections",
+        "url": "https://www.theparisreview.org/letters-essays/5611/new-orleans-notebooks-tennessee-williams"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-arthur-miller-father",
+    "text": "I never saw you as a man. I saw you as my father",
+    "speaker": "Chris Keller",
+    "author": "Arthur Miller",
+    "collection": "stage",
+    "work": "All My Sons",
+    "locator": "Act III; Penguin Classics text page 82, quoted in publisher’s teacher guide page 14",
+    "year": 1947,
+    "context": "Chris confronts the collapse of his idealized image of his father after learning of Joe’s responsibility for defective wartime aircraft parts.",
+    "sources": [
+      {
+        "label": "Penguin Random House: All My Sons teaching guide",
+        "url": "https://images.penguinrandomhouse.com/promo_image/9780141185460_5473.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-august-wilson-home",
+    "text": "you got a home as long as I got mine.",
+    "speaker": "Wining Boy, recalling Cleotha",
+    "author": "August Wilson",
+    "collection": "stage",
+    "work": "The Piano Lesson",
+    "locator": "Act I, scene 2; clause from his memory of Cleotha, Samuel French acting-edition preview page 37",
+    "year": 1987,
+    "context": "Wining Boy remembers the welcome he felt from his former wife Cleotha. These are her words as recalled inside his speech, not a direct statement by Wilson.",
+    "sources": [
+      {
+        "label": "Concord Theatricals: authorised Piano Lesson preview",
+        "url": "https://shop.concordtheatricals.com/api/v1/product/document/114971"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-geoffrey-chaucer-truth-delivers",
+    "text": "And trouthe schal delyvere, it is no drede.",
+    "speaker": "Poem’s speaker",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Truth",
+    "locator": "Line 7, first refrain; Middle English; excerpt",
+    "year": "Late 14th century",
+    "context": "Gloss: truth will deliver you, there is no doubt. The poem counsels moral steadiness and freedom from worldly ambition within a Christian account of pilgrimage.",
+    "sources": [
+      {
+        "label": "University of Toronto: Representative Poetry Online, Middle English text",
+        "url": "https://rpo.library.utoronto.ca/content/truth"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-william-shakespeare-band-of-brothers",
+    "text": "We few, we happy few, we band of brothers;",
+    "speaker": "King Henry",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Henry V",
+    "locator": "Act 4; scene 3, line 62; Folger text; excerpt",
+    "year": 1599,
+    "context": "Before Agincourt, Henry turns his army’s smaller numbers into a promise of shared honour. Shakespeare stages persuasive wartime rhetoric, rather than a neutral account of battle.",
+    "sources": [
+      {
+        "label": "Folger Shakespeare Library: edited full text",
+        "url": "https://www.folger.edu/explore/shakespeares-works/henry-v/read/4/3/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-sophocles-conscience",
+    "text": "For me, be it food enough that I do not wound mine own conscience;",
+    "speaker": "Electra",
+    "author": "Sophocles",
+    "collection": "stage",
+    "work": "Electra",
+    "locator": "Electra’s first argument with Chrysothemis, contrasting conscience with palace luxury; R. C. Jebb translation; excerpt",
+    "year": "5th century BCE",
+    "context": "Electra refuses the comforts her sister obtains through obedience to their mother’s household. The claim is inseparable from her grief and commitment to avenging Agamemnon.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: R. C. Jebb translation",
+        "url": "https://classics.mit.edu/Sophocles/electra.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-euripides-gratitude",
+    "text": "I hate a friend whose gratitude grows old;",
+    "speaker": "Theseus",
+    "author": "Euripides",
+    "collection": "stage",
+    "work": "Heracles",
+    "locator": "Theseus addresses the veiled Heracles after the deaths of his family; E. P. Coleridge translation; excerpt",
+    "year": "5th century BCE",
+    "context": "Theseus refuses to abandon the friend who once rescued him from the underworld. His loyalty answers Heracles’s shame with presence and help, after catastrophic violence.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: E. P. Coleridge translation",
+        "url": "https://classics.mit.edu/Euripides/heracles.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-moliere-knowledge",
+    "text": "Knowledge has always its intrinsic value.",
+    "speaker": "Trissotin",
+    "author": "Molière",
+    "collection": "stage",
+    "work": "The Learned Women",
+    "locator": "Act IV, scene III; dispute with Clitandre",
+    "year": 1672,
+    "context": "Trissotin defends learning during a quarrel about pedantry. The play asks the audience to distinguish learning from intellectual vanity.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Learned Women",
+        "url": "https://www.gutenberg.org/cache/epub/8772/pg8772-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Charles Heron Wall; English prose translation, Project Gutenberg #8772"
+  },
+  {
+    "id": "stage-ibsen-freedom",
+    "text": "In freedom, and on my own responsibility!",
+    "speaker": "Ellida Wangel",
+    "author": "Henrik Ibsen",
+    "collection": "stage",
+    "work": "The Lady from the Sea",
+    "locator": "Act V; after Wangel releases her from their bargain",
+    "year": 1888,
+    "context": "Ellida recognizes that freedom also gives her responsibility for her choice. The scene turns upon consent rather than possession.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Lady from the Sea",
+        "url": "https://www.gutenberg.org/cache/epub/2765/pg2765-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Eleanor Marx Aveling; English translation, Project Gutenberg #2765"
+  },
+  {
+    "id": "stage-chekhov-genius",
+    "text": "Old age and genius can’t exist together.",
+    "speaker": "Vasili Svietlovidoff",
+    "author": "Anton Chekhov",
+    "collection": "stage",
+    "work": "Swan Song",
+    "locator": "One-act play; after the Hamlet recitation",
+    "year": 1887,
+    "context": "The ageing actor briefly feels restored by performing Shakespeare. His assertion is theatrical exhilaration, contradicted by the vulnerability that soon returns.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Swan Song",
+        "url": "https://www.gutenberg.org/cache/epub/1753/pg1753-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Marian Fell; Plays, first series (1912), Project Gutenberg #1753"
+  },
+  {
+    "id": "stage-hugo-perseverance",
+    "text": "Perseverance is to courage what the wheel is to the lever",
+    "speaker": "Narrator",
+    "author": "Victor Hugo",
+    "collection": "stage",
+    "work": "Toilers of the Sea",
+    "locator": "Part II, Book II, chapter IV, Sub Re; opening clause",
+    "year": 1866,
+    "context": "During Gilliatt’s struggle to salvage the wreck, the narrator contrasts momentary bravery with sustained effort. The excerpt ends before the sentence’s explanatory second clause.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Toilers of the Sea",
+        "url": "https://www.gutenberg.org/cache/epub/32338/pg32338-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "W. Moy Thomas; Everyman’s Library edition, edited and introduced by Ernest Rhys, Project Gutenberg #32338"
+  },
+  {
+    "id": "stage-samuel-beckett-voyage",
+    "text": "And I sometimes wonder if I ever came back, from that voyage.",
+    "speaker": "Molloy",
+    "author": "Samuel Beckett",
+    "collection": "stage",
+    "work": "Molloy",
+    "locator": "Part I, seashore passage; English translation by Patrick Bowles in collaboration with Samuel Beckett; Grove 2009 excerpt",
+    "year": 1955,
+    "context": "The narrator remembers setting out to sea but cannot recover a clear memory of returning. The voyage becomes a question about memory and the self.",
+    "sources": [
+      {
+        "label": "Grove Atlantic: publisher excerpt",
+        "url": "https://groveatlantic.com/book/three-novels/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-tennessee-williams-verse",
+    "text": "Verse soothed me as it always does.",
+    "speaker": "Tennessee Williams",
+    "author": "Tennessee Williams",
+    "collection": "stage",
+    "work": "New Orleans Notebooks",
+    "locator": "Notebook entry dated Wednesday 17 September or Thursday 18 September 1941; The Paris Review 176, Spring 2006",
+    "year": 1941,
+    "context": "Williams returns from a lonely walk through the French Quarter with a pocket anthology of poetry. He records the comfort of reading and his admiration for Hart Crane.",
+    "sources": [
+      {
+        "label": "The Paris Review: authorised New Orleans notebook selections",
+        "url": "https://www.theparisreview.org/letters-essays/5611/new-orleans-notebooks-tennessee-williams"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-arthur-miller-sons",
+    "text": "But I think to him they were all my sons",
+    "speaker": "Joe Keller",
+    "author": "Arthur Miller",
+    "collection": "stage",
+    "work": "All My Sons",
+    "locator": "Act III; clause from Joe’s recognition speech, Penguin Classics page 83, quoted in publisher’s teacher guide page 14",
+    "year": 1947,
+    "context": "Joe finally recognizes that his responsibility extends beyond his own household to the pilots killed by the defective parts. The omitted preceding sentence refers to his son Larry.",
+    "sources": [
+      {
+        "label": "Penguin Random House: All My Sons teaching guide",
+        "url": "https://images.penguinrandomhouse.com/promo_image/9780141185460_5473.pdf"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-august-wilson-self-discovery",
+    "text": "Writing is a process of self-discovery.",
+    "speaker": "August Wilson",
+    "author": "August Wilson",
+    "collection": "stage",
+    "work": "Interview with Nathaniel G. Nesmith",
+    "locator": "12 July 1987 interview; answer on what writing has taught him; published by American Theatre, 20 April 2021",
+    "year": 1987,
+    "context": "Wilson explains that honest writing forces him to face parts of himself he might otherwise avoid. This is an interview statement about his own practice.",
+    "sources": [
+      {
+        "label": "American Theatre: original 1987 Wilson interview",
+        "url": "https://www.americantheatre.org/2021/04/20/august-wilson-i-still-see-myself-developing-as-a-playwright/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-geoffrey-chaucer-virtue-and-dignity",
+    "text": "For unto vertu longeth dignitee,",
+    "speaker": "Poem’s speaker",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "Gentilesse",
+    "locator": "Line 5; Middle English; excerpt",
+    "year": "Late 14th century",
+    "context": "Gloss: dignity belongs to virtue. The poem grounds nobility in character and conduct rather than inherited wealth or the insignia of high office.",
+    "sources": [
+      {
+        "label": "Montclair State University: Middle English text with glosses",
+        "url": "https://msuweb.montclair.edu/~furrg/chaucer/chaucer_gentilesse.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-william-shakespeare-time-waste",
+    "text": "I wasted time, and now doth time waste me;",
+    "speaker": "Richard",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Richard II",
+    "locator": "Act 5; scene 5, line 50; Folger text; excerpt",
+    "year": "c. 1595",
+    "context": "The deposed king hears music in prison and compares broken musical time with his ruined reign. The line is part of a dramatic reckoning with lost power and mortality.",
+    "sources": [
+      {
+        "label": "Folger Shakespeare Library: edited full text",
+        "url": "https://www.folger.edu/explore/shakespeares-works/richard-ii/read/5/5/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-sophocles-virtue-before-victory",
+    "text": "Rather, much rather would I fall by virtue\nThan rise by guilt to certain victory.",
+    "speaker": "Neoptolemus",
+    "author": "Sophocles",
+    "collection": "stage",
+    "work": "Philoctetes",
+    "locator": "Opening exchange with Ulysses, rejecting the proposed deception; Thomas Francklin translation; excerpt",
+    "year": "5th century BCE",
+    "context": "Achilles’s son objects to winning Philoctetes’s help through lies. The play tests that conviction against military pressure, pity, and the needs of the wounded exile.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: Thomas Francklin translation",
+        "url": "https://classics.mit.edu/Sophocles/philoct.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-euripides-victory-and-justice",
+    "text": "Better is it not to win a discreditable victory, than to make justice miscarry by an invidious exercise of power;",
+    "speaker": "Chorus",
+    "author": "Euripides",
+    "collection": "stage",
+    "work": "Andromache",
+    "locator": "Choral ode after Peleus protects Andromache and her child; antistrophe; E. P. Coleridge translation; excerpt",
+    "year": "5th century BCE",
+    "context": "The Chorus questions victories secured by abusive power. The judgement follows the rescue of a captive woman and her child from Menelaus’s threats.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: E. P. Coleridge translation",
+        "url": "https://classics.mit.edu/Euripides/andromache.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-moliere-pedant",
+    "text": "Knowledge in a pedant becomes impertinence.",
+    "speaker": "Clitandre",
+    "author": "Molière",
+    "collection": "stage",
+    "work": "The Learned Women",
+    "locator": "Act IV, scene III; answer to Trissotin",
+    "year": 1672,
+    "context": "Clitandre answers Trissotin’s defence of knowledge. This is a character’s attack on ostentation within a satirical argument, not a rejection of education.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Learned Women",
+        "url": "https://www.gutenberg.org/cache/epub/8772/pg8772-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Charles Heron Wall; English prose translation, Project Gutenberg #8772"
+  },
+  {
+    "id": "stage-ibsen-choose",
+    "text": "I could have chosen it. And that is why I could also renounce it.",
+    "speaker": "Ellida Wangel",
+    "author": "Henrik Ibsen",
+    "collection": "stage",
+    "work": "The Lady from the Sea",
+    "locator": "Act V; explaining her decision to Wangel",
+    "year": 1888,
+    "context": "Once she can freely leave with the Stranger, Ellida can freely refuse. The paradox explains her choice to remain with Wangel.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Lady from the Sea",
+        "url": "https://www.gutenberg.org/cache/epub/2765/pg2765-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Eleanor Marx Aveling; English translation, Project Gutenberg #2765"
+  },
+  {
+    "id": "stage-chekhov-doubt",
+    "text": "What sort of a genius am I?",
+    "speaker": "Vasili Svietlovidoff",
+    "author": "Anton Chekhov",
+    "collection": "stage",
+    "work": "Swan Song",
+    "locator": "One-act play; near the closing exchange with Ivanitch",
+    "year": 1887,
+    "context": "The actor’s confidence falters again after a burst of performance. Read beside his earlier boast, the question reveals the shifting boundary between the role and the lonely person.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Swan Song",
+        "url": "https://www.gutenberg.org/cache/epub/1753/pg1753-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Marian Fell; Plays, first series (1912), Project Gutenberg #1753"
+  },
+  {
+    "id": "stage-hugo-ideal",
+    "text": "I prefer the republic of the ideal",
+    "speaker": "Gauvain",
+    "author": "Victor Hugo",
+    "collection": "stage",
+    "work": "Ninety-Three",
+    "locator": "Part III, Book VII, chapter V, The Dungeon; spoken clause",
+    "year": 1874,
+    "context": "Awaiting judgment, Gauvain argues with Cimourdain about mercy, sacrifice, and a republic’s purpose. The excerpt excludes the comma that introduces the narrator’s speech tag.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Ninety-Three",
+        "url": "https://www.gutenberg.org/cache/epub/49372/pg49372-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Aline Delano; Little, Brown, 1889 edition, Project Gutenberg #49372"
+  },
+  {
+    "id": "stage-samuel-beckett-again",
+    "text": "Be again, be again.",
+    "speaker": "Krapp",
+    "author": "Samuel Beckett",
+    "collection": "stage",
+    "work": "Krapp’s Last Tape",
+    "locator": "Near the end, present-day Krapp imagining past places; original English; Grove collected-play excerpt",
+    "year": 1958,
+    "context": "An older Krapp calls up places and experiences from his past, then immediately recoils from the misery they also contain. The longing is deliberately unresolved.",
+    "sources": [
+      {
+        "label": "Grove Atlantic: publisher excerpt",
+        "url": "https://groveatlantic.com/book/the-collected-shorter-plays/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-tennessee-williams-phoenix",
+    "text": "A Play is a Phoenix",
+    "speaker": "Tennessee Williams",
+    "author": "Tennessee Williams",
+    "collection": "stage",
+    "work": "New Orleans Notebooks",
+    "locator": "Opening clause in notebook entry, Sunday 5 October 1941; capitalisation retained; The Paris Review 176, Spring 2006",
+    "year": 1941,
+    "context": "Williams imagines a draft dying in the writer’s doubts at night and rising again in the morning. The short clause comes from a private reflection on finishing a first draft.",
+    "sources": [
+      {
+        "label": "The Paris Review: authorised New Orleans notebook selections",
+        "url": "https://www.theparisreview.org/letters-essays/5611/new-orleans-notebooks-tennessee-williams"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-arthur-miller-last-comma",
+    "text": "Everything is inevitable, down to the last comma.",
+    "speaker": "Arthur Miller",
+    "author": "Arthur Miller",
+    "collection": "stage",
+    "work": "The Art of Theater No. 2",
+    "locator": "Interview with Olga Carlisle and Rose Styron, The Paris Review 38, Summer 1966; answer comparing stage writing with short stories",
+    "year": 1966,
+    "context": "Miller describes the sense of formal necessity he feels when writing for the stage. This is his account of craft, not dialogue from a play.",
+    "sources": [
+      {
+        "label": "The Paris Review: original Miller interview",
+        "url": "https://www.theparisreview.org/interviews/4369/the-art-of-theater-no-2-arthur-miller"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-august-wilson-developing",
+    "text": "I still see myself developing as a playwright",
+    "speaker": "August Wilson",
+    "author": "August Wilson",
+    "collection": "stage",
+    "work": "Interview with Nathaniel G. Nesmith",
+    "locator": "12 July 1987 interview; opening clause of answer on establishing himself; published 20 April 2021",
+    "year": 1987,
+    "context": "Soon after winning the Pulitzer Prize for Fences, Wilson describes success as a stage in continued learning, not the completion of his craft.",
+    "sources": [
+      {
+        "label": "American Theatre: original 1987 Wilson interview",
+        "url": "https://www.americantheatre.org/2021/04/20/august-wilson-i-still-see-myself-developing-as-a-playwright/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-geoffrey-chaucer-sleepless-narrator",
+    "text": "I have gret wonder, by this lighte,\nHow that I live, for day ne nighte",
+    "speaker": "Narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Book of the Duchess",
+    "locator": "Opening lines 1–2; Middle English; excerpt",
+    "year": "Late 14th century",
+    "context": "The sleepless narrator wonders how he stays alive; the sentence continues by saying he can scarcely sleep. The dream poem that follows approaches bereavement through storytelling and a grieving knight.",
+    "sources": [
+      {
+        "label": "Johns Hopkins University: Chaucer Hub, Middle English beside a modern rendering",
+        "url": "https://sites.krieger.jhu.edu/chaucer/texts-with-translations/the-book-of-the-duchess-2/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-william-shakespeare-only-hope",
+    "text": "The miserable have no other medicine\nBut only hope.",
+    "speaker": "Claudio",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "Measure for Measure",
+    "locator": "Act 3; scene 1, lines 2–3; Folger text; excerpt",
+    "year": "c. 1604",
+    "context": "Awaiting execution, Claudio tells the disguised Duke that he still hopes for a pardon. His words belong to a confrontation with law, mercy, and fear.",
+    "sources": [
+      {
+        "label": "Folger Shakespeare Library: edited full text",
+        "url": "https://www.folger.edu/explore/shakespeares-works/measure-for-measure/read/3/1/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-sophocles-hope-before-event",
+    "text": "it is not well to doom our hope before the event.",
+    "speaker": "Leader of the Chorus",
+    "author": "Sophocles",
+    "collection": "stage",
+    "work": "The Women of Trachis",
+    "locator": "Reply to Deianeira after she fears the anointed robe will kill Heracles; R. C. Jebb translation; excerpt",
+    "year": "5th century BCE",
+    "context": "The Chorus urges Deianeira not to pronounce disaster before she knows the outcome. Their hopeful advice is tragically overtaken by news of Heracles’s suffering.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: R. C. Jebb translation",
+        "url": "https://classics.mit.edu/Sophocles/trachinae.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-euripides-humble-host",
+    "text": "A humble host, who does his best, in preference to a wealthy man for me!",
+    "speaker": "Orestes",
+    "author": "Euripides",
+    "collection": "stage",
+    "work": "Electra",
+    "locator": "Orestes accepts the peasant’s invitation and sends his companions into the hut; E. P. Coleridge translation; excerpt",
+    "year": "5th century BCE",
+    "context": "The disguised Orestes discovers generosity in Electra’s impoverished husband. The play distinguishes a host’s character and effort from the prestige of his household.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: E. P. Coleridge translation",
+        "url": "https://classics.mit.edu/Euripides/electra_eur.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-moliere-civil",
+    "text": "it is not enough to be civil, you must also be reasonable",
+    "speaker": "Argan",
+    "author": "Molière",
+    "collection": "stage",
+    "work": "The Imaginary Invalid",
+    "locator": "Act I, scene I; excerpt while checking the apothecary’s bill",
+    "year": 1673,
+    "context": "Argan disputes the charges for his treatments. His complaint about polite language and unreasonable prices belongs to the comedy’s opening account-book scene.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Imaginary Invalid",
+        "url": "https://www.gutenberg.org/cache/epub/9070/pg9070-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Charles Heron Wall; English prose translation, Project Gutenberg #9070; selections from the play, not the added English interludes"
+  },
+  {
+    "id": "stage-ibsen-life-lie",
+    "text": "If you take away the average man’s life-lie you take away his happiness at the same time.",
+    "speaker": "Dr. Relling",
+    "author": "Henrik Ibsen",
+    "collection": "stage",
+    "work": "The Wild Duck",
+    "locator": "Act V; argument with Gregers",
+    "year": 1884,
+    "context": "Relling defends sustaining illusions against Gregers’s uncompromising idealism. The drama tests both positions; the speech should not be treated as a settled authorial doctrine.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Wild Duck",
+        "url": "https://www.gutenberg.org/cache/epub/73631/pg73631-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Eleanor Marx Aveling; Walter H. Baker, 1890 edition, Project Gutenberg #73631"
+  },
+  {
+    "id": "stage-chekhov-bondage",
+    "text": "How could they be free from this intolerable bondage?",
+    "speaker": "Narrator, reflecting Gurov and Anna’s dilemma",
+    "author": "Anton Chekhov",
+    "collection": "stage",
+    "work": "The Lady with the Dog",
+    "locator": "Section IV; near the close",
+    "year": 1899,
+    "context": "The lovers consider the deception and separation imposed by their existing marriages. The narrative question leaves their predicament unresolved.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Lady with the Dog",
+        "url": "https://www.gutenberg.org/cache/epub/13415/pg13415-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Constance Garnett; The Tales of Chekhov, volume III, Project Gutenberg #13415"
+  },
+  {
+    "id": "stage-hugo-justice",
+    "text": "Justice must enter into law",
+    "speaker": "Cimourdain",
+    "author": "Victor Hugo",
+    "collection": "stage",
+    "work": "Ninety-Three",
+    "locator": "Part III, Book VII, chapter V, The Dungeon; opening clause",
+    "year": 1874,
+    "context": "Cimourdain insists that an ideal must become enforceable law. His certainty is placed against Gauvain’s broader vision of human possibility; the excerpt ends before a semicolon.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Ninety-Three",
+        "url": "https://www.gutenberg.org/cache/epub/49372/pg49372-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Aline Delano; Little, Brown, 1889 edition, Project Gutenberg #49372"
+  },
+  {
+    "id": "stage-samuel-beckett-best-years",
+    "text": "Perhaps my best years are gone.",
+    "speaker": "Krapp’s recorded younger voice",
+    "author": "Samuel Beckett",
+    "collection": "stage",
+    "work": "Krapp’s Last Tape",
+    "locator": "Final tape passage; original English; Grove collected-play excerpt",
+    "year": 1958,
+    "context": "The recorded voice wonders whether its best years are over, then insists it would not want them back. The older listener’s silence complicates that confidence.",
+    "sources": [
+      {
+        "label": "Grove Atlantic: publisher excerpt",
+        "url": "https://groveatlantic.com/book/the-collected-shorter-plays/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-tennessee-williams-imaginative-life",
+    "text": "I mean I began to live an intensely imaginative life.",
+    "speaker": "Tennessee Williams",
+    "author": "Tennessee Williams",
+    "collection": "stage",
+    "work": "The Art of Theater No. 5",
+    "locator": "Interview with Dotson Rader, The Paris Review 81, Fall 1981; The Genesis of Writing section",
+    "year": 1981,
+    "context": "Looking back on childhood illness and solitary play, Williams describes the imaginative life he associates with becoming a writer. This is his personal recollection, not dialogue from a play.",
+    "sources": [
+      {
+        "label": "The Paris Review: original Williams interview",
+        "url": "https://www.theparisreview.org/interviews/3209/the-art-of-theater-no-5-tennessee-williams"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-arthur-miller-playwright",
+    "text": "Being a playwright was always the maximum idea.",
+    "speaker": "Arthur Miller",
+    "author": "Arthur Miller",
+    "collection": "stage",
+    "work": "The Art of Theater No. 2",
+    "locator": "The Paris Review 38, Summer 1966; answer on the beginning of his writing career",
+    "year": 1966,
+    "context": "Remembering his early writing, Miller places the theater at the center of his ambitions and connects it to the long dramatic tradition.",
+    "sources": [
+      {
+        "label": "The Paris Review: original Miller interview",
+        "url": "https://www.theparisreview.org/interviews/4369/the-art-of-theater-no-2-arthur-miller"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-august-wilson-together",
+    "text": "We have to do it together.",
+    "speaker": "August Wilson",
+    "author": "August Wilson",
+    "collection": "stage",
+    "work": "The Ground on Which I Stand",
+    "locator": "TCG national conference keynote, Princeton University, 26 June 1996; closing section; definitive 2001 text republished 2016",
+    "year": 1996,
+    "context": "In a speech defending Black theater’s autonomy and demanding equitable support, Wilson closes by asking the broader theatrical community to build its future together.",
+    "sources": [
+      {
+        "label": "American Theatre / TCG: definitive keynote text",
+        "url": "https://www.americantheatre.org/2016/06/20/the-ground-on-which-i-stand/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-geoffrey-chaucer-authority",
+    "text": "A man of greet auctoritee",
+    "speaker": "Narrator",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The House of Fame",
+    "locator": "Book III, line 2158; final surviving line; terminal editorial ellipsis omitted; Middle English; excerpt",
+    "year": "Late 14th century",
+    "context": "Gloss: a man of great authority. The unfinished dream vision ends just as this unnamed figure appears, leaving the reader with the mystery of whose words deserve belief.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Walter W. Skeat’s edition, volume III",
+        "url": "https://www.gutenberg.org/files/45027/45027-h/45027-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-william-shakespeare-awake-faith",
+    "text": "It is required\nYou do awake your faith.",
+    "speaker": "Paulina",
+    "author": "William Shakespeare",
+    "collection": "stage",
+    "work": "The Winter’s Tale",
+    "locator": "Act 5; scene 3, lines 118–119; Folger text; excerpt",
+    "year": "c. 1610–1611",
+    "context": "Paulina prepares the gathered family for Hermione’s apparent statue to come alive. Trust, theatrical wonder, and the possibility of reunion meet after years of grief.",
+    "sources": [
+      {
+        "label": "Folger Shakespeare Library: edited full text",
+        "url": "https://www.folger.edu/explore/shakespeares-works/the-winters-tale/read/5/3/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-sophocles-whole-truth",
+    "text": "Nay, tell me the whole truth.",
+    "speaker": "Deianeira",
+    "author": "Sophocles",
+    "collection": "stage",
+    "work": "The Women of Trachis",
+    "locator": "Appeal to Lichas after the messenger exposes his concealment of Iole’s identity; R. C. Jebb translation; excerpt",
+    "year": "5th century BCE",
+    "context": "Deianeira asks for an honest account of Heracles’s attachment to Iole. Hospitality toward the captive and fear for her marriage are both present in the speech.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: R. C. Jebb translation",
+        "url": "https://classics.mit.edu/Sophocles/trachinae.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-euripides-ruined-cities",
+    "text": "A fool is he who sacks the towns of men,",
+    "speaker": "Poseidon",
+    "author": "Euripides",
+    "collection": "stage",
+    "work": "The Trojan Women",
+    "locator": "Prologue, final speech to Athena before the gods leave; E. P. Coleridge translation; excerpt",
+    "year": "415 BCE",
+    "context": "Poseidon condemns destruction that includes sanctuaries and graves. He predicts that the conqueror who creates a wasteland will himself perish; the defeated women’s suffering follows.",
+    "sources": [
+      {
+        "label": "MIT Internet Classics Archive: E. P. Coleridge translation",
+        "url": "https://classics.mit.edu/Euripides/troj_women.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-moliere-ill",
+    "text": "Gently, Sir, you forget that you are ill.",
+    "speaker": "Toinette",
+    "author": "Molière",
+    "collection": "stage",
+    "work": "The Imaginary Invalid",
+    "locator": "Act I, scene V; reply during the marriage argument",
+    "year": 1673,
+    "context": "Toinette uses Argan’s own preoccupation with illness to puncture his angry insistence that Angélique marry his chosen doctor. This is comic dialogue, not medical advice.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Imaginary Invalid",
+        "url": "https://www.gutenberg.org/cache/epub/9070/pg9070-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Charles Heron Wall; English prose translation, Project Gutenberg #9070; selections from the play, not the added English interludes"
+  },
+  {
+    "id": "stage-ibsen-thirteenth",
+    "text": "To be the thirteenth at table.",
+    "speaker": "Gregers Werle",
+    "author": "Henrik Ibsen",
+    "collection": "stage",
+    "work": "The Wild Duck",
+    "locator": "Act V; answer about his destiny near the close",
+    "year": 1884,
+    "context": "After the family’s catastrophe, Gregers imagines himself as the unwanted thirteenth guest. The image makes his role as an outsider painfully concrete.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Wild Duck",
+        "url": "https://www.gutenberg.org/cache/epub/73631/pg73631-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Eleanor Marx Aveling; Walter H. Baker, 1890 edition, Project Gutenberg #73631"
+  },
+  {
+    "id": "stage-chekhov-beginning",
+    "text": "the most complicated and difficult part of it was only just beginning.",
+    "speaker": "Narrator",
+    "author": "Anton Chekhov",
+    "collection": "stage",
+    "work": "The Lady with the Dog",
+    "locator": "Section IV; closing clause",
+    "year": 1899,
+    "context": "The story ends at the beginning of the lovers’ hardest task. This excerpt preserves the lower-case opening of its clause rather than rewriting the ending as an aphorism.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: The Lady with the Dog",
+        "url": "https://www.gutenberg.org/cache/epub/13415/pg13415-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Constance Garnett; The Tales of Chekhov, volume III, Project Gutenberg #13415"
+  },
+  {
+    "id": "stage-hugo-possible",
+    "text": "The possible includes more than that.",
+    "speaker": "Gauvain",
+    "author": "Victor Hugo",
+    "collection": "stage",
+    "work": "Ninety-Three",
+    "locator": "Part III, Book VII, chapter V, The Dungeon",
+    "year": 1874,
+    "context": "Gauvain answers Cimourdain’s limited account of political possibility. Their exchange gives the novel’s conflict between strict justice and mercy a personal voice.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Ninety-Three",
+        "url": "https://www.gutenberg.org/cache/epub/49372/pg49372-images.html"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false,
+    "translation": "Aline Delano; Little, Brown, 1889 edition, Project Gutenberg #49372"
+  },
+  {
+    "id": "stage-samuel-beckett-nature",
+    "text": "Nature has forgotten us.",
+    "speaker": "Hamm",
+    "author": "Samuel Beckett",
+    "collection": "stage",
+    "work": "Endgame",
+    "locator": "Single act, Hamm and Clov’s exchange about nature; English translation by Samuel Beckett; Grove 2009 excerpt",
+    "year": 1958,
+    "context": "Hamm claims that nature has abandoned them, then observes that their bodies still change. Clov points out the contradiction, making the exchange a dark joke about ageing rather than a literal claim about nature.",
+    "sources": [
+      {
+        "label": "Grove Atlantic: publisher excerpt",
+        "url": "https://groveatlantic.com/book/endgame-act-without-words/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-tennessee-williams-began-writing",
+    "text": "By the age of twelve, I started writing.",
+    "speaker": "Tennessee Williams",
+    "author": "Tennessee Williams",
+    "collection": "stage",
+    "work": "The Art of Theater No. 5",
+    "locator": "Interview with Dotson Rader, The Paris Review 81, Fall 1981; end of The Genesis of Writing section",
+    "year": 1981,
+    "context": "Williams dates his first writing to childhood in an interview about the beginnings of his craft. The statement is autobiographical rather than a line spoken by one of his characters.",
+    "sources": [
+      {
+        "label": "The Paris Review: original Williams interview",
+        "url": "https://www.theparisreview.org/interviews/3209/the-art-of-theater-no-5-tennessee-williams"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-arthur-miller-tragedy",
+    "text": "But tragedy was the basic pillar.",
+    "speaker": "Arthur Miller",
+    "author": "Arthur Miller",
+    "collection": "stage",
+    "work": "The Art of Theater No. 2",
+    "locator": "The Paris Review 38, Summer 1966; answer to whether he was particularly drawn to tragedy",
+    "year": 1966,
+    "context": "Miller explains his early attraction to tragedy. The sentence describes his artistic formation rather than a universal rule for every playwright.",
+    "sources": [
+      {
+        "label": "The Paris Review: original Miller interview",
+        "url": "https://www.theparisreview.org/interviews/4369/the-art-of-theater-no-2-arthur-miller"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-august-wilson-art",
+    "text": "All of art is a search for ways of being, of living life more fully.",
+    "speaker": "August Wilson",
+    "author": "August Wilson",
+    "collection": "stage",
+    "work": "The Ground on Which I Stand",
+    "locator": "26 June 1996 keynote; penultimate paragraph; definitive 2001 text republished 2016",
+    "year": 1996,
+    "context": "Wilson describes art’s human purpose near the end of his argument for the recognition and support of African American theater.",
+    "sources": [
+      {
+        "label": "American Theatre / TCG: definitive keynote text",
+        "url": "https://www.americantheatre.org/2016/06/20/the-ground-on-which-i-stand/"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
+  {
+    "id": "stage-geoffrey-chaucer-empty-purse",
+    "text": "Beth hevy ageyn, or elles mot I dye!",
+    "speaker": "Poem’s speaker addressing his purse",
+    "author": "Geoffrey Chaucer",
+    "collection": "stage",
+    "work": "The Complaint of Chaucer to His Empty Purse",
+    "locator": "Line 7, first refrain; Middle English; excerpt",
+    "year": 1399,
+    "context": "Gloss: be heavy again, or else I must die. Chaucer playfully treats an empty purse as a courtly beloved; the envoy turns the complaint into a request for royal support.",
+    "sources": [
+      {
+        "label": "Project Gutenberg: Walter W. Skeat’s edition, volume I",
+        "url": "https://www.gutenberg.org/files/43089/43089-h/43089-h.htm"
+      }
+    ],
+    "verified": "2026-10-11",
+    "kind": "words",
+    "daily": false
+  },
   {
     "id": "history-washington-truth-light",
     "text": "truth will ultimately prevail where pains is taken to bring it to light.",

@@ -8,6 +8,7 @@ var DAWN_COLLECTIONS = [
   ['thrones', 'Game of Thrones'],
   ['witcher', 'The Witcher'],
   ['history', 'Voices of history'],
+  ['stage', 'Poets & playwrights'],
   ['wisdom', 'Philosophy & tradition'],
   ['wizarding', 'The wizarding world'],
   ['comics', 'Heroes & shadow worlds'],
@@ -70,7 +71,8 @@ function dawnNorm(text) {
 }
 function dawnSearchText(q) {
   var people = q.legacy || typeof dawnPeopleFor !== 'function' ? [] : dawnPeopleFor(q.id);
-  return [q.text, q.speaker, dawnCollection(q.collection), q.work, q.locator, q.context, q.tag || '', q.connection || '', people.map(function (p) { return p.name + ' ' + (p.aliases || []).join(' '); }).join(' ')].join(' ');
+  var writers = typeof dawnWritersFor === 'function' ? dawnWritersFor(q.id) : [];
+  return [q.text, q.speaker, q.author || '', dawnCollection(q.collection), q.work, q.locator, q.context, q.tag || '', q.connection || '', people.concat(writers).map(function (p) { return p.name + ' ' + (p.aliases || []).join(' '); }).join(' ')].join(' ');
 }
 
 function dawnLegacyCard(q, expanded) {
@@ -92,9 +94,11 @@ function dawnLegacyCard(q, expanded) {
 function dawnCard(q, number, expanded) {
   if (q.legacy) return dawnLegacyCard(q, expanded);
   var people = dawnPeopleFor(q.id);
+  var writers = typeof dawnWritersFor === 'function' ? dawnWritersFor(q.id) : [];
   var kinds = {words: 'Words in the source', account: 'An account about the character', portrayal: 'A literary or screen portrayal', tradition: 'Words preserved in a faith tradition'};
   var evidence = q.kind ? '<p class="dawn-evidence">' + esc(kinds[q.kind] || q.kind) + '</p>' : '';
   var castLinks = people.length ? '<p class="dawn-cast-links">' + people.map(function (p) { return '<a href="#/anthology/person-' + esc(p.id) + '">' + (q.kind === 'account' ? 'About ' : 'Explore ') + esc(p.name) + '</a>'; }).join(' · ') + '</p>' : '';
+  var writerLinks = writers.length ? '<p class="dawn-cast-links">' + writers.map(function (p) { return '<a href="#/anthology/writer-' + esc(p.id) + '">Explore ' + esc(p.name) + ' &amp; read the works</a>'; }).join(' · ') + '</p>' : '';
   var links = q.sources.map(function (s) {
     return '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer">' + esc(s.label) + '<span class="sr-only"> (opens a new tab)</span></a></li>';
   }).join('');
@@ -102,6 +106,7 @@ function dawnCard(q, number, expanded) {
     '<p class="dawn-kicker">' + (number ? '<span>' + number + ' of 10</span> · ' : '') + esc(dawnCollection(q.collection)) + '</p>' +
     evidence + '<blockquote><p>“' + esc(q.text) + '”</p></blockquote>' +
     '<p class="dawn-speaker">' + esc(q.speaker) + '</p>' +
+    (q.author && q.author !== q.speaker ? '<p class="dawn-author">Written by ' + esc(q.author) + '</p>' : '') +
     '<p class="dawn-work"><cite>' + esc(q.work) + '</cite>' + (q.year ? ' · ' + esc(q.year) : '') + '</p>' +
     '<details' + (expanded ? ' open' : '') + '><summary>Source &amp; context<span class="sr-only"> for ' + esc(q.speaker) + '</span></summary>' +
       '<div class="dawn-provenance"><p class="dawn-locator">' + esc(q.locator) + '</p>' +
@@ -110,5 +115,5 @@ function dawnCard(q, number, expanded) {
       (q.originalText ? '<p class="dawn-original"><strong>Source wording' + (q.originalLanguage ? ' (' + esc(q.originalLanguage) + ')' : '') + '.</strong> ' + esc(q.originalText) + '</p>' : '') +
       (q.connection ? '<p><strong>The literary connection.</strong> ' + esc(q.connection) + '</p>' : '') +
       '<ul>' + links + '</ul><p class="dawn-checked">Sources checked ' + esc(q.verified) + '. External sources need a connection.</p></div></details>' +
-    castLinks + '<a class="dawn-permalink" href="#/anthology/' + esc(q.id) + '">Open this quotation<span class="sr-only"> by ' + esc(q.speaker) + '</span></a></article>';
+    castLinks + writerLinks + '<a class="dawn-permalink" href="#/anthology/' + esc(q.id) + '">Open this quotation<span class="sr-only"> by ' + esc(q.speaker) + '</span></a></article>';
 }

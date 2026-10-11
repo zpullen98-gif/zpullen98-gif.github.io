@@ -45,7 +45,9 @@ FL_VIEWS.anthology = {
   render: function (id) {
     var head = '<div class="dawn-opening"><p class="kick">Mind · Words to travel by</p><h1>The Dawn Anthology</h1>' +
       '<p class="note">The morning’s wisdom, stories from distant worlds, and voices from history. All our quotation shelves, gathered in one place.</p></div>';
-    head += '<nav class="dawn-shelf-nav" aria-label="Anthology shelves"><a href="#/anthology"' + (!id ? ' aria-current="page"' : '') + '>Browse quotations</a><a href="#/anthology/cast"' + (id === 'cast' || (id && id.indexOf('person-') === 0) ? ' aria-current="page"' : '') + '>Meet the cast</a><a href="#/today">Back to Today</a></nav>';
+    head += '<nav class="dawn-shelf-nav" aria-label="Anthology shelves"><a href="#/anthology"' + (!id ? ' aria-current="page"' : '') + '>Browse quotations</a><a href="#/anthology/writers"' + (id === 'writers' || (id && id.indexOf('writer-') === 0) ? ' aria-current="page"' : '') + '>The Lantern Stage</a><a href="#/anthology/cast"' + (id === 'cast' || (id && id.indexOf('person-') === 0) ? ' aria-current="page"' : '') + '>Meet the cast</a><a href="#/today">Back to Today</a></nav>';
+    if (id === 'writers') return head + dawnWriterIndex();
+    if (id && id.indexOf('writer-') === 0) return head + dawnWriterProfile(id.slice(7));
     if (id === 'cast') return head + dawnCastIndex();
     if (id && id.indexOf('person-') === 0) return head + dawnCastProfile(id.slice(7));
     if (id) {
@@ -82,6 +84,7 @@ FL_VIEWS.anthology = {
   },
   after: function () {
     dawnCastAfter();
+    dawnWriterAfter();
     var form = document.getElementById('dawn-search-form');
     if (!form) return;
     form.addEventListener('submit', function (event) {
