@@ -18,7 +18,7 @@
    lever can pair a dish they have never seen, and that is the entire point.
 
    Both are untimed, both are marked against a master's answer with the
-   reasoning shown, and neither counts toward theory readiness: keyOwned is
+   reasoning shown, and neither counts towards theory readiness: keyOwned is
    wrapped so a judgement key cannot inflate a rank the reader has not earned,
    which is the guard codex16 established for producer keys and codex12 for
    cellar keys.
@@ -146,14 +146,14 @@ function floorTallyView() {
 /* ═══════════ the pairing ═══════════ */
 
 var PAIR_LEVERS = [
-  { k: 'acid', label: 'Acid', note: 'to cut fat and reset the palate' },
-  { k: 'tannin', label: 'Tannin', note: 'to meet protein' },
-  { k: 'low-tannin', label: 'Low tannin', note: 'because tannin would clash' },
-  { k: 'sweet', label: 'Sweetness', note: 'to sit above the dish' },
+  { k: 'acid', label: 'Acid', note: 'to cut fat and meet acid in the dish' },
+  { k: 'tannin', label: 'Tannin', note: 'to meet protein and fat' },
+  { k: 'low-tannin', label: 'Low tannin', note: 'because tannin would turn harsh against it, as with chilli, bitterness, oily fish or lean meat' },
+  { k: 'sweet', label: 'Sweetness', note: 'to match a sweet dish or calm heat' },
   { k: 'body', label: 'Weight', note: 'to match the dish, not beat it' },
   { k: 'low-alc', label: 'Low alcohol', note: 'because alcohol makes heat worse' },
-  { k: 'bubbles', label: 'Bubbles', note: 'to scour fat and salt' },
-  { k: 'oak', label: 'Oak', note: 'to echo char or smoke' },
+  { k: 'bubbles', label: 'Bubbles', note: 'to lift fat and fry off the palate' },
+  { k: 'oak', label: 'Oak', note: 'to meet a rich, buttery dish' },
   { k: 'low-oak', label: 'No oak', note: 'because oak would bully the dish' }
 ];
 

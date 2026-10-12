@@ -13,9 +13,9 @@ var MASTER_PRIMERS=[
 lead:"The Master theory examination is oral. Fifty minutes, three examiners, no options to lean on. What is graded is not only what you know but how you deliver it: promptly, precisely, and without padding.",
 exam:"Everything, at conversational speed. The examiners move on when satisfied, so brevity earns you more questions, and more questions is how you pass.",
 facts:[
-["Answer structure","Lead with the answer. Then, if the answer invites it, one clause of support. 'Cornas: one hundred percent Syrah, no white permitted.' Not a paragraph."],
+["Answer structure","Lead with the answer. Then, if the answer invites it, one clause of support. 'Cornas: one hundred per cent Syrah, no white permitted.' Not a paragraph."],
 ["Say 'I don't know'","Cleanly and immediately, then move. Guessing burns clock and credibility; the examiners are timing your composure as much as your recall."],
-["Numbers are free marks","Aging minimums, alcohol thresholds, hectare figures, sugar bands. Candidates who drill numbers pass sections that candidates who drill stories fail."],
+["Numbers are free marks","Ageing minimums, alcohol thresholds, hectare figures, sugar bands. Candidates who drill numbers pass sections that candidates who drill stories fail."],
 ["Argue when asked","'Which would you cellar?' invites a position with evidence. Take one, defend it in two sentences, and stop. Fence-sitting scores nothing."]],
 traps:[
 "Talking to fill silence. The examiner's pause is not an invitation.",
@@ -27,7 +27,7 @@ lead:"Burgundy at Master level is recitation under pressure: grand cru rosters b
 exam:"Full grand cru lists, monopole ownership, premier cru aristocrats, négociant structures, and the historical spine: Bèze in 630, Philippe the Bold in 1395, the 1935 AOC framework.",
 facts:[
 ["Recite, don't reconstruct","Gevrey's nine and Vosne's six should come out as lists, in one breath, not derived from a mental map."],
-["Ownership is examinable","La Grande Rue (Lamarche, promoted 1992), La Romanée (Liger-Belair), Clos de Tart (Artémis), Clos des Lambrays (LVMH), Musigny Blanc (de Vogüé, declassified since 1994)."],
+["Ownership is examinable","La Grande Rue (Lamarche, promoted 1992), La Romanée (Comte Liger-Belair), Clos de Tart (bought by Artémis in 2017), Clos des Lambrays (LVMH, 2014), Musigny Blanc (de Vogüé, declassified to Bourgogne Blanc from 1994 until the 2015 vintage)."],
 ["The grand-cru-in-waiting argument","Volnay's Clos des Ducs and Taillepieds; Pommard's Rugiens and Epenots; Meursault's Perrières. Be ready to argue the case."],
 ["History","Abbey of Bèze c. 630; Philippe the Bold's 1395 Gamay expulsion ('très mauvais et très desloyaux plant'); the Trois Glorieuses; UNESCO listing of the climats, 2015."]],
 traps:[
@@ -50,14 +50,14 @@ traps:[
 
 {cat:"Champagne",
 lead:"Numbers and history in equal measure. Master examiners ask for press fractions in litres and then for the year of the riots.",
-exam:"Press fractions, aging minimums, dosage bands, the seven grapes, the 1911 riots and 1927 delimitation, prestige cuvées and single-vineyard bottlings.",
+exam:"Press fractions, ageing minimums, dosage bands, the seven grapes, the 1911 riots and 1927 delimitation, prestige cuvées and single-vineyard bottlings.",
 facts:[
-["The press","4,000 kg marc → 2,050 L cuvée + 500 L taille; rebêche to distillation. Coquard basket press."],
+["The press","4,000 kg marc gives 2,050 L cuvée + 500 L taille; rebêche to distillation. Coquard basket press."],
 ["Single vineyards","Clos des Goisses (Philipponnat, 1935), Clos du Mesnil and Clos d'Ambonnay (Krug), Salon's Le Mesnil sourcing."],
 ["Modern change","Dosages falling as base wines ripen; harvests weeks earlier than mid-century; Voltis approved on trial as a disease-resistant variety."],
-["Codes and history","NM/RM/CM on the foil; the 1911 Aube riots; échelle pricing abolished c. 1990; Special Club as the growers' shared prestige bottle."]],
+["Codes and history","NM/RM/CM on the foil; the 1911 riots in the Marne and the Aube; échelle pricing abolished c. 1990; Special Club as the growers' shared prestige bottle."]],
 traps:[
-"Quoting NV aging as 12 months total rather than 15 (12 on lees).",
+"Quoting NV ageing as 12 months total rather than 15 (12 on lees).",
 "Treating RM as a quality guarantee.",
 "Forgetting the four rare grapes when asked to name all seven."]},
 
@@ -65,7 +65,7 @@ traps:[
 lead:"The Loire's breadth is the test. An examiner will walk you downstream and expect grape, style and sweetness at every stop.",
 exam:"Appellation-to-grape across the whole river, Chenin's dry-versus-sweet map, Sancerre's soils, Muscadet's crus, the great sweet vintages.",
 facts:[
-["Walk the river","Muscadet (Melon) → Anjou-Saumur (Chenin, Cabernet Franc, Grolleau) → Touraine (Chenin, Cab Franc, Côt) → Centre (Sauvignon, Pinot Noir)."],
+["Walk the river","Muscadet (Melon), then Anjou-Saumur (Chenin, Cabernet Franc, Grolleau), then Touraine (Chenin, Cab Franc, Côt), then Centre (Sauvignon, Pinot Noir)."],
 ["Sweet Chenin's hierarchy","Coteaux du Layon, with Quarts de Chaume (the Loire's only Grand Cru, 2011) and Bonnezeaux inside it. 1947 is the mythical vintage."],
 ["Producers","Huet (Le Haut-Lieu, Le Mont, Clos du Bourg), Joly's Coulée de Serrant, Clos Rougeard (Le Clos, Les Poyeux, Le Bourg), Dagueneau's Silex, Joguet's Dioterie."],
 ["Modern pressure","Repeated spring frosts (2016, 2019, 2021) and unreliable botrytis are reshaping the sweet appellations while warming benefits Cabernet Franc."]],
@@ -79,11 +79,11 @@ lead:"Alsace rewards the candidate who can explain why its own classification un
 exam:"Grand cru count and exceptions, noble varieties, VT/SGN, producer philosophies, and the commercial critique.",
 facts:[
 ["The numbers","51 grands crus, each its own AOP since 2011; Kaefferkopf last in 2007; Rangen the steepest and volcanic."],
-["Exceptions","Zotzenberg (Sylvaner), Altenberg de Bergheim and Kaefferkopf (blends); since the 2022 harvest Hengst, Kirchberg de Barr and Vorbourg may also make red from Pinot Noir. Klevener de Heiligenstein is Savagnin Rose."],
-["The philosophies","Trimbach declines to print grand cru; Deiss argues co-planted field blends; Zind-Humbrecht maps sites (Rangen's Clos Saint-Urbain, Clos Windsbuhl, Clos Jebsal)."],
-["The critique","Too many crus, uneven quality, top houses opting out, and decades of sweetness ambiguity, corrected only by the 2021 labeling reform."]],
+["Exceptions","Zotzenberg (Sylvaner), Altenberg de Bergheim and Kaefferkopf (blends); Pinot Noir may also make red grand cru at Hengst and Kirchberg de Barr (from 2022) and at Vorbourg (from 2024). Klevener de Heiligenstein is Savagnin Rose."],
+["The philosophies","Trimbach keeps grand cru off its flagship labels, though its Schlossberg has carried it since the 2014 vintage; Deiss argues co-planted field blends; Zind-Humbrecht maps sites (Rangen's Clos Saint-Urbain, Clos Windsbuhl, Clos Jebsal)."],
+["The critique","Too many crus, uneven quality, top houses opting out, and decades of sweetness ambiguity, corrected only by the 2021 labelling reform."]],
 traps:[
-"Assuming all Alsace is dry: historically true, recently unreliable, now labeled.",
+"Assuming all Alsace is dry: historically true, recently unreliable, now labelled.",
 "Calling Pinot Blanc a noble variety.",
 "Confusing Klevner (Pinot Blanc) with Klevener (Savagnin Rose)."]},
 
@@ -93,7 +93,7 @@ exam:"Cru rules and producers, Hermitage climats, Châteauneuf's varieties and e
 facts:[
 ["Absolute rules","Cornas: Syrah only, no white permitted. Saint-Péray: white and sparkling only. Tavel: rosé only. Côte-Rôtie: up to 20% Viognier co-fermented."],
 ["Hermitage climats","Les Bessards, Le Méal, L'Ermite, Les Greffieux: Chapoutier bottles separately, Chave blends by conviction."],
-["Châteauneuf","Thirteen varieties traditionally, eighteen counting colour variants. Rayas is pure Grenache on cool sand; Beaucastel plants all thirteen and treats must thermally."],
+["Châteauneuf","Thirteen varieties traditionally, eighteen counting colour variants. Rayas is pure Grenache on cool sand; Beaucastel plants all thirteen and briefly heats the destemmed berries before fermentation."],
 ["The brett conversation","High-pH warm Grenache is brett-prone; be ready to discuss where terroir ends and fault begins without sneering at either camp."]],
 traps:[
 "Reversing Cornas and Côte-Rôtie on the white-grape question.",
@@ -104,23 +104,23 @@ traps:[
 lead:"The Midi is where the examiner tests whether you studied beyond the famous names. Minimums, subzones and the Languedoc's shifting appellation map.",
 exam:"Grape minimums, Provence's forgotten 1955 classification, Languedoc crus, Southwest specialties, Roussillon VDN styles.",
 facts:[
-["Minimums","Bandol ≥50% Mourvèdre and 18 months wood; Cahors ≥70% Malbec; Corbières-Boutenac ≥30% Carignan."],
+["Minimums","Bandol at least 50% Mourvèdre and 18 months wood; Cahors at least 70% Malbec; Corbières-Boutenac at least 30% Carignan."],
 ["Forgotten classification","The Crus Classés des Côtes de Provence: 23 classified in 1955, 18 surviving, never revised. Palette is tiny, under 50 ha, and Château Simone makes about half of it; Crémade and Henri Bonnaud share the rest."],
 ["Southwest","Madiran's Tannat and micro-oxygenation (Ducournau, early 1990s); Jurançon's passerillage; Irouléguy's Basque terraces; Fronton's Négrette; Gaillac's Mauzac oddities."],
 ["Roussillon","Banyuls (rimage = early-bottled vintage), Maury, Rivesaltes with rancio in glass bonbonnes."]],
 traps:[
 "Attributing Jurançon's sweetness to botrytis.",
 "Forgetting that Limoux claims 1531 priority via Saint-Hilaire.",
-"Treating IGP labeling as a quality failure: Daumas Gassac chose it."]},
+"Treating IGP labelling as a quality failure: Daumas Gassac chose it."]},
 
 {cat:"Jura, Savoie & Corsica",
 lead:"Small regions, precise numbers. These are the questions that separate the prepared from the merely experienced.",
-exam:"Vin Jaune's aging and bottle, Château-Chalon's cancellation power, ouillé versus sous voile chemistry, Savoie's crus, Corsica's synonyms.",
+exam:"Vin Jaune's ageing and bottle, Château-Chalon's cancellation power, ouillé versus sous voile chemistry, Savoie's crus, Corsica's synonyms.",
 facts:[
 ["Vin Jaune","Six years three months minimum, sous voile without topping up, 62 cl clavelin. Château-Chalon is Vin Jaune only and may declare a vintage void: 1974, 1980, 2001."],
 ["The chemistry","Flor-yeast metabolism produces sotolon (curry, fenugreek, walnut), the same compound as old Sauternes and Fino, at table-wine strength here."],
 ["Savoie","Chignin-Bergeron is Roussanne; Ayze is Gringet, grown nowhere else; Apremont and Abymes sit on the 1248 Mont Granier landslide."],
-["The market","Jura prices rose on natural-wine fame plus frost losses: Overnoy and Ganevat trade like grand cru."]],
+["The market","Jura prices rose on natural-wine fame plus frost losses: Overnoy and Ganevat bottles have fetched grand cru prices."]],
 traps:[
 "Saying Savagnin when you mean Sauvignon, or vice versa, under pressure.",
 "Describing Vin Jaune as fortified.",
@@ -128,11 +128,11 @@ traps:[
 
 {cat:"Italy North",
 lead:"Piedmont and the Veneto in numbers and factions. The Barolo Wars question is a test of whether you can describe a debate fairly.",
-exam:"Aging minimums, MGA crus by commune, soil split, Amarone mechanics, method contrasts, Alto Piemonte's revival.",
+exam:"Ageing minimums, MGA crus by commune, soil split, Amarone mechanics, method contrasts, Alto Piemonte's revival.",
 facts:[
-["Aging","Barolo 38 months (18 wood), Riserva 62. Barbaresco 26, Riserva 50."],
+["Ageing","Barolo 38 months (18 wood), Riserva 62. Barbaresco 26, Riserva 50."],
 ["The wars","Modernists (rotofermenters, barriques) versus traditionalists (long macerations, botti), converged in the 2000s. Bartolo Mascarello's label: 'No barrique, no Berlusconi'."],
-["Amarone","30–40% weight loss, no pressing before December 1, min 14% total alcohol (usually 15–16%) and finished dry. Recioto is sweet; Ripasso refermented on pomace, its own DOC since 2010."],
+["Amarone","30 to 40% weight loss, no pressing before 1 December, min 14% total alcohol (usually 15 to 16%) and finished dry. Recioto is sweet; Ripasso refermented on pomace, its own DOC since 2010."],
 ["Alto Piemonte","Gattinara, Ghemme, Boca, Lessona: volcanic and glacial soils, emptied by phylloxera and industry, now reclaimed."]],
 traps:[
 "Calling Amarone sweet.",
@@ -143,25 +143,25 @@ traps:[
 lead:"Sangiovese's aliases, one legendary trap, and a south the examiners now take as seriously as Tuscany.",
 exam:"Brunello's crisis and rules, Chianti Classico's tiers and UGAs, Super Tuscan legal history, Carmignano's Medici precedent, Etna's contrade.",
 facts:[
-["Brunellopoli","2008 blending investigation, US import holds, 2009 consorzio vote retaining 100% Sangiovese. Know the chronology."],
-["Chianti Classico","Annata 12, Riserva 24, Gran Selezione 30 with estate fruit, ≥90% Sangiovese with no international varieties, plus 11 UGA village names permitted on Gran Selezione from 2023."],
+["Brunellopoli","2008 blending investigation, US import holds, and the consorzio's vote late in 2008 retaining 100% Sangiovese. Know the chronology."],
+["Chianti Classico","Annata 12, Riserva 24, Gran Selezione 30 with estate fruit, at least 90% Sangiovese with no international varieties, plus 11 UGA village names permitted on Gran Selezione from 2023."],
 ["Carmignano","Delimited by Cosimo III in 1716: geography, not grapes; at DOC in 1975 it became the first Italian appellation to require Cabernet in the blend, DOCG 1990. Italy's first DOC was Vernaccia di San Gimignano, 1966."],
-["The south","Taurasi and Aglianico del Vulture; Fiano and Greco; Etna's contrade and altitude bands; Cerasuolo di Vittoria as Sicily's only DOCG."]],
+["The south","Taurasi and Aglianico del Vulture; Fiano and Greco; Etna's contrade and altitude bands; Cerasuolo di Vittoria, Sicily's first DOCG (2005), with Etna's bid to be the second lodged in 2023."]],
 traps:[
 "The Montepulciano trap, town versus grape, under oral pressure.",
 "Forgetting Bolgheri Sassicaia is Italy's only single-estate DOC.",
 "Calling Vernaccia di San Gimignano red."]},
 
 {cat:"Spain",
-lead:"Spain's modern story is classification reform: Rioja's 2017 additions, Priorat's village tier, Bierzo's ladder, Sherry's 2022 liberalization. Examiners want the direction of travel.",
-exam:"Rioja aging plus the new tiers, subzone soils, Priorat and Bierzo classifications, Sherry structure and reforms, Cava's schism.",
+lead:"Spain's modern story is classification reform: Rioja's 2017 additions, Priorat's village tier, Bierzo's ladder, the Sherry reform in force from 2025. Examiners want the direction of travel.",
+exam:"Rioja ageing plus the new tiers, subzone soils, Priorat and Bierzo classifications, Sherry structure and reforms, Cava's schism.",
 facts:[
 ["Rioja 2017","Vino de Zona, Vino de Municipio, Viñedo Singular (35+ year vines, hand harvest, panel approval), plus Espumoso. Artadi left the DOCa in 2015 over exactly this."],
 ["Sherry classification","Chalk marks decide everything: una raya to the flor track at ~15%; dos rayas to oloroso at ~17%; tres rayas to the still; palo cortado the anomaly. Sobretablas is the resting stage before the criaderas."],
-["The 2022 reforms","Unfortified flor wines legalized at natural 15%+, zones and grapes expanded: the vino de pasto movement made official."],
+["The Sherry reform","Sent to Brussels in 2022 and in force from 2025: a fino or manzanilla that reaches 15% naturally after two years under flor may go unfortified, and the ageing zone and the permitted grapes widen. A nod to the vino de pasto movement, though lighter pasto wines still sell outside the DO."],
 ["Modern regions","Gredos Garnacha on granite (Comando G), Canary volcanic pits (La Geria's hoyos and zocos), Ribeira Sacra's heroic terraces."]],
 traps:[
-"Swapping Reserva and Gran Reserva aging requirements.",
+"Swapping Reserva and Gran Reserva ageing requirements.",
 "Calling Manzanilla a grape or a style rather than Fino aged in Sanlúcar.",
 "Forgetting that Corpinnat left Cava entirely in 2019."]},
 
@@ -169,7 +169,7 @@ traps:[
 lead:"Portugal's exam weight sits in the Douro's regulatory machinery and the sheer number of native grapes.",
 exam:"Beneficio and cadastro, terrace systems, lagares, aguardente strength, Madeira's methods and categories, island viticulture.",
 facts:[
-["Regulation","1756 Pombal demarcation; A–F cadastro sets the beneficio; the lei do terço caps annual Port sales at about a third of stock."],
+["Regulation","1756 Pombal demarcation; A to F cadastro sets the beneficio; the lei do terço caps annual Port sales at about a third of stock."],
 ["Fortification","~77% aguardente, roughly 115 L per 550 L pipe, added at about half sugar."],
 ["Madeira categories","Frasqueira (20 years, single vintage, single noble grape), Colheita (5+), estufagem versus canteiro."],
 ["Islands","Colares' ungrafted Ramisco in dune sand; Pico's basalt currais, UNESCO listed; Azorean Verdelho and Arinto dos Açores."]],
@@ -182,10 +182,10 @@ traps:[
 lead:"Germany is a label-reading examination. The AP number, the Grosslage deception and the VDP overlay are what separate Master answers from Certified ones.",
 exam:"Prädikat and Oechsle, VDP tiers, the 13 regions, AP numbers, Grosslage versus Einzellage, the 2021 reform, the reputational collapse and revival.",
 facts:[
-["AP number","The final digits give the year of application, distinguishing multiple bottlings of the same Prädikat and vineyard. Collectors read it before the price."],
+["AP number","The final two digits give the year of application; the group before them numbers the producer's submissions, telling apart several bottlings of the same Prädikat and vineyard. Collectors read it before the price."],
 ["The 1971 problem","Grosslagen with vineyard-sounding names: Piesporter Michelsberg versus Goldtröpfchen, Niersteiner Gutes Domtal versus the Roter Hang."],
-["The 2021 reform","Reorients toward geographic narrowing, the Romance model, with Prädikat terms surviving atop it."],
-["The arc","1970s–80s bulk sweet exports destroyed the reputation; VDP's dry GG programme and grower Riesling rebuilt it from the top."]],
+["The 2021 reform","Reorients towards geographic narrowing, the Romance model, with Prädikat terms surviving atop it."],
+["The arc","1970s and 80s bulk sweet exports destroyed the reputation; VDP's dry GG programme and grower Riesling rebuilt it from the top."]],
 traps:[
 "Equating Prädikat with sweetness in the glass.",
 "Missing that Eiswein sits at BA must weight but carries no botrytis character.",
@@ -195,9 +195,9 @@ traps:[
 lead:"Austria's answer always begins in 1985. The scandal explains the law, the law explains the quality, and the quality explains the price.",
 exam:"Wachau ladder thresholds, DAC structure, soils and grapes, Burgenland reds and sweets, the 1985 reform, Sekt Austria tiers.",
 facts:[
-["Thresholds","Steinfeder ≤11.5%, Federspiel 11.5–12.5%, Smaragd ≥12.5%, Vinea Wachau only."],
-["DAC logic","Region tied to typicity; atypical wines step down to the state name. Gebietswein → Ortswein → Riedenwein."],
-["Sweet ladder","Spätlese → Auslese → BA → Ausbruch (Rust) → TBA, plus Eiswein and Schilfwein."],
+["Thresholds","Steinfeder up to 11.5%, Federspiel 11.5 to 12.5%, Smaragd at least 12.5%, Vinea Wachau only."],
+["DAC logic","Region tied to typicity; atypical wines step down to the state name. Gebietswein, Ortswein, Riedenwein."],
+["Sweet ladder","Spätlese, Auslese, BA, TBA, plus Eiswein and Schilfwein. The old Ausbruch rung between BA and TBA is gone: since 2016 the name is Rust's alone, and from the 2020 vintage Ruster Ausbruch DAC is picked at TBA must weight."],
 ["Sekt Austria","Klassik 9 months, Reserve 18 (hand-harvested, traditional method), Grosse Reserve 30."]],
 traps:[
 "Applying the Wachau ladder outside the Wachau.",
@@ -208,7 +208,7 @@ traps:[
 lead:"Two nations that reward preparation disproportionately. The examiners know most candidates skimp here.",
 exam:"Aszú arithmetic and the gönci barrel, Eszencia, Tokaj's 1737 decree, Santorini's viticulture and economics, Xinomavro, Greek PDOs.",
 facts:[
-["The unit is the law","A puttony is a ~25 kg hod per 136 L gönci barrel. Change the barrel and the scale changes. Modern law: 5 or 6 puttonyos, ≥120/150 g/L."],
+["The unit is the law","A puttony is a ~25 kg hod per 136 L gönci barrel. Change the barrel and the scale changes. Modern law: 5 or 6 puttonyos, at least 120 or 150 g/L."],
 ["Priority claim","Tokaj's 1737 royal decree created a closed, classified production district, over a century before 1855."],
 ["Santorini","Kouloura-trained, own-rooted, ancient vines on ash; yields among the world's lowest; tourism land values now the existential threat."],
 ["Greek structure","Naoussa and Amyndeon for Xinomavro; Nemea for Agiorgitiko; Samos, Limnos and Patras for fortified sweets."]],
@@ -224,7 +224,7 @@ facts:[
 ["DRC's holdings","Romanée-Conti and La Tâche as monopoles, plus Richebourg, Romanée-Saint-Vivant, Grands Échezeaux, Échezeaux, Montrachet, Corton (2009) and Corton-Charlemagne (2019)."],
 ["Italian consultancy","Giacomo Tachis: Sassicaia, Tignanello, Solaia, Terre Brune, the Italian century in one career."],
 ["The natural canon","Jules Chauvet as theorist; the Gang of Four (Lapierre, Foillard, Breton, Thévenet); Overnoy-Houillon; Gravner and Radikon."],
-["New World firsts","Schubert's secret Granges (1957–59); Screaming Eagle 1992; Cloudy Bay 1985; Grosset's 2000 screwcap rebellion."]],
+["New World firsts","Schubert's secret Granges (1957 to 1959); Screaming Eagle 1992; Cloudy Bay 1985; Grosset's 2000 screwcap rebellion."]],
 traps:[
 "Attributing the suitcase-clone legend to the wrong person: it is Josh Jensen's story, not David Lett's.",
 "Forgetting Sassicaia's first commercial vintage is 1968.",
@@ -232,25 +232,25 @@ traps:[
 
 {cat:"California",
 lead:"Master California is AVA fluency plus market history. Expect questions about ownership, trademarks and movements as often as about soil.",
-exam:"AVA geography and conjunctive labeling, To Kalon's ownership, Pritchard Hill's status, the 1976 details, the cult era, In Pursuit of Balance.",
+exam:"AVA geography and conjunctive labelling, To Kalon's ownership, Pritchard Hill's status, the 1976 details, the cult era, In Pursuit of Balance.",
 facts:[
-["To Kalon","Planted 1868 by H.W. Crabb; today split between Constellation/Mondavi, Beckstoffer, MacDonald and Detert, and the name has been litigated."],
+["To Kalon","Planted 1868 by H.W. Crabb; since divided among several owners, the Robert Mondavi Winery and Beckstoffer among them, and the name has been litigated."],
 ["Not an AVA","Pritchard Hill is effectively a controlled name, not an appellation. Colgin and Bryant label Napa Valley."],
 ["Wind as terroir","The Petaluma Gap (2017) is defined primarily by wind, the first US AVA justified that way."],
-["Movements","Rhône Rangers; the 1990s cult Cabernets; In Pursuit of Balance (2011–16) arguing restraint and disbanding claiming victory."]],
+["Movements","Rhône Rangers; the 1990s cult Cabernets; In Pursuit of Balance (2011 to 2016) arguing restraint and disbanding claiming victory."]],
 traps:[
 "Swapping the two 1976 winners: Montelena for Chardonnay, Stag's Leap Wine Cellars for Cabernet.",
-"Forgetting Napa's conjunctive labeling requirement since 1990 (California Business & Professions Code §25241).",
+"Forgetting Napa's conjunctive labelling requirement since 1990 (California Business & Professions Code §25241).",
 "Treating an AVA as though it regulated grapes or yields."]},
 
 {cat:"Pacific NW, NY & Canada",
 lead:"Three cool-climate stories with three legal quirks: Oregon's stricter percentage, Washington's desert, Canada's statutory freeze.",
-exam:"Willamette soils and AVAs, Oregon labeling, Columbia geology, the Rocks District anomaly, Finger Lakes history, VQA Icewine.",
+exam:"Willamette soils and AVAs, Oregon labelling, Columbia geology, the Rocks District anomaly, Finger Lakes history, VQA Icewine.",
 facts:[
-["Geology","The Missoula Floods laid Washington's gravels and silts over basalt; loess blew in above. Irrigation is mandatory."],
+["Geology","The Missoula Floods laid Washington's gravels and silts over basalt; loess blew in above. Irrigation is all but essential."],
 ["The anomaly","The Rocks District of Milton-Freewater lies in Oregon but its wines trade with Walla Walla, Washington."],
 ["Vinifera's proof","Dr. Konstantin Frank, 1962, Finger Lakes: grafted vinifera surviving where orthodoxy said only hybrids could."],
-["Icewine law","−8°C or colder, on the vine, pressed frozen; cryoextraction disqualifies. Vidal and Riesling lead."]],
+["Icewine law","Minus 8°C or colder, on the vine, pressed frozen; cryoextraction disqualifies. Vidal and Riesling lead."]],
 traps:[
 "Assuming Washington is rainy.",
 "Quoting Oregon's varietal minimum as the federal 75%.",
@@ -260,12 +260,12 @@ traps:[
 lead:"Argentina redrew its map by soil; Chile redrew its by axis. Master answers describe both reforms and name the subzones.",
 exam:"Mendoza's soil-mapped GIs, altitude science, Chile's coast/Andes law, Carmenère's identification, the Berlin Tasting, heritage revivals.",
 facts:[
-["Soil-mapped GIs","Paraje Altamira was drawn by alluvial fan and soil survey, a world first at scale. Gualtallary, Los Chacayes, San Pablo followed."],
+["Soil-mapped GIs","Paraje Altamira was drawn by alluvial fan and soil survey, a world first at scale. Los Chacayes and San Pablo followed; Gualtallary, as famous as any, has sought the same recognition."],
 ["Altitude","UV thickens skins, diurnal swing preserves acid; Catena's Adrianna vineyard is the published research site."],
 ["1994","Boursiquot identifies Chile's 'Merlot' as Carmenère; 24 November is now Carmenère Day."],
 ["Heritage","País and Cinsault in Itata and Maule (Secano Interior, VIGNO for Carignan); Argentina's Criolla family revival."]],
 traps:[
-"Describing Uco Valley as warmer or bigger than Luján de Cuyo.",
+"Describing Uco Valley as warmer or lower than Luján de Cuyo.",
 "Calling Argentine Bonarda an Italian grape.",
 "Placing the Berlin Tasting in Paris, or the year outside 2004."]},
 
@@ -274,7 +274,7 @@ lead:"The world's oldest vines and a quarantine law to explain why. Master answe
 exam:"Quarantine and old-vine charters, Penfolds' tiers and Schubert's history, Hunter Semillon, regional signatures, Rutherglen's ladder.",
 facts:[
 ["Why the vines survived","South Australia's 1899 quarantine, now enforced by Vinehealth Australia. Langmeil's 1843 Freedom Shiraz; the Barossa charter's four tiers to Ancestor Vine (125+)."],
-["Penfolds","Grange (multi-region, made secretly 1957–59 after management ordered it stopped), Bin 707, RWT, St Henri (no new oak), Yattarna."],
+["Penfolds","Grange (multi-region, made secretly 1957 to 1959 after management ordered it stopped), Bin 707, RWT, St Henri (no new oak), Yattarna."],
 ["Hunter Semillon","~10.5%, unoaked, neutral young, toast and lanolin over twenty years, a transformation with no oak involved."],
 ["Renamings","Topaque replaced Tokay, Apera replaced Sherry, under EU agreements."]],
 traps:[
@@ -293,7 +293,7 @@ facts:[
 traps:[
 "Describing NZ Syrah as Barossa-like.",
 "Forgetting Kumeu River is in Auckland, not Marlborough.",
-"Missing that GIs were only formalized when the Geographical Indications (Wine and Spirits) Registration Act 2006 came into force in 2017."]},
+"Missing that GIs were only formalised when the Geographical Indications (Wine and Spirits) Registration Act 2006 came into force in 2017."]},
 
 {cat:"South Africa",
 lead:"Dates, and then honesty. A Master-level South Africa answer acknowledges the labour history without being asked twice.",
@@ -312,7 +312,7 @@ traps:[
 lead:"Place any bubble into its method family and quote its law. Then explain why grower status guarantees nothing.",
 exam:"Method families and minimums, Crémant rules, English PDO, ancestral method, transfer method, pressure classes.",
 facts:[
-["Minimums to hand","Champagne 15/36; Cava 9/18/30; Franciacorta 18/30/60; Crémant 9–12; Cap Classique 12; VDP Sekt Prestige 36."],
+["Minimums to hand","Champagne 15/36; Cava 9/18/30; Franciacorta 18/30/60; Crémant 9 on lees, 12 to release; Cap Classique 12; VDP Sekt Prestige 36."],
 ["Terminology","Col Fondo, sui lieviti, Satèn, sur latte, dosage zéro: know each precisely."],
 ["Method traps","Asti is a single interrupted tank fermentation; German 'Flaschengärung' may be transfer method while 'traditionelle Flaschengärung' may not."],
 ["England","Same Paris-Basin chalk; Sussex earned its own PDO in 2022; economics remain fragile on frost risk and capital cycle."]],
@@ -328,7 +328,7 @@ facts:[
 ["The fork","~15% and flor lives; ~17% and it dies. Everything else about Sherry follows from that single decision."],
 ["Regulation","Port's beneficio caps production per parcel; the lei do terço caps annual sales at roughly a third of stock."],
 ["Age certification","VOS 20 and VORS 30, carbon-dated and panel-tasted. Rutherglen's four tiers and Madeira's Frasqueira 20 are the parallels."],
-["Unfortified rebels","De Bartoli's Vecchio Samperi (Marsala style, unfortified); Jerez's 2022 vino de pasto legalization."]],
+["Unfortified rebels","De Bartoli's Vecchio Samperi (Marsala style, unfortified); Jerez's reform, in force from 2025, letting fino and manzanilla that reach 15% naturally go unfortified."]],
 traps:[
 "Quoting Port's spirit strength for VDN or vice versa.",
 "Saying aged Tawny requires decanting.",
@@ -338,7 +338,7 @@ traps:[
 lead:"Four routes to surviving sugar. Master answers name the route, the mechanism, the region and the legal minimum in one breath.",
 exam:"Botrytis mechanics and geography, dried-grape methods, freeze laws, arrested fermentation, must-weight numbers, the commercial decline.",
 facts:[
-["Numbers","BA ~110–128° Oe, TBA ~150+; Aszú 5p ≥120 g/L, 6p ≥150; Eszencia 450+; Eiswein −7°C, Icewine −8°C."],
+["Numbers","BA ~110 to 128° Oe, TBA ~150+; Aszú 5p at least 120 g/L, 6p at least 150; Eszencia 450+; Eiswein minus 7°C, Icewine minus 8°C."],
 ["Yquem's discipline","Multiple tries, roughly a glass per vine, and entire vintages declassified: 1964, 1972, 1974, 1992, 2012."],
 ["Ethics question","Cryoextraction was quietly used in wet 1980s Sauternes vintages and is banned in Icewine law. Be ready to discuss it evenly."],
 ["The market","Sweet wine is in global decline; the professional answer is by-the-glass pours, savoury pairings and honest pricing."]],
@@ -351,7 +351,7 @@ traps:[
 lead:"Explain mechanisms, never mystique. The examiner is listening for whether you understand water, heat and air.",
 exam:"Classification systems, soil mechanisms, moderating features, frost physics, phylloxera refuges, climate adaptation.",
 facts:[
-["Systems","Winkler's degree days (Regions I–V), Huglin, and Jones' Growing Season Temperature bands."],
+["Systems","Winkler's degree days (Regions I to V), Huglin, and Jones' Growing Season Temperature bands."],
 ["Mechanisms","Albariza stores winter rain under a baked crust; galets radiate night heat; smectite clay swells shut to ration water; sand defeats phylloxera."],
 ["Frost physics","Radiation frost pools in valley floors as cold air drains downhill; wind machines and helicopters mix down the warmer inversion layer."],
 ["Adaptation","Higher sites, later varieties, drought rootstocks, canopy shading: each buys years and costs something. Say the trade-off."]],
@@ -377,7 +377,7 @@ traps:[
 lead:"Beer and cider appear because a Master sommelier runs a whole beverage programme. Answers should be practical as well as technical.",
 exam:"Yeast division, Belgian and German families, spontaneous fermentation, cider techniques, service specifications, list strategy.",
 facts:[
-["Definitions","Trappist requires brewing within the abbey under monastic control; 'abbey-style' is marketing. Lambic ferments spontaneously in a coolship."],
+["Definitions","Trappist requires brewing within the abbey under monastic control; 'abbey-style' is marketing. Lambic wort is inoculated overnight in an open coolship, then ferments spontaneously in wood."],
 ["Diacetyl","Butterscotch from fermentation, cured by a warm diacetyl rest: a defect in lager, a feature in Chardonnay."],
 ["Cider","Keeving strips nutrients via pectin gel for natural sweetness; Basque txotx pours from height; Québec's cidre de glace freezes."],
 ["List logic","Gueuze earns a place on a fine-dining list: bottle-aged vintages, wine-like acidity, and pairing power where wine fails."]],
@@ -404,9 +404,9 @@ lead:"Know which words carry force of law, in which country, and how the rules g
 exam:"EU structure and national dialects, the meanings of cru, binding versus decorative terms, percentages, and the amendment process.",
 facts:[
 ["Amendment","Producer bodies petition national authorities: Chianti Classico's UGAs (2023), Bordeaux's climate varieties (2021), Rioja's 2017 tiers. Appellations are written by whoever votes."],
-["Recent law","EU ingredient and nutrition labeling from December 2023, with QR e-labels; traditional-term protection and the evocation doctrine (Glen Buchenbach, C-44/17; Queso Manchego, C-614/17). Champagner Sorbet (C-393/16) went the other way, reputation, not evocation."],
+["Recent law","EU ingredient and nutrition labelling from December 2023, with QR e-labels; traditional-term protection and the evocation doctrine (Glen Buchenbach, C-44/17; Queso Manchego, C-614/17). Champagner Sorbet (C-393/16) went the other way: reputation, not evocation."],
 ["Beyond Europe","Japan's 2018 'Japan Wine' rule; Switzerland's cantonal Grand Cru and Dézaley; South Africa's WO; New Zealand's Geographical Indications (Wine and Spirits) Registration Act 2006, in force 27 July 2017."],
-["Certifications","Organic and biodynamic certify inputs and practice, never resulting quality. Say so plainly if asked."]],
+["Certifications","Organic and biodynamic certify inputs and methods, never resulting quality. Say so plainly if asked."]],
 traps:[
 "Treating 'Reserve' as meaningful in France or the USA.",
 "Forgetting that Saint-Émilion's 'cru' attaches to estates, not vineyards.",
@@ -418,7 +418,7 @@ exam:"Training and physiology, disorders, fermentation management, extraction te
 facts:[
 ["Physiology","Apical dominance explains cane arching; véraison is the mid-summer colour change; phenolic ripeness may lag sugar ripeness in warm climates."],
 ["Rootstock","110R and 1103P for drought; 41B for limestone and chlorosis (Champagne's choice); Riparia Gloire to devigorate."],
-["Technology","Reverse osmosis and spinning cone manage alcohol; flash détente and thermovinification extract by heat; micro-oxygenation polymerizes tannin. Explain without sneering."],
+["Technology","Reverse osmosis and spinning cone manage alcohol; flash détente and thermovinification extract by heat; micro-oxygenation polymerises tannin. Explain without sneering."],
 ["The frontier","PIWI fungus-resistant varieties (Souvignier Gris, Solaris, Voltis on trial in Champagne) and regenerative farming: no-till, cover crops, compost, grazing."]],
 traps:[
 "Calling malolactic a second alcoholic fermentation.",
@@ -429,7 +429,7 @@ traps:[
 lead:"The commercial half of mastery. Examiners ask how wine moves, what it costs to hold, and how you would prove a bottle is real.",
 exam:"Trade structures, en primeur risk, ageability, closures and OTR, authentication, in-bond storage, market indices.",
 facts:[
-["Authentication","Provenance chain, glass and mould seams, label printing and paper, cork branding, fill level, then estate records. Kurniawan was caught on paper and glass."],
+["Authentication","Provenance chain, glass and mould seams, label printing and paper, cork branding, fill level, then estate records. Kurniawan was exposed by vintages the estate never made and convicted on the labels and corks found in his house."],
 ["In bond","Duty and VAT deferred, provenance documented: the fine-wine investment market runs almost entirely this way."],
 ["Closures","Screwcap's lower, more consistent OTR slows tertiary development and raises reduction risk while eliminating TCA. DIAM cleans cork granules with supercritical CO2."],
 ["Uncertainty","Warming raises alcohol and pH and lowers acid; historic thirty-year drinking curves can no longer be assumed. Saying so is a strong answer."]],
@@ -458,7 +458,7 @@ facts:[
 ["Mechanisms","Umami amplifies tannin and bitterness; salt suppresses bitterness; ethanol amplifies capsaicin; the wine must exceed the dish's sweetness."],
 ["The third flavour","A great pairing produces something neither element holds alone: Sauternes and Roquefort make caramel. That is the target, not mere compatibility."],
 ["Menu architecture","Group courses under wines rather than one per plate; small pours; build an arc with palate resets and manage total alcohol deliberately."],
-["Two-way thinking","The plate can move toward the wine: the bridge ingredient technique is a collaboration with the kitchen."]],
+["Two-way thinking","The plate can move towards the wine: the bridge ingredient technique is a collaboration with the kitchen."]],
 traps:[
 "Pairing a sweet wine below the dessert's sweetness.",
 "Reciting canonical matches without the reason behind them.",

@@ -45,11 +45,12 @@
       never level progress (keyOwned), never scheduled (srsRecord) and never
       an orphan to qidAudit. The quick quiz carries two region questions at
       every level. The Quizzes root gains a group with Every region, a row
-      per sheet and The Village tasting: codex20's gridStart(2), two GRAPES
-      profiles of the level to the written grid, with a 25 minute countdown
-      that reads a word when it is up and never stops the run. The Quick quiz
-      row says what it deals: five from our list, three from the level and
-      two from the regions.
+      per sheet and The Village tasting: four wines, two white and two red,
+      the written grid, 45 minutes. codex20's gridStart(4), re-dealt as two
+      white GRAPES profiles of the level then two red, to the written grid,
+      with a 45 minute countdown that reads a word when it is up and never
+      stops the run. The Quick quiz row says what it deals: five from our
+      list, three from the level and two from the regions.
 
    5. THE READING, A SHEET AT A TIME: js/data-regions.js is the index the
       shell precaches (names, levels, summaries, grapes by name and role,
@@ -156,7 +157,7 @@ var V39_WORDS = {
   qzSheetRow: 'Drill {name}',
   qzSheetLine: '{n} questions, ten dealt',
   tastingRow: 'The Village tasting',
-  tastingLine: 'two wines, the written grid, 25 minutes',
+  tastingLine: 'four wines, two white and two red, the written grid, 45 minutes',
   drillSection: 'The regions',
   noQuestions: 'No questions for this region yet.',
   clockLeft: '{time} left',
@@ -1964,7 +1965,20 @@ if (typeof v32QuizzesHtml === 'function') {
   };
 }
 
-/* =========== the Village tasting: two wines, the grid, 25 minutes =========== */
+/* =========== the Village tasting: four wines, two white and two red, the written grid, 45 minutes ===========
+
+   The Court pours the Village candidate four wines, two white and two red, to
+   be described and named on the written grid in 45 minutes (the Court's
+   Certified Sommelier Examination page and exam guide, read 11 October 2026).
+   codex20's gridStart deals a random slice of the level's pool with no regard
+   to colour, so the run re-deals the four: two whites, then two reds, the
+   whites first as the guide advises. A level whose pool lacks two of either
+   colour keeps gridStart's four. The clock reads a word when it is up and
+   never stops the run. It counts from a stored end time, so a render (every
+   answer draws the grid again) never resets it and a throttled timer never
+   slows it; leaving the grid holds what is left, and coming back runs it on
+   from there. Pour another flight (codex20's gridAgain) deals the Village
+   tasting again, with codex21's Finals branch kept ahead of it. */
 
 var V39_CLOCK = { timer: null };
 function v39ClockStop() {
@@ -1976,24 +1990,52 @@ function v39Fmt(s) {
   return m + ':' + (ss < 10 ? '0' : '') + ss;
 }
 function v39ClockText(s) { return s > 0 ? v39W('clockLeft', { time: v39Fmt(s) }) : v39W('clockUp'); }
+/* the seconds left, read from the stored end time while the clock runs */
+function v39ClockNow(tg) {
+  if (typeof tg.clockEnd === 'number') tg.clock = Math.max(0, Math.ceil((tg.clockEnd - Date.now()) / 1000));
+  return tg.clock;
+}
+/* leaving the grid: keep what is left and drop the end time */
+function v39ClockHold() {
+  var tg = S.tg;
+  if (tg && typeof tg.clockEnd === 'number') { v39ClockNow(tg); tg.clockEnd = null; }
+  v39ClockStop();
+}
 function v39ClockTick() {
   var tg = S.tg;
   if (!tg || S.view !== 'grid' || typeof tg.clock !== 'number') { v39ClockStop(); return; }
-  if (tg.clock > 0) tg.clock--;
+  v39ClockNow(tg);
   try { var n = document.getElementById('v39-clock'); if (n) n.textContent = v39ClockText(tg.clock); } catch (e) { }
   if (tg.clock <= 0) v39ClockStop();
 }
+/* a running clock is left alone: a render never restarts the count */
 function v39ClockStart() {
-  v39ClockStop();
+  if (V39_CLOCK.timer) return;
   V39_CLOCK.timer = setInterval(v39ClockTick, 1000);
 }
-function v39GridStart() {
+function v39GridDeck() {
+  if (typeof gridPool !== 'function' || typeof shuffle !== 'function') return null;
+  var pool = gridPool() || [];
+  var whites = shuffle(pool.filter(function (g) { return g && g.c === 'w'; })).slice(0, 2);
+  var reds = shuffle(pool.filter(function (g) { return g && g.c === 'r'; })).slice(0, 2);
+  return whites.length === 2 && reds.length === 2 ? whites.concat(reds) : null;
+}
+/* again: Pour another flight, a new run on the same screen, so no push */
+function v39GridStart(again) {
   if (typeof gridStart !== 'function') return false;
-  v39Pend('push');
-  gridStart(2);
+  v39ClockStop();
+  if (!again) v39Pend('push');
+  gridStart(4);
   if (!S.tg || S.view !== 'grid') return false;
-  S.tg.clock = 25 * 60;
-  S.tg.shape = 'two-wines';
+  var deck = v39GridDeck();
+  if (deck) {
+    S.tg.deck = deck;
+    S.tg.idx = 0;
+    if (typeof gridDealOpts === 'function') gridDealOpts();
+  }
+  S.tg.clock = 45 * 60;
+  S.tg.clockEnd = null;
+  S.tg.shape = 'four-wines';
   render();
   return true;
 }
@@ -2003,7 +2045,9 @@ if (typeof gridView === 'function') {
     var v = _v39GridView.apply(this, arguments);
     try {
       var tg = S.tg;
-      if (tg && tg.shape === 'two-wines' && typeof tg.clock === 'number' && v && typeof v.insertBefore === 'function') {
+      if (tg && tg.shape === 'four-wines' && typeof tg.clock === 'number' && v && typeof v.insertBefore === 'function') {
+        if (typeof tg.clockEnd !== 'number' && tg.clock > 0) tg.clockEnd = Date.now() + tg.clock * 1000;
+        v39ClockNow(tg);
         var p = document.createElement('p');
         p.className = 'v39-clock';
         p.id = 'v39-clock';
@@ -2014,6 +2058,17 @@ if (typeof gridView === 'function') {
       }
     } catch (e) { }
     return v;
+  };
+}
+/* Pour another flight at the end of the Village tasting deals the tasting
+   again; inside a Finals codex21's branch (the grid moves on to the floor)
+   still comes first, and any other grid keeps codex20's own again */
+if (typeof gridAgain === 'function') {
+  var _v39GridAgain = gridAgain;
+  gridAgain = function () {
+    if (S._fin && S._fin.phase === 'grid') return _v39GridAgain.apply(this, arguments);
+    if (S.tg && S.tg.shape === 'four-wines') { v39GridStart(true); return; }
+    return _v39GridAgain.apply(this, arguments);
   };
 }
 if (typeof applyLevel === 'function') {
@@ -2030,7 +2085,7 @@ var _v39Render = render;
 render = function () {
   var out = _v39Render.apply(this, arguments);
   try {
-    if (S.view !== 'grid') v39ClockStop();
+    if (S.view !== 'grid') v39ClockHold();
     if (S.view === 'worldmap' && S._v39land !== null && S._v39land !== undefined) {
       var at = S._v39land;
       S._v39land = null;

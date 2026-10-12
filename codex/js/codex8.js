@@ -276,7 +276,7 @@ function studyPlan(){
   if(due)acts.push({t:'Daily Review',d:due+' question'+(due===1?'':'s')+' due today: the schedule decides, not you.',go:startDaily});
   if(weak&&weak.acc<70)acts.push({t:'Repair '+weak.cat,d:'Your weakest section at '+weak.acc+'% over '+weak.n+' answers. Read the chapter, then drill it.',
     go:function(){S.primerKey=weak.cat;S.view='primer';render();},go2:function(){startDrill(weak.cat);},go2t:'Drill it'});
-  if(cov.pct<60)acts.push({t:'Widen your coverage',d:'You have faced '+cov.pct+'% of this level. '+(needPerDay?'About '+needPerDay+' new a day clears the bar.':'Endless practice serves unseen questions first.'),go:startEndless});
+  if(cov.pct<60)acts.push({t:'Widen your coverage',d:'You have faced '+cov.pct+'% of this level. '+(needPerDay?'About '+needPerDay+' new a day clears the bar.':'Endless study serves unseen questions first.'),go:startEndless});
   if(days!==null&&days<=21)acts.push({t:L.mock.oral?'Sit the Gauntlet':'Sit a full mock',d:'Inside three weeks, rehearse the whole sitting under the clock.',go:startMock});
   if(!acts.length)acts.push({t:'Keep drilling',d:'Nothing is overdue and coverage is healthy. Pick a section, or pour a blind flight.',go:function(){S.view='drillpick';render();}});
   return {level:lvl,iso:iso,days:days,due:due,cov:cov,pace:pace,weak:weak,

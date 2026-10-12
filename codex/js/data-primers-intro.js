@@ -13,25 +13,31 @@
 var INTRO_CHIP = function(c){ return '<span class="chip">'+c+'</span>'; };
 var INTRO_PRIMERS = [
  {g:"Foundations", id:"vit", t:"Grape Growing: Viticulture", body:`
-<p>Nearly all wine of consequence comes from one species, <em>Vitis vinifera</em>, and most of it stands on roots borrowed from American species. The aphid phylloxera feeds on vinifera roots and American vines tolerate it, so grafting is the settled answer and a vineyard is two plants joined at the ground. Deep sand defeats the louse, and it never reached some regions, so Chile, South Australia and parts of Washington and Argentina are still own-rooted.</p>
+<p>Nearly all wine of consequence comes from one species, <em>Vitis vinifera</em>, and most of it stands on roots borrowed from American species. The root louse phylloxera, a tiny relative of the aphid, feeds on vinifera roots and American vines tolerate it, so grafting is the settled answer and a vineyard is two plants joined at the ground. Deep sand defeats the louse, and it never reached some regions, so Chile, South Australia and parts of Washington and Argentina are still own-rooted.</p>
 
 <h4>The vine's year</h4>
 <p>${INTRO_CHIP('budbreak')}${INTRO_CHIP('flowering')}${INTRO_CHIP('fruit set')}${INTRO_CHIP('veraison')}${INTRO_CHIP('harvest')}</p>
 <p>Fruit set decides how many berries the vine carries, so a cold wet flowering costs volume no later sunshine gives back. Veraison is the turn from growing to ripening: berries soften and colour, sugar climbs, acidity falls. Picking is a judgement about where those lines have reached. Weather can settle it sooner: frost after budbreak kills the shoots carrying the crop, hail strips a slope in minutes, and rain before harvest swells berries and lets rot into damp bunches.</p>
 
+<h4>Climate, in three kinds</h4>
+<p>Most vineyards lie roughly 30 to 50 degrees from the equator, where a season runs warm enough to ripen fruit and cool enough to leave it fresh. Climate is the pattern a place repeats; weather is what one year actually delivers. A continental climate, far from the sea, swings from hot summers to hard winters and risks frost at both ends of a short season, as in Burgundy or the Mosel. A maritime climate lies beside an ocean that evens out the seasons but keeps the rain coming, as in Bordeaux. A Mediterranean climate gives long, dry, warm summers and mild winters, as in the southern Rhone. Whatever the type, cold nights slow the berry's respiration of malic acid, so a wide gap between day and night, the diurnal range, keeps wine fresh, and hot regions prize altitude.</p>
+
 <h4>Site, and what a grower does with it</h4>
-<p>Most vineyards lie roughly 30 to 50 degrees from the equator, where a season runs warm enough to ripen fruit and cool enough to leave it fresh. Inside that band, detail does the work. A slope angled at the sun takes light nearer head-on and warms faster. Cold nights slow the berry's respiration of malic acid, so hot regions prize altitude. Poor, free-draining ground keeps a vine hungry and its berries small; rich wet soil buys leafy shoots and dilute fruit.</p>
+<p>Inside that band, detail does the work. A slope angled at the sun takes light nearer head-on and warms faster. Poor, free-draining ground keeps a vine hungry and its berries small; rich wet soil buys leafy shoots and dilute fruit. The French fold soil, slope, aspect and local climate into a single word, terroir.</p>
 <p>The labour follows. Winter pruning sets the crop before a leaf appears, by long canes or short spurs. In summer, shoots are positioned and leaves pulled so light reaches the fruit and air moves through the bunches, ripening skins and holding down powdery and downy mildew. A single fungus, <i>Botrytis cinerea</i>, is ruinous grey rot on wet or damaged fruit and prized noble rot on healthy ripe whites.</p>
  `},
  {g:"Foundations", id:"vin", t:"Winemaking: Vinification", body:`
 <p>One reaction sits under all of it: yeast consume grape sugar and give back alcohol and carbon dioxide. Every other decision is about what the juice touches, and when.</p>
 
 <h4>Red, white and pink</h4>
-<p>Pulp is nearly colourless in almost every variety, so colour comes only from the skins, tannin from skins and the harsher seeds. White grapes are pressed first and the juice ferments alone, kept cool because warmth drives aromas off. Red grapes ferment with their skins, warmer, and pressing comes afterwards. Carbon dioxide floats those skins into a cap, worked by punching down or pumping over ${INTRO_CHIP('pigeage')}${INTRO_CHIP('remontage')} so extraction continues and the cap never dries. Rose sits between, from brief skin contact or juice bled off a red vat early.</p>
+<p>Pulp is nearly colourless in almost every variety, so colour comes only from the skins, tannin from skins, the harsher seeds and any stems left in. White grapes are pressed first and the juice ferments alone, kept cool because warmth drives aromas off. Red grapes ferment with their skins, warmer, and pressing comes afterwards. Carbon dioxide floats those skins into a cap, worked by punching down or pumping over ${INTRO_CHIP('pigeage')}${INTRO_CHIP('remontage')} so extraction continues and the cap never dries. Pink wine, rose, sits between: a few hours of skin contact, or juice bled off a red vat early, the saignee. Champagne may also blend a little red wine into white, a route European rules all but close to still rose.</p>
 
 <h4>After the sugar has gone</h4>
-<p>Malolactic conversion is bacterial, not yeast work, turning sharp malic acid into softer lactic. Routine for reds, a stylistic choice for whites. Wine left on its spent yeast, or stirred through it, gains weight and a savoury, bready character. Oak supplies flavour and a slow trickle of air: a small new barrel marks a wine heavily, a large old cask hardly at all, because what counts is the ratio of wood to wine and the number of fills.</p>
+<p>Malolactic conversion is bacterial, not yeast work, turning sharp malic acid into softer lactic and often leaving a buttery note. Routine for reds, a stylistic choice for whites. Wine left on its spent yeast, sur lie, or stirred through it, batonnage, gains weight and a savoury, bready character. Oak supplies flavour and a slow trickle of air: a small new barrel marks a wine heavily, a large old cask hardly at all, because what counts is the ratio of wood to wine and the number of fills.</p>
 <p>Sweet and strong styles come of interrupting, concentrating or fortifying. With spirit, timing decides. Add it while sugar remains and the ferment stops with sweetness intact, as in Port and Vins Doux Naturels. Add it to a wine already dry and no sweetness follows, as in Fino and Oloroso Sherry, where the strength chosen decides whether flor lives or dies. Concentrate the sugar first, by drying, freezing or letting noble rot dehydrate the grapes, and the yeast give up before finishing. Trap the gas of a fermentation and the wine sparkles: a second one, in bottle or sealed tank, or the tail of the first, bottled before it finishes, the ancestral method behind pet-nat.</p>
+
+<h4>Before the bottle</h4>
+<p>Most wine is clarified before it is sold: fined with an agent that gathers haze and sinks, filtered, or simply left to settle and racked off its sediment. Chilling a white close to freezing pulls out tartrate crystals that would otherwise form later in a cold fridge; when they do appear, they are harmless. Sulphur dioxide, added in small doses along the way, guards against oxygen and spoilage microbes. The fault met most often at the table is cork taint, TCA, which smells of damp cardboard and mutes the fruit. A wine that has met too much air is oxidised instead: brown at the rim, smelling of bruised apple and nuts.</p>
  `},
  {g:"France", id:"bordeaux", t:"Bordeaux", body:`
 <p>Bordeaux is a maritime region built around a tidal estuary in the south-west
@@ -47,24 +53,35 @@ in the cellar every year.</p>
 the region divides along that water. Left Bank soils are deep gravel that drains
 fast and stores the day's heat, which is what lets late-ripening Cabernet
 Sauvignon finish this far north; the Medoc communes run northward from Margaux
-through Saint-Julien and Pauillac to Saint-Estephe, and Pessac-Leognan holds the
-same gravel south of the city. The Right Bank is cooler clay and limestone, so
-earlier Merlot leads at Saint-Emilion and Pomerol, with Cabernet Franc beside
-it. Whites pair Sauvignon Blanc, for aroma and acidity, with Semillon for
-weight: dry in Entre-Deux-Mers and Pessac-Leognan, sweet in Sauternes, where
-mist off the cold Ciron brings the noble rot that shrivels Semillon on the
-vine.</p>
+through Saint-Julien and Pauillac to Saint-Estephe. South of the city the gravel
+carries on into Graves, the district named after it, whose northern end has been
+the separate appellation of Pessac-Leognan since 1987. The Right Bank is cooler
+clay and limestone, so earlier Merlot leads at Saint-Emilion and Pomerol, with
+Cabernet Franc beside it. Petit Verdot, Malbec and, rarely, Carmenere complete
+the six traditional red grapes. Whites pair Sauvignon Blanc, for aroma and
+acidity, with Semillon for weight, sometimes with a little Muscadelle: dry in
+Entre-Deux-Mers and Pessac-Leognan, sweet in Sauternes and Barsac, where mist
+off the cold Ciron brings the noble rot that shrivels Semillon on the vine.</p>
 
 <h4>Rank and trade</h4>
 <p>The 1855 classification ranked Left Bank estates on the prices they had long
 fetched: five tiers of red that have scarcely moved since, and a separate
-ranking of Sauternes in two tiers of classified growth under Yquem alone.
+ranking of Sauternes in two tiers of classified growth under Yquem alone. Its
+First Growths are Lafite Rothschild, Latour, Margaux, Mouton Rothschild and
+Haut-Brion. Haut-Brion is the one red from outside the Medoc, in Graves, and
+Mouton's promotion in 1973 is the only change ever made at the top.
 Saint-Emilion by contrast rewrites its list every decade or so, and Pomerol has
-never had one at all.
-Other words on a label carry their own weight:
+never had one at all.</p>
+<p>Other words on a label carry their own weight:
 ${INTRO_CHIP('Cru Bourgeois')}${INTRO_CHIP('Grand Cru Classe')}${INTRO_CHIP('Bordeaux Superieur')}
-Most estates sell through negociant merchants rather than to the drinker, and
-the sought-after wines are offered as futures while still in barrel.</p>
+Cru Bourgeois ranks Medoc estates left out of 1855, in three tiers since 2020,
+reviewed every five years. On a Saint-Emilion label, Grand Cru Classe names a
+classified estate, while Saint-Emilion Grand Cru alone is an appellation with
+stricter rules than plain Saint-Emilion and no classification behind it.
+Bordeaux Superieur is the same ground as Bordeaux, held to lower yields and
+riper fruit, not a better address. Most estates sell through negociant merchants
+rather than to the drinker, and the sought-after wines are offered as futures,
+en primeur, while still in barrel.</p>
  `},
  {g:"France", id:"burgundy", t:"Burgundy", body:`
 <p>Burgundy asks one question repeatedly: what does a single grape taste like
@@ -79,9 +96,12 @@ the hill where the topsoil has washed away.</p>
 <h4>Four tiers of land</h4>
 <p>The hierarchy ranks ground, not estates:
 ${INTRO_CHIP('Regional')}${INTRO_CHIP('Village')}${INTRO_CHIP('Premier Cru')}${INTRO_CHIP('Grand Cru')}
-On the Cote d'Or a Grand Cru stands under its vineyard name alone; a Premier
-Cru names the village first and the vineyard after. Grand Cru is a sliver of the whole and
-regional Bourgogne most of it. Inheritance law split holdings among heirs for
+On the Cote d'Or a Grand Cru such as Chambertin or Montrachet stands under its
+vineyard name alone; a Premier Cru names the village first and the vineyard
+after. Many villages long ago joined their own name to that of their most famous
+vineyard, so Gevrey-Chambertin on a label is a village wine and Chambertin the
+Grand Cru, which is worth a second look on any list. Grand Cru is a sliver of
+the whole and regional Bourgogne most of it. Inheritance law split holdings among heirs for
 generations, so one celebrated vineyard may carry dozens of owners, which is why
 the grower matters as much as the address. The Cote de Nuits to the north is
 almost entirely red; the Cote de Beaune makes the great whites around Meursault
@@ -91,10 +111,14 @@ and the two Montrachet villages, plus the hill of Corton.</p>
 frost-prone Kimmeridgian limestone, and is defined by acidity and reticence with
 oak; its Grand Cru is a single appellation carrying seven named climats rather
 than seven names of its own. Running south come the Cote Chalonnaise and then
-the Maconnais, the region's largest single source of Chardonnay. Beaujolais at
-the far end sits on granite rather
-than limestone, and its Gamay, often fermented in whole bunches, tastes
-unrelated to anything above it.</p>
+the Maconnais, a broad source of approachable Chardonnay with Pouilly-Fuisse at
+its head; since the 2020 vintage Pouilly-Fuisse has named Premiers Crus, the
+first in the Maconnais. Keep it apart from the Loire's Pouilly-Fume, which is
+Sauvignon Blanc. Beaujolais at the far end sits on granite rather than
+limestone, and its Gamay, often fermented in whole bunches, tastes unrelated to
+anything above it. Ten crus, Morgon, Fleurie and Moulin-a-Vent among them, stand
+at the top and lead with the village name; Beaujolais Nouveau, at the other end,
+is released on the third Thursday of November, weeks after the picking.</p>
  `},
  {g:"France", id:"loire", t:"Loire Valley", body:`
 <p>The Loire is a river first and a wine region second, and the wines change as
@@ -117,11 +141,15 @@ Vouvray and Montlouis take Chenin across the full range from dry to sweet to
 sparkling, the grower choosing once the autumn has shown its hand. Upstream in
 the Centre, Sauvignon Blanc on chalky marl, stony limestone and flint gives
 Pouilly-Fume, which is white and nothing else, and Sancerre, which adds Pinot
-Noir for red and rose.</p>
+Noir for red and rose. Pouilly-Fume is not Pouilly-Fuisse, the Chardonnay of
+southern Burgundy: one shared word, two grapes, two regions.</p>
 
 <p>Chenin's acidity is what makes that range possible, and it is why the sweet
 wines of ${INTRO_CHIP('Coteaux du Layon')}${INTRO_CHIP('Quarts de Chaume')}${INTRO_CHIP('Bonnezeaux')}
-taste fresh rather than cloying after decades.</p>
+taste fresh rather than cloying after decades. Two more names fill a wine list:
+Anjou sells a great deal of off-dry pink as Rose d'Anjou and Cabernet d'Anjou,
+and Cremant de Loire, fermented a second time in its bottle, comes from Anjou,
+Saumur and Touraine.</p>
  `},
  {g:"France", id:"rhone", t:"Rhône Valley", body:`
 <p>The Rhone is two wine regions sharing one river. Between Valence and
@@ -137,19 +165,23 @@ Cote-Rotie above Ampuis, on the granite hill of Hermitage behind Tain, and at
 Crozes-Hermitage, Saint-Joseph and Cornas. White vines were long interplanted
 among the black and picked with them, so most of these appellations still allow
 a little white in the red, provided it goes into the vat and ferments there
-rather than being blended in later: twenty percent Viognier at Cote-Rotie,
-fifteen percent Marsanne or Roussanne at Hermitage and at
-Crozes-Hermitage, ten percent at Saint-Joseph. Few growers approach the ceiling, and Cornas
-permits none at all. White wine itself is Viognier at Condrieu, and Marsanne
-with Roussanne elsewhere.</p>
+rather than being blended in later: twenty per cent Viognier at Cote-Rotie,
+fifteen per cent Marsanne or Roussanne at Hermitage and at
+Crozes-Hermitage, ten per cent at Saint-Joseph. Few growers approach the ceiling, and Cornas
+permits none at all. White wine itself is Viognier at Condrieu and at
+Chateau-Grillet, a single-estate appellation enclosed by it, and Marsanne with
+Roussanne elsewhere.</p>
 
 <h4>The Mediterranean south</h4>
 <p>South of the gap the valley opens out, the climate turns Mediterranean and
 the mistral funnels down it, cold and dry, keeping the canopy dry and fungal
 disease in check. Heat suits bush-trained Grenache, joined by Syrah for colour
-and pepper and Mourvedre for tannin and savour. Blends grow long:
-Chateauneuf-du-Pape permits thirteen named varieties, and part of its ground is
-covered in galets, rounded stones that hold the day's heat into the night.
+and pepper and Mourvedre for tannin and savour, the trio New World labels
+shorten to GSM. Blends grow long: Chateauneuf-du-Pape, named for the summer
+castle of the fourteenth-century popes at Avignon, permits thirteen named
+varieties, and part of its ground is covered in galets, rounded stones that
+hold the day's heat into the night. Rules its growers drew up for themselves in
+the 1920s became a model for France's national appellation law.
 Labels climb a ladder from Cotes du Rhone to Villages, then Villages with a
 named commune, then the crus, which drop the regional name entirely:
 ${INTRO_CHIP('Gigondas')}${INTRO_CHIP('Vacqueyras')}${INTRO_CHIP('Tavel')}${INTRO_CHIP('Lirac')}${INTRO_CHIP('Rasteau')}
@@ -164,7 +196,8 @@ the best slopes lies deep chalk, which banks winter rain, drains a wet summer
 and throws light back into the canopy; galleries quarried out of it under Reims
 and Epernay hold bottles at a steady ten degrees. Since any one harvest this far
 north can disappoint, the traditional unit of quality is the blend rather than
-the vineyard, assembled across villages, grapes and years.</p>
+the vineyard, assembled across villages, grapes and years, which is why most
+bottles carry no vintage.</p>
 
 <h4>Grapes and districts</h4>
 <p>Chardonnay dominates the Cote des Blancs and brings acidity and long life;
@@ -172,17 +205,23 @@ Pinot Noir rules the Montagne de Reims and the Cote des Bar and brings body;
 Meunier fills the frost-prone Vallee de la Marne, budding late and ripening
 early. Blanc de Blancs means white grapes only, Blanc de Noirs black grapes
 only. Cru rank here attaches to an entire village rather than to a parcel, and
-seventeen villages hold Grand Cru.</p>
+seventeen villages hold Grand Cru. A rose is usually made by blending a little
+still red wine into the white before the second fermentation.</p>
 
 <h4>How the bubbles arrive</h4>
 <p>Bunches reach the press whole, so the juice runs clean and black skins give
 up no colour. The blended base wine is bottled with sugar and yeast for a second
 fermentation, which builds roughly six atmospheres of pressure. The wine then
 rests on the spent yeast, whose slow breakdown gives the bready register and a
-finer bead. The deposit is worked into the neck, frozen, expelled, and the
-bottle topped up with a dosage that fixes the style:
+finer bead: at least fifteen months from bottling to sale for a wine without a
+vintage, twelve of them on the lees, and three years for a vintage wine.
+Riddling, by hand or by machine, works the deposit into the neck, where it is
+frozen and expelled at disgorgement, and the bottle is topped up with a dosage
+that fixes the style:
 ${INTRO_CHIP('Brut Nature')}${INTRO_CHIP('Extra Brut')}${INTRO_CHIP('Brut')}${INTRO_CHIP('Extra Dry')}${INTRO_CHIP('Sec')}${INTRO_CHIP('Demi-Sec')}${INTRO_CHIP('Doux')}
-Extra Dry is sweeter than Brut, which catches almost everyone.</p>
+Extra Dry is sweeter than Brut, which catches almost everyone. The same process
+elsewhere is the traditional method, never the methode champenoise, a phrase
+reserved to Champagne.</p>
  `},
  {g:"France", id:"alsace", t:"Alsace", body:`
 <p>Alsace grows its vines on the eastern flank of the Vosges, inside the rain
@@ -193,11 +232,14 @@ why grapes we think of as German ripen fully here. The vineyards occupy foothill
 slopes facing east and south-east, above the frost-prone plain and below the
 cold forest. When the Rhine valley dropped along its fault, the shoulder left
 behind was shattered, so granite, sandstone, limestone, marl, schist and
-volcanic rock all turn up within a few kilometres.</p>
+volcanic rock all turn up within a few kilometres. History adds the rest: the
+region changed hands between France and Germany four times between 1871 and
+1945, which is why its names, grapes and tall bottles look German.</p>
 
 <h4>The label names the grape</h4>
 <p>Almost alone in France, Alsace puts the variety on the front of the bottle,
-and a wine sold as a variety must be that variety entire. Riesling is fermented
+which by law is the slender flute, and a wine sold as a variety must be that
+variety entire. Riesling is fermented
 dry, taut and citrus-driven; Gewurztraminer is deep gold, low in acid and heady
 with lychee and rose; Pinot Gris is broad and smoky; Muscat smells of fresh
 grapes and still finishes dry. Those four are the noble varieties and normally
@@ -222,16 +264,19 @@ seal goes on the bottle, on top of tighter yields and longer ageing. IGT is the
 broad geographic tier beneath them.</p>
 <p>Piedmont sits in the northwest corner, ringed by the Alps that give it its
 name and cut off from the sea. That makes it continental and slow: long autumns,
-fog in the valleys, and a harvest that runs late.</p>
+fog in the valleys, and a harvest that runs late. Nebbiolo's name is usually
+traced to that fog, nebbia.</p>
 <h4>Nebbiolo takes the best hills</h4>
 <p>Nebbiolo ripens last of anything grown here, so it claims the best-exposed
 slopes and leaves the cooler aspects to everything else. Barolo and Barbaresco
 are both entirely Nebbiolo,
 which leaves site and time to separate them: Barbaresco ripens a shade earlier
 and reaches the table sooner, while Barolo must be held longer, and longer in
-wood. Expect pale garnet colour over severe tannin and acidity, the reason those
-ageing minimums exist at all. North of the Langhe the grape answers to Spanna on
-volcanic and glacial ground.
+wood, at least thirty-eight months from harvest with eighteen of them in wood,
+against twenty-six and nine for Barbaresco. Expect pale garnet colour, a scent
+often summed up as tar and roses, and severe tannin and acidity, the reason
+those ageing minimums exist at all. North of the Langhe the grape answers to
+Spanna on volcanic and glacial ground.
 ${INTRO_CHIP('Gattinara')}${INTRO_CHIP('Ghemme')}</p>
 <h4>What fills the rest of the vineyard</h4>
 <p>Barbera carries sharp acidity and almost no tannin, so it drinks young and
@@ -240,16 +285,22 @@ cooler sites, and gives a dark, soft, low-acid red; the name flatters the fruit,
 not the wine, which is dry. Cortese makes the lean citrus white of Gavi in the
 southeast, and Arneis, all but lost by the 1970s, makes the rounder white of
 Roero. Moscato d'Asti halts fermentation early to keep sugar and grape aroma,
-finishing near five and a half percent and only lightly frizzante.</p>
+finishing near five and a half per cent and only lightly frizzante. Asti itself,
+from the same grape, is fully sparkling, so the shorter name is the livelier
+wine.</p>
  `},
  {g:"Italy", id:"lombardy", t:"Lombardy & Emilia-Romagna", body:`
 <p>Lombardy falls from Alpine valleys to the plain of the Po, and altitude sorts
 its wines more reliably than anything else does.</p>
 <h4>Lombardy</h4>
-<p>Franciacorta, on glacial moraine near Brescia, is the Italian benchmark for
-bottle-fermented sparkling wine: Chardonnay with Pinot Nero and Pinot Bianco,
-the second fermentation taken in the bottle of sale, and long ageing on the
-lees. Its Saten style is all white grapes at lower pressure for a softer mousse.
+<p>Franciacorta, on glacial moraine near Brescia and Lake Iseo, is the Italian
+benchmark for bottle-fermented sparkling wine, and in 1995 the first of its kind
+raised to DOCG: Chardonnay with Pinot Nero and Pinot Bianco, the second
+fermentation taken in the bottle of sale, and at least eighteen months on the
+lees, longer for a vintage wine. Its Saten style is all white grapes at lower
+pressure for a softer mousse. South of the Po, the hills of the Oltrepo Pavese
+make up the region's largest vineyard and a main source of Pinot Nero, much of
+it for sparkling wine.
 Higher up, Valtellina cuts terraces into steep slopes above the Adda and works
 them by hand; Nebbiolo there is called Chiavennasca, and Sforzato is the
 dried-grape version. Around Lake Garda the water warms and cools slowly enough
@@ -257,21 +308,27 @@ to blunt the extremes, which is what the fresh white of Lugana depends on.</p>
 <h4>Emilia-Romagna</h4>
 <p>The corridor from Piacenza to Rimini is the richest kitchen in the country,
 and its everyday wine is shaped to sit beside that food. Lambrusco is a family
-of related varieties rather than one grape, grown around Modena and Reggio and
-made frizzante in tank. Served cool and dry, its acidity, light tannin and gas
-cut straight through cured pork and aged cheese. Sangiovese takes over in
-Romagna, out toward the Adriatic.</p>
+of related varieties rather than one grape, grown around Modena and Reggio,
+from the pale, sharp Sorbara to the dark, firmer Grasparossa, and mostly made
+frizzante in tank. It comes dry, off-dry or sweet. Served cool and dry, its
+acidity, light tannin and gas cut straight through cured pork and aged cheese.
+Sangiovese takes over in Romagna, out towards the Adriatic, beside Albana,
+which in 1987 became the first white wine raised to DOCG.</p>
  `},
  {g:"Italy", id:"northeast", t:"Trentino-Alto Adige / Friuli / Veneto", body:`
 <p>Three unlike places share one advantage: mountains behind, Adriatic in front,
 and cold nights that let white grapes keep acid and aroma. Italy's most precise
-varietal whites come from this corner.</p>
+varietal whites come from this corner, and Pinot Grigio, the Italian white best
+known abroad, is grown across all three, much of it under the broad Delle
+Venezie DOC.</p>
 <h4>The Alpine north</h4>
 <p>Alto Adige, or Sudtirol, belonged to Austria until 1919 and German remains an
 official language, so villages and grapes carry two names apiece. Its vineyards
 climb the valley sides, its historic reds are Schiava and Lagrein, and its
 whites are cut-glass. Trentino, warmer and lower, grows Teroldego on the flat
-gravel fan of the Campo Rotaliano and almost nowhere else on earth.</p>
+gravel fan of the Campo Rotaliano and almost nowhere else on earth, and its
+slopes give Trento DOC, a traditional-method sparkling wine built mostly on
+Chardonnay.</p>
 <h4>Friuli</h4>
 <p>Collio and the Colli Orientali press against the Slovenian border. Friulano
 had to drop the first half of its old name, Tocai, once the EU reserved Tokaj
@@ -283,14 +340,16 @@ Valpolicella leads with Corvina for sour cherry, and the larger-berried
 Corvinone, long mistaken for a clone of it, may now stand in for as much as half
 that share. Rondinella fills out the rest. Molinara was the third grape of the
 traditional blend, but it lightened the wine more than growers wanted, so it is
-no longer compulsory. Drying the bunches on racks for months concentrates sugar
-and acid before fermentation starts: taken to dryness that becomes Amarone near
-fifteen percent, halted with sugar left it is Recioto, and young wine refermented
-on the drained skins is Ripasso. Prosecco is Glera, renamed in 2009 so the wine could
-be defended as a place rather than a variety; its second fermentation happens in
-a sealed tank, which protects pear and white flower aromatics that lees ageing
-in bottle would trade for bread. The senior zone lies between Conegliano and
-Valdobbiadene.</p>
+no longer compulsory. Drying the bunches on racks for months, the appassimento,
+concentrates sugar and acid before fermentation starts: taken to dryness that
+becomes Amarone near fifteen per cent, halted with sugar left it is Recioto, and
+young wine refermented on the drained skins is Ripasso. Prosecco is Glera,
+renamed in 2009 so the wine could be defended as a place rather than a variety;
+its second fermentation happens in a sealed tank, which protects pear and white
+flower aromatics that lees ageing in bottle would trade for bread. The senior
+zones, both DOCG, are the hills between Conegliano and Valdobbiadene and those
+of Asolo, above a broad DOC across Veneto and Friuli that since 2020 has also
+made a rose with a little Pinot Nero.</p>
  `},
  {g:"Italy", id:"tuscany", t:"Tuscany", body:`
 <p>Tuscany is hill country, and height is what keeps Sangiovese honest.
@@ -300,17 +359,20 @@ inland it is taut; grown warm on the coast it broadens.</p>
 <h4>The Sangiovese zones</h4>
 <p>Chianti Classico is the historic core between Florence and Siena and its own
 DOCG, distinct from the larger Chianti ringed around it, and its bottles wear
-the Gallo Nero, the consortium's black rooster. Montalcino calls the grape
-Brunello and demands the most patience: two years minimum in wood, nothing
-released before the fifth year after harvest, with Rosso di Montalcino as the
-early-drinking wine from the same ground. At Montepulciano the local name is
-Prugnolo Gentile, and Vino Nobile must be at least seventy percent of it; that
-town has no connection to the Montepulciano grape of Abruzzo, a confusion guests
-raise weekly. On the Maremma coast the same vine is Morellino, and Morellino di
-Scansano comes out fuller and softer.</p>
+the Gallo Nero, the consortium's black rooster. It must be at least eighty per
+cent Sangiovese, and above its Riserva sits Gran Selezione, the zone's top tier.
+Montalcino calls the grape Brunello, uses it alone and demands the most
+patience: two years minimum in wood, nothing released before the fifth year
+after harvest, with Rosso di Montalcino as the early-drinking wine from the same
+ground. At Montepulciano the local name is Prugnolo Gentile, and Vino Nobile
+must be at least seventy per cent of it; that town has no connection to the
+Montepulciano grape of Abruzzo, a confusion guests raise weekly. On the Maremma
+coast the same vine is Morellino, and Morellino di Scansano comes out fuller and
+softer.</p>
 <h4>Coast, white, sweet, and three words</h4>
-<p>Bolgheri showed that Cabernet Sauvignon ripens south of Livorno, and wines
-like it had no legal home until IGT was created in 1992. Vernaccia di San
+<p>Bolgheri showed that Cabernet Sauvignon ripens south of Livorno, and the wines
+guests still call Super Tuscans had no legal home until IGT was created in 1992;
+Bolgheri has since gained a DOC of its own. Vernaccia di San
 Gimignano took Italy's first DOC in 1966 and is still the only Tuscan white at
 DOCG. Vin Santo dries Trebbiano and Malvasia, then seals them into small
 caratelli left in a warm loft through the swing of the seasons. Read the label:
@@ -326,10 +388,12 @@ lot of old volcanic ground do the rest.</p>
 <p>Marche faces the Adriatic and grows Verdicchio behind Ancona, in the Castelli
 di Jesi and in the higher, cooler Matelica. Landlocked Umbria has Sagrantino at
 Montefalco, about as tannic as Italian red gets, made dry and also as a sweet
-passito. Frascati comes off the volcanic Castelli Romani hills just outside
-Rome. Abruzzo plants Montepulciano hard; hold the same fruit on its skins only
-briefly and it makes Cerasuolo, a cherry-coloured rose with its own
-denomination.</p>
+passito, and its familiar white is Orvieto, built on Grechetto and Trebbiano.
+Frascati comes off the volcanic Castelli Romani hills just outside
+Rome. Abruzzo plants Montepulciano, the grape and not the Tuscan town, hard;
+hold the same fruit on its skins only briefly and it makes Cerasuolo
+d'Abruzzo, a cherry-coloured rosato with its own denomination, not to be
+confused with Sicily's red Cerasuolo di Vittoria.</p>
 <h4>South</h4>
 <p>The hills inland of Naples around Avellino are high and cold enough that
 Campania's whites keep structure and age, which is unusual this far down.
@@ -338,7 +402,8 @@ soil nearby, Aglianico ripens very late with hard tannin over high acidity and
 makes Taurasi, the first DOCG granted anywhere in the south. Basilicata gives
 the same grape ash and lava at altitude on the extinct Vulture. Puglia is the
 flat, dry heel, where Primitivo, proved by DNA to be Zinfandel, and Negroamaro
-behind Salice Salentino ripen warm and soft rather than structured.</p>
+behind Salice Salentino ripen warm and soft rather than structured. Across the
+toe, Calabria's best-known red, Ciro, comes from Gaglioppo.</p>
  `},
  {g:"Italy", id:"islands", t:"Sicily & Sardinia", body:`
 <p>Long, hot, rainless summers govern both islands, and both answer the same two
@@ -378,13 +443,17 @@ shellfish rather than for a cellar.</p>
 
 <h4>Where the wines come from</h4>
 <p>${INTRO_CHIP('Rias Baixas')}${INTRO_CHIP('Ribeiro')}${INTRO_CHIP('Ribeira Sacra')}${INTRO_CHIP('Valdeorras')}${INTRO_CHIP('Monterrei')}</p>
-<p><b>Rias Baixas</b> takes its name from the drowned coastal inlets it sits on.
+<p><b>Rias Baixas</b> takes its name from the drowned coastal inlets it sits on,
+and a bottle labelled Rias Baixas Albarino must be that grape alone.
 Val do Salnes, around Cambados, lies closest to the water and is the coolest and
 most bracing of its subzones; O Rosal sits at the mouth of the Mino and Condado
 do Tea well upstream of it, warmth building with every kilometre from the sea.
 Head east and the ocean loses its grip: <b>Valdeorras</b> and
 <b>Ribeira Sacra</b> are inland and slate-based, the latter terraced into the
-gorges of the Sil and the Mino at gradients no machine will ever work.</p>
+gorges of the Sil and the Mino at gradients no machine will ever work.
+<b>Ribeiro</b>, on the Mino around Ourense, was the historic export white,
+blended around Treixadura, and <b>Monterrei</b>, against the Portuguese border,
+is the most continental of the five.</p>
 
 <h4>Grapes</h4>
 <p><b>Albarino</b> copes with the damp because its berries are small and its
@@ -398,9 +467,10 @@ the red worth knowing, fragrant and lightly built on slate.</p>
 <p>Rioja follows the Ebro, the one large Spanish river draining east to the
 Mediterranean, up a valley walled to the north by the limestone Sierra de
 Cantabria. That ridge explains the rest: the Bay of Biscay is an hour away, and
-without it Rioja would be as wet as the Basque coast. Sheltered, vineyards
-sit above five hundred metres, high enough to hold acidity in fruit that would
-otherwise bake. In 1991 Rioja became the first DOCa, Spain's top tier.</p>
+without it Rioja would be as wet as the Basque coast. Sheltered, much of the
+vineyard sits at five hundred metres or more, high enough to hold acidity in
+fruit that would otherwise bake. In 1991 Rioja became the first DOCa, Spain's
+top tier.</p>
 
 <h4>Three zones, and a borrowed habit</h4>
 <p>${INTRO_CHIP('Rioja Alta')}${INTRO_CHIP('Rioja Alavesa')}${INTRO_CHIP('Rioja Oriental')}</p>
@@ -408,22 +478,25 @@ otherwise bake. In 1991 Rioja became the first DOCa, Spain's top tier.</p>
 small one, in Basque Alava on chalky clay, home of whole-bunch carbonic
 reds drunk young. Rioja Oriental, formerly Rioja Baja, is lower, hotter and
 drier, Mediterranean in edge, and grows most of the Garnacha. The classic
-flavour, though, is cellar work. Merchants fleeing phylloxera-ruined Bordeaux
-in the 1860s brought the 225-litre barrica south, and the habit outlived the
-crisis. American oak is far richer in the lactone reading as coconut, vanilla
-and dill, so an old-school Gran Reserva smells as it does.</p>
+flavour, though, is cellar work. Bordeaux merchants, their own vineyards
+falling to phylloxera in the late nineteenth century, came south for wine and
+brought the 225-litre barrica with them, and the habit outlived the crisis.
+American oak is far richer than French in the lactones that read as coconut and
+dill, and with its vanilla it explains how an old-school Gran Reserva smells.</p>
 
 <h4>Reading the label</h4>
 <p>Ageing terms are fixed in law and vouched for by the Consejo Regulador's
 numbered back label. A red Crianza asks two years in all, twelve months in
 cask; Reserva three years in all, one in cask and six months in bottle; Gran
-Reserva five years, two in cask and three in bottle. A white or rosado gets a
-shorter clock and far less wood: Reserva at two years, Gran Reserva at four,
-six months in cask either way. Casks must hold 330 litres or less. Tempranillo,
-early-ripening, leads; Graciano lends violets and bite, Garnacha flesh, and
-Viura, Catalonia's Macabeo, anchors the whites, though a 2007 reform widened
-that list to nine, natives like Tempranillo Blanco and Maturana Blanca beside
-Chardonnay, Sauvignon Blanc and Verdejo.</p>
+Reserva five years, at least two in cask and two in bottle. A white
+or rosado gets a shorter clock and far less wood: Reserva at two years, Gran
+Reserva at four, six months in cask either way. Casks must hold 330 litres or
+less. A reform of 2017 also lets a label name a zone, a village or a certified
+single vineyard, a Vinedo Singular. Tempranillo, early-ripening as its name says,
+leads; Garnacha lends flesh, Graciano violets and bite, Mazuelo, the local name
+for Carignan, colour and acid. Viura, Catalonia's Macabeo, anchors the whites,
+though a 2007 reform widened that list to nine, natives like Tempranillo Blanco
+and Maturana Blanca beside Chardonnay, Sauvignon Blanc and Verdejo.</p>
  `},
  {g:"Spain", id:"castilla", t:"Castilla y León", body:`
 <h4>The high plateau</h4>
@@ -438,8 +511,9 @@ fondness for new French oak and long macerations pushes the same way.</p>
 
 <h4>The denominations</h4>
 <p>${INTRO_CHIP('Ribera del Duero')}${INTRO_CHIP('Toro')}${INTRO_CHIP('Rueda')}${INTRO_CHIP('Bierzo')}${INTRO_CHIP('Cigales')}</p>
-<p><b>Ribera del Duero</b> is the altitude case, 750 to 900 metres, planted to
-Tempranillo under the local names Tinto Fino and Tinta del Pais. Vega Sicilia
+<p><b>Ribera del Duero</b> is the altitude case, its vineyards running from
+about 750 metres to nearly a thousand, planted to Tempranillo under the local
+names Tinto Fino and Tinta del Pais. Vega Sicilia
 had been making a Bordeaux-influenced red there since the 1860s, more than a
 century before the denomination was granted in 1982. Downstream in Zamora the
 valley turns hotter and drier and <b>Toro</b> answers with dense, high-alcohol
@@ -448,8 +522,9 @@ vines through phylloxera. <b>Rueda</b> is the white one: Verdejo, replanted at
 the urging of a Rioja house and recognised in 1980 as the region's first
 denomination. The grape browns fast in the press house, so it is picked at
 night and handled away from air, and it finishes with a bitter almond twist.
-Rueda's older fame rested on <em>dorado</em>, aged under a yeast film in
-part-filled vessels.</p>
+Rueda's older fame rested on <em>dorado</em>, a strong golden wine aged on
+purpose in contact with air, in sun-warmed glass demijohns and then in wood.
+<b>Cigales</b>, just north of Valladolid, made its name with rosado.</p>
 
 <h4>West of the pattern</h4>
 <p>In the province of Leon, <b>Bierzo</b> sits in a sheltered basin between the
@@ -485,7 +560,9 @@ Raventos of Codorniu bottled the first in 1872 after a visit to Champagne,
 using local grapes: Macabeo for fruit, Xarel-lo for body, Parellada for acidity
 off cooler high sites. The trade sold it as champana until European law
 reserved that word, then took the name of the cellar the bottles rest in. Lees
-ageing runs from nine months at the base to thirty for Gran Reserva.</p>
+ageing starts at nine months for plain Cava and climbs through eighteen for
+Reserva and thirty for Gran Reserva to thirty-six for Cava de Paraje
+Calificado, the single-site tier.</p>
  `},
  {g:"Iberia & Central Europe", id:"portugal", t:"Portugal", body:`
 <p>Portugal is narrow, with the Atlantic down its whole western side,
@@ -501,13 +578,17 @@ hot, dry and continental within a few dozen kilometres.</p>
 spritzy, and at its most serious as Alvarinho in the rain-shadowed
 pocket of Moncao e Melgaco. The Douro is schist, a rock that splits into
 near-vertical plates so roots follow the fissures down to water the surface
-lost months ago, which is what keeps those terraces alive. The Dao
+lost months ago, which is what keeps those terraces alive. Its demarcation,
+begun in 1756 to protect Port, makes it one of the oldest regulated wine
+regions anywhere, and its unfortified reds now sell under the Douro DOC beside
+the Port that has a chapter of its own. The Dao
 grows on granite sand at altitude among pine forest; Bairrada, nearer the ocean,
 sits on cold clay and ripens late and fiercely acidic. The Alentejo is hot and
 blended, flat but for Portalegre on granite at seven hundred metres, which
 picks weeks later; its cork oaks stopper everyone else's wine. Out in the
 Atlantic, Madeira owes its style to heat, the wine ageing for years in cask
-under a hot roof or cooked for months in a warmed tank.</p>
+under a hot roof, the canteiro way, or cooked for months in a warmed tank, the
+estufagem.</p>
 
 <h4>Grapes and the label</h4>
 <p>Touriga Nacional brings perfume and structure, Touriga Franca softness, Baga
@@ -523,7 +604,7 @@ time it demands passes in bottle.</p>
 <p>Germany's whole problem is ripening a late grape at the northern edge of the
 wine world, roughly forty-seven to fifty-two degrees north. The sun stays low,
 so a beam of light smeared thin across flat ground is gathered up again the
-moment the ground tilts toward it: the finest vineyards are therefore the
+moment the ground tilts towards it: the finest vineyards are therefore the
 steepest, and nearly all stand over a river. Water warms and cools
 slowly, so it blunts frost, carries heat into the autumn and bounces light back
 up the slope. Dark Devonian slate on the Mosel presses the same advantage,
@@ -541,20 +622,27 @@ style. Rheinhessen is the largest and rebuilt itself on dry single-site
 Riesling; the Pfalz shelters behind the Haardt hills and is warm and dry enough
 for figs. Baden is the warmest and belongs to the Pinot family, the little Ahr
 to Spatburgunder on slate, and Franken to dry Silvaner on shell limestone at
-Wurzburg, red sandstone west and gypsum marl east.</p>
+Wurzburg, red sandstone west and gypsum marl east, bottled in the squat, round
+Bocksbeutel.</p>
 
 <h4>Grapes and labels</h4>
 <p>Riesling ripens late, keeps its acid and reports its vineyard faithfully.
 Spatburgunder is Pinot Noir, Grauburgunder Pinot Gris, Weissburgunder Pinot
-Blanc. The trap for a guest is that Pradikat records the sugar in the grapes at
-harvest, not in the glass, so a Spatlese can be bone dry:
-${INTRO_CHIP('Kabinett')}${INTRO_CHIP('Spatlese')}${INTRO_CHIP('Auslese')}${INTRO_CHIP('Beerenauslese')}${INTRO_CHIP('Trockenbeerenauslese')}
-is a ladder of must weight. Sweetness is read from trocken, halbtrocken or the
-unofficial feinherb instead.</p>
+Blanc, and Muller-Thurgau, a crossing planted for volume, gives soft everyday
+wine. The law stacks four tiers: Deutscher Wein, Landwein, Qualitatswein from a
+named region, and Pradikatswein, whose must may not be sweetened before
+fermentation. The trap for a guest is that a Pradikat records the sugar in the
+grapes at harvest, not in the glass, so a Spatlese can be bone dry:
+${INTRO_CHIP('Kabinett')}${INTRO_CHIP('Spatlese')}${INTRO_CHIP('Auslese')}${INTRO_CHIP('Beerenauslese')}${INTRO_CHIP('Eiswein')}${INTRO_CHIP('Trockenbeerenauslese')}
+is a ladder of must weight, with Eiswein set apart because its grapes are picked
+frozen on the vine. Sweetness is read from trocken, halbtrocken or the
+unofficial feinherb instead. Many leading estates also belong to the VDP, a
+private association that ranks its members' vineyards, and its dry wine from a
+top site, a Grosse Lage, is a Grosses Gewachs.</p>
  `},
  {g:"Iberia & Central Europe", id:"austria", t:"Austria", body:`
 <p>Austrian wine lives on the country's eastern side, where the Alps run
-out and the land falls toward the Pannonian plain. That plain behaves like
+out and the land falls towards the Pannonian plain. That plain behaves like
 a small continent: hot dry summers, cold winters, little rain. Cold air
 draining off the wooded hills at night holds the acidity, and that
 swing is why the wines taste ripe and taut at once. Along the
@@ -564,14 +652,15 @@ the deep windblown loess beside it holds water and gives something broad and
 generous off the same grape.</p>
 
 <h4>Where the wine comes from</h4>
-<p>Niederosterreich carries most of it: the terraced Wachau, Kamptal and
-Kremstal below it, the loess of the Wagram, the vast Weinviertel, and Carnuntum
-east of Vienna. Burgenland runs south along the Hungarian border and is red-wine
-country: Zweigelt on the sandy flats by the Neusiedler See,
-Blaufrankisch on the clay and schist further south. The lake, barely a metre
-deep, adds the autumn mist that brings noble rot in nearly every vintage.
-Styria in the far south-east works steep hills for Sauvignon Blanc, and
-Vienna farms
+<p>Niederosterreich carries most of it: the terraced Wachau, with Kremstal and
+Kamptal close by to the east, the loess of the Wagram, the vast Weinviertel,
+and Carnuntum east of Vienna. Burgenland runs south along the Hungarian border
+and is red-wine country: Zweigelt on the sandy flats by the Neusiedler See,
+Blaufrankisch on the clay and schist further south. The lake, nowhere deeper
+than about two metres, adds the autumn mist that brings noble rot in nearly
+every vintage, and Rust on its western shore keeps its historic sweet
+Ausbruch. Styria in the far south-east works steep hills for Sauvignon Blanc,
+and Vienna farms
 commercial vineyard inside the city, interplanted and co-fermented as Wiener
 Gemischter Satz.</p>
 
@@ -580,13 +669,16 @@ Gemischter Satz.</p>
 pepper and green lentil; Riesling here is dry and fuller than in
 Germany. Blaufrankisch, Lemberger in Germany and Kekfrankos in Hungary,
 is the serious red, and Zweigelt, its offspring with Sankt Laurent, the
-everyday one. A DAC name claims a style as well as a place. The older ones rank
+everyday one. Austria's exacting modern wine law dates from 1985, when a few merchants
+were caught sweetening wine with diethylene glycol; exports collapsed, and the
+country rebuilt its name on dry, precise wine. A DAC name claims a style as
+well as a place. The older ones rank
 the wine, Klassik up to Reserve; the newer ones tighten origin instead,
 through ${INTRO_CHIP('Gebietswein')}${INTRO_CHIP('Ortswein')}${INTRO_CHIP('Riedenwein')}
 with Ried set before any single-vineyard name. The Wachau's own
 ${INTRO_CHIP('Steinfeder')}${INTRO_CHIP('Federspiel')}${INTRO_CHIP('Smaragd')}
 are a growers' association's scale of weight, measured as alcohol because the
-wines are dry.</p>
+wines are dry; since the 2020 vintage the valley has had a DAC as well.</p>
  `},
  {g:"Iberia & Central Europe", id:"hungary", t:"Hungary", body:`
 <p>Hungary sits in the middle of the Carpathian basin, further from any sea than
@@ -599,23 +691,27 @@ because phylloxera cannot tunnel through sand.</p>
 <h4>Tokaj</h4>
 <p>In the north-east the Bodrog meets the Tisza below the Zemplen hills, and
 damp air rising off that confluence onto warm, sheltered slopes gives one of
-the most dependable noble-rot climates anywhere. Furmint supplies the acidity
-that lets a wine carry enormous sugar without cloying, with Harslevelu for
-perfume and body. The vocabulary follows the picking:
+the most dependable noble-rot climates anywhere. A royal decree of 1737 fixed
+the region's boundary, among the first anywhere to be drawn in law. Furmint
+supplies the acidity that lets a wine carry enormous sugar without cloying, and
+is made dry as well; Harslevelu adds perfume and body. The vocabulary follows
+the picking:
 ${INTRO_CHIP('aszu')}${INTRO_CHIP('puttonyos')}${INTRO_CHIP('eszencia')}${INTRO_CHIP('szamorodni')}
 Aszu berries are the shrivelled ones taken off individually and worked into a
 paste, a puttony was the hod they were measured in, eszencia is the syrup that
 weeps out under their own weight, and szamorodni is what happens when whole
-bunches go in unsorted, so the year decides the sweetness. The cellars are
-tunnels cut into soft volcanic tuff.</p>
+bunches go in unsorted, so the year decides the sweetness. The count of hods
+once served as the sweetness scale; since 2013 an Aszu must carry at least 120
+grams of sugar per litre, the old five-puttonyos mark, and printing the number
+is optional. The cellars are tunnels cut into soft volcanic tuff.</p>
 
 <h4>Beyond the sweet wine</h4>
 <p>Kekfrankos is the backbone red, high in acid and peppery, and it is
-compulsory in Egri Bikaver, the Eger blend whose name means bull's blood and in
-which no one variety may exceed half. Villany in the warm south built its
-reputation on ripe Cabernet Franc, and Kadarka, pale and spicy, is the old
-Hungarian red worth the trouble it causes. Somlo, a single volcanic hill, gives
-hard, smoky Juhfark.</p>
+compulsory in Egri Bikaver, the Eger blend whose name means bull's blood, made
+from at least four varieties with Kekfrankos the largest share. Villany in the
+warm south built its reputation on ripe Cabernet Franc, and Kadarka, pale and
+spicy, is the old Hungarian red worth the trouble it causes. Somlo, a single
+volcanic hill, gives hard, smoky Juhfark.</p>
  `},
  {g:"North America", id:"calnorth", t:"California: North Coast", body:`
 <p>The North Coast is the block of counties north of San Francisco Bay, chiefly
@@ -628,11 +724,12 @@ ripen in it.</p>
 
 <h4>Napa Valley</h4>
 <p>Napa is a narrow trench walled by the Mayacamas on the west and the Vaca range
-on the east, tapering northward toward Calistoga. Its cold end is the south,
-where Los Carneros lies open to San Pablo Bay and grows Pinot Noir, Chardonnay
-and much of the state's better sparkling base. Mid-valley, the gravelly alluvial
-fans of Oakville and Rutherford drain fast and hold heat, which is why Cabernet
-Sauvignon took the benchland and now occupies roughly half the county's vines.
+on the east, tapering northwards towards Calistoga. Its cold end is the south,
+where Los Carneros, which Napa shares with Sonoma, lies open to San Pablo Bay
+and grows Pinot Noir, Chardonnay and a good share of the state's best sparkling
+base. Mid-valley, the gravelly alluvial fans of Oakville and Rutherford drain
+fast and hold heat, which is why Cabernet Sauvignon took the benchland; it now
+fills roughly half the county's vineyard, more than any other grape.
 Above the fog line the mountain appellations
 ${INTRO_CHIP('Howell Mountain')}${INTRO_CHIP('Mount Veeder')}${INTRO_CHIP('Spring Mountain District')}${INTRO_CHIP('Atlas Peak')}
 ripen in full sun on poor, free-draining soils, giving smaller berries and firmer
@@ -642,14 +739,32 @@ farming and is the reason it is not housing today.</p>
 <h4>Sonoma and the counties north</h4>
 <p>Sonoma is the more varied county. Fog drawn up the Russian River keeps that
 valley cool into late morning and stretches ripening, which made its name for
-Pinot Noir; warm, gravelly Dry Creek Valley is old head-trained Zinfandel
-country; Alexander Valley sits far enough inland to escape most of the fog and
-gives rounder Cabernet. Anderson Valley in Mendocino opens straight at the
-Pacific and is cold enough to pick sparkling base at low sugar and high acid.
-Lake County farms volcanic ground at elevation around Clear Lake.</p>
+Pinot Noir. Warm, gravelly Dry Creek Valley is old head-trained Zinfandel
+country, and Alexander Valley sits far enough inland to escape most of the fog
+and gives rounder Cabernet. Zinfandel is Californian by adoption only: DNA
+matched it to Croatia's Tribidrag and Puglia's Primitivo, and the Petite Sirah
+so often interplanted with it in old blocks is the French crossing Durif.
+Anderson Valley in Mendocino opens to the Pacific at its western end and is cold
+enough to pick sparkling base at low sugar and high acid. Lake County farms
+volcanic ground at elevation around Clear Lake.</p>
+
+<h4>What an American label promises</h4>
+<p>An AVA, an American Viticultural Area, is a boundary approved by the federal
+Alcohol and Tobacco Tax and Trade Bureau and nothing more: no grape, yield or
+ageing rule comes with it. Name one and 85 per cent of the fruit must have grown
+inside it; a county or state name asks 75 per cent, though California insists
+that anything bearing its name, or one of its counties, be wholly Californian.
+A grape name needs 75 per cent of that variety. A vintage needs 95 per cent of the
+fruit from that year beside an AVA, 85 per cent beside a broader name. A
+Bordeaux-style blend with no grape at 75 per cent can be sold as Meritage, a
+trademarked term, while Reserve carries no legal meaning at all. History gives
+the exam two dates. Prohibition closed most wineries from 1920 to 1933, and at a
+blind tasting in Paris in 1976 two Napa wines of the 1973 vintage, Stag's Leap
+Wine Cellars Cabernet and Chateau Montelena Chardonnay, finished ahead of the
+French bottles they were set against.</p>
  `},
  {g:"North America", id:"calcentral", t:"California: Central Coast", body:`
-<p>The Central Coast is a long strip running from below San Francisco Bay down
+<p>The Central Coast is a long strip running south from San Francisco Bay
 past Santa Barbara, and it is a set of climates rather than one. The governing
 rule is the same everywhere along it: how far a site sits from the ocean, and
 whether the hills let marine air reach it, matters far more than how far south
@@ -662,20 +777,23 @@ them open directly onto the ocean and cold air pours a long way inland. That
 produces a steep temperature gradient over very few miles. Sta. Rita Hills, at
 the cold western end of the Santa Ynez Valley, is planted overwhelmingly to Pinot
 Noir and Chardonnay, while Happy Canyon at the warm eastern end ripens Cabernet
-Sauvignon and Sauvignon Blanc.</p>
+Sauvignon and Sauvignon Blanc. Santa Maria Valley, further north, opens to the
+sea in the same way and is Pinot Noir and Chardonnay country too.</p>
 
 <h4>Monterey, Paso Robles and the interior</h4>
 <p>Monterey's Salinas Valley opens onto the bay and draws an afternoon wind so
 dependable that growers lay the vineyard out around it; the Santa Lucia Highlands
 occupy terraces above the valley floor and are a leading source of Pinot Noir.
 Paso Robles, inland in San Luis Obispo County, is hot by day and cools sharply
-after dark, and that swing holds acidity in place while sugar builds, which suits
-Zinfandel and Rhone varieties. Beyond the coastal hills the Central Valley is
+after dark, and that swing holds acidity in place while sugar builds. It made
+its name with Zinfandel and Rhone varieties, and it grows a great deal of
+Cabernet Sauvignon besides. Beyond the coastal hills the Central Valley is
 flat, warm and wholly dependent on irrigation, and it supplies most of the
-country's everyday wine. Lodi, at its northern end, catches cooler air off the
-Sacramento Delta and holds a remarkable stock of old Zinfandel. East of
-Sacramento the granitic slopes of the Sierra Foothills still carry Zinfandel
-planted in Gold Rush country, saved largely by being too remote to redevelop.</p>
+country's everyday wine. Lodi, at the northern end of its San Joaquin half,
+catches cooler air off the Sacramento Delta and holds a remarkable stock of old
+Zinfandel. East of Sacramento the granitic slopes of the Sierra Foothills still
+carry Zinfandel planted in Gold Rush country, saved largely by being too remote
+to redevelop.</p>
  `},
  {g:"North America", id:"newyork", t:"New York State", body:`
 <p>New York's difficulty is not ripening but survival. This is a continental
@@ -699,12 +817,22 @@ descends from that argument.</p>
 <p>The Finger Lakes are deep glacial troughs that hold summer heat well into
 winter and temper the slopes above them. Riesling is the calling card, tolerant
 of cold and transparent about site, while Cabernet Franc is the leading red
-vinifera because it ripens where Merlot will not. Long Island is the opposite
-case, thoroughly maritime, with water on three sides handing the North Fork a
-long, mild autumn, and there Merlot does succeed. Neither holds much of the
-state's acreage, though. Most of it lies along the Lake Erie shore in the far
-west, where the Concord that becomes juice and jelly is actually grown. The
-Hudson River Region and the Niagara Escarpment complete the picture.</p>
+vinifera, hardier in a severe winter than Merlot. Long Island
+is the opposite case, thoroughly maritime, with water on three sides handing the
+North Fork a long, mild autumn, and there Merlot does succeed. Neither holds the
+largest share of the state's vines, though. That lies along the Lake Erie shore
+in the far west, where the Concord that becomes juice and jelly is actually
+grown. The Hudson River Region and the Niagara Escarpment complete the
+picture.</p>
+
+<h4>The same fight elsewhere</h4>
+<p>Other eastern and inland states face versions of the same problem. Virginia
+contends with summer humidity more than cold and has built its name on Viognier
+and Cabernet Franc. Missouri holds the first AVA ever approved, Augusta in 1980,
+and its signature red is Norton, descended from a native American vine. Michigan's
+best Riesling grows on two peninsulas reaching into Lake Michigan, and most of the
+Texas crop comes off the Texas High Plains, a plateau high enough to cool its
+nights.</p>
  `},
  {g:"North America", id:"pnw", t:"Pacific Northwest", body:`
 <p>Oregon and Washington are taught together and taste nothing alike, because the
@@ -716,23 +844,27 @@ rainforest on the west and near desert on the east.</p>
 <p>Most Oregon vineyard sits on the wet side, in the Willamette Valley, which the
 Coast Range shelters from the full weight of Pacific weather while the Cascades
 hold back continental extremes from the other direction. Gaps such as the Van
-Duzer Corridor let cool ocean air slip through. Pinot Noir takes more than half
-the state's acreage and Pinot Gris leads the whites. Soil is the local argument:
+Duzer Corridor let cool ocean air slip through. Pinot Noir reached the valley
+only in 1965, planted against nearly everyone's advice by the grower who went on
+to found The Eyrie Vineyards, and it now takes more than half the state's
+acreage; Pinot Gris leads the whites.
+Soil is the local argument:
 the Dundee Hills sit on Jory, an iron-rich red weathering of basalt, while
 Yamhill-Carlton lies on ancient marine sediment. Oregon also holds its producers
-to a 90 percent varietal minimum where federal law asks only 75, exempting a
-listed group of grapes that are traditionally blended. Southward, the Rogue and
+to a 90 per cent varietal minimum where federal law asks only 75, exempting a
+listed group of grapes that are traditionally blended. Southwards, the Rogue and
 Umpqua Valleys are warmer and drier and grow Syrah, Tempranillo and Bordeaux
 varieties instead.</p>
 
 <h4>Washington</h4>
 <p>Washington plants almost everything east of the Cascades, where much of the
-Columbia basin sees under ten inches of rain a year, so irrigation is compulsory
-across most of it and therefore a tool: the grower decides exactly how much water
-the vine receives and when. The vast Columbia Valley covers most of the state's
-plantings, with
+Columbia basin sees under 250 millimetres of rain a year, about ten inches, so
+irrigation is compulsory across most of it and therefore a tool: the grower
+decides exactly how much water the vine receives and when. The vast Columbia
+Valley covers most of the state's plantings, with
 ${INTRO_CHIP('Yakima Valley')}${INTRO_CHIP('Walla Walla Valley')}${INTRO_CHIP('Red Mountain')}
-nested inside it, while Puget Sound is the wet-side exception, cool enough that
+nested inside it; small, hot Red Mountain gives some of the state's densest,
+firmest Cabernet. Puget Sound is the wet-side exception, cool enough that
 only early-ripening varieties finish. Ice-age floods scoured the basin and left
 sand and gravel behind, ground so free-draining that phylloxera struggles in it
 and a great many vines are still on their own roots. Cabernet Sauvignon and
@@ -740,21 +872,23 @@ Merlot lead the reds.</p>
  `},
  {g:"North America", id:"canada", t:"Canada", body:`
 <p>Canada plants a very thin band of a very large country, and the limiting
-factor is winter. Two areas hold nearly all of it, standing some four thousand
+factor is winter. Two areas hold most of it, standing more than three thousand
 kilometres apart: the Okanagan Valley in British Columbia and the Niagara
 Peninsula in Ontario. Each sits beside water deep enough to blunt a continental
-winter, and neither would be plantable without it.</p>
+winter, and neither would be plantable without it. Quebec and Nova Scotia make
+smaller amounts at the cold edge of what is possible.</p>
 
 <h4>The two regions</h4>
 <p>The Okanagan is a run of benches above a chain of long, narrow lakes, dry
 enough at its southern end to count as desert and irrigated throughout. Deep
 windblown sand there warms fast and drains completely, and is hostile enough to
-phylloxera that vines can go in on their own roots. In 1988 the province paid its
-growers to tear out most of a vineyard then planted largely to hybrids and
-labrusca; what went back in was vinifera on the warmest sites. Ontario's
-vineyards shelter below the Niagara Escarpment beside Lake Ontario. Further east
-in Prince Edward County, growers plough soil over the canes every November and
-uncover them in spring, because anything left standing is killed.</p>
+phylloxera that vines can go in on their own roots. In 1988, with free trade
+with the United States on the way, government money paid growers to pull out
+most of the province's vines, then largely hybrids and labrusca; what went back
+in was vinifera on the warmest sites. Ontario's vineyards shelter below the
+Niagara Escarpment beside Lake Ontario. Further east in Prince Edward County,
+growers plough soil over the canes every November and uncover them in spring,
+because a hard winter kills whatever is left exposed.</p>
 
 <h4>VQA and icewine</h4>
 <p>VQA is an appellation system with real teeth, which an American AVA is not: it
@@ -770,8 +904,12 @@ its thick skins holding the bunches intact into the new year.</p>
  {g:"North America", id:"mexico", t:"México", body:`
 <p>Wine in the Americas starts here. Spanish colonists planted vines in New Spain
 from the 1520s, and missionaries later carried the Mission grape, the Spanish
-Listan Prieto, north along the mission chain into what became California. The
-oldest working winery on the continent stands at Parras in Coahuila.</p>
+Listan Prieto, north along the mission chain into what became California.
+Before the century was out the crown had restricted new planting to protect the
+wine shipped from Spain, which is why so early a start built so small an
+industry. Even so, the oldest working
+winery in the Americas, Casa Madero, founded in 1597, stands at Parras in
+Coahuila.</p>
 
 <h4>Baja California</h4>
 <p>The modern industry is concentrated on the Baja California peninsula, and
@@ -790,9 +928,9 @@ one bottle may combine
 ${INTRO_CHIP('Cabernet Sauvignon')}${INTRO_CHIP('Merlot')}${INTRO_CHIP('Nebbiolo')}${INTRO_CHIP('Tempranillo')}${INTRO_CHIP('Grenache')}
 in a way no European appellation would permit. The whites lean on
 ${INTRO_CHIP('Chenin Blanc')}${INTRO_CHIP('Sauvignon Blanc')}${INTRO_CHIP('Viognier')}.
-Away from Baja, vineyards in Coahuila, Zacatecas and Queretaro sit much closer to
-the equator but high above sea level, where elevation rather than the ocean
-supplies the cold nights.</p>
+Away from Baja, vineyards in Coahuila, Zacatecas and Queretaro, the last best
+known for sparkling wine, sit much closer to the equator but high above sea
+level, where elevation rather than the ocean supplies the cold nights.</p>
  `},
  {g:"South America & Southern Hemisphere", id:"chile", t:"Chile", body:`
 <p>Chile is a ribbon of land some four thousand kilometres long and rarely two
@@ -807,7 +945,8 @@ so the northern valleys cannot carry a crop without irrigation from Andean
 snowmelt while the far south can dry farm. East to west matters more. The cold
 Humboldt current pushes fog inland at dawn, so a vineyard near the ocean ripens
 weeks later than one at the same latitude tucked behind the coastal range. Since
-2011 a label may say which side of that divide the fruit came from.</p>
+2011 a label may add which of three bands, running from the sea to the
+mountains, the fruit came from.</p>
 
 <p>${INTRO_CHIP('Costa')}${INTRO_CHIP('Entre Cordilleras')}${INTRO_CHIP('Andes')}</p>
 
@@ -815,17 +954,21 @@ weeks later than one at the same latitude tucked behind the coastal range. Since
 <p>The Central Valley runs Maipo, Rapel, Curico and Maule from north to south,
 with Rapel covering Cachapoal and Colchagua. Cabernet Sauvignon on the Andean
 gravels of Alto Maipo is the country's benchmark red; warm clay at Peumo in
-Cachapoal buys Carmenere the long season it needs. Casablanca, San Antonio and
-its Leyda sub-valley were planted for the cold sea air, and Limari and Elqui in
-the far north pair near-desert sun with morning fog.</p>
+Cachapoal buys Carmenere the long season it needs. Near the coast, Casablanca,
+San Antonio and its Leyda sub-valley, all inside the Aconcagua region, were
+planted for the cold sea air. Limari in the far north pairs near-desert sun with
+morning fog, and Elqui beside it climbs high towards the Andes. Below Maule the
+Southern Regions turn cooler and wetter, and Bio-Bio and Malleco grow
+Chardonnay, Pinot Noir and Riesling.</p>
 
 <h4>Grapes</h4>
-<p>Cabernet Sauvignon overtook Pais as export markets grew. Carmenere was sold
-as Merlot until 1994, and picked at the same moment as Merlot it still tastes
-green, because it ripens weeks later. Cool coastal Syrah and Sauvignon Blanc are
-the modern signature. The oldest vines are dry-farmed Pais and Cinsault in
-Itata, with old dryland Carignan in Maule. Variety, vintage and valley each
-need seventy-five percent.</p>
+<p>Cabernet Sauvignon overtook Pais, the Mission grape of Mexico and California,
+as export markets grew. Carmenere was sold as Merlot until 1994, and picked at
+the same moment as Merlot it still tastes green, because it ripens weeks later.
+Cool coastal Syrah and Sauvignon Blanc are the modern signature. The oldest vines
+are dry-farmed Pais and Cinsault in Itata, with old dryland Carignan in Maule.
+Under Chilean law variety, vintage and valley each need seventy-five per cent,
+though wine bound for the European Union must reach eighty-five.</p>
  `},
  {g:"South America & Southern Hemisphere", id:"argentina", t:"Argentina", body:`
 <p>Argentine viticulture is desert farming. Weather off the Pacific loses its
@@ -846,10 +989,11 @@ acidity survives a season that would otherwise burn it away.</p>
 <p>Mendoza is the centre of gravity. Lujan de Cuyo took the country's first DOC
 in 1989 and San Rafael the second; Maipu is warm, low and full of old vines; the
 Uco Valley of Tupungato, Tunuyan and San Carlos climbs higher onto stony fans,
-with rare calcareous ground at Gualtallary. Far north in Salta, the Calchaqui
-Valleys around Cafayate work above seventeen hundred metres and give Torrontes
-its reputation. Patagonia is the opposite case: Rio Negro and Neuquen are cool,
-low and constantly windy.</p>
+with rare calcareous ground at Gualtallary. San Juan, next door to the north, is
+hotter and lower, ranks second by volume and is known for Syrah. Far north in
+Salta, the Calchaqui Valleys around Cafayate work above seventeen hundred metres
+and give Torrontes its reputation. Patagonia is the opposite case: Rio Negro and
+Neuquen are cool, low and constantly windy.</p>
 
 <h4>Grapes</h4>
 <p>Malbec came from France in 1853 and became a distinct plant here, with
@@ -859,6 +1003,16 @@ after Malbec, is Savoie's Douce Noire. Torrontes is a natural cross of Criolla
 Chica with Muscat of Alexandria: hugely perfumed, reliably dry, often faintly
 bitter. Phylloxera is present, but sand and flood irrigation blunt it, so most
 vines are ungrafted.</p>
+
+<h4>Across the River Plate</h4>
+<p>Uruguay breaks the pattern: no desert and no Andes, but humid air off the
+Atlantic and the Rio de la Plata, so disease rather than drought is the enemy and
+canopy work counts for more than irrigation. Most vines sit in Canelones around
+Montevideo, and the flagship is Tannat, brought from south-west France by a
+Basque settler in the 1870s and riper and rounder here than in Madiran. Brazil
+makes most of its wine in the rainy hills of Serra Gaucha in the far south, where
+a lean, early-picked base suits sparkling wine far better than ripe reds; Vale
+dos Vinhedos there was the country's first geographical indication.</p>
  `},
  {g:"South America & Southern Hemisphere", id:"safrica", t:"South Africa", body:`
 <p>The Cape winelands are a narrow wedge at the foot of Africa, almost entirely
@@ -876,12 +1030,21 @@ unirrigated bush vine through a rainless summer; Table Mountain Sandstone
 weathers to bleached, hungry sand; Malmesbury shale lies under the
 Swartland and Bokkeveld shale under the Hemel-en-Aarde.</p>
 
+<h4>History in brief</h4>
+<p>The first Cape wine was pressed in 1659 at a Dutch East India Company supply
+post, and Huguenot refugees given farms from 1688 left Franschhoek, the French
+corner, its name. Constantia's unfortified sweet Muscat, made from grapes left to
+shrivel on the vine, was famous at European tables in the 1700s and 1800s.
+Through most of the twentieth century a growers' co-operative founded in 1918,
+the KWV, fixed prices and quotas; that control was dismantled in the 1990s, as
+the end of apartheid reopened the export markets.</p>
+
 <h4>Wine of Origin</h4>
 <p>The scheme fixes where the fruit grew, never which grape may be planted. Its
 names nest inward from the Western Cape.</p>
 <p>${INTRO_CHIP('Geographical Unit')}${INTRO_CHIP('Region')}${INTRO_CHIP('District')}${INTRO_CHIP('Ward')}</p>
 <p>Origin must be complete, while vintage and variety need eighty-five
-percent, and the seal covering all three is granted only after laboratory
+per cent, and the seal covering all three is granted only after laboratory
 analysis and a blind tasting; since 2010 it certifies sustainable farming too.
 Estate means grown and made on one registered unit; a single vineyard
 is capped at six hectares of one variety; Boberg names fortified wine alone.</p>
@@ -891,9 +1054,13 @@ is capped at six hectares of one variety; Boberg names fortified wine alone.</p>
 inland, and the Swartland dry-farms old bush-vine Chenin Blanc with Rhone reds.
 Cool sites come from the sea or from height instead: Constantia, Durbanville,
 Walker Bay and Elim near the water, Elgin high on its plateau above the sea.
-Chenin Blanc,
-long known as Steen, is the signature white. Pinotage is Perold's 1925 crossing
-of Pinot Noir with Cinsaut, and bottle-fermented sparkling wine is called Cap
+Beyond the mountains the Breede River Valley irrigates from its river; Robertson,
+inside it, grows Chardonnay on lime-rich soils rare at the Cape, and the
+semi-desert Klein Karoo around Calitzdorp makes the country's finest Port-style
+wines from Portuguese grapes. Chenin Blanc, long known as Steen, is the
+signature white and the most planted grape of all. Pinotage is Perold's 1925
+crossing of Pinot Noir with Cinsaut, which the Cape then called Hermitage, hence
+the name. Bottle-fermented sparkling wine is Cap Classique, once Methode Cap
 Classique.</p>
  `},
  {g:"South America & Southern Hemisphere", id:"nz", t:"New Zealand", body:`
@@ -903,41 +1070,49 @@ Blenheim lies about as far south as Rome lies north, and shares nothing else
 with it. The sea keeps summers mild and nights cool while fruit ripens under
 unusually strong ultraviolet light, a stress the vine answers by building
 phenolics and aroma compounds in the skin. Loud aromatics at modest ripeness
-follow from the two together. Rain during
-the growing season makes fungal disease rather than drought the standing threat
-almost everywhere, so open canopies and spray timing rule the year, and the
-Southern Alps wring the westerlies dry, which is why every South Island vineyard
-lies east of them.</p>
+follow from the two together. In most regions rain during the growing season
+makes fungal disease rather than drought the standing threat, so open canopies
+and spray timing rule the year. The Southern Alps wring the westerlies dry,
+which is why the South Island plants on their sheltered eastern and northern
+side.</p>
 
 <h4>Regions</h4>
-<p>Marlborough dwarfs the rest. Its Wairau valley floor is metres of old river
+<p>Marlborough, first planted commercially only in 1973, dwarfs the rest. Its
+Wairau valley floor is metres of old river
 shingle that drains hard and starves a vine of the vigour a wet climate would
 otherwise give it; the Awatere over the hills sits higher and closer to open
-ocean, picks a fortnight later and tastes greener and sharper. Hawke's Bay is
-the warmest region of consequence, and its Gimblett Gravels, a bed of stones a
+ocean, picks a fortnight later and tastes greener and sharper. Hawke's Bay, on
+the North Island's east coast, is among the warmest regions of consequence, and
+its Gimblett Gravels, a bed of stones a
 river abandoned in 1867, store enough heat to finish Bordeaux varieties and
-Syrah. Martinborough is small, wind-pruned and dry in autumn. Central Otago is the only inland region, planted on schist and dry
+Syrah. Martinborough is small, wind-pruned and dry in autumn. Central Otago,
+the most inland and continental region, is planted on schist and dry
 enough to need drip irrigation, fighting frost and living on the daily
-temperature swing distance from the sea provides.</p>
+temperature swing distance from the sea provides. Smaller names fill the gaps:
+Nelson and Waipara in North Canterbury for aromatic whites and Pinot Noir,
+warm Gisborne for Chardonnay, and Waiheke Island off Auckland for Bordeaux
+varieties and Syrah.</p>
 
 <h4>Grapes and rules</h4>
 <p>The green notes in Sauvignon Blanc are pyrazines, which sun and warmth
 destroy; the passionfruit notes are thiols, which yeast releases during
 fermentation. Pinot Noir is the most planted red and the sparkling base as well.
-Place, vintage and variety each need eighty-five percent, and screwcaps seal the
-whole range rather than only the cheap end.</p>
+Place, vintage and variety each need eighty-five per cent, screwcaps seal the
+whole range rather than only the cheap end, and the industry's own
+sustainability scheme certifies the great majority of the vineyard.</p>
  `},
  {g:"South America & Southern Hemisphere", id:"australia", t:"Australia", body:`
 <p>Australian vines sit in a crescent along the southern and south-eastern rim
 of the continent, because the interior is desert and the north tropical. Inside
 that crescent coolness has to be hunted down rather than assumed: it comes from
 height, as at Orange and Clare, from sea air, as at McLaren Vale and Margaret
-River, or from latitude alone, as in Tasmania. Rain mostly falls outside the
-growing season, so irrigation is standard equipment rather than a compromise,
-and three hot inland districts strung along the Murray and the Murrumbidgee grow
-the fruit behind most everyday wine. South Australia inspects travellers at its border because phylloxera never
-crossed it, which is why ungrafted vines well over a century old still crop
-there.</p>
+River, or from latitude and the Southern Ocean, as in Tasmania. Rain mostly
+falls outside the growing season, so irrigation is standard equipment rather
+than a compromise, and three hot inland districts strung along the Murray and
+the Murrumbidgee grow the fruit behind most everyday wine. Phylloxera has never
+reached South Australia, so the state polices the vines, grapes and used
+machinery that cross its border, and ungrafted vines well over a century old
+still crop there.</p>
 
 <h4>What a label promises</h4>
 <p>A Geographical Indication states where the fruit grew and nothing more: no
@@ -946,48 +1121,63 @@ zone has to prove no homogeneity at all, which is how South Eastern Australia
 gathers New South Wales, Victoria and Tasmania entire, along with the
 grape-growing parts of Queensland and South Australia.</p>
 <p>${INTRO_CHIP('Subregion')}${INTRO_CHIP('Region')}${INTRO_CHIP('Zone')}</p>
-<p>Origin, vintage and variety each need eighty-five percent, blend components
+<p>Origin, vintage and variety each need eighty-five per cent, blend components
 are named largest first, and the claims are audited through winery paperwork
 under the Label Integrity Program.</p>
 
 <h4>Regions and grapes</h4>
 <p>Shiraz is the most planted variety and it reads the site plainly: broad,
 sweet and chocolatey on the warm Barossa floor, medium-bodied and earthy in the
-humid Hunter, peppery in the cool Grampians. Riesling is dry and lime-driven in
-the higher air of Eden Valley and Clare. Cabernet is at its most structured on
-Coonawarra's thin terra rossa over limestone, where a long slow season ripens
-tannin without losing acid. Hunter Semillon is picked early, sees no oak and
-grows toasty in bottle, and Rutherglen fortifies raisined Muscat.</p>
+humid Hunter, peppery in the cool Grampians. In the Barossa and McLaren Vale it
+often joins old-vine Grenache and Mourvedre, and blending it with Cabernet is a
+long Australian habit. Riesling is dry and lime-driven in the higher air of Eden
+Valley and Clare, whose makers moved to screwcap together with the 2000 vintage,
+a lead most Australian wine has since followed. Cabernet is at its most
+structured on Coonawarra's thin terra rossa over limestone, where a long slow
+season ripens tannin without losing acid, and Margaret River, on the far
+south-western coast, makes Cabernet blends and Chardonnay of real polish. The
+Yarra Valley, the Adelaide Hills and Tasmania give cool-climate Chardonnay and
+Pinot Noir, Tasmania much of the finest sparkling base. Hunter Semillon is picked
+early, sees no oak and grows toasty in bottle, and Rutherglen fortifies raisined
+Muscat.</p>
  `},
  {g:"Across the Cellar", id:"sparkling", t:"World Sparkling Wines", body:`
 <h4>Where the bubble comes from</h4>
 <p>Sparkling wine holds carbon dioxide in solution under pressure, and nearly
 everything in the glass follows from where that gas was made. The traditional
 method bottles a finished wine with yeast and sugar, so the second fermentation
-runs inside the bottle the guest is served from, then rests a year or more on
-the spent yeast. Those cells rupture in a process called <b>autolysis</b>, giving
-the bread and biscuit character, and a ferment that slow dissolves its gas into a
-fine, persistent bead. <b>Riddling</b> works the sediment into the neck,
-<b>disgorgement</b> freezes and blows it out, and the <b>dosage</b> refills the
-gap and sets sweetness.</p>
+runs inside the bottle the guest is served from, then rests on the spent yeast
+for months at the least and often for years. Those cells break down in a process
+called <b>autolysis</b>, giving the bread and biscuit character, and a ferment
+that slow dissolves its gas into a fine, persistent bead. <b>Riddling</b> works
+the sediment into the neck, <b>disgorgement</b> freezes and blows it out, and
+the <b>dosage</b> refills the gap and sets sweetness on the same Brut Nature to
+Doux scale that Champagne uses.</p>
 <p>Every alternative is quicker and tastes of it. A tank fermentation is over in
-weeks and leaves little time on the lees, which protects primary aroma and suits
-scented varieties, though months on those lees turn a tank wine bready too. The
+weeks and leaves little time on the lees, which protects primary aroma; that
+suits scented varieties and is the method behind Prosecco, though months on
+those lees turn a tank wine bready too. The
 transfer method ferments in bottle but empties and filters under pressure,
 sparing the labour of riddling awkward formats. The ancestral method adds
 nothing, letting the first fermentation finish in glass, cloudy and lightly
 fizzy. Gas pumped into a still wine froths hard and dies inside a minute.</p>
 <h4>Around the world</h4>
 <p>${INTRO_CHIP('Cremant')}${INTRO_CHIP('Cava')}${INTRO_CHIP('Franciacorta')}${INTRO_CHIP('Winzersekt')}${INTRO_CHIP('Cap Classique')}</p>
-<p>All five promise a bottle fermentation, and on a French label Cremant
-guarantees it outside Champagne without owning it: Blanquette de Limoux and the
-mousseux of Vouvray, Montlouis and Saumur work the same way. Cava is defined by
-method rather than place, though Penedes supplies most, and rests on Macabeo,
-Xarel-lo and Parellada. Lombardy's Franciacorta works Chardonnay and Pinot Noir,
-though Saten is white grapes only, bottled at lower pressure for a softer
-mousse. Asti and Moscato d'Asti change shape entirely: one fermentation halted
-early, so the sugar is the grape's own and the alcohol low, while an Italian
-label separates frizzante from spumante by pressure alone.</p>
+<p>All five promise a bottle fermentation. On a French label Cremant means the
+Champagne method outside Champagne, though it holds no monopoly: Blanquette de
+Limoux and the mousseux of Vouvray, Montlouis and Saumur are made the same way.
+Cava is defined by method rather than by a single place, reaching across several
+Spanish regions though Penedes supplies most; it spends at least nine months on
+its lees and rests on Macabeo, Xarel-lo and Parellada. Lombardy's Franciacorta
+works Chardonnay and Pinot Noir, with eighteen months on the lees at the least
+for a wine without a vintage, though Saten is white grapes only, bottled at
+lower pressure for a softer mousse. Plain German Sekt is usually tank made from
+bought-in base wine; Winzersekt, the grower's own, must ferment in bottle.
+Southern England, on chalk much like Champagne's, makes traditional method wine
+chiefly from the same three grapes. Asti and Moscato d'Asti change shape
+entirely: one fermentation halted early, so the sugar is the grape's own and the
+alcohol low, while an Italian label separates frizzante from spumante by
+pressure alone.</p>
  `},
  {g:"Across the Cellar", id:"sweet", t:"Sweet Wines", body:`
 <h4>Three ways to shrink a berry</h4>
@@ -996,27 +1186,38 @@ through, or from a fermentation stopped while sugar remains. The first
 route takes water out of the grape, and there are three ways to manage that: rot
 it, freeze it, or dry it. Whichever is chosen, acidity is the counterweight,
 because sugar with nothing to cut it turns cloying within half a glass. That is
-why these wines come from cool sites and sharp grapes: Riesling, Chenin Blanc,
-Furmint, and in Sauternes the Sauvignon Blanc that lifts a base of Semillon.</p>
+why the great sweet whites lean on grapes that hold their acid: Riesling, Chenin
+Blanc, Furmint, and in Sauternes the Sauvignon Blanc that lifts a base of
+Semillon. Many everyday off-dry wines take a humbler road than either route:
+sterile unfermented juice blended back in after fermentation, which German
+cellars call Sussreserve.</p>
 <p>Noble rot is <em>Botrytis cinerea</em> perforating the skin so water escapes
 and everything dissolved in it stays behind in a smaller berry. The fungus needs
 damp mornings and dry, breezy afternoons; if the wet never lifts it becomes grey
 rot and takes the crop. It leaves honey, dried apricot and a mushroomy note of
 its own. Sauternes exists because the cold Ciron chills the warmer Garonne and
-lays fog over the vineyards at night, and pickers walk the same rows several
-times, since rot arrives berry by berry. Tokaji collects shrivelled aszu berries
-by hand where the Bodrog meets the Tisza. Germany and Austria rank
-ripeness by must weight instead, putting Beerenauslese, Eiswein and
-Trockenbeerenauslese at the top, with Ausbruch and Strohwein as rungs only
-Austria keeps.</p>
+lays mist over the vineyards through autumn nights and mornings, and pickers
+walk the same rows several times, since rot arrives berry by berry. Barsac,
+inside the appellation, may sell under its own name or as Sauternes, and the
+1855 classification set Chateau d'Yquem alone above the First Growths. Tokaji
+collects shrivelled aszu berries by hand where the Bodrog meets the Tisza.
+Germany and Austria rank ripeness by must weight instead, read in degrees
+Oechsle and KMW, putting Beerenauslese, Eiswein and Trockenbeerenauslese at the
+top. Strohwein is a rung only Austria keeps; Ausbruch, which once sat between
+Beerenauslese and Trockenbeerenauslese, now belongs to Rust alone as Ruster
+Ausbruch, made at Trockenbeerenauslese weight.</p>
 <h4>Frost and racks</h4>
 <p>Ice wine presses fruit frozen solid on the vine, so the water stays behind as
 ice and only syrup runs off. Nothing has grown on those grapes, so the wine
 tastes of pure fruit and searing acid rather than honey. Drying does the same
-arithmetic more patiently, in the open sun where the weeks after harvest are
-reliably dry and on indoor racks where they are not. Italy calls it
+arithmetic more patiently: in the open sun where the weeks after harvest are
+reliably dry, as Andalusia dries Pedro Ximenez, and on straw, reed mats or
+indoor racks where they are not, as for the vin de paille of the Jura. Fruit can
+also simply shrivel on the vine in a dry autumn, which the French call
+passerillage and which gave Constantia its celebrated Muscat. Italy calls drying
 appassimento: ferment the dried fruit out and you have Amarone, stop it and you
-have Recioto.</p>
+have Recioto, and Tuscany hangs or lays out its grapes in airy lofts for Vin
+Santo.</p>
  `},
  {g:"Across the Cellar", id:"fortified", t:"Fortified Wines", body:`
 <h4>When the spirit goes in</h4>
@@ -1024,29 +1225,44 @@ have Recioto.</p>
 addition decides the style. Spirit poured into a fermenting vat kills the yeast
 and strands the sugar it had not yet reached, which is how Port and the
 French vins doux naturels are sweet on grape sugar alone, never an addition.
-Spirit added once a wine has fermented right out leaves it dry, the order for
-every dry Sherry, with a Cream sweetened afterwards. Pedro Ximenez and Moscatel
-are the exceptions, sun-dried until the must carries more sugar than yeast can
-finish, then muted early. Spirit added to juice that never ferments gives a vin
-de liqueur.</p>
+Spirit added once a wine has fermented right out leaves it dry, the classic
+order for dry Sherry, with a Cream sweetened afterwards. Pedro Ximenez and
+Moscatel are the exceptions, sun-dried until the must carries more sugar than
+yeast can finish, then muted early. Spirit added to juice that never ferments
+gives a vin de liqueur.</p>
 <p>Port ripens on terraced schist in the hot, sheltered Douro, muted at six or
-seven per cent and finishing near twenty. Then the styles part. Wine matured in
-glass keeps its colour and fruit, so Vintage Port is bottled after roughly two
-years, throws a crust and needs decanting. Wine left in cask meets air through
-the wood, fades to an amber rim and turns nutty and dried-fruited, giving tawny
-and the single-harvest Colheita.</p>
+seven per cent and finishing near twenty. Then the styles divide on how much air
+the wine meets. Kept from it, in large vats and then in glass, Port holds its colour and fruit: Ruby is the
+young, everyday version; Late Bottled Vintage, from a single year, spends four to
+six years in wood before bottling and drinks soon after; Vintage Port, made only
+in the years a house declares, is bottled after roughly two years, throws a crust
+and needs decanting. Wine left in small casks meets air through the wood, fades
+to an amber rim and turns nutty and dried-fruited, giving tawny, often sold with
+an indication of age such as ten or twenty years, and the single-harvest
+Colheita.</p>
 <h4>Jerez, Madeira and beyond</h4>
-<p>In Sherry country the fortification strength settles the biology. <b>Flor</b>,
-a living film of yeast, dies above about fifteen and a half per cent, so Fino and
-Manzanilla are fortified just under that line and grow a veil across the
-part-filled butt that shields them from air and holds them pale and saline.
-Oloroso goes to seventeen or above, well clear, so it ages in contact with
-oxygen and darkens; Amontillado has lived both ways. Almost all of it passes
-through a solera, each drawing replaced from younger casks; the rare anada
-escapes, a single harvest no younger wine feeds. Madeira is heated on purpose,
-slowly under the lodge roof or fast in an estufa tank, and is near
-indestructible once opened.</p>
+<p>Sherry is Palomino almost entirely, grown on white albariza chalk around
+Jerez, and in Sherry country the fortification strength settles the biology.
+<b>Flor</b>, a living film of yeast, dies above about fifteen and a half per
+cent, so Fino and Manzanilla are kept just under that line and grow a veil
+across the part-filled butt that shields them from air and holds them pale and
+saline. Most reach it with a little spirit, though rules revised in 2021 let a
+wine that gets to fifteen per cent unaided skip the fortification. Manzanilla is
+that flor wine matured in Sanlucar de Barrameda, where damp sea air keeps the
+veil thick. Oloroso goes to seventeen or above, well clear of the flor's limit, so it
+ages in contact with oxygen and darkens; Amontillado has lived both ways. Almost all of
+it passes through a solera, each drawing replaced from younger casks; the rare
+anada escapes, a single harvest no younger wine feeds. Madeira is heated on
+purpose, slowly under the lodge roof or fast in an estufa tank, and is near
+indestructible once opened. Its noble grapes name the sweetness, Sercial,
+Verdelho, Bual and Malmsey from driest to richest, while the red Tinta Negra
+makes most of the island's wine at every level.</p>
 <p>${INTRO_CHIP('Marsala')}${INTRO_CHIP('Beaumes-de-Venise')}${INTRO_CHIP('Banyuls')}${INTRO_CHIP('Rutherglen Muscat')}</p>
+<p>Marsala is Sicily's, made from dry to sweet and labelled by colour as oro,
+ambra or rubino. Muscat de Beaumes-de-Venise is a white vin doux naturel from
+the southern Rhone, Banyuls a red one built on Grenache beside the Spanish
+border, and Rutherglen Muscat is Victoria's, raisined fruit aged for years in
+old casks.</p>
  `},
  {g:"Beyond Wine", id:"beer", t:"Beer", body:`
 <h4>Four ingredients, and what each does</h4>
@@ -1072,11 +1288,24 @@ plainly. Cold fermentation gave Bohemia, Germany and Austria their classics, and
 colour is not body: schwarzbier is jet black and light.</p>
 <p>${INTRO_CHIP('Pilsner')}${INTRO_CHIP('Helles')}${INTRO_CHIP('Vienna')}${INTRO_CHIP('Marzen')}${INTRO_CHIP('Bock')}${INTRO_CHIP('Schwarzbier')}</p>
 <p>Warm fermentation carries the rest: pale ale, and the IPA whose heavy hopping
-began as insurance on a long voyage; porter and stout, defined by roast rather
-than strength; Bavarian wheat beer, whose banana and clove come from the yeast,
-not the grain; and the Belgian ranks of witbier, tripel and saison. Lambic
+is traditionally explained by the long voyage to India; porter and stout, defined
+by roast rather than strength; Bavarian wheat beer, whose banana and clove come
+from the yeast, not the grain; and the Belgian ranks of witbier, dubbel, tripel
+and saison. Trappist is a protected word for beer brewed inside a working
+Trappist monastery, while abbey beer is only a style and often a licence. Lambic
 stands apart, left overnight in an open pan for the air of the Senne valley to
 inoculate, then blended young with old to make gueuze.</p>
+
+<h4>The spec sheet and the glass</h4>
+<p>A beer list speaks in numbers. Alcohol by volume runs from a three per cent mild
+to a barleywine past ten, and paces an evening; bitterness units count the hop
+acids dissolved in the beer, though malt sweetness can hide a high figure;
+original gravity is the sugar in the wort before fermentation, and its fall to
+final gravity is what became alcohol. Light lagers and wheat beers go out cold,
+strong and dark ales warmer, since cold mutes aroma. The glass is rinsed clean,
+because grease kills the head, and draught lines need cleaning every week or
+two. At the table, roasted stout echoes char on the grill, and bitterness turns
+harsh beside a sweet pudding.</p>
  `},
  {g:"Beyond Wine", id:"sake", t:"Sake", body:`
 <h4>Rice, water and a mould</h4>
@@ -1085,8 +1314,9 @@ to wine. Rice is full of starch but, unlike barley, has no way of releasing it,
 so the enzymes must be supplied from outside: a mould, Aspergillus oryzae, is
 grown on steamed rice in a warm humid room to make koji. Koji frees sugar only
 as fast as the yeast can eat it, so saccharification and fermentation run
-together in the same tank, and that arrangement carries the mash close to twenty
-percent alcohol with nothing added. Water is roughly four fifths of the bottle,
+together in the same tank, the arrangement called multiple parallel
+fermentation, and it carries the mash close to twenty per cent alcohol with
+nothing added. Water is roughly four fifths of the bottle,
 which is why breweries sit on a particular spring: hard water drives a firm, dry
 ferment, soft water a gentler and rounder one. Brewing rice differs from eating
 rice in carrying a chalky starch core the mould can penetrate, and Yamada
@@ -1096,15 +1326,22 @@ Nishiki is the variety brewers treat as the benchmark.</p>
 <p>Milling sets the ginjo grades. Seimaibuai names what remains of each grain rather
 than what was taken off, so a lower figure means more was polished away, and
 what goes first is the fat and protein near the surface that read coarse. Sixty
-percent or less opens ginjo, fifty percent or less daiginjo, and both also
+per cent or less opens ginjo, fifty per cent or less daiginjo, and both also
 demand the cool, slow ferment that builds melon and pear perfume. Junmai
-promises rice, water, koji and yeast alone; honjozo allows a small measured
-addition of distilled alcohol, which lifts aroma out of the mash rather than
-stretching the volume. Other words describe treatment instead:</p>
+promises rice, water, koji and yeast alone; honjozo, milled to seventy per cent
+or less, allows a small measured addition of distilled alcohol, capped at a tenth
+of the rice's weight, which lifts aroma out of the mash rather than stretching
+the volume. The trap is that a ginjo or daiginjo without the word junmai carries
+that addition too. Ordinary futsushu sits outside these special grades and is
+most of what Japan drinks. Other words describe treatment instead:</p>
 <p>${INTRO_CHIP('genshu')}${INTRO_CHIP('nama')}${INTRO_CHIP('nigori')}${INTRO_CHIP('koshu')}</p>
-<p>Undiluted, unpasteurised, cloudy and deliberately aged, in that order. Send a
-daiginjo out chilled, since warmth drives off the esters it was brewed slowly to
-build, and keep warming for the sturdier junmai and honjozo.</p>
+<p>Undiluted, unpasteurised, cloudy and deliberately aged, in that order.
+Most sake is cut with water to fifteen or sixteen per cent before bottling, and
+a Sake Meter Value above zero signals a drier sake, below zero a sweeter one.
+Send a daiginjo out chilled, since warmth drives off the esters it was brewed
+slowly to build, and keep warming, up to hot atsukan near fifty degrees, for the
+sturdier junmai and honjozo. Sake is made to be drunk young, nama must stay
+refrigerated, and an opened bottle fades within weeks.</p>
  `},
  {g:"Beyond Wine", id:"spirits", t:"Spirits & Liqueurs", body:`
 <h4>What the still is doing</h4>
@@ -1115,24 +1352,32 @@ flavour over with the alcohol, which is why the aromatic categories use one; a
 column still runs without pause and gives a cleaner, stronger spirit. The
 distiller keeps only the middle, cutting away the volatile heads and oily tails,
 which usually go back into the next charge. Time in oak
-does the rest, at the cost of a few percent a year through the staves, the
-angels' share.</p>
+does the rest, at the cost of a few per cent a year through the staves, the
+angels' share. On Scotch and Cognac an age describes the youngest spirit in
+the blend, never the average.</p>
 
 <h4>Categories, and where each starts</h4>
 <p>The raw material names most of them. Grape brandy gives Cognac, distilled
 twice in a pot still from thin, sharp Ugni Blanc, best on the chalk of Grande
-and Petite Champagne, and Armagnac, traditionally taken in a single pass through
+and Petite Champagne, its VS, VSOP and XO meaning at least two, four and ten
+years in oak; and Armagnac, traditionally taken in a single pass through
 a small continuous column of Gascon design, more rustic for it. Normandy
 distils cider and calls it Calvados. Grain gives whisky: Scotch must spend three
 years in oak in Scotland, single names one distillery, not one cask, and smoke
-arrives when malt is dried over peat. Bourbon needs at least 51 percent corn and
-new charred oak, and because those casks serve once only, the rest of the world
-matures in what bourbon distillers discard. Agave gives tequila, one species and
-steamed, and mezcal, many species and pit-roasted, hence its smoke. Sugarcane
-gives rum, molasses in most of the Caribbean and fresh juice for rhum agricole.
-Brazil ferments fresh cane too, but its law keeps cachaca its own category, not
-a rum. Gin must lead with juniper whatever else is in it; vodka is rectified
-until the base leaves no fingerprint. Liqueurs are sweetened and flavoured, and
-the bitter Italian amari are what guests ask for after a meal.</p>
+arrives when malt is dried over peat. Irish whiskey is often distilled three
+times and seldom peated. Bourbon needs at least 51 per cent corn and new charred
+oak, and may be made anywhere in the United States, not only Kentucky; because
+those casks serve once only, much of the world's whisky matures in what bourbon
+distillers discard. Tennessee whiskey adds a filtering through maple charcoal
+before the cask. Agave gives tequila, from the single blue Weber species,
+steamed, and mezcal, from many species, pit-roasted, hence its smoke; a tequila
+not labelled 100 per cent agave need hold only 51 per cent. Sugarcane gives rum, molasses in most of the Caribbean
+and fresh juice for rhum agricole. Brazil ferments fresh cane too, but its law
+keeps cachaca its own category, not a rum. Gin must lead with juniper whatever
+else is in it; vodka is distilled to high strength and filtered towards
+neutrality, though some now let the base show. Liqueurs are sweetened and
+flavoured, from the Carthusian monks' green and yellow Chartreuse to the bitter
+red Campari of the Negroni, and the bitter Italian amari are what guests ask for
+after a meal.</p>
  `}
 ];

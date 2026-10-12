@@ -106,7 +106,7 @@ var WINE_PRODUCERS = [
     id: 'p-ch-beychevelle', p: 'Château Beychevelle',
     country: 'France, Bordeaux and the South West', r: 'Saint-Julien', sub: 'Quatrième Cru Classé (1855)',
     founded: '',
-    holdings: 'A riverside estate at the southern entrance to Saint-Julien, its gravel running down toward the Gironde.',
+    holdings: 'A riverside estate at the southern entrance to Saint-Julien, its gravel running down towards the Gironde.',
     style: 'Supple and perfumed: red fruit, violets and soft cedar, one of the earlier-drinking classed growths.',
     t: 'Violets and soft cedar under a dragon-prowed ship',
     why: 'The ship on the label carries the baisse-voile legend, that vessels lowered their sails passing the Admiral of France\'s château. It is the commune\'s most quoted label story.',
@@ -825,7 +825,7 @@ var WINE_PRODUCERS = [
     wines: [
       { n: 'Château Palmer', grape: 'Roughly equal Cabernet Sauvignon and Merlot with Petit Verdot', note: 'The third growth priced and treated as a first' },
       { n: 'Alter Ego de Palmer', grape: 'Merlot and Cabernet Sauvignon', note: 'A second label framed as a different style, not a lesser selection' },
-      { n: 'Historical XIXth Century Wine', grape: 'Bordeaux blend with added Syrah', note: 'A Vin de France recreating the old practice of hermitaging claret' }
+      { n: 'Historical XIXth Century Wine', grape: 'Bordeaux blend with added Syrah', note: 'A Vin de France recreating the old custom of hermitaging claret' }
     ],
     traps: [
       'Palmer is a third growth that trades above most seconds',
@@ -1109,7 +1109,7 @@ var WINE_PRODUCERS = [
     why: 'The historical voice of Cahors and the easiest route into the vin noir tradition and the phrase black wine, which examiners expect a candidate to explain.',
     wines: [
       { n: 'Prince Probus', grape: 'Malbec', note: 'Named for the Roman emperor said to have restored vines to Gaul' },
-      { n: 'The New Black Wine', grape: 'Malbec', note: 'A revival of the old practice of heating part of the must to deepen colour' }
+      { n: 'The New Black Wine', grape: 'Malbec', note: 'A revival of the old custom of heating part of the must to deepen colour' }
     ],
     traps: [
       'Black wine is a historical style and a marketing phrase, not a legal category',
@@ -1744,7 +1744,7 @@ var WINE_PRODUCERS = [
     country: 'France, Burgundy and Beaujolais', r: 'Morey-Saint-Denis', sub: 'Côte de Nuits',
     founded: '1141',
     holdings: 'A single walled grand cru of 7.53 ha, held as a monopole since its foundation by the Bernardine nuns of Notre-Dame de Tart; owned by the Mommessin family from 1932 and sold to Artémis Domaines in 2017.',
-    style: 'Vinified parcel by parcel from vines planted across the slope rather than up and down it, which is the reverse of normal Burgundian practice; dark, structured Morey with a firm mineral core.',
+    style: 'Vinified parcel by parcel from vines planted across the slope rather than up and down it, which is the reverse of the usual Burgundian layout; dark, structured Morey with a firm mineral core.',
     t: 'Walled and sombre: black cherry, iron, crushed violet under Morey stone',
     why: 'The textbook monopole, with a founding date and a short list of owners the Court expects verbatim, and the change of hands in 2017 is recent enough to be asked.',
     wines: [
@@ -2047,7 +2047,7 @@ var WINE_PRODUCERS = [
     country: 'France, Burgundy and Beaujolais', r: 'Vosne-Romanée', sub: 'Côte de Nuits',
     founded: '',
     holdings: 'Around fifteen hectares spread over Richebourg, Echezeaux, Clos de Vougeot and a long list of Vosne and Nuits premiers crus including Les Beaux Monts, Les Suchots and Les Boudots.',
-    style: 'Classical and firm, moderate new oak; the estate stepped away from the cold-maceration experiments of the late 1980s toward greater clarity.',
+    style: 'Classical and firm, moderate new oak; the estate stepped away from the cold-maceration experiments of the late 1980s towards greater clarity.',
     t: 'Vosne with the bones showing: dark berry, wet stone, upright tannin',
     why: 'Etienne Grivot\'s association with the consultant Guy Accad in the late 1980s is the standard case study in Burgundian winemaking fashion and its reversal.',
     wines: [
@@ -2311,7 +2311,7 @@ var WINE_PRODUCERS = [
       { n: 'Nuits-Saint-Georges Les Cailles', grape: 'Pinot Noir', note: 'The most perfumed, sitting beside Les Saint-Georges' }
     ],
     traps: [
-      'The south end of the village gives firmer wines; the north, toward Vosne, gives perfume'
+      'The south end of the village gives firmer wines; the north, towards Vosne, gives perfume'
     ]
   },
   {
@@ -2425,7 +2425,7 @@ var WINE_PRODUCERS = [
     country: 'France, Burgundy and Beaujolais', r: 'Chablis', sub: 'Yonne',
     founded: '1959',
     holdings: 'The largest owner of Chablis grand cru, with substantial parcels in Les Clos, Bougros, Les Preuses, Valmur and Vaudésir, including the named parcel Bougros Côte Bouguerots.',
-    style: 'Reformed in the late 1990s away from heavy new oak toward large old barrels and steel; precise, saline and grand cru transparent.',
+    style: 'Reformed in the late 1990s away from heavy new oak towards large old barrels and steel; precise, saline and grand cru transparent.',
     t: 'Sea spray and lemon curd over fossil chalk: grand cru Chablis in scale',
     why: 'The answer to who owns the most Chablis grand cru, and a clean example of an estate deliberately reducing its oak regime within living memory.',
     wines: [
@@ -2788,7 +2788,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       'Corton is the only red grand cru of the Côte de Beaune',
-      'Corton rouge may legally contain up to fifteen percent Chardonnay',
+      'Corton rouge may legally contain up to fifteen per cent Chardonnay',
       'Corton-Charlemagne spans three communes, not one'
     ]
   },
@@ -3510,7 +3510,7 @@ var WINE_PRODUCERS = [
       { n: 'Carte d’Or Brut', grape: 'Pinot Noir led, with Chardonnay and Meunier', note: 'the non-vintage in the yellow label, introduced in 1952' },
       { n: 'Brut Nature', grape: 'Pinot Noir', note: 'no dosage at all' },
       { n: 'Grande Sendrée', grape: '', note: 'the vintage prestige cuvée' },
-      { n: 'Cuvée Charles de Gaulle', grape: 'Pinot Noir and Chardonnay', note: 'about 80 percent Pinot Noir, in honour of the general' }
+      { n: 'Cuvée Charles de Gaulle', grape: 'Pinot Noir and Chardonnay', note: 'about 80 per cent Pinot Noir, in honour of the general' }
     ],
     traps: [
       'The Côte des Bar is in the Aube, far south of Reims and nearer Chablis',
@@ -3880,7 +3880,7 @@ var WINE_PRODUCERS = [
     t: 'Bouzy Pinot in full: red fruit, a creamy mousse, real depth',
     why: 'A reference grower for Bouzy and its Pinot Noir, a Special Club member, and the easiest way to teach how a rosé can take its colour from Coteaux Champenois red.',
     wines: [
-      { n: 'Brut Rosé Grand Cru', grape: 'Pinot Noir and Chardonnay', note: 'about 80 percent Pinot Noir, part of it Bouzy Rouge; sold in some markets as Grand Rosé' },
+      { n: 'Brut Rosé Grand Cru', grape: 'Pinot Noir and Chardonnay', note: 'about 80 per cent Pinot Noir, part of it Bouzy Rouge; sold in some markets as Grand Rosé' },
       { n: 'Special Club Brut', grape: 'Pinot Noir and Chardonnay', note: 'the vintage prestige wine, made only in exceptional years under the club’s rules' },
       { n: 'Special Club Rosé', grape: 'Pinot Noir and Chardonnay', note: 'the vintage rosé made under the same rules' }
     ],
@@ -3958,7 +3958,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       'Les Chetillons is a lieu-dit inside Le Mesnil-sur-Oger, not an appellation',
-      'A perpetual reserve is a solera in practice, so the wine cannot be vintage dated'
+      'A perpetual reserve is in effect a solera, so the wine cannot be vintage dated'
     ]
   },
   {
@@ -4866,7 +4866,7 @@ var WINE_PRODUCERS = [
     traps: [
       'Banyuls is the fortified wine, Collioure the dry wine, from the same vineyards',
       'Rimage is early-bottled; traditional Banyuls is aged oxidatively',
-      'Vin Doux Naturel mutage uses spirit at about 96 percent, not Port\'s 77'
+      'Vin Doux Naturel mutage uses spirit at about 96 per cent, not Port\'s 77'
     ]
   },
   {
@@ -5087,7 +5087,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       'Reserva is a Catalan spelling, not a misprint of Réserve',
-      'Banyuls Grand Cru is a recipe of 75 percent Grenache Noir and 30 months in wood, not a delimited site',
+      'Banyuls Grand Cru is a recipe of 75 per cent Grenache Noir and 30 months in wood, not a delimited site',
       'Collioure is the dry wine and Banyuls the fortified wine, from the same terraces'
     ]
   },
@@ -5286,7 +5286,7 @@ var WINE_PRODUCERS = [
       { n: 'Bandol Rosé', grape: 'Mourvèdre with Grenache and Cinsault', note: 'a rosé built to age' }
     ],
     traps: [
-      'Bandol red requires at least 50 percent Mourvèdre and 18 months in wood',
+      'Bandol red requires at least 50 per cent Mourvèdre and 18 months in wood',
       'Cabassaou is the highest-Mourvèdre cuvée, not the entry wine',
       'The rosé ages, but the exam answer for Bandol is the red'
     ]
@@ -5375,7 +5375,7 @@ var WINE_PRODUCERS = [
     holdings: 'Substantial holdings on the hill of Hermitage including old vines in Les Bessards, plus estates across the Rhône, Roussillon, Portugal and Australia.',
     style: 'Biodynamic farming, climats bottled separately, whites given real weight; every label carries Braille.',
     t: 'Parcel by parcel Hermitage: Bessards granite for iron, L\'Ermite for perfume and length',
-    why: 'The house that made climat-level Hermitage normal, and the standard example of biodynamics practised at scale. The Braille labels are a favourite one-line question.',
+    why: 'The house that made climat-level Hermitage normal, and the standard example of an estate farmed biodynamically at scale. The Braille labels are a favourite one-line question.',
     wines: [
       { n: 'Ermitage Le Pavillon', grape: 'Syrah', note: 'old vines on the granite of Les Bessards' },
       { n: 'Ermitage L\'Ermite', grape: 'Syrah', note: 'from the top of the hill beside the chapel' },
@@ -5562,7 +5562,7 @@ var WINE_PRODUCERS = [
       { n: 'La Landonne', grape: 'Syrah', note: 'the all-Syrah La La, the one with no Viognier' }
     ],
     traps: [
-      'La Landonne is 100 percent Syrah',
+      'La Landonne is 100 per cent Syrah',
       'Rostaing and others bottle a La Landonne from the same lieu-dit; the name is not Guigal\'s alone'
     ]
   },
@@ -5574,14 +5574,14 @@ var WINE_PRODUCERS = [
     holdings: 'A parcel of old vines in the Côte Blonde with Viognier interplanted among the Syrah and co-fermented with it.',
     style: 'The most perfumed of the three La Las: silk, violets and an apricot lift from the Viognier, with 42 months in new oak.',
     t: 'Violets, apricot skin and sweet oak: the silk glove of the Côte Blonde',
-    why: 'The first of Guigal\'s La Las and the cleanest example of co-fermented Viognier in Côte-Rôtie, which the appellation permits up to 20 percent.',
+    why: 'The first of Guigal\'s La Las and the cleanest example of co-fermented Viognier in Côte-Rôtie, which the appellation permits up to 20 per cent.',
     wines: [
       { n: 'La Mouline', grape: 'Syrah with roughly a tenth Viognier', note: 'the Côte Blonde La La, the first of the three to appear' }
     ],
     traps: [
       'Côte Blonde, not Brune',
       'The Viognier is co-fermented with the Syrah, not blended in afterwards',
-      'Côte-Rôtie permits up to 20 percent Viognier; La Mouline carries far less'
+      'Côte-Rôtie permits up to 20 per cent Viognier; La Mouline carries far less'
     ]
   },
   {
@@ -6250,7 +6250,7 @@ var WINE_PRODUCERS = [
     country: 'Italy, Piedmont and the North', r: 'Collio', sub: 'Oslavia',
     founded: '',
     holdings: 'Vineyards at Oslavia on the Slovenian border, planted mainly to Ribolla Gialla and Pignolo.',
-    style: 'Long skin maceration in buried Georgian amphorae, minimal sulfur, and years in large oak before release.',
+    style: 'Long skin maceration in buried Georgian amphorae, minimal sulphur, and years in large oak before release.',
     t: 'Amber and dried apricot, tea leaf and nut skin: Ribolla left on its skins',
     why: 'Gravner turned to amphora and extended skin contact from 2001 and is the origin point of the modern orange wine movement.',
     wines: [
@@ -6449,7 +6449,7 @@ var WINE_PRODUCERS = [
     t: 'Sage, peach and orange blossom on a whisper of fizz',
     why: 'Moscato d\'Asti is the Court\'s standing example of a partially fermented low-alcohol frizzante wine, and Saracco is the name used for it.',
     wines: [
-      { n: 'Moscato d\'Asti', grape: 'Moscato Bianco', note: 'the reference for the style: frizzante, lightly sweet, around five percent alcohol' }
+      { n: 'Moscato d\'Asti', grape: 'Moscato Bianco', note: 'the reference for the style: frizzante, lightly sweet, around five per cent alcohol' }
     ],
     traps: [
       'Moscato d\'Asti is frizzante and lightly sweet; Asti Spumante is fully sparkling and drier in style',
@@ -6549,7 +6549,7 @@ var WINE_PRODUCERS = [
     country: 'Italy, Piedmont and the North', r: 'Collio', sub: 'Oslavia',
     founded: '',
     holdings: 'Vineyards at Oslavia, neighbouring Gravner, on marl and sandstone.',
-    style: 'Extended skin contact, no added sulfur, long ageing in large oak, bottled in 500 and 1000 millilitre formats.',
+    style: 'Extended skin contact, no added sulphur, long ageing in large oak, bottled in 500 and 1000 millilitre formats.',
     t: 'Cider apple, orange peel, walnut: white wine that behaves like a red',
     why: 'The other Oslavia name in every orange wine question, and the source of the Jakot label used to test the Tocai naming dispute.',
     wines: [
@@ -6797,7 +6797,7 @@ var WINE_PRODUCERS = [
     holdings: 'Selected parcels around Erbusco in the heart of Franciacorta.',
     style: 'Base wines fermented in oak, very long lees ageing, low dosage.',
     t: 'Hazelnut, pastry and citrus oil on a slow and very fine mousse',
-    why: 'Franciacorta\'s prestige cuvee, and the wine used to show the appellation\'s 60-month Riserva minimum in practice.',
+    why: 'Franciacorta\'s prestige cuvee, and the wine used to show the appellation\'s 60-month Riserva minimum at work.',
     wines: [
       { n: 'Franciacorta Annamaria Clementi Riserva', grape: 'Chardonnay-led blend', note: 'named for the founder\'s mother and released long after the vintage' }
     ],
@@ -6933,16 +6933,16 @@ var WINE_PRODUCERS = [
     country: 'Italy, Tuscany and the South', r: 'Umbria', sub: 'Montefalco Sagrantino DOCG',
     founded: '1971',
     holdings: 'Vineyards around Montefalco, with clonal and trellis research that underpinned the revival of Sagrantino from near extinction.',
-    style: 'Sagrantino pushed toward ripeness and long barrique aging to tame the highest tannin load of any Italian variety.',
+    style: 'Sagrantino pushed towards ripeness and long barrique ageing to tame the highest tannin load of any Italian variety.',
     t: 'Blackberry, ink and tar over tannin that dries the mouth like strong tea',
-    why: 'Sagrantino has extraordinary tannin and polyphenol levels, and the Court uses Caprai to anchor Montefalco Sagrantino DOCG and its long mandatory aging.',
+    why: 'Sagrantino has extraordinary tannin and polyphenol levels, and the Court uses Caprai to anchor Montefalco Sagrantino DOCG and its long mandatory ageing.',
     wines: [
       { n: 'Montefalco Sagrantino 25 Anni', grape: 'Sagrantino', note: 'the bottling that put Sagrantino on export lists' },
       { n: 'Montefalco Sagrantino Collepiano', grape: 'Sagrantino', note: 'the estate\'s classic Sagrantino' },
       { n: 'Montefalco Sagrantino Passito', grape: 'Sagrantino', note: 'the traditional sweet form, which is how the grape was historically used' }
     ],
     traps: [
-      'Sagrantino di Montefalco is 100 percent Sagrantino; Montefalco Rosso is Sangiovese-based with a little Sagrantino',
+      'Sagrantino di Montefalco is 100 per cent Sagrantino; Montefalco Rosso is Sangiovese-based with a little Sagrantino',
       'The historic style was passito, not dry',
       'Umbria has two DOCGs: Montefalco Sagrantino and Torgiano Rosso Riserva'
     ]
@@ -6999,7 +6999,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       'The Ricasoli formula included white grapes; white grapes were forbidden in Chianti Classico from 2006',
-      'Gran Selezione requires estate fruit and longer aging than Riserva'
+      'Gran Selezione requires estate fruit and longer ageing than Riserva'
     ]
   },
   {
@@ -7028,16 +7028,16 @@ var WINE_PRODUCERS = [
     holdings: 'The Greppo estate south of Montalcino town, planted and shaped by the Biondi Santi family through the 1800s and 1900s; the Riserva is drawn only from the oldest parcels.',
     style: 'Pale, high-toned and acid-driven, aged in large old Slavonian botti with no new oak; built to be unapproachable young.',
     t: 'The inventor\'s style: high-toned cherry, tea leaf, acid-driven longevity',
-    why: 'The Court treats Biondi-Santi as the origin point of Brunello: Ferruccio Biondi Santi\'s late-1800s bottlings and the estate\'s BBS11 selection are the reference for what 100 percent Sangiovese in Montalcino means.',
+    why: 'The Court treats Biondi-Santi as the origin point of Brunello: Ferruccio Biondi Santi\'s late-1800s bottlings and the estate\'s BBS11 selection are the reference for what 100 per cent Sangiovese in Montalcino means.',
     wines: [
       { n: 'Brunello di Montalcino Riserva', grape: 'Sangiovese Grosso', note: 'the bottling that defined Brunello as a category and its longest-lived example' },
       { n: 'Brunello di Montalcino Annata', grape: 'Sangiovese Grosso', note: 'the estate style in a lighter frame, still austere in youth' },
-      { n: 'Rosso di Montalcino', grape: 'Sangiovese Grosso', note: 'shows how the house reads in a wine without the long cask aging' }
+      { n: 'Rosso di Montalcino', grape: 'Sangiovese Grosso', note: 'shows how the house reads in a wine without the long cask ageing' }
     ],
     traps: [
-      'Brunello is 100 percent Sangiovese; Chianti Classico only requires a Sangiovese minimum',
+      'Brunello is 100 per cent Sangiovese; Chianti Classico only requires a Sangiovese minimum',
       'Do not confuse the Greppo estate with the separate Jacopo Biondi Santi wines from Castello di Montepo',
-      'Riserva is not simply longer aging: it comes from the older vines'
+      'Riserva is not simply longer ageing: it comes from the older vines'
     ]
   },
   {
@@ -7080,7 +7080,7 @@ var WINE_PRODUCERS = [
     country: 'Italy, Tuscany and the South', r: 'Sardinia', sub: 'Gallura',
     founded: '',
     holdings: 'Granite-soiled vineyards in the Gallura hills of north eastern Sardinia, run by the Ragnedda family.',
-    style: 'Rich, low-yield Vermentino, often barrel-influenced and built for aging rather than for freshness alone.',
+    style: 'Rich, low-yield Vermentino, often barrel-influenced and built for ageing rather than for freshness alone.',
     t: 'Broad and saline: ripe pear, fennel, almond and granite dust',
     why: 'Vermentino di Gallura is Sardinia\'s only DOCG and Capichera is the producer named with it, even though the estate labels much of its range as IGT.',
     wines: [
@@ -7126,7 +7126,7 @@ var WINE_PRODUCERS = [
       { n: 'Brunello di Montalcino', grape: 'Sangiovese', note: 'the volume face of the denomination in export markets' }
     ],
     traps: [
-      'Banfi\'s size does not exempt it from the 100 percent Sangiovese rule',
+      'Banfi\'s size does not exempt it from the 100 per cent Sangiovese rule',
       'Banfi also produces Moscadello di Montalcino, the zone\'s near-forgotten sweet white'
     ]
   },
@@ -7170,7 +7170,7 @@ var WINE_PRODUCERS = [
     country: 'Italy, Tuscany and the South', r: 'Montalcino', sub: 'Brunello di Montalcino',
     founded: '1977',
     holdings: 'A very small holding on the eastern side of Montalcino town, established by the former airline pilot Diego Molinari and sold to new owners in 2015.',
-    style: 'Traditional cask aging, no new oak, wines that are savoury and taut rather than sweet.',
+    style: 'Traditional cask ageing, no new oak, wines that are savoury and taut rather than sweet.',
     t: 'Sour cherry, leather, tobacco leaf and a dusty savour that never turns sweet',
     why: 'Named when the examiner wants the small traditionalist end of Montalcino rather than the estates with volume.',
     wines: [
@@ -7215,7 +7215,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       'Zibibbo on Pantelleria is Muscat of Alexandria, not Muscat Blanc',
-      'The low bush training of Pantelleria is a recognised cultural practice, protected for the technique',
+      'The low bush training of Pantelleria is a recognised cultural tradition, protected for the technique',
       'Moscato di Pantelleria and Passito di Pantelleria are separate styles'
     ]
   },
@@ -7241,7 +7241,7 @@ var WINE_PRODUCERS = [
     country: 'Italy, Tuscany and the South', r: 'Abruzzo', sub: 'Torano Nuovo',
     founded: '1964',
     holdings: 'A family estate at Torano Nuovo in the Colline Teramane, farmed organically and biodynamically with pergola-trained vines.',
-    style: 'Grapes crushed by foot, fermentation in glass-lined cement, no wood, long bottle aging, then decanting and rebottling by hand before release.',
+    style: 'Grapes crushed by foot, fermentation in glass-lined cement, no wood, long bottle ageing, then decanting and rebottling by hand before release.',
     t: 'Wild and pure: sour cherry, dried blood orange, herbs and no oak at all',
     why: 'The house that defined natural winemaking in Abruzzo, and the standing example of a producer holding a deep library and rebottling by hand.',
     wines: [
@@ -7317,7 +7317,7 @@ var WINE_PRODUCERS = [
     holdings: 'The Manetti family farms an organic amphitheatre of vineyards in the Conca d\'Oro at Panzano, and fires its own terracotta.',
     style: 'Pure Sangiovese, organic, ripe but firmly structured, French oak used without dominating the fruit.',
     t: 'Dark cherry, iris, espresso: Conca d\'Oro Sangiovese with no Bordeaux in it',
-    why: 'Fontodi proves the Super Tuscan story was never only about Cabernet: Flaccianello left the denomination while staying 100 percent Sangiovese.',
+    why: 'Fontodi proves the Super Tuscan story was never only about Cabernet: Flaccianello left the denomination while staying 100 per cent Sangiovese.',
     wines: [
       { n: 'Flaccianello della Pieve', grape: 'Sangiovese', note: 'pure Sangiovese IGT, first made in 1981, the Super Tuscan made with no Bordeaux grapes at all' },
       { n: 'Chianti Classico Gran Selezione Vigna del Sorbo', grape: 'Sangiovese', note: 'the estate\'s top wine inside the denomination' },
@@ -7441,7 +7441,7 @@ var WINE_PRODUCERS = [
     country: 'Italy, Tuscany and the South', r: 'Marche', sub: 'Verdicchio di Matelica',
     founded: '',
     holdings: 'High inland vineyards in the Matelica valley, which runs north to south and is cut off from the Adriatic.',
-    style: 'Tighter and more mineral Verdicchio than the coastal zone, with the Mirum Riserva made for long aging.',
+    style: 'Tighter and more mineral Verdicchio than the coastal zone, with the Mirum Riserva made for long ageing.',
     t: 'Inland Verdicchio: white peach, flint, saline bite and a tense dry finish',
     why: 'Matelica is the smaller, cooler, landlocked Verdicchio zone and exists on the syllabus precisely to be distinguished from Castelli di Jesi.',
     wines: [
@@ -7476,11 +7476,11 @@ var WINE_PRODUCERS = [
     country: 'Italy, Tuscany and the South', r: 'Umbria', sub: 'Torgiano Rosso Riserva DOCG',
     founded: '',
     holdings: 'The dominant estate of Torgiano, south east of Perugia, with the Vigna Monticchio vineyard and a wine museum in the village.',
-    style: 'Sangiovese-based reds held for long cellar aging before release; classical rather than modern.',
+    style: 'Sangiovese-based reds held for long cellar ageing before release; classical rather than modern.',
     t: 'Aged Sangiovese warmth: dried cherry, leather, tobacco and sweet earth',
     why: 'Torgiano Rosso Riserva is one of only two DOCGs in Umbria and is effectively the work of one family, which the Court likes to test.',
     wines: [
-      { n: 'Rubesco Vigna Monticchio Riserva', grape: 'Sangiovese with Canaiolo', note: 'the wine that is Torgiano Rosso Riserva DOCG, released after long aging' },
+      { n: 'Rubesco Vigna Monticchio Riserva', grape: 'Sangiovese with Canaiolo', note: 'the wine that is Torgiano Rosso Riserva DOCG, released after long ageing' },
       { n: 'Rubesco Torgiano Rosso', grape: 'Sangiovese with Canaiolo', note: 'the widely available DOC version' }
     ],
     traps: [
@@ -7586,7 +7586,7 @@ var WINE_PRODUCERS = [
     country: 'Italy, Tuscany and the South', r: 'Campania', sub: 'Taurasi DOCG',
     founded: '',
     holdings: 'An Avellino house that has bottled Irpinian wine for many generations, with vineyards for Taurasi, Fiano di Avellino and Greco di Tufo.',
-    style: 'Traditional and firm: Aglianico held in cask and bottle for years before release, whites made for aging rather than for youth.',
+    style: 'Traditional and firm: Aglianico held in cask and bottle for years before release, whites made for ageing rather than for youth.',
     t: 'Taurasi austerity: sour cherry, ash, leather and tannin that needs a decade',
     why: 'Mastroberardino preserved Aglianico, Fiano and Greco when they were almost gone, which is why the family is the fixed answer for Campanian native varieties.',
     wines: [
@@ -7635,7 +7635,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       'Montevertine labels no wine as Chianti Classico, by choice',
-      'Le Pergole Torte is 100 percent Sangiovese: its fame is not about Cabernet',
+      'Le Pergole Torte is 100 per cent Sangiovese: its fame is not about Cabernet',
       'Radda sits high and cool, which is why the wines read lighter than Castelnuovo Berardenga'
     ]
   },
@@ -7714,8 +7714,8 @@ var WINE_PRODUCERS = [
     id: 'p-poggio-di-sotto', p: 'Poggio di Sotto',
     country: 'Italy, Tuscany and the South', r: 'Montalcino', sub: 'Castelnuovo dell\'Abate',
     founded: '1989',
-    holdings: 'Slopes above Castelnuovo dell\'Abate in the warmer south east of the zone, looking toward Monte Amiata; part of the ColleMassari group since 2011.',
-    style: 'Traditional: long maceration, extended aging in large old casks, late release; perfumed rather than dense.',
+    holdings: 'Slopes above Castelnuovo dell\'Abate in the warmer south east of the zone, looking towards Monte Amiata; part of the ColleMassari group since 2011.',
+    style: 'Traditional: long maceration, extended ageing in large old casks, late release; perfumed rather than dense.',
     t: 'Dried cherry, blood orange, wild herb and warm stone from the Amiata side',
     why: 'The reference for the south eastern sector of Montalcino and for the argument that Rosso di Montalcino can be a serious wine rather than a declassification.',
     wines: [
@@ -7725,7 +7725,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       'Montalcino is not one climate: the south east near Castelnuovo dell\'Abate ripens earlier than the cooler north',
-      'Rosso di Montalcino has a shorter aging minimum, not a lesser vineyard requirement'
+      'Rosso di Montalcino has a shorter ageing minimum, not a lesser vineyard requirement'
     ]
   },
   {
@@ -7778,7 +7778,7 @@ var WINE_PRODUCERS = [
       { n: 'Giallo d\'Arles', grape: 'Greco', note: 'Greco di Tufo treated with the same ambition' }
     ],
     traps: [
-      'Taurasi requires a minimum share of Aglianico and long aging, with a longer Riserva minimum',
+      'Taurasi requires a minimum share of Aglianico and long ageing, with a longer Riserva minimum',
       'Irpinia DOC is the catch-all beneath the three DOCGs'
     ]
   },
@@ -7787,7 +7787,7 @@ var WINE_PRODUCERS = [
     country: 'Italy, Tuscany and the South', r: 'Puglia', sub: 'Castel del Monte',
     founded: '1950',
     holdings: 'Vineyards on the higher inland plateau around Castel del Monte in northern Puglia, run by the De Corato family.',
-    style: 'Cooler and more structured than Salento: Nero di Troia given long aging, with firm tannin and red fruit.',
+    style: 'Cooler and more structured than Salento: Nero di Troia given long ageing, with firm tannin and red fruit.',
     t: 'Red cherry, dried herb and stony tannin from Puglia\'s cooler high ground',
     why: 'Castel del Monte carries Puglia\'s DOCGs and Nero di Troia is the variety examiners use to prove the region is not only Primitivo and Negroamaro.',
     wines: [
@@ -7821,7 +7821,7 @@ var WINE_PRODUCERS = [
     country: 'Italy, Tuscany and the South', r: 'Montalcino', sub: 'Toscana IGT',
     founded: '1972',
     holdings: 'Case Basse, a small west-facing property Gianfranco Soldera planted from scratch after 1972, farmed with a botanical garden between the rows.',
-    style: 'Extremely low yields, long cask aging in large Slavonian oak, no temperature control and no new wood; pale colour hiding enormous aromatic reach.',
+    style: 'Extremely low yields, long cask ageing in large Slavonian oak, no temperature control and no new wood; pale colour hiding enormous aromatic reach.',
     t: 'Pale garnet, dried rose, orange peel, forest floor: Sangiovese at its most transparent',
     why: 'Soldera is the standing example that a wine can be the most sought-after in its zone and carry no DOCG at all. The estate withdrew from the consorzio and now labels Toscana IGT.',
     wines: [
@@ -7899,7 +7899,7 @@ var WINE_PRODUCERS = [
     wines: [
       { n: 'Villa di Capezzana', grape: 'Sangiovese with Cabernet Sauvignon', note: 'the classic Carmignano, Cabernet by law rather than by fashion' },
       { n: 'Ghiaie della Furba', grape: 'Cabernet Sauvignon with Merlot and Syrah', note: 'the estate\'s IGT, outside the Carmignano rules' },
-      { n: 'Vin Santo di Carmignano Riserva', grape: 'Trebbiano and San Colombano', note: 'long caratelli aging, one of Tuscany\'s reference Vin Santos' }
+      { n: 'Vin Santo di Carmignano Riserva', grape: 'Trebbiano and San Colombano', note: 'long caratelli ageing, one of Tuscany\'s reference Vin Santos' }
     ],
     traps: [
       'Carmignano required Cabernet decades before the Super Tuscans, and by law',
@@ -7921,7 +7921,7 @@ var WINE_PRODUCERS = [
       { n: 'Vermentino Bolgheri', grape: 'Vermentino', note: 'the white side of the DOC' }
     ],
     traps: [
-      'Bolgheri Superiore requires longer aging than Bolgheri Rosso',
+      'Bolgheri Superiore requires longer ageing than Bolgheri Rosso',
       'Guado al Tasso is an Antinori estate, separate from the Chianti Classico properties'
     ]
   },
@@ -7967,7 +7967,7 @@ var WINE_PRODUCERS = [
     country: 'Italy, Tuscany and the South', r: 'Abruzzo', sub: 'Loreto Aprutino',
     founded: '',
     holdings: 'A long-held family estate at Loreto Aprutino in the hills of Pescara; most of the crop is sold off and only selected lots are bottled.',
-    style: 'Old cask aging, minimal intervention, deliberate secrecy about method; wines of unusual longevity in every colour.',
+    style: 'Old cask ageing, minimal intervention, deliberate secrecy about method; wines of unusual longevity in every colour.',
     t: 'The impossible Trebbiano: smoke, orchard fruit, decades of life',
     why: 'Valentini is proof that appellation reputation and wine quality are separate questions, and the estate anchors all three Abruzzo styles at once.',
     wines: [
@@ -7989,7 +7989,7 @@ var WINE_PRODUCERS = [
     holdings: 'Bush-trained Zibibbo grown in hollows dug against the wind on the volcanic island of Pantelleria, closer to Tunisia than to Sicily.',
     style: 'Grapes sun-dried on racks and added to the fermenting must, giving an intense raisined sweetness kept fresh by salt and acid.',
     t: 'Dried apricot, fig, honey and saffron with sea salt cutting the sweetness',
-    why: 'The fixed question for Italian island sweet wines, and the hook for Pantelleria\'s low bush training, which is recognised as a cultural practice.',
+    why: 'The fixed question for Italian island sweet wines, and the hook for Pantelleria\'s low bush training, which is recognised as a cultural tradition.',
     wines: [
       { n: 'Ben Ryé', grape: 'Zibibbo', note: 'the reference Passito di Pantelleria in the export market' }
     ],
@@ -8007,12 +8007,12 @@ var WINE_PRODUCERS = [
     holdings: 'Drawn only from the oldest parcels of the Greppo estate, and declared only in vintages the family judges worthy.',
     style: 'Aged in large old Slavonian casks with no new oak; pale, austere, acid-driven, released with a long life ahead.',
     t: 'High-toned cherry, dried rose, tea leaf and iron on a spine of pure acid',
-    why: 'This is the bottle behind the denomination itself. Brunello\'s minimum five years of aging, six for Riserva, descends from what this house was already doing.',
+    why: 'This is the bottle behind the denomination itself. Brunello\'s minimum five years of ageing, six for Riserva, descends from what this house was already doing.',
     wines: [
-      { n: 'Brunello di Montalcino Riserva', grape: 'Sangiovese Grosso', note: 'the original Brunello, and the wine that set the 100 percent Sangiovese rule' }
+      { n: 'Brunello di Montalcino Riserva', grape: 'Sangiovese Grosso', note: 'the original Brunello, and the wine that set the 100 per cent Sangiovese rule' }
     ],
     traps: [
-      'Brunello must be 100 percent Sangiovese, which the consorzio reaffirmed by vote in 2009 after the Brunellopoli blending investigation',
+      'Brunello must be 100 per cent Sangiovese, which the consorzio reaffirmed by vote in 2009 after the Brunellopoli blending investigation',
       'Riserva means older vines here, not simply extra cask time',
       'Jacopo Biondi Santi\'s Castello di Montepo wines are a separate operation'
     ]
@@ -8031,7 +8031,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       'Cepparello is a proprietary wine name, not a vineyard or a village',
-      '100 percent Sangiovese, like Flaccianello and Pergole Torte'
+      '100 per cent Sangiovese, like Flaccianello and Pergole Torte'
     ]
   },
   {
@@ -8047,7 +8047,7 @@ var WINE_PRODUCERS = [
       { n: 'Flaccianello della Pieve', grape: 'Sangiovese', note: 'first made in 1981, the Panzano standard for varietal Sangiovese' }
     ],
     traps: [
-      'Flaccianello is 100 percent Sangiovese',
+      'Flaccianello is 100 per cent Sangiovese',
       'It is IGT despite coming from the heart of Chianti Classico'
     ]
   },
@@ -8061,10 +8061,10 @@ var WINE_PRODUCERS = [
     t: 'Rosehip, sour cherry and cold stone: Sangiovese with nothing added and nothing hidden',
     why: 'The rebuttal to the idea that the Super Tuscan movement was about Bordeaux grapes. Pergole Torte left the DOCG in order to be purer, not more international.',
     wines: [
-      { n: 'Le Pergole Torte', grape: 'Sangiovese', note: 'first made in 1977, the first single-vineyard 100 percent Sangiovese of the modern era' }
+      { n: 'Le Pergole Torte', grape: 'Sangiovese', note: 'first made in 1977, the first single-vineyard 100 per cent Sangiovese of the modern era' }
     ],
     traps: [
-      '100 percent Sangiovese, no Cabernet at all',
+      '100 per cent Sangiovese, no Cabernet at all',
       'Toscana IGT by the estate\'s choice, since Montevertine bottles nothing as Chianti Classico',
       'Radda is high and cool, so the wine is paler and tighter than southern Chianti Classico'
     ]
@@ -8083,7 +8083,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       'Masseto is Toscana IGT, not Bolgheri DOC',
-      'It is 100 percent Merlot, unlike Ornellaia',
+      'It is 100 per cent Merlot, unlike Ornellaia',
       'Masseto is now a separate winery from Ornellaia under the same ownership'
     ]
   },
@@ -8147,7 +8147,7 @@ var WINE_PRODUCERS = [
     holdings: 'The Tignanello vineyard at the Santa Cristina estate between Florence and Siena, inside the Chianti Classico zone.',
     style: 'Sangiovese with Cabernet Sauvignon and Cabernet Franc, matured in French barriques rather than large chestnut or Slavonian casks.',
     t: 'Sour cherry and iris pulled tight by cassis, cedar and fine barrique grain',
-    why: 'Tignanello is the founding Super Tuscan argument: it rejected the obligatory white grapes and the old aging rules, and accepted the lowest legal category to do it.',
+    why: 'Tignanello is the founding Super Tuscan argument: it rejected the obligatory white grapes and the old ageing rules, and accepted the lowest legal category to do it.',
     wines: [
       { n: 'Tignanello', grape: 'Sangiovese with Cabernet Sauvignon and Cabernet Franc', note: 'first made in 1971, the wine that abandoned the Chianti recipe' }
     ],
@@ -8385,7 +8385,7 @@ var WINE_PRODUCERS = [
     holdings: 'Family vineyards in Rioja Alta around Haro, with an in-house cooperage that builds and repairs the barrels.',
     style: 'Everything in wood: fermentation in oak vats, ageing in barrel, egg-white fining and hand racking.',
     t: 'Cedar, red plum and fresh sawn oak: a cellar that still makes its own barrels',
-    why: 'The working demonstration of traditional Rioja cellar practice, and a house where the traditional and modern tiers sit side by side under one roof.',
+    why: 'The working demonstration of traditional Rioja cellar methods, and a house where the traditional and modern tiers sit side by side under one roof.',
     wines: [
       { n: 'Prado Enea Gran Reserva', grape: 'Tempranillo with Garnacha, Graciano and Mazuelo', note: 'the traditional flagship, held far beyond the legal minimum' },
       { n: 'Torre Muga', grape: 'Tempranillo with Mazuelo and Graciano', note: 'the modern French-oak cuvee, made to contrast with Prado Enea' },
@@ -8401,7 +8401,7 @@ var WINE_PRODUCERS = [
     country: 'Spain and Portugal', r: 'Rioja', sub: 'Alfaro, Rioja Oriental',
     founded: '',
     holdings: 'The Palacios family estate at Alfaro, high on Monte Yerga in the warm eastern end of Rioja, unusually planted to Garnacha.',
-    style: 'Turned toward Garnacha and away from long oak: bright, high-toned, altitude-driven reds.',
+    style: 'Turned towards Garnacha and away from long oak: bright, high-toned, altitude-driven reds.',
     t: 'Wild strawberry, thyme and dry chalk: Garnacha arguing for eastern Rioja',
     why: 'The Garnacha answer inside a Tempranillo region, and the family bodega Alvaro Palacios returned to run. It also fixes Rioja Oriental on the map.',
     wines: [
@@ -8916,7 +8916,7 @@ var WINE_PRODUCERS = [
     country: 'Spain and Portugal', r: 'Rioja', sub: 'Elciego, Rioja Alavesa',
     founded: '1858',
     holdings: 'Vineyards around Elciego in Rioja Alavesa, with a separate white-wine operation in Rueda.',
-    style: 'Bordeaux practice from the outset: cooler Alavesa fruit, firm structure, and old Cabernet Sauvignon plantings kept by historic exception.',
+    style: 'Bordeaux methods from the outset: cooler Alavesa fruit, firm structure, and old Cabernet Sauvignon plantings kept by historic exception.',
     t: 'Cedar, cassis edge and dusty tannin: the Bordeaux hand that started modern Rioja',
     why: 'The pair with Murrieta for Rioja\'s Bordeaux-influenced founding, and one of the very few Rioja estates with Cabernet Sauvignon in the ground.',
     wines: [
@@ -9176,7 +9176,7 @@ var WINE_PRODUCERS = [
     country: 'Spain and Portugal', r: 'Jerez', sub: 'Jerez de la Frontera',
     founded: '',
     holdings: 'The Macharnudo Alto vineyard, source of the single-vineyard Inocente Fino.',
-    style: 'Old practice kept alive: Inocente fermented in cask rather than tank, and very old soleras for the amontillados and palo cortados.',
+    style: 'Old methods kept alive: Inocente fermented in cask rather than tank, and very old soleras for the amontillados and palo cortados.',
     t: 'Sea salt, hazelnut skin and old wood: Fino from one named vineyard',
     why: 'The house that kept single-vineyard sherry alive. Inocente is the answer when an examiner asks for a Fino from a named pago.',
     wines: [
@@ -9336,7 +9336,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       '890 and 904 refer to 1890 and 1904, the founding and a merger',
-      'Both are Gran Reservas: 890 is not a longer-aged tier of 904 in law, only in practice',
+      'Both are Gran Reservas: 890 is not a longer-aged tier of 904 in law, only by the house\'s own custom',
       'Vina Ardanza is a Reserva from the same house'
     ]
   },
@@ -9804,7 +9804,7 @@ var WINE_PRODUCERS = [
       { n: 'Blaufränkisch Oberer Wald', grape: 'Blaufränkisch', note: 'A second single-site red from the same hill' }
     ],
     traps: [
-      'Ausbruch is legally tied to Rust and sits between Beerenauslese and Trockenbeerenauslese in must weight',
+      'Ausbruch is legally tied to Rust: once a rung between Beerenauslese and Trockenbeerenauslese, it is now Ruster Ausbruch DAC, at Trockenbeerenauslese must weight from the 2020 vintage',
       'Blaufränkisch is the same grape as Kékfrankos in Hungary and Lemberger in Germany',
       'Several Triebaumer families make wine in Rust, including Paul Triebaumer and Gunter Triebaumer'
     ]
@@ -9862,7 +9862,7 @@ var WINE_PRODUCERS = [
       { n: 'Solitaire', grape: 'Bordeaux varieties and Blaufränkisch', note: 'The estate\'s red flagship' }
     ],
     traps: [
-      'Ausbruch belongs to Rust alone and sits between Beerenauslese and Trockenbeerenauslese',
+      'Ausbruch belongs to Rust alone and no longer sits between Beerenauslese and Trockenbeerenauslese: Ruster Ausbruch DAC is picked at Trockenbeerenauslese weight',
       'Rust sits on the western shore; Illmitz and the Seewinkel lie on the eastern side of the lake',
       'Furmint in Rust is the same grape as Tokaj\'s, a shared Habsburg inheritance'
     ]
@@ -10002,7 +10002,7 @@ var WINE_PRODUCERS = [
     founded: '1911',
     holdings: 'Holdings in Wehlener Sonnenuhr, Graacher Himmelreich, Graacher Domprobst, Zeltinger Sonnenuhr and Bernkasteler Badstube, all on blue Devonian slate.',
     style: 'Reductive and faintly spritzy in youth, often unapproachable for years, then turning to honey, smoke and slate over several decades.',
-    t: 'Feather-light, spritzy youth aging into honeyed slate for decades',
+    t: 'Feather-light, spritzy youth ageing into honeyed slate for decades',
     why: 'The benchmark producer for classical fruity-styled Mosel Riesling and the name attached to the Wehlener Sonnenuhr. The house is also the standard illustration of capsule colour marking selections within one Prädikat.',
     wines: [
       { n: 'Wehlener Sonnenuhr Riesling Spätlese', grape: 'Riesling', note: 'The single most quoted Mosel Spätlese on any wine list' },
@@ -10161,7 +10161,7 @@ var WINE_PRODUCERS = [
     traps: [
       'Rebula in Slovenia is Ribolla Gialla in Italy, one grape across one border',
       'Goriska Brda and Collio are the same hills divided by a national frontier',
-      'Skin-contact white is an old regional practice, not an invention of the natural wine era'
+      'Skin-contact white is an old regional tradition, not an invention of the natural wine era'
     ]
   },
   {
@@ -10280,7 +10280,7 @@ var WINE_PRODUCERS = [
     country: 'Germany, Austria and Central Europe', r: 'Kamptal', sub: 'Gobelsburg (Langenlois)',
     founded: '1171',
     holdings: 'Vineyards around Gobelsburg and Langenlois including shares of Heiligenstein, Lamm, Gaisberg and Grub, historically tied to the Cistercian abbey of Zwettl.',
-    style: 'Classical and unshowy, with the Tradition bottlings made by nineteenth-century cellar practice: large casks, racking by the moon and extended ageing before release.',
+    style: 'Classical and unshowy, with the Tradition bottlings made by nineteenth-century cellar methods: large casks, racking by the moon and extended ageing before release.',
     t: 'Cistercian cellar, Tradition cask ageing: nut, orchard fruit, old-style depth',
     why: 'The Cistercian link makes it the Austrian parallel to Burgundy\'s monastic history, and the Tradition range is the clearest living demonstration of pre-modern cellar technique in Central Europe.',
     wines: [
@@ -10677,7 +10677,7 @@ var WINE_PRODUCERS = [
     holdings: 'A terraced primary rock site on gneiss between Durnstein and Loiben, worked by F.X. Pichler, Alzinger, Knoll, Tegernseerhof and Domane Wachau among others',
     style: 'The fullest expression of Wachau Riesling: mango and white pepper over stone, with Smaragd ripeness giving weight that stays dry and long.',
     t: 'Durnstein gneiss under Smaragd ripeness: mango, pepper, weighty and long',
-    why: 'The site that best demonstrates what Smaragd means in practice, and the vineyard a candidate should name when asked for a great Wachau terrace. It is shared, so it also tests whether a candidate separates site from producer.',
+    why: 'The site that best demonstrates what Smaragd means in the glass, and the vineyard a candidate should name when asked for a great Wachau terrace. It is shared, so it also tests whether a candidate separates site from producer.',
     wines: [
       { n: 'Riesling Ried Kellerberg Smaragd', grape: 'Riesling', note: 'The Wachau\'s most quoted single vineyard wine' },
       { n: 'Grüner Veltliner Ried Kellerberg Smaragd', grape: 'Grüner Veltliner', note: 'Grüner at maximum weight from the same terraces' }
@@ -10740,7 +10740,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       'Eszencia is not a puttonyos level and is not the same as Aszú Eszencia, the old category just above 6 puttonyos',
-      'Its alcohol is only a few percent, so it is legally awkward in several markets',
+      'Its alcohol is only a few per cent, so it is legally awkward in several markets',
       'The free-run juice is collected under the berries\' own weight, not pressed'
     ]
   },
@@ -10750,7 +10750,7 @@ var WINE_PRODUCERS = [
     country: 'Germany, Austria and Central Europe', r: 'Mosel', sub: 'Wehlen',
     founded: '',
     holdings: 'A steep blue Devonian slate Einzellage above Wehlen, named for the sundial built into the slope by Jodocus Prüm in 1842; J.J. Prüm, Dr. Loosen, Markus Molitor, S.A. Prüm and others hold parcels.',
-    style: 'The lightest touch on the Mosel: white peach and slate dust at seven to nine percent alcohol, with sweetness that reads as texture rather than as sugar.',
+    style: 'The lightest touch on the Mosel: white peach and slate dust at seven to nine per cent alcohol, with sweetness that reads as texture rather than as sugar.',
     t: 'Slate sundial Riesling: spritz, white peach, honey arriving twenty years late',
     why: 'The vineyard that defines the fruity-styled middle Mosel and the one a candidate should name first for blue slate. The sundial itself is a common short-answer question.',
     wines: [
@@ -10788,8 +10788,8 @@ var WINE_PRODUCERS = [
     country: 'The United States and Canada', r: 'Central Coast', sub: 'Santa María Valley',
     founded: '1982',
     holdings: 'Long-standing blocks in the Bien Nacido vineyard in Santa María Valley, plus the Le Bon Climat estate.',
-    style: 'Savory, acid-driven and deliberately food-first: no chase for ripeness, Burgundian handling throughout.',
-    t: 'Jim Clendenen\'s Burgundian California: savory, fresh, food-first',
+    style: 'Savoury, acid-driven and deliberately food-first: no chase for ripeness, Burgundian handling throughout.',
+    t: 'Jim Clendenen\'s Burgundian California: savoury, fresh, food-first',
     why: 'Jim Clendenen held a cool, restrained line in Santa Barbara from 1982 and made Bien Nacido a vineyard name candidates are expected to know. He also shared a facility with Qupe, which links the Pinot and the Rhône Ranger stories.',
     wines: [
       { n: 'Bien Nacido Pinot Noir', grape: 'Pinot Noir', note: 'The vineyard that made Santa María Valley\'s name' },
@@ -10952,7 +10952,7 @@ var WINE_PRODUCERS = [
     country: 'The United States and Canada', r: 'Columbia Valley', sub: 'The Rocks District of Milton-Freewater',
     founded: '1997',
     holdings: 'Biodynamic vineyards on basalt cobblestones laid by the Walla Walla River, including Cailloux, En Cerise, En Chamberlin and Armada.',
-    style: 'Unmistakable savory reduction: blood, olive brine, smoke and cured meat over dark fruit.',
+    style: 'Unmistakable savoury reduction: blood, olive brine, smoke and cured meat over dark fruit.',
     t: 'Basalt cobbles of the Rocks: blood, olive brine, smoke, unmistakable funk',
     why: 'Christophe Baron, from a Champagne family, recognised the Châteauneuf-like cobblestones at Milton-Freewater. The Rocks District is the geographic joke examiners love: the vineyards are in Oregon, the winery and the trade are in Walla Walla, Washington.',
     wines: [
@@ -11024,8 +11024,8 @@ var WINE_PRODUCERS = [
     country: 'The United States and Canada', r: 'Napa Valley', sub: 'St. Helena',
     founded: '1861',
     holdings: 'Estate vineyards across St. Helena, Yountville, Carneros and Howell Mountain, farmed by the Peter Mondavi family.',
-    style: 'Savory, firmly built Cabernet in an older register: cedar and dried cherry rather than sweet oak.',
-    t: 'Napa\'s oldest cellar: firm, savory Cabernet with cedar and dried cherry',
+    style: 'Savoury, firmly built Cabernet in an older register: cedar and dried cherry rather than sweet oak.',
+    t: 'Napa\'s oldest cellar: firm, savoury Cabernet with cedar and dried cherry',
     why: 'The oldest winery in Napa Valley and the place the Mondavi family bought in 1943. The 1965 quarrel that pushed Robert Mondavi out of Charles Krug is the origin of the Robert Mondavi Winery, so the two names are asked together.',
     wines: [
       { n: 'Vintage Select Cabernet Sauvignon', grape: 'Cabernet Sauvignon', note: 'The reserve bottling, made only in selected years' },
@@ -11210,8 +11210,8 @@ var WINE_PRODUCERS = [
     country: 'The United States and Canada', r: 'Napa Valley', sub: 'Yountville',
     founded: '1983',
     holdings: 'The Napanook vineyard at Yountville, a gravelly bench site planted in the nineteenth century.',
-    style: 'Bordeaux restraint transplanted: savory, dusty, with firm dry tannin and no sweetness on the finish.',
-    t: 'Christian Moueix\'s Napa: Bordeaux restraint, dusty tannin, savory depth',
+    style: 'Bordeaux restraint transplanted: savoury, dusty, with firm dry tannin and no sweetness on the finish.',
+    t: 'Christian Moueix\'s Napa: Bordeaux restraint, dusty tannin, savoury depth',
     why: 'Christian Moueix of Pomerol brought a Right Bank name into Napa in 1983, and the wine is the standing example of a European hand in California. The single vineyard, Napanook, is the fact examiners want.',
     wines: [
       { n: 'Dominus', grape: 'Cabernet Sauvignon led Bordeaux blend', note: 'The grand vin from Napanook' },
@@ -11339,7 +11339,7 @@ var WINE_PRODUCERS = [
     country: 'The United States and Canada', r: 'Napa Valley', sub: 'Rutherford',
     founded: '1977',
     holdings: 'Estate vineyards across Napa including Rutherford, Yountville, Calistoga and Carneros, farmed organically.',
-    style: 'Chardonnay kept lean and citrus-driven with apple and lemon oil; reds savory rather than sweet.',
+    style: 'Chardonnay kept lean and citrus-driven with apple and lemon oil; reds savoury rather than sweet.',
     t: 'Grgich\'s Chardonnay line: apple, lemon oil, restraint learned at Montelena',
     why: 'Miljenko Grgich made the Chateau Montelena Chardonnay that won the white flight in Paris in 1976, then founded this estate with Austin Hills in 1977. The name is the human link between the Paris story and a working Napa house.',
     wines: [
@@ -11358,7 +11358,7 @@ var WINE_PRODUCERS = [
     country: 'The United States and Canada', r: 'Sonoma County', sub: 'Sonoma Valley',
     founded: '1953',
     holdings: 'Hillside vineyards above Sonoma town, including the Ambassador\'s 1953 Vineyard, among the oldest Chardonnay and Pinot Noir plantings still in production in the Americas.',
-    style: 'Nutty, firm, long-lived Chardonnay built for age rather than early charm; Pinot Noir savory and structured.',
+    style: 'Nutty, firm, long-lived Chardonnay built for age rather than early charm; Pinot Noir savoury and structured.',
     t: 'The first French barrels in America: nutty, long-lived Chardonnay',
     why: 'James Zellerbach, a former ambassador to Italy, set out to make Burgundy in Sonoma and is credited with introducing French oak barriques and temperature-controlled stainless steel fermentation to American winemaking. That technical first is the examinable point.',
     wines: [
@@ -11621,8 +11621,8 @@ var WINE_PRODUCERS = [
     country: 'The United States and Canada', r: 'Sonoma County', sub: 'Sonoma Coast and Anderson Valley',
     founded: '1993',
     holdings: 'The Gold Ridge estate near Sebastopol plus long-standing contracts in the Sonoma Coast and Anderson Valley; biodynamic farming.',
-    style: 'Cool, savory and transparent: moderate alcohol, stem and earth notes, the site legible through the winemaking.',
-    t: 'Ted Lemon\'s Burgundy grammar in California: cool, savory, transparent',
+    style: 'Cool, savoury and transparent: moderate alcohol, stem and earth notes, the site legible through the winemaking.',
+    t: 'Ted Lemon\'s Burgundy grammar in California: cool, savoury, transparent',
     why: 'Ted Lemon was the first American to run a Burgundy domaine, at Domaine Guy Roulot in Meursault, before founding Littorai. He is the intellectual centre of the cool-climate California argument and was a leading voice in In Pursuit of Balance.',
     wines: [
       { n: 'Hirsch Vineyard Pinot Noir', grape: 'Pinot Noir', note: 'The far Sonoma Coast reference site' },
@@ -11695,7 +11695,7 @@ var WINE_PRODUCERS = [
     country: 'The United States and Canada', r: 'Santa Cruz Mountains', sub: '',
     founded: '1972',
     holdings: 'A high ridge estate above Saratoga, unirrigated, on the property Martin Ray planted in the 1940s.',
-    style: 'Flinty, taut Chardonnay with lemon pith and tension in place of flesh; Pinot Noir lean and savory.',
+    style: 'Flinty, taut Chardonnay with lemon pith and tension in place of flesh; Pinot Noir lean and savoury.',
     t: 'Own-rooted mountain Chardonnay: flint, lemon pith, tension over flesh',
     why: 'The estate descends from Martin Ray, the contrarian who insisted on estate-grown varietal wines decades before the idea was normal, and its Chardonnay selection is one of the heritage clonal sources in California.',
     wines: [
@@ -11798,7 +11798,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       'Rhône Rangers is an informal movement, not an appellation or a legal category',
-      'Qupe\'s Syrah is peppery and savory, so it blinds toward the northern Rhône',
+      'Qupe\'s Syrah is peppery and savoury, so it blinds towards the northern Rhône',
       'Bien Nacido X Block is a named block within a larger grower\'s vineyard'
     ]
   },
@@ -12122,7 +12122,7 @@ var WINE_PRODUCERS = [
     traps: [
       'Lett also planted the first American Pinot Gris, a frequently missed fact',
       'Jory is the volcanic soil of the Dundee Hills; marine sediment lies elsewhere in the valley',
-      'Oregon requires 90 percent of the named variety, not the federal 75'
+      'Oregon requires 90 per cent of the named variety, not the federal 75'
     ]
   },
   {
@@ -12168,8 +12168,8 @@ var WINE_PRODUCERS = [
     country: 'The United States and Canada', r: 'Columbia Valley', sub: 'Walla Walla Valley',
     founded: '1981',
     holdings: 'Estate vineyards in the Walla Walla Valley plus long contracts on older Columbia Valley blocks.',
-    style: 'Dark and savory Cabernet in an older Washington register: dried herb, cedar and firm structure over sweetness.',
-    t: 'Walla Walla\'s second winery: dark, savory Cabernet with old-school grip',
+    style: 'Dark and savoury Cabernet in an older Washington register: dried herb, cedar and firm structure over sweetness.',
+    t: 'Walla Walla\'s second winery: dark, savoury Cabernet with old-school grip',
     why: 'Rick Small founded the second winery in the Walla Walla Valley in 1981, four years after Leonetti. The pair together are the standard answer to how the appellation began.',
     wines: [
       { n: 'Old Vines Cabernet Sauvignon', grape: 'Cabernet Sauvignon', note: 'From some of the oldest Cabernet blocks in the state' },
@@ -12206,8 +12206,8 @@ var WINE_PRODUCERS = [
     country: 'The United States and Canada', r: 'Napa Valley', sub: 'Yountville',
     founded: '1983',
     holdings: 'The Napanook vineyard at Yountville, a gravelly bench planted in the nineteenth century.',
-    style: 'Dry, savory and dusty: Bordeaux tannin and no sweetness on the finish, in a valley that usually offers both.',
-    t: 'Napanook gravel: savory, dusty, Bordeaux-shaped Napa with no sweetness',
+    style: 'Dry, savoury and dusty: Bordeaux tannin and no sweetness on the finish, in a valley that usually offers both.',
+    t: 'Napanook gravel: savoury, dusty, Bordeaux-shaped Napa with no sweetness',
     why: 'The clearest case of a Bordeaux proprietor working in Napa on his own terms, and a single-vineyard wine in a valley of blends. Napanook is the vineyard name a candidate must supply.',
     wines: [
       { n: 'Dominus', grape: 'Cabernet Sauvignon led Bordeaux blend', note: 'Christian Moueix\'s Napa grand vin from a single vineyard' }

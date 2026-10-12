@@ -127,7 +127,7 @@ function readinessLine(lvl){
 /* ---- 4. a verdict only where a verdict belongs ---- */
 function isExamMode(){ return S.mode==='mock'||S.mode==='sim'; }
 var MODE_NOUNS={review:'Weakness Review',weak:'Weakness Review',daily:'Daily Review',
-  drill:'Section Drill',endless:'Endless Practice',flagged:'Bookmark Review',
+  drill:'Section Drill',endless:'Endless',flagged:'Bookmark Review',
   lightning:'Lightning Round',sudden:'Sudden Death'};
 
 var _v10ResultsView=resultsView;
@@ -146,7 +146,7 @@ resultsView=function(){
       pf.className='passfail '+(ok?'pass':'fail');
       pf.textContent=(ok?'PASS':'BELOW '+need+'%')+' · '+score+'/'+done;
     }else{
-      /* practice is not an examination; report the tally and nothing more */
+      /* study is not an examination; report the tally and nothing more */
       pf.className='passfail neutral';
       pf.textContent=score+' of '+done+' correct';
     }
@@ -159,7 +159,7 @@ resultsView=function(){
         ? name+' mock · that clears the '+need+'% theory bar for '+name+'.'
         : name+' mock · '+name+' theory needs '+need+'% in one sitting. Keep drilling.';
     }else{
-      var noun=MODE_NOUNS[S.mode]||'Practice';
+      var noun=MODE_NOUNS[S.mode]||'Study';
       sub.textContent=noun+' · not an examination, so no pass mark is given'
         +((S.mode==='review'||S.mode==='weak')?': this mode serves your worst material by design.':'.');
     }

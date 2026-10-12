@@ -153,7 +153,7 @@ resultsView=function(){
   if(S._oral){
     var sub=v.querySelector('.result-hero .sub2');
     var mins=Math.round((MOCK_SECS-S.remain)/60);
-    if(sub)sub.textContent='The Oral Gauntlet · '+S.results.length+' answers produced in '+mins+' min · graded on your own honor, as the real table grades you';
+    if(sub)sub.textContent='The Oral Gauntlet · '+S.results.length+' answers produced in '+mins+' min · graded on your own honour, as the real table grades you';
   }
   return v;
 };
@@ -436,7 +436,7 @@ function classView(c,back){
   if(c.idx===null){
     var v=el('<div><div class="viewhead"><h2>Classifications &amp; Labels</h2><div class="sub">A nation’s pyramid, label vocabulary, and the traps examiners love.</div></div>'
       +'<div class="seclist">'+INTRO_CLASS.map(function(x,i){return '<button class="secbtn" data-i="'+i+'"><span>'+escT(x.name)+'</span><span class="n">›</span></button>';}).join('')+'</div>'
-      +'<div class="centerrow"><button class="btn gold" id="cls-quiz">Test me on all classifications →</button>'+back+'</div></div>');
+      +'<div class="centerrow"><button class="btn gold" id="cls-quiz">Test me on all classifications</button>'+back+'</div></div>');
     v.querySelectorAll('.secbtn').forEach(function(b){b.onclick=function(){c.idx=+b.dataset.i;render();};});
     v.querySelector('#cls-quiz').onclick=function(){startClassQuiz(null);};
     cmpBackBtn(v);
@@ -452,10 +452,10 @@ function classView(c,back){
     +'<div class="cls-framework">'+escT(x.framework)+'</div>'
     +'<div class="secgroup">Quality hierarchy</div><div class="pyramid">'+pyr+'</div>'
     +'<div class="secgroup">Classification systems</div>'+x.systems.map(function(s){return '<div class="sysitem"><b>'+escT(s.n)+'</b><span>'+escT(s.d)+'</span></div>';}).join('');
-  if(x.aging&&x.aging.length)html+='<div class="secgroup">Aging &amp; ripeness</div>'+x.aging.map(function(a){return '<div class="sysitem"><b>'+escT(a.t)+'</b><span>'+escT(a.d)+'</span></div>';}).join('');
+  if(x.aging&&x.aging.length)html+='<div class="secgroup">Ageing &amp; ripeness</div>'+x.aging.map(function(a){return '<div class="sysitem"><b>'+escT(a.t)+'</b><span>'+escT(a.d)+'</span></div>';}).join('');
   html+='<div class="secgroup">Label terms to know</div>'+x.terms.map(function(t){return '<div class="sysitem"><b>'+escT(t.t)+'</b><span>'+escT(t.d)+'</span></div>';}).join('');
   html+='<div class="secgroup">Watch out for</div>'+x.traps.map(function(t){return '<div class="trap-i">'+escT(t)+'</div>';}).join('');
-  html+='<div class="centerrow"><button class="btn gold" id="cls-quiz">Test me on '+escT(x.name)+' →</button>'+back+'</div></div>';
+  html+='<div class="centerrow"><button class="btn gold" id="cls-quiz">Test me on '+escT(x.name)+'</button>'+back+'</div></div>';
   var v=el(html);
   v.querySelector('#cls-quiz').onclick=function(){startClassQuiz(x.name);};
   cmpBackBtn(v);
@@ -494,7 +494,7 @@ function grapesView(c,back){
     INTRO_GRAPES.filter(function(x){return x.c===g[1];}).forEach(function(x){
       html+='<div class="grape-row"><div class="grape-head"><b>'+escT(x.n)+'</b><span class="grape-struct">Acid '+dots(x.acid)+' · Body '+dots(x.body)+(x.c==='red'?' · Tannin '+dots(x.tan):'')+(x.sweet?' · '+escT(x.sweet):'')+'</span></div>'
         +'<div class="grape-line"><b>Aromas</b> '+escT(x.aroma)+'</div>'
-        +'<div class="grape-line"><b>Regions</b> '+escT(x.reg).replace(/★/g,'*')+(x.syn&&x.syn!=='-'?' · <b>Also called</b> '+escT(x.syn):'')+'</div>'
+        +'<div class="grape-line"><b>Regions</b> '+escT(x.reg).replace(/★/g,'*')+(x.syn&&/[a-z]/i.test(x.syn)&&x.syn!=='N/A'?' · <b>Also called</b> '+escT(x.syn):'')+'</div>'
         +'<div class="grape-line trapline"><b>Trap</b> '+escT(x.trap)+'</div>'
         +(x.wines?'<div class="grape-line"><b>Look for</b> '+escT(x.wines)+'</div>':'')
         +'</div>';
