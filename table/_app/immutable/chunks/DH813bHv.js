@@ -1,0 +1,1 @@
+import{p as e}from"./B2gk4tqC.js";function t(t,n){throw new e(t,n)}export{t};

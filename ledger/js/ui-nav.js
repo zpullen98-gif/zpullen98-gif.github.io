@@ -680,10 +680,15 @@ function todayStudyHTML(n){
     + '<nav class="quiet rows today" aria-label="Today’s study">'
     + rowDoor('data-act="today" data-d="due"', 'Due today', dueTodayLine(t))
     + rowDoor('data-act="today" data-d="quick"', 'Quick quiz', quickQuizLine())
+    + culinaryStudyDoorHTML()
     + (typeof fallStudyDoorHTML === 'function' ? fallStudyDoorHTML() : '')
     + rowDoor('data-act="today" data-d="read" data-n="' + n + '"', 'Next reading', nr ? nr.title + ' · ' + L : 'Everything at ' + L + ' is read. The Library holds the rest.')
     + '<button class="door" data-act="door" data-d="today"><span class="door-name">Tonight’s session</span><span class="door-line">' + esc(tn.line) + '</span>' + (tn.sub ? '<span class="door-sub">' + esc(tn.sub) + '</span>' : '') + '</button>'
     + '</nav></section>';
+}
+function culinaryStudyDoorHTML(){
+  if(typeof hsShared !== 'function' || !hsShared()) return '';
+  return '<a class="door" href="/table/foundations"><span class="door-name">Your culinary terms</span><span class="door-line">The Kitchen Fieldbook in World Table. Definitions, kitchen cues, and daily drills.</span></a>';
 }
 function houseCountLine(){
   const h = typeof hsCurrent === 'function' ? hsCurrent() : null;
