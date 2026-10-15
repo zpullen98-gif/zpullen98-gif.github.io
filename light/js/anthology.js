@@ -105,6 +105,7 @@ function dawnCard(q, number, expanded) {
   return '<article class="dawn-card" data-quote-id="' + esc(q.id) + '">' +
     '<p class="dawn-kicker">' + (number ? '<span>' + number + ' of 10</span> · ' : '') + esc(dawnCollection(q.collection)) + '</p>' +
     evidence + '<blockquote><p>“' + esc(q.text) + '”</p></blockquote>' +
+    (q.gloss ? '<div class="poet-translation"><p><strong>In plain English.</strong> ' + esc(q.gloss) + '</p><p class="note">An original reading aid, not a quotation or a substitute for the Middle English.</p></div>' : '') +
     '<p class="dawn-speaker">' + esc(q.speaker) + '</p>' +
     (q.author && q.author !== q.speaker ? '<p class="dawn-author">' + esc(q.authorCredit || 'Written by ' + q.author) + '</p>' : '') +
     '<p class="dawn-work"><cite>' + esc(q.work) + '</cite>' + (q.year ? ' · ' + esc(q.year) : '') + '</p>' +
@@ -116,7 +117,6 @@ function dawnCard(q, number, expanded) {
       (q.connection ? '<p><strong>The literary connection.</strong> ' + esc(q.connection) + '</p>' : '') +
       '<ul>' + links + '</ul><p class="dawn-checked">Sources checked ' + esc(q.verified) + '. External sources need a connection.</p></div></details>' +
     (q.studyPrompt ? '<details class="poet-reflection"><summary>Study this passage</summary><div class="dawn-provenance">' +
-      (q.gloss ? '<p><strong>In plain English.</strong> ' + esc(q.gloss) + '</p><p class="note">An original reading aid, not a quotation or a substitute for the Middle English.</p>' : '') +
       '<p><strong>Consider.</strong> ' + esc(q.studyPrompt) + '</p>' +
       ((q.themes || []).length ? '<p class="note">Themes: ' + q.themes.map(esc).join(' · ') + '</p>' : '') + '</div></details>' : '') +
     (typeof poetStudyLink === 'function' ? poetStudyLink(q) : '') + castLinks + writerLinks + '<a class="dawn-permalink" href="#/anthology/' + esc(q.id) + '">Open this quotation<span class="sr-only"> by ' + esc(q.speaker) + '</span></a></article>';

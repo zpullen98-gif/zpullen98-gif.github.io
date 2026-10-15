@@ -11,7 +11,7 @@ function poetRoute(arg) {
   var bits = String(arg || '').split('/'), person = poetById(bits[0]);
   var mode = bits[1] || 'passages';
   var work = person && mode === 'work' ? person.works.find(function (w) { return w.id === bits[2]; }) : null;
-  var valid = person && (mode === 'work' ? bits.length === 3 && work : bits.length <= 2 && ['passages', 'works', 'path'].indexOf(mode) > -1);
+  var valid = person && (mode === 'canterbury' ? person.id === 'chaucer' && typeof canterburyRoute === 'function' && canterburyRoute(bits.slice(2)).valid : mode === 'work' ? bits.length === 3 && work : bits.length <= 2 && ['passages', 'works', 'path'].indexOf(mode) > -1);
   return { person: person, mode: mode, work: work, valid: !!valid };
 }
 function poetRows(person, work) {
@@ -51,17 +51,20 @@ function poetWelcome() {
     '<p class="note">These 200 additions also live in The Dawn Anthology. Your earlier selections remain available there. Study prompts and plain-English reading aids are original commentary; the source quotations keep their own wording.</p></section>';
 }
 function poetNav(person, mode) {
+  var tabs = [['passages', 'Study passages'], ['works', 'Works & free editions'], ['path', 'A reading path']];
+  if (person.id === 'chaucer') tabs.splice(1, 0, ['canterbury', 'The Canterbury Tales']);
   return '<nav class="dawn-shelf-nav poet-sections" aria-label="' + esc(person.shortName) + ' study sections">' +
-    [['passages', 'Study passages'], ['works', 'Works & free editions'], ['path', 'A reading path']].map(function (tab) {
+    tabs.map(function (tab) {
       return '<a href="#/poets/' + esc(person.id) + (tab[0] === 'passages' ? '' : '/' + tab[0]) + '"' + (mode === tab[0] || mode === 'work' && tab[0] === 'passages' ? ' aria-current="page"' : '') + '>' + esc(tab[1]) + '</a>';
     }).join('') + '</nav>';
 }
 function poetWorkIntro(person, work) {
   return '<section class="poet-work-intro"><p class="kick">' + esc(work.genre) + '</p><h3>' + esc(work.title) + '</h3><p>' + esc(work.orientation) + '</p>' +
-    '<p>' + poetTextLink(work, 'Read the free text') + '</p><p class="note">' + esc(work.edition) + '. ' + esc(work.note) + '</p></section>';
+    '<p>' + poetTextLink(work, 'Read the free text') + '</p><p class="note">' + esc(work.edition) + '. ' + esc(work.note) + '</p></section>' +
+    (person.id === 'chaucer' && typeof canterburyInvitation === 'function' ? canterburyInvitation(work.id) : '');
 }
 function poetWorks(person) {
-  return '<h3 class="poet-section-title">Works &amp; free editions</h3><p class="note">Each link opens the full work or its section within a complete volume. External editions need an internet connection. The study passages and their notes remain available offline.</p>' +
+  return (person.id === 'chaucer' && typeof canterburyInvitation === 'function' ? canterburyInvitation() : '') + '<h3 class="poet-section-title">Works &amp; free editions</h3><p class="note">Each link opens the full work or its section within a complete volume. External editions need an internet connection. The study passages and their notes remain available offline.</p>' +
     '<div class="poet-work-grid">' + person.works.map(function (w) {
       var count = person.quoteIds.map(dawnById).filter(function (q) { return q && q.studyWorkId === w.id; }).length;
       return '<article class="poet-work-card"><p class="kick">' + esc(w.genre) + ' · ' + count + ' passages</p><h4>' + esc(w.title) + '</h4><p>' + esc(w.orientation) + '</p>' +
@@ -70,7 +73,7 @@ function poetWorks(person) {
     }).join('') + '</div>';
 }
 function poetPath(person) {
-  return '<h3 class="poet-section-title">A reading path</h3><p>' + esc(person.pathIntro) + '</p><ol class="poet-path">' + person.path.map(function (step) {
+  return (person.id === 'chaucer' && typeof canterburyInvitation === 'function' ? canterburyInvitation() : '') + '<h3 class="poet-section-title">A reading path</h3><p>' + esc(person.pathIntro) + '</p><ol class="poet-path">' + person.path.map(function (step) {
     var work = person.works.find(function (w) { return w.id === step.workId; });
     return '<li><h4>' + esc(step.title) + '</h4><p>' + esc(step.note) + '</p><a href="#/poets/' + esc(person.id) + '/work/' + esc(work.id) + '">Explore ' + esc(work.title) + '</a></li>';
   }).join('') + '</ol><section class="poet-method"><h3>Carry a question into the day</h3><p>After reading, write three sentences: what the speaker wants, which detail unsettles your first interpretation, and one question you would ask at the table. Return to that question after reading the full scene or tale.</p>' +
@@ -79,7 +82,7 @@ function poetPath(person) {
 function poetPassages(person, work) {
   var state = poetState(person.id), rows = poetRows(person, work);
   var options = function (value, title, selected) { return '<option value="' + esc(value) + '"' + (selected ? ' selected' : '') + '>' + esc(title) + '</option>'; };
-  return (work ? poetWorkIntro(person, work) : '<p>' + esc(person.readingNote) + '</p>') +
+  return (work ? poetWorkIntro(person, work) : '<p>' + esc(person.readingNote) + '</p>' + (person.id === 'chaucer' && typeof canterburyInvitation === 'function' ? canterburyInvitation() : '')) +
     '<form id="poet-search-form" class="poet-search" role="search" data-poet="' + esc(person.id) + '"><label for="poet-query">Find words, speakers or ideas</label>' +
     '<div class="poet-search-line"><input id="poet-query" type="search" maxlength="180" value="' + esc(state.query) + '" placeholder="Try hospitality, courage or a character"><button class="btn" type="submit">Search</button></div>' +
     '<div class="poet-selects"><label for="poet-work">Work<select id="poet-work">' + options('all', 'All works', !work) + person.works.map(function (w) { return options(w.id, w.title, work && work.id === w.id); }).join('') + '</select></label>' +
@@ -96,7 +99,7 @@ function poetRender(arg) {
   var route = poetRoute(arg), person = route.person;
   if (!route.valid) return poetHeader(person) + '<p class="note" role="status">That study page could not be found.</p><p><a href="#/poets">Return to The Poets’ Study</a></p>';
   return poetHeader(person) + '<div class="poet-author-opening"><p class="kick">' + esc(person.subtitle) + '</p><h2>' + esc(person.name) + '</h2><p>' + esc(person.intro) + '</p><p class="note">100 fresh passages · ' + person.works.length + ' works and sections · Sources, context and questions beside every passage</p></div>' +
-    poetNav(person, route.mode) + (route.mode === 'works' ? poetWorks(person) : route.mode === 'path' ? poetPath(person) : poetPassages(person, route.work));
+    poetNav(person, route.mode) + (route.mode === 'canterbury' ? canterburyRender(String(arg).split('/').slice(2)) : route.mode === 'works' ? poetWorks(person) : route.mode === 'path' ? poetPath(person) : poetPassages(person, route.work));
 }
 function poetCapture(id) {
   var state = poetState(id), input = document.getElementById('poet-query'), theme = document.getElementById('poet-theme');
@@ -120,6 +123,7 @@ FL_ACTS.poetMore = function (el) {
   announce('More passages shown.');
 };
 FL_VIEWS.poets = { label: 'The Poets’ Study', title: 'The Poets’ Study', render: poetRender, after: function () {
+  if (typeof canterburyAfter === 'function') canterburyAfter();
   var form = document.getElementById('poet-search-form'); if (!form) return;
   var id = form.getAttribute('data-poet'), state = poetState(id);
   form.addEventListener('submit', function (event) { event.preventDefault(); poetCapture(id); state.limit = 12; render(); document.getElementById('poet-query').focus(); announce(document.getElementById('poet-result-count').textContent); });

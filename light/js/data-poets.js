@@ -610,34 +610,34 @@ var DAWN_POETS = [
     "name": "Geoffrey Chaucer",
     "shortName": "Chaucer",
     "subtitle": "The road, the dream & the shared table",
-    "intro": "Travel among pilgrims, dreamers, lovers and teachers. Attend to the person telling a story as closely as the story itself, and discover how a shared journey brings different claims to wisdom into conversation.",
-    "readingNote": "The Middle English is retained from the named Skeat editions. Open Study this passage for an original plain-English reading aid, then return to the actual words. Canterbury Group letters and line numbers follow Skeat, rather than a different edition’s fragment numbering. A tale’s narrator, a pilgrim and Chaucer are distinct voices.",
-    "pathIntro": "Start with the people gathering for a journey. Then compare competing accounts of authority, freedom and love before following a dream into a wider conversation.",
+    "intro": "Join Chaucer’s pilgrims at the inn, follow his lovers and dreamers, and listen to how different people explain their lives. Start with the original words and a simple modern-English reading aid. Then ask who is speaking, what is happening, and what the words help you notice.",
+    "readingNote": "The quotations keep the Middle English of the named Skeat editions. The current-English reading aids are our own prose explanations, not Chaucer’s exact words or a complete translation of each work. Read the original and the aid together: jokes, rhyme and double meanings do not always fit into one smooth sentence. Canterbury Group letters and line numbers follow Skeat. Chaucer the author, the pilgrim narrator and a character inside a tale are different voices.",
+    "pathIntro": "Begin with a few people at the inn and one short tale. Add the trickier debates once you recognise who is speaking. A small passage understood well is a better start than rushing through unfamiliar words.",
     "path": [
       {
         "workId": "canterbury-general-prologue",
-        "title": "Notice the people at the table",
-        "note": "Read a pilgrim’s portrait aloud and list its concrete details. Ask which details support the narrator’s praise and which quietly complicate it."
+        "title": "Meet the company at the inn",
+        "note": "Start with the Host, the Clerk and the Franklin. For each portrait, write three things you learn about the person. Then separate the narrator’s praise from the details that might make you question it."
+      },
+      {
+        "workId": "canterbury-pardoner-prologue",
+        "title": "Learn to separate a speaker from a message",
+        "note": "Read the Pardoner’s account of his methods, then follow it with his tale of the three rioters. In plain words, explain why his warning about greed may be true even though he is greedy himself."
       },
       {
         "workId": "canterbury-wife-prologue",
-        "title": "Listen to a claim of authority",
-        "note": "Track the Wife’s movement between experience, books and argument. Ask how the voice gains an audience and which questions it leaves unsettled."
+        "title": "Hear the argument behind the confidence",
+        "note": "Read the Wife’s opening claim about experience and the example of the painted lion, then read her tale. Ask who gets to decide what counts as knowledge and who gets to choose within a marriage."
       },
       {
         "workId": "canterbury-franklins-tale",
-        "title": "Weigh freedom against a promise",
-        "note": "Keep a record of what each character promises and what each freely gives up. Revisit the tale’s invitation to judge generosity only after reading the whole exchange."
-      },
-      {
-        "workId": "troilus-and-criseyde",
-        "title": "Read love through the narrator’s choices",
-        "note": "Listen for changes between confidence, sympathy and foreknowledge. Ask how the narrator’s account shapes your judgement of each lover."
+        "title": "Think carefully about a promise",
+        "note": "List what Dorigen, Arveragus, Aurelius and the learned man each agree to do. Then ask what is freely chosen, what creates pressure and what is finally released. Give your own reasoned answer to the closing question."
       },
       {
         "workId": "parliament-of-fowls",
-        "title": "Allow more than one voice to be heard",
-        "note": "Read the birds’ debate as an encounter among different interests. Consider what remains unresolved when the assembly tries to settle a private choice."
+        "title": "Carry the questions into a dream",
+        "note": "Follow the birds’ debate and the female eagle’s request for time. Compare her freedom to choose with the choices available to Emelye and Dorigen in the tales. Notice how Chaucer can end with song while leaving a question open."
       }
     ],
     "works": [
@@ -649,10 +649,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "A spring pilgrimage gathers strangers at the Tabard Inn. Read the portraits slowly: praise, clothes, food and professional habits can reveal more than the narrator openly judges.",
+        "orientation": "A group of travellers meets at the Tabard Inn in Southwark before going to Canterbury. The narrator introduces them through their work, clothes, food, manners and speech. The Host proposes a storytelling contest with supper as the prize. Read the details beside the praise: a narrator who sounds impressed can still give you reasons to question a pilgrim.",
         "questions": [
-          "Where does apparent praise become an invitation to question a pilgrim?",
-          "How do the inn, the meal and the storytelling agreement turn strangers into a company?"
+          "Choose one pilgrim. What do they do, what does the narrator say about them, and do those two kinds of evidence agree?",
+          "How do the innkeeper’s welcome and the proposed meal turn strangers into a group?"
         ]
       },
       {
@@ -663,10 +663,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "Two imprisoned knights love Emelye, while Theseus tries to impose order on rivalry, accident and death. Keep Emelye’s own wishes in view beside the men’s ideals.",
+        "orientation": "Palamon and Arcite, two imprisoned knights, both fall in love with Emelye. Duke Theseus tries to settle their rivalry through a tournament, but chance, the gods and death upset human plans. Emelye first asks to remain unmarried. Keep her wishes in view while the men talk about love and honour.",
         "questions": [
-          "How does Emelye’s prayer complicate the supposed romance?",
-          "Does Theseus’s final account of necessity console everyone equally?"
+          "What does each lover think would make him happy, and why does getting it fail to solve everything?",
+          "Whose wishes does Theseus’s final marriage arrangement fulfil, and whose voice is least heard?"
         ]
       },
       {
@@ -677,10 +677,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "The Miller disrupts the orderly sequence after the Knight’s romance. The narrator’s apology makes readers responsible for how they receive a deliberately unruly tale.",
+        "orientation": "After the Knight’s formal romance, the drunken Miller insists on telling the next story. The Host’s plan for an orderly sequence breaks down. The narrator warns readers that the story will be rude and tells them they can turn the page. This apology also invites us to notice who chooses what a book contains.",
         "questions": [
-          "What changes when the Miller refuses to wait his turn?",
-          "Does the narrator’s apology protect his audience or advertise the coming story?"
+          "Why does the Miller want to answer the Knight instead of waiting his turn?",
+          "Does the narrator’s warning excuse the story, advertise it, or do both?"
         ]
       },
       {
@@ -691,10 +691,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "An Oxford student turns learning and a false flood warning into tools of deception. The comedy asks readers to notice who controls information and who pays for misplaced trust.",
+        "orientation": "In Oxford, Nicholas, a student, plots with his landlord’s young wife Alisoun to deceive her husband. A false prediction of a flood gives the lovers their opportunity, while another suitor becomes part of the joke. This is a bawdy comic tale: cleverness does not make the characters kind or trustworthy. It answers the Knight’s elevated love story with bodies, tricks and ordinary households.",
         "questions": [
-          "How does Nicholas turn scholarly authority into practical power?",
-          "What makes the carpenter’s trust understandable even while the tale laughs at him?"
+          "How does Nicholas use the appearance of learning to make a false story convincing?",
+          "Who is allowed to laugh at the ending, and who pays for that laughter?"
         ]
       },
       {
@@ -705,10 +705,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "Alisoun places her five marriages beside the authorities used to judge women. Her lively argument invites scrutiny of experience, interpretation and the power to tell a life.",
+        "orientation": "Alisoun of Bath tells the company about her five marriages and argues with the books used to judge women. Her prologue is a speech about her life, not yet the Arthurian tale she will tell afterwards. She values experience but also uses learned texts when they support her. Listen for confidence, jokes, contradictions and the unequal power inside marriage.",
         "questions": [
-          "When does Alisoun use the authorities she also challenges?",
-          "How does the story of who painted the lion change the way you read a moral example?"
+          "When does Alisoun challenge a book’s authority, and when does she claim that authority for herself?",
+          "What does the lion’s picture teach you about who gets to write the evidence?"
         ]
       },
       {
@@ -719,10 +719,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "A knight who has committed rape must discover what women most desire. The old woman who supplies an answer later challenges his assumptions about beauty, poverty and nobility.",
+        "orientation": "In an Arthurian story, a knight who has raped a woman must discover what women most desire. An old woman gives him the answer, then requires him to marry her. When he despises her age and social rank, she challenges his ideas about nobility. The magical ending raises questions about choice and control without cancelling the harm that begins the tale.",
         "questions": [
-          "How far does the knight’s final surrender of choice answer the harm with which the tale begins?",
-          "What does the old woman claim must be earned rather than inherited?"
+          "How does the knight move from repeating an answer about women’s power to giving his wife a choice?",
+          "Which parts of the ending feel like a resolution, and which ethical questions remain?"
         ]
       },
       {
@@ -733,10 +733,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "The Pardoner openly describes the tricks by which his preaching earns money. His confession separates the force of a moral story from the integrity of its performer.",
+        "orientation": "The Pardoner tells the pilgrims how he makes money through sermons and supposed holy relics. He preaches against greed while admitting that greed is his own motive. His account asks you to separate a message from the person delivering it. Understanding his trick will matter when he later tries to sell to the company itself.",
         "questions": [
-          "Does knowing the preacher’s motive change the truth of his warning?",
-          "Which details show preaching functioning as a performance or a sale?"
+          "What makes his performance persuasive to an audience that does not know the trick?",
+          "Can a corrupt teacher tell a true moral story, and what should a listener do with that knowledge?"
         ]
       },
       {
@@ -747,10 +747,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "Three rioters set out to find Death and discover gold instead. Read the change in their desires alongside the Pardoner’s admission that he also seeks profit.",
+        "orientation": "Three drunken men swear to kill Death. An old man directs them to a tree, where they find gold. They stop thinking about their mission and begin plotting for the money. Their own greed brings the story to its deadly end. Read the warning beside the Pardoner’s open admission that he, too, is motivated by profit.",
         "questions": [
-          "At what point does shared purpose become private calculation?",
-          "Why does the encounter with the old man matter before the discovery of the treasure?"
+          "At what point does the men’s shared promise become a plan to harm one another?",
+          "What does the text actually tell you about the old man, and what does it leave uncertain?"
         ]
       },
       {
@@ -761,10 +761,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "A rooster’s dream and a fox’s flattery turn a farmyard escape into a debate about interpretation and choice. The learned voices are part of the comedy, not a guarantee of wisdom.",
+        "orientation": "Chauntecleer, a proud rooster, has a frightening dream. His companion Pertelote argues with him about its meaning, then a fox uses flattery to catch him. The rooster escapes through another trick with words. Learned arguments, farmyard animals and grand heroic language make the story funny while leaving several possible lessons to sort through.",
         "questions": [
-          "How do the rooster and the fox each mistake the power of their own speech?",
-          "What happens when an apparently simple animal story asks you to sift its meaning?"
+          "What causes the rooster’s danger and what allows his escape?",
+          "Compare the rooster’s lesson with the fox’s. Why is a sensible rule not enough to make its speaker good?"
         ]
       },
       {
@@ -775,10 +775,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "A promise made under distress entangles Dorigen, her husband, a suitor and a learned magician. Its ending asks you to compare their acts of release and generosity.",
+        "orientation": "Dorigen and Arveragus promise to respect one another in marriage. While her husband is away, Dorigen makes an apparently impossible promise to a suitor: she will accept him if he removes the dangerous coastal rocks. A learned man makes the rocks appear to vanish, and her promise becomes a crisis. The ending asks who acts most generously, but Dorigen’s freedom and distress also need to be heard.",
         "questions": [
-          "How does the tale distinguish a freely given promise from pressure?",
-          "Which character gives up the most, and what evidence supports your answer?"
+          "What is freely promised, what is promised under pressure, and what is finally given up?",
+          "How would your answer to the closing generosity question change if you began with Dorigen’s wishes?"
         ]
       },
       {
@@ -789,10 +789,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "Walter subjects Griselda to cruel tests of obedience, while the Clerk and the closing envoy complicate the lesson. Distinguish the story’s suffering from the different interpretations offered at its end.",
+        "orientation": "Walter, a powerful lord, marries the poor Griselda and subjects her to cruel tests of obedience, including making her believe her children have been killed. The Clerk sometimes condemns Walter directly. Near the end he turns endurance towards a religious lesson; a comic closing poem then urges wives to talk back. These different endings prevent an easy rule that a good wife must suffer silently.",
         "questions": [
-          "Where does the narrator explicitly criticise Walter’s testing?",
-          "How does the envoy change the demand for silence and patience?"
+          "Where does the Clerk condemn Walter, rather than merely describe what he does?",
+          "How do the story, its religious explanation and the comic envoy pull your judgement in different directions?"
         ]
       },
       {
@@ -803,10 +803,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "The story of Phoebus’s crow leads to an extended warning about speech. Its advice raises difficult questions about truth, discretion and the power of those who receive unwelcome news.",
+        "orientation": "A crow tells Phoebus that his wife has been unfaithful. Phoebus kills her, regrets it and punishes the crow. The Manciple then repeats his mother’s advice to control the tongue. Because the crow told the truth, this is more difficult than a simple warning against lying or gossip: it also concerns dangerous power and the punishment of a messenger.",
         "questions": [
-          "Does the crow’s punishment make silence virtuous, prudent or fearful?",
-          "How do the images of a weapon and a walled tongue shape the closing lesson?"
+          "Does the crow’s fate show that speech is wrong, or that powerful listeners can be unjust?",
+          "When is silence wise, and when might it protect the person causing harm?"
         ]
       },
       {
@@ -817,10 +817,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "A Trojan love story develops through persuasion, secrecy and the pressure of war. Follow the changing distance between what each character believes and what the sympathetic but questioning narrator tells us.",
+        "orientation": "During the Trojan War, Troilus and the widowed Criseyde become lovers with the help of her uncle Pandarus. His persuasion and deception shape their choices. A political exchange sends Criseyde into the Greek camp and separates them. The narrator moves between sympathy, blame and religious reflection, so his way of telling matters as much as the events.",
         "questions": [
-          "How does Pandarus’s skill with words shape the lovers’ choices?",
-          "Where does the narrator resist the inherited judgement of Criseyde, and where does he repeat it?"
+          "When does Pandarus help someone, and when does his help become pressure?",
+          "How much freedom does Criseyde have at each stage, and how does the narrator influence your judgement of her?"
         ]
       },
       {
@@ -831,10 +831,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "A sleepless reader enters a dream and meets a grieving knight. The poem explores how indirect language, patient conversation and eventual recognition can approach another person’s loss.",
+        "orientation": "A sleepless narrator reads a story, falls asleep and dreams of meeting a man in black who is grieving. The dreamer struggles to understand the man’s indirect account of loss before finally hearing that his beloved is dead. The poem explores how listening, misunderstanding and patient conversation can approach another person’s grief.",
         "questions": [
-          "When does the dreamer listen well, and when does he fail to understand?",
-          "How do the opening book and the final decision to write frame the work of mourning?"
+          "Which replies show that the dreamer is listening, and which show that he has not yet understood?",
+          "Why might someone speak about grief through a long story before naming the death directly?"
         ]
       },
       {
@@ -845,10 +845,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "An eagle carries a bookish dreamer into a world of fame, sound and rumour. The unfinished poem asks how stories travel and why public reputation can detach itself from truth.",
+        "orientation": "A bookish dreamer called Geffrey is carried by an eagle into an extraordinary world of sound, public reputation and rumour. Fame does not distribute honour fairly, and truth can travel mixed with lies. The surviving poem breaks off without resolving everything. Read the dream as a series of questions about how information and reputations are made.",
         "questions": [
-          "How do the eagle’s explanations both educate and comically overwhelm the dreamer?",
-          "What distinguishes lasting artistic memory from the circulation of rumour?"
+          "What does the eagle explain clearly, and where does his learned manner become comic?",
+          "What evidence would you need before trusting a report or someone’s reputation?"
         ]
       },
       {
@@ -859,10 +859,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "Reading Cicero’s Dream of Scipio leads the narrator into a garden where birds debate love under Nature’s rule. Different kinds of birds bring different values, while the female eagle insists on time to choose.",
+        "orientation": "After reading about Scipio’s dream, the narrator dreams of a garden where birds debate love under Nature’s rule. Different birds speak from different ranks and interests. Several male eagles want the same female eagle, but she asks for time and a free choice. A cheerful song ends the gathering without forcing her to decide.",
         "questions": [
-          "How do differences of rank and species affect whose argument is respected?",
-          "What does the female eagle’s request reveal about the limits of collective judgement?"
+          "Whose advice is taken seriously, and whose is dismissed because of the kind of bird giving it?",
+          "Why is asking for more time a meaningful answer rather than simply a failure to decide?"
         ]
       },
       {
@@ -873,10 +873,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "This moral ballade advises steadiness amid ambition and Fortune’s changes. Read its movement from practical self-command towards a Christian understanding of pilgrimage.",
+        "orientation": "This short poem advises the reader to resist competitive ambition, live truthfully and be content with enough. It then turns earthly life into a pilgrimage towards a heavenly home. Its practical advice belongs to that Christian view of life, rather than being only a plan for personal calm.",
         "questions": [
-          "What kinds of ambition does the first stanza distrust?",
-          "How does the final pilgrimage image change the meaning of finding contentment?"
+          "Which kinds of ambition does the poem question, and which responsibilities does it still leave with the reader?",
+          "How does thinking of life as a journey change the meaning of being content?"
         ]
       },
       {
@@ -887,10 +887,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "The poem separates inherited wealth and titles from moral nobility. Its repeated reference to religious and royal rank tests whether outward office can establish inward worth.",
+        "orientation": "This short poem asks what makes a person truly noble. Its answer is goodness in conduct, not inherited money, impressive titles or high office. The same refrain challenges bishops and rulers as well as ordinary heirs. Gentilesse means moral nobility here, not simply gentle manners.",
         "questions": [
-          "What can parents leave to an heir, and what does the poem say they cannot?",
-          "How does the repeated list of honours expose the limits of rank?"
+          "What can an heir inherit, and what must the heir practise for themselves?",
+          "Why does the poem repeat its challenge to people wearing religious and royal symbols of rank?"
         ]
       },
       {
@@ -901,10 +901,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "An imagined earlier world offers a standard by which to criticise greed, luxury and coercion. Its simplicity is a moral and literary construction, not a factual account of prehistory.",
+        "orientation": "The poem imagines an earlier world without the greed, luxury and violence of its present. That golden age is a moral picture used to criticise society, not a reliable account of how prehistoric people lived. Simple material conditions are set beside mutual trust.",
         "questions": [
-          "Which costs of wealth and power become visible through the imagined past?",
-          "What should you preserve or question when using a golden age to criticise the present?"
+          "Which harms of wealth and power become easier to see through this imagined comparison?",
+          "What might an ideal picture of the past help you notice, and what might it hide?"
         ]
       },
       {
@@ -915,10 +915,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "A suffering plaintiff and personified Fortune argue about change, friendship and self-command. Attend to who is speaking before treating any line as the poem’s settled conclusion.",
+        "orientation": "A person who has suffered bad fortune argues with Fortune, who is imagined as a speaking figure. They disagree about loss, friendship and what remains under a person’s control. Notice the change of speaker before treating a memorable line as the whole poem’s conclusion.",
         "questions": [
-          "What does the plaintiff claim remains beyond Fortune’s control?",
-          "How does Fortune’s reply alter the plaintiff’s account of loss?"
+          "What does the complaining speaker claim Fortune cannot take away?",
+          "How does Fortune challenge that account when she answers?"
         ]
       },
       {
@@ -929,10 +929,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "The ballade laments a world in which words and conduct diverge, then turns towards a ruler’s responsibility. Its public ethics depend on promises being more than attractive language.",
+        "orientation": "The poem contrasts an ideal past of honest promises with a present full of unreliable words and corrupt behaviour. It ends by addressing a ruler and asking for public justice. The ideal past is part of the poem’s argument, not established historical fact.",
         "questions": [
-          "How does private unreliability become a political problem in the poem?",
-          "Which duties does the envoy place on the ruler rather than on subjects alone?"
+          "How does a broken promise between individuals become a problem for a whole society?",
+          "What does the final address ask the ruler to do?"
         ]
       },
       {
@@ -943,10 +943,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
         "access": "Free full text",
         "note": "Complete Middle English text in a public-domain historical edition. The linked volume also contains editorial notes; the glosses here are original reading aids.",
-        "orientation": "A compact complaint to a copyist makes textual accuracy personal and material. Rubbing, scraping and rewriting remind us that a surviving literary work also depends on careful hands.",
+        "orientation": "In a short, irritated address, the speaker tells a copyist called Adam to take more care. Bad copying forces the writer to rub, scrape and correct the manuscript. The joke has a practical point: literature reaches future readers through the work of people who can preserve or damage its words.",
         "questions": [
-          "What does the speaker’s repeated correction reveal about manuscript production?",
-          "How can this poem sharpen your own habits of quotation and attribution?"
+          "Which physical actions show the effort needed to correct a manuscript?",
+          "How would the same problem appear when copying a quotation or checking a source today?"
         ]
       },
       {
@@ -957,10 +957,10 @@ var DAWN_POETS = [
         "edition": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
         "access": "Free full text",
         "note": "Free surviving Middle English text. The prologue outlines five parts; the principal surviving text comprises the first two, with supplementary material printed separately in this edition.",
-        "orientation": "Addressed to young Lowis, the treatise explains an astronomical instrument through accessible English and practical instruction. Its prologue offers a remarkably concrete account of teaching, translation and the limits of a small tool.",
+        "orientation": "Chaucer addresses young Lowis and explains how to use an astrolabe, an instrument for working with positions in the sky. He chooses English, accepts useful repetition and admits what a small instrument cannot show precisely. The opening is a practical account of how to teach a learner, even before the astronomical exercises begin.",
         "questions": [
-          "How does the author adapt both language and repetition to the learner?",
-          "Where does the treatise distinguish an instrument’s useful power from its limits?"
+          "How does he adapt his language and method to the child he is teaching?",
+          "Why can an honest statement about a tool’s limits make its instructions more trustworthy?"
         ]
       }
     ],
