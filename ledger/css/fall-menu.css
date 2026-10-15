@@ -36,6 +36,19 @@
 .fall-question{font-size:clamp(1.25rem,3vw,1.6rem);line-height:1.55;color:var(--brass-2);text-align:center;max-width:700px}
 .fall-answer{max-width:720px;margin-inline:auto}.fall-answer p{margin:0}
 .fall-empty{padding:24px 0;line-height:1.7}
+.fall-card-art{display:block;min-width:0;margin:-24px -24px 6px;overflow:hidden;border-bottom:1px solid var(--house-line)}
+.fall-card-art img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain}
+.fall-card-art .teaching-image-missing{padding:18px;font-size:.9rem;line-height:1.6;color:var(--cream-dim)}
+.fall-art .eyebrow{margin-bottom:10px}.fall-art .teaching-image{max-width:780px;margin:0 auto 24px}
+.fall-art .teaching-image img,.fall-art-answer .teaching-image img{display:block;width:100%;height:auto;object-fit:contain;border-radius:12px 12px 2px 2px}
+.fall-art .teaching-image-key{max-width:780px;margin-inline:auto;columns:1;padding-left:22px}
+.fall-art .teaching-image-key li,.fall-art-answer .teaching-image-key li{break-inside:avoid;margin-bottom:16px}
+.fall-art .teaching-image-key strong,.fall-art-answer .teaching-image-key strong{color:var(--brass-2);display:block;margin-bottom:5px}
+.fall-art .teaching-image-key span,.fall-art-answer .teaching-image-key span{display:block;font-size:1rem;line-height:1.7}
+.fall-art-answer{width:100%;max-width:780px;margin:12px auto;text-align:left;min-width:0}
+.fall-art-answer .teaching-reference{margin:0}.fall-art-answer summary{min-height:44px;line-height:1.6;cursor:pointer}
+.fall-art-answer .teaching-image-key{columns:1}.fall-art-answer .teaching-image{max-width:100%}
+.fall-art img[hidden],.fall-art-answer img[hidden],.fall-card-art img[hidden]{display:none}
 .fall-card:focus-visible,.fall-door:focus-visible,.fall-note summary:focus-visible{outline:3px solid var(--brass-2);outline-offset:4px}
-@media(max-width:639px){.fall-grid{grid-template-columns:1fr;gap:14px}.fall-card,.fall-panel,.fall-door{padding:18px}.fall-tabs,.fall-practice-bar{gap:8px}.fall-heading{padding-top:12px}.fall-panel ul{padding-left:18px}.fall-line blockquote{font-size:1.05rem;padding-left:12px}}
+@media(max-width:639px){.fall-grid{grid-template-columns:1fr;gap:14px}.fall-card,.fall-panel,.fall-door{padding:18px}.fall-card-art{margin:-18px -18px 6px}.fall-tabs,.fall-practice-bar{gap:8px}.fall-heading{padding-top:12px}.fall-panel ul{padding-left:18px}.fall-line blockquote{font-size:1.05rem;padding-left:12px}}
 @media print{.fall-tabs,.fall-practice-bar,.fall-search-label,#fall-menu-q{display:none}.fall-card,.fall-panel,.fall-door{background:white;border-color:#777;color:#222;box-shadow:none}.fall-heading h2,.fall-panel h3,.fall-card h3,.fall-cites a{color:#222}.fall-card,.fall-panel{break-inside:avoid}}

@@ -1,7 +1,7 @@
 The World Table
-commit 7b8763126be4da5d74cd7c87a88f2a4f7459ca95
+commit fb5e4271702498f1c0226d68cf4369355fbccb85
 branch codex/world-table-visual-learning
-built  2026-10-15T19:50:28.587Z
+built  2026-10-15T20:28:28.340Z
 
 Written by tools/postbuild.mjs. The monorepo wing is a copy of this
 directory; this file is how a copy says where it came from.

@@ -101,8 +101,23 @@ function fallRecallHTML(card, flipped, head, front, answer, grade){
   if(!flipped) return '<div class="col">' + head + '<div class="panel p5 col tc study-face">' + front + heading + question
     + '<p class="small dim">Say your answer aloud before you reveal it.</p><button class="btn btn-brass" data-act="fc-flip">Flip</button></div></div>';
   return '<div class="col">' + head + '<div class="panel p5 col study-face">' + answer + heading + question
-    + '<div class="fall-answer">' + fallParagraph(card.back) + '</div>' + fallCites(card.sourceIds)
+    + '<div class="fall-answer">' + fallParagraph(card.back) + '</div>' + fallCites(card.sourceIds) + fallArtHTML(card.itemId, true)
     + '<a class="chip fall-read-link" href="' + esc(fallHref(card.itemId)) + '">Read the full study card</a>' + grade + '</div></div>';
+}
+function fallArtHTML(itemId, collapsed){
+  const id = 'fall-art-' + itemId;
+  if(typeof LedgerTeaching === 'undefined' || !LedgerTeaching.entries[id]) return '';
+  if(collapsed) return '<div class="fall-art-answer">' + LedgerTeaching.disclosure(id, 'Explore the teaching illustration and ingredient cues') + '</div>';
+  return '<section class="fall-panel fall-art"><div class="eyebrow">The autumn field guide</div><h3>Read the ingredients</h3>'
+    + LedgerTeaching.lesson(id) + '</section>';
+}
+function fallArtThumbnailHTML(itemId){
+  const id = 'fall-art-' + itemId;
+  const entry = typeof LedgerTeaching === 'undefined' ? null : LedgerTeaching.entries[id];
+  if(!entry || !entry.thumb) return '';
+  return '<span class="fall-card-art" data-teaching-image="' + esc(id) + '"><img src="' + esc(entry.thumb.src)
+    + '" width="' + entry.thumb.width + '" height="' + entry.thumb.height + '" alt="' + esc(entry.alt)
+    + '" loading="lazy" decoding="async"><span class="teaching-image-missing" hidden>The ingredient study remains available inside.</span></span>';
 }
 function fallMenuDoorHTML(){
   return '<a class="fall-door" href="#/menu/fall"><strong>Fall 2026</strong><span>Food, cocktails and the stories to tell at the table.</span></a>';
@@ -146,7 +161,7 @@ function fallRowsHTML(){
   if(!rows.length) return '<p class="fall-empty">No matches. Try an ingredient or another name.</p>';
   return '<div class="fall-grid">' + rows.map(function(item){
     const count = fallList(item.drills).length;
-    return '<a class="fall-card" href="' + esc(fallHref(item.id)) + '"><span class="eyebrow">' + esc(item.menuSection || (fallKind(item) === 'food' ? 'The autumn table' : 'The autumn bar')) + '</span>'
+    return '<a class="fall-card" href="' + esc(fallHref(item.id)) + '">' + fallArtThumbnailHTML(item.id) + '<span class="eyebrow">' + esc(item.menuSection || (fallKind(item) === 'food' ? 'The autumn table' : 'The autumn bar')) + '</span>'
       + '<h3>' + esc(item.name) + '</h3><p>' + esc(item.shortDescription || fallList(item.listedIngredients).join(', ')) + '</p>'
       + '<span class="fall-card-foot">Explore and practise · ' + count + ' recall prompts</span></a>';
   }).join('') + '</div>';
@@ -203,7 +218,7 @@ function renderFallMenu(){
     + '<div class="fall-practice-bar"><button class="btn btn-brass" data-act="fall-practise" data-deck="fall:item:' + esc(item.id) + '">Practise this item</button>'
     + '<a class="btn btn-ghost" href="#/menu/fall">All fall items</a></div>'
     + '<div class="fall-tabs" role="group" aria-label="Study this menu item">' + tabs.map(function(row){ return '<button class="chip' + (part === row[0] ? ' on' : '') + '" data-act="fall-part" data-k="' + row[0] + '" aria-pressed="' + (part === row[0] ? 'true' : 'false') + '">' + row[1] + '</button>'; }).join('') + '</div>'
-    + '<div class="fall-content">' + (part === 'read' ? fallTablesideHTML(item) + '<section class="fall-panel"><h3>Remember the ingredients</h3>' + fallBulletList(item.listedIngredients) + '</section>'
+    + '<div class="fall-content">' + (part === 'read' ? fallArtHTML(item.id, false) + fallTablesideHTML(item) + '<section class="fall-panel"><h3>Remember the ingredients</h3>' + fallBulletList(item.listedIngredients) + '</section>'
       : part === 'ingredients' ? fallIngredientsHTML(item) : part === 'origins' ? fallOriginsHTML(item) : fallChecksHTML(item))
     + fallSourcesHTML(item) + '</div></article>';
 }
@@ -236,5 +251,5 @@ function fallSearchEntries(){
     body: [item.shortDescription].concat(fallList(item.listedIngredients)).join(' ').toLowerCase(), h: fallHref(item.id) }; });
 }
 function fallOwnsKey(e){
-  return !!(e && e.target && e.target.closest && e.target.closest('.fall-study details, .fall-index a, .fall-cites a, .fall-study a, .fall-read-link'));
+  return !!(e && e.target && e.target.closest && e.target.closest('.fall-study details, .fall-index a, .fall-cites a, .fall-study a, .fall-read-link, .fall-art-answer'));
 }
