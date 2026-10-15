@@ -235,7 +235,7 @@ function allDrinks(){
   allDrinks._c = out;
   return out;
 }
-function cardKey(d){ return d.src==='Cocktails' ? d.name : d.src+' · '+d.name; }
+function cardKey(d){ return d.src === 'Fall 2026' && d.fallKey ? 'Fall 2026 · ' + d.fallKey : d.src==='Cocktails' ? d.name : d.src+' · '+d.name; }
 function cardTicket(d, hideName){
   if(d.src==='Cocktails' || d.src==='My Bar') return ticketHTML(d.ref, hideName);
   if(d.src==='Shots') return shotTicketHTML(d.ref, hideName);
@@ -456,6 +456,7 @@ const fitsLine = key => d => typeof keptLineOf === 'function' && !!keptLineOf(d,
    mark the same way (js/house-bar.js), and on nothing hers */
 const fitsHouse = mode => d => typeof houseCardFits === 'function' && !!houseCardFits(mode, d);
 const FC_MODES = [
+  ['fall','Fall menu recall','Recall ingredients, origins and tableside language from the uploaded menu sheets, then flip.', d => d.src === 'Fall 2026'],
   ['name2spec','Name to Spec','The order comes in. Recite the whole build out loud, then flip and grade yourself.', fitsName],
   ['spec2name','Spec to Name','Read a blind ticket and call the drink, the service-printer skill.', fitsName],
   ['build','Assemble the Ticket','An ingredient bank with decoys mixed in. Select every line that belongs in the spec.', hasSpec],
@@ -608,6 +609,7 @@ function renderFlashcards(){
   /* the house's words: the word and its question on the front, what was kept on the back;
      a component's card the same, with its kind (Ingredients, Techniques, Stories) above,
      and a producer's with its kind (Maker, Origin and the rest) */
+  if(c.src === 'Fall 2026' && typeof fallRecallHTML === 'function') return fallRecallHTML(c, fc.flipped, head, FRONT, ANSWER, grade);
   if(fc.mode==='word' || fc.mode==='component' || fc.mode==='producer'){
     const kindLine = (fc.mode==='component' || fc.mode==='producer') && c.group ? '<div class="eyebrow fc-kind">'+esc(c.group)+'</div>' : '';
     if(!fc.flipped){

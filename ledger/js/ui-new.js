@@ -219,6 +219,7 @@ let SEARCH_INDEX = null;
 function buildSearchIndex(){
   const ix = [];
   if(typeof methodStudySearchEntries === 'function') ix.push(...methodStudySearchEntries());
+  if(typeof fallSearchEntries === 'function') ix.push(...fallSearchEntries());
   /* the book by its name: a book is never numbered where a reader sees it */
   COCKTAILS.forEach(c => ix.push({ t:c.name, s:c.family+' · '+c.spirit+' · '+bookName(c.tier),
     body:(c.spec.join(' ')+' '+c.method+' '+c.garnish).toLowerCase(), h:'#/library/'+slugify(c.name) }));

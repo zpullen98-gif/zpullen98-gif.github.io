@@ -3,7 +3,7 @@
    The Ledger teaches 365 cocktails in the abstract. A working bartender does
    not need 365 drinks on a Tuesday. They need the eighteen on their own menu,
    cold, and they need to know what they can still put up when the amaro runs
-   out at ten past eleven. This tab is those two questions and nothing else.
+   out at ten past eleven. This tab keeps the working menu and stock together.
 
    It replaces two things that were built years apart and never connected: the
    My Bar tab, which held the venue’s list but could not match it against
@@ -18,9 +18,9 @@
    ui-study.js is the join between the key and the word on screen, and the long
    note above DECK_SOURCES says which sites take which.
 
-   Three sub-views, not seven. 190-odd stock chips above or below a drink list
-   makes both unreadable, and seven tabs wrap on a phone: a wrapped tab row
-   stops reading as a place you can be. Two nouns and one verb. */
+   The menu, stock and add views keep editing apart from reading. Fall 2026
+   is a curated seasonal study collection beside them, with no writes to
+   the personal menu or stock and no inferred measured specifications. */
 
 function mintBarId(){
   let s = 'b-';
@@ -770,10 +770,11 @@ function menuDrillHTML(pool){
 function renderMenu(){
   const bar = progress.bar || [];
   const v = state.menu.view || 'menu';
-  const nav = [['menu','The menu'],['stock','The stock'],['add','Add drinks']]
+  const nav = [['menu','The menu'],['fall','Fall 2026'],['stock','The stock'],['add','Add drinks']]
     .map(function(o){ return '<button class="tab-btn'+(v===o[0]?' active':'')+'"'+(v===o[0]?' aria-current="true"':'')+' data-act="menu-view" data-v="'+o[0]+'">'+o[1]+'</button>'; }).join('');
   let inner;
-  if(v === 'stock') inner = menuStockHTML();
+  if(v === 'fall' && typeof renderFallMenu === 'function') inner = renderFallMenu();
+  else if(v === 'stock') inner = menuStockHTML();
   else if(v === 'add'){
     /* the four doors, the review step and the form, all drawn by renderImport,
        so that an expanded review row and a from-scratch add can never both be

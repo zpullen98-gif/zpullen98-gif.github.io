@@ -269,6 +269,7 @@ function openHouseProducers(){
 /* a card key back to its card, of any engine here: the deck's own cards and
    the house's words */
 function cardByKey(key){
+  if(String(key).indexOf('Fall 2026 · ') === 0 && typeof fallCardByKey === 'function') return fallCardByKey(key);
   if(String(key).indexOf('Words · ') === 0) return wordCardByKey(key);
   if(String(key).indexOf('Components · ') === 0) return componentCardByKey(key);
   if(String(key).indexOf('Producers · ') === 0) return producerCardByKey(key);
@@ -277,6 +278,7 @@ function cardByKey(key){
 /* id to { name, preset } ; null for an id nothing answers */
 function deckDef(id, lvArg){
   id = String(id || '');
+  if((id === 'fall' || id.indexOf('fall:') === 0) && typeof fallDeckDef === 'function') return fallDeckDef(id);
   const lv = lvArg === undefined ? scopeLevel('flashcards') : lvArg;
   const L = lv ? levelInfo(lv).name : '';
   if(id === 'menu') return { name: 'The whole menu', preset: { src: 'My Bar' }, house: true };
@@ -442,6 +444,7 @@ function fcPickHTML(){
   } else {
     house = '<p class="door-line">No restaurant on this device yet. Set one up from a level page.</p>';
   }
+  if(typeof fallDeckDef === 'function') house += rowsNav('Fall 2026', [deckRow('fall:today'), deckRow('fall:cocktail'), deckRow('fall:food'), deckRow('fall:tableside'), deckRow('fall:again')]);
   /* the level's subjects, or every level's */
   const L = lv ? levelInfo(lv).name : 'Every level';
   const books = levelBooks(lv || 0).map(function(b){
@@ -613,6 +616,7 @@ function missCardKey(q){
 function studyHashOf(key){
   const d = cardByKey(key);
   if(!d) return '';
+  if(d.src === 'Fall 2026' && typeof fallHref === 'function') return fallHref(d.itemId);
   if(d.src === 'Cocktails') return '#/library/' + slugify(d.name);
   if(d.src === 'My Bar') return '#/menu/' + slugify(d.name);
   if(d.src === 'Shots') return '#/shots/' + slugify(d.name);
@@ -676,6 +680,7 @@ function todayStudyHTML(n){
     + '<nav class="quiet rows today" aria-label="Today’s study">'
     + rowDoor('data-act="today" data-d="due"', 'Due today', dueTodayLine(t))
     + rowDoor('data-act="today" data-d="quick"', 'Quick quiz', quickQuizLine())
+    + (typeof fallStudyDoorHTML === 'function' ? fallStudyDoorHTML() : '')
     + rowDoor('data-act="today" data-d="read" data-n="' + n + '"', 'Next reading', nr ? nr.title + ' · ' + L : 'Everything at ' + L + ' is read. The Library holds the rest.')
     + '<button class="door" data-act="door" data-d="today"><span class="door-name">Tonight’s session</span><span class="door-line">' + esc(tn.line) + '</span>' + (tn.sub ? '<span class="door-sub">' + esc(tn.sub) + '</span>' : '') + '</button>'
     + '</nav></section>';
@@ -713,6 +718,7 @@ function myRestaurantHTML(){
     + line
     + desk
     + (h ? '<p class="door-line">' + esc(houseCountLine()) + '</p>' : '')
+    + (typeof fallMenuDoorHTML === 'function' ? fallMenuDoorHTML() : '')
     + doors + chips
     + (h && typeof methodStudyDoorHTML === 'function' ? methodStudyDoorHTML(true) : '')
     + quiet
@@ -858,6 +864,7 @@ function navRestoreScroll(){
 function routeNow(){
   const t = state.tab;
   let hash = '#/' + t, key = t;
+  if(t === 'menu' && state.menu.view === 'fall' && typeof fallMenuRouteNow === 'function') return fallMenuRouteNow();
   if(t === 'notes' && state.noteOpen === '__methods'){
     const id = typeof methodStudy === 'function' && methodStudy(state.methodStudyId) ? state.methodStudyId : '';
     hash = '#/notes/studies' + (id ? '/' + id : ''); key = 'notes/studies' + (id ? '/' + id : '');
@@ -956,7 +963,12 @@ function navSync(kind){
     const st = h.state || {};
     /* stepping onto the screen beneath this one: take this entry back, so
        closing what was opened never leaves a dead entry behind it */
-    if(NAV.d > 0 && st.ootp === r.key){
+    /* A revealed fall answer can open the same study card that launched
+       its practice. This is reference reading, so keep the live card in
+       history for Back instead of treating the link as closing the run. */
+    const fallReference = state.tab === 'menu' && state.menu.view === 'fall'
+      && state.fallMenu && state.fallMenu.item && /^flashcards\//.test(NAV.key || '');
+    if(NAV.d > 0 && st.ootp === r.key && !fallReference){
       NAV.key = r.key;
       NAV.kind = 'back';
       try { h.back(); } catch (e) {}
@@ -1070,6 +1082,7 @@ function applyParent(){
   if(t === 'level' && state.lt){ state.tab = 'quiz'; state.quiz.stage = 'setup'; return true; }
   if(t === 'menu'){
     const st = state.menu.study;
+    if(state.menu.view === 'fall' && typeof fallState === 'function' && fallState().item){ fallState().item = ''; fallState().part = 'read'; return true; }
     if((state.menu.view || 'menu') !== 'menu'){ state.menu.view = 'menu'; return true; }
     if(p === 'menu' && st){ st.open = null; st.sec = ''; st.jump = 'back'; return true; }
     openLevel(chosenLevel());
@@ -1143,6 +1156,7 @@ function navWatchBack(){
 
 /* ---- the screens' own acts ---------------------------------------------------- */
 function navAct(act, data, el){
+  if(typeof fallAct === 'function'){ const action = fallAct(act, data); if(action) return action; }
   if(act === 'go' && data.tab === 'notes' && state.noteOpen === '__methods'){ state.noteOpen = null; state.methodStudyId = ''; }
   if(act === 'back'){ navBack(); return 'done'; }
   if(act === 'hash'){ gotoHash(data.h); return 'done'; }
@@ -1246,6 +1260,8 @@ function navNormalise(){
    true when it applied the address, false for applyRoute's own branches. */
 function applyNavRoute(parts){
   const tab = parts[0], a = parts[1], b = parts[2];
+  if(typeof fallMenuRoute === 'function' && fallMenuRoute(parts)) return true;
+  if(tab === 'menu' && a !== 'fall' && state.menu.view === 'fall') state.menu.view = 'menu';
   if(tab === 'notes' && a === 'studies' && typeof methodStudy === 'function'){
     state.tab = 'notes'; state.noteOpen = '__methods'; state.noteJump = false;
     state.methodStudyId = methodStudy(b) ? b : '';
@@ -1312,7 +1328,7 @@ function applyNavRoute(parts){
   }
   if(tab === 'menu' && (a === 'section' || a === 'view')){
     state.tab = 'menu';
-    if(a === 'view'){ state.menu.view = ['stock', 'add'].indexOf(b) >= 0 ? b : 'menu'; return true; }
+    if(a === 'view'){ state.menu.view = ['stock', 'add', 'fall'].indexOf(b) >= 0 ? b : 'menu'; return true; }
     state.menu.view = 'menu';
     if(typeof houseStudyRoute === 'function') houseStudyRoute(null);
     const s = sectionBySlug(b || '');
