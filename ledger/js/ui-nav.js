@@ -181,8 +181,10 @@ function menuWordCards(){
   try {
     const lib = typeof houseLibHere === 'function' ? houseLibHere() : null;
     const h = typeof hsCurrent === 'function' ? hsCurrent() : null;
-    if(!lib || !lib.drills || typeof lib.drills.buildFlashcards !== 'function' || !h) return [];
-    return lib.drills.buildFlashcards(h).filter(function(c){ return c && c.kind === 'term'; })
+    const build = lib && lib.drills && typeof lib.drills.buildFlashcards === 'function' ? lib.drills.buildFlashcards
+      : lib && typeof lib.buildFlashcards === 'function' ? lib.buildFlashcards : null;
+    if(!build || !h) return [];
+    return build(h).filter(function(c){ return c && c.kind === 'term'; })
       .map(function(c){ return { src: 'Words', name: c.front, back: c.back, group: 'Words', ref: { id: c.itemId } }; });
   } catch (e) { return []; }
 }
@@ -269,6 +271,7 @@ function openHouseProducers(){
 /* a card key back to its card, of any engine here: the deck's own cards and
    the house's words */
 function cardByKey(key){
+  if(String(key).indexOf('Bar Compass · ') === 0 && typeof barCompassCardByKey === 'function') return barCompassCardByKey(key);
   if(String(key).indexOf('Fall 2026 · ') === 0 && typeof fallCardByKey === 'function') return fallCardByKey(key);
   if(String(key).indexOf('Words · ') === 0) return wordCardByKey(key);
   if(String(key).indexOf('Components · ') === 0) return componentCardByKey(key);
@@ -278,6 +281,7 @@ function cardByKey(key){
 /* id to { name, preset } ; null for an id nothing answers */
 function deckDef(id, lvArg){
   id = String(id || '');
+  if((id === 'compass' || id.indexOf('compass:') === 0) && typeof barCompassDeckDef === 'function') return barCompassDeckDef(id);
   if((id === 'fall' || id.indexOf('fall:') === 0) && typeof fallDeckDef === 'function') return fallDeckDef(id);
   const lv = lvArg === undefined ? scopeLevel('flashcards') : lvArg;
   const L = lv ? levelInfo(lv).name : '';
@@ -445,6 +449,7 @@ function fcPickHTML(){
     house = '<p class="door-line">No restaurant on this device yet. Set one up from a level page.</p>';
   }
   if(typeof fallDeckDef === 'function') house += rowsNav('Fall 2026', [deckRow('fall:today'), deckRow('fall:cocktail'), deckRow('fall:food'), deckRow('fall:tableside'), deckRow('fall:again')]);
+  if(typeof barCompassDeckDef === 'function') house += rowsNav('The Bar Compass', [deckRow('compass:today'),deckRow('compass:all'),deckRow('compass:again')]);
   /* the level's subjects, or every level's */
   const L = lv ? levelInfo(lv).name : 'Every level';
   const books = levelBooks(lv || 0).map(function(b){
@@ -617,6 +622,7 @@ function studyHashOf(key){
   const d = cardByKey(key);
   if(!d) return '';
   if(d.src === 'Fall 2026' && typeof fallHref === 'function') return fallHref(d.itemId);
+  if(d.src === 'Bar Compass' && typeof barCompassHref === 'function') return barCompassHref(d.itemId);
   if(d.src === 'Cocktails') return '#/library/' + slugify(d.name);
   if(d.src === 'My Bar') return '#/menu/' + slugify(d.name);
   if(d.src === 'Shots') return '#/shots/' + slugify(d.name);
@@ -682,6 +688,7 @@ function todayStudyHTML(n){
     + rowDoor('data-act="today" data-d="quick"', 'Quick quiz', quickQuizLine())
     + culinaryStudyDoorHTML()
     + (typeof fallStudyDoorHTML === 'function' ? fallStudyDoorHTML() : '')
+    + (typeof barCompassStudyDoorHTML === 'function' ? barCompassStudyDoorHTML() : '')
     + rowDoor('data-act="today" data-d="read" data-n="' + n + '"', 'Next reading', nr ? nr.title + ' · ' + L : 'Everything at ' + L + ' is read. The Library holds the rest.')
     + '<button class="door" data-act="door" data-d="today"><span class="door-name">Tonight’s session</span><span class="door-line">' + esc(tn.line) + '</span>' + (tn.sub ? '<span class="door-sub">' + esc(tn.sub) + '</span>' : '') + '</button>'
     + '</nav></section>';
@@ -724,6 +731,7 @@ function myRestaurantHTML(){
     + desk
     + (h ? '<p class="door-line">' + esc(houseCountLine()) + '</p>' : '')
     + (typeof fallMenuDoorHTML === 'function' ? fallMenuDoorHTML() : '')
+    + (typeof barCompassDoorHTML === 'function' ? barCompassDoorHTML() : '')
     + doors + chips
     + (h && typeof methodStudyDoorHTML === 'function' ? methodStudyDoorHTML(true) : '')
     + quiet
@@ -870,6 +878,7 @@ function routeNow(){
   const t = state.tab;
   let hash = '#/' + t, key = t;
   if(t === 'menu' && state.menu.view === 'fall' && typeof fallMenuRouteNow === 'function') return fallMenuRouteNow();
+  if(t === 'menu' && state.menu.view === 'compass' && typeof barCompassRouteNow === 'function') return barCompassRouteNow();
   if(t === 'notes' && state.noteOpen === '__methods'){
     const id = typeof methodStudy === 'function' && methodStudy(state.methodStudyId) ? state.methodStudyId : '';
     hash = '#/notes/studies' + (id ? '/' + id : ''); key = 'notes/studies' + (id ? '/' + id : '');
@@ -973,7 +982,9 @@ function navSync(kind){
        history for Back instead of treating the link as closing the run. */
     const fallReference = state.tab === 'menu' && state.menu.view === 'fall'
       && state.fallMenu && state.fallMenu.item && /^flashcards\//.test(NAV.key || '');
-    if(NAV.d > 0 && st.ootp === r.key && !fallReference){
+    const compassReference = state.tab === 'menu' && state.menu.view === 'compass'
+      && state.barCompass && state.barCompass.item && /^flashcards\//.test(NAV.key || '');
+    if(NAV.d > 0 && st.ootp === r.key && !fallReference && !compassReference){
       NAV.key = r.key;
       NAV.kind = 'back';
       try { h.back(); } catch (e) {}
@@ -1088,6 +1099,7 @@ function applyParent(){
   if(t === 'menu'){
     const st = state.menu.study;
     if(state.menu.view === 'fall' && typeof fallState === 'function' && fallState().item){ fallState().item = ''; fallState().part = 'read'; return true; }
+    if(state.menu.view === 'compass' && typeof barCompassState === 'function' && (barCompassState().item || barCompassState().workshop)){ barCompassState().item = ''; barCompassState().workshop = ''; return true; }
     if((state.menu.view || 'menu') !== 'menu'){ state.menu.view = 'menu'; return true; }
     if(p === 'menu' && st){ st.open = null; st.sec = ''; st.jump = 'back'; return true; }
     openLevel(chosenLevel());
@@ -1161,6 +1173,7 @@ function navWatchBack(){
 
 /* ---- the screens' own acts ---------------------------------------------------- */
 function navAct(act, data, el){
+  if(typeof barCompassAct === 'function'){ const action = barCompassAct(act, data); if(action) return action; }
   if(typeof fallAct === 'function'){ const action = fallAct(act, data); if(action) return action; }
   if(act === 'go' && data.tab === 'notes' && state.noteOpen === '__methods'){ state.noteOpen = null; state.methodStudyId = ''; }
   if(act === 'back'){ navBack(); return 'done'; }
@@ -1265,7 +1278,9 @@ function navNormalise(){
    true when it applied the address, false for applyRoute's own branches. */
 function applyNavRoute(parts){
   const tab = parts[0], a = parts[1], b = parts[2];
+  if(typeof barCompassRoute === 'function' && barCompassRoute(parts)) return true;
   if(typeof fallMenuRoute === 'function' && fallMenuRoute(parts)) return true;
+  if(tab === 'menu' && a !== 'compass' && state.menu.view === 'compass') state.menu.view = 'menu';
   if(tab === 'menu' && a !== 'fall' && state.menu.view === 'fall') state.menu.view = 'menu';
   if(tab === 'notes' && a === 'studies' && typeof methodStudy === 'function'){
     state.tab = 'notes'; state.noteOpen = '__methods'; state.noteJump = false;
@@ -1333,7 +1348,7 @@ function applyNavRoute(parts){
   }
   if(tab === 'menu' && (a === 'section' || a === 'view')){
     state.tab = 'menu';
-    if(a === 'view'){ state.menu.view = ['stock', 'add', 'fall'].indexOf(b) >= 0 ? b : 'menu'; return true; }
+    if(a === 'view'){ state.menu.view = ['stock', 'add', 'fall', 'compass'].indexOf(b) >= 0 ? b : 'menu'; return true; }
     state.menu.view = 'menu';
     if(typeof houseStudyRoute === 'function') houseStudyRoute(null);
     const s = sectionBySlug(b || '');

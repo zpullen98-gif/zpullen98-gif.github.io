@@ -129,6 +129,7 @@ function renderLibrary(){
   return '<div class="col">'
     + head
     + (typeof methodStudyDoorHTML === 'function' ? methodStudyDoorHTML(false) : '')
+    + (typeof barCompassDoorHTML === 'function' ? barCompassDoorHTML() : '')
     + '<input class="input" id="lib-search" aria-label="Search the library" placeholder="Search by name, spirit, or ingredient…" value="'+esc(state.lib.q)+'">'
     + '<div class="row">'+famChips+'</div>'
     + '<div class="row">'+levelSel+bookSel+'</div><div class="row">'
@@ -235,7 +236,7 @@ function allDrinks(){
   allDrinks._c = out;
   return out;
 }
-function cardKey(d){ return d.src === 'Fall 2026' && d.fallKey ? 'Fall 2026 · ' + d.fallKey : d.src==='Cocktails' ? d.name : d.src+' · '+d.name; }
+function cardKey(d){ return d.src === 'Bar Compass' && d.bcKey ? 'Bar Compass · ' + d.bcKey : d.src === 'Fall 2026' && d.fallKey ? 'Fall 2026 · ' + d.fallKey : d.src==='Cocktails' ? d.name : d.src+' · '+d.name; }
 function cardTicket(d, hideName){
   if(d.src==='Cocktails' || d.src==='My Bar') return ticketHTML(d.ref, hideName);
   if(d.src==='Shots') return shotTicketHTML(d.ref, hideName);
@@ -456,6 +457,7 @@ const fitsLine = key => d => typeof keptLineOf === 'function' && !!keptLineOf(d,
    mark the same way (js/house-bar.js), and on nothing hers */
 const fitsHouse = mode => d => typeof houseCardFits === 'function' && !!houseCardFits(mode, d);
 const FC_MODES = [
+  ['compass','Bar Compass recall','Explain the structure, the comparison or the guest recommendation, then flip and assess your recall.', d => d.src === 'Bar Compass'],
   ['fall','Fall menu recall','Recall ingredients, origins and tableside language from the uploaded menu sheets, then flip.', d => d.src === 'Fall 2026'],
   ['name2spec','Name to Spec','The order comes in. Recite the whole build out loud, then flip and grade yourself.', fitsName],
   ['spec2name','Spec to Name','Read a blind ticket and call the drink, the service-printer skill.', fitsName],
@@ -577,7 +579,7 @@ function renderFlashcards(){
   if(fc.idx >= fc.deck.length){
     const misses = fc.missed.length;
     const missList = misses
-      ? '<div class="tix-rule"></div><div class="tix-label">To see again</div>' + fc.missed.map(function(n){ return '<div>'+esc(n)+'</div>'; }).join('')
+      ? '<div class="tix-rule"></div><div class="tix-label">To see again</div>' + fc.missed.map(function(n){ const c=String(n).indexOf('Bar Compass · ') === 0 && typeof cardByKey === 'function' ? cardByKey(n) : null; return '<div>'+esc(c ? c.group+': '+c.name : n)+'</div>'; }).join('')
       : '';
     return '<div class="col" style="align-items:center">'
       + '<div class="ticket"><div class="ticket-inner tc">'
@@ -592,7 +594,9 @@ function renderFlashcards(){
           + '<button class="btn btn-ghost" data-act="sess-end">End the session</button>'
         : (misses ? '<button class="btn btn-ox" data-act="fc-rerun-miss">Study the misses</button>' : '')
           + '<button class="btn btn-brass" data-act="fc-another">Another deck</button>')
-      + '</div></div>';
+      + '</div>'
+      + (fc.deckId && fc.deckId.indexOf('compass') === 0 && typeof barCompassHref === 'function' ? '<nav class="bc-links" aria-label="Continue Bar Compass study"><button class="btn btn-ghost" data-act="bc-practise" data-deck="compass:today">Continue with ten prompts</button><a class="btn btn-ghost" href="'+barCompassHref()+'">Explore The Bar Compass</a></nav>' : '')
+      + '</div>';
   }
 
   /* -------- running -------- */
@@ -610,6 +614,7 @@ function renderFlashcards(){
      a component's card the same, with its kind (Ingredients, Techniques, Stories) above,
      and a producer's with its kind (Maker, Origin and the rest) */
   if(c.src === 'Fall 2026' && typeof fallRecallHTML === 'function') return fallRecallHTML(c, fc.flipped, head, FRONT, ANSWER, grade);
+  if(c.src === 'Bar Compass' && typeof barCompassRecallHTML === 'function') return barCompassRecallHTML(c, fc.flipped, head, FRONT, ANSWER, grade);
   if(fc.mode==='word' || fc.mode==='component' || fc.mode==='producer'){
     const kindLine = (fc.mode==='component' || fc.mode==='producer') && c.group ? '<div class="eyebrow fc-kind">'+esc(c.group)+'</div>' : '';
     if(!fc.flipped){

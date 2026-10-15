@@ -1521,6 +1521,7 @@ function hsCardHTML(h, id){
   /* 8a. who makes it, what it is made of, and what to compare it with */
   if(item) out += hsWhoMakesHTML(h, id) + hsMadeOfHTML(h, id) + hsCompareHTML(h, item);
   if(item && typeof methodHouseStudyHTML === 'function') out += methodHouseStudyHTML(id);
+  if(item && typeof barCompassHouseContextHTML === 'function') out += barCompassHouseContextHTML(id);
   /* 9. the five parts */
   if(parts.length) out += '<section class="hs-group"><h3 class="hs-h3">' + esc(hsSay('parts')) + '</h3><dl class="hs-dl">'
     + parts.map(function(p){ return '<dt>' + esc(p[0]) + '</dt><dd>' + esc(p[1]) + '</dd>'; }).join('') + '</dl></section>';

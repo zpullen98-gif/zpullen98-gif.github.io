@@ -220,6 +220,7 @@ function renderFallMenu(){
     + '<div class="fall-tabs" role="group" aria-label="Study this menu item">' + tabs.map(function(row){ return '<button class="chip' + (part === row[0] ? ' on' : '') + '" data-act="fall-part" data-k="' + row[0] + '" aria-pressed="' + (part === row[0] ? 'true' : 'false') + '">' + row[1] + '</button>'; }).join('') + '</div>'
     + '<div class="fall-content">' + (part === 'read' ? fallArtHTML(item.id, false) + fallTablesideHTML(item) + '<section class="fall-panel"><h3>Remember the ingredients</h3>' + fallBulletList(item.listedIngredients) + '</section>'
       : part === 'ingredients' ? fallIngredientsHTML(item) : part === 'origins' ? fallOriginsHTML(item) : fallChecksHTML(item))
+    + (typeof barCompassFallContextHTML === 'function' ? barCompassFallContextHTML(item.id) : '')
     + fallSourcesHTML(item) + '</div></article>';
 }
 function fallAct(act, data){
