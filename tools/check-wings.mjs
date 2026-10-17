@@ -92,6 +92,7 @@ const GATES = [
   { repo: 'ledger', script: 'tools/check-import.mjs', target: 'wing' },
   { repo: 'ledger', script: 'tools/check-options.mjs', target: 'wing' },
   { repo: 'ledger', script: 'tools/check-abv.mjs', target: 'wing' },
+  { repo: 'ledger', script: 'tools/check-bar-compass.mjs', target: 'wing' },
   { repo: 'ledger', script: 'tools/check-home.mjs', target: 'wing',
     gap: 'its script list comes from the source index.html and its door rule reads the source css/ledger.css, so the wing\'s own js/oot-ledger.js is never loaded and the wing\'s css/ledger.css is never read' },
   { repo: 'ledger', script: 'tools/check-levels.mjs', target: 'wing',

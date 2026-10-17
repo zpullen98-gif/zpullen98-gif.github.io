@@ -1,0 +1,39 @@
+/* The explorer's desk follows the room's service tokens in both palettes. */
+.bc-index,.bc-study{max-width:980px;margin-inline:auto;min-width:0}
+html[data-service="night"] .bc-menu-tabs .tab-btn.active{color:var(--felt)}
+.bc-heading{position:relative;padding:26px 0;border-bottom:1px solid var(--house-line);margin-bottom:22px}
+.bc-heading:before{content:"";display:block;width:36px;height:36px;margin-bottom:16px;background:var(--brass);clip-path:polygon(50% 0,56% 38%,85% 15%,62% 44%,100% 50%,62% 56%,85% 85%,56% 62%,50% 100%,44% 62%,15% 85%,38% 56%,0 50%,38% 44%,15% 15%,44% 38%);opacity:.8}
+.bc-heading h2{font:500 clamp(1.6rem,4vw,2.4rem)/1.3 var(--house-display,Georgia,serif);color:var(--brass-2);margin:12px 0;text-wrap:balance}
+.bc-heading p{max-width:760px;font-size:1.05rem;line-height:1.75;margin:12px 0}
+.bc-caption{font-size:.9rem!important;color:var(--cream-dim);line-height:1.7;margin:12px 0}
+.bc-boundary{border-left:2px solid var(--brass);padding:14px 18px;background:var(--felt-3);font-size:.95rem;line-height:1.75}
+.bc-practice,.bc-links{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
+.bc-practice .btn,.bc-links .btn,.bc-panel .btn,.bc-context .btn,.bc-read-link{min-height:44px;white-space:normal;text-align:left;line-height:1.6;overflow-wrap:anywhere}
+.bc-filters{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin:24px 0}
+.bc-filters label{display:grid;gap:9px;font-size:.9rem;color:var(--cream-dim);min-width:0}
+.bc-filters input,.bc-filters select{min-height:48px;width:100%;min-width:0}
+.bc-grid,.bc-comparisons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:22px 0}
+.bc-card,.bc-door,.bc-panel{border:1px solid var(--house-line);background:var(--felt-2);min-width:0;padding:24px;color:var(--cream)}
+.bc-card,.bc-door{border-top:2px solid var(--brass);text-decoration:none;display:flex;flex-direction:column;gap:10px}
+.bc-door{margin:18px 0}.bc-door strong{font:500 1.25rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2)}
+.bc-door>span:last-child{font-size:.95rem;line-height:1.7;color:var(--cream-dim)}
+.bc-card:hover,.bc-door:hover{background:var(--felt-3);border-color:var(--brass)}
+.bc-card h3,.bc-panel h3,.bc-section>h3{font:500 1.3rem/1.5 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0 0 12px}
+.bc-card h3{margin:0}.bc-card h4,.bc-panel h4{font-size:1.05rem;color:var(--brass-2);line-height:1.6;margin:12px 0}
+.bc-card p,.bc-panel p,.bc-panel li,.bc-panel dd,.bc-section>p,.bc-sources{font-size:1rem;line-height:1.8}
+.bc-card p{margin:0}.bc-family{color:var(--brass-2);font-size:.9rem;line-height:1.6}
+.bc-card-foot{margin-top:auto;padding-top:12px;color:var(--cream-dim);font-size:.85rem;line-height:1.6}
+.bc-study>.bc-panel{margin:22px 0}.bc-panel ul{padding-left:22px}.bc-panel li{margin:8px 0}
+.bc-panel dl{margin:16px 0}.bc-panel dt{font-size:.84rem;color:var(--brass-2);font-weight:600;margin:18px 0 5px}.bc-panel dd{margin:0}
+.bc-tableside blockquote{font-size:1.15rem;line-height:1.8;margin:18px 0;padding-left:18px;border-left:2px solid var(--brass)}
+.bc-section{margin:34px 0}.bc-workshops{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.bc-recall+.bc-recall{border-top:1px solid var(--house-line)}
+.bc-recall summary,.bc-sources summary,.bc-about summary{cursor:pointer;padding:14px 0;min-height:48px;line-height:1.7;color:var(--brass-2)}
+.bc-about{line-height:1.8;font-size:.95rem;margin:20px 0;border-block:1px solid var(--house-line)}
+.bc-recall p{margin:0;padding:0 0 20px}.bc-sources{max-width:100%;text-align:left}
+.bc-sources a{color:var(--brass-2);text-underline-offset:3px;overflow-wrap:anywhere}.bc-sources li{margin-bottom:14px}.bc-sources li p{font-size:.9rem;margin:4px 0}
+.bc-question{font:500 clamp(1.25rem,3vw,1.6rem)/1.6 var(--house-display,Georgia,serif);color:var(--brass-2);max-width:720px;text-align:center}
+.bc-answer{max-width:720px;font-size:1.05rem;line-height:1.8}.bc-answer p{margin:0 0 12px}.bc-empty{padding:24px 0;line-height:1.8}
+.bc-context p{font-size:1rem;line-height:1.75}.bc-card:focus-visible,.bc-door:focus-visible,.bc-recall summary:focus-visible,.bc-sources summary:focus-visible,.bc-about summary:focus-visible{outline:3px solid var(--brass-2);outline-offset:4px}
+@media(max-width:639px){.bc-grid,.bc-comparisons,.bc-workshops,.bc-filters{grid-template-columns:1fr;gap:14px}.bc-card,.bc-panel,.bc-door{padding:18px}.bc-heading{padding-top:10px}.bc-practice,.bc-links{gap:8px}.bc-practice .btn{flex:1 1 180px}.bc-tableside blockquote{padding-left:12px;font-size:1.05rem}}
+@media print{.bc-practice,.bc-filters{display:none}.bc-card,.bc-panel,.bc-door{background:white;color:#222;border-color:#777;break-inside:avoid}.bc-heading h2,.bc-panel h3,.bc-card h3,.bc-panel h4,.bc-sources a{color:#222}}

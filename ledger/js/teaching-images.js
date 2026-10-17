@@ -11,8 +11,24 @@
   var maxImageBytes = 512 * 1024, maxBytes = 16 * 1024 * 1024, maxEntries = 64;
   var timeoutMs = 15000, writes = Promise.resolve(), pending = new Map();
   var entries = Object.create(null), urls = new Set();
-  var source = typeof LEDGER_TEACHING_IMAGES === 'undefined' ? {} : LEDGER_TEACHING_IMAGES;
-  var pathPattern = /^img\/(?:brennans|cards|plates)\/[a-z0-9]+(?:-[a-z0-9]+)*-v[1-9][0-9]*(?:\.thumb)?\.webp$/;
+  var source = Object.assign({}, typeof LEDGER_TEACHING_IMAGES === 'undefined' ? {} : LEDGER_TEACHING_IMAGES);
+  /* The fall catalog is generated from World Table's reviewed metadata. It
+     joins the same exact-path registry, not the shell's precache list. */
+  var fallCatalog = typeof FALL_MENU_ART === 'undefined' ? null : FALL_MENU_ART;
+  if (fallCatalog && fallCatalog.version === 1 && Array.isArray(fallCatalog.items)) {
+    fallCatalog.items.forEach(function (entry) {
+      if (!entry || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(entry.itemId) ||
+          !Array.isArray(entry.cues) || entry.cues.length < 3 || entry.cues.length > 5 ||
+          entry.cues.some(function (cue) { return !cue || typeof cue.label !== 'string' || !cue.label.trim() || typeof cue.text !== 'string' || !cue.text.trim(); })) return;
+      source['fall-art-' + entry.itemId] = Object.assign({}, entry, {
+        labels:entry.cues.map(function (cue) { return cue.label; }),
+        notes:entry.cues.map(function (cue) { return cue.text; }),
+        thumb:entry.thumbnailSrc ? {src:entry.thumbnailSrc,width:entry.thumbnailWidth,height:entry.thumbnailHeight} : undefined,
+        keyTitle:'Study the ingredient cues'
+      });
+    });
+  }
+  var pathPattern = /^img\/(?:brennans|cards|plates|fall-2026)\/[a-z0-9]+(?:-[a-z0-9]+)*-v[1-9][0-9]*(?:\.thumb)?\.webp$/;
   function dimensions(image) {
     return image && Number.isInteger(image.width) && Number.isInteger(image.height) &&
       image.width > 0 && image.height > 0 && image.width <= 4096 && image.height <= 4096;
@@ -33,7 +49,7 @@
         entry.labels.some(function (label) { return typeof label !== 'string' || !label.trim(); }))) return;
     if (entry.notes && (!Array.isArray(entry.notes) || !entry.labels || entry.notes.length !== entry.labels.length ||
         entry.notes.some(function (note) { return typeof note !== 'string' || !note.trim(); }))) return;
-    if (['title','purpose','context'].some(function (name) { return entry[name] !== undefined && (typeof entry[name] !== 'string' || !entry[name].trim()); })) return;
+    if (['title','purpose','context','keyTitle'].some(function (name) { return entry[name] !== undefined && (typeof entry[name] !== 'string' || !entry[name].trim()); })) return;
     if (entry.reviewedOn !== undefined && (typeof entry.reviewedOn !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(entry.reviewedOn) ||
         !Number.isFinite(Date.parse(entry.reviewedOn)) || new Date(entry.reviewedOn).toISOString().slice(0,10) !== entry.reviewedOn)) return;
     if (entry.sources && (!Array.isArray(entry.sources) || entry.sources.length > 12 || entry.sources.some(function (item) {
@@ -42,6 +58,7 @@
     entries[id] = Object.freeze({ src: entry.src, width: entry.width, height: entry.height,
       alt: entry.alt, caption: entry.caption,
       title:entry.title || 'Teaching illustration', purpose:entry.purpose || '', context:entry.context || '', reviewedOn:entry.reviewedOn || '',
+      keyTitle:entry.keyTitle || 'Read the numbered illustration',
       sources:Object.freeze((entry.sources || []).map(function (item) { return Object.freeze({title:item.title,url:item.url || ''}); })),
       labels: Object.freeze((entry.labels || []).slice()),
       notes: Object.freeze((entry.notes || []).slice()),
@@ -59,7 +76,7 @@
     try {
       var url = new URL(request.url, base);
       return request.method === 'GET' && url.origin === base.origin &&
-        ['brennans', 'cards', 'plates'].some(function (name) {
+        ['brennans', 'cards', 'plates', 'fall-2026'].some(function (name) {
           return url.pathname.startsWith(base.pathname + 'img/' + name + '/');
         });
     } catch (_) { return false; }
@@ -250,8 +267,8 @@
     dialog.innerHTML = '<div class="teaching-viewer-top"><h2 id="teaching-viewer-title" tabindex="-1">' + esc(entry.title) + '</h2>' +
       '<button type="button" class="teaching-viewer-close">Close illustration</button></div>' +
       '<figure class="teaching-image" data-teaching-image="' + esc(id) + '"><img src="' + esc(entry.src) + '" width="' + entry.width + '" height="' + entry.height + '" alt="' + esc(entry.alt) + '" decoding="async">' +
-      '<figcaption>' + esc(entry.caption) + '</figcaption><p class="teaching-image-missing" hidden>The illustration is unavailable. The numbered key remains below.</p></figure>' +
-      '<h3 class="teaching-key-title">Read the numbered illustration</h3>' + key(entry) + metadata(entry) +
+      '<figcaption>' + esc(entry.caption) + '</figcaption><p class="teaching-image-missing" hidden>The illustration is unavailable. The written key remains below.</p></figure>' +
+      '<h3 class="teaching-key-title">' + esc(entry.keyTitle) + '</h3>' + key(entry) + metadata(entry) +
       '<div class="teaching-save"><button type="button" data-teaching-save>Save full illustration for offline</button><p role="status" aria-live="polite" data-teaching-save-status>Checking the saved illustration...</p>' +
       '<p class="teaching-review-date">Saved artwork belongs to this browser and may be removed if its storage is cleared or runs short.</p></div>' +
       '<a class="teaching-image-open" href="' + esc(entry.src) + '" target="_blank" rel="noopener">Open full illustration (new tab)</a>';

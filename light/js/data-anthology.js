@@ -37,7 +37,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: General Prologue",
     "locator": "Group A, lines 1–2; Middle English; excerpt",
-    "context": "The opening turns seasonal renewal into the impulse for a journey. Its April rain begins a long sentence rather than a detached maxim.",
+    "context": "This is the beginning of a long sentence. The rain, wind, plants and birds of spring lead to the desire to go on pilgrimage. April’s showers are not a complete proverb on their own.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -51,8 +51,8 @@ var DAWN_QUOTES = [
       "imagination",
       "time"
     ],
-    "studyPrompt": "Why begin a social and spiritual journey with water entering the earth?",
-    "gloss": "When April’s sweet showers have pierced March’s drought down to the root.",
+    "studyPrompt": "Read on to the pilgrims’ wish to travel. How does the long sentence move from rain in the earth to desire in people?",
+    "gloss": "When April’s gentle showers have soaked March’s dry earth right down to the roots,",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -193,7 +193,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Miller’s Tale",
     "locator": "Group A, line 3530; Middle English; excerpt",
-    "context": "Nicholas cites a maxim while persuading the carpenter to follow a fabricated plan for surviving a flood. Sounding wise is part of his deception.",
+    "context": "Nicholas is a student deceiving his landlord, John the carpenter. He uses respectable advice to make John trust a false warning about another great flood, so that he can spend the night with John’s wife. A wise-sounding sentence is serving a dishonest plan.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -207,8 +207,8 @@ var DAWN_QUOTES = [
       "truth",
       "power"
     ],
-    "studyPrompt": "What evidence would distinguish trustworthy counsel from Nicholas’s performance of authority?",
-    "gloss": "Act with advice and you will not regret it.",
+    "studyPrompt": "What does Nicholas gain by quoting good advice? Name one clue in the surrounding scene that reveals the trick.",
+    "gloss": "Take advice before you act, and you will not regret it.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -245,7 +245,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Wife of Bath’s Prologue",
     "locator": "Group D, lines 1–3; Middle English; excerpt",
-    "context": "Alisoun opens by claiming that her own marriages give her standing to discuss marital trouble. Her speech immediately enters a contest with written authority.",
+    "context": "Alisoun, the Wife of Bath, argues that her five marriages give her knowledge worth hearing. Auctoritee means respected written teaching, especially biblical and learned texts. She challenges its use against women but also quotes and interprets it herself.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -297,7 +297,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Wife of Bath’s Tale",
     "locator": "Group D, lines 1038–1040; Middle English; excerpt",
-    "context": "The knight gives the court the answer taught by the old woman. The tale presents this as the answer to his quest, not a universal statement endorsed outside its fiction.",
+    "context": "The knight repeats the answer the old woman has taught him. Sovereignty here means the power to govern or choose, not merely being treated politely. His later marriage tests whether he can give up control. This is a claim made inside a tale, not a definition of what all women want.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -311,7 +311,7 @@ var DAWN_QUOTES = [
       "power",
       "identity"
     ],
-    "studyPrompt": "How does the knight’s later marriage test whether he understands the answer he can now repeat?",
+    "studyPrompt": "Compare the answer the knight gives at court with the choice he later gives his wife. Has he learned the idea or only its wording?",
     "gloss": "Women desire authority over husband and lover, and to have mastery over him.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
@@ -349,7 +349,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Pardoner’s Prologue",
     "locator": "Group C, lines 403–404; Middle English; excerpt",
-    "context": "The Pardoner explains his preaching business to the pilgrims. The plainness of the confession makes his later moral performance harder to receive innocently.",
+    "context": "A pardoner claims authority to offer pardons and displays relics. This one admits using his preaching to get money. He confesses this to the travelling company, then tries to sell to them after his tale: knowing his trick does not end his performance.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -401,7 +401,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Pardoner’s Tale",
     "locator": "Group C, lines 739–741; Middle English; excerpt",
-    "context": "The rioters insult an old man while searching for Death. He answers by appealing to courtesy before directing them towards the tree.",
+    "context": "Three drunken rioters have sworn to kill Death, whom they treat as an enemy they can hunt down. They rudely question an old man. His identity is left uncertain; the text does not plainly say that he is Death in disguise.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -415,8 +415,8 @@ var DAWN_QUOTES = [
       "attention",
       "justice"
     ],
-    "studyPrompt": "What does the rioters’ treatment of this stranger reveal before gold tests them?",
-    "gloss": "It is discourteous to insult an old man unless he has wronged you in speech or deed.",
+    "studyPrompt": "What does the old man actually say, and what would you have to add to claim that he is Death?",
+    "gloss": "Gentlemen, it is bad manners to insult an old man unless he has wronged you by something he has said or done.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -511,7 +511,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Franklin’s Tale",
     "locator": "Group F, lines 764–766; Middle English; excerpt",
-    "context": "After describing Dorigen and Arveragus’s agreement, the Franklin warns against domination. He gives Love wings to make coercion’s effect visible.",
+    "context": "Arveragus has promised to avoid exercising mastery over Dorigen, while she agrees to let him appear to hold authority in public. That compromise is more complicated than a completely equal marriage. The Franklin’s praise of free love must be read beside the pressure the later promise places on her.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -525,8 +525,8 @@ var DAWN_QUOTES = [
       "love",
       "power"
     ],
-    "studyPrompt": "How does the image of departing wings sharpen the difference between agreement and control?",
-    "gloss": "Love will not be constrained by mastery; when domination comes, the god of love beats his wings and departs.",
+    "studyPrompt": "List what Dorigen and Arveragus each agree to. Is the private agreement the same as the public appearance?",
+    "gloss": "You cannot force love through control. As soon as domination arrives, the god of love flaps his wings and is gone.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -615,7 +615,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Manciple’s Tale",
     "locator": "Group H, lines 319–320; Middle English; excerpt",
-    "context": "The Manciple frames his closing counsel as something learned from his mother. Friendship depends here on disciplined speech.",
+    "context": "The Manciple says he learned this advice from his mother. It follows a story in which a crow tells the truth about Phoebus’s wife, Phoebus kills her, and the crow is punished. The warning is therefore also about the danger of telling unwelcome truth to someone powerful.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -629,8 +629,8 @@ var DAWN_QUOTES = [
       "language",
       "love"
     ],
-    "studyPrompt": "How does giving the advice a maternal speaker affect its authority?",
-    "gloss": "My son, guard your tongue and keep your friend; a wicked tongue is worse than a devil.",
+    "studyPrompt": "Does the mother’s advice teach kindness, self-protection or both? What does the crow’s fate add to your answer?",
+    "gloss": "My son, control what you say and keep your friend. A malicious tongue is worse than a devil.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -667,7 +667,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Troilus and Criseyde",
     "locator": "Book I, lines 6–7; Middle English; excerpt",
-    "context": "The poem opens with an invocation to Tisiphone, a Fury, rather than a promise of easy romantic pleasure. Writing is imagined as sharing the sorrow it records.",
+    "context": "Tisiphone is one of the Furies, figures associated with vengeance. The narrator calls on her at the start of a love story whose sad outcome he already knows. The verses seem to weep as he writes, making his own telling part of the grief.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
@@ -719,7 +719,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Book of the Duchess",
     "locator": "Lines 47–49; Middle English; excerpt",
-    "context": "Unable to sleep, the narrator requests a romance. The story of Ceyx and Alcyone will shape the dream that follows.",
+    "context": "A romance here is an adventure or courtly narrative, not necessarily a modern love novel. The sleepless reader is given the story of Ceyx and Alcyone, involving separation and death. Its grief helps prepare the dream that follows.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
@@ -734,7 +734,7 @@ var DAWN_QUOTES = [
       "attention"
     ],
     "studyPrompt": "How does the borrowed story prepare the narrator to encounter grief in his own dream?",
-    "gloss": "I asked someone to bring me a book, a romance, to read and pass the night.",
+    "gloss": "I asked someone to bring me a book, a romance, so that I could read and pass the night. He brought it to me.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -771,7 +771,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The House of Fame",
     "locator": "Book I, lines 1–4; Middle English; excerpt",
-    "context": "The poem begins with a blessing followed by uncertainty about the causes of dreams. Its exploration of knowledge opens by admitting a limit.",
+    "context": "Swevenes means dreams and rode means the cross. The narrator begins with a Christian wish for good, then admits he cannot explain how dreams arise. Wonder here includes puzzlement, not just delight.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
@@ -786,7 +786,7 @@ var DAWN_QUOTES = [
       "imagination"
     ],
     "studyPrompt": "How does admitting uncertainty prepare you for the extraordinary journey that follows?",
-    "gloss": "May God turn every dream to good; I find it puzzling what causes dreams, whether morning or evening dreams.",
+    "gloss": "May God make every dream turn out well for us. By the cross, I cannot understand what causes dreams, whether they come in the morning or the evening.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -823,7 +823,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Parliament of Fowls",
     "locator": "Lines 22–25; Middle English; excerpt",
-    "context": "The narrator compares reading old books with harvesting new grain from old fields. In this passage, science means knowledge or learning in a broad medieval sense.",
+    "context": "Science means knowledge or learning broadly, not only what we now call the sciences. The old-field image suggests that old books can produce new understanding when readers work with them. It does not mean that everything in an old book must be true.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
@@ -875,7 +875,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Truth",
     "locator": "Lines 1–2; Middle English; excerpt",
-    "context": "The opening counsels withdrawal from competitive bustle and acceptance of sufficient means. Its advice is framed by the poem’s larger religious account of a well-directed life.",
+    "context": "Prees is the crowd or press of competitive worldly life. The poem advises contentment and truthful living, then places these within a Christian journey towards a lasting home. The first line is more than advice to avoid other people.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
@@ -927,7 +927,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Gentilesse",
     "locator": "Lines 12–14; Middle English; excerpt",
-    "context": "After describing the first source of true nobility, the poem tests a supposed heir by love of virtue. Wealth and ceremonial rank do not settle the matter.",
+    "context": "The poem describes the first source of true nobility and asks whether a supposed heir follows its goodness. A mitre is a bishop’s ceremonial headgear. Religious office, royal rank and wealth cannot by themselves prove moral worth; the final stanza places true nobility with the divine first Father.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
@@ -942,7 +942,7 @@ var DAWN_QUOTES = [
       "justice"
     ],
     "studyPrompt": "How does the list of high offices intensify the challenge to inherited prestige?",
-    "gloss": "Unless the heir shares that love of virtue, he is not noble however rich he seems, even with a mitre, crown or diadem.",
+    "gloss": "Unless the heir loves goodness as that first source of nobility did, he is not truly noble, however wealthy he looks, even if he wears a bishop’s mitre or a royal crown.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -1031,7 +1031,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Fortune",
     "locator": "Lines 9–12; Middle English; excerpt",
-    "context": "The plaintiff argues that reversal has not removed the power to judge. Fortune’s changes have exposed differences between genuine friends and enemies.",
+    "context": "Fortune is imagined as a speaker who turns human circumstances upside down. The complaining voice argues that the change has revealed true friends and enemies while leaving reason intact. This is one side of a debate: Fortune has her own reply.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
@@ -1046,7 +1046,7 @@ var DAWN_QUOTES = [
       "courage"
     ],
     "studyPrompt": "What does the mirror image suggest about the kind of knowledge adversity can give?",
-    "gloss": "I still have reason’s light to recognise friend and enemy in your mirror; your changes have taught me that much in a single hour.",
+    "gloss": "I still have the light of reason to tell friend from enemy in your mirror. Your ups and downs have taught me that much in just an hour.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -1239,7 +1239,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: General Prologue",
     "locator": "Group A, lines 12–14; Middle English; excerpt",
-    "context": "After the spring landscape, the narrator describes the desire for pilgrimage and distant shrines. Religious purpose and the attraction of unfamiliar places meet here.",
+    "context": "The narrator moves from spring weather to the wish to travel to holy places. Palmers are pilgrims associated especially with travel to the Holy Land. The English travellers in this story are heading for the shrine of Saint Thomas Becket at Canterbury.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -1291,7 +1291,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Knight’s Tale",
     "locator": "Group A, lines 1760–1761; Middle English; excerpt",
-    "context": "Theseus’s anger at the fighters softens after the women plead for them. The storyteller associates nobility with a capacity to respond to another’s distress.",
+    "context": "Theseus discovers Palamon and Arcite fighting and initially condemns them. Hippolyta, Emelye and the other women plead for their lives. His change of heart depends on listening to them, not simply on possessing a noble title.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -1306,7 +1306,7 @@ var DAWN_QUOTES = [
       "attention"
     ],
     "studyPrompt": "What role do the pleading women play in bringing about the change attributed to Theseus?",
-    "gloss": "At last his anger cooled, for compassion soon enters a noble heart.",
+    "gloss": "At last his anger died down, because a noble heart is quick to feel compassion.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -1343,7 +1343,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Wife of Bath’s Prologue",
     "locator": "Group D, lines 111–114; Middle English; excerpt",
-    "context": "Discussing Christ’s counsel of poverty, Alisoun distinguishes a call to perfection from the life she chooses. The argument uses scriptural interpretation to defend marriage.",
+    "context": "The Wife has just discussed Christ’s call to sell possessions and give to the poor. She argues that the strictest religious ideal is not required of everybody. Her talk of marriage also includes sexual pleasure and reproduction; it is not only a claim about companionship.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -1357,8 +1357,8 @@ var DAWN_QUOTES = [
       "identity",
       "language"
     ],
-    "studyPrompt": "How does Alisoun turn an admission of imperfection into argumentative strength?",
-    "gloss": "He spoke to those who wished to live perfectly; with your permission, that is not me. I will spend my prime in married life.",
+    "studyPrompt": "What distinction does the Wife make between an ideal and a requirement? Where does her own desire enter the argument?",
+    "gloss": "He was speaking to people who wanted to live perfectly. With your permission, gentlemen, I am not one of them. I will spend the best years of my life enjoying the activities and fruits of marriage.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -1396,7 +1396,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Wife of Bath’s Tale",
     "locator": "Group D, lines 1113–1116; Middle English; excerpt",
-    "context": "When her husband despises her birth, the old woman defines nobility through conduct in private and public. The argument turns attention from ancestry to repeated actions.",
+    "context": "The knight objects to his wife’s low social rank. She replies that genuine nobility comes from behaviour, even when no one is watching, rather than a distinguished family. Gentil can refer to high birth or to moral character, and her argument pulls those meanings apart.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -1411,7 +1411,7 @@ var DAWN_QUOTES = [
       "identity"
     ],
     "studyPrompt": "Why does the distinction between private and public behaviour matter to her definition?",
-    "gloss": "Look for the person who is always most virtuous, privately and openly, and most intent on noble deeds; call that person most noble.",
+    "gloss": "Look for the person who always does what is right, in private and in public, and tries hardest to act nobly. Regard that person as the most truly noble.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -1463,7 +1463,7 @@ var DAWN_QUOTES = [
       "language"
     ],
     "studyPrompt": "Can the audience distinguish a true lesson from a corrupt motive here?",
-    "gloss": "I can preach against the very vice I practise, greed; although guilty myself, I can make others leave it.",
+    "gloss": "I know how to preach against the very fault I practise: greed. Although I am guilty of it myself, I can still make other people give it up.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -1500,7 +1500,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Pardoner’s Tale",
     "locator": "Group C, lines 772–775; Middle English; excerpt",
-    "context": "At the sight of the treasure, the rioters forget their search for Death. Their delight marks the change from an announced shared mission to the temptation that destroys them.",
+    "context": "Florins are gold coins. The men forget their shared search for Death as soon as they find the treasure. Their later plotting over the money brings about the very death they thought they could defeat.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -1515,7 +1515,7 @@ var DAWN_QUOTES = [
       "truth"
     ],
     "studyPrompt": "Why is forgetting Death at this moment so sharply ironic?",
-    "gloss": "They no longer searched for Death; each was so delighted by the bright, beautiful coins that they sat down beside the precious hoard.",
+    "gloss": "They stopped looking for Death. Each was so delighted by the beautiful, shining gold coins that they sat down beside the treasure.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -1552,7 +1552,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Nun’s Priest’s Tale",
     "locator": "Group B, lines 4111–4112; Middle English; excerpt",
-    "context": "Pertelote rebukes Chauntecleer for fearing his dream. Her confident dismissal begins a long disagreement in which both birds marshal explanations.",
+    "context": "Pertelote, a hen, dismisses the frightened rooster Chauntecleer’s dream and proposes a bodily cause for it. Their learned disagreement is part of the joke. The later fox attack gives the dream new significance without making every argument by either bird reliable.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -1567,7 +1567,7 @@ var DAWN_QUOTES = [
       "imagination"
     ],
     "studyPrompt": "How does the fox’s later arrival change the force of Pertelote’s certainty?",
-    "gloss": "Can you really be frightened by dreams? Dreams are nothing but emptiness, God knows.",
+    "gloss": "Really, are you afraid of dreams? God knows there is nothing in dreams but nonsense.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -1656,7 +1656,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Clerk’s Tale",
     "locator": "Group E, lines 460–462; Middle English; excerpt",
-    "context": "The narrator interrupts Walter’s scheme with direct criticism. He distinguishes the ability to test a wife from any need or right to do so.",
+    "context": "Walter, a powerful lord, invents cruel tests for his wife Griselda although she has done nothing to justify them. The Clerk interrupts the story to criticise him directly. This sentence cannot fairly be read as an endorsement of a husband’s right to cause suffering.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -1708,7 +1708,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Manciple’s Tale",
     "locator": "Group H, lines 322–324; Middle English; excerpt",
-    "context": "The mother’s imagined lesson uses the body as an ethical design. Teeth and lips become barriers that should make speech deliberate.",
+    "context": "The Manciple gives his mother’s teaching the image of a tongue protected by two walls. Thinking before speaking is one possible lesson, but the preceding story involves a violent listener punishing a truthful messenger. Careful speech must not be confused with blaming the messenger for another person’s violence.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -1722,8 +1722,8 @@ var DAWN_QUOTES = [
       "language",
       "attention"
     ],
-    "studyPrompt": "What does the image of an enclosure suggest about a pause before speaking?",
-    "gloss": "God in his endless goodness enclosed the tongue with teeth and lips so that a person would consider what to say.",
+    "studyPrompt": "When is a pause before speaking helpful? When would silence protect a powerful wrongdoer instead?",
+    "gloss": "My son, God in his endless goodness put teeth and lips around the tongue, like walls, so that we would think before speaking.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -1760,7 +1760,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Troilus and Criseyde",
     "locator": "Book I, lines 211–213; Middle English; excerpt",
-    "context": "Troilus has mocked lovers before falling in love himself. The narrator uses the reversal to question the confidence with which people imagine themselves immune.",
+    "context": "Troilus has laughed at other lovers and imagined himself safe from love. The narrator points to the reversal when Troilus falls in love himself. Surquidrye means arrogant overconfidence, not merely an ambitious hope.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
@@ -1775,7 +1775,7 @@ var DAWN_QUOTES = [
       "identity"
     ],
     "studyPrompt": "How does knowing Troilus’s earlier mockery change the force of this generalisation?",
-    "gloss": "Blind world, blind purpose: how often the outcome contradicts arrogance and presumptuous confidence.",
+    "gloss": "O blind world, O blind intentions! How often arrogant confidence ends in the opposite of what it expects.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -1812,7 +1812,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Book of the Duchess",
     "locator": "Lines 301–304; Middle English; excerpt",
-    "context": "Within the dream, birds sing outside the narrator’s room. Their varied voices become an imagined ceremonial service.",
+    "context": "The birds sing together outside the dreamer’s room. Solempne can mean splendid, ceremonial or dignified, so this is not necessarily sombre singing. The following lines stress its sweetness and harmony.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
@@ -1826,8 +1826,8 @@ var DAWN_QUOTES = [
       "imagination",
       "hospitality"
     ],
-    "studyPrompt": "How does comparing birdsong with a service join the natural and ceremonial worlds?",
-    "gloss": "Each bird sang in its own way the most solemn musical service that, I believe, any person had heard.",
+    "studyPrompt": "What makes the birds sound like a choir? Why would splendid be a useful alternative to the modern word solemn here?",
+    "gloss": "Each bird sang in its own way, making the most splendid musical service that I believe anyone had ever heard.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -1879,7 +1879,7 @@ var DAWN_QUOTES = [
       "identity"
     ],
     "studyPrompt": "What kind of knowledge might the eagle think Geffrey cannot gain by staying at his desk?",
-    "gloss": "Silent as a stone, you sit at another book until your eyes are dazed, living like a hermit even though you do little fasting.",
+    "gloss": "As silent as a stone, you sit with another book until your eyes are dazed. You live like a hermit, though you do not do much fasting.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -1968,7 +1968,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Truth",
     "locator": "Lines 17–19; Middle English; excerpt",
-    "context": "The poem turns from the hazards of worldly striving to an image of spiritual travel. Its home lies beyond the present wilderness within a Christian frame.",
+    "context": "The voice urges the reader to see earthly life as a journey towards a heavenly home. It suddenly calls the traveller a beast in a stall, a jolt that the reading aid keeps. The animal image challenges a life confined to material comfort.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
@@ -1982,8 +1982,8 @@ var DAWN_QUOTES = [
       "courage",
       "identity"
     ],
-    "studyPrompt": "How does the journey image join acceptance of present limits with continued movement?",
-    "gloss": "This is not home but wilderness; move on, pilgrim, leave your stall, know your true country, look up and give thanks to God for everything.",
+    "studyPrompt": "Why shift from a pilgrim on a road to a beast in a stall? What does each image suggest about the reader’s next step?",
+    "gloss": "This is not home; it is only a wilderness. Go on, pilgrim! Go on, beast, out of your stall! Know where you truly belong, look up, and thank God for everything.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2035,7 +2035,7 @@ var DAWN_QUOTES = [
       "truth"
     ],
     "studyPrompt": "What forms of teaching or example might still matter if virtue cannot simply be inherited?",
-    "gloss": "Vice may inherit old wealth, but no one can bequeath virtuous nobility to an heir.",
+    "gloss": "A wicked person may inherit old family wealth. But nobody can pass their own goodness and true nobility to an heir as an inheritance.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2072,7 +2072,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "A Treatise on the Astrolabe",
     "locator": "Prologue, printed lines 26–29; Middle English; excerpt",
-    "context": "Defending English instruction beside Greek, Arabic, Hebrew and Latin learning, the writer compares different rules of teaching with roads to one city. The historical comparison is about access to knowledge.",
+    "context": "Conclusions here are practical rules or operations, not just the last part of an argument. Chaucer defends teaching them in English, alongside Greek, Arabic, Hebrew and Latin. Different languages and teaching methods can make the same knowledge accessible.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
@@ -2086,8 +2086,8 @@ var DAWN_QUOTES = [
       "language",
       "justice"
     ],
-    "studyPrompt": "How does this comparison challenge the idea that a single learned language owns knowledge?",
-    "gloss": "These results have been adequately learned and taught in many languages and by different methods, just as different paths lead people to Rome.",
+    "studyPrompt": "Explain the roads-to-Rome comparison to someone learning a new skill. What stays the same even when the route or language changes?",
+    "gloss": "People have successfully learned and taught these methods in all these languages, and many more, using different rules, just as different roads lead different people the right way to Rome.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2177,7 +2177,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Knight’s Tale",
     "locator": "Group A, lines 2328–2330; Middle English; excerpt",
-    "context": "Emelye prays to Diana before the tournament. Her desire to remain unmarried complicates the contest in which the men seek to win her.",
+    "context": "Emelye addresses Diana, the virgin goddess, before the tournament held to decide which man will marry her. She asks to remain unmarried and then, if that is impossible, for the man who loves her most. Her own first wish differs from the men’s plans.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -2191,8 +2191,8 @@ var DAWN_QUOTES = [
       "identity",
       "power"
     ],
-    "studyPrompt": "What changes when you read the tournament from Emelye’s stated point of view?",
-    "gloss": "Since you are a maiden and guardian of us all, preserve my maidenhood; while I remain a maiden I will serve you.",
+    "studyPrompt": "State Emelye’s first wish in one plain sentence. How does that change a story usually described as two men competing for love?",
+    "gloss": "You are a virgin and the protector of us all: keep me a virgin too. As long as I live as a virgin, I will serve you.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2230,7 +2230,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Wife of Bath’s Prologue",
     "locator": "Group D, lines 477–479; Middle English; excerpt",
-    "context": "The Wife looks back on lost youth through the milling metaphor of flour and bran. She answers the loss with a declared intention to remain merry.",
+    "context": "Flour also suggests the flower or prime of her life. Bran is what remains after the finest flour has been sifted out. The Wife turns ageing into a joke about value and selling, then insists that she will still seek pleasure.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -2245,7 +2245,7 @@ var DAWN_QUOTES = [
       "courage"
     ],
     "studyPrompt": "What does the flour-and-bran image allow Alisoun to say about ageing?",
-    "gloss": "The fine flour is gone; now I must sell the bran as best I can, but I will still try to be cheerful.",
+    "gloss": "The fine flour is gone; now I must sell the bran as best I can. Even so, I will still try to enjoy myself.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2297,7 +2297,7 @@ var DAWN_QUOTES = [
       "courage"
     ],
     "studyPrompt": "How does the verb begin make nobility a practice rather than a possession?",
-    "gloss": "I hope God will grant me grace to live virtuously; I am noble when I begin to live well and turn away from wrongdoing.",
+    "gloss": "I hope God will give me the help I need to live well. I become noble when I begin to do what is right and turn away from sin.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2334,7 +2334,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Pardoner’s Prologue",
     "locator": "Group C, lines 459–461; Middle English; excerpt",
-    "context": "Just before the tale begins, its teller states the contradiction the audience must carry into it. The final phrase keeps his desire for profit in sight.",
+    "context": "Vicious here means morally corrupt, not specifically physically violent. The Pardoner admits that he tells a powerful moral story for profit. Keep his message about greed separate from his own greedy purpose.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -2348,8 +2348,8 @@ var DAWN_QUOTES = [
       "truth",
       "language"
     ],
-    "studyPrompt": "How does the purpose stated in the last line complicate the phrase moral tale?",
-    "gloss": "Though I am a very vicious man, I can still tell a moral tale, one I usually preach to make money.",
+    "studyPrompt": "Separate two questions: is the warning about greed convincing, and is the man telling it trustworthy?",
+    "gloss": "Although I am a deeply corrupt man, I can still tell you a story with a moral lesson. I usually preach it to make money.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2386,7 +2386,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Nun’s Priest’s Tale",
     "locator": "Group B, lines 4621–4622; Middle English; excerpt",
-    "context": "Having escaped the fox, Chauntecleer refuses to close his eyes and sing again. His maxim grows directly out of the mistake that nearly killed him.",
+    "context": "The fox persuaded Chauntecleer to shut his eyes while singing, then seized him. Once free, the rooster refuses to repeat the mistake. The saying grows from a specific failure of attention and vanity.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -2401,7 +2401,7 @@ var DAWN_QUOTES = [
       "truth"
     ],
     "studyPrompt": "What has experience taught the rooster that his earlier learning did not prevent?",
-    "gloss": "May the person who deliberately closes his eyes when he ought to look never prosper.",
+    "gloss": "May anyone who deliberately shuts his eyes when he should be looking never do well!",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2438,7 +2438,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Franklin’s Tale",
     "locator": "Group F, lines 779–780; Middle English; excerpt",
-    "context": "The narrator grounds his appeal for tolerance in the universality of mistaken speech and action. The subsequent tale makes the consequences of a spoken promise severe.",
+    "context": "The Franklin has just advised married people to be patient with one another’s faults. Soon Dorigen makes a promise she thinks can never be fulfilled. Remembering that everyone speaks unwisely helps explain the appeal for mercy, but does not settle what she owes.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -2490,7 +2490,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Clerk’s Tale",
     "locator": "Group E, lines 1142–1144; Middle English; excerpt",
-    "context": "Near the ending, the Clerk refuses a literal instruction that wives should imitate Griselda’s humility. He calls that demand unbearable even for those willing to try.",
+    "context": "The Clerk explains the lesson associated with Petrarch, whose Latin version he claims as his source. He says that wives are not being asked to copy Griselda literally; the following lines turn her endurance into an example of constancy towards God. This change of meaning does not make Walter’s cruelty acceptable.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -2504,7 +2504,7 @@ var DAWN_QUOTES = [
       "justice",
       "truth"
     ],
-    "studyPrompt": "Why must the narrator state this limit after telling so much about endurance?",
+    "studyPrompt": "Read the lines immediately after this excerpt. How does the Clerk move from a wife’s obedience to a wider religious lesson?",
     "gloss": "This story is not told so that wives should imitate Griselda in humility; even if they wanted to, it would be unbearable.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
@@ -2542,7 +2542,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Manciple’s Tale",
     "locator": "Group H, lines 335–337; Middle English; excerpt",
-    "context": "The closing lesson measures speech by what the situation requires. Harm comes from continuing after less would have been sufficient.",
+    "context": "The mother’s advice warns against careless or excessive talk. Read it beside the crow’s truthful report: a story about dangerous power lies underneath the general advice about speaking less. That tension is worth keeping rather than smoothing into a slogan.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -2556,8 +2556,8 @@ var DAWN_QUOTES = [
       "language",
       "attention"
     ],
-    "studyPrompt": "How can you distinguish necessary frankness from the needless speech criticised here?",
-    "gloss": "Much harm comes from excessive, ill-considered speech when fewer words would have been enough; that is what I was taught.",
+    "studyPrompt": "How would you tell the difference between pointless gossip and necessary truth in this tale?",
+    "gloss": "My son, a great deal of harm comes from careless talk when fewer words would have been enough. That is what I was taught.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2661,7 +2661,7 @@ var DAWN_QUOTES = [
       "grief"
     ],
     "studyPrompt": "What does this apology offer the grieving knight before any attempt at consolation?",
-    "gloss": "I am very sorry if I have interrupted your thoughts; forgive me if I have made a mistake.",
+    "gloss": "I am very sorry if I have interrupted your thoughts. Please forgive me if I have done anything wrong.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2698,7 +2698,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The House of Fame",
     "locator": "Book II, lines 729–732; Middle English; excerpt",
-    "context": "The eagle begins a physical explanation for why sound reaches the House of Fame. This is medieval natural philosophy inside a comic dream, not a modern scientific account.",
+    "context": "Kindly here means natural, not kind-hearted. The eagle uses a medieval theory of natural places to explain how sound travels to the House of Fame. Treat this as part of the dream’s learned comedy, not as present-day physics.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
@@ -2712,8 +2712,8 @@ var DAWN_QUOTES = [
       "truth",
       "language"
     ],
-    "studyPrompt": "How does the eagle turn an apparently familiar principle into authority for an unfamiliar claim?",
-    "gloss": "Geffrey, you know that every natural thing has a natural place where it can best be preserved.",
+    "studyPrompt": "Substitute natural for each use of kindly. How does this stop the eagle’s argument sounding like a lesson about kindness?",
+    "gloss": "Geffrey, you know very well that everything in nature has its natural place, where it can best remain in good condition.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2854,7 +2854,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: General Prologue",
     "locator": "Group A, lines 70–72; Middle English; excerpt",
-    "context": "The Knight’s portrait follows an account of campaigns with an emphasis on courteous speech. The narrator’s ideal includes restraint towards other people.",
+    "context": "The narrator praises the Knight after listing his military campaigns. Here gentil brings together noble status and courteous behaviour. Read the portrait as praise spoken by this narrator, rather than as a rule that every knight behaves well.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -2868,8 +2868,8 @@ var DAWN_QUOTES = [
       "identity",
       "attention"
     ],
-    "studyPrompt": "How does verbal courtesy qualify the military achievements listed earlier?",
-    "gloss": "He had never spoken an insulting word to anyone in his life; he was a truly accomplished, noble knight.",
+    "studyPrompt": "Find one detail about how the Knight fights and one about how he treats people. What kind of honour does the narrator want you to see?",
+    "gloss": "He had never said anything rude or insulting to anyone in his life. He was a truly fine, noble knight.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2921,7 +2921,7 @@ var DAWN_QUOTES = [
       "time"
     ],
     "studyPrompt": "How does this pilgrimage image echo the journey of the Canterbury storytellers?",
-    "gloss": "This world is only a passage full of sorrow; we are pilgrims travelling through it, and death ends every earthly pain.",
+    "gloss": "This world is only a road full of sorrow. We are travellers passing through it, and death ends every earthly pain.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -2958,7 +2958,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Wife of Bath’s Prologue",
     "locator": "Group D, lines 692–695; Middle English; excerpt",
-    "context": "Reacting to Jankyn’s collection of wicked women, Alisoun invokes the fable of the painted lion. She asks how the picture changes when its subject controls the telling.",
+    "context": "Jankyn, the Wife’s fifth husband, reads to her from a book about wicked women. She recalls a fable in which a lion challenges a human-made picture of a man defeating a lion. Her point is that the storyteller’s position shapes what gets presented as evidence.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -2972,8 +2972,8 @@ var DAWN_QUOTES = [
       "language",
       "power"
     ],
-    "studyPrompt": "Whose viewpoint controls the evidence in the book Alisoun is challenging?",
-    "gloss": "Who painted the lion? If women wrote stories as scholars do in their studies, they would write of more wrongdoing by men.",
+    "studyPrompt": "Retell the lion example from each side. How does changing the storyteller change what the picture seems to prove?",
+    "gloss": "Who painted the lion? Tell me who. If women had written stories as scholars have in their studies, they would have written about more of men’s wrongdoing.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3010,7 +3010,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Wife of Bath’s Tale",
     "locator": "Group D, lines 1230–1233; Middle English; excerpt",
-    "context": "Asked to choose between different kinds of wife, the knight finally gives the choice to her. The turning point puts his earlier answer into practice.",
+    "context": "The old woman offers him a choice: she can remain old and unattractive but faithful, or become young and beautiful with the risk that others will seek her out. He lets her decide. This resolves the magical test, but readers can still question how far the ending addresses the rape with which the tale began.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -3024,8 +3024,8 @@ var DAWN_QUOTES = [
       "love",
       "power"
     ],
-    "studyPrompt": "Is this speech a surrender of power, an act of trust, or a mixture of both?",
-    "gloss": "My lady, my love and dear wife, I place myself under your wise guidance; choose what brings the greatest pleasure and honour to us both.",
+    "studyPrompt": "What decision does the knight give up? What remains unresolved about his earlier conduct and the tale’s ending?",
+    "gloss": "My lady, my love and my dear wife, I trust your good judgement. Choose whichever will bring the most happiness and honour to both of us.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3062,7 +3062,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Nun’s Priest’s Tale",
     "locator": "Group B, lines 4623–4625; Middle English; excerpt",
-    "context": "The fox replies to Chauntecleer’s lesson with his own, regretting the speech that released his prey. Each survivor explains the failure from a different interest.",
+    "context": "Chauntecleer escaped by persuading the fox to speak to the pursuing farm workers. Opening his mouth let the rooster go. The fox’s lesson about keeping quiet is sensible on its own, but here he wants to become a more successful predator.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -3076,8 +3076,8 @@ var DAWN_QUOTES = [
       "language",
       "truth"
     ],
-    "studyPrompt": "Why can the fox’s sensible-sounding lesson serve a predatory purpose?",
-    "gloss": "May misfortune strike anyone who governs himself so poorly that he chatters when he should stay silent.",
+    "studyPrompt": "Explain the fox’s lesson in simple words. Why would following that lesson make him more dangerous to others?",
+    "gloss": "“No,” said the fox, “may bad luck come to anyone with so little self-control that he talks when he ought to keep quiet.”",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3115,7 +3115,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Franklin’s Tale",
     "locator": "Group F, lines 1531–1534; Middle English; excerpt",
-    "context": "Seeing Dorigen’s distress and Arveragus’s conduct, Aurelius gives up his claim on her promise. The release begins a chain of relinquished obligations.",
+    "context": "Dorigen had promised to accept Aurelius as her lover if he removed the coastal rocks she feared. When a learned practitioner makes them appear to vanish, her husband tells her to keep her word. Aurelius sees her distress and releases her. The act matters because a promise was being used to claim sexual access she did not freely want to give.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -3129,8 +3129,8 @@ var DAWN_QUOTES = [
       "love",
       "justice"
     ],
-    "studyPrompt": "What changes when Aurelius stops treating a promise as something to enforce?",
-    "gloss": "I would rather suffer sorrow than separate your love; madam, I release you completely from every pledge and bond.",
+    "studyPrompt": "What does Aurelius give up, and what does Dorigen gain? Explain why release matters more than simply keeping every promise.",
+    "gloss": "I would rather suffer myself than break up the love between you. Madam, I release you completely from every promise and obligation to me.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3167,7 +3167,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Clerk’s Tale",
     "locator": "Group E, lines 1183–1184; Middle English; excerpt",
-    "context": "The envoy turns from Griselda’s silence towards an exuberant address to wives. Its image makes humility sound like a physical restraint on speech.",
+    "context": "The envoy is a short closing poem. After the severe story of obedience, it jokingly tells wives to talk back, answer husbands and avoid becoming another Griselda. Its comic exaggeration unsettles a simple moral about meekness; it is not a calm list of instructions for a good marriage.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -3181,8 +3181,8 @@ var DAWN_QUOTES = [
       "language",
       "power"
     ],
-    "studyPrompt": "What does the envoy add that the tale’s earlier account of patience cannot contain?",
-    "gloss": "Noble wives of great judgement, do not let humility nail your tongues in place.",
+    "studyPrompt": "Read the envoy aloud after the serious ending. Which words sound playful or exaggerated, and how do they change the lesson?",
+    "gloss": "Wise, noble wives, do not let meekness pin your tongues down and stop you speaking.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3219,7 +3219,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Manciple’s Tale",
     "locator": "Group H, lines 353–355; Middle English; excerpt",
-    "context": "The counsel turns to the difficulty of retrieving a spoken injury. Words acquire a life beyond the speaker’s later regret.",
+    "context": "The speaker warns that words cannot simply be taken back. The tale has shown a truthful report provoking a violent response, so the problem is not only dishonest or insulting language. Consider both a speaker’s care and a listener’s responsibility.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -3233,7 +3233,7 @@ var DAWN_QUOTES = [
       "language",
       "time"
     ],
-    "studyPrompt": "How does the verb goes change the way you imagine the consequences of speech?",
+    "studyPrompt": "How much responsibility belongs to the person who speaks, and how much to the person who reacts? Use the crow and Phoebus as your example.",
     "gloss": "Someone who has spoken wrongly cannot call the words back: what is said is said and goes on.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
@@ -3286,7 +3286,7 @@ var DAWN_QUOTES = [
       "identity"
     ],
     "studyPrompt": "Which actions would you need to see before accepting the narrator’s description of this transformation?",
-    "gloss": "His jokes at others’ expense, cruelty, haughtiness and distant manner disappeared, and each changed into a virtue.",
+    "gloss": "His mocking jokes, his cruelty, his pride and his unfriendly manner disappeared. Each of these faults changed into a virtue.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3338,7 +3338,7 @@ var DAWN_QUOTES = [
       "imagination"
     ],
     "studyPrompt": "What can the chess metaphor communicate about loss, and what can it conceal?",
-    "gloss": "My confidence has turned to shame: false Fortune has played chess with me, a treacherous deceiver who promises everything and keeps nothing.",
+    "gloss": "My confidence has turned to shame. Deceitful Fortune has played a game of chess with me: she promises everything and keeps none of her promises.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3375,7 +3375,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The House of Fame",
     "locator": "Book III, lines 1631–1634; Middle English; excerpt",
-    "context": "Fame grants a bad reputation to people who deserve praise. The dreamer notices the injustice rather than accepting reputation as evidence of character.",
+    "context": "Fame has assigned disgrace to people whose actions deserve praise. Their shame is undeserved, so public reputation cannot be taken as a reliable measure of character. The dreamer notices the unfairness instead of accepting Fame’s ruling.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
@@ -3390,7 +3390,7 @@ var DAWN_QUOTES = [
       "truth"
     ],
     "studyPrompt": "What would you need besides reputation to judge the people in this scene fairly?",
-    "gloss": "Alas, I thought, what misfortunes these unhappy people have: among all the crowd they will be shamed without guilt.",
+    "gloss": "“Oh dear,” I thought, “what bad luck these poor people have! They will be publicly shamed, although they have done nothing wrong.”",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3427,7 +3427,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Parliament of Fowls",
     "locator": "Lines 647–650; Middle English; excerpt",
-    "context": "After competing speeches by her suitors and the other birds, the female eagle asks Nature for a year’s delay. She makes time and free choice central to her answer.",
+    "context": "The female eagle addresses Nature as queen and asks for another year to think. She then explicitly refuses to serve Venus or Cupid yet. The debate does not give her suitors the right to hurry her into a choice.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
@@ -3531,7 +3531,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: General Prologue",
     "locator": "Group A, lines 99–100; Middle English; excerpt",
-    "context": "The young Squire’s accomplishments end with the ordinary act of carving for his father. Service at table becomes one expression of courtesy.",
+    "context": "The Squire is the Knight’s young son. His portrait lists dancing, singing, riding and other accomplishments, then ends with carving at his father’s table. Skilled service belongs to his education in courtesy.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -3546,7 +3546,7 @@ var DAWN_QUOTES = [
       "identity"
     ],
     "studyPrompt": "Why end a portrait of youthful brilliance with an act of service?",
-    "gloss": "He was courteous, humble and ready to serve, and carved the food before his father at table.",
+    "gloss": "He was polite, modest and willing to help, and he carved the meat for his father at the table.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3587,7 +3587,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Knight’s Tale",
     "locator": "Group A, lines 3041–3044; Middle English; excerpt",
-    "context": "Theseus develops his final argument about the order of life and death. His counsel asks the mourners to accept what no one can escape.",
+    "context": "Theseus gives this advice after Arcite’s death, while arranging a future marriage between Palamon and Emelye. He is both comforting mourners and directing what happens next. The passage does not erase the grief or settle whether everyone has equal freedom to choose.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -3639,7 +3639,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Nun’s Priest’s Tale",
     "locator": "Group B, lines 4630–4633; Middle English; excerpt",
-    "context": "The storyteller closes by asking listeners to separate useful meaning from the surrounding material. His appeal to Saint Paul makes interpretation part of the tale’s ending.",
+    "context": "The priest asks the listeners to take useful meaning from his animal story. Fruit and chaff evoke separating nourishing grain from its husks. Yet the rooster and fox have just offered different lessons, so deciding what is useful remains part of the reader’s work.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -3654,7 +3654,7 @@ var DAWN_QUOTES = [
       "attention"
     ],
     "studyPrompt": "What counts as fruit in a story where the moral lessons themselves compete?",
-    "gloss": "Take the moral meaning: Saint Paul says that what is written is written for our instruction. Take the fruit and leave the chaff.",
+    "gloss": "Take the lesson, good people. Saint Paul says that everything written is written to teach us. Take what is useful and leave the husks behind.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3691,7 +3691,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: The Franklin’s Tale",
     "locator": "Group F, lines 1621–1623; Middle English; excerpt",
-    "context": "The tale ends by asking its listeners to judge competing acts of generosity. The question leaves the moral comparison open for the company.",
+    "context": "Free here means generous or noble-hearted, not simply free from restraint. The audience is invited to compare Arveragus, Aurelius and the learned man who cancels Aurelius’s debt. Dorigen’s distress should remain part of that comparison rather than disappearing behind the men’s generosity.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -3705,8 +3705,8 @@ var DAWN_QUOTES = [
       "justice",
       "hospitality"
     ],
-    "studyPrompt": "Would your answer change if you judged sacrifice, freedom or compassion separately?",
-    "gloss": "Gentlemen, I ask you this: which was the most generous, in your view? Tell me before you go further.",
+    "studyPrompt": "Compare the three men’s sacrifices, then ask how Dorigen’s wishes affect your judgement. Does the Host’s kind of competition suit this story?",
+    "gloss": "Gentlemen, here is my question: which of them was the most generous? Tell me what you think before you go any further.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3795,7 +3795,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Book of the Duchess",
     "locator": "Lines 1309–1310; Middle English; excerpt",
-    "context": "After the long indirect account, the fact of the lady’s death is stated plainly. The dreamer finally recognises the meaning of the loss.",
+    "context": "The Man in Black finally says plainly that his beloved is dead. The dreamer’s short replies register his delayed understanding after a long conversation about loss. The reading aid names each speaker so that four turns do not sound like one person speaking.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume I, Clarendon Press, 1899; Project Gutenberg #43089.",
@@ -3809,8 +3809,8 @@ var DAWN_QUOTES = [
       "grief",
       "language"
     ],
-    "studyPrompt": "Why might the plain exchange carry force after so much ornate and indirect speech?",
-    "gloss": "She is dead. No! Yes, truly. Is that your loss? By God, it is heartbreaking.",
+    "studyPrompt": "Read the four short turns with two voices. At which reply does the dreamer finally seem to understand?",
+    "gloss": "The knight: “She is dead!” The dreamer: “No!” The knight: “Yes, truly!” The dreamer: “Is that your loss? By God, that is heartbreaking!”",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3847,7 +3847,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The House of Fame",
     "locator": "Book III, lines 1876–1880; Middle English; excerpt",
-    "context": "Asked whether he has come seeking fame, the dreamer says that he prefers his name to remain unknown. His desire for news coexists with reluctance to become news.",
+    "context": "Geffrey denies that he has come to win fame. Having his name in people’s hands means becoming a subject of public talk. The image of drinking his own experience suggests bearing it himself, rather than a literal statement about alcohol.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume III, Clarendon Press, 1900; Project Gutenberg #45027.",
@@ -3861,8 +3861,8 @@ var DAWN_QUOTES = [
       "identity",
       "attention"
     ],
-    "studyPrompt": "How does the wish for privacy sit beside the dreamer’s curiosity about other people’s stories?",
-    "gloss": "It is enough for me that no one handles my name, as if I were dead; I know my own condition and will bear what I suffer or think myself.",
+    "studyPrompt": "Would you read the passage differently if you took drinking literally? What nearby words show that privacy and reputation are the concern?",
+    "gloss": "I am content for no one to talk about my name, as though I were dead. I know my own situation best. Whatever I suffer or think, I will bear it myself.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -3953,7 +3953,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: General Prologue",
     "locator": "Group A, lines 303–306; Middle English; excerpt",
-    "context": "The Clerk’s learning appears in both sustained attention and economical speech. The passage describes a person’s habits, not merely the possession of books.",
+    "context": "The Clerk is a university scholar, not an office administrator. His portrait links learning with careful speech. Sentence here means serious meaning or good sense, not a grammatical sentence.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -3967,8 +3967,8 @@ var DAWN_QUOTES = [
       "attention",
       "language"
     ],
-    "studyPrompt": "What would make speech both brief and full of meaning in a real teaching conversation?",
-    "gloss": "He gave study his greatest care; he spoke no more than needed, respectfully, briefly, vividly and with substance.",
+    "studyPrompt": "Which words here describe how the Clerk speaks, rather than how much he knows? What could you borrow for your own teaching?",
+    "gloss": "He cared most about studying. He said only what was needed, and spoke respectfully, briefly and clearly, with plenty of meaning.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4005,7 +4005,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Troilus and Criseyde",
     "locator": "Book II, lines 256–259; Middle English; excerpt",
-    "context": "Pandarus speaks to Criseyde before making his persuasive purpose clear. His account of artful storytelling doubles as a clue to his own methods.",
+    "context": "Pandarus is Criseyde’s uncle and acts as a go-between for Troilus. He talks about the purpose of stories while preparing to persuade her. His comments also invite us to ask what result his own carefully arranged account is designed to produce.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
@@ -4020,7 +4020,7 @@ var DAWN_QUOTES = [
       "power"
     ],
     "studyPrompt": "What conclusion does Pandarus want, and how should that affect your trust in his story?",
-    "gloss": "However much some people enjoy composing stories with subtle skill, their story is still directed towards an intended conclusion.",
+    "gloss": "However much people enjoy using clever skill to write stories, they are still aiming to make a particular point.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4124,7 +4124,7 @@ var DAWN_QUOTES = [
       "language"
     ],
     "studyPrompt": "How might a reader recognise a report that contains both a truth and a lie?",
-    "gloss": "I saw falsehood and truth fly together as one piece of news; every report squeezed out through holes and went straight to Fame.",
+    "gloss": "I saw a lie and a truth fly away together as a single piece of news. Report after report squeezed out through the holes and went straight to Fame.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4176,7 +4176,7 @@ var DAWN_QUOTES = [
       "courage"
     ],
     "studyPrompt": "What has the dream taught the narrator to seek when he opens another book?",
-    "gloss": "I hope that one day my reading will lead me to something that helps me fare better; therefore I will not stop reading.",
+    "gloss": "I really hope that one day my reading will bring me to something that helps me live better. So I will keep on reading.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4213,7 +4213,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: General Prologue",
     "locator": "Group A, lines 345–348; Middle English; excerpt",
-    "context": "The Franklin’s portrait imagines food and drink falling like snow. Abundance is followed by the detail that his meals change with the seasons.",
+    "context": "The Franklin is a prosperous landowner whose table stays ready for guests. The picture of food falling like snow is comic exaggeration. His generosity is real within the portrait, but so is his intense love of fine food: the narrator later says he scolds the cook when the sauce is not good enough.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -4227,8 +4227,8 @@ var DAWN_QUOTES = [
       "hospitality",
       "time"
     ],
-    "studyPrompt": "How do abundance and seasonal variation create different impressions of this host?",
-    "gloss": "His house overflowed with every delicacy, and he changed his meals and supper with the seasons of the year.",
+    "studyPrompt": "Compare the Franklin’s generous table with his anger at the cook. Can he be both welcoming and demanding?",
+    "gloss": "Food and drink seemed to fall like snow in his house, including every delicacy anyone could imagine. He changed his meals with the seasons.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4265,7 +4265,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Troilus and Criseyde",
     "locator": "Book II, lines 750–753; Middle English; excerpt",
-    "context": "The widowed Criseyde weighs the attraction of Troilus against the freedom she currently enjoys. Her deliberation should be read as a choice under social constraints, not simple indecision.",
+    "context": "The widowed Criseyde is weighing love against the independence she now enjoys. The original compares freedom to an animal loose in a pleasant pasture. Her freedom has limits, including social expectations and the war, but it is something she has reason to value.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
@@ -4279,8 +4279,8 @@ var DAWN_QUOTES = [
       "identity",
       "love"
     ],
-    "studyPrompt": "What would accepting love risk for the freedom Criseyde describes?",
-    "gloss": "I am my own woman, comfortably placed for my position, still young and free, without jealousy or such conflict.",
+    "studyPrompt": "Make two lists: what Criseyde might gain through love, and what she fears losing. Does the pasture image make her freedom feel secure?",
+    "gloss": "I am my own woman, comfortable enough for my position in life, thank God. I am still young and free, like an animal loose in a pleasant pasture, with no jealousy or quarrelling.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4317,7 +4317,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: General Prologue",
     "locator": "Group A, lines 383–384; Middle English; excerpt",
-    "context": "The Cook is introduced through a range of practical methods before the portrait turns less flattering. Technical competence is one part of the fuller character.",
+    "context": "The Cook’s skill is praised, then the narrator mentions an open sore on his shin before naming another dish he cooks well. The uncomfortable contrast stops the portrait becoming a simple celebration of professional excellence. Mortreux are thick dishes made with pounded ingredients, not a modern menu category.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -4331,8 +4331,8 @@ var DAWN_QUOTES = [
       "hospitality",
       "attention"
     ],
-    "studyPrompt": "What does this list show about the breadth of craft expected of a cook?",
-    "gloss": "He could roast, boil, broil and fry, make thick pottages and bake a pie skilfully.",
+    "studyPrompt": "Why place a detail about the Cook’s sore next to his skill? What different reactions does the portrait invite?",
+    "gloss": "He knew how to roast, boil, grill and fry, make thick dishes of pounded meat or fish, and bake a good pie.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4473,7 +4473,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Troilus and Criseyde",
     "locator": "Book III, lines 1–5; Middle English; excerpt",
-    "context": "Book III opens with praise of Venus and love’s influence, using the medieval third heaven. The radiance marks the approach to the lovers’ greatest happiness.",
+    "context": "The narrator praises Venus at the beginning of Book III. The third heaven is the sphere of Venus in medieval accounts of the cosmos, not the modern third planet from the Sun. The bright invocation marks an approach to the lovers’ greatest happiness.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
@@ -4487,7 +4487,7 @@ var DAWN_QUOTES = [
       "love",
       "imagination"
     ],
-    "studyPrompt": "How does the luminous invocation contrast with the Fury invoked in Book I?",
+    "studyPrompt": "Compare this bright opening with the Fury invoked in Book I. What does each prepare you to feel?",
     "gloss": "Blessed light whose beams adorn the third heaven, beloved of the sun and daughter of Jove: gentle pleasure of love, ready to enter noble hearts.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
@@ -4577,7 +4577,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Troilus and Criseyde",
     "locator": "Book III, lines 1314–1316; Middle English; excerpt",
-    "context": "The lovers have come together, but the narrator keeps fear beside reassurance. Their happiness is not described as the complete disappearance of vulnerability.",
+    "context": "The narrator describes the lovers’ first night together after Pandarus has arranged their meeting through deception and pressure. Their joy is real within the story, but fear remains. Reading the earlier scene helps keep both pleasure and vulnerability in view.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
@@ -4592,7 +4592,7 @@ var DAWN_QUOTES = [
       "truth"
     ],
     "studyPrompt": "What does keeping fear in the sentence add to the account of fulfilment?",
-    "gloss": "I can say no more than this: those two that night, between fear and assurance, felt the great worth of love.",
+    "gloss": "All I can say is this: that night the two of them felt how precious love could be, even as they moved between fear and confidence.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4629,7 +4629,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: General Prologue",
     "locator": "Group A, lines 747–749; Middle English; excerpt",
-    "context": "Harry Bailly welcomes the travellers and feeds them before proposing the tale-telling game. Food and attention prepare the ground for shared entertainment.",
+    "context": "Harry Bailly is the innkeeper at the Tabard in Southwark. He feeds and welcomes the pilgrims before suggesting a storytelling contest. Later he becomes their guide and judge, so his role involves more than serving supper.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -4644,7 +4644,7 @@ var DAWN_QUOTES = [
       "attention"
     ],
     "studyPrompt": "How does the sequence of welcome, seating and service establish confidence in the host?",
-    "gloss": "Our host warmly welcomed every one of us, seated us promptly for supper and served excellent provisions.",
+    "gloss": "Our host gave every one of us a warm welcome, took us straight to supper and served us the best food.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4681,7 +4681,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Troilus and Criseyde",
     "locator": "Book III, lines 1422–1424; Middle English; excerpt",
-    "context": "As dawn approaches after the lovers’ night together, Criseyde addresses Troilus. Daylight has a different emotional meaning for people who must conceal their relationship.",
+    "context": "Criseyde speaks to Troilus as dawn ends their night together. The phrase about her birth is an intense cry of distress, restored in the reading aid rather than quietly omitted. Daylight separates them because their relationship must be kept secret.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
@@ -4695,8 +4695,8 @@ var DAWN_QUOTES = [
       "love",
       "time"
     ],
-    "studyPrompt": "How does this scene reverse the usual association between dawn and hope?",
-    "gloss": "Life of my heart, my trust and joy: how unhappy I am that day must separate us.",
+    "studyPrompt": "How would the passage change if you removed the cry about being born? What does its intensity show about this parting?",
+    "gloss": "You are the life of my heart, my trust and my joy. Alas that I was ever born! How miserable I am that daylight must separate us.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4733,7 +4733,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "The Canterbury Tales: General Prologue",
     "locator": "Group A, lines 797–800; Middle English; excerpt",
-    "context": "The Host describes the prize for the best storyteller. His test combines meaningful substance with pleasure and ends in another communal supper.",
+    "context": "The Host wants the stories to offer both substance and enjoyment. Sentence means meaning or good sense; solas means pleasure or entertainment. The prize is a meal paid for by the company. Not all the tales will meet both ideals in an obvious way.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume IV, Clarendon Press, 1900; Project Gutenberg #22120.",
@@ -4747,8 +4747,8 @@ var DAWN_QUOTES = [
       "hospitality",
       "language"
     ],
-    "studyPrompt": "How might a tale excel in delight while remaining difficult to judge for its meaning?",
-    "gloss": "Whoever tells tales with the best meaning and greatest delight will receive a supper here at everyone’s expense.",
+    "studyPrompt": "Choose a tale that is enjoyable but uncomfortable. Does it offer both meaning and pleasure, or does it question the Host’s judging rule?",
+    "gloss": "Whoever tells the stories with the best meaning and the most enjoyment will win a supper here, paid for by all of us.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4800,7 +4800,7 @@ var DAWN_QUOTES = [
       "power"
     ],
     "studyPrompt": "What tension appears when this vision of harmony is read beside the war surrounding Troy?",
-    "gloss": "Love governs earth and sea, commands in high heaven, and holds peoples together through a sustaining bond.",
+    "gloss": "Love rules the earth and sea, gives commands in heaven, and keeps peoples together in a healthy bond, guiding them as it chooses.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4889,7 +4889,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Troilus and Criseyde",
     "locator": "Book IV, lines 19–21; Middle English; excerpt",
-    "context": "Before recounting Criseyde’s departure, the narrator questions the stories that condemn her. He leaves open the possibility that inherited accounts themselves do harm.",
+    "context": "Before Criseyde leaves Troy, the narrator considers the writers who have damaged her reputation. He does not simply declare her innocent; he asks whether the stories about her may themselves be unfair. Readers should distinguish the events told from the judgement attached to them.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
@@ -4904,7 +4904,7 @@ var DAWN_QUOTES = [
       "language"
     ],
     "studyPrompt": "What responsibility does this passage give you as a reader of Criseyde’s reputation?",
-    "gloss": "Alas that writers ever found a reason to speak badly of her; if they lie about her, the disgrace should belong to them.",
+    "gloss": "How sad that writers ever found a reason to speak badly of her. If they are lying about her, the shame should be theirs.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4956,7 +4956,7 @@ var DAWN_QUOTES = [
       "identity"
     ],
     "studyPrompt": "What strength and what possible limitation appear in Troilus’s language of service?",
-    "gloss": "Pandarus, since I have pledged faith to her, I will not be untrue for anyone; I will live and die as her servant and serve no other.",
+    "gloss": "Pandarus, I have promised to be faithful to her, and no one will make me break that promise. I will live and die as her servant, and serve no one else.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -4993,7 +4993,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Troilus and Criseyde",
     "locator": "Book IV, lines 1453–1456; Middle English; excerpt",
-    "context": "Troilus doubts Criseyde’s plan to persuade her father and return. Proverbs about the bear and its keeper express unequal control over a shared situation.",
+    "context": "Criseyde hopes to return to Troy after joining her father in the Greek camp. Troilus doubts that her father will allow her plan to succeed. The bear and its keeper represent unequal power: wanting to do something does not mean controlling the conditions that make it possible.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
@@ -5008,7 +5008,7 @@ var DAWN_QUOTES = [
       "truth"
     ],
     "studyPrompt": "Whose control does this proverb expose, and what does it miss about Criseyde’s position?",
-    "gloss": "The bear thinks one thing and its keeper another; your father is clever, and people may outrun the wise without outwitting them.",
+    "gloss": "As people say, the bear thinks one thing and its keeper thinks something quite different. Your father is clever. You may outrun a clever person without being able to outwit him.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -5045,7 +5045,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Troilus and Criseyde",
     "locator": "Book V, lines 1093–1096; Middle English; excerpt",
-    "context": "After describing Criseyde’s changed allegiance, the narrator limits his rebuke. Public repetition of her name and fault is itself presented as a punishment.",
+    "context": "After reporting Criseyde’s attachment to Diomede, the narrator refuses to add endless blame. He still speaks of her fault, but treats her lasting public reputation as punishment too. Sympathy and judgement remain together rather than cancelling each other.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
@@ -5059,8 +5059,8 @@ var DAWN_QUOTES = [
       "justice",
       "language"
     ],
-    "studyPrompt": "How does the narrator’s restraint complicate the judgement the plot seems to invite?",
-    "gloss": "I do not wish to reproach this unfortunate woman beyond the story; her name is already spread so widely that it should be punishment enough.",
+    "studyPrompt": "Point to the words that show blame and the words that show sympathy. Can the narrator hold both positions at once?",
+    "gloss": "I do not want to blame this unfortunate woman any more than the story requires. Her name has already been spread so widely that this should be enough punishment for her fault.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -5149,7 +5149,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Troilus and Criseyde",
     "locator": "Book V, lines 1828–1831; Middle English; excerpt",
-    "context": "After Troilus’s death and upward vision, a repeated phrase measures the end of his earthly distinction. Love, royal status and achievement are subjected to the same limit.",
+    "context": "Troilus dies in war and his spirit looks down on earthly life. The narrator repeats the same ending for love, status and honour, then urges his readers towards Christian love of God. This closing change of perspective is part of the poem’s argument, not a neutral summary of its earlier feelings.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
@@ -5164,7 +5164,7 @@ var DAWN_QUOTES = [
       "grief"
     ],
     "studyPrompt": "What does the repeated phrase such an end do that a single statement of mortality would not?",
-    "gloss": "Such an end has Troilus’s love, his great worth, his royal standing, his delight and his nobility.",
+    "gloss": "Look: this is how Troilus’s love ends, and his great achievements, his royal rank, his pleasure and his nobility.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -5201,7 +5201,7 @@ var DAWN_QUOTES = [
     "collection": "stage",
     "work": "Troilus and Criseyde",
     "locator": "Book V, lines 1856–1859; Middle English; excerpt",
-    "context": "The poem addresses John Gower and Ralph Strode as readers who may correct it. Literary achievement closes with an invitation to responsible scrutiny.",
+    "context": "John Gower was a fellow poet; Ralph Strode is addressed for his philosophical learning. The narrator asks them to correct his book where necessary. The dedication occurs near the ending, before its final Christian prayer, rather than being the poem’s last statement.",
     "sources": [
       {
         "label": "Walter W. Skeat, The Complete Works of Geoffrey Chaucer, volume II, Clarendon Press, 1900; Project Gutenberg #44833.",
@@ -5216,7 +5216,7 @@ var DAWN_QUOTES = [
       "language"
     ],
     "studyPrompt": "How does an invitation to correction change the authority of the work’s ending?",
-    "gloss": "Moral Gower and philosophical Strode, I direct this book to you; kindly correct it where correction is needed, from your goodwill and care.",
+    "gloss": "Gower, with your moral learning, and Strode, with your knowledge of philosophy, I send this book to you. Please use your kindness and care to correct it wherever it needs correcting.",
     "translation": "Middle English retained; original gloss is a reading aid, not a second quotation."
   },
   {
@@ -5456,7 +5456,7 @@ var DAWN_QUOTES = [
     "work": "The Canterbury Tales",
     "locator": "General Prologue, line 308; portrait of the Clerk; Middle English; excerpt",
     "year": "Late 14th century",
-    "context": "The narrator describes a scholar whose money goes on books and whose learning is shared. Gloss: he would gladly learn and gladly teach.",
+    "context": "The Clerk is a university scholar whose money goes on books and whose learning is shared. The line ends a portrait of careful study and clear, respectful speech. Gladly applies to both receiving knowledge and passing it on.",
     "sources": [
       {
         "label": "Project Gutenberg: Walter W. Skeat’s Middle English edition",
@@ -5465,7 +5465,9 @@ var DAWN_QUOTES = [
     ],
     "verified": "2026-10-11",
     "kind": "words",
-    "daily": false
+    "daily": false,
+    "gloss": "He was glad to learn, and glad to teach others.",
+    "studyPrompt": "How do the details earlier in the Clerk’s portrait show that learning is a way of living, not just collecting information?"
   },
   {
     "id": "stage-william-shakespeare-nothing",
@@ -5700,7 +5702,7 @@ var DAWN_QUOTES = [
     "work": "The Canterbury Tales",
     "locator": "The Franklin’s Tale, line 1479; Middle English; excerpt",
     "year": "Late 14th century",
-    "context": "Arveragus tells Dorigen to honour a promise whose fulfilment would wound them both. Trouthe includes fidelity and one’s pledged word; the tale then tests what generosity requires of each person.",
+    "context": "Arveragus tells Dorigen to keep her promise to Aurelius, even though this would mean becoming another man’s lover. Trouthe includes faithfulness and a pledged word, not only factual truth. He cries after saying this and insists that the matter remain secret. The tale tests the cost of his principle before Aurelius releases her.",
     "sources": [
       {
         "label": "Project Gutenberg: Walter W. Skeat’s Middle English edition",
@@ -5709,7 +5711,9 @@ var DAWN_QUOTES = [
     ],
     "verified": "2026-10-11",
     "kind": "words",
-    "daily": false
+    "daily": false,
+    "gloss": "Keeping faith is the highest thing a person can uphold.",
+    "studyPrompt": "Read the surrounding exchange. Does Arveragus protect Dorigen’s freedom, protect a principle, or put those aims into conflict?"
   },
   {
     "id": "stage-william-shakespeare-gardens",
@@ -5944,7 +5948,7 @@ var DAWN_QUOTES = [
     "work": "Troilus and Criseyde",
     "locator": "Book V, line 1786; Middle English; excerpt",
     "year": "Late 14th century",
-    "context": "The narrator sends his tragic poem into the world near its conclusion. Gloss: go, little book, my little tragedy. This edition spells book and tragedie in this way.",
+    "context": "Near the end, the narrator speaks to his poem as though it were a living creature he could send on a journey. He then places it beside older poets and worries about how future readers and copyists will handle it. This is a direct address to a book, not dialogue spoken by Troilus.",
     "sources": [
       {
         "label": "Project Gutenberg: Middle English full text",
@@ -5953,7 +5957,9 @@ var DAWN_QUOTES = [
     ],
     "verified": "2026-10-11",
     "kind": "words",
-    "daily": false
+    "daily": false,
+    "gloss": "Go out into the world, little book, my little tragedy.",
+    "studyPrompt": "What does calling the poem little suggest when the narrator places it beside the great poets who came before him?"
   },
   {
     "id": "stage-william-shakespeare-food-of-love",
@@ -6188,7 +6194,7 @@ var DAWN_QUOTES = [
     "work": "Troilus and Criseyde",
     "locator": "Book V, line 784; inward resolve as he courts Criseyde; Middle English; excerpt",
     "year": "Late 14th century",
-    "context": "The familiar thought is that a person who attempts nothing achieves nothing. Here Diomedes uses it to justify pursuing Criseyde while she grieves for Troilus, so the proverb has an opportunistic context.",
+    "context": "Diomedes thinks this while deciding how to pursue Criseyde after her arrival in the Greek camp. She is grieving for Troilus and living in a vulnerable situation. The proverb encourages action, but here it also serves the speaker’s personal opportunity: a useful-sounding saying is not proof that his purpose is good.",
     "sources": [
       {
         "label": "Project Gutenberg: Middle English full text",
@@ -6197,7 +6203,9 @@ var DAWN_QUOTES = [
     ],
     "verified": "2026-10-11",
     "kind": "words",
-    "daily": false
+    "daily": false,
+    "gloss": "Anyone who tries nothing achieves nothing.",
+    "studyPrompt": "What changes when you know who is saying this and what he wants? Give an example of a true proverb used to justify a questionable aim."
   },
   {
     "id": "stage-william-shakespeare-dancing-star",
@@ -6432,7 +6440,7 @@ var DAWN_QUOTES = [
     "work": "The Parliament of Fowls",
     "locator": "Opening line; Middle English; excerpt",
     "year": "Late 14th century",
-    "context": "The narrator begins a dream vision by lamenting the difficulty of learning love. Gloss: life is short, the art takes long to learn. The craft here is love before it becomes a general motto for learning.",
+    "context": "The next lines identify the difficult art as love. The narrator admits that he knows love through books more than through personal experience. You can apply the line to learning generally, but its first setting is the uncertainty of understanding desire and relationships.",
     "sources": [
       {
         "label": "Project Gutenberg: Walter W. Skeat’s edition, volume I",
@@ -6441,7 +6449,9 @@ var DAWN_QUOTES = [
     ],
     "verified": "2026-10-11",
     "kind": "words",
-    "daily": false
+    "daily": false,
+    "gloss": "Life is so short, and the art takes so long to learn.",
+    "studyPrompt": "How does the meaning change when craft is understood as love rather than a practical skill?"
   },
   {
     "id": "stage-william-shakespeare-true-love",
@@ -6676,7 +6686,7 @@ var DAWN_QUOTES = [
     "work": "Truth",
     "locator": "Line 7, first refrain; Middle English; excerpt",
     "year": "Late 14th century",
-    "context": "Gloss: truth will deliver you, there is no doubt. The poem counsels moral steadiness and freedom from worldly ambition within a Christian account of pilgrimage.",
+    "context": "This is the repeated refrain of a poem about truthful living, contentment and resisting worldly ambition. Trouthe includes moral faithfulness as well as saying what is factually correct. The later image of pilgrimage places this freedom within a Christian account of life.",
     "sources": [
       {
         "label": "University of Toronto: Representative Poetry Online, Middle English text",
@@ -6685,7 +6695,9 @@ var DAWN_QUOTES = [
     ],
     "verified": "2026-10-11",
     "kind": "words",
-    "daily": false
+    "daily": false,
+    "gloss": "And truthfulness will set you free; there is no doubt about it.",
+    "studyPrompt": "What habits does the poem ask the reader to practise before repeating its promise of freedom?"
   },
   {
     "id": "stage-william-shakespeare-band-of-brothers",
@@ -6920,7 +6932,7 @@ var DAWN_QUOTES = [
     "work": "Gentilesse",
     "locator": "Line 5; Middle English; excerpt",
     "year": "Late 14th century",
-    "context": "Gloss: dignity belongs to virtue. The poem grounds nobility in character and conduct rather than inherited wealth or the insignia of high office.",
+    "context": "Dignity or high standing should follow good character, the poem argues. The next line rejects the reverse assumption: possessing a high position does not automatically make someone good. Read the sentence with its sequel so that it does not become a vague compliment to status.",
     "sources": [
       {
         "label": "Montclair State University: Middle English text with glosses",
@@ -6929,7 +6941,9 @@ var DAWN_QUOTES = [
     ],
     "verified": "2026-10-11",
     "kind": "words",
-    "daily": false
+    "daily": false,
+    "gloss": "Honour belongs to goodness.",
+    "studyPrompt": "Why does the next line, which rejects the reverse, matter to the argument?"
   },
   {
     "id": "stage-william-shakespeare-time-waste",
@@ -7164,7 +7178,7 @@ var DAWN_QUOTES = [
     "work": "The Book of the Duchess",
     "locator": "Opening lines 1–2; Middle English; excerpt",
     "year": "Late 14th century",
-    "context": "The sleepless narrator wonders how he stays alive; the sentence continues by saying he can scarcely sleep. The dream poem that follows approaches bereavement through storytelling and a grieving knight.",
+    "context": "The quotation stops before the sentence is complete. The next line says that the narrator can scarcely sleep. His sleeplessness leads him to a book and then a dream about a grieving knight. The reading aid deliberately leaves the sentence open rather than silently adding the missing line.",
     "sources": [
       {
         "label": "Johns Hopkins University: Chaucer Hub, Middle English beside a modern rendering",
@@ -7173,7 +7187,9 @@ var DAWN_QUOTES = [
     ],
     "verified": "2026-10-11",
     "kind": "words",
-    "daily": false
+    "daily": false,
+    "gloss": "I truly wonder how I am still alive, because neither by day nor by night...",
+    "studyPrompt": "Read the next few lines. How do tiredness and sleeplessness prepare the atmosphere of the dream?"
   },
   {
     "id": "stage-william-shakespeare-only-hope",
@@ -7408,7 +7424,7 @@ var DAWN_QUOTES = [
     "work": "The House of Fame",
     "locator": "Book III, line 2158; final surviving line; terminal editorial ellipsis omitted; Middle English; excerpt",
     "year": "Late 14th century",
-    "context": "Gloss: a man of great authority. The unfinished dream vision ends just as this unnamed figure appears, leaving the reader with the mystery of whose words deserve belief.",
+    "context": "The dreamer sees a man who seems authoritative but cannot name him. The surviving text breaks off at that point, so neither his identity nor the content of any speech is securely supplied by the poem. After a journey through unreliable fame and rumour, the unfinished arrival leaves authority as a question.",
     "sources": [
       {
         "label": "Project Gutenberg: Walter W. Skeat’s edition, volume III",
@@ -7417,7 +7433,9 @@ var DAWN_QUOTES = [
     ],
     "verified": "2026-10-11",
     "kind": "words",
-    "daily": false
+    "daily": false,
+    "gloss": "A man with great authority.",
+    "studyPrompt": "What would you need to hear or see before deciding whether this impressive stranger deserves belief?"
   },
   {
     "id": "stage-william-shakespeare-awake-faith",
@@ -7652,7 +7670,7 @@ var DAWN_QUOTES = [
     "work": "The Complaint of Chaucer to His Empty Purse",
     "locator": "Line 7, first refrain; Middle English; excerpt",
     "year": 1399,
-    "context": "Gloss: be heavy again, or else I must die. Chaucer playfully treats an empty purse as a courtly beloved; the envoy turns the complaint into a request for royal support.",
+    "context": "The speaker addresses his purse as though it were a beloved lady who could grant him mercy. Heavy means full of coins. The exaggerated love complaint turns into a request for royal financial support in the closing envoy, so the line works as both a joke and an appeal for help.",
     "sources": [
       {
         "label": "Project Gutenberg: Walter W. Skeat’s edition, volume I",
@@ -7661,7 +7679,9 @@ var DAWN_QUOTES = [
     ],
     "verified": "2026-10-11",
     "kind": "words",
-    "daily": false
+    "daily": false,
+    "gloss": "Be heavy with money again, or I shall die!",
+    "studyPrompt": "Which words would fit a love poem, and what happens to them when the beloved is an empty purse?"
   },
   {
     "id": "history-washington-truth-light",
