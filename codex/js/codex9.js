@@ -6,6 +6,18 @@
    the real paper. This layer grades enumerations item by item instead: how many
    of the set did you actually produce, and which ones did you miss.
 
+   NEGATION. core.js guards `matchSA` against an input that negates the answer,
+   but that guard never reached this file, and this file replaces `submitSA`
+   outright, so every list-graded question bypassed it. `gradeList` splits the
+   input on delimiters and matches item to token, which leaves a leading "not"
+   or "never" as a stray token it simply ignores: "not Romanée-Conti and La
+   Tâche" scored full marks in the paid Knight bank. Measured before this
+   landed, 246 negations of their own answers graded correct through this path
+   across the four banks. Every match site below now consults
+   core's `negatedAgainst`, which fires only when the negation is in the INPUT
+   and not in the item, so an item that legitimately reads "no filtration" is
+   unaffected.
+
    Detection is precision-first and derived from data already in the banks: the
    stem states a count, the model answer parses into that many discrete items.
    Anything it cannot read confidently falls through to `matchSA` untouched.
@@ -122,6 +134,15 @@ function listAlts(it,all){
    spent only once so one word cannot satisfy two crus. */
 function gradeList(sp,text){
   var raw=String(text||'');
+  /* Whole-submission negation guard, mirroring core.matchSA. A "not" scopes the
+     whole list ("not Romanée-Conti and La Tâche" negates both), but the split
+     below leaves that word attached to the first token only, so the per-token
+     guards further down cannot see it and the remaining items still satisfy
+     `need`. Fires only when the negation is absent from the model answer, so a
+     set whose own items read "no filtration" is untouched. */
+  if(negatedAgainst(norm(raw),norm(sp.items.join(' ')))){
+    return {hit:[],missed:sp.items.slice(),n:0,need:sp.need,total:sp.items.length,ok:false};
+  }
   var toks=raw.split(/[,;\n·\/]+|\s+\band\b\s+/i)
     .map(function(t){return norm(t);}).filter(Boolean);
   var order=sp.items.slice().sort(function(x,y){return norm(y).length-norm(x).length;});
@@ -135,7 +156,8 @@ function gradeList(sp,text){
       for(var t=0;t<toks.length;t++){
         if(used[t])continue;
         for(var k=0;k<alts.length;k++){
-          if(toks[t]===alts[k]||(' '+toks[t]+' ').indexOf(' '+alts[k]+' ')>=0){
+          if(toks[t]===alts[k]||
+             ((' '+toks[t]+' ').indexOf(' '+alts[k]+' ')>=0 && !negatedAgainst(toks[t],alts[k]))){
             used[t]=1; claimed[it]=1; return;
           }
         }
@@ -149,7 +171,8 @@ function gradeList(sp,text){
         if(used[t])continue;
         for(var k=0;k<alts.length;k++){
           var n=alts[k], tk=toks[t];
-          if((tk.length>=5&&n.indexOf(tk)>=0)||(n.length>=6&&tk.indexOf(n)>=0)){
+          if(!negatedAgainst(tk,n) &&
+             ((tk.length>=5&&n.indexOf(tk)>=0)||(n.length>=6&&tk.indexOf(n)>=0))){
             used[t]=1; claimed[it]=1; return;
           }
         }
@@ -158,11 +181,13 @@ function gradeList(sp,text){
     sp.items.forEach(function(it){ (claimed[it]?hit:missed).push(it); });
   } else {
     /* one unbroken phrase: consume the span each item matched */
-    var a=' '+norm(raw)+' ';
+    var a=' '+norm(raw)+' ', rawNorm=norm(raw);
     order.forEach(function(it){
       var found=false, alts=listAlts(it,sp.items);
       for(var k=0;k<alts.length&&!found;k++){
-        var n=alts[k], i=a.indexOf(' '+n+' ');
+        var n=alts[k];
+        if(negatedAgainst(rawNorm,n))continue;
+        var i=a.indexOf(' '+n+' ');
         if(i>=0){ a=a.slice(0,i+1)+new Array(n.length+1).join(' ')+a.slice(i+1+n.length); found=true; break; }
         if(n.length>=6){ i=a.indexOf(n);
           if(i>=0){ a=a.slice(0,i)+new Array(n.length+1).join(' ')+a.slice(i+n.length); found=true; } }
