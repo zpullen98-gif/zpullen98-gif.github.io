@@ -3,13 +3,16 @@
    docs/study-menus-design.md in the World Table is the specification; this
    is the Ledger's part of it (sections 1.2 to 1.7, 2.3, 4.2 and 4.4).
 
-   WHAT IT IS. When a house is current and holds cocktails, the Menu tab's
-   first sub-view opens on a study view instead of the editing list: a short
-   header, a sticky search box and a row of section chips, one compact row per
-   drink, and a card per drink that reads top to bottom the way a server
-   needs it at the table. Editing is one "Edit the menu" switch away (and one
-   "Edit" on each card), and shows today's list unchanged. The switch is not
-   stored: every load opens on the study view.
+   WHAT IT IS. When a house is current and holds cocktails, the house's tab
+   (the bar's second word, #/menu) opens on a study view instead of the
+   editing list: a short header, a row of jumps to the places on the page, a
+   sticky search box and a row of section chips, one compact row per drink in
+   the house's own sections, the doors to Fall 2026, The Bar Compass and the
+   producers, and a card per drink that opens on its three timed lines and
+   reads top to bottom the way a server needs it at the table. Editing is
+   one "Edit the menu" switch away (and one "Edit" on each card), and shows
+   today's list unchanged. The switch is not stored: every load opens on the
+   study view.
 
    LOADS WITH NO ENGINE AND DOES NOTHING THEN. Every read of the house goes
    through houseHere() (js/house-bar.js), read at call time, so the standalone
@@ -61,15 +64,14 @@ var HS_WORDS = {
   cards: 'Flash cards',
   weak: 'My weak ones ({n})',
   weakNone: 'My weak ones: none yet',
-  quizTab: 'Drill the menu (Quizzes)',
+  quizTab: 'Drill the menu',
   editOff: 'Edit the menu',
   editOn: 'Edit the menu: on',
   edit: 'Edit',
   ten: 'In ten seconds',
-  twenty: 'Twenty seconds',
-  twentyHide: 'Hide twenty seconds',
-  fortyFive: 'Forty-five seconds',
-  fortyFiveHide: 'Hide forty-five seconds',
+  twenty: 'In twenty seconds',
+  fortyFive: 'In forty-five seconds',
+  lines: 'The lines',
   say: 'Say it',
   asPrinted: 'Prices as printed on {date}. Confirm before quoting.',
   offerLine: 'Offer next: ',
@@ -80,8 +82,8 @@ var HS_WORDS = {
   nextOnly: 'Next',
   offShift: 'Not on the {meal} list. Counting the whole menu.',
   offList: 'Not in the rows on screen. Counting the whole menu.',
-  drillSection: 'Drill this section (Quizzes)',
-  drillWhole: 'Drill the whole menu (Quizzes)',
+  drillSection: 'Drill this section',
+  drillWhole: 'Drill the whole menu',
   tooSmall: '{section} is too small to drill alone.',
   canonLine: 'The classic {name} is in the Library. Its build is the classic’s, not ours.',
   canonFamily: 'It comes from the {name}. The classic is in the Library; its build is the classic’s, not ours.',
@@ -156,7 +158,17 @@ var HS_WORDS = {
   producersLine: '{n} behind {m} on the menu.',
   qProducerOf: 'Which producer is behind the {name} on your menu?',
   qProducerWhere: 'Where is {name} from?',
-  qProducerDrink: 'Which drink on your menu uses {name}?'
+  qProducerDrink: 'Which drink on your menu uses {name}?',
+  jumps: 'On this page',
+  jumpList: 'The cocktail list',
+  jumpEye: 'Eye openers and coffee',
+  jumpBubbles: 'Bubbles',
+  jumpAfter: 'After dinner',
+  jumpRoost: 'The Roost Bar',
+  fallH: 'Fall 2026',
+  compassH: 'The Bar Compass',
+  producersH: 'Producers',
+  producersRow: 'The producers'
 };
 function hsSay(key, vars){
   const v = vars || {};
@@ -176,7 +188,7 @@ var HS_ROOM_ENTRIES = { table: ['/table/shell.html'], codex: ['/codex/index.html
 
 /* ---- the screen's state --------------------------------------------------- */
 function hsBlank(){
-  return { q: '', sec: '', open: null, editAll: false, deck: null, y: 0, jump: null, pushed: false, l20: false, l45: false, lastId: null, from: null, scrollCard: false };
+  return { q: '', sec: '', open: null, editAll: false, deck: null, y: 0, jump: null, pushed: false, lastId: null, from: null, scrollCard: false };
 }
 if(typeof state !== 'undefined' && state && state.menu && !state.menu.study) state.menu.study = hsBlank();
 function hsState(){
@@ -814,7 +826,7 @@ function houseStudyRowsHTML(){
   hsSections(shown).forEach(function(s){
     const rows = shown.filter(function(r){ return r.section === s.section; });
     const own = rows.length && rows[0].own;
-    out += '<section class="panel hs-sec" aria-label="' + esc(s.section) + '">'
+    out += '<section class="panel hs-sec" id="' + esc(hsSectionId(s.section)) + '" aria-label="' + esc(s.section) + '">'
       + '<div class="hs-sec-head"><h3 class="eyebrow hs-sec-name">' + esc(s.section) + ' · ' + s.count + '</h3>'
       + (own ? '' : '<button class="btn btn-ghost hs-sec-cards" data-act="hs-cards" data-s="' + esc(s.section) + '">' + esc(hsSay('cards')) + '</button>') + '</div>'
       + rows.map(function(r){ return hsRowHTML(r, againIds); }).join('')
@@ -842,6 +854,89 @@ function hsShowingWords(h){
   return hsSay('showing', { section: st.sec || 'the whole menu', n: shown.length, unit: hsUnit(shown.length) });
 }
 
+/* ---- the page's jump row ------------------------------------------------------------
+   Under the header, one row of buttons that scroll to a place on this page
+   and focus its heading, with no address and no history (hsJump). The
+   house's own sections come first: for a house whose list is filed under
+   the headings below, keyed by the section's name ({house} is the house's
+   own name, read from the house), the labels say where a server goes for
+   what, the first button always the list's first section; any other house
+   gets one button per section, under the section's own name. Then the
+   doors after the list (Fall 2026, The Bar Compass, the producers) and the
+   videos. A button whose place is not on the page is not drawn, and one
+   whose section a search or a chosen section hides is hidden until the
+   rows show it again (hsJumpsSync). */
+var HS_JUMP_SECTIONS = [['jumpEye', 'Classic Eye Openers'], ['jumpBubbles', 'Bubbles at {house}'],
+  ['jumpAfter', 'Dessert Cocktails'], ['jumpRoost', 'Luxury Roost Bar Cocktails']];
+function hsSectionId(section){ return 'hs-s-' + slugify(section); }
+function hsSectionJumps(h, all){
+  const secs = hsSections(all).map(function(s){ return s.section; });
+  if(!secs.length) return [];
+  const house = hsPlain(h && h.name);
+  const found = HS_JUMP_SECTIONS.map(function(j){
+    const want = hsFold(j[1].split('{house}').join(house));
+    const sec = secs.find(function(s){ return hsFold(s) === want; });
+    return sec ? { label: hsSay(j[0]), section: sec } : null;
+  }).filter(Boolean);
+  if(!found.length) return secs.map(function(s){ return { label: s, section: s }; });
+  return [{ label: hsSay('jumpList'), section: secs[0] }].concat(found.filter(function(j){ return j.section !== secs[0]; }));
+}
+/* the doors drawn after the list, each a heading a jump can land on */
+function hsDoorList(h){
+  const out = [];
+  if(typeof fallMenuDoorHTML === 'function') out.push({ id: 'hs-fall-h', label: hsSay('fallH'), body: fallMenuDoorHTML() });
+  if(typeof barCompassDoorHTML === 'function') out.push({ id: 'hs-compass-h', label: hsSay('compassH'), body: barCompassDoorHTML() });
+  const line = hsProducersLine(h);
+  if(line) out.push({ id: 'hs-producers-h', label: hsSay('producersH'),
+    body: '<nav class="quiet rows" aria-label="' + esc(hsSay('producersH')) + '"><button class="door" data-act="lv-producers"><span class="door-name">' + esc(hsSay('producersRow')) + '</span><span class="door-line">' + esc(line) + '</span></button></nav>' });
+  return out;
+}
+function hsDoorsHTML(h){
+  return hsDoorList(h).map(function(d){
+    return '<section class="hs-group hs-doors" aria-labelledby="' + d.id + '"><h3 class="hs-h3" id="' + d.id + '" tabindex="-1">' + esc(d.label) + '</h3>' + d.body + '</section>';
+  }).join('');
+}
+function hsJumpsHTML(h, all){
+  const shown = {};
+  hsVisible(h).forEach(function(r){ shown[r.section] = true; });
+  const btn = function(label, to, hidden){
+    return '<button class="chip hs-chip" data-act="hs-jump" data-to="' + esc(to) + '"' + (hidden ? ' hidden' : '') + '>' + esc(label) + '</button>';
+  };
+  const parts = hsSectionJumps(h, all).map(function(j){ return btn(j.label, hsSectionId(j.section), !shown[j.section]); })
+    .concat(hsDoorList(h).map(function(d){ return btn(d.label, d.id, false); }));
+  if(hsVideoGroups(h).some(function(g){ return g.videos.length; })) parts.push(btn(hsSay('videos'), 'hs-videos-h', false));
+  return parts.length ? '<nav class="hs-jumps" aria-label="' + esc(hsSay('jumps')) + '">' + parts.join('') + '</nav>' : '';
+}
+/* a button shows while its place is on the page; the rows repaint alone on
+   every keystroke in the search box, so this follows them */
+function hsJumpsSync(){
+  if(typeof document === 'undefined' || !document || typeof document.querySelectorAll !== 'function') return;
+  Array.prototype.forEach.call(document.querySelectorAll('[data-act="hs-jump"]'), function(b){
+    const to = b.getAttribute('data-to');
+    b.hidden = !to || !document.getElementById(to);
+  });
+}
+/* the place to the top of the screen, clear of the sticky Back and the
+   list's sticky search, then the focus on its heading */
+function hsJump(to){
+  if(typeof document === 'undefined' || !document || typeof document.getElementById !== 'function') return false;
+  const id = String(to || '').replace(/[^a-z0-9-]/gi, '');
+  const el = id ? document.getElementById(id) : null;
+  if(!el) return false;
+  const t = (String(el.tagName || '').toUpperCase() === 'SECTION' && el.querySelector('h3')) || el;
+  try {
+    if(!t.hasAttribute('tabindex')) t.setAttribute('tabindex', '-1');
+    const bar = document.querySelector('.hs-bar');
+    const back = document.querySelector('#view .backrow');
+    let off = back ? back.offsetHeight : 0;
+    if(bar && typeof getComputedStyle === 'function') off = Math.max(off, (parseFloat(getComputedStyle(bar).top) || 0) + bar.offsetHeight);
+    const y = t.getBoundingClientRect().top + (window.scrollY || window.pageYOffset || 0);
+    window.scrollTo(0, Math.max(0, Math.round(y - off - 8)));
+    t.focus({ preventScroll: true });
+  } catch (e) {}
+  return true;
+}
+
 function hsListHTML(h){
   const st = hsState();
   const all = hsRows(h);
@@ -863,6 +958,10 @@ function hsListHTML(h){
   const facts = [h.menusReadOn ? hsSay('read', { date: hsDate(h.menusReadOn) }) : '', n + ' ' + hsUnit(n)].filter(Boolean).join(' · ');
   return '<div class="hs col-sm">'
     + hsHeaderHTML(h, all)
+    /* the jumps are named from the whole menu, never the chosen shift's
+       rows, so a shift without the list's first section hides that jump
+       rather than lending its label to another section */
+    + hsJumpsHTML(h, hsRows(h, ''))
     + '<div class="hs-bar">'
     + '<div class="hs-find"><label class="sr-only" for="hs-q">' + esc(hsSay('find')) + '</label>'
     + '<input class="input hs-q" id="hs-q" type="search" autocomplete="off" placeholder="' + esc(hsSay('find')) + '" value="' + esc(st.q || '') + '">'
@@ -870,6 +969,7 @@ function hsListHTML(h){
     + '<div class="hs-chips" role="group" aria-label="Sections">' + chips + '</div>'
     + '</div>'
     + '<div id="hs-rows" class="col-sm">' + houseStudyRowsHTML() + '</div>'
+    + hsDoorsHTML(h)
     + hsHouseListsHTML(h)
     + hsVideosHTML(h)
     + '<div class="hs-facts">' + esc(facts) + '</div>'
@@ -1486,22 +1586,23 @@ function hsCardHTML(h, id){
     + (price && h.menusReadOn ? '<div class="hs-soft">' + esc(hsSay('asPrinted', { date: hsDate(h.menusReadOn) })) + '</div>' : '');
   /* 4. Say it */
   if(say) out += '<div class="hs-block"><div class="eyebrow">' + esc(hsSay('say')) + '</div><p class="hs-say">' + esc(say) + '</p></div>';
-  /* 5. In ten seconds, and 5a, what to offer next */
-  if(lines.s10) out += '<div class="hs-block"><div class="eyebrow">' + esc(hsSay('ten')) + '</div><p class="hs-ten">' + esc(lines.s10) + '</p></div>';
-  /* each name keeps its comma: the line never strands one on its own */
+  /* 5. the three lines, open at the top with no button: the ten for the
+     order, the twenty as the drink lands, the forty-five, the one to learn,
+     in the house's reading face at the size the ten had, under a brass rule */
+  if(lines.s10 || lines.s20 || lines.s45){
+    out += '<section class="hs-lines" aria-labelledby="hs-lines-h"><h3 class="sr-only" id="hs-lines-h">' + esc(hsSay('lines')) + '</h3>'
+      + (lines.s10 ? '<div class="hs-block"><div class="eyebrow">' + esc(hsSay('ten')) + '</div><p class="hs-ten">' + esc(lines.s10) + '</p></div>' : '')
+      + (lines.s20 ? '<div class="hs-block"><div class="eyebrow">' + esc(hsSay('twenty')) + '</div><p class="hs-line hs-twenty">' + esc(lines.s20) + '</p></div>' : '')
+      + (lines.s45 ? '<div class="hs-block"><div class="eyebrow">' + esc(hsSay('fortyFive')) + '</div><p class="hs-line hs-fortyfive">' + esc(lines.s45) + '</p></div>' : '')
+      + '</section>';
+  }
+  /* 5a. the guest line, where it says something the twenty does not */
+  if(lines.guestShown) out += '<p class="hs-line">' + esc(lines.guest) + '</p>';
+  /* 6. what to offer next; each name keeps its comma, so the line never
+     strands one on its own */
   if(ups.length) out += '<p class="hs-offer">' + esc(hsSay('offerLine')) + ups.map(function(c, i){
     return '<span class="hs-offer-item">' + offerBtn(c, 'hs-inline') + (i < ups.length - 1 ? ',' : '') + '</span>';
   }).join(' ') + '</p>';
-  /* 6. the two longer lines */
-  if(lines.s20 || lines.s45){
-    out += '<div class="hs-toggles">'
-      + (lines.s20 ? '<button class="btn btn-ghost" aria-expanded="' + (st.l20 ? 'true' : 'false') + '" data-act="hs-toggle" data-l="s20">' + esc(hsSay(st.l20 ? 'twentyHide' : 'twenty')) + '</button>' : '')
-      + (lines.s45 ? '<button class="btn btn-ghost" aria-expanded="' + (st.l45 ? 'true' : 'false') + '" data-act="hs-toggle" data-l="s45">' + esc(hsSay(st.l45 ? 'fortyFiveHide' : 'fortyFive')) + '</button>' : '')
-      + '</div>'
-      + (st.l20 && lines.s20 ? '<p class="hs-line">' + esc(lines.s20) + '</p>' : '')
-      + (st.l45 && lines.s45 ? '<p class="hs-line">' + esc(lines.s45) + '</p>' : '');
-  }
-  if(lines.guestShown) out += '<p class="hs-line">' + esc(lines.guest) + '</p>';
   /* 7. About it */
   if(notes.about) out += '<section class="hs-group"><h3 class="hs-h3">' + esc(hsSay('about')) + '</h3><div class="hs-read">' + hsParas(notes.about.a) + '</div></section>';
   /* 8. the build, what to offer next, what it is poured with */
@@ -1630,7 +1731,7 @@ function houseStudyRoute(row){
   state.menu.view = 'menu';
   st.deck = null;
   if(row && row.id){
-    if(st.open !== row.id){ if(!st.open) st.from = row.id; st.open = row.id; st.jump = 'card'; st.l20 = false; st.l45 = false; }
+    if(st.open !== row.id){ if(!st.open) st.from = row.id; st.open = row.id; st.jump = 'card'; }
   } else if(st.open){
     st.open = null; st.jump = 'back'; st.pushed = false;
   }
@@ -1676,7 +1777,7 @@ function houseStudyOpenFrom(id){
   state.tab = 'menu';
   state.menu.view = 'menu';
   st.editAll = false; st.deck = null; st.sec = ''; st.q = '';
-  st.open = item.id; st.from = item.id; st.jump = 'card'; st.l20 = false; st.l45 = false; st.pushed = false;
+  st.open = item.id; st.from = item.id; st.jump = 'card'; st.pushed = false;
   return true;
 }
 function houseStudyRetry(){
@@ -1686,6 +1787,12 @@ function houseStudyRetry(){
 
 /* ---- the acts --------------------------------------------------------------------- */
 function houseStudyAct(act, data){
+  /* a jump on the list's page scrolls and focuses, and writes nothing: no
+     state, no address, no render */
+  if(act === 'hs-jump') return hsJump(data && data.to);
+  /* the two toggles the card's lines once stood behind: gone, the act kept
+     inert, so an event from an old page does nothing */
+  if(act === 'hs-toggle') return false;
   if(typeof captureLiveInputs === 'function') captureLiveInputs();
   const st = hsState();
   const h = hsCurrent();
@@ -1698,7 +1805,7 @@ function houseStudyAct(act, data){
     /* the row that opened the card, kept apart from lastId, which Next and
        Previous move: Back focuses this one (design test 2) */
     if(!st.open){ st.y = scrollY(); st.from = id; }
-    st.open = id; st.jump = 'card'; st.l20 = false; st.l45 = false; st.deck = null;
+    st.open = id; st.jump = 'card'; st.deck = null;
     if(push){ if(hsPush('#/menu/' + slugify(it ? it.name : b.name))) st.pushed = true; }
     else hsReplace('#/menu/' + slugify(it ? it.name : b.name));
     return true;
@@ -1727,7 +1834,6 @@ function houseStudyAct(act, data){
   else if(act === 'hs-sec'){ st.sec = ds.s || ''; if(typeof say === 'function') say(hsShowingWords(h)); }
   else if(act === 'hs-clear'){ st.q = ''; if(typeof say === 'function') say(hsShowingWords(h)); }
   else if(act === 'hs-meal'){ hsMealSet(ds.m || ''); st.sec = ''; if(typeof say === 'function') say(hsShowingWords(h)); }
-  else if(act === 'hs-toggle'){ if(ds.l === 's20') st.l20 = !st.l20; else if(ds.l === 's45') st.l45 = !st.l45; else done = false; }
   else if(act === 'hs-edit'){
     st.editAll = true; st.open = null; st.deck = null;
     state.menu.view = 'menu'; state.menu.open = ds.id || null; state.menu.pane = 'build';
@@ -1810,6 +1916,7 @@ function houseStudyAfterRender(){
       const rows = document.getElementById('hs-rows');
       const h = hsCurrent();
       if(rows && h) rows.innerHTML = houseStudyRowsHTML();
+      hsJumpsSync();
       const live = document.getElementById('live');
       if(live && h) live.textContent = hsShowingWords(h);
     });
@@ -1833,6 +1940,7 @@ function houseStudyAfterRender(){
     const card = document.querySelector('.hs-card, .hs-deck');
     if(card && card.scrollIntoView) try { card.scrollIntoView({ block: 'start' }); } catch (e) {}
   }
+  if(!st.open) hsJumpsSync();
   if(st.open) st.lastId = st.open;
 }
 

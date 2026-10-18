@@ -208,15 +208,22 @@ function navClick(e){
 }
 /* A tab lands on its root, never on a remembered sub-screen, so the same tap
    always does the same thing; the lit tab on its root scrolls to the top and
-   writes no history (design 2.1). */
+   writes no history (design 2.1). The house's word lands on the house's list
+   with nothing open on it: a card, a section, a search, the editor or a
+   sub-view (The Bar Compass, Fall 2026, the stock, Add drinks) is closed, so
+   a tap from any of them is the root, and a tap on the root only scrolls. */
 function navTab(ck){
   const row = NAV_CLUSTERS.find(([k]) => k===ck);
   if(!row) return;
   const before = typeof screenKey === 'function' ? screenKey() : null;
   state.sheet = null; state.scopeOpen = '';
   state.tab = row[2][0];
-  if(ck === 'flashcards'){ state.fc.stage = 'pick'; if(state.scopeAll) state.scopeAll.flashcards = false; }
-  else if(ck === 'quizzes'){ if(state.quiz.stage !== 'setup') state.quiz.stage = 'setup'; if(state.scopeAll) state.scopeAll.quiz = false; }
+  if(ck === 'practise'){ state.fc.stage = 'pick'; if(state.scopeAll) state.scopeAll.flashcards = false; }
+  else if(ck === 'brennans'){
+    state.menu.view = 'menu'; state.menu.open = null;
+    if(typeof hsState === 'function'){ const st = hsState(); st.open = null; st.sec = ''; st.q = ''; st.editAll = false; st.deck = null; st.jump = null; }
+    if(typeof NAV_WANT_SEC !== 'undefined') NAV_WANT_SEC = null;
+  }
   else if(ck === 'library'){ state.lib = { q:'', fam:'All', tier:'All', open:null, level: typeof chosenLevel === 'function' ? chosenLevel() : null }; }
   if(before !== null && typeof screenKey === 'function' && screenKey() === before){ try{ window.scrollTo(0, 0); }catch(e2){} }
   render();

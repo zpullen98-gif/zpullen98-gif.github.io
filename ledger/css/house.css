@@ -202,6 +202,14 @@
     nav#tabs{margin-bottom:24px;border-top:0;height:1px}
     nav.tabs .clusters{display:none}
     #bnav{background:#0c1b13f5;backdrop-filter:blur(16px);border-top:1px solid #ae8e50;padding:7px 6px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -8px 28px #0006}
+    /* The five words (18 October 2026), measured in Chromium at .65rem with
+       this letter spacing, each column a fifth of the bar less 2px padding
+       a side: at 375 the columns are 72.4 wide (More 73.4), at 390 75.4 (More
+       76.4), every tab 50 tall in one row. The widest words are Brennan's,
+       64.4 not lit in the day service (61.4 lit, and at night), and Practise
+       with a two figure due pill, 65.4 by day (62.4 at night): 3 to 4 to
+       spare at 375, 6 to 7 at 390, none wrapping. The flex fallback the plan
+       held in reserve is not needed. */
     .bnav-btn{font-family:var(--house-display);font-weight:500;font-size:.65rem;letter-spacing:.015em;min-height:50px;position:relative}
     .bnav-btn.active::before{content:'';position:absolute;top:-8px;height:2px;left:20%;right:20%;background:var(--brass-2)}
     .levels,nav.quiet{gap:12px}.home4{gap:22px}nav.quiet{padding-top:22px}

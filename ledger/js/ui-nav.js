@@ -6,6 +6,13 @@
    one list of quizzes, one shelf of reading; and a Back on every screen but
    Home that steps back exactly one screen.
 
+   The five words of 18 October 2026 (the Table's of 17 October, then the
+   Codex's): Home, the house's name, Practise, Library and More. The house's
+   word owns every #/menu address, its page a root whose parent is Home;
+   Practise is the Flashcards root relabelled at #/practise[/all], holding
+   the decks, the rounds and the drills (#/flashcards still reads as it, and
+   the Quizzes page keeps #/quiz, the Practise root its parent).
+
    THE HISTORY MODEL, in one line: every screen change pushes one history
    entry, every change within a screen replaces it, popstate renders the
    entry, and Back calls history.back() when this app pushed the entry, else
@@ -428,6 +435,14 @@ function rowsNav(label, rows){
 function houseHasMenu(){
   return typeof houseHere === 'function' && !!houseHere() && !!(typeof hsCurrent === 'function' && hsCurrent());
 }
+/* The Practise root (the five words, 18 October 2026): the Flashcards root
+   relabelled, holding the decks, the rounds and the drills in one list, in
+   this order: Due today, the quick quiz, the house's decks then its drills,
+   Fall 2026 and The Bar Compass, the level's decks with a row to the level's
+   rounds (the Quizzes page, which keeps #/quiz), What it's made of, Words,
+   Reference cards, Hands on, and the level test last. The rows the Quizzes
+   page shares (the quick quiz, the drills, Hands on, the test) are drawn by
+   the same functions for both. */
 function fcPickHTML(){
   const lv = scopeLevel('flashcards');
   const t = dueToday();
@@ -436,8 +451,9 @@ function fcPickHTML(){
     + '<p class="door-line">' + esc(line) + '</p>'
     + (t.deck.length ? '<div class="row"><button class="btn btn-brass" data-act="fc-due">Start today’s cards</button></div>' : '')
     + '</section>';
-  /* My restaurant: the whole menu, the sections, the weak ones, the house's other card kinds */
-  let house;
+  /* My restaurant: the whole menu, the sections, the weak ones, the house's
+     other card kinds, then the drills on the menu */
+  let house = '';
   if(houseHasMenu() && menuCardCount()){
     const secs = houseSectionList();
     house = rowsNav('My restaurant', [deckRow('menu')]
@@ -445,33 +461,38 @@ function fcPickHTML(){
       .concat([deckRow('menu-weak'), deckRow('menu-line10'), deckRow('menu-line20'), deckRow('menu-line45'), deckRow('menu-parts'), deckRow('menu-offer'), deckRow('producers')]));
   } else if(menuCardCount()){
     house = rowsNav('My restaurant', [deckRow('menu'), deckRow('menu-weak')]);
-  } else {
-    house = '<p class="door-line">No restaurant on this device yet. Set one up from a level page.</p>';
   }
+  house += rowsNav('Drills on the menu', houseDrillRows());
+  if(!house) house = '<p class="door-line">No restaurant on this device yet. Set one up from a level page.</p>';
   if(typeof fallDeckDef === 'function') house += rowsNav('Fall 2026', [deckRow('fall:today'), deckRow('fall:cocktail'), deckRow('fall:food'), deckRow('fall:tableside'), deckRow('fall:again')]);
   if(typeof barCompassDeckDef === 'function') house += rowsNav('The Bar Compass', [deckRow('compass:today'),deckRow('compass:all'),deckRow('compass:again')]);
-  /* the level's subjects, or every level's */
+  /* the level's subjects, or every level's, then one row to the level's rounds */
   const L = lv ? levelInfo(lv).name : 'Every level';
   const books = levelBooks(lv || 0).map(function(b){
     const def = deckDef('cocktails:' + b.t);
     const st = deckStats(def);
     return rowDoor('data-act="deck" data-deck="cocktails:' + b.t + '"', b.name, b.n + ' drink' + (b.n === 1 ? '' : 's') + (lv ? ' at ' + L : '') + ' · ' + st.learnt + ' learnt');
   });
-  const level = rowsNav(L, [deckRow('cocktails')].concat(books, [deckRow('shots'), deckRow('zero-proof'), deckRow('on-tap'), deckRow('coffee')]));
+  const rounds = rowDoor('data-act="quiz-root"', lv ? 'The ' + L + ' rounds' : 'The rounds at every level',
+    lv ? 'Ten questions on each subject at ' + L + ', and the topic rounds.' : 'Ten questions on each subject at each level, and the topic rounds.');
+  const level = rowsNav(L, [deckRow('cocktails')].concat(books, [deckRow('shots'), deckRow('zero-proof'), deckRow('on-tap'), deckRow('coffee'), rounds]));
   const words = deckDef('menu-words') ? rowsNav('Words', [deckRow('menu-words')]) : '';
   /* what the menu is made of: a deck per kind of component, each only when it holds a card */
   const made = rowsNav('What it\u2019s made of', COMPONENT_KINDS_NAV.map(function(k){ return deckRow('components:' + k); }));
   const ref = rowsNav('Reference cards', [deckRow('everything'), deckRow('trouble'), deckRow('unmastered'),
     rowDoor('data-act="fc-board"', 'The mastery board', 'Every card and its record, by name.')]);
   return '<div class="col fc-pick">'
-    + '<h2 class="lv-title" tabindex="-1">Flashcards</h2>'
+    + '<h2 class="lv-title" tabindex="-1">Practise</h2>'
     + scopeChipHTML('flashcards')
     + due
+    + quickQuizHTML('fc')
     + '<section class="col-sm" aria-labelledby="fc-house-h"><h3 class="sub-head" id="fc-house-h">My restaurant</h3>' + house + '</section>'
     + '<section class="col-sm" aria-labelledby="fc-level-h"><h3 class="sub-head" id="fc-level-h">' + esc(L) + '</h3>' + level + '</section>'
     + (made ? '<section class="col-sm" aria-labelledby="fc-made-h"><h3 class="sub-head" id="fc-made-h">What it\u2019s made of</h3>' + made + '</section>' : '')
     + (words ? '<section class="col-sm" aria-labelledby="fc-words-h"><h3 class="sub-head" id="fc-words-h">Words</h3>' + words + '</section>' : '')
     + '<section class="col-sm" aria-labelledby="fc-ref-h"><h3 class="sub-head" id="fc-ref-h">Reference cards</h3>' + ref + '</section>'
+    + '<section class="col-sm" aria-labelledby="fc-hands-h"><h3 class="sub-head" id="fc-hands-h">Hands on</h3>' + rowsNav('Hands on', handsOnRows()) + '</section>'
+    + levelTestHTML('fc')
     + '</div>';
 }
 
@@ -532,20 +553,53 @@ function quizRow(mode, name, line, extra){
 }
 function quizBlurb(k){ const r = QUIZ_MODES.find(function(x){ return x[0] === k; }); return r ? r[2] : ''; }
 function quizLabel(k){ const r = QUIZ_MODES.find(function(x){ return x[0] === k; }); return r ? r[1] : k; }
-function quizRootHTML(){
-  const lv = scopeLevel('quiz');
-  const chosen = chosenLevel();
+/* The rows Practise and the Quizzes page share, each drawn once here: the
+   quick quiz (p is the page's id prefix), the drills on the menu, Hands on,
+   and the chosen level's test. */
+function quickQuizHTML(p){
+  return '<section class="panel p4 col-sm" aria-labelledby="' + p + '-quick-h"><h3 class="sub-head" id="' + p + '-quick-h">Quick quiz</h3>'
+    + '<p class="door-line">' + esc(quickQuizLine()) + '</p>'
+    + '<div class="row"><button class="btn btn-brass" data-act="quiz-go" data-m="quick">Start the quick quiz</button></div></section>';
+}
+function houseDrillRows(){
   const barN = menuCardCount();
-  const houseRows = [];
-  if(barN >= 4) houseRows.push(quizRow('mybar', 'Drill the menu', quizBlurb('mybar')));
-  else if(barN || houseHasMenu()) houseRows.push('<div class="door door-off"><span class="door-name">Drill the menu</span><span class="door-line">Add four drinks with a spec to your menu and this round opens. ' + barN + ' of 4 so far.</span></div>');
-  if(typeof housePairReady === 'function' && housePairReady().length) houseRows.push(quizRow('housepair', 'Pair the menu', quizBlurb('housepair')));
+  const rows = [];
+  if(barN >= 4) rows.push(quizRow('mybar', 'Drill the menu', quizBlurb('mybar')));
+  else if(barN || houseHasMenu()) rows.push('<div class="door door-off"><span class="door-name">Drill the menu</span><span class="door-line">Add four drinks with a spec to your menu and this round opens. ' + barN + ' of 4 so far.</span></div>');
+  if(typeof housePairReady === 'function' && housePairReady().length) rows.push(quizRow('housepair', 'Pair the menu', quizBlurb('housepair')));
   if(typeof houseDrillsLib === 'function' && houseDrillsLib() && typeof houseSayItems === 'function'){
     const say = houseSayItems().length, role = houseRoleDeck().length;
-    if(say) houseRows.push(rowDoor('data-act="hd-open" data-mode="say"', 'Say it back', 'Say a drink’s line aloud or type it, graded here against what you kept. ' + say + ' drinks.'));
-    if(role) houseRows.push(rowDoor('data-act="hd-open" data-mode="role"', 'Guest at the table', 'A guest asks; answer as you would at the table, graded against what you kept.'));
+    if(say) rows.push(rowDoor('data-act="hd-open" data-mode="say"', 'Say it back', 'Say a drink’s line aloud or type it, graded here against what you kept. ' + say + ' drinks.'));
+    if(role) rows.push(rowDoor('data-act="hd-open" data-mode="role"', 'Guest at the table', 'A guest asks; answer as you would at the table, graded against what you kept.'));
   }
-  if(barN || houseHasMenu()) houseRows.push(rowDoor('data-act="pr-go" data-v="rail"', 'The Ticket Rail', 'A rail of tickets: call the order you would make them in.'));
+  if(barN || houseHasMenu()) rows.push(rowDoor('data-act="pr-go" data-v="rail"', 'The Ticket Rail', 'A rail of tickets: call the order you would make them in.'));
+  return rows;
+}
+function handsOnRows(){
+  return [
+    rowDoor('data-act="pr-go" data-v="drills"', 'The drills', 'Timed and counted drills with a bottle, a tin and a jigger.'),
+    rowDoor('data-act="pr-go" data-v="hold"', 'Hold the Round', 'Hold a round of tickets in your head, then call it back.'),
+    rowDoor('data-act="pr-go" data-v="pour"', 'Free Pour', 'Pour to a count and measure what went in.'),
+    rowDoor('data-act="pr-go" data-v="tasting"', 'The Tasting Room', 'A tasting scorecard for whatever is in the glass.'),
+    rowDoor('data-act="pr-go" data-v="flights"', 'Flights', 'Guided tasting flights, side by side.'),
+    rowDoor('data-act="pr-go" data-v="method"', 'How to Taste', 'The method behind every tasting note.'),
+    rowDoor('data-act="go" data-tab="riffs"', 'Riffs', 'Pick a template, take a deal, build the drink in your head.')
+  ];
+}
+function levelTestHTML(p){
+  const chosen = chosenLevel();
+  const tl = levelInfo(chosen).name;
+  const sitting = state.lt && !state.lt.done && state.lt.n === chosen;
+  return '<section class="col-sm" aria-labelledby="' + p + '-test-h"><h3 class="sub-head" id="' + p + '-test-h">The ' + esc(tl) + ' test</h3>'
+    + '<p class="door-line">Seventeen questions across the eight subsections of ' + esc(tl) + '. No clock. It ends on what got away, with the right answers.</p>'
+    + '<button class="btn btn-brass leveltest" data-act="lt-start" data-n="' + chosen + '"' + (sitting ? ' data-resume="1"' : '') + '>' + (sitting ? 'Go on with the ' + esc(tl) + ' test' : 'The ' + esc(tl) + ' test') + '</button></section>';
+}
+/* The Quizzes page keeps its address (#/quiz) and its rows for the old
+   links and for Practise's row to the level's rounds; its parent is the
+   Practise root. */
+function quizRootHTML(){
+  const lv = scopeLevel('quiz');
+  const houseRows = houseDrillRows();
   const house = houseRows.length ? rowsNav('My restaurant', houseRows) : '<p class="door-line">No restaurant on this device yet. Set one up from a level page.</p>';
   const levelRows = function(n){
     return LEVEL_SUBS.filter(function(s){ return levelQuizSource(n, s.key).length >= 4; }).map(function(s){
@@ -563,32 +617,17 @@ function quizRootHTML(){
       return '<section class="col-sm" aria-labelledby="qz-level-' + l.n + '"><h3 class="sub-head" id="qz-level-' + l.n + '">' + esc(l.name) + '</h3>' + rowsNav(l.name, levelRows(l.n)) + '</section>';
     }).join('') + '<section class="col-sm" aria-labelledby="qz-every-h"><h3 class="sub-head" id="qz-every-h">Every level</h3>' + rowsNav('Every level', topics) + '</section>';
   }
-  const hands = rowsNav('Hands on', [
-    rowDoor('data-act="pr-go" data-v="drills"', 'The drills', 'Timed and counted drills with a bottle, a tin and a jigger.'),
-    rowDoor('data-act="pr-go" data-v="hold"', 'Hold the Round', 'Hold a round of tickets in your head, then call it back.'),
-    rowDoor('data-act="pr-go" data-v="pour"', 'Free Pour', 'Pour to a count and measure what went in.'),
-    rowDoor('data-act="pr-go" data-v="tasting"', 'The Tasting Room', 'A tasting scorecard for whatever is in the glass.'),
-    rowDoor('data-act="pr-go" data-v="flights"', 'Flights', 'Guided tasting flights, side by side.'),
-    rowDoor('data-act="pr-go" data-v="method"', 'How to Taste', 'The method behind every tasting note.'),
-    rowDoor('data-act="go" data-tab="riffs"', 'Riffs', 'Pick a template, take a deal, build the drink in your head.')
-  ]);
-  const tl = levelInfo(chosen).name;
-  const sitting = state.lt && !state.lt.done && state.lt.n === chosen;
-  const test = '<section class="col-sm" aria-labelledby="qz-test-h"><h3 class="sub-head" id="qz-test-h">The ' + esc(tl) + ' test</h3>'
-    + '<p class="door-line">Seventeen questions across the eight subsections of ' + esc(tl) + '. No clock. It ends on what got away, with the right answers.</p>'
-    + '<button class="btn btn-brass leveltest" data-act="lt-start" data-n="' + chosen + '"' + (sitting ? ' data-resume="1"' : '') + '>' + (sitting ? 'Go on with the ' + esc(tl) + ' test' : 'The ' + esc(tl) + ' test') + '</button></section>';
+  const hands = rowsNav('Hands on', handsOnRows());
   const hist = (progress.quizzes || []).slice(-5).reverse()
     .map(function(h){ return '<div class="hist-row"><span>' + esc(h.date) + (h.mode && h.mode !== 'mixed' ? ' · ' + esc(modeLabel(h.mode)) : '') + '</span><span class="font-tix brass2">' + h.score + '/' + (h.total || 10) + '</span></div>'; }).join('');
   return '<div class="col qz-root">'
     + '<h2 class="lv-title" tabindex="-1">Quizzes</h2>'
     + scopeChipHTML('quiz')
-    + '<section class="panel p4 col-sm" aria-labelledby="qz-quick-h"><h3 class="sub-head" id="qz-quick-h">Quick quiz</h3>'
-    + '<p class="door-line">' + esc(quickQuizLine()) + '</p>'
-    + '<div class="row"><button class="btn btn-brass" data-act="quiz-go" data-m="quick">Start the quick quiz</button></div></section>'
+    + quickQuizHTML('qz')
     + '<section class="col-sm" aria-labelledby="qz-house-h"><h3 class="sub-head" id="qz-house-h">My restaurant</h3>' + house + '</section>'
     + levelBlock
     + '<section class="col-sm" aria-labelledby="qz-hands-h"><h3 class="sub-head" id="qz-hands-h">Hands on</h3>' + hands + '</section>'
-    + test
+    + levelTestHTML('qz')
     + (hist ? '<div class="panel p4"><div class="eyebrow mb2">Recent rounds</div>' + hist + '</div>' : '')
     + '</div>';
 }
@@ -712,13 +751,11 @@ function myRestaurantHTML(){
   const desk = typeof deskWaitingHTML === 'function' ? deskWaitingHTML('home') : '';
   const line = engine && typeof houseLineHTML === 'function' ? houseLineHTML() : '';
   const own = (progress.bar || []).length;
-  /* the bar's producers, read on the Producers tab, with their count */
-  const prodLine = h && typeof hsProducersLine === 'function' ? hsProducersLine(h) : '';
-  const doors = (h || own) ? rowsNav('Study the menu', [
-    rowDoor('data-act="lv-menu"', 'Study the whole menu', ''),
-    rowDoor('data-act="deck" data-deck="menu"', 'Flashcards for the menu', ''),
-    menuCardCount() >= 4 ? rowDoor('data-act="quiz-go" data-m="mybar"', 'Drill the menu', '') : '',
-    prodLine ? rowDoor('data-act="lv-producers"', 'The producers', prodLine) : ''
+  /* one lead door to the house's page (#/menu), named as the tab is named:
+     the cards, the drills and the producers are the page's and Practise's */
+  const word = typeof houseTabWord === 'function' ? houseTabWord() : 'The menu';
+  const doors = (h || own) ? rowsNav(word, [
+    rowDoor('data-act="lv-menu"', word, h ? 'The drinks as the house prints them, the cards, the producers, the Fall 2026 drinks and the Bar Compass.' : 'The drinks you added, to read and edit.')
   ]) : '';
   const secs = h ? houseSectionList() : [];
   const chips = secs.length > 1 ? '<div class="row lv-secs" role="group" aria-label="The menu’s sections">' + secs.map(function(s){
@@ -889,7 +926,9 @@ function routeNow(){
     if(state.lt){ hash += '/test'; key += '/test'; }
   } else if(t === 'flashcards'){
     const fc = state.fc;
-    if(fc.stage === 'pick' || !fc.stage){ if(navScope().flashcards) hash += '/all'; }
+    /* the Practise root: its own address and key, the word in lower case;
+       a deck and its card keep #/flashcards/{deck}[/card] */
+    if(fc.stage === 'pick' || !fc.stage){ hash = '#/practise' + (navScope().flashcards ? '/all' : ''); key = 'practise'; }
     else if(fc.stage === 'board'){ hash += '/board'; key += '/board'; }
     else {
       const seg = deckSegment(fc.deckId || 'everything');
@@ -1071,14 +1110,19 @@ function parentTab(){
     const v = state.menu.view || 'menu';
     if(v !== 'menu') return 'menu';
     if(st && st.open && typeof houseStudyOn === 'function' && houseStudyOn()) return 'menu';
-    return 'level';
+    /* a section chosen on the list (a cold #/menu/section/{slug}) climbs to
+       the whole list first */
+    if(st && st.sec && typeof houseStudyOn === 'function' && houseStudyOn()) return 'menu';
+    /* the house's page is a tab root: its parent is Home, as every root's */
+    return 'home';
   }
   if(t === 'flashcards'){
     const fc = state.fc;
     if(fc.stage === 'pick') return 'home';
     return 'flashcards';
   }
-  if(t === 'quiz') return state.quiz.stage === 'setup' ? 'home' : 'quiz';
+  /* the Quizzes page sits under the Practise root, a round under the page */
+  if(t === 'quiz') return state.quiz.stage === 'setup' ? 'flashcards' : 'quiz';
   if(t === 'practice' || t === 'riffs') return 'quiz';
   if(t === 'library') return state.lib.print || state.lib.open != null ? 'library' : 'home';
   if(t === 'shots') return state.shots.open != null ? 'shots' : 'library';
@@ -1101,8 +1145,9 @@ function applyParent(){
     if(state.menu.view === 'fall' && typeof fallState === 'function' && fallState().item){ fallState().item = ''; fallState().part = 'read'; return true; }
     if(state.menu.view === 'compass' && typeof barCompassState === 'function' && (barCompassState().item || barCompassState().workshop)){ barCompassState().item = ''; barCompassState().workshop = ''; return true; }
     if((state.menu.view || 'menu') !== 'menu'){ state.menu.view = 'menu'; return true; }
-    if(p === 'menu' && st){ st.open = null; st.sec = ''; st.jump = 'back'; return true; }
-    openLevel(chosenLevel());
+    if(p === 'menu' && st && st.open){ st.open = null; st.sec = ''; st.jump = 'back'; return true; }
+    if(p === 'menu' && st){ st.sec = ''; return true; }
+    state.tab = 'home';
     return true;
   }
   if(t === 'flashcards'){
@@ -1114,7 +1159,7 @@ function applyParent(){
   }
   if(t === 'quiz'){
     if(state.quiz.stage !== 'setup'){ state.quiz.stage = 'setup'; if(state.house) state.house.drill = ''; return true; }
-    state.tab = 'home'; return true;
+    state.tab = 'flashcards'; state.fc.stage = 'pick'; return true;
   }
   if(p === t){
     if(t === 'library'){ if(state.lib.print) state.lib.print = false; else state.lib.open = null; }
@@ -1186,6 +1231,13 @@ function navAct(act, data, el){
     return 'render';
   }
   if(act === 'pr-go'){ state.tab = 'practice'; state.practice.view = data.v; return 'render'; }
+  /* Practise's row to the level's rounds: the Quizzes page at the root's own scope */
+  if(act === 'quiz-root'){
+    state.tab = 'quiz'; state.quiz.stage = 'setup';
+    if(state.house) state.house.drill = '';
+    navScope().quiz = !!navScope().flashcards;
+    return 'render';
+  }
   if(act === 'today'){
     if(data.d === 'due') startDueToday();
     else if(data.d === 'quick') startQuickQuiz();
@@ -1197,9 +1249,12 @@ function navAct(act, data, el){
     return 'render';
   }
   if(act === 'read-at'){ applyTarget(readDoorTarget(Number(data.n), data.s)); return 'render'; }
+  /* the level page's lead door lands where the house's word lands: the
+     whole list, with no card, section, search, editor or deck left open */
   if(act === 'lv-menu'){
-    state.tab = 'menu'; state.menu.view = 'menu';
-    if(state.menu.study){ state.menu.study.open = null; state.menu.study.sec = ''; state.menu.study.editAll = false; }
+    state.tab = 'menu'; state.menu.view = 'menu'; state.menu.open = null;
+    if(state.menu.study){ const st = state.menu.study; st.open = null; st.sec = ''; st.q = ''; st.editAll = false; st.deck = null; st.jump = null; }
+    NAV_WANT_SEC = null;
     return 'render';
   }
   if(act === 'lv-sec'){
@@ -1292,6 +1347,14 @@ function applyNavRoute(parts){
   /* Print cards shows only at its own address */
   if(state.lib) state.lib.print = tab === 'library' && a === 'print';
   if(state.lib && state.lib.print){ state.tab = 'library'; state.lib.open = null; return true; }
+  /* the Practise root, #/practise and #/practise/all; #/flashcards and
+     #/flashcards/all still read as it, and print the new form */
+  if(tab === 'practise'){
+    state.tab = 'flashcards';
+    state.fc.stage = 'pick';
+    navScope().flashcards = a === 'all';
+    return true;
+  }
   if(tab === 'flashcards'){
     const fc = state.fc;
     state.tab = 'flashcards';

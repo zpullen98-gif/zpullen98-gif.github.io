@@ -1,9 +1,9 @@
 /* The study view of the house's drinks (js/house-study.js), in the Ledger's
    own felt and brass: the tokens and components of css/house.css, laid out
    for a server reading at arm's length. Body text is never under 16px, a
-   row's name never under 18px, the ten second line 20px, a flash card's
-   front name 28px; every control is at least 44px tall, and every state is
-   said in a word. */
+   row's name never under 18px, the ten second line 18px and the forty-five
+   20px, a flash card's front name 28px; every control is at least 44px
+   tall, and every state is said in a word. */
 @media screen{
   .hs{font-family:var(--house-reading);font-size:1.0625rem;line-height:1.55;color:var(--cream)}
   .hs p{margin:0}
@@ -18,7 +18,7 @@
   .hs-house{margin:0;font-family:var(--house-reading);font-weight:500;font-size:1.4rem;line-height:1.25;color:var(--brass-2)}
   .hs-quiet{min-height:44px;padding:0 4px;background:none;border:0;color:var(--cream);font:inherit;font-size:1rem;text-decoration:underline;text-underline-offset:4px;cursor:pointer;white-space:nowrap}
   .hs-facts,.hs-progress,.hs-soft,.hs-also,.hs-pos{font-size:1rem;color:var(--cream-dim);line-height:1.5}
-  .hs-btns,.hs-toggles,.hs-foot{display:flex;flex-wrap:wrap;gap:8px}
+  .hs-btns,.hs-foot{display:flex;flex-wrap:wrap;gap:8px}
   /* the shift: one row that scrolls inside itself, like the section chips */
   .hs-meals{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;padding-bottom:2px}
   /* the header's three doors on one row: a long label wraps inside its button */
@@ -34,6 +34,16 @@
   .hs-q{flex:1;min-width:0;min-height:44px;font-size:1rem}
   .hs-chips{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;padding-bottom:2px}
   .hs-chips .hs-chip{scroll-snap-align:start}
+  /* the jump row under the header: every place on the page in view at once,
+     wrapping; a button whose place a search hides is hidden with it */
+  .hs-jumps{display:flex;flex-wrap:wrap;gap:6px}
+  .hs-jumps button.chip[hidden]{display:none}
+  /* the places a jump lands on: focused for a screen reader, ringed only
+     for the keyboard */
+  .hs-sec-name:focus,.hs-doors .hs-h3:focus{outline:none}
+  .hs-sec-name:focus-visible,.hs-doors .hs-h3:focus-visible{outline:3px solid var(--brass-2);outline-offset:3px}
+  /* the doors after the list: Fall 2026, The Bar Compass, the producers */
+  .hs-doors .fall-door,.hs-doors .bc-door{margin:0}
 
   /* sections and rows */
   .hs-sec{padding:0;overflow:hidden}
@@ -61,8 +71,12 @@
   .hs-price{font-size:1.2rem;color:var(--brass-2);font-variant-numeric:tabular-nums;white-space:nowrap}
   .hs-block{display:flex;flex-direction:column;gap:4px}
   .hs-say{font-size:1.1rem}
-  .hs-ten{font-size:1.25rem;line-height:1.5;border-left:2px solid var(--brass);padding-left:12px}
+  /* the three lines, open: the ten a step under the forty-five, which takes
+     the size the ten had, in the house's reading face under the same rule */
+  .hs-lines{display:flex;flex-direction:column;gap:12px}
+  .hs-ten{font-size:1.125rem;line-height:1.5;border-left:2px solid var(--brass);padding-left:12px}
   .hs-offer,.hs-line{font-size:1.0625rem;line-height:1.6}
+  .hs-line.hs-fortyfive{font-family:var(--house-reading);font-size:1.25rem;line-height:1.5;border-left:2px solid var(--brass);padding-left:12px}
   /* a line of words: each name travels with its comma, and wraps as one piece */
   .hs-offer{display:block}
   .hs-offer-item{display:inline-block}

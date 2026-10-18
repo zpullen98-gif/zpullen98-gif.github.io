@@ -7,18 +7,22 @@
    one-tab cluster is a tab wearing a hat, and My Bar moved beside the drills it
    feeds instead of hiding under a cluster of its own. */
 const NAV_CLUSTERS = [
-  /* The one nav the World Table, the Codex and the Ledger share (the owner's
-     answers of 4 October 2026): four tabs, Home, Flashcards, Quizzes and
-     Library, in that order, then a quiet More. A cluster HOLDS every tab it
-     owns, so the lit word is right wherever you stand (tools/check.mjs
-     requires every tab in one), and a tap lands on the cluster's first tab,
-     its root, never on a remembered sub-screen. Home is the four levels, a
-     level's page and My restaurant; Flashcards is the one deck picker;
-     Quizzes is every round, the drills and the level tests; Library is
-     reading only; More is the record, the tools, the data and settings. */
-  ['home', 'Home', ['home','level','menu']],
-  ['flashcards', 'Flashcards', ['flashcards']],
-  ['quizzes', 'Quizzes', ['quiz','practice','riffs']],
+  /* The one nav the World Table, the Codex and the Ledger share (the five
+     words of 18 October 2026, after the Table's of 17 October and the
+     Codex's): Home, the house, Practise and Library, in that order, then a
+     quiet More. A cluster HOLDS every tab it owns, so the lit word is right
+     wherever you stand (tools/check.mjs requires every tab in one), and a tap
+     lands on the cluster's first tab, its root, never on a remembered
+     sub-screen. Home is the four levels and a level's page; the house's word
+     is the house's own drinks, every #/menu address; Practise is the one
+     deck picker, every round, the drills and the level tests; Library is
+     reading only; More is the record, the tools, the data and settings. The
+     second word is drawn as the current house's name (houseTabWord); this
+     literal, the shipped pack's own name, is what it reads before a house
+     loads. */
+  ['home', 'Home', ['home','level']],
+  ['brennans', 'Brennan’s', ['menu']],
+  ['practise', 'Practise', ['flashcards','quiz','practice','riffs']],
   ['library', 'Library', ['library','families','shots','na','ontap','coffee','prep','producers','service','notes','videos']],
   ['more', 'More', ['mine','record','tools']],
 ];
@@ -27,9 +31,20 @@ const TAB_CLUSTER = {};
 NAV_CLUSTERS.forEach(([ck,,tabs]) => tabs.forEach(t => TAB_CLUSTER[t] = ck));
 
 function clusterOf(tab){
-  /* a level test is sat from Quizzes, and lights it */
-  if(tab === 'level' && typeof state !== 'undefined' && state.lt) return 'quizzes';
+  /* a level test is sat from Practise, and lights it */
+  if(tab === 'level' && typeof state !== 'undefined' && state.lt) return 'practise';
   return TAB_CLUSTER[tab] || 'home';
+}
+/* The house's word: the current house's name, read at every draw, else the
+   cluster's own literal (before a house loads, or with no engine at all). */
+function houseTabWord(){
+  const row = NAV_CLUSTERS.find(([ck]) => ck === 'brennans');
+  let name = '';
+  try {
+    const h = typeof hsCurrent === 'function' ? hsCurrent() : null;
+    name = h && typeof h.name === 'string' ? h.name.trim() : '';
+  } catch(e){ name = ''; }
+  return name || (row ? row[1] : '');
 }
 
 /* A tab the gate would bounce to the paywall. Fails open: no gate, no lock.
@@ -59,13 +74,14 @@ function clusterLanding(ck){
 function renderNav(){
   if(!Object.keys(TAB_LABEL).length) TABS.forEach(([k,l]) => TAB_LABEL[k] = l);
   const activeCluster = clusterOf(state.tab);
-  /* the due count on Flashcards: a figure for the eye and a word for a
+  /* the due count on Practise: a figure for the eye and a word for a
      screen reader, absent at zero; one function gives it, the level page's
      row and the root's line (dueToday, js/ui-nav.js) */
   let due = 0;
   try { due = typeof dueToday === 'function' ? dueToday().deck.length : 0; } catch(e){ due = 0; }
   const pill = due ? ' <span class="font-tix nav-pill">'+due+'<span class="sr-only"> due</span></span>' : '';
-  const word = (ck, label) => label + (ck === 'flashcards' ? pill : '');
+  /* the house's word is its name, escaped, read again at every draw */
+  const word = (ck, label) => (ck === 'brennans' ? esc(houseTabWord()) : label) + (ck === 'practise' ? pill : '');
   /* More is the quiet control after the four tabs: muted, set apart by a
      rule, lit only while a More screen shows (design 2.1) */
   const clusterRow = NAV_CLUSTERS.map(([ck,label]) =>
