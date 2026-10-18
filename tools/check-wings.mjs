@@ -106,7 +106,8 @@ const GATES = [
   { repo: 'codex', script: '.scripts/check-merge.js', target: 'wing', dirArg: true },
   { repo: 'codex', script: '.scripts/check-drill.js', target: 'wing', dirArg: true,
     gap: 'its default is a Windows path, so a run without the argument never means the source' },
-  { repo: 'codex', script: '.scripts/check-regions.js', target: 'wing', dirArg: true }
+  { repo: 'codex', script: '.scripts/check-regions.js', target: 'wing', dirArg: true },
+  { repo: 'codex', script: '.scripts/check-brennans.js', target: 'wing', dirArg: true }
 ];
 
 /* The files a wing gate reads from its own tree that the wing also ships:
