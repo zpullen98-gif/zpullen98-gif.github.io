@@ -237,6 +237,7 @@ function buildSearchIndex(){
   if(typeof methodStudySearchEntries === 'function') ix.push(...methodStudySearchEntries());
   if(typeof fallSearchEntries === 'function') ix.push(...fallSearchEntries());
   if(typeof barCompassSearchEntries === 'function') ix.push(...barCompassSearchEntries());
+  if(typeof brewSearchEntries === 'function') ix.push(...brewSearchEntries());
   /* the book by its name: a book is never numbered where a reader sees it */
   COCKTAILS.forEach(c => ix.push({ t:c.name, s:c.family+' · '+c.spirit+' · '+bookName(c.tier),
     body:(c.spec.join(' ')+' '+c.method+' '+c.garnish).toLowerCase(), h:'#/library/'+slugify(c.name) }));
@@ -1445,7 +1446,9 @@ function dashboardHTML(){
 
   /* replays only re-ask what you already missed, so they would read as a
      spike exactly when you were struggling: keep them out of the trend */
-  const quizzes = (progress.quizzes || []).filter(q => !q.replay);
+  /* a Coffee and tea round (mode brew, js/ui-brew.js) shows under Recent
+     rounds and is no level's, so it stays out of the trend as a replay does */
+  const quizzes = (progress.quizzes || []).filter(q => !q.replay && q.mode !== 'brew');
   const qVals = quizzes.slice(-20).map(q => Math.round(q.score / (q.total || 10) * 100));
   const quizBlock = qVals.length >= 2
     ? svgSpark(qVals, 220, 44, 100) + '<div class="tiny dim">last '+qVals.length+' rounds · best '+Math.max(...qVals)+'%</div>'

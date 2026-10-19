@@ -1,0 +1,62 @@
+/* Coffee and tea, the house's page (18 October 2026): the house tokens in day
+   and night service, typography rather than pictures, every control 44px. */
+.brew-index,.brew-detail{max-width:960px;margin-inline:auto;min-width:0}
+html[data-service="night"] .brew-menu-tabs .tab-btn.active{color:var(--felt)}
+.brew-menu-tabs .tab-btn{min-height:44px}
+.brew-heading{padding:20px 0 24px;border-bottom:1px solid var(--house-line);margin-bottom:20px}
+.brew-heading h2{font:500 clamp(1.5rem,4vw,2.25rem)/1.3 var(--house-display,Georgia,serif);color:var(--brass-2);margin:12px 0;text-wrap:balance}
+.brew-heading p{font-size:1.05rem;line-height:1.7;max-width:740px;margin:8px 0}
+.brew-caption{font-size:.9rem;line-height:1.7;color:var(--cream-dim);margin:12px 0}
+.brew-soft{color:var(--cream-dim);font-size:.9em;font-weight:400}
+.brew-label{display:inline-block;margin-right:6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--brass-2);font-weight:600}
+p.brew-label{display:block;margin:12px 0 6px}
+.brew-boundary{border-left:2px solid var(--brass);padding:12px 16px;background:var(--felt-3);font-size:.95rem;line-height:1.7;margin:18px 0}
+.brew-practice,.brew-links{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.brew-practice .btn,.brew-links .btn,.brew-watch .btn,.brew-use .btn,.brew-read-link{min-height:44px;white-space:normal;text-align:left;line-height:1.5;overflow-wrap:anywhere}
+.brew-search{display:grid;gap:8px;margin:22px 0 12px}
+.brew-search label{font-size:.9rem;color:var(--cream-dim)}
+.brew-search input{min-height:48px;width:100%;min-width:0}
+.brew-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
+.brew-chips .chip{min-height:44px;padding-inline:14px;white-space:normal;text-align:left;line-height:1.4}
+.brew-group{margin:26px 0}
+.brew-group-h{font:500 1.25rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0 0 12px}
+.brew-rows,.brew-house-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.brew-row,.brew-house-row,.brew-door{display:flex;flex-direction:column;gap:8px;min-width:0;min-height:44px;padding:18px 20px;color:var(--cream);background:var(--felt-2);border:1px solid var(--house-line);border-top:2px solid var(--brass);text-decoration:none}
+.brew-row:hover,.brew-door:hover{border-color:var(--brass);background:var(--felt-3)}
+.brew-row-name,.brew-house-name{font:500 1.15rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0}
+.brew-row-line{font-size:.95rem;line-height:1.6}
+.brew-row-foot{margin-top:auto;padding-top:6px;font-size:.84rem;color:var(--cream-dim)}
+.brew-price{font-family:inherit;color:var(--cream);font-size:.95rem;margin-left:6px}
+.brew-printed{font-size:.95rem;line-height:1.7;margin:0}
+.brew-house-row .brew-links{margin:8px 0}
+.brew-detail a:not(.btn),.brew-sources a{color:var(--brass-2);text-underline-offset:3px;overflow-wrap:anywhere}
+.brew-sources a,.brew-panel a.hs-link{display:inline-flex;align-items:center;min-height:44px}
+.brew-tea-note{margin-top:16px;padding:16px 20px;border:1px dashed var(--house-line);line-height:1.7}
+.brew-tea-note p{margin:4px 0}
+.brew-not,.brew-on{font-weight:600;color:var(--brass-2);margin:0 0 8px}
+.brew-door{margin:16px 0}.brew-door strong{font:500 1.2rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2)}
+.brew-door>span:last-child{font-size:.95rem;line-height:1.7;color:var(--cream-dim)}
+.brew-detail{display:grid;gap:18px}
+.brew-detail>.brew-heading,.brew-detail>.brew-practice{margin-bottom:0}
+.brew-say,.brew-aka,.brew-caffeine{font-size:1rem!important;line-height:1.7}
+.brew-panel{padding:22px;border:1px solid var(--house-line);background:var(--felt-2);min-width:0}
+.brew-panel h3{font:500 1.2rem/1.5 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0 0 14px}
+.brew-panel p,.brew-panel li,.brew-panel dd{font-size:1rem;line-height:1.8}
+.brew-panel p{margin:0 0 12px}.brew-panel p:last-child{margin-bottom:0}
+.brew-panel ul,.brew-steps{margin:0;padding-left:24px}.brew-panel li{margin-bottom:8px}
+.brew-panel blockquote{margin:0;padding:10px 0 10px 16px;border-left:2px solid var(--brass);font-size:1.12rem;line-height:1.8}
+.brew-facts{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:0 0 16px}
+.brew-facts dt{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--brass-2);font-weight:600;padding-top:3px}
+.brew-facts dd{margin:0}
+.brew-house .brew-house-row{margin:12px 0}
+.brew-use{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.brew-recall summary,.brew-sources summary{cursor:pointer;padding:12px 0;min-height:44px;line-height:1.6;color:var(--brass-2)}
+.brew-recall+.brew-recall{border-top:1px solid var(--house-line)}
+.brew-sources{padding:0 22px;border:1px solid var(--house-line);background:var(--felt-2)}
+.brew-sources li{margin-bottom:10px;line-height:1.6}
+.brew-question{font:500 clamp(1.2rem,3vw,1.5rem)/1.6 var(--house-display,Georgia,serif);color:var(--brass-2);max-width:720px;text-align:center}
+.brew-answer{max-width:720px;font-size:1.05rem;line-height:1.8}.brew-answer p{margin:0 0 12px}
+.brew-empty{padding:20px 0;line-height:1.8}
+.brew-row:focus-visible,.brew-door:focus-visible,.brew-recall summary:focus-visible,.brew-sources summary:focus-visible{outline:3px solid var(--brass-2);outline-offset:4px}
+@media(max-width:639px){.brew-rows,.brew-house-rows{grid-template-columns:1fr}.brew-panel,.brew-row,.brew-house-row,.brew-door{padding:16px}.brew-sources{padding:0 16px}.brew-facts{grid-template-columns:1fr;gap:2px}.brew-facts dd{margin-bottom:8px}.brew-practice .btn{flex:1 1 160px}}
+@media print{.brew-practice,.brew-search,.brew-chips{display:none}.brew-row,.brew-panel,.brew-house-row,.brew-door{background:white;color:#222;border-color:#777;break-inside:avoid}.brew-heading h2,.brew-panel h3,.brew-row-name{color:#222}}

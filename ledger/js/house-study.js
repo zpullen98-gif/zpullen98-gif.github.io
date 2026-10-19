@@ -167,6 +167,7 @@ var HS_WORDS = {
   jumpRoost: 'The Roost Bar',
   fallH: 'Fall 2026',
   compassH: 'The Bar Compass',
+  brewH: 'Coffee and tea',
   producersH: 'Producers',
   producersRow: 'The producers'
 };
@@ -886,6 +887,7 @@ function hsDoorList(h){
   const out = [];
   if(typeof fallMenuDoorHTML === 'function') out.push({ id: 'hs-fall-h', label: hsSay('fallH'), body: fallMenuDoorHTML() });
   if(typeof barCompassDoorHTML === 'function') out.push({ id: 'hs-compass-h', label: hsSay('compassH'), body: barCompassDoorHTML() });
+  if(typeof brewDoorHTML === 'function') out.push({ id: 'hs-brew-h', label: hsSay('brewH'), body: brewDoorHTML() });
   const line = hsProducersLine(h);
   if(line) out.push({ id: 'hs-producers-h', label: hsSay('producersH'),
     body: '<nav class="quiet rows" aria-label="' + esc(hsSay('producersH')) + '"><button class="door" data-act="lv-producers"><span class="door-name">' + esc(hsSay('producersRow')) + '</span><span class="door-line">' + esc(line) + '</span></button></nav>' });

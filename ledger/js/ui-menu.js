@@ -770,11 +770,15 @@ function menuDrillHTML(pool){
 function renderMenu(){
   const bar = progress.bar || [];
   const v = state.menu.view || 'menu';
-  const nav = [['menu','The menu'],['compass','The Bar Compass'],['fall','Fall 2026'],['stock','The stock'],['add','Add drinks']]
+  /* Coffee and tea (js/ui-brew.js) after Fall 2026, only where its file is here */
+  const nav = [['menu','The menu'],['compass','The Bar Compass'],['fall','Fall 2026']]
+    .concat(typeof renderBrew === 'function' ? [['brew','Coffee and tea']] : [])
+    .concat([['stock','The stock'],['add','Add drinks']])
     .map(function(o){ return '<button class="tab-btn'+(v===o[0]?' active':'')+'"'+(v===o[0]?' aria-current="true"':'')+' data-act="menu-view" data-v="'+o[0]+'">'+o[1]+'</button>'; }).join('');
   let inner;
   if(v === 'compass' && typeof renderBarCompass === 'function') inner = renderBarCompass();
   else if(v === 'fall' && typeof renderFallMenu === 'function') inner = renderFallMenu();
+  else if(v === 'brew' && typeof renderBrew === 'function') inner = renderBrew();
   else if(v === 'stock') inner = menuStockHTML();
   else if(v === 'add'){
     /* the four doors, the review step and the form, all drawn by renderImport,
@@ -815,5 +819,5 @@ function renderMenu(){
   /* the desk's share, above every sub-view: what another room read and left
      for this bar is the first thing to know on opening the Menu tab */
   const waiting = (typeof deskWaitingHTML === 'function') ? deskWaitingHTML('menu') : '';
-  return '<div class="col"><nav class="tabs'+(v === 'compass' ? ' bc-menu-tabs' : '')+'" style="margin-bottom:4px">'+nav+'</nav>'+waiting+inner+'</div>';
+  return '<div class="col"><nav class="tabs'+(v === 'compass' ? ' bc-menu-tabs' : v === 'brew' ? ' brew-menu-tabs' : '')+'" style="margin-bottom:4px">'+nav+'</nav>'+waiting+inner+'</div>';
 }
