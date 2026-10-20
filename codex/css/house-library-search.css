@@ -1,0 +1,24 @@
+/* The same reading-room search in the Library and Today's study. */
+.v44-search { margin: 22px 0 28px; }
+.v44-search .sainput { width: 100%; min-height: 48px; }
+.v44-search-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.v44-search-note { color: var(--parch); font-size: 16px; line-height: 1.5; margin: 8px 0 12px; }
+.v44-search-tools .v44-search-note { margin: 8px 0; }
+.v44-clear { flex: 0 0 auto; min-height: 44px; }
+.v44-clear[hidden] { display: none; }
+.v44-suggestions, .v44-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 16px; }
+.v44-suggestions button, .v44-actions button, .v44-show-more { min-height: 44px; }
+.v44-search-count { font-size: 18px; color: var(--parch); margin: 20px 0 16px; }
+.v44-result-group { padding: 0 0 20px; margin: 0 0 20px; border-bottom: 1px solid var(--line); }
+.v44-result-group h3 { display: flex; align-items: baseline; gap: 10px; margin: 0 0 8px; }
+.v44-count { font-size: 14px; font-family: var(--house-body, Georgia, serif); letter-spacing: normal; }
+.v44-hit { min-height: 58px; }
+.v44-hit > span { overflow-wrap: anywhere; }
+.v44-hit .n { max-width: 47%; text-align: right; white-space: normal; }
+.v44-empty p { color: var(--parch); font-size: 18px; line-height: 1.6; }
+@media (max-width: 520px) {
+  .v44-search-tools { flex-wrap: wrap; gap: 0 12px; }
+  .v44-search-tools .v44-search-note { flex: 1 1 200px; }
+  .v44-hit { flex-direction: column; align-items: flex-start; gap: 5px; padding: 12px 10px; }
+  .v44-hit .n { max-width: none; text-align: left; font-size: 14px; line-height: 1.5; }
+}

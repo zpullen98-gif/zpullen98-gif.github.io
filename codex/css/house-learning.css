@@ -1,0 +1,20 @@
+/* The same cellar palette, with quieter choices and readable study paths. */
+.v42-welcome,.v42-guide,.v42-practice-tools,.v42-today-help{color:var(--parch);font-size:18px;line-height:1.6;overflow-wrap:anywhere}
+.v42-welcome{margin:10px 0 30px;padding:26px;border:1px solid var(--gold);border-radius:24px 4px;background:radial-gradient(ellipse at top right,rgba(181,146,80,.15),transparent 70%),var(--bg2)}
+.v42-welcome h1{font-family:var(--house-display,Cinzel,serif);font-size:30px;font-weight:500;line-height:1.3;color:var(--gold-hi);margin:10px 0}
+.v42-welcome p{margin:12px 0}.v42-eyebrow{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-hi)}
+.v42-actions{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}.v42-current{font-size:16px}.v42-level-heading{font-family:var(--house-display,Cinzel,serif);font-size:21px;color:var(--gold-hi);font-weight:500}
+.v42-level-help{font-size:17px;line-height:1.55;color:var(--parch);max-width:700px;margin-bottom:22px}
+.v42-guide{max-width:1000px;margin:auto}.v42-lead{font-size:21px}.v42-paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:28px 0}
+.v42-path{border:1px solid var(--line);padding:22px;background:var(--bg2);min-width:0}.v42-path h3,.v42-reading h3{font-family:var(--house-display,Cinzel,serif);font-weight:500;color:var(--gold-hi);line-height:1.4;margin:8px 0 14px}
+.v42-path ol{padding-left:24px}.v42-path li{margin:18px 0}.v42-path li p{margin:6px 0;font-size:16px}.v42-outcome{border-top:1px solid var(--line);padding-top:15px;font-size:16px}
+.v42-reading{padding:22px;border:1px solid var(--line);background:var(--bg2)}.v42-reading p{margin:14px 0}
+.v42-practice-tools{padding:20px;border:1px solid var(--line);background:var(--bg2);margin:20px 0 26px}.v42-practice-tools label{display:block;margin:12px 0 6px;font-weight:600}
+.v42-search-line{display:flex;gap:10px;align-items:center}.v42-practice-tools .sainput{width:100%;min-width:0;box-sizing:border-box;font:inherit;line-height:1.5;min-height:48px;padding:10px 12px;background:var(--bg);color:var(--parch);border:1px solid var(--gold)}
+.v42-practice-tools #v42-practice-count{font-size:16px;margin:9px 0}.v42-practice-tools .v42-help{margin-bottom:0}
+.v42-welcome .btn,.v42-guide .btn,.v42-practice-tools .btn,.v42-today-help .btn{min-height:44px;max-width:100%;white-space:normal;line-height:1.4;text-align:left}
+.v42-today-help{margin-bottom:15px}.v42-today-help .btn{margin-top:8px;display:block}
+.v42-practice-tools button[hidden],.v32-root section[hidden],.v32-root .v25rows>li[hidden]{display:none!important}
+.v32-root h2[id],.v32-root h3[id]{scroll-margin-top:145px}
+.v42-welcome :focus-visible,.v42-guide :focus-visible,.v42-practice-tools :focus-visible{outline:3px solid var(--gold-hi);outline-offset:3px}
+@media(max-width:650px){.v42-paths{grid-template-columns:minmax(0,1fr)}.v42-welcome,.v42-path,.v42-practice-tools,.v42-reading{padding:17px}.v42-welcome h1{font-size:26px}.v42-actions,.v42-search-line{flex-direction:column;align-items:stretch}.v42-actions .btn,.v42-search-line .btn{width:100%}.v42-path li .btn{font-size:16px}}

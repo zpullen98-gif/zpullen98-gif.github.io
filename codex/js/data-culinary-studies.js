@@ -3,7 +3,7 @@
 var CODEX_CULINARY_STUDIES = {
   title: "Read the dish, describe the wine",
   subtitle: "A cook's aroma cabinet and a sommelier's conversation at the table.",
-  reviewedOn: "2026-10-10",
+  reviewedOn: "2026-10-20",
   boundaries: [
     "Brennan's public food menus were checked on 10 October 2026. The named wine records come from the saved house study pack; current bottles, vintages, prices, pours and availability still need the current list and lineup.",
     "These are teaching options, not newly approved house pairings. A printed tasting-menu pairing is identified separately. Ask the guest what they enjoy, including whether they want wine at all.",
@@ -19,7 +19,14 @@ var CODEX_CULINARY_STUDIES = {
     { id: "sauces", title: "Professional Cooking: classical sauces, chapter 9", url: "https://resources.escoffier.edu/textbooks/gisslen/professional_cooking_09.pdf" },
     { id: "breakfast", title: "Brennan's: breakfast and lunch menu", url: "https://www.brennansneworleans.com/menus/breakfast-and-lunch/" },
     { id: "dinner", title: "Brennan's: dinner menu", url: "https://www.brennansneworleans.com/menus/dinner/" },
-    { id: "dinner-tasting", title: "Brennan's: dinner tasting menu", url: "https://www.brennansneworleans.com/menus/dinnertastingmenu/" }
+    { id: "dinner-tasting", title: "Brennan's: dinner tasting menu", url: "https://www.brennansneworleans.com/menus/dinnertastingmenu/" },
+    { id: "service-films", title: "WSET: wine service demonstrations", url: "https://www.wsetglobal.com/knowledge-centre/videos/wset-wine-service-series" },
+    { id: "service-standards", title: "CMS Americas: presentation, order confirmation and service", url: "https://www.mastersommeliers.org/wp-content/uploads/2023/12/CMS-Hospitality-Service-Standards.pdf" },
+    { id: "reduction", title: "AWRI: volatile sulphur compounds and the limits of aeration", url: "https://www.awri.com.au/industry_support/winemaking_resources/storage-and-packaging/pre-packaging-preparation/removal-volatile-sulfur-compounds/" },
+    { id: "haze", title: "AWRI: identifying hazes and deposits", url: "https://www.awri.com.au/industry_support/winemaking_resources/fining-stabilities/hazes_and_deposits/" },
+    { id: "vegan", title: "WSET: vegan wine and how to verify it", url: "https://www.wsetglobal.com/knowledge-centre/blog/2024/january/11/what-is-vegan-wine-and-how-to-find-it/" },
+    { id: "allergy", title: "Food Standards Agency: vegan labels and allergy information", url: "https://www.food.gov.uk/food-safety-and-hygiene/food-allergies-intolerances-and-coeliac-disease" },
+    { id: "sulphites", title: "TTB: wine labelling checklist, including naturally occurring sulphites", url: "https://www.ttb.gov/system/files/images/wine-label/wine-labeling-checklist.pdf" }
   ],
   lessons: [
     {
@@ -104,6 +111,58 @@ var CODEX_CULINARY_STUDIES = {
         practise: "Select a dish and one option below. Give a twenty-second explanation, offer the other path, then rehearse one follow-up question. No choice here changes your study score."
       },
       sources: ["pairing", "spice"]
+    },
+    {
+      id: "bottle-check", title: "Confirm the bottle, then present it",
+      intro: "Turn a good recommendation into a clear, confident order.",
+      guideIds: [],
+      body: [
+        "After listening to the guest's preferred style and comfortable price range, offer two available choices with one useful difference. Speak about the actual wine: freshness, texture, sweetness or flavour. A longer list of regions is not necessarily a clearer recommendation.",
+        "Before opening, match the producer, wine name, cuvée, vintage, bottle size and agreed price to the order. Similar names can refer to different wines. A saved training card is a learning aid; use the current list and the bottle in your hand for service.",
+        "If the selected vintage is unavailable, explain the change and confirm the replacement and its price. Do not quietly substitute another vintage, producer or bottle size, even when you believe it is a better wine.",
+        "Present the bottle so the host can confirm it. Rehearse a simple line: 'This is [producer and wine], [vintage], in a [size] bottle, as ordered.' Follow Brennan's current presentation and opening procedure. Check the guest's pace during the meal and offer water and a pause as naturally as another pour."
+      ],
+      practice: {
+        question: "The guest selected a 2021 bottle, but the cellar has only 2022. What happens before you open it?",
+        answer: "Confirm the exact wine and the current price, explain that the vintage differs and ask whether the guest would like it or an alternative. Obtain approval before opening; a vintage substitution is a new decision for the guest.",
+        practise: "Use two saved house wine cards to rehearse a recommendation, then check a real label with your trainer. Name six details you would verify and give the presentation line in twenty seconds."
+      },
+      sources: ["service-films", "service-standards"]
+    },
+    {
+      id: "condition", title: "Handle a doubtful bottle calmly",
+      intro: "Listen first, assess carefully and make the next step easy for the guest.",
+      guideIds: [],
+      body: [
+        "When a guest says the wine seems wrong, stop pouring and ask what they notice. Thank them for telling you. 'Let me check this with our sommelier and bring you a clear next step' is more helpful than defending the producer or telling them the wine is supposed to taste that way.",
+        "Separate an observation from a diagnosis. Mustiness, unexpected fizz, haze or an unpleasant sulphurous smell gives you something to investigate. Tartrate crystals and normal sediment are not faults; unexpected haze needs assessment. A clear appearance or a clean smell alone cannot establish a wine's condition.",
+        "A small sample may change with air, but sulphur compounds respond differently. Never promise that a decanter will fix a doubtful bottle or ask the guest to wait for a guaranteed recovery. Ask the sommelier to assess it separately and follow the house replacement procedure.",
+        "A sound wine that the guest dislikes calls for a hospitality conversation as well. Clarify whether sweetness, oak, acidity or another feature is the problem, then discuss an appropriate alternative with the team. Record a rejected bottle according to house procedure without promising a supplier credit."
+      ],
+      practice: {
+        question: "A guest says an unfiltered wine is cloudy and smells odd. Can you reassure them that it is sound because it is unfiltered?",
+        answer: "No. Unfiltered describes processing, not a guarantee of condition. Pause the pour, listen to the concern and involve the sommelier. Check the intended style and this bottle before deciding what to offer.",
+        practise: "Rehearse the first two sentences of your response without naming a chemical. Then tell your trainer which observations you would report and which claims you would avoid."
+      },
+      sources: ["reduction", "haze", "service-films"]
+    },
+    {
+      id: "guest-care", title: "Dietary requests without guesswork",
+      intro: "A useful answer begins by understanding exactly what the guest needs.",
+      guideIds: [],
+      body: [
+        "Treat a vegan preference, an allergy and a request to avoid alcohol as different questions. Listen to the guest's wording, repeat the requirement accurately and involve the responsible team member through Brennan's current procedure. Do not diagnose a reaction or decide how much exposure is acceptable.",
+        "Wine is not automatically vegan because it begins with grapes. Some producers use animal-derived fining agents, while others use alternatives or do not fine. Check the exact wine and current producer information; do not infer suitability from colour, an organic claim or the absence of visible sediment.",
+        "A vegan statement does not by itself confirm allergy suitability. Check the bottle, producer information and any relevant service ingredients or handling. If the information is incomplete, say so and consult the team rather than presenting a guess as reassurance.",
+        "No added sulphites does not mean no sulphites: they can occur naturally. Do not promise that swirling, decanting or choosing a different colour removes them. For a guest avoiding alcohol, confirm the actual product and its stated alcohol content instead of assuming a category name meets their requirement.",
+        "A useful line is: 'Thank you for telling me. I will check this exact bottle and our service procedure with the team before recommending it.' Offer only an option whose information meets the stated request; the guest should not have to test an uncertain product."
+      ],
+      practice: {
+        question: "A guest with a milk allergy asks whether a vegan wine is safe for them. What can you responsibly promise immediately?",
+        answer: "Promise to check, not that it is safe. Vegan suitability and allergy suitability are separate. Verify the exact product information and the house procedure with the responsible team member, and explain any remaining uncertainty.",
+        practise: "Rehearse three different requests: vegan wine, a milk allergy and no alcohol. For each, name the information you need and the colleague or verified product record you would consult."
+      },
+      sources: ["vegan", "allergy", "sulphites"]
     }
   ],
   structure: [

@@ -31,19 +31,19 @@ var SERVICE_REF = {
       "rows": [
         ["Cork taint (TCA)", "Damp cardboard, wet dog, a musty cellar; the fruit is muted and the finish short, and at low levels it only dulls the wine", "2,4,6-trichloroanisole, made when mould meets chlorine compounds in cork, barrels, cardboard or the winery itself; detectable at a few nanograms per litre", "Replace the bottle without argument, check the second before pouring it, and keep the first for the supplier. Taint is a condition, never a matter of taste"],
         ["Oxidation", "Bruised apple, sherry, nut, a flat dull nose; whites deepen to gold and amber, reds turn brick and brown at the rim and beyond", "Too much oxygen: a failed closure, a bottle open too long, hot or careless storage, too little free sulphur dioxide at bottling", "A fault unless the style is deliberate (Amontillado, Oloroso, tawny Port, Madeira; vin jaune ages under a veil of yeast but is meant to taste oxidative). Fino and Manzanilla are aged under flor, away from air, and should never taste flat or bruised. Replace it, check the closure, and check the by-the-glass bottles opened days ago"],
-        ["Reduction, light", "Struck match, flint, gunflint, a wisp of smoke; the fruit sits behind it", "Sulphur compounds formed in the absence of oxygen, common in screwcapped and lees-rich whites; mercaptans at low levels", "Swirl, decant or wait: it blows off in minutes. Tell the guest what it is. In some Chardonnay and Riesling it is a style, not a fault"],
-        ["Reduction, heavy", "Rotten egg, drains, cooked cabbage, rubber, burnt garlic, onion", "Hydrogen sulphide from stressed yeast short of nitrogen; the mercaptans and disulphides that form from it later do not leave with air", "Aerate once, with the guest's agreement, and taste again. If it stays, replace the bottle; a disulphide note never blows off"],
+        ["Reduction, light", "Struck match, flint or smoke; record the observation before naming a cause", "Several volatile sulphur compounds can contribute. Aroma alone cannot identify the compound or predict its response to air", "A small sample may change with swirling, but do not promise a cure. Reassess with a colleague, consider the intended style and resolve the guest's concern"],
+        ["Reduction, heavy", "Rotten egg, drains, cooked cabbage, rubber, burnt garlic or onion", "Hydrogen sulphide, thiols and disulphides can contribute; their formation and response to oxygen differ", "Do not insist that the guest wait for aeration. Stop the pour, consult the sommelier and replace a faulty bottle through the house procedure"],
         ["Volatile acidity", "Nail varnish, vinegar, a lifted sharpness on the nose that dries and shortens the finish", "Acetic acid and ethyl acetate from Acetobacter working with oxygen, or from a stuck or sluggish fermentation; wine law sets a legal maximum", "A trace lifts some styles (Amarone, Sauternes, some natural wines). Vinegar that dries the finish is a fault: replace it"],
         ["Brettanomyces", "Barnyard, horse blanket, sticking plaster, clove, smoked meat, a metallic finish", "The yeast Brettanomyces bruxellensis makes 4-ethylphenol and 4-ethylguaiacol in barrels and bottles where sugar is left; it loves low sulphur and warm cellars", "Low levels are tolerated in some reds and some guests like them. Stop pouring when it masks the fruit; it does not blow off"],
-        ["Heat damage", "Stewed fruit, jam, caramel, a flat cooked nose; the cork pushed up, a stained capsule, seepage, a low fill", "Storage or transport above about 30 degrees Celsius (86 Fahrenheit), a sunny window, a hot van", "Read the bottle before the glass: a raised cork and a sticky capsule are the clue. Replace a cooked bottle and quarantine the case"],
+        ["Heat damage", "Unexpected cooked fruit and faded freshness; seepage or a raised cork may be clues", "Excessive heat during storage or transport; exposure time and temperature both matter", "Inspect and assess the wine, then alert the sommelier. A leak or ripe fruit alone is not proof. Set aside suspect bottles for review rather than guessing a safe temperature threshold"],
         ["Refermentation", "Unexpected fizz in a still wine, a yeasty nose, haze, a cork pushed up", "Live yeast meeting residual sugar in the bottle, a risk in low-sulphur and off-dry wines bottled warm", "A fault in a still wine unless the style is pétillant naturel; a faint prickle of carbon dioxide in a young fresh white is sometimes deliberate. Ask, then replace if it is wrong"],
         ["Light strike", "Cooked cabbage, wet wool, skunk; worst in clear and green glass left under a lamp", "Ultraviolet and blue light turn riboflavin into sulphur compounds; Champagne and rosé in clear bottles are most at risk", "No cure: replace the bottle. Keep clear bottles in the dark, never on a lit display shelf, and sell them from the box"],
         ["Mousiness", "Nothing on the nose, then a mouse cage, stale crackers or corn chips on the finish a few seconds after swallowing", "Tetrahydropyridines made by Brettanomyces and lactic bacteria at high pH with little sulphur; it shows only retronasally", "A fault: replace it. Some tasters cannot detect it at all, so trust a colleague's finish before dismissing a guest's complaint"],
         ["Geranium taint", "Crushed geranium leaves, sharp and green", "Lactic bacteria turn sorbic acid (potassium sorbate, a preservative in some sweet wines) into a geranium-smelling compound", "A fault: replace it. Seen in off-dry and sweet wines preserved with sorbate, almost never in dry wines"],
-        ["Excess sulphur dioxide", "Struck match, burnt rubber, a tickle in the nose, a sneeze; the nose seems to tighten", "Too much free sulphur dioxide added at bottling, common in young sweet whites and in wines bottled in a hurry", "Swirl, decant and wait: it fades with air. It is a fault only when it will not leave, and then replace"],
+        ["Excess sulphur dioxide", "Pungent or irritating sulphurous character; do not identify it from smell alone", "The sensory effect depends on free sulphur dioxide, wine pH and the taster; it differs from hydrogen sulphide", "Do not diagnose a sensitivity or promise that air removes sulphites. Pause service and ask the sommelier to assess the wine and the guest's request"],
         ["Smoke taint", "Ash, campfire, a cold ashtray, most on the palate and finish", "Volatile phenols from wildfire smoke bind in the grapes and are released in the wine; not the same as oak toast", "A fault when obvious: replace. Do not confuse it with the smoke of a heavily toasted barrel or a peated note"],
         ["Premature oxidation", "Bruised apple, honey, wax and nut in a white wine that should be young and fresh", "Not fully understood: closures, low sulphur at bottling and cellar handling are suspected; best known in white Burgundy from the mid 1990s", "A fault: replace it and check other bottles of the same lot, since it strikes bottle by bottle"],
-        ["Cloudiness", "A haze or milky cast in a wine meant to be bright", "Proteins, pectins or microbial haze, or a wine bottled unfined and unfiltered on purpose", "Not a fault in an unfiltered or natural wine, or in nigori sake. Smell and taste before deciding; a cloudy wine that smells clean is sound"],
+        ["Cloudiness", "A haze or milky cast; compare with the intended style", "Possible causes include proteins, other deposits and microorganisms; some styles are intentionally cloudy", "Check the producer's description and ask the sommelier to assess unexpected haze. A clean smell or the words natural and unfiltered do not establish the cause or guarantee soundness"],
         ["Tartrate crystals", "Glassy crystals on the cork or in the bottom of the bottle, like sugar or ground glass", "Potassium bitartrate dropping out of solution in the cold; whites held near freezing show it most", "Harmless and not a fault. Say they are wine crystals, decant or pour carefully, and never apologise for the wine"],
         ["Sediment", "A dark grainy deposit in old reds and Vintage Port; fine dust in older whites", "Pigments and tannins binding and settling over years in the bottle", "Not a fault. Stand the bottle upright, decant off the deposit over a candle, and present the bottle beside the decanter"],
         ["Cork crumbs", "Bits of cork floating in the glass", "A dry, old or weak cork breaking under the worm, or a cork pushed in", "Not a fault of the wine. Pour a fresh glass, or decant through a fine strainer, apologise for the cork and carry on"]
@@ -51,8 +51,8 @@ var SERVICE_REF = {
       "notes": [
         "The sommelier's check pour exists to catch a fault, never to judge a preference. A guest who dislikes a sound wine is a hospitality decision; a faulty wine is an obligation.",
         "Smell the cork quietly if the house allows, but read the wine: a clean cork can top a corked bottle, and a damp cork a sound one.",
-        "Three things that are not faults and look like them: tartrate crystals, sediment and haze in an unfiltered wine. Three that are and hide: light taint, mousiness and heavy reduction that will not blow off.",
-        "Keep every rejected bottle, recorked and labelled with the date and the table, for the supplier's credit."
+        "Tartrate crystals and normal bottle sediment are not faults. Haze may be intentional, but an unexpected change needs checking; a single smell or appearance is not a diagnosis.",
+        "Follow the house procedure for rejected bottles: identify the wine, date and concern, and set it aside for the sommelier. A supplier credit is not guaranteed."
       ],
       "say": [
         ["Brettanomyces", "bret-tan-oh-MY-seez"],
@@ -63,7 +63,9 @@ var SERVICE_REF = {
       ],
       "sources": [
         { "title": "The Oxford Companion to Wine, 5th edition", "asOf": "2023" },
-        { "title": "Australian Wine Research Institute, fact sheets on wine faults and taints", "asOf": "2024" },
+        { "title": "Australian Wine Research Institute, volatile sulphur compounds", "asOf": "2026-10-20", "url": "https://www.awri.com.au/industry_support/winemaking_resources/storage-and-packaging/pre-packaging-preparation/removal-volatile-sulfur-compounds/" },
+        { "title": "Australian Wine Research Institute, hazes and deposits", "asOf": "2026-10-20", "url": "https://www.awri.com.au/industry_support/winemaking_resources/fining-stabilities/hazes_and_deposits/" },
+        { "title": "Australian Wine Research Institute, Advanced Wine Assessment Course notes", "asOf": "2026-10-20", "url": "https://www.awri.com.au/wp-content/uploads/2023/02/01-AWAC-Course-Notes-28092022-1.pdf" },
         { "title": "Court of Master Sommeliers Americas, Certified Sommelier Exam Guide: What to Expect", "asOf": "2023" }
       ]
     },
@@ -73,7 +75,7 @@ var SERVICE_REF = {
       "line": "The standard shapes, what each is for, and how much goes in.",
       "columns": ["Glass", "Shape and size", "Pour", "Used for"],
       "rows": [
-        ["Bordeaux", "Tall, broad bowl with a slight taper to the rim; about 550 to 750 ml capacity", "150 ml (5 oz), or the house measure; never above the widest point of the bowl", "Cabernet Sauvignon, Merlot, Syrah, structured reds; the height directs the wine to the back of the palate"],
+        ["Bordeaux", "Tall, broad bowl with a slight taper to the rim; about 550 to 750 ml capacity", "150 ml (5 oz), or the house measure; never above the widest point of the bowl", "Often used for structured reds. Leave space to swirl and smell; different tastes are not confined to separate tongue zones"],
         ["Burgundy", "Wide balloon bowl narrowing to the rim; about 700 to 900 ml capacity", "120 to 150 ml (4 to 5 oz), well below the widest point", "Pinot Noir, Nebbiolo, Grenache and aromatic reds, and rich Chardonnay; the bowl collects aroma"],
         ["Universal", "A medium bowl tapering gently to the rim; about 450 to 600 ml capacity", "125 to 150 ml (4 to 5 oz)", "Every still wine when one glass must do; the exam accepts a clean universal stem for most still wines"],
         ["White wine", "A smaller, narrower bowl; about 350 to 450 ml capacity", "120 to 150 ml (4 to 5 oz)", "Sauvignon Blanc, Riesling, light whites and rosé; the small bowl keeps the wine cold and focuses the nose"],
@@ -106,7 +108,8 @@ var SERVICE_REF = {
       "sources": [
         { "title": "ISO 3591:1977, Sensory analysis: apparatus: wine-tasting glass", "asOf": "1977" },
         { "title": "The Oxford Companion to Wine, 5th edition, entries on glasses and serving wine", "asOf": "2023" },
-        { "title": "Court of Master Sommeliers Americas, CMS Hospitality and Service Standards", "asOf": "2023" }
+        { "title": "National Institute on Deafness and Other Communication Disorders, Taste Disorders: taste cells throughout the tongue", "asOf": "2026-10-20", "url": "https://www.nidcd.nih.gov/health/taste-disorders" },
+        { "title": "Court of Master Sommeliers Americas, CMS Hospitality and Service Standards", "asOf": "2023", "url": "https://www.mastersommeliers.org/wp-content/uploads/2023/12/CMS-Hospitality-Service-Standards.pdf" }
       ]
     },
     {
@@ -164,29 +167,29 @@ var SERVICE_REF = {
       "line": "A range by style, why that range, and how to reach it before the guest asks.",
       "columns": ["Wine", "Serve at", "Why", "How to get there"],
       "rows": [
-        ["Sparkling, non-vintage (Champagne, Cava, Prosecco)", "6 to 8 C (43 to 46 F)", "Cold keeps the carbon dioxide in solution, slows the foam and makes the cork docile; a warm bottle is a projectile", "Twenty minutes in a bucket of ice and water to the neck, or three hours in a fridge; never more than fifteen minutes in a freezer"],
-        ["Sparkling, vintage and prestige", "8 to 10 C (46 to 50 F)", "A degree or two warmer lets the autolytic bread and nut show behind the fruit", "From a 12 C cellar, ten minutes in ice water; from a fridge, let it stand five minutes"],
+        ["Light sparkling (Cava, Prosecco)", "6 to 8 C (43 to 46 F), adjusted for the wine", "Chilling helps control foaming; even a cold bottle needs firm cork control", "Use the fridge or an ice and water bucket; check the actual temperature before opening"],
+        ["Champagne, vintage and prestige sparkling", "8 to 10 C (46 to 50 F), adjusted for the wine", "Comité Champagne recommends this starting range; excessive chilling can conceal aroma", "Chill in ice and water or the fridge, not the freezer. Time depends on bottle size and starting temperature"],
         ["Light aromatic whites and rosé (Sauvignon Blanc, Pinot Grigio, Albariño, Provence rosé)", "7 to 10 C (45 to 50 F)", "Cold keeps the acidity crisp and the aromatics tight but present; colder than this mutes them", "Two hours in a fridge or fifteen minutes in ice water; let it rise in the glass"],
         ["Full whites (oaked Chardonnay, white Rhône, Viognier)", "10 to 13 C (50 to 55 F)", "Too cold hides the texture and the oak; too warm shows the alcohol", "Take it from the fridge twenty minutes before service, or ten minutes in ice water from the cellar"],
         ["Orange and skin-contact whites", "12 to 14 C (54 to 57 F)", "The tannin wants the warmth of a light red; cold makes it bitter", "Cellar temperature with half an hour on the table"],
         ["Sweet whites (Sauternes, Tokaji, ice wine, late harvest)", "6 to 8 C (43 to 46 F)", "Cold balances the sugar and shows the acidity; warm sweet wine is cloying", "Fifteen minutes in ice water; pour small"],
         ["Light reds (Beaujolais, Pinot Noir, Valpolicella, Frappato)", "12 to 15 C (54 to 59 F)", "Lightly chilled, the fruit and acidity lift; low tannin needs no warmth", "Ten minutes in the ice bucket or half an hour in a fridge; a cool red is a sign of care, not a mistake"],
         ["Medium reds (Chianti, Rioja, Côtes du Rhône, Merlot)", "15 to 17 C (59 to 63 F)", "Enough warmth to open the aroma, not so much that the alcohol leads", "Cellar temperature plus half an hour in the room; a warm bottle takes five minutes in ice water"],
-        ["Full tannic reds (Cabernet Sauvignon, Barolo, Syrah, Zinfandel)", "16 to 18 C (61 to 64 F)", "Warmth softens tannin and opens the nose; above 20 C the alcohol and the tannin both harden", "Cellar temperature plus an hour; never a radiator, a warm kitchen or hot water. A dining room at 24 C is too warm for the wine, so serve it a touch cool"],
+        ["Full tannic reds (Cabernet Sauvignon, Barolo, Syrah, Zinfandel)", "16 to 18 C (61 to 64 F)", "Very cold wine can seem harsh; excessive warmth can obscure freshness and balance. Temperature changes perception, not the amount of tannin", "Check the bottle rather than waiting a fixed hour. Cool a warm red gently; avoid radiators, hot water and other sudden heat"],
         ["Fino and Manzanilla sherry", "6 to 8 C (43 to 46 F)", "Flor wines are fresh and saline and fade fast; cold keeps them bright", "Fridge; a half bottle, drunk within days of opening"],
         ["Amontillado, Palo Cortado and dry Oloroso", "10 to 14 C (50 to 57 F)", "Cool shows the nut and salt; room temperature makes them heavy", "The cellar or the fridge door"],
         ["Tawny Port and Colheita", "10 to 14 C (50 to 57 F)", "Cool shows the dried fruit and nut and cuts the sweetness", "The fridge door; a tawny keeps for weeks once open"],
         ["Ruby, LBV and Vintage Port", "16 to 18 C (61 to 64 F)", "A full red's temperature for a full red's structure; Vintage Port is decanted as well", "The cellar plus an hour in the room"],
-        ["Madeira", "12 to 16 C (54 to 61 F), Sercial cool and Malmsey warmer", "The drier styles want to be cool and fresh, the sweeter styles a little warmer for their richness", "The cellar; Madeira is near indestructible once open"],
-        ["Sake", "Ginjo and daiginjo 8 to 12 C (46 to 54 F); junmai and honjozo from cool to warm, nurukan about 40 C, atsukan about 50 C", "Heat destroys the aromatics of a polished sake and flatters a sturdy one", "A wine glass from the fridge for ginjo; a water bath for the warm styles, never a microwave"],
+        ["Madeira", "12 to 16 C (54 to 61 F), Sercial cool and Malmsey warmer", "The drier styles want to be cool and fresh, the sweeter styles a little warmer for their richness", "Follow the producer's serving and storage advice; date opened bottles and assess their condition before pouring"],
+        ["Sake", "Chilled 8 to 15 C (46 to 59 F), room temperature 15 to 25 C (59 to 77 F), or warm 40 to 50 C (104 to 122 F), as appropriate", "The same sake changes character with temperature. The producer's guidance and the guest's preference matter more than a rule about rice polishing alone", "Follow the house method and check temperature. JSS describes both a water bath and careful microwave warming, with stirring to even the temperature"],
         ["Beer", "Lager 4 to 7 C (39 to 45 F); ales, abbey and Trappist 8 to 12 C (46 to 54 F); stout and cask ale 10 to 13 C (50 to 55 F)", "Ice cold kills the aromatics of an ale; a lager is built for cold", "A beer fridge for lager, a cellar for ale; cask ale is kept at cellar temperature by the cellar"],
         ["Spirits served neat", "Brandy and whisky at room temperature, 18 to 20 C (64 to 68 F); vodka and gin from the freezer only when asked", "Warmth opens an aged spirit; cold thickens a white one", "A tulip warmed in the hand; a chilled glass for a frozen spirit"]
       ],
       "notes": [
-        "A glass of wine warms about a degree Celsius every three or four minutes in a dining room, so serve at the bottom of the range and let it rise.",
-        "An ice bucket is three quarters ice and a quarter water with the bottle submerged to the neck; a handful of salt speeds it. Ice alone chills slowly because it touches the glass in a few points.",
-        "Over-chilling a white is a scored error as much as serving a red warm: the ice bucket is a tool for reaching a temperature, never a place to park the bottle.",
-        "Check the temperature before the seating: sparkling and sweet wines on ice early, full reds pulled from the cellar an hour before. Chasing it mid-service is too late."
+        "These ranges are starting points. Glass shape, pour size, room temperature and time affect warming; do not teach a fixed warming rate.",
+        "Use roughly equal ice and water, with room for the bottle. Water improves contact and heat transfer; ice alone leaves insulating air gaps.",
+        "Check the wine during service and use the bucket to maintain the chosen range, removing the bottle when it is getting too cold.",
+        "Prepare before the seating, then measure and adjust. A fixed number of minutes cannot guarantee a bottle's serving temperature."
       ],
       "say": [
         ["Manzanilla", "man-thah-NEE-yah"],
@@ -195,8 +198,10 @@ var SERVICE_REF = {
         ["atsukan", "at-soo-KAHN"]
       ],
       "sources": [
-        { "title": "Court of Master Sommeliers Americas, CMS Hospitality and Service Standards", "asOf": "2023" },
-        { "title": "WSET Level 3 Award in Wines, study guide, the service temperatures", "asOf": "2022" },
+        { "title": "Court of Master Sommeliers Americas, CMS Hospitality and Service Standards", "asOf": "2023", "url": "https://www.mastersommeliers.org/wp-content/uploads/2023/12/CMS-Hospitality-Service-Standards.pdf" },
+        { "title": "WSET, Ideal serving temperatures and top tips for wine storage", "asOf": "2026-10-20", "url": "https://www.wsetglobal.com/knowledge-centre/blog/2022/april/26/ideal-serving-temperatures-and-top-tips-for-wine-storage" },
+        { "title": "Comité Champagne, Serving Champagne", "asOf": "2026-10-20", "url": "https://www.champagne.fr/system/files/2022-10/Serving%20Champagne.pdf" },
+        { "title": "Japan Sake and Shochu Makers Association, How to Serve Sake", "asOf": "2026-10-20", "url": "https://japansake.or.jp/sake/en/basic/how-to-serve-sake/" },
         { "title": "The Oxford Companion to Wine, 5th edition, entry on serving wine", "asOf": "2023" }
       ]
     },
@@ -206,19 +211,19 @@ var SERVICE_REF = {
       "line": "Which wines, when, why, and how: sediment and air are different aims, and the guest decides.",
       "columns": ["Wine", "Decant", "When", "Why and how"],
       "rows": [
-        ["Young tannic reds (Barolo, Bordeaux, Napa Cabernet, Syrah)", "Yes, into a wide decanter", "One to two hours before the course, or at the table with a brisk pour", "Air softens the tannin and lifts the aroma. Pour briskly to splash it, swirl the decanter, and present the bottle beside it"],
-        ["Old reds with sediment (mature Bordeaux, Burgundy, Rioja Gran Reserva)", "Yes, carefully, into a narrow decanter", "Just before service; old wine fades in air", "Stand the bottle upright a day, or carry it in a cradle without rolling. Light below the shoulder, pour in one steady motion, stop when the deposit reaches the neck"],
-        ["Vintage and Crusted Port", "Yes, always", "A few hours before, after a day standing upright", "It throws a heavy crust. Decant off the crust over a light and strain through muslin if it breaks up; an old cork may want port tongs or a two-prong puller"],
+        ["Young tannic reds (Barolo, Bordeaux, Napa Cabernet, Syrah)", "Consider it after assessment", "Agree with the guest; reassess rather than prescribing a fixed hour", "Aeration changes exposure to oxygen but is not a guaranteed improvement or a way to remove tannin. Compare a small sample first"],
+        ["Old reds with sediment (mature Bordeaux, Burgundy, Rioja Gran Reserva)", "Consider it to separate the deposit", "Plan from the bottle's condition; assess fragility before adding air", "Let sediment settle upright, or carry the bottle gently in a cradle. If decanting, pour steadily over a light and stop before deposit reaches the decanter. Monitor the wine as it opens"],
+        ["Vintage and Crusted Port", "Usually, to separate deposit", "Let sediment settle; timing depends on maturity and condition", "Pour steadily over a light and stop before sediment enters the decanter. Follow the producer's guidance and the sommelier's plan for a fragile bottle"],
         ["Late Bottled Vintage Port", "The unfiltered, traditional bottlings yes; filtered LBV no", "Shortly before service", "A traditional LBV throws a deposit like Vintage; a filtered one is bottled ready to pour. Read the label"],
-        ["Fragile old Burgundy and old Pinot Noir", "Rarely, and only off sediment", "Minutes before, and serve at once", "Its aroma is the point and air steals it. Stand the bottle, pour gently from it, or decant and pour straight away"],
-        ["Young reductive whites (Grand Cru white Burgundy, lees-aged Chardonnay)", "Sometimes, for air", "Thirty minutes before", "A struck-match note blows off; the texture opens. The wine warms in a decanter, so keep it in an ice bucket"],
-        ["Natural and unfiltered wines", "Sometimes, for reduction", "A splash before pouring", "Air clears a reductive nose; cloud stays cloudy, since decanting is for air not clarity. Ask the guest first"],
-        ["Rich mature whites and old Madeira", "Occasionally", "An hour before for Madeira; a short time for a mature white", "Old Madeira can breathe for hours without harm; a mature white gains a little, then loses"],
+        ["Fragile old Burgundy and old Pinot Noir", "Consider careful pouring or a gentle decant", "If the wine is fragile, minimise the delay before service", "Age and grape do not prove fragility. Assess the wine and sediment with the sommelier, agree the plan and monitor its aroma rather than assuming air always harms it"],
+        ["Young reductive whites (Grand Cru white Burgundy, lees-aged Chardonnay)", "Sometimes, after assessing a sample", "Monitor the sample and agree a plan", "Air may alter the aroma but cannot be promised to remove the fault. Keep the serving temperature in mind and reassess"],
+        ["Natural and unfiltered wines", "Decide from condition and purpose", "After assessment, not automatically", "Unfiltered does not mean faulty or in need of air. Settled sediment may be separated; a suspended haze is not necessarily removed by decanting"],
+        ["Rich mature whites and old Madeira", "Occasionally", "Follow bottle condition and producer guidance", "These are different styles. Consider sediment, fragility and aroma before choosing how much air to give; no fixed time fits both"],
         ["Sparkling wine", "Rarely, and only on request", "Just before pouring", "Some sommeliers decant very old Champagne to soften the mousse and open the nose; most of the time the mousse is the point. Say so and offer"],
-        ["Light aromatic whites (Riesling, Sauvignon Blanc, Albariño)", "No", "Never as a rule", "Nothing to gain and the aromatics to lose"],
-        ["Light reds (young Beaujolais, young Pinot Noir)", "No, or a short splash", "At the table if at all", "The fruit is the point; a splash wakes a reductive one"],
-        ["Sherry, tawny Port and most fortified wines", "No", "Never as a rule", "Already oxidative and filtered; tawny and Colheita throw no deposit"],
-        ["Very old wines (fifty years and more)", "Only off sediment, into a small decanter or the glasses", "Immediately before", "Open with a two-prong puller or a Durand for the cork, decant in one motion, pour at once; present the bottle, the cork and the deposit"],
+        ["Light aromatic whites (Riesling, Sauvignon Blanc, Albariño)", "Usually unnecessary", "Only for a clear reason", "Preserve freshness and temperature; harmless crystals or an unusual bottle condition may call for a different approach"],
+        ["Light reds (young Beaujolais, young Pinot Noir)", "Usually unnecessary", "Assess the wine first", "Aromatic freshness matters. A small comparison is more useful than automatically splashing every bottle"],
+        ["Sherry, tawny Port and most fortified wines", "Usually unnecessary for filtered bottlings", "Check the particular style and bottle", "Do not call every Sherry oxidative: Fino and Manzanilla mature under flor. Some bottlings are less filtered; check for deposit and follow producer advice"],
+        ["Very old wines (fifty years and more)", "Assess condition and deposit with the sommelier", "Prepare the service before opening; timing depends on the bottle", "Have a trained colleague handle a fragile cork with suitable tools. Pour gently or decant off sediment as agreed, limit unnecessary handling and monitor the wine; age alone does not set its response to air"],
         ["Any wine the guest asks about", "Ask and advise", "Before opening", "The guest decides, the sommelier advises. Never decant without agreement, and always present the original bottle, label to the host, whether or not it is decanted"]
       ],
       "notes": [
@@ -226,7 +231,7 @@ var SERVICE_REF = {
         "Mise en place for sediment: a decanter, a candle or torch, a serviette, an underliner for the bottle and one for the decanter, a cradle if the bottle came from its side.",
         "Keep the candle under the shoulder of the bottle, never under the label; it is there to light the neck, not to warm the wine.",
         "Taste pour from the decanter, present the bottle and the cork, and ask before clearing the bottle or the cork from the table.",
-        "A wine that has thrown no sediment and has no tannin to soften gains nothing from a decanter but a loss of temperature and aroma."
+        "Separate two decisions: removing a deposit and changing air exposure. A wine can have no sediment yet merit a trial with air; neither colour nor tannin level guarantees the result."
       ],
       "say": [
         ["Durand", "doo-RAHN"],
@@ -234,9 +239,10 @@ var SERVICE_REF = {
         ["Crusted", "KRUS-tid"]
       ],
       "sources": [
-        { "title": "Court of Master Sommeliers Americas, CMS Hospitality and Service Standards, the decanting standard", "asOf": "2023" },
-        { "title": "The Oxford Companion to Wine, 5th edition, entry on decanting", "asOf": "2023" },
-        { "title": "Instituto dos Vinhos do Douro e do Porto, the Port categories and their bottling", "asOf": "2025" }
+        { "title": "Court of Master Sommeliers Americas, CMS Hospitality and Service Standards, the decanting standard", "asOf": "2023", "url": "https://www.mastersommeliers.org/wp-content/uploads/2023/12/CMS-Hospitality-Service-Standards.pdf" },
+        { "title": "WSET, Frequently asked questions about serving and decanting wine", "asOf": "2026-10-20", "url": "https://www.wsetglobal.com/knowledge-centre/blog/2024/july/21/frequently-asked-questions-about-serving-and-decanting-wine/" },
+        { "title": "Australian Wine Research Institute, volatile sulphur compounds", "asOf": "2026-10-20", "url": "https://www.awri.com.au/industry_support/winemaking_resources/storage-and-packaging/pre-packaging-preparation/removal-volatile-sulfur-compounds/" },
+        { "title": "Instituto dos Vinhos do Douro e do Porto, the Port categories and their bottling", "asOf": "2026-10-20", "url": "https://www.ivdp.pt/pt/vinhos/vinhos-do-porto/introducao/" }
       ]
     },
     {
@@ -245,7 +251,7 @@ var SERVICE_REF = {
       "line": "The opening and the service as the practical grades them: the thumb never leaves the cork, the bottle turns and the cork sighs.",
       "columns": ["Step", "What to do", "Why", "The examiner watches for"],
       "rows": [
-        ["Mise en place", "Confirm the bottle is at 6 to 10 C; a bucket three quarters ice and a quarter water; a serviette folded on the forearm, a second for the bucket; an underliner; polished flutes or tulips placed to the right of the water glass, in the order of service", "A warm bottle foams and the cork flies; a cold one opens quietly. Glasses set before the bottle arrives keep the hands free", "Stemware placed consistently, the temperature checked, nothing fetched mid-service"],
+        ["Mise en place", "Check the bottle's temperature; for Champagne begin around 8 to 10 C. Prepare roughly equal ice and water, serviettes, an underliner and clean glasses in the house arrangement", "Chilling helps control foaming but never replaces cork control. Set glasses before the bottle arrives", "Stemware placed consistently, the temperature checked, nothing fetched mid-service"],
         ["Presentation", "Carry the bottle in the serviette or bring it in the bucket; present to the host from the right, label forward, and say the producer, the wine, the cuvée and the vintage or non-vintage; wait for the nod", "The host confirms it is the wine ordered; a wrong vintage is caught here, not after the cork", "The full name said aloud, the label never turned away, approval waited for"],
         ["The foil", "Pull the tab, or cut below the lower lip of the wire with the knife, and remove the foil whole; pocket it", "A clean lip; no shreds in the bucket or on the table", "No tearing, the bottle already angled away from the guests, the label still facing the host"],
         ["The thumb", "Before anything is loosened, put the thumb on top of the cage and cork; it stays there until the cork is out", "The pressure in the bottle is about six atmospheres; a cork that leaves early is a missile", "The thumb never leaving the cork once the wire is loosened; this is the step most often marked"],
@@ -258,7 +264,7 @@ var SERVICE_REF = {
         ["The pour in two motions", "For each guest, a first short pour so the mousse rises and settles, then a second to two thirds of the flute or the house measure; the bottle never touches the glass; twist and lift to stop the drip, wipe the lip", "The mousse would overflow a single pour; the two motions fill the glass without foam", "No drips, no overflow, even pours, the bottle held at the base or the punt, the label visible to the guest"],
         ["Order of service", "Clockwise from the host's left, the guest of honour first where the house keeps that rule, each guest from the right where the table allows, the host last", "The host tastes first and is served last: approval, then hospitality", "The order kept, no reaching across a guest, no back turned to the table"],
         ["Station the bottle", "Back into the bucket to the neck, label towards the host, a dry serviette folded across the bucket; or on an underliner if the guest prefers it on the table", "The wine stays cold and the label stays readable; the serviette is there for the next pour", "The serviette dry, the bottle label out, the bucket placed where no one trips"],
-        ["Keep the table", "Top glasses between courses without being asked and offer the next bottle before the first runs dry; a new bottle gets its own taste pour for the host", "Anticipation is the measure of hospitality", "Glasses never empty, the second bottle offered in time"],
+        ["Keep the table", "Notice each guest's pace, offer a top up and respect a refusal. Confirm any further bottle order and its price before opening; offer water throughout", "Attentive service includes a comfortable pace and the choice to stop", "No pressure to drink or buy; a newly approved bottle gets its own presentation and taste pour"],
         ["Throughout", "Answer theory as you pour: the grapes of Champagne, a Kir Royale spec, an aperitif suggestion; keep the hands steady and the voice calm", "The practical tests whether knowledge and hands run in parallel under pressure", "The pour never wavering while the answer comes; a missed question recovered with grace, not a frozen hand"]
       ],
       "notes": [
@@ -276,7 +282,8 @@ var SERVICE_REF = {
         ["Blanc de Noirs", "blahn duh NWAHR"]
       ],
       "sources": [
-        { "title": "Court of Master Sommeliers Americas, CMS Hospitality and Service Standards", "asOf": "2023" },
+        { "title": "Court of Master Sommeliers Americas, CMS Hospitality and Service Standards", "asOf": "2023", "url": "https://www.mastersommeliers.org/wp-content/uploads/2023/12/CMS-Hospitality-Service-Standards.pdf" },
+        { "title": "Comité Champagne, Serving Champagne", "asOf": "2026-10-20", "url": "https://www.champagne.fr/system/files/2022-10/Serving%20Champagne.pdf" },
         { "title": "Court of Master Sommeliers Americas, 2025 Advanced and Master Sommelier Hospitality and Service Standards and Guidelines", "asOf": "2025" },
         { "title": "Court of Master Sommeliers Americas, 2026 Upper Level Hospitality and Service Illustrative Examples", "asOf": "2026" },
         { "title": "Court of Master Sommeliers Americas, Certified Sommelier Exam Guide: What to Expect", "asOf": "2023" }
@@ -298,7 +305,7 @@ var SERVICE_REF = {
         ["Aperol", "A lighter orange bitter from Padua, 11 per cent; rhubarb and bitter orange", "In the Spritz: three parts Prosecco, two parts Aperol, a splash of soda, over ice in a wine glass, orange slice", "AH-peh-rol"],
         ["Negroni", "Equal parts gin, Campari and sweet vermouth, named for a Florentine count of 1919", "Stirred, over ice in a rocks glass or up; orange slice or twist", "neh-GROH-nee"],
         ["Americano", "Campari and sweet vermouth lengthened with soda, the Negroni's older and lighter cousin", "Built over ice in a highball, orange slice and lemon twist", "ah-meh-ree-KAH-noh"],
-        ["Champagne and other brut sparkling", "The classic aperitif: dry, cold, light; Crémant, Cava and Franciacorta stand in", "A flute or tulip, 6 to 8 C, two thirds full; Brut or Extra Brut, never Demi-Sec before dinner", "sham-PAIN; kreh-MAHN; KAH-vah"],
+        ["Champagne and other brut sparkling", "A common aperitif choice; ask about the guest's preferred sweetness and style", "Begin Champagne around 8 to 10 C in a suitable stem. Brut and Extra Brut are options; a sweeter style can suit a guest who prefers it", "sham-PAIN; kreh-MAHN; KAH-vah"],
         ["Kir and Kir Royale", "Crème de cassis topped with Bourgogne Aligoté (Kir) or with Champagne (Royale); named for a mayor of Dijon", "About 10 ml cassis to 100 ml wine, built in a white wine glass or a flute; no garnish", "KEER; KEER roy-AL"],
         ["Pastis and absinthe", "The anise aperitifs of Marseille and the Jura: pastis at 40 to 45 per cent, sweet and liquorice; absinthe stronger, wormwood, drier", "One part to five parts cold water, poured to a cloudy louche, ice offered on the side; absinthe dripped through a sugar cube", "pass-TEESS; ab-SANT"],
         ["Pineau des Charentes", "Fresh grape must stopped with Cognac, a mistelle of the Charente; white or rosé, sweet", "Cold, 60 to 75 ml in a small wine glass; with melon or foie gras", "pee-NOH day shah-RAHNT"],
@@ -326,6 +333,7 @@ var SERVICE_REF = {
         ["Franciacorta", "fran-chah-KOR-tah"]
       ],
       "sources": [
+        { "title": "Comité Champagne, Serving Champagne", "asOf": "2026-10-20", "url": "https://www.champagne.fr/system/files/2022-10/Serving%20Champagne.pdf" },
         { "title": "The Oxford Companion to Wine, 5th edition, entries on sherry, vermouth and aperitif", "asOf": "2023" },
         { "title": "Consejo Regulador, Jerez-Xérès-Sherry and Manzanilla-Sanlúcar de Barrameda, the styles of sherry", "asOf": "2025" },
         { "title": "EU Regulation 251/2014 on aromatised wine products", "asOf": "2014" }
@@ -350,8 +358,8 @@ var SERVICE_REF = {
         ["Sambuca", "The anise liqueur of Italy, 38 to 42 per cent", "Neat with three coffee beans, con la mosca, for health, wealth and happiness", "sam-BOO-kah; kon lah MOSS-kah"],
         ["Limoncello", "The lemon liqueur of the Amalfi coast and Sorrento, about 30 per cent", "Ice cold from the freezer, 30 ml in a small chilled glass", "lee-mon-CHELL-oh"],
         ["Vintage Port", "The Port of a single declared year, bottled unfiltered after two years in wood and aged in bottle for decades", "Decanted off its crust; 60 to 75 ml (2 to 2.5 oz) at 16 to 18 C in a Port glass; with Stilton and walnuts", "PORT; KIN-tah for quinta"],
-        ["Tawny Port with an age statement", "Port aged in wood, oxidative, with ten, twenty, thirty or forty years on the label as an average of the blend; Colheita is a single year's tawny", "Cool, 10 to 14 C, 60 to 75 ml; no decanting; keeps for weeks once open", "TAW-nee; kol-YAY-tah"],
-        ["Madeira", "The fortified wine of the island, heated and oxidised on purpose, near immortal: Sercial dry, Verdelho medium dry, Bual medium sweet, Malmsey sweet; Bual and Malmsey after dinner", "60 to 75 ml at 14 to 16 C in a copita; with almond cake or alone", "mah-DEER-ah; BOO-al; MALM-zee; vair-DEL-yoh"],
+        ["Tawny Port with an age statement", "Wood aged blends approved by IVDP with indications of ten, twenty, thirty, forty or fifty years. The indication describes the approved character of the blend, not a vintage or the age of every component. Colheita comes from one harvest", "Cool, around 10 to 14 C, to the house measure; usually no decanting. Date opened bottles and follow producer storage guidance", "TAW-nee; kol-YAY-tah"],
+        ["Madeira", "The fortified wine of the island, heated and oxidised on purpose: Sercial dry, Verdelho medium dry, Bual medium sweet, Malmsey sweet. Its durability does not replace sound storage or checking an opened bottle", "60 to 75 ml at 14 to 16 C in a copita; with almond cake or alone", "mah-DEER-ah; BOO-al; MALM-zee; vair-DEL-yoh"],
         ["Sweet sherry", "Pedro Ximénez (sun-dried grapes, black, raisin and treacle), Cream (a sweetened Oloroso), Moscatel", "Pedro Ximénez at about 12 C, 60 ml in a copita, over vanilla ice cream or with blue cheese", "PEH-droh hee-MEH-neth; oh-loh-ROH-soh"],
         ["Scotch single malt", "Whisky from malted barley at one Scottish distillery, pot distilled, at least three years in oak; the regions Highland, Lowland, Speyside, Islay and Campbeltown", "30 to 45 ml neat in a tulip, water on the side, never ice unless asked", "SKOTCH; EYE-lah; SPAY-side"],
         ["Bourbon and rye", "American whiskeys from at least 51 per cent corn or 51 per cent rye, aged in new charred oak", "30 to 45 ml neat, or over one large cube when asked", "BUR-bun; RYE"],
@@ -380,7 +388,7 @@ var SERVICE_REF = {
         { "title": "Bureau National Interprofessionnel du Cognac, the age categories of Cognac (VS, VSOP, XO, XXO)", "asOf": "2026-10-11" },
         { "title": "Bureau National Interprofessionnel de l'Armagnac, the age categories of Armagnac", "asOf": "2026-10-11" },
         { "title": "Interprofession des Appellations Cidricoles, the three Calvados appellations and their age terms", "asOf": "2025" },
-        { "title": "Instituto dos Vinhos do Douro e do Porto, the Port categories", "asOf": "2025" },
+        { "title": "Instituto dos Vinhos do Douro e do Porto, Portuguese definitions and age indications including fifty years", "asOf": "2026-10-20", "url": "https://www.ivdp.pt/pt/comunicacao/guias-tematicos/enologia-e-praticas-enologicas/guia-enologia-e-praticas-enologicas/capitulo-1-definicoes/" },
         { "title": "The Oxford Companion to Spirits and Cocktails", "asOf": "2021" }
       ]
     },
@@ -518,10 +526,10 @@ var SERVICE_REF = {
   ],
   "cards": [
     { "f": "Cork taint: the compound and what it smells of", "b": "2,4,6-trichloroanisole, TCA, from mould meeting chlorine in cork, barrels or cardboard. Damp cardboard, wet dog, a musty cellar; at low levels it only mutes the fruit. Replace the bottle, no argument." },
-    { "f": "Reduction: what blows off and what does not", "b": "Light reduction (struck match, flint) blows off with a swirl or a decant. Heavy reduction (rotten egg, drains, cabbage) is a fault: a disulphide note never leaves. Aerate once, then replace." },
+    { "f": "Reduction: what blows off and what does not", "b": "Air may change a sample, but the aroma alone cannot identify the compound or guarantee a cure. Consult the sommelier and resolve a faulty bottle without making the guest wait for a promised recovery." },
     { "f": "Volatile acidity: the smell and the line", "b": "Nail varnish and vinegar, from acetic acid and ethyl acetate. A trace lifts Amarone, Sauternes and some natural wines; vinegar that dries and shortens the finish is a fault." },
     { "f": "Brettanomyces: the smells and the rule", "b": "Barnyard, horse blanket, sticking plaster, clove, smoked meat. Low levels are tolerated in some reds; stop pouring when it masks the fruit. It does not blow off." },
-    { "f": "Three things that look like faults and are not", "b": "Tartrate crystals, sediment in an old red or a Vintage Port, and haze in an unfiltered or natural wine. Smell and taste before deciding; never apologise for the wine." },
+    { "f": "Crystals, sediment and haze: what needs checking", "b": "Tartrate crystals and normal sediment are harmless. Some styles intentionally retain haze, but unexpected cloudiness needs checking. Natural or unfiltered is not proof of soundness; consult the sommelier rather than diagnosing from appearance." },
     { "f": "Light strike: the cause and the bottles at risk", "b": "Ultraviolet and blue light turn riboflavin into sulphur compounds: cooked cabbage, wet wool, skunk. Clear and green glass under a lamp; Champagne and rosé in clear bottles most of all. No cure." },
     { "f": "The ISO tasting glass: size and pour", "b": "The 1977 standard: 215 ml capacity, about 155 mm tall, a bowl tapering to a narrow rim. The tasting pour is 50 ml." },
     { "f": "Flute or tulip for Champagne: which and why", "b": "The flute holds the mousse and shows the bead; the tulip widens then tapers and gives the nose room. Vintage, prestige and grower wines show best in the tulip." },
@@ -529,12 +537,12 @@ var SERVICE_REF = {
     { "f": "The biblical bottle sizes in order, with their bottle counts", "b": "Magnum two, jeroboam four, rehoboam six, methuselah eight, salmanazar twelve, balthazar sixteen, nebuchadnezzar twenty: 1.5, 3, 4.5, 6, 9, 12 and 15 litres in Champagne." },
     { "f": "Jeroboam: the two volumes", "b": "Three litres (four bottles) in Champagne and Burgundy. In Bordeaux five litres today, 4.5 litres (six bottles) in older bottlings; there the three litre bottle is the double magnum." },
     { "f": "The clavelin: volume and the one wine it holds", "b": "620 ml, by law for Jura vin jaune alone: what is said to remain of a litre after six years and three months under the veil of yeast." },
-    { "f": "Sparkling wine: serve at, and how to get there", "b": "6 to 8 C (43 to 46 F) for non-vintage, 8 to 10 C for vintage and prestige. Twenty minutes in a bucket of ice and water to the neck, or three hours in a fridge." },
-    { "f": "Full tannic reds: serve at, and why", "b": "16 to 18 C (61 to 64 F). Warmth softens tannin and opens the nose; above 20 C the alcohol and the tannin both harden. Cellar temperature plus an hour; never a radiator." },
+    { "f": "Sparkling wine: serve at, and how to get there", "b": "Champagne: begin around 8 to 10 C (46 to 50 F). Light sparkling may suit 6 to 8 C. Use a fridge or ice and water; check temperature rather than relying on a fixed time." },
+    { "f": "Full tannic reds: serve at, and why", "b": "Begin around 16 to 18 C (61 to 64 F). Too cold can seem harsh; too warm can lose freshness. Measure and adjust gently. Serving temperature changes perception, not the quantity of tannin." },
     { "f": "Light reds: serve at, and how", "b": "12 to 15 C (54 to 59 F), lightly chilled: Beaujolais, Pinot Noir, Valpolicella. Ten minutes in the ice bucket. A cool red is a sign of care, not a mistake." },
     { "f": "Fino and tawny: serve at", "b": "Fino and Manzanilla cold, 6 to 8 C, from a fresh bottle. Tawny and Colheita cool, 10 to 14 C, from the fridge door; a tawny keeps for weeks once open." },
-    { "f": "Decanting for air and decanting for sediment", "b": "Young tannic reds for air: one to two hours, a brisk pour, a wide decanter. Old reds and Vintage Port for sediment: just before service, one steady pour over a light, a narrow decanter." },
-    { "f": "Vintage Port and tawny Port: decant or not", "b": "Vintage and Crusted Port always: they throw a heavy crust, so stand the bottle a day and decant over a light. Tawny and Colheita never: aged in wood, filtered, no deposit." },
+    { "f": "Decanting for air and decanting for sediment", "b": "Sediment: pour steadily over a light and stop before the deposit. Air: assess a sample, agree a plan and reassess. Neither a fixed hour nor a particular grape guarantees improvement." },
+    { "f": "Vintage Port and tawny Port: decant or not", "b": "Vintage and Crusted Port commonly need sediment removed. Filtered tawny and Colheita usually do not. Check the actual bottle and producer guidance; maturity and condition determine timing, rather than always or never." },
     { "f": "Where the candle goes when decanting", "b": "Under the shoulder of the bottle, never under the label: it is there to light the neck so the sediment shows, not to warm the wine. Stop when the deposit reaches the neck." },
     { "f": "Sparkling wine: the thumb rule", "b": "The thumb goes on the cage and cork before the wire is loosened and never leaves until the cork is out. Six half-turns of the wire; the bottle at thirty to forty-five degrees, aimed at nobody." },
     { "f": "Sparkling wine: twist what, and the sound", "b": "Hold the cork still through the cloth and turn the bottle from its base; the cork walks out. Ease it so the pressure sighs; a pop is marked, a spill more so." },
@@ -552,7 +560,10 @@ var SERVICE_REF = {
     { "f": "Sazerac: spec, method, glass, garnish", "b": "60 ml rye, a sugar cube, three dashes of Peychaud's, an absinthe rinse. Stir, strain into a chilled rocks glass with no ice. A lemon twist expressed and set aside. New Orleans." },
     { "f": "Manhattan: spec, glass, garnish", "b": "60 ml rye, 30 ml sweet vermouth, two dashes of Angostura. Stirred, up in a coupe, a brandied cherry. Perfect splits the vermouth dry and sweet; Dry takes dry vermouth and a twist." },
     { "f": "Margarita and Daiquiri: the sours of agave and cane", "b": "Margarita: 50 ml blanco tequila, 25 ml lime, 20 ml Cointreau, shaken, half salt rim. Daiquiri: 60 ml white rum, 25 ml lime, 15 ml sugar syrup, shaken, up in a coupe." },
-    { "f": "French 75 and Champagne Cocktail", "b": "French 75: 30 ml gin, 15 ml lemon, 10 ml syrup, shaken, topped with Champagne in a flute, lemon twist. Champagne Cocktail: a bitters-soaked sugar cube, 15 ml Cognac, Champagne." }
+    { "f": "French 75 and Champagne Cocktail", "b": "French 75: 30 ml gin, 15 ml lemon, 10 ml syrup, shaken, topped with Champagne in a flute, lemon twist. Champagne Cocktail: a bitters-soaked sugar cube, 15 ml Cognac, Champagne." },
+    { "f": "A guest questions a bottle's condition", "b": "Listen, pause pouring and ask what seems wrong. Consult the sommelier and assess separately. Explain the next step calmly; do not argue from the wine's reputation or promise that decanting will repair it." },
+    { "f": "Vegan suitability and an allergy request", "b": "They are separate questions. Check the exact product and producer information, then follow the house allergy procedure. A vegan label or the absence of a warning does not justify an allergy safety promise." },
+    { "f": "Before presenting a selected bottle", "b": "Match producer, wine, cuvée, vintage, size and agreed price to the order. Resolve a different vintage or unavailable bottle before opening. Present it for approval; never silently substitute." }
   ],
   "questions": [
     { "id": "s-bwjyx55i", "cat": "Service references", "q": "Which compound causes cork taint in wine?", "opts": ["Ethyl acetate", "Trichloroanisole", "Hydrogen sulphide", "Acetaldehyde"], "a": 1, "exp": "TCA, 2,4,6-trichloroanisole, forms when mould meets chlorine compounds in cork, barrels or cardboard and smells of damp cardboard. Ethyl acetate is volatile acidity, hydrogen sulphide is reduction and acetaldehyde is oxidation." },
@@ -560,8 +571,8 @@ var SERVICE_REF = {
     { "id": "s-qxvy3m2u", "cat": "Service references", "q": "What volume does a jeroboam of Champagne hold?", "opts": ["1.5 litres", "3 litres", "4.5 litres", "6 litres"], "a": 1, "exp": "In Champagne and Burgundy a jeroboam is three litres, four bottles. In Bordeaux the same name means five litres today, 4.5 in older bottlings, and the three litre bottle is the double magnum; the exam loves the difference." },
     { "id": "s-3oq2j0uf", "cat": "Service references", "q": "How many standard bottles does a methuselah hold?", "opts": ["Four", "Six", "Eight", "Twelve"], "a": 2, "exp": "A methuselah is six litres, eight bottles, the size Bordeaux calls an imperial. Four bottles is a jeroboam of Champagne, six a rehoboam and twelve a salmanazar." },
     { "id": "s-hpk8e4e7", "cat": "Service references", "q": "Which of these wines is served coldest at the table?", "opts": ["Tawny Port", "Fino sherry", "Vintage Port", "Oaked Chardonnay"], "a": 1, "exp": "Fino and Manzanilla are flor wines, fresh and saline, served at 6 to 8 C from a fresh bottle. Tawny is served cool at 10 to 14 C, Vintage Port at a full red's 16 to 18 C and oaked Chardonnay at 10 to 13 C." },
-    { "id": "s-p6yy2b81", "cat": "Service references", "q": "At what temperature is a full tannic red best served?", "opts": ["10 to 12 C", "13 to 15 C", "16 to 18 C", "20 to 22 C"], "a": 2, "exp": "Warmth softens tannin and opens the nose, but above 20 C the alcohol and the tannin both harden. Light reds sit at 12 to 15 C, and a warm dining room is a reason to serve a touch cool." },
-    { "id": "s-cb867421", "cat": "Service references", "q": "Which of these wines is decanted to take it off its crust?", "opts": ["Tawny Port", "Fino sherry", "Vintage Port", "Beaujolais"], "a": 2, "exp": "Vintage and Crusted Port are bottled unfiltered and throw a heavy deposit, so the bottle stands a day and is decanted over a light. Tawny is aged in wood and filtered, Fino is filtered and Beaujolais has nothing to lose." },
+    { "id": "s-p6yy2b81", "cat": "Service references", "q": "At what temperature is a full tannic red best served?", "opts": ["10 to 12 C", "13 to 15 C", "16 to 18 C", "20 to 22 C"], "a": 2, "exp": "16 to 18 C is a useful starting range, adjusted to the wine and guest. Very cold reds can seem harsh; too much warmth can obscure freshness and balance. Check the actual bottle rather than using room temperature or a fixed warming time." },
+    { "id": "s-cb867421", "cat": "Service references", "q": "Which of these wines is decanted to take it off its crust?", "opts": ["Tawny Port", "Fino sherry", "Vintage Port", "Beaujolais"], "a": 2, "exp": "Vintage Port commonly develops a deposit during bottle ageing. Let it settle, pour steadily over a light and stop before the deposit reaches the decanter. Filtered tawny usually needs no decanting; other styles and bottlings should be assessed individually." },
     { "id": "s-g06jvyoh", "cat": "Service references", "q": "When opening sparkling wine, which part does the sommelier turn?", "opts": ["The cork", "The cage", "The foil", "The bottle"], "a": 3, "exp": "The cork is held still through the cloth and the bottle is turned from its base, so the pressure walks the cork out without twisting it against the glass. The cork then leaves with a sigh, never a pop." },
     { "id": "s-e98idqio", "cat": "Service references", "q": "How many half-turns of the wire open a Champagne cage?", "opts": ["Four", "Five", "Six", "Eight"], "a": 2, "exp": "Every cage is made to open with six half-turns of the wire loop. The thumb goes on the cork before the first turn and stays there until the cork is out." },
     { "id": "s-6axne62b", "cat": "Service references", "q": "Where does the thumb go before the cage is loosened?", "opts": ["On the cork", "On the punt", "On the label", "On the neck"], "a": 0, "exp": "The thumb covers the cage and cork before anything is loosened and never leaves until the cork is out; about six atmospheres of pressure sit behind it. This is the step the examiner marks first." },
