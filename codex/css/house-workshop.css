@@ -1,0 +1,30 @@
+/* The workshop keeps the atlas's forest, parchment and antique gold. */
+.v46{min-width:0;color:var(--parch);font:18px/1.7 var(--house-reading,Georgia,serif);overflow-wrap:anywhere}
+.v46 h3,.v46 h4,.v46 legend{font-family:var(--house-display,Cinzel,serif);font-weight:500;color:var(--gold-hi);line-height:1.45}
+.v46 h3{font-size:24px}.v46 h4{font-size:19px}.v46 p{margin:12px 0}.v46 .v46-lead{font-size:21px;max-width:80ch;margin:25px 0}
+.v46 .v46-small,.v46-sources{font-size:15px;line-height:1.6;color:var(--parch2)}
+.v46-eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-soft)}
+.v46-intro,.v46-links,.v46-rehearsal{border:1px solid var(--gold);border-radius:24px 4px;padding:24px;margin:26px 0;background:radial-gradient(ellipse at top right,#b5925020,transparent 70%),var(--bg2)}
+.v46-intro h3,.v46-links h3,.v46-rehearsal h3{margin-top:0}.v46-links{border-radius:4px;padding:20px}
+.v46-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:18px 0}.v46-actions p{margin:0;margin-right:auto}
+.v46 .btn,.v46 .v28-chip{min-height:44px;white-space:normal;max-width:100%;line-height:1.4}
+.v46 :focus-visible{outline:3px solid var(--gold-hi);outline-offset:4px}
+.v46-depth{min-width:0;margin:25px 0;padding:18px 22px;border:1px solid var(--line);background:var(--bg2)}
+.v46-depth legend{padding:0 8px;font-size:19px}.v46-depth p{font-size:16px;max-width:85ch;margin-top:0}
+.v46-depth [aria-pressed="true"]{color:var(--bg);background:var(--gold-hi);border-color:var(--gold-hi)}
+.v46-filters{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-top:28px}.v46-filters>div{min-width:0}
+.v46-filters label{display:block;margin-bottom:8px;color:var(--gold-soft)}
+.v46-filters .sainput{box-sizing:border-box;width:100%;min-width:0;min-height:48px;padding:10px 12px;font:17px/1.5 var(--house-reading,Georgia,serif);color:var(--parch);background:var(--bg);border:1px solid var(--gold)}
+.v46-filters input::placeholder{color:var(--parch2);opacity:1}.v46-group{margin:28px 0}.v46-group ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;list-style:none;padding:0}
+.v46-group li{min-width:0}.v46-group button{height:100%;width:100%;min-width:0;display:block;text-align:left;border:1px solid var(--line);padding:20px;background:var(--bg2);color:var(--parch);cursor:pointer;font:inherit}
+.v46-group button:hover{border-color:var(--gold)}.v46-group button>span{display:block;color:var(--gold-hi);font:500 21px/1.4 var(--house-display,Cinzel,serif);margin-bottom:10px}
+.v46-group small{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:16px;line-height:1.6}
+.v46-section{border:1px solid var(--line);margin:16px 0;background:var(--bg2);border-radius:4px}.v46-section>summary{cursor:pointer;padding:18px 22px;min-height:44px;box-sizing:border-box;color:var(--gold-hi);font:500 20px/1.45 var(--house-display,Cinzel,serif)}
+.v46-body{padding:8px 24px 24px;border-top:1px solid var(--line)}.v46-body>p{max-width:85ch}
+.v46-steps{padding-left:28px;border-left:1px solid var(--gold);margin:25px 0 25px 10px}.v46-steps li{padding:0 0 12px 8px}.v46-steps li::marker{color:var(--gold-hi)}.v46-steps h4{margin:0}.v46-steps p{margin:5px 0}
+.v46-deeper{border-left:3px solid var(--gold);padding:8px 20px;margin-top:24px;background:var(--house-panel,var(--bg))}.v46-deeper h4{margin:7px 0}.v46-deeper summary{cursor:pointer;min-height:44px;line-height:44px;font-size:16px}
+.v46-sources{list-style:none;padding:0}.v46-sources li{margin:12px 0}.v46 a{color:var(--gold-soft);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}.v46-sources a{display:inline-block;min-height:44px}
+.wrap .v46 .v39-pairs dt{color:var(--gold-soft)}.v46 .v39-pairs dd{color:var(--parch)}
+.v46-rehearsal li{margin:10px 0}.v46-empty{border:1px solid var(--line);padding:20px}
+@media(max-width:650px){.v46-filters,.v46-group ul{grid-template-columns:1fr}.v46-intro,.v46-links,.v46-rehearsal{padding:19px}.v46-depth{padding:15px}.v46-body{padding:8px 18px 18px}.v46-actions>.btn{flex:1 1 190px}.v46-group small{-webkit-line-clamp:2}}
+@media print{.v46-actions,.v46-depth,.v46-filters{display:none}.v46-group small{display:block}.v46{color:#111}.v46 h3,.v46 h4,.v46 a{color:#111}.v46-section,.v46-deeper,.v46-rehearsal{background:white;color:#111}}
