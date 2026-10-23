@@ -402,7 +402,8 @@ function v39DepthWord(depth) {
    right, a part that is exactly a region name, an alias or a TERROIR row
    names its first article in that country (another country's is refused);
    then a part holding a key of that country as whole words (the longest),
-   or held inside one (the shortest); then the country table, exactly first,
+   or held inside one (the shortest), skipping an exact country part so it
+   cannot become one of its regions; then the country table, exactly first,
    then by the same containment; '' when nothing answers. */
 function v39Pick(list, where, ix) {
   var i;
@@ -447,7 +448,10 @@ function v39SlugFor(region) {
   for (i = 0; i < raw.length; i++) { p = v39Fold(raw[i]); if (p) parts.push(p); }
   var where = v39CountryOfParts(parts, ix);
   for (i = 0; i < parts.length; i++) { hit = v39Own(ix.article, parts[i]) ? v39Pick(ix.article[parts[i]], where, ix) : ''; if (hit) return hit; }
-  for (i = 0; i < parts.length; i++) { hit = v39ByContainment(parts[i], ix.article, ix.articleKeys, where, ix); if (hit) return hit; }
+  for (i = 0; i < parts.length; i++) {
+    if (v39Own(ix.country, parts[i]) && v39Pick(ix.country[parts[i]], where, ix)) continue;
+    hit = v39ByContainment(parts[i], ix.article, ix.articleKeys, where, ix); if (hit) return hit;
+  }
   for (i = 0; i < parts.length; i++) { hit = v39Own(ix.country, parts[i]) ? v39Pick(ix.country[parts[i]], where, ix) : ''; if (hit) return hit; }
   for (i = 0; i < parts.length; i++) { hit = v39ByContainment(parts[i], ix.country, ix.countryKeys, where, ix); if (hit) return hit; }
   return '';
@@ -1014,7 +1018,7 @@ function v39ArticleHtml(a, wait) {
     html += v39Chips(secs) + v39SectionsHtml(secs);
   }
   var acts = '';
-  if (c && !c.mapless && v39HasMap(a.sheet)) acts += v39Btn('btn gold', 'map', ' id="v39-act-map" data-sheet="' + v39Esc(a.sheet) + '" data-index="' + v39Esc(Number(a.index)) + '"', v39W('seeMap'));
+  if (c && !c.mapless && !a.mapless && typeof a.index === 'number' && isFinite(a.index) && a.index >= 0 && Math.floor(a.index) === a.index && v39HasMap(a.sheet)) acts += v39Btn('btn gold', 'map', ' id="v39-act-map" data-sheet="' + v39Esc(a.sheet) + '" data-index="' + v39Esc(a.index) + '"', v39W('seeMap'));
   if (typeof v32StartRun === 'function' && v39List(a.cards).length) acts += v39Btn('btn ghost', 'flash', ' id="v39-act-flash" data-slug="' + v39Esc(a.slug) + '"', v39W('flashRegion'));
   if (v39Questions([a.slug]).length) acts += v39Btn('btn ghost', 'drill', ' id="v39-act-drill" data-slug="' + v39Esc(a.slug) + '"', v39W('drillRegion'));
   var order = v39SheetRegions(a.sheet);

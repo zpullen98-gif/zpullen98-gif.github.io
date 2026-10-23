@@ -1,6 +1,6 @@
 /* The Sommelier's Codex: service worker.
    Bump CACHE on every deploy; that string is the whole update mechanism. */
-const CACHE = 'oot-codex-v151';
+const CACHE = 'oot-codex-v152';
 importScripts('./js/data-teaching-images.js?v=4', './js/teaching-cache.js?v=1');
 
 /* Both the reviewed SVG atlas and original JPG maps stay out of ASSETS.
@@ -18,6 +18,8 @@ const MAP_ROOT = new URL('./maps/', self.location.href);
 const MAPS = 'codexmaps-v3-' + encodeURIComponent(new URL('./', self.location.href).pathname);
 const PREVIOUS_MAPS = 'codexmaps-v2-' + encodeURIComponent(new URL('./', self.location.href).pathname);
 const LEGACY_MAPS = 'codexmaps-v1';
+const FIELD_ROOT = new URL('./maps/regions-v1/', self.location.href);
+const FIELD_CACHE = 'codexfields-v1-' + new URL('./', self.location.href).pathname.replace(/[^a-z0-9]/gi, '_');
 
 /* The house's whole bottle list (shared/packs/<pack id>.winelist.v1.json,
    read by codex29's The full list) lives in a cache of its own for the same
@@ -72,6 +74,7 @@ const ASSETS = [
   './css/house-cellar-compass.css',
   './css/house-learning.css',
   './css/house-library-search.css',
+  './css/house-field-atlas.css',
   './assets/codex-library-v1.webp',
   './assets/codex-atlas-room-v2.webp',
   './atlas-sources.html',
@@ -145,6 +148,8 @@ const ASSETS = [
   './js/codex42.js',
   './js/codex43.js',
   './js/codex44.js',
+  './js/data-field-atlas.js',
+  './js/codex45.js',
   './js/boot.js',
   './fonts/cinzel-normal-400-900-latin.woff2',
   './fonts/cinzel-normal-400-900-latin-ext.woff2',
@@ -264,6 +269,11 @@ self.addEventListener('fetch', e => {
   /* Served out of the maps cache, never out of CACHE, so a deploy cannot
      throw away what the reader chose to keep. Falling through to the network
      covers a map that is present on the server and not yet stored. */
+  if (url.pathname.startsWith(FIELD_ROOT.pathname)) {
+    e.respondWith(caches.open(FIELD_CACHE).then(c =>
+      c.match(e.request).then(hit => hit || fetch(e.request))));
+    return;
+  }
   if (url.pathname.startsWith(MAP_ROOT.pathname)) {
     // The original JPGs remain an archive. Exact legacy keys still work;
     // new SVGs use the current installation's own persistent map collection.
