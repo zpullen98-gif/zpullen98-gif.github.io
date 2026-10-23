@@ -180,32 +180,91 @@ function chartAspects(points) {
   return out.sort(function (x, y) { return x.orb - y.orb; });
 }
 
-/* --- local birth time → UTC ---
-   The browser already holds the IANA database, including historical rules. Two
-   passes: guess, measure the residual, correct, and re-measure: the second pass is
-   what catches a birth inside a daylight-saving transition. */
+/* Local birth time to UTC. A clock time in a forward jump has no instant; in a
+   backward jump it has two. Reject either rather than silently choosing a chart.
+   See https://tc39.es/proposal-temporal/docs/timezone.html and IANA's theory notes. */
+var chartZoneFormatters = Object.create(null);
 function zoneOffsetMinutes(zone, date) {
-  var dtf = new Intl.DateTimeFormat('en-US', {
-    timeZone: zone, hour12: false,
+  var dtf = chartZoneFormatters[zone];
+  if (!dtf) dtf = chartZoneFormatters[zone] = new Intl.DateTimeFormat('en-US', {
+    timeZone: zone, hourCycle: 'h23',
     year: 'numeric', month: '2-digit', day: '2-digit',
     hour: '2-digit', minute: '2-digit', second: '2-digit'
   });
   var p = {};
   dtf.formatToParts(date).forEach(function (x) { p[x.type] = x.value; });
   var asUTC = Date.UTC(+p.year, +p.month - 1, +p.day, (+p.hour) % 24, +p.minute, +p.second);
-  return Math.round((asUTC - date.getTime()) / 60000);
+  return (asUTC - Math.floor(date.getTime() / 1000) * 1000) / 60000;
 }
 
 function localToUTC(zone, y, mo, d, h, mi) {
   var want = Date.UTC(y, mo - 1, d, h, mi, 0);
-  var guess = want;
-  for (var i = 0; i < 3; i++) {
-    var off = zoneOffsetMinutes(zone, new Date(guess));
-    var next = want - off * 60000;
-    if (next === guess) break;
-    guess = next;
+  var offsets = [], matches = [];
+  try {
+    /* Both sides of a civil-time transition, including half-hour and date-line
+       changes. Each candidate is round-tripped through the actual zone rules. */
+    for (var i = -48; i <= 48; i += 6) {
+      var off = zoneOffsetMinutes(zone, new Date(want + i * 3600000));
+      if (offsets.indexOf(off) === -1) offsets.push(off);
+    }
+    offsets.forEach(function (off) {
+      var candidate = want - off * 60000;
+      if (Math.abs(candidate + zoneOffsetMinutes(zone, new Date(candidate)) * 60000 - want) < 1) {
+        matches.push(candidate);
+      }
+    });
+  } catch (e) {
+    throw new Error('That time zone is not recognised. Choose a city or enter a valid IANA time zone.');
   }
-  return new Date(guess);
+  if (!matches.length) throw new Error('That local time did not occur because the clocks moved forward. Check the recorded time.');
+  if (matches.length > 1) throw new Error('That local time occurred twice when the clocks moved back. Enter the confirmed UTC offset to choose the correct instant.');
+  return new Date(matches[0]);
+}
+
+/* The shared birth-record contract for the natal and monthly views. No guessed
+   noon, browser-local timezone, invalid date rollover or missing coordinate. */
+function birthUTC(b) {
+  b = b || {};
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(b.date || '')) throw new Error('Enter a complete birth date.');
+  if (!/^\d{2}:\d{2}$/.test(b.time || '')) throw new Error('Enter a known birth time. A rising sign and houses cannot be drawn honestly without it.');
+  var dp = b.date.split('-').map(Number), tp = b.time.split(':').map(Number);
+  var want = Date.UTC(dp[0], dp[1] - 1, dp[2], tp[0], tp[1]);
+  var check = new Date(want);
+  if (dp[0] < 1700 || dp[0] > 2200) throw new Error('This chart supports birth years from 1700 to 2200.');
+  if (check.getUTCFullYear() !== dp[0] || check.getUTCMonth() !== dp[1] - 1 || check.getUTCDate() !== dp[2]) {
+    throw new Error('That birth date is not a valid calendar date.');
+  }
+  if (tp[0] > 23 || tp[1] > 59) throw new Error('Use a birth time from 00:00 to 23:59.');
+  var override = b.offset !== null && b.offset !== undefined && String(b.offset).trim() !== '';
+  var utc;
+  if (override) {
+    var offset = Number(b.offset);
+    if (!Number.isFinite(offset) || offset < -14 || offset > 14) throw new Error('The UTC offset must be a number between -14 and +14 hours.');
+    utc = new Date(want - offset * 3600000);
+  } else {
+    if (!String(b.zone || '').trim()) throw new Error('Choose a birth city or enter its time zone.');
+    utc = localToUTC(String(b.zone).trim(), dp[0], dp[1], dp[2], tp[0], tp[1]);
+  }
+  return { utc: utc, usedOffset: (want - utc.getTime()) / 3600000,
+    zone: String(b.zone || '').trim(), offsetOverride: override };
+}
+
+function chartFromBirth(b) {
+  b = b || {};
+  var resolved = birthUTC(b);
+  if (typeof b.lat !== 'number' || !Number.isFinite(b.lat) || b.lat <= -90 || b.lat >= 90) {
+    throw new Error('Enter a latitude between -90 and +90 degrees, excluding the poles.');
+  }
+  if (typeof b.lon !== 'number' || !Number.isFinite(b.lon) || b.lon < -180 || b.lon > 180) {
+    throw new Error('Enter a longitude between -180 and +180 degrees.');
+  }
+  var sys = b.sys || 'whole';
+  if (['whole', 'equal', 'placidus'].indexOf(sys) === -1) throw new Error('Choose a supported house system.');
+  var chart = computeChart({ utc: resolved.utc, lat: b.lat, lon: b.lon, houseSystem: sys });
+  chart.usedOffset = resolved.usedOffset;
+  chart.offsetOverride = resolved.offsetOverride;
+  chart.zone = resolved.zone;
+  return chart;
 }
 
 /* --- the whole chart --- */
@@ -214,6 +273,8 @@ function computeChart(opts) {
   var A = window.Astronomy;
   if (!A) throw new Error('ephemeris not loaded');
   var date = opts.utc, lat = opts.lat, lon = opts.lon;
+  if (!date || !Number.isFinite(date.getTime()) || !Number.isFinite(lat) || !Number.isFinite(lon)) throw new Error('Invalid chart inputs.');
+  if (lat <= -90 || lat >= 90 || lon < -180 || lon > 180) throw new Error('Invalid chart coordinates.');
 
   var y = date.getUTCFullYear();
   if (y < 1700 || y > 2200) throw new Error('out-of-range');
@@ -226,7 +287,7 @@ function computeChart(opts) {
     cusps = housesPlacidus(angles, lat);
     if (!cusps) {
       used = 'whole';
-      note = 'Above the Arctic Circle, Placidus houses are undefined: these are Whole Sign. ' +
+      note = 'Placidus houses could not be resolved at this latitude; these are Whole Sign. ' +
              'The Ascendant and Midheaven are unaffected.';
     }
   }

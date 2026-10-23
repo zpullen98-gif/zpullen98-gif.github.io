@@ -177,7 +177,7 @@ function chartTable(chart) {
       '<td>' + signOf(chart.asc).name + '</td><td>1</td><td></td></tr>' +
     '<tr><td class="ct-g">MC</td><td>Midheaven</td><td>' +
       signOf(chart.mc).deg + '° ' + signOf(chart.mc).glyph + ' ' + String(signOf(chart.mc).min).padStart(2,'0') + '′</td>' +
-      '<td>' + signOf(chart.mc).name + '</td><td>10</td><td></td></tr>';
+      '<td>' + signOf(chart.mc).name + '</td><td>' + houseOf(chart.mc, chart.cusps) + '</td><td></td></tr>';
 
   return '<div class="tablewrap"><table class="charttable">' +
     '<thead><tr><th></th><th>Body</th><th>Degree</th><th>Sign</th><th>House</th><th></th></tr></thead>' +

@@ -1,5 +1,6 @@
 /* First Light: astrology reference data
-   Extracted verbatim from first_light_year_4.html.
+   Originally extracted from first_light_year_4.html. House-angle distinctions
+   and aspect allowances corrected for the current chart engine in October 2026.
    Declares globals; loaded by a classic <script> tag. */
 
 const SIGNS=[
@@ -71,25 +72,25 @@ const A_PLANETS=[
 ["♇ Pluto","Transformation, power, depth","Death and renewal; what is buried and what erupts. Modern ruler of Scorpio.","~12–30 years per sign"]];
 
 const A_HOUSES=[
-["First: the Ascendant","Self, body, appearance, the manner of arriving. The cusp is the rising sign, set by the exact birth minute."],
+["First","Presence, approach and the manner of arriving. In Whole Sign houses it begins at the start of the rising sign; in Equal and Placidus it begins at the Ascendant degree."],
 ["Second","Resources, possessions, income, and the sense of one's own worth."],
 ["Third","Communication, siblings, short journeys, early learning, the immediate neighbourhood."],
-["Fourth: the IC","Home, roots, family of origin, the private foundation beneath a life."],
+["Fourth","Home, roots, family of origin, the private foundation beneath a life. The IC is a separate angle, not necessarily this house cusp."],
 ["Fifth","Creativity, play, romance, children: what is made for the joy of making it."],
 ["Sixth","Work, routine, health, service; the daily maintenance of a life."],
-["Seventh: the Descendant","Partnership, marriage, close alliances, and open enemies. The mirror of the first."],
+["Seventh","Partnership, marriage, close alliances and open conflicts. Opposite the first house; the Descendant is the setting degree."],
 ["Eighth","Shared resources, inheritance, sexuality, death and transformation."],
 ["Ninth","Philosophy, higher learning, long journeys, religion, meaning."],
-["Tenth: the Midheaven","Vocation, public standing, authority, what one is known for."],
+["Tenth","Vocation, public standing, authority, what one is known for. The Midheaven is a separate angle and can fall in a different whole-sign or equal house."],
 ["Eleventh","Friendship, community, alliances, hopes for the future."],
 ["Twelfth","The hidden: solitude, the unconscious, retreat, what is undone or surrendered."]];
 
 const A_ASPECTS=[
-["Conjunction","0°","~8°","Two bodies at the same point. Fusion: their natures blend and intensify, for better or worse."],
-["Sextile","60°","~6°","Two signs apart. Opportunity: easy cooperation, but one that must be taken up deliberately."],
-["Square","90°","~8°","Three signs apart. Friction, tension, and the engine of growth: the aspect that forces action."],
-["Trine","120°","~8°","Four signs apart, same element. Natural flow and talent: so easy it can go unused."],
-["Opposition","180°","~8°","Opposite signs. Polarity: a tension between two valid needs, resolved only by balancing them."]];
+["Conjunction","0°","8° natal allowance","Similar ecliptic longitudes. Read symbolically as the blending of two themes."],
+["Sextile","60°","5° natal allowance","Read symbolically as an opportunity for cooperation that invites participation."],
+["Square","90°","7° natal allowance","Read symbolically as competing needs or tension that invites adjustment."],
+["Trine","120°","7° natal allowance","Read symbolically as ease or a strength that can be used deliberately."],
+["Opposition","180°","8° natal allowance","Read symbolically as two perspectives that can be held in balance."]];
 
 const A_HOWTO=[
 ["Gather the three facts","Date, exact time, and place of birth. The date fixes the planets, the place fixes the horizon, and the time fixes the houses: a few minutes' error can move the Ascendant into the next sign. Without a birth time, the houses and the Moon's degree remain uncertain."],

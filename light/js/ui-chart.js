@@ -10,9 +10,45 @@
    localStorage key, are covered by the export, and are sent nowhere, there is
    nowhere to send them. */
 
-var chartResult = null, chartError = null, chartBusy = false;
+var chartResult = null, chartError = null, chartResultKey = '', chartLoadError = false;
 
 function chartBirth() { return (FL.prefs && FL.prefs.birth) || {}; }
+
+function chartBirthKey(b) {
+  return JSON.stringify([b.date, b.time, b.lat, b.lon, b.zone, b.offset, b.sys]);
+}
+
+function chartCaptureBirth() {
+  var b = Object.assign({}, chartBirth());
+  [['b-date','date'], ['b-time','time'], ['b-sys','sys'], ['b-place','place'], ['b-zone','zone']].forEach(function (pair) {
+    var el = document.getElementById(pair[0]);
+    if (el) b[pair[1]] = el.value;
+  });
+  [['b-lat','lat'], ['b-lon','lon'], ['b-offset','offset']].forEach(function (pair) {
+    var el = document.getElementById(pair[0]);
+    if (el) b[pair[1]] = el.value.trim() === '' ? null : Number(el.value);
+  });
+  FL.prefs.birth = b;
+  return b;
+}
+
+FL_ACTS.chartDraft = function () {
+  chartCaptureBirth();
+  flSave(true);
+  /* The existing wheel belongs to the last saved calculation. Hide it while
+     editing so it can never be mistaken for the changed birth details. */
+  var result = document.getElementById('chart-result');
+  if (result && chartBirthKey(chartBirth()) !== chartResultKey) result.hidden = true;
+};
+
+function chartRestore() {
+  var b = chartBirth(), key = chartBirthKey(b);
+  if (key === chartResultKey) return;
+  chartResult = null; chartError = null; chartResultKey = key;
+  if (!b.date) return;
+  try { chartResult = chartFromBirth(b); }
+  catch (e) { chartError = e.message; }
+}
 
 function citySearch(q, limit) {
   q = String(q || '').trim().toLowerCase();
@@ -45,61 +81,33 @@ FL_ACTS.chartCity = function (el) {
 
 FL_ACTS.pickCity = function (el) {
   var c = FL_CITIES[+el.getAttribute('data-i')];
-  var b = chartBirth();
-  /* capture-before-render: the date, time, system and offset fields are
-     uncontrolled, and the repaint below rebuilds them from the store:
-     without this, choosing the city ate whatever was already typed */
-  var d = (document.getElementById('b-date') || {}).value;   if (d) b.date = d;
-  var t = (document.getElementById('b-time') || {}).value;   if (t) b.time = t;
-  var sy = (document.getElementById('b-sys') || {}).value;   if (sy) b.sys = sy;
-  var o = (document.getElementById('b-offset') || {}).value; if (o !== undefined && o !== '') b.offset = o;
+  if (!c) return;
+  var b = chartCaptureBirth();
   b.place = c[0] + ', ' + c[1];
   b.lat = c[2]; b.lon = c[3]; b.zone = FL_ZONES[c[4]];
   FL.prefs.birth = b; flSave(true);
   render();
+  var selected = document.getElementById('chart-place-summary');
+  if (selected) selected.focus();
 };
 
 FL_ACTS.chartCompute = function () {
-  var b = chartBirth();
-  var date = (document.getElementById('b-date') || {}).value;
-  var time = (document.getElementById('b-time') || {}).value;
-  var sys = (document.getElementById('b-sys') || {}).value || 'whole';
-  var manualOffset = (document.getElementById('b-offset') || {}).value;
-
-  chartError = null; chartResult = null;
-
-  if (!date) { chartError = 'A birth date is needed.'; render(); return; }
-  if (typeof b.lat !== 'number') { chartError = 'Choose a birth place, or enter coordinates.'; render(); return; }
-
-  b.date = date; b.time = time || '12:00'; b.sys = sys;
-  b.offset = manualOffset === '' ? null : Number(manualOffset);
-  FL.prefs.birth = b; flSave(true);
-
-  var dp = date.split('-').map(Number), tp = b.time.split(':').map(Number);
-  var utc;
-  if (b.offset !== null && !isNaN(b.offset)) {
-    /* An explicit offset always wins. Someone reading their own birth certificate
-       knows better than any database. */
-    utc = new Date(Date.UTC(dp[0], dp[1] - 1, dp[2], tp[0], tp[1]) - b.offset * 3600000);
-  } else if (b.zone) {
-    utc = localToUTC(b.zone, dp[0], dp[1], dp[2], tp[0], tp[1]);
-  } else {
-    chartError = 'No time zone for that place. Enter a UTC offset.'; render(); return;
-  }
-
+  var b = chartCaptureBirth();
+  flSave(true);
+  chartError = null; chartResult = null; chartResultKey = chartBirthKey(b);
   try {
-    chartResult = computeChart({ utc: utc, lat: b.lat, lon: b.lon, houseSystem: sys });
-    chartResult.usedOffset = Math.round((Date.UTC(dp[0], dp[1] - 1, dp[2], tp[0], tp[1]) - utc.getTime()) / 3600000 * 100) / 100;
+    chartResult = chartFromBirth(b);
     announce('Chart computed.');
   } catch (e) {
-    chartError = e.message === 'out-of-range'
-      ? 'The ephemeris is accurate from 1700 to 2200; that year is outside it.'
-      : 'The chart could not be computed.';
+    chartError = e.message;
   }
   render();
+  var result = document.getElementById(chartError ? 'chart-error' : 'chart-result');
+  if (result) { result.focus(); result.scrollIntoView({ block: 'start' }); }
 };
 
 FL_ACTS.chartAspectsToggle = function () {
+  chartCaptureBirth();
   FL.prefs.chartAspects = !FL.prefs.chartAspects;
   flSave();
   render();
@@ -107,9 +115,14 @@ FL_ACTS.chartAspectsToggle = function () {
 
 FL_ACTS.chartForget = function () {
   delete FL.prefs.birth;
-  chartResult = null;
+  chartResult = null; chartError = null; chartResultKey = '';
   flSave(true);
   toast('Birth details removed from this device.');
+  render();
+};
+
+FL_ACTS.chartRetry = function () {
+  chartLoadError = false;
   render();
 };
 
@@ -119,47 +132,58 @@ FL_VIEWS.chart = {
   hidden: true,
   render: function () {
     if (typeof FL_CITIES === 'undefined' || !window.Astronomy) {
-      return '<a class="keep" href="#/astro">← Astrology</a><h1>Your chart</h1>' +
-        '<p class="loadnote" id="chart-loading">Loading the ephemeris…</p>';
+      return '<a class="keep" href="#/astro">Astrology</a><h1>Your chart</h1>' +
+        (chartLoadError ? '<p class="loadnote" role="status">The chart engine could not be loaded. Connect and try again; once cached, it works offline.</p><button class="btn" data-act="chartRetry">Try again</button>' :
+          '<p class="loadnote" id="chart-loading" role="status">Loading the ephemeris...</p>');
     }
 
+    chartRestore();
     var b = chartBirth();
     var small = window.innerWidth < 480;
 
     var form =
       '<div class="label">Birth details</div>' +
       '<div class="drawrow">' +
-        '<input type="date" id="b-date" value="' + esc(b.date || '') + '" aria-label="Birth date">' +
-        '<input type="time" id="b-time" value="' + esc(b.time || '') + '" aria-label="Birth time">' +
+        '<label class="chart-field">Birth date<input type="date" id="b-date" data-input="chartDraft" min="1700-01-01" max="2200-12-31" value="' + esc(b.date || '') + '"></label>' +
+        '<label class="chart-field">Birth time (local)<input type="time" id="b-time" data-input="chartDraft" value="' + esc(b.time || '') + '"></label>' +
       '</div>' +
+      '<p class="vidnote">Use the recorded local time, including AM or PM. A known time is required for the rising sign and houses; no time is guessed.</p>' +
       '<div class="drawrow">' +
-        '<input type="text" id="b-city" placeholder="Birth place: start typing a city"' +
-        ' data-input="chartCity" value="" aria-label="Birth place">' +
+        '<label class="chart-field">Find your birth city<input type="search" id="b-city" placeholder="Start typing a city"' +
+        ' data-input="chartCity" value="" aria-controls="city-hits" autocomplete="off"></label>' +
       '</div>' +
-      '<div class="months" id="city-hits" style="justify-content:flex-start"></div>' +
-      (b.place ? '<p class="px" style="margin:8px 0">' + esc(b.place) + ' · ' +
-        b.lat.toFixed(3) + ', ' + b.lon.toFixed(3) + (b.zone ? ' · ' + esc(b.zone) : '') + '</p>' : '') +
+      '<div class="months" id="city-hits" aria-live="polite" style="justify-content:flex-start"></div>' +
+      (b.place ? '<p class="px" id="chart-place-summary" tabindex="-1" style="margin:8px 0">Selected place: ' + esc(b.place) +
+        (b.zone ? ' · ' + esc(b.zone) : '') + '</p>' : '') +
       '<div class="drawrow" style="margin-top:12px">' +
-        '<select id="b-sys" class="sel" aria-label="House system">' +
+        '<label class="chart-field">House system<select id="b-sys" class="sel" data-input="chartDraft">' +
           '<option value="whole"' + (b.sys === 'whole' || !b.sys ? ' selected' : '') + '>Whole Sign houses</option>' +
           '<option value="equal"' + (b.sys === 'equal' ? ' selected' : '') + '>Equal houses</option>' +
           '<option value="placidus"' + (b.sys === 'placidus' ? ' selected' : '') + '>Placidus houses</option>' +
-        '</select>' +
-        '<input type="number" id="b-offset" step="0.25" placeholder="UTC offset (optional)"' +
-        ' value="' + (b.offset === null || b.offset === undefined ? '' : b.offset) + '" aria-label="UTC offset override">' +
+        '</select></label>' +
       '</div>' +
-      '<p class="vidnote">Whole Sign is the default because it is what the Hellenistic tradition this chapter describes actually used, and because it is defined at every latitude. The offset field is an override for when you know your birth certificate says otherwise.</p>' +
+      '<p class="vidnote">Whole Sign is the default: the rising sign is the first house and each following sign is another house. Equal houses begin at the exact rising degree. Placidus divides the daily motion of the sky. These are different interpretive conventions, not different planetary positions.</p>' +
+      '<details class="card"><summary>Exact place, coordinates and time zone</summary>' +
+        '<p class="vidnote">Choose a city above or enter the recorded location here. Coordinates use positive north/east and negative south/west. For a hospital, enter its location rather than your current location.</p>' +
+        '<label class="chart-field">Place name<input type="text" id="b-place" data-input="chartDraft" value="' + esc(b.place || '') + '" placeholder="City or hospital"></label>' +
+        '<div class="drawrow"><label class="chart-field">Latitude<input type="number" id="b-lat" data-input="chartDraft" step="any" min="-89.999999" max="89.999999" value="' + esc(b.lat === null || b.lat === undefined ? '' : b.lat) + '"></label>' +
+        '<label class="chart-field">Longitude<input type="number" id="b-lon" data-input="chartDraft" step="any" min="-180" max="180" value="' + esc(b.lon === null || b.lon === undefined ? '' : b.lon) + '"></label></div>' +
+        '<label class="chart-field">IANA time zone<input type="text" id="b-zone" data-input="chartDraft" value="' + esc(b.zone || '') + '" placeholder="For example, Europe/London" spellcheck="false"></label>' +
+        '<label class="chart-field">UTC offset override, in hours (optional)<input type="number" id="b-offset" data-input="chartDraft" step="any" min="-14" max="14" value="' + esc(b.offset === null || b.offset === undefined ? '' : b.offset) + '" aria-describedby="chart-offset-help"></label>' +
+        '<p class="vidnote" id="chart-offset-help">Leave this blank to use the location\'s historical daylight-saving rules. An entered offset always overrides the time zone, including after choosing another city. Clear it to restore automatic rules.</p>' +
+      '</details>' +
       '<div class="drawrow" style="margin-top:12px">' +
         '<button class="btn" data-act="chartCompute">Draw the chart</button>' +
         (b.date ? ' <button class="keep" data-act="chartForget">Forget my details</button>' : '') +
       '</div>';
 
     var body = '';
-    if (chartError) body = '<p class="loadnote" style="margin-top:16px">' + esc(chartError) + '</p>';
+    if (chartError) body = '<p class="loadnote" id="chart-error" tabindex="-1" role="alert" style="margin-top:16px">' + esc(chartError) + '</p>';
     else if (chartResult) {
       var c = chartResult;
       var showAsp = !!FL.prefs.chartAspects;
       body =
+        '<section id="chart-result" tabindex="-1" aria-label="Your calculated birth chart">' +
         '<div class="label">The wheel</div>' +
         drawWheel(c, { small: small, aspects: showAsp }) +
         '<div style="text-align:center;margin-top:8px">' +
@@ -174,39 +198,36 @@ FL_VIEWS.chart = {
         '<div class="label">The working</div>' +
         '<div class="card">' +
           '<div class="astrorow"><span class="k">Birth, local</span> ' + esc(b.date + ' ' + b.time) + '</div>' +
-          '<div class="astrorow"><span class="k">Zone</span> ' + esc(b.zone || '(offset given by hand)') + '</div>' +
+          '<div class="astrorow"><span class="k">Time rule</span> ' + (c.offsetOverride ? 'Manual UTC offset overrides the named zone' : esc(c.zone)) + '</div>' +
           '<div class="astrorow"><span class="k">Offset used</span> UTC' + (c.usedOffset >= 0 ? '+' : '') + c.usedOffset + '</div>' +
           '<div class="astrorow"><span class="k">Instant</span> ' + esc(c.utc.toISOString()) + '</div>' +
           '<div class="astrorow"><span class="k">Coordinates</span> ' + c.lat.toFixed(3) + ', ' + c.lon.toFixed(3) + '</div>' +
           '<div class="astrorow"><span class="k">Sidereal time</span> ' + c.lst.toFixed(4) + 'h</div>' +
           '<div class="astrorow"><span class="k">Sect</span> ' + esc(c.sect) + ' chart</div>' +
         '</div>' +
-        '<p class="mintro" style="margin-top:22px">The largest error in almost every chart is the stated birth time. ' +
-        '“About three in the afternoon” is give or take half an hour, which moves the Ascendant some seven degrees. ' +
-        'Before 1970 the time-zone record itself is best-effort, and before standard time it is an approximation everywhere.</p>';
+        '<p class="mintro" style="margin-top:22px">The rising degree and houses depend strongly on the recorded birth time. A rough time produces a rough chart. Historical time-zone coverage before 1970 can also be incomplete. The Midheaven is a separate angle and does not always fall in the tenth house with Whole Sign or Equal houses.</p></section>';
     }
 
-    return '<a class="keep" style="margin-bottom:20px" href="#/astro">← Astrology</a>' +
+    return '<a class="keep" style="margin-bottom:20px" href="#/astro">Return to Astrology</a>' +
       '<div class="kick">Computed on this device</div><h1>Your chart</h1>' +
-      '<p class="note">Real positions for the ten bodies, the Ascendant and Midheaven, the house cusps and the aspects, worked out here and kept here. Only the dates you open First Light are kept alongside them.</p>' +
-      form + body;
+      '<p class="note">Your birth details are kept in this browser profile and included in your own exported backup. The astronomical positions are calculated here; the meanings belong to astrology as a reflective tradition, not a scientific personality test or prediction.</p>' +
+      (typeof astroNav === 'function' ? astroNav('chart') : '') + form + body;
   },
 
   after: function () {
-    if (!window.Astronomy || typeof FL_CITIES === 'undefined') {
+    if ((!window.Astronomy || typeof FL_CITIES === 'undefined') && !chartLoadError) {
       chartEnsureLoaded().then(function () {
         if (flRoute.view === 'chart') render();
       }).catch(function () {
-        var el = document.getElementById('chart-loading');
-        if (el) el.textContent = 'The chart engine could not be loaded. It needs one connection to arrive, then stays.';
+        chartLoadError = true;
+        if (flRoute.view === 'chart') render();
       });
     }
   }
 };
 
-/* The ephemeris and the city list are ~260 KB together: real weight for a feature
-   most mornings will not touch. They load on demand and the service worker keeps
-   them, so it is once per device rather than once per launch. */
+/* The ephemeris and city list execute on demand. The worker also precaches both,
+   so visiting Astrology before first worker control cannot leave it broken offline. */
 var chartLoading = null;
 function chartEnsureLoaded() {
   if (window.Astronomy && typeof FL_CITIES !== 'undefined') return Promise.resolve();
@@ -215,14 +236,16 @@ function chartEnsureLoaded() {
     return new Promise(function (res, rej) {
       var s = document.createElement('script');
       s.src = src; s.async = true;
-      s.onload = res; s.onerror = function () { rej(new Error(src)); };
+      var timer = setTimeout(function () { s.remove(); rej(new Error(src)); }, 20000);
+      s.onload = function () { clearTimeout(timer); res(); };
+      s.onerror = function () { clearTimeout(timer); s.remove(); rej(new Error(src)); };
       document.head.appendChild(s);
     });
   };
   chartLoading = Promise.all([
     window.Astronomy ? Promise.resolve() : load('js/vendor/astronomy.js?v=' + FL_TEXT_V),
     typeof FL_CITIES !== 'undefined' ? Promise.resolve() : load('js/data-cities.js?v=' + FL_TEXT_V)
-  ]);
+  ]).catch(function (e) { chartLoading = null; throw e; });
   return chartLoading;
 }
 
@@ -232,4 +255,7 @@ document.addEventListener('input', function (e) {
   if (!el || !el.getAttribute) return;
   var act = el.getAttribute('data-input');
   if (act && FL_ACTS[act]) FL_ACTS[act](el, e);
+});
+document.addEventListener('change', function (e) {
+  if (e.target && e.target.getAttribute && e.target.getAttribute('data-input') === 'chartDraft') FL_ACTS.chartDraft();
 });

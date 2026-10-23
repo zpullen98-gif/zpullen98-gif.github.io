@@ -1,0 +1,53 @@
+/* Paper, forest, brass and a little celestial geometry, in all service palettes. */
+.astro-opening { padding: 0 0 16px; border-bottom: 1px solid var(--line); }
+.astro-opening .kick { margin-top: 0; }
+.astro-main-nav { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; margin: 20px 0 26px; }
+.astro-main-nav a { padding: 14px 8px; min-height: 44px; border: 1px solid var(--line); color: var(--ink); text-align: center; text-decoration: none; font-size: 14px; }
+.astro-main-nav a[aria-current] { border-color: var(--accent); background: var(--paper); box-shadow: inset 0 -3px var(--accent); font-weight: 700; }
+.astro-month h2,.astro-learn h2 { margin: 30px 0 14px; font-family: var(--serif); font-weight: 500; font-size: 30px; line-height: 1.25; }
+.astro-month h3,.astro-learn h3 { font-family: var(--serif); font-weight: 600; font-size: 25px; line-height: 1.3; margin: 12px 0; }
+.astro-month p,.astro-learn p,.astro-learn li { font-size: 15px; line-height: 1.8; }
+.astro-month .astro-month-title { margin-top: 14px; font-size: 36px; }
+.astro-month-tools { margin: 20px 0 24px; padding: 16px 0; border-block: 1px solid var(--line); }
+.astro-month-arrows { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.astro-month-arrows a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; text-underline-offset: 4px; }
+.astro-month-picker { margin-top: 16px; }
+.astro-month-picker label { display: block; font-size: 13px; margin-bottom: 8px; }
+.astro-month-picker > div { display: flex; gap: 10px; }
+.astro-month-picker input { min-width: 0; flex: 1; padding: 10px; }
+.astro-month-picker .btn { white-space: nowrap; padding-inline: 14px; }
+.astro-month .astro-status,.astro-month .astro-subtle,.astro-learn .astro-subtle { color: var(--faint); font-size: 13px; }
+.astro-big-three { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.astro-big-three article { min-width: 0; padding: 20px 14px; background: var(--paper); border: 1px solid var(--line); border-top: 2px solid var(--accent); }
+.astro-big-three h3 { font-size: 28px; margin: 14px 0; }
+.astro-eyebrow { font-size: 12px !important; color: var(--accent); letter-spacing: .035em; }
+.astro-big-three .astro-degree { font-size: 13px; }
+.astro-focus,.astro-welcome { position: relative; border: 1px solid var(--line); border-top: 2px solid var(--accent); background: var(--paper); padding: 24px; margin: 18px 0; box-shadow: var(--shadow); }
+.astro-focus .astro-prompt { border-left: 2px solid var(--accent); padding-left: 16px; font-family: var(--serif); font-size: 24px; line-height: 1.5; }
+.astro-phases { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin: 20px 0; }
+.astro-phases article { padding: 18px; border: 1px solid var(--line); border-radius: 3px; background: var(--paper); }
+.astro-phases h3 { margin-top: 0; font-size: 24px; }
+.astro-study-path { padding-left: 24px; }
+.astro-study-path li { padding: 10px 0 10px 8px; font-size: 15px; line-height: 1.8; }
+.astro-actions { display: flex; gap: 14px 24px; flex-wrap: wrap; }
+.astro-fold { border: 1px solid var(--line); margin: 16px 0; background: var(--paper); }
+.astro-fold > summary { cursor: pointer; padding: 18px; min-height: 44px; color: var(--ink); font-size: 16px; line-height: 1.5; }
+.astro-fold[open] > summary { border-bottom: 1px solid var(--line); color: var(--accent); }
+.astro-fold-body { padding: 6px 20px 20px; }
+.astro-fold-body .card { box-shadow: none; }
+.astro-fold-body a { text-underline-offset: 4px; }
+.astro-changes { padding-left: 20px; font-size: 14px; line-height: 1.8; }
+.astro-changes li { padding: 10px 0; }
+.astro-events { min-width: 500px; font-size: 13px; }
+.astro-events caption { text-align: left; padding-block: 12px; font-size: 15px; }
+.astro-events th,.astro-events td { white-space: normal; text-align: left; }
+.astro-events tbody th { font-weight: 500; }
+.chart-field { display: grid; gap: 8px; flex: 1; min-width: 0; font-size: 14px; }
+.chart-field input,.chart-field select { width: 100%; min-width: 0; padding: 10px; }
+.chart-field small { font-size: 12px; color: var(--faint); line-height: 1.6; }
+.astro-month input[type="month"],.chart-field input[type="date"],.chart-field input[type="time"] { color-scheme: light; }
+[data-phase="night"] .astro-month input[type="month"],[data-phase="dusk"] .astro-month input[type="month"],
+[data-phase="night"] .chart-field input[type="date"],[data-phase="night"] .chart-field input[type="time"],
+[data-phase="dusk"] .chart-field input[type="date"],[data-phase="dusk"] .chart-field input[type="time"] { color-scheme: dark; }
+@media(max-width:600px) { .astro-big-three { grid-template-columns: 1fr; } .astro-phases { grid-template-columns: 1fr; } .astro-focus,.astro-welcome { padding: 20px; } .astro-main-nav a { font-size: 13px; padding-inline: 6px; } .astro-fold-body { padding-inline: 14px; } }
+@media print { .astro-main-nav,.astro-month-tools,.astro-actions { display: none; } .astro-focus,.astro-big-three article,.astro-phases article { break-inside: avoid; box-shadow: none; } }

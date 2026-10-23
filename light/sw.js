@@ -7,7 +7,7 @@
    index.html. A file in one and not the other is the single most common way this
    app breaks offline while looking fine online. */
 
-const CACHE = 'oot-light-v101';
+const CACHE = 'oot-light-v102';
 
 /* Scripture lives in its own cache, deliberately NOT versioned with the shell.
    The library is ~12 MB; tying it to CACHE would throw it away and re-download it
@@ -39,6 +39,7 @@ const ASSETS = [
   './css/house.css',
   './css/house-library.css',
   './css/house-practice.css',
+  './css/house-astro.css',
   './assets/first-light-dawn-v1.webp',
   './fonts/cinzel-latin.woff2',
   './js/house.js',
@@ -84,6 +85,11 @@ const ASSETS = [
   './js/search.js',
   './js/astro-chart.js',
   './js/astro-wheel.js',
+  './js/astro-month.js',
+  /* Loaded only when Astrology opens, but saved with the shell so a first visit
+     before worker control cannot miss the offline chart payloads. */
+  './js/vendor/astronomy.js',
+  './js/data-cities.js',
   './js/practice.js',
 
   './js/ui-today.js',
@@ -97,6 +103,7 @@ const ASSETS = [
   './js/ui-lineup.js',
   './js/ui-astro.js',
   './js/ui-chart.js',
+  './js/ui-astro-month.js',
   './js/ui-journal.js',
   './js/ui-reflect.js',
   './js/ui-vault.js',
@@ -201,13 +208,22 @@ self.addEventListener('fetch', e => {
        without this #/chart was permanently broken offline */
     e.respondWith(
       caches.open(TEXT_CACHE).then(cache =>
-        cache.match(req).then(hit => hit || fetch(req).then(res => {
+        cache.match(req).then(async hit => {
+          /* Chart payloads are now also precached. Prefer this release's copy;
+             book requests still use their exact, versioned permanent entry. */
+          if (url.pathname.indexOf('/js/vendor/') > -1 || url.pathname.indexOf('/js/data-cities.js') > -1) {
+            const shell = await caches.open(CACHE);
+            const ready = await shell.match(req, { ignoreSearch: true });
+            if (ready) return ready;
+          }
+          return hit || fetch(req).then(res => {
           /* Only keep a real answer. A 404 or an captive-portal login page cached
              here would be permanent, and would read to the app as a book that
              exists but is empty. */
           if (res && res.ok && res.type === 'basic') cache.put(req, res.clone());
           return res;
-        }))
+          });
+        })
       )
     );
     return;

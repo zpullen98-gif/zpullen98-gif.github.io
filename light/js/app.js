@@ -273,7 +273,7 @@ function navigate() {
   var next = parseHash();
   /* the skip link: carry focus to the main column and change nothing else */
   if (next === flRoute && flRendered) { var col = document.getElementById('view'); if (col) col.focus(); return; }
-  var viewChanged = next.view !== flRoute.view || (['anthology', 'poets'].indexOf(next.view) > -1 && next.arg !== flRoute.arg);
+  var viewChanged = next.view !== flRoute.view || (['anthology', 'poets', 'astro'].indexOf(next.view) > -1 && next.arg !== flRoute.arg);
   flRoute = next;
   render();
   flRendered = true;

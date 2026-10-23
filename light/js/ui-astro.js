@@ -1,14 +1,7 @@
-/* First Light: Astrology.
-
-   Phase 1 ports the artifact's chapter intact. Phase 4 replaces the arithmetic with
-   a real ephemeris: true planetary longitudes, Moon sign, Ascendant, Midheaven,
-   house cusps, aspects, and a drawn wheel. Two things are worth knowing about what
-   is here now, and both are stated in the copy rather than hidden:
-
-   - Sun signs come from a fixed date table, so a birthday on a cusp can be wrong by
-     a day. Real solar longitude fixes that in Phase 4.
-   - The moon phase is a mean synodic approximation. Good to a few hours, which is
-     fine for naming the phase and not good enough to time anything by. */
+/* First Light: astrology reference helpers.
+   The monthly page is registered by ui-astro-month.js after the chart view.
+   Saved charts and monthly dates use Astronomy Engine, never the legacy date
+   ranges or mean lunar approximation retained here for older consumers. */
 
 function elementOf(n) {
   for (var i = 0; i < SIGNS.length; i++) if (SIGNS[i].n === n) return SIGNS[i].el;
@@ -46,7 +39,7 @@ function signCard(s, heading) {
     '<p class="px">' + esc(s.d) + '</p>' +
     '<div class="astrorow"><span class="k">Strengths</span> ' + esc(s.s) + '</div>' +
     '<div class="astrorow"><span class="k">Growth edge</span> ' + esc(s.gr) + '</div>' +
-    '<div class="astrorow"><span class="k">Traditionally governs</span> ' + esc(s.body) + '</div>' +
+    '<div class="astrorow"><span class="k">Historical body symbolism</span> ' + esc(s.body) + '</div>' +
   '</div>';
 }
 
@@ -57,13 +50,13 @@ function relationBetween(a, b) {
   var dd = Math.abs(ia - ib); if (dd > 6) dd = 12 - dd;
   var A = SIGNS[ia], B = SIGNS[ib];
   var map = {
-    0: ['Conjunct: the same sign', 'Identical instincts: profound ease, and no external corrective. Two of the same strength, and two of the same blind spot.'],
-    1: ['Semi-sextile: adjacent', 'No classical aspect. Different element and modality both; the tradition reads this as mutual incomprehension that can be learned past, but rarely felt past.'],
-    2: ['Sextile: two apart', 'Compatible elements and easy cooperation, but an opportunity rather than a given: it works when both choose it.'],
-    3: ['Square: three apart', 'Shared modality, clashing element. Read as the friction that produces growth, genuinely difficult, genuinely generative.'],
-    4: ['Trine: four apart', 'Same element. The most harmonious classical aspect: instinctive understanding, with the risk of never being challenged.'],
-    5: ['Quincunx: five apart', 'Nothing in common by element or modality. The tradition calls this the aspect of adjustment: workable only by continual deliberate accommodation.'],
-    6: ['Opposition: opposite signs', 'The axis. Same modality, complementary elements: each carries what the other lacks. Read as the most instructive pairing and the most demanding.']
+    0: ['Same sign', 'The same element and modality. Compare the shared vocabulary and the different ways an individual might express it.'],
+    1: ['Adjacent signs', 'Different elements and modalities. The traditional sign-based framework treats these as different perspectives, not a verdict on relationships.'],
+    2: ['Sextile by sign', 'Related elements with different modalities. A symbolic invitation to explore cooperation.'],
+    3: ['Square by sign', 'A shared modality with different elements. Compare how the same wish to initiate, sustain or adapt could take different forms.'],
+    4: ['Trine by sign', 'A shared element with different modalities. Compare how each sign begins, sustains or adapts that element.'],
+    5: ['Quincunx by sign', 'Different elements and modalities. A useful exercise in explaining one symbolic perspective to another.'],
+    6: ['Opposite signs', 'A shared modality across a symbolic axis. Explore the two perspectives without assuming that people must oppose or complete each other.']
   };
   return {
     title: map[dd][0], text: map[dd][1], a: A, b: B,
@@ -127,155 +120,3 @@ FL_ACTS.lookupSign = function () {
 };
 
 var MON3 = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-FL_VIEWS.astro = {
-  label: 'Astrology',
-  title: 'Astrology',
-  render: function () {
-    var now = new Date();
-    var s = signFor(now.getMonth() + 1, now.getDate());
-    var mp = moonPhase(now);
-    var opts = SIGNS.map(function (x) { return '<option value="' + esc(x.n) + '">' + x.g + ' ' + esc(x.n) + '</option>'; }).join('');
-
-    var list = function (arr, fn) { return arr.map(fn).join(''); };
-
-    return '' +
-      '<div class="kick">The symbolic heavens</div><h1>Astrology</h1>' +
-      '<p class="note">The oldest continuously practiced symbolic system in the West: its history, its grammar, and how a chart is actually read.</p>' +
-
-      '<div class="label">Today’s sky</div>' +
-      '<div class="card" id="a-sky">' +
-        '<p class="pt"><span class="glyph">' + s.g + '</span> The Sun is in ' + esc(s.n) + '</p>' +
-        '<div class="ds">' + esc(s.el + ' · ' + s.mo + ' · ruled by ' + s.ru) + '</div>' +
-        '<p class="px" style="margin-top:10px">Moon: <strong>' + esc(mp.name) + '</strong> · about ' +
-          mp.illum + '% illuminated.</p>' +
-        '<p class="vidnote" style="margin-top:8px">Approximate. Computing the real sky…</p>' +
-      '</div>' +
-
-      '<div class="label">Your chart</div>' +
-      '<div class="card">' +
-        '<p class="pt">The whole thing, properly computed</p>' +
-        '<p class="px">Birth date, time and place give the real positions of all ten bodies, ' +
-        'the Ascendant and Midheaven, the twelve house cusps and every aspect: worked out on ' +
-        'this device from an ephemeris, not looked up in a table. The birth details never leave this device; ' +
-        'Only the dates you open First Light are kept alongside them.</p>' +
-        '<a class="keep" href="#/chart">Draw my chart</a>' +
-      '</div>' +
-
-      '<div class="label">Your placement</div>' +
-      '<p class="px" style="color:var(--faint);margin-bottom:12px">Enter a birth date for the Sun sign and its full attributions. A complete chart also needs birth time and place: see <em>Reading a chart</em> below.</p>' +
-      '<div class="drawrow">' +
-        '<input type="date" id="a-date" aria-label="Birth date">' +
-        '<button class="btn" data-act="lookupSign">Find</button>' +
-      '</div><div id="a-result"></div>' +
-
-      '<div class="label">Where it came from</div>' +
-      list(A_HISTORY, function (h) { return '<div class="q"><p class="pt">' + esc(h[0]) + '</p><p class="px">' + esc(h[1]) + '</p></div>'; }) +
-
-      '<div class="label">The four elements</div>' +
-      list(A_ELEMENTS, function (e) {
-        return '<div class="limb"><div class="limbn">' + esc(e[0][0]) + '</div><div><div class="gt">' + esc(e[0]) +
-          '</div><div class="gp" style="color:var(--accent)">' + esc(e[1]) + '</div><div class="gp">' + esc(e[2]) + '</div></div></div>';
-      }) +
-
-      '<div class="label">The three modalities</div>' +
-      list(A_MODES, function (e) {
-        return '<div class="limb"><div class="limbn">·</div><div><div class="gt">' + esc(e[0]) +
-          '</div><div class="gp" style="color:var(--accent)">' + esc(e[1]) + '</div><div class="gp">' + esc(e[2]) + '</div></div></div>';
-      }) +
-
-      '<div class="label">The twelve signs</div>' +
-      list(SIGNS, function (x) {
-        return signCard(x, x.from[1] + ' ' + MON3[x.from[0]] + ', ' + x.to[1] + ' ' + MON3[x.to[0]]);
-      }) +
-
-      '<div class="label">The planets</div>' +
-      '<p class="px" style="color:var(--faint);margin-bottom:12px">Classical astrology used the seven visible bodies. The three outer planets were added after their discovery, Uranus 1781, Neptune 1846, Pluto 1930, and many traditional practitioners still work with the original seven.</p>' +
-      list(A_PLANETS, function (p) {
-        return '<div class="limb"><div><div class="gt">' + esc(p[0]) + ': ' + esc(p[1]) + '</div>' +
-          '<div class="gp">' + esc(p[2]) + '</div><div class="gp" style="color:var(--accent)">Moves ' + esc(p[3]) + '</div></div></div>';
-      }) +
-
-      '<div class="label">The twelve houses</div>' +
-      '<p class="px" style="color:var(--faint);margin-bottom:12px">Signs describe <em>how</em>; houses describe <em>where</em>. The houses are set by the birth time and place, which is why the hour matters.</p>' +
-      list(A_HOUSES, function (h, i) {
-        return '<div class="limb"><div class="limbn">' + (i + 1) + '</div><div><div class="gt">' + esc(h[0]) +
-          '</div><div class="gp">' + esc(h[1]) + '</div></div></div>';
-      }) +
-
-      '<div class="label">The aspects</div>' +
-      '<p class="px" style="color:var(--faint);margin-bottom:12px">The angles planets make to one another. An <em>orb</em> is the allowance either side of exactness within which the aspect still counts.</p>' +
-      list(A_ASPECTS, function (a) {
-        return '<div class="limb"><div class="limbn">' + esc(a[1]) + '</div><div><div class="gt">' + esc(a[0]) +
-          '</div><div class="gp" style="color:var(--accent)">orb ' + esc(a[2]) + '</div><div class="gp">' + esc(a[3]) + '</div></div></div>';
-      }) +
-
-      '<div class="label">How signs relate</div>' +
-      list(A_RELATIONS, function (r) {
-        return '<div class="limb"><div><div class="gt">' + esc(r[0]) + '</div><div class="gp">' + esc(r[1]) + '</div></div></div>';
-      }) +
-      '<div class="drawrow" style="margin-top:14px">' +
-        '<select id="a-sign1" class="sel" data-change="compareSigns" aria-label="First sign">' + opts + '</select>' +
-        '<select id="a-sign2" class="sel" data-change="compareSigns" aria-label="Second sign">' + opts + '</select>' +
-      '</div><div id="a-compare-result"></div>' +
-
-      '<div class="label">Reading a chart</div>' +
-      list(A_HOWTO, function (h, i) {
-        return '<div class="limb"><div class="limbn">' + (i + 1) + '</div><div><div class="gt">' + esc(h[0]) +
-          '</div><div class="gp">' + esc(h[1]) + '</div></div></div>';
-      }) +
-
-      '<p class="mintro" style="margin-top:30px">Presented as the tradition understands itself. Astrology is a symbolic and interpretive art with a long history, not a predictive science; it has not been borne out under controlled testing. Read it as you would a myth: for what it illuminates, not for what it forecasts.</p>';
-  },
-
-  after: function () {
-    var s2 = document.getElementById('a-sign2');
-    if (s2) s2.selectedIndex = 6;
-    renderCompare();
-
-    /* Replace the approximations with the real sky once the ephemeris is here. The
-       page renders immediately from the old date table so there is never a blank
-       card, then upgrades in place: the chapter should not wait on 116 KB to say
-       anything. */
-    if (typeof chartEnsureLoaded !== 'function') return;
-    chartEnsureLoaded().then(function () {
-      if (flRoute.view !== 'astro') return;
-      var host = document.getElementById('a-sky');
-      if (!host || typeof skyNow !== 'function') return;
-
-      var sky = skyNow(new Date());
-      var sun = sky.bodies[0];
-      var sunSign = null;
-      for (var i = 0; i < SIGNS.length; i++) if (SIGNS[i].n === sun.sign.name) sunSign = SIGNS[i];
-
-      var rows = sky.bodies.map(function (b) {
-        return '<tr><td class="ct-g">' + b.glyph + '</td><td>' + esc(b.name) + '</td>' +
-          '<td>' + b.sign.deg + '° ' + b.sign.glyph + ' ' + String(b.sign.min).padStart(2, '0') + '′</td>' +
-          '<td>' + esc(b.sign.name) + '</td><td>' + (b.retro ? '℞' : '') + '</td></tr>';
-      }).join('');
-
-      var retro = sky.bodies.filter(function (b) { return b.retro; })
-                            .map(function (b) { return b.name; });
-
-      host.innerHTML =
-        '<p class="pt"><span class="glyph">' + (sunSign ? sunSign.g : '') + '</span> The Sun is in ' +
-          esc(sun.sign.name) + ', at ' + sun.sign.deg + '°' + String(sun.sign.min).padStart(2, '0') + '′</p>' +
-        (sunSign ? '<div class="ds">' + esc(sunSign.el + ' · ' + sunSign.mo + ' · ruled by ' + sunSign.ru) + '</div>' : '') +
-        '<p class="px" style="margin-top:10px">Moon: <strong>' + esc(sky.moon.name) + '</strong> · ' +
-          sky.moon.illum + '% illuminated · ' + esc(sky.bodies[1].sign.name) + '.</p>' +
-        (retro.length
-          ? '<p class="px" style="margin-top:6px">Retrograde now: ' + esc(retro.join(', ')) + '.</p>'
-          : '<p class="px" style="margin-top:6px">Nothing is retrograde today.</p>') +
-        '<div class="label" style="margin-top:16px">Every body, right now</div>' +
-        '<div class="tablewrap"><table class="charttable"><tbody>' + rows + '</tbody></table></div>' +
-        '<p class="vidnote" style="margin-top:10px">Geocentric apparent positions in the tropical zodiac, ' +
-        'computed on this device. Not looked up in a table.</p>';
-    }).catch(function () {
-      var host = document.getElementById('a-sky');
-      if (!host) return;
-      var n = host.querySelector('.vidnote');
-      if (n) n.textContent = 'Approximate: the sun-sign date ranges and the mean lunar cycle. ' +
-        'The exact sky needs the ephemeris, which arrives with one connection and then stays.';
-    });
-  }
-};
