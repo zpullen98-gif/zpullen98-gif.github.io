@@ -1152,7 +1152,11 @@ function applyParent(){
     if(state.menu.view === 'fall' && typeof fallState === 'function' && fallState().item){ fallState().item = ''; fallState().part = 'read'; return true; }
     if(state.menu.view === 'compass' && typeof barCompassState === 'function' && (barCompassState().item || barCompassState().workshop)){ barCompassState().item = ''; barCompassState().workshop = ''; return true; }
     if(state.menu.view === 'brew' && typeof brewState === 'function' && brewState().item){ brewState().item = ''; return true; }
-    if((state.menu.view || 'menu') !== 'menu'){ state.menu.view = 'menu'; return true; }
+    if((state.menu.view || 'menu') !== 'menu'){
+      const group = typeof houseFlowGroup === 'function' ? houseFlowGroup(state.menu.view) : 'menu';
+      state.menu.view = group !== state.menu.view ? group : 'menu';
+      return true;
+    }
     if(p === 'menu' && st && st.open){ st.open = null; st.sec = ''; st.jump = 'back'; return true; }
     if(p === 'menu' && st){ st.sec = ''; return true; }
     state.tab = 'home';
@@ -1345,9 +1349,9 @@ function applyNavRoute(parts){
   if(typeof barCompassRoute === 'function' && barCompassRoute(parts)) return true;
   if(typeof fallMenuRoute === 'function' && fallMenuRoute(parts)) return true;
   if(typeof brewRoute === 'function' && brewRoute(parts)) return true;
-  if(tab === 'menu' && a !== 'compass' && state.menu.view === 'compass') state.menu.view = 'menu';
-  if(tab === 'menu' && a !== 'fall' && state.menu.view === 'fall') state.menu.view = 'menu';
-  if(tab === 'menu' && a !== 'brew' && state.menu.view === 'brew') state.menu.view = 'menu';
+  /* A menu address must also close a learning hub on devices without a
+     current house, where houseStudyRoute deliberately does nothing. */
+  if(tab === 'menu' && a !== 'view') state.menu.view = 'menu';
   if(tab === 'notes' && a === 'studies' && typeof methodStudy === 'function'){
     state.tab = 'notes'; state.noteOpen = '__methods'; state.noteJump = false;
     state.methodStudyId = methodStudy(b) ? b : '';
@@ -1423,7 +1427,7 @@ function applyNavRoute(parts){
   if(tab === 'menu' && (a === 'section' || a === 'view')){
     state.tab = 'menu';
     if(a === 'view'){
-      state.menu.view = ['stock', 'add', 'fall', 'compass'].concat(typeof brewOpen === 'function' ? ['brew'] : []).indexOf(b) >= 0 ? b : 'menu';
+      state.menu.view = ['stock', 'add', 'fall', 'compass', 'studies', 'rehearsal', 'reference'].concat(typeof brewOpen === 'function' ? ['brew'] : []).indexOf(b) >= 0 ? b : 'menu';
       /* #/menu/view/brew reads as the index (js/ui-brew.js) */
       if(state.menu.view === 'brew') brewOpen('');
       return true;

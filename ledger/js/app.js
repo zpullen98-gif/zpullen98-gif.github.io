@@ -22,7 +22,7 @@ function focusSignature(el){
      this, every filter change dropped focus to <body> and arrow-browsing a
      select was impossible */
   if(!d.act && !d.tab && !d.cluster) return el.id ? '#' + (window.CSS && CSS.escape ? CSS.escape(el.id) : el.id) : null;
-  return ['act','tab','cluster','i','k','d','s','m','c','f','v','t','id','n']
+  return ['act','tab','cluster','i','k','d','s','m','c','f','v','t','id','n','deck','mode']
     .filter(k => d[k] !== undefined)
     .map(k => '[data-' + k + '="' + String(d[k]).replace(/"/g, '\\"') + '"]')
     .join('');
@@ -165,6 +165,7 @@ function render(kind){
   if(typeof navAfterRender === 'function') navAfterRender();
   if(typeof fallAfterRender === 'function') fallAfterRender();
   if(typeof barCompassAfterRender === 'function') barCompassAfterRender();
+  if(typeof houseFlowAfterRender === 'function') houseFlowAfterRender();
   if(typeof brewAfterRender === 'function') brewAfterRender();
   /* Guarded on the element, not on state.tab, like every other post-paint
      hook in this function. It asks YouTube about the ONE film the reader
@@ -280,6 +281,7 @@ document.addEventListener('keydown', e => {
     e.preventDefault(); return;
   }
   if(typing) return;
+  if(typeof houseFlowOwnsKey === 'function' && houseFlowOwnsKey(e)) return;
   if(typeof methodStudyOwnsKey === 'function' && methodStudyOwnsKey(e)) return;
   if(typeof fallOwnsKey === 'function' && fallOwnsKey(e)) return;
   if(typeof barCompassOwnsKey === 'function' && barCompassOwnsKey(e)) return;
@@ -1014,6 +1016,10 @@ document.getElementById('view').addEventListener('click', e => {
       importMaybeTaken(true);
     } }
   else if(act==='menu-view'){ state.menu.view = el.dataset.v; state.menu.err = null;
+    if(el.dataset.v === 'menu' && state.menu.study){
+      state.menu.study.open = null; state.menu.study.editAll = false;
+      state.menu.study.jump = null; state.menu.open = null;
+    }
     if(el.dataset.v === 'fall' && typeof fallOpen === 'function') fallOpen('');
     if(el.dataset.v === 'compass' && typeof barCompassOpen === 'function') barCompassOpen('');
     if(el.dataset.v === 'brew' && typeof brewOpen === 'function') brewOpen('');
@@ -1185,7 +1191,10 @@ function captureLiveInputs(){
   /* the study view's search box and the Flashcards tab's section select
      (js/house-study.js, js/ui-study.js); the box repaints its rows alone on
      input, and is grabbed here so no act's render can lose a word of it */
-  if(state.menu && state.menu.study) grab('hs-q', state.menu.study, 'q');
+  if(state.menu && state.menu.study){
+    grab('hs-q', state.menu.study, 'q');
+    grab('hs-section', state.menu.study, 'sec');
+  }
   grab('fc-section', state.fc, 'section');
   /* the level page's search box (js/ui-nav.js), repainted alone on input */
   if(state.level) grab('lv-q', state.level, 'q');

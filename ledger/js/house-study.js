@@ -60,7 +60,7 @@ var HS_WORDS = {
   clear: 'Clear the search',
   read: 'Menus read {date}',
   progress: '{studied} of {total} studied · {got} got it last time · {again} again',
-  progressNone: 'Nothing studied yet: start with Flash cards.',
+  progressNone: 'Start with a drink, then try Service rehearsal.',
   cards: 'Flash cards',
   weak: 'My weak ones ({n})',
   weakNone: 'My weak ones: none yet',
@@ -189,7 +189,7 @@ var HS_ROOM_ENTRIES = { table: ['/table/shell.html'], codex: ['/codex/index.html
 
 /* ---- the screen's state --------------------------------------------------- */
 function hsBlank(){
-  return { q: '', sec: '', open: null, editAll: false, deck: null, y: 0, jump: null, pushed: false, lastId: null, from: null, scrollCard: false };
+  return { q: '', sec: '', expanded: {}, open: null, editAll: false, deck: null, y: 0, jump: null, pushed: false, lastId: null, from: null, scrollCard: false };
 }
 if(typeof state !== 'undefined' && state && state.menu && !state.menu.study) state.menu.study = hsBlank();
 function hsState(){
@@ -794,16 +794,12 @@ function hsHeaderHTML(h, rows){
       const on = m[0] === meal;
       return '<button class="chip hs-chip' + (on ? ' on' : '') + '" aria-pressed="' + (on ? 'true' : 'false') + '" data-act="hs-meal" data-m="' + esc(m[0]) + '">' + esc(m[1]) + '</button>';
     }).join('') + '</div>' : '';
-  const weakBtn = pr.again ? '<button class="btn btn-ghost" data-act="hs-cards" data-weak="1">' + esc(hsSay('weak', { n: pr.again })) + '</button>'
-    : '<button class="btn btn-ghost" disabled>' + esc(hsSay('weakNone')) + '</button>';
   return '<section class="panel hs-head" aria-labelledby="hs-house">'
     + '<div class="hs-head-top"><h2 class="hs-house" id="hs-house">' + esc(h.name) + '</h2>'
-    + '<button class="hs-quiet" data-act="hs-editall">' + esc(hsSay('editOff')) + '</button></div>'
+    + '<button class="hs-quiet" data-act="menu-view" data-v="rehearsal">Practise the menu</button></div>'
+    + '<p class="hs-soft">Choose a section, read a drink, then practise describing it to a guest.</p>'
     + '<div class="hs-progress">' + esc(progressLine) + '</div>'
     + mealChips
-    + '<div class="hs-btns"><button class="btn btn-brass" data-act="hs-cards">' + esc(hsSay('cards')) + '</button>'
-    + weakBtn
-    + '<button class="btn btn-ghost" data-act="hs-drill">' + esc(hsSay('quizTab')) + '</button></div>'
     + '</section>';
 }
 
@@ -827,11 +823,12 @@ function houseStudyRowsHTML(){
   hsSections(shown).forEach(function(s){
     const rows = shown.filter(function(r){ return r.section === s.section; });
     const own = rows.length && rows[0].own;
+    const expanded = !!(hsFold(st.q || '').trim() || st.sec || (st.expanded && st.expanded[s.section]));
     out += '<section class="panel hs-sec" id="' + esc(hsSectionId(s.section)) + '" aria-label="' + esc(s.section) + '">'
-      + '<div class="hs-sec-head"><h3 class="eyebrow hs-sec-name">' + esc(s.section) + ' · ' + s.count + '</h3>'
-      + (own ? '' : '<button class="btn btn-ghost hs-sec-cards" data-act="hs-cards" data-s="' + esc(s.section) + '">' + esc(hsSay('cards')) + '</button>') + '</div>'
+      + '<details class="hs-category" data-section="' + esc(s.section) + '"' + (expanded ? ' open' : '') + '><summary><h3 class="eyebrow hs-sec-name">' + esc(s.section) + ' · ' + s.count + '</h3></summary>'
+      + (own ? '' : '<div class="hs-sec-head"><button class="btn btn-ghost hs-sec-cards" data-act="hs-cards" data-s="' + esc(s.section) + '">' + esc(hsSay('cards')) + '</button></div>')
       + rows.map(function(r){ return hsRowHTML(r, againIds); }).join('')
-      + '</section>';
+      + '</details></section>';
   });
   const q = st.q || '';
   if(hsFold(q).trim()){
@@ -943,10 +940,10 @@ function hsListHTML(h){
   const st = hsState();
   const all = hsRows(h);
   if(st.sec && !all.some(function(r){ return r.section === st.sec; })) st.sec = '';
-  const chips = [['', hsSay('all', { n: all.length })]].concat(hsSections(all).map(function(s){ return [s.section, s.section + ' ' + s.count]; }))
+  const options = [['', hsSay('all', { n: all.length })]].concat(hsSections(all).map(function(s){ return [s.section, s.section + ' (' + s.count + ')']; }))
     .map(function(c){
       const on = c[0] === (st.sec || '');
-      return '<button class="chip hs-chip' + (on ? ' on' : '') + '" aria-pressed="' + (on ? 'true' : 'false') + '" data-act="hs-sec" data-s="' + esc(c[0]) + '">' + esc(c[1]) + '</button>';
+      return '<option value="' + esc(c[0]) + '"' + (on ? ' selected' : '') + '>' + esc(c[1]) + '</option>';
     }).join('');
   const nd = (h.dishes || []).length, nw = (h.wines || []).length;
   const also = (nd || nw) ? '<div class="hs-also">' + esc(hsSay('alsoHouse'))
@@ -960,20 +957,14 @@ function hsListHTML(h){
   const facts = [h.menusReadOn ? hsSay('read', { date: hsDate(h.menusReadOn) }) : '', n + ' ' + hsUnit(n)].filter(Boolean).join(' · ');
   return '<div class="hs col-sm">'
     + hsHeaderHTML(h, all)
-    /* the jumps are named from the whole menu, never the chosen shift's
-       rows, so a shift without the list's first section hides that jump
-       rather than lending its label to another section */
-    + hsJumpsHTML(h, hsRows(h, ''))
     + '<div class="hs-bar">'
     + '<div class="hs-find"><label class="sr-only" for="hs-q">' + esc(hsSay('find')) + '</label>'
     + '<input class="input hs-q" id="hs-q" type="search" autocomplete="off" placeholder="' + esc(hsSay('find')) + '" value="' + esc(st.q || '') + '">'
-    + (st.q ? '<button class="btn btn-ghost hs-clear" data-act="hs-clear">' + esc(hsSay('clear')) + '</button>' : '') + '</div>'
-    + '<div class="hs-chips" role="group" aria-label="Sections">' + chips + '</div>'
+    + '<button class="btn btn-ghost hs-clear" data-act="hs-clear"' + (st.q ? '' : ' hidden') + '>' + esc(hsSay('clear')) + '</button></div>'
+    + '<div class="hs-filter"><label for="hs-section">Menu section</label><select class="select" id="hs-section">' + options + '</select></div>'
     + '</div>'
+    + '<p class="hs-soft" id="hs-results-count" aria-live="polite">' + esc(hsShowingWords(h)) + '</p>'
     + '<div id="hs-rows" class="col-sm">' + houseStudyRowsHTML() + '</div>'
-    + hsDoorsHTML(h)
-    + hsHouseListsHTML(h)
-    + hsVideosHTML(h)
     + '<div class="hs-facts">' + esc(facts) + '</div>'
     + also
     + '</div>';
@@ -1804,6 +1795,10 @@ function houseStudyAct(act, data){
     const it = h && (h.cocktails || []).find(function(c){ return c && c.id === id; });
     const b = hsBarRow(id);
     if(!it && !b) return false;
+    /* Video and reference doors now live in learning rooms. Their drink
+       links still open the same menu card, with Back to that room. */
+    if(state.menu.view !== 'menu') st.open = null;
+    state.tab = 'menu'; state.menu.view = 'menu'; st.editAll = false;
     /* the row that opened the card, kept apart from lastId, which Next and
        Previous move: Back focuses this one (design test 2) */
     if(!st.open){ st.y = scrollY(); st.from = id; }
@@ -1841,7 +1836,7 @@ function houseStudyAct(act, data){
     state.menu.view = 'menu'; state.menu.open = ds.id || null; state.menu.pane = 'build';
   }
   else if(act === 'hs-editall'){
-    st.editAll = !st.editAll; st.open = null; st.deck = null;
+    st.editAll = state.menu.view !== 'menu' ? true : !st.editAll; st.open = null; st.deck = null;
     if(!st.editAll) state.menu.open = null;
     state.menu.view = 'menu';
   }
@@ -1906,9 +1901,29 @@ function houseStudyAfterRender(){
       if(!d || String(d.tagName || '').toUpperCase() !== 'DETAILS') return;
       if(typeof state === 'undefined' || !state || state.tab !== 'menu') return;
       const cur = hsState();
+      if(d.isConnected === false) return;
+      const section = d.getAttribute('data-section');
+      if(section){
+        /* Search and a chosen section reveal matches temporarily; they do
+           not replace the reader's manually opened sections. */
+        if(!cur.q && !cur.sec){
+          if(!cur.expanded) cur.expanded = {};
+          cur.expanded[section] = !!d.open;
+        }
+        return;
+      }
       const key = hsKeepKeyOf(d);
       if(cur.open && key) hsKeepOpen(cur.open, key, !!d.open);
     }, true);
+  }
+  const sectionSelect = document.getElementById('hs-section');
+  if(sectionSelect && !sectionSelect.__hs){
+    sectionSelect.__hs = true;
+    sectionSelect.addEventListener('change', function(e){
+      houseStudyAct('hs-sec', { s: e.target.value });
+      const next = document.getElementById('hs-section');
+      if(next) next.focus({ preventScroll: true });
+    });
   }
   const box = document.getElementById('hs-q');
   if(box && !box.__hs){
@@ -1918,6 +1933,10 @@ function houseStudyAfterRender(){
       const rows = document.getElementById('hs-rows');
       const h = hsCurrent();
       if(rows && h) rows.innerHTML = houseStudyRowsHTML();
+      const clear = document.querySelector('[data-act="hs-clear"]');
+      if(clear) clear.hidden = !st.q;
+      const count = document.getElementById('hs-results-count');
+      if(count && h) count.textContent = hsShowingWords(h);
       hsJumpsSync();
       const live = document.getElementById('live');
       if(live && h) live.textContent = hsShowingWords(h);

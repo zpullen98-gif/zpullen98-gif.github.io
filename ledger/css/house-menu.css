@@ -32,6 +32,18 @@
   .hs-bar{position:sticky;top:0;z-index:20;background:var(--felt-2);border-bottom:1px solid var(--brass);padding:calc(6px + env(safe-area-inset-top,0px)) 0 8px;display:flex;flex-direction:column;gap:6px}
   .hs-find{display:flex;gap:8px;align-items:center}
   .hs-q{flex:1;min-width:0;min-height:44px;font-size:1rem}
+  .hs-clear[hidden]{display:none}
+  .hs-filter{display:flex;align-items:center;gap:10px}
+  .hs-filter label{flex:none;font-size:1rem;color:var(--cream-dim)}
+  .hs-filter select{min-width:0;flex:1;min-height:44px;font-size:1rem;width:100%}
+  .hs-category>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px;padding:12px 14px;cursor:pointer;list-style:none}
+  .hs-category>summary::-webkit-details-marker{display:none}
+  .hs-category>summary .hs-sec-name{margin:0;font-family:var(--house-reading);font-size:1.125rem;letter-spacing:0;text-transform:none}
+  .hs-category>summary::after{content:'Show';flex:none;font-size:1rem;color:var(--brass-2);text-decoration:underline;text-underline-offset:3px}
+  .hs-category[open]>summary::after{content:'Hide'}
+  .hs-category>summary:focus-visible{outline:3px solid var(--brass-2);outline-offset:-3px}
+  .hs-category .hs-sec-head{justify-content:flex-end;padding:0 14px 8px}
+  .hs-head-top{flex-wrap:wrap}
   .hs-chips{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;padding-bottom:2px}
   .hs-chips .hs-chip{scroll-snap-align:start}
   /* the jump row under the header: every place on the page in view at once,

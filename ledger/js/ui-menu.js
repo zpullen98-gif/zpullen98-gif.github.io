@@ -770,13 +770,10 @@ function menuDrillHTML(pool){
 function renderMenu(){
   const bar = progress.bar || [];
   const v = state.menu.view || 'menu';
-  /* Coffee and tea (js/ui-brew.js) after Fall 2026, only where its file is here */
-  const nav = [['menu','The menu'],['compass','The Bar Compass'],['fall','Fall 2026']]
-    .concat(typeof renderBrew === 'function' ? [['brew','Coffee and tea']] : [])
-    .concat([['stock','The stock'],['add','Add drinks']])
-    .map(function(o){ return '<button class="tab-btn'+(v===o[0]?' active':'')+'"'+(v===o[0]?' aria-current="true"':'')+' data-act="menu-view" data-v="'+o[0]+'">'+o[1]+'</button>'; }).join('');
+  const nav = houseFlowNavHTML(v);
   let inner;
-  if(v === 'compass' && typeof renderBarCompass === 'function') inner = renderBarCompass();
+  if(['studies', 'rehearsal', 'reference'].indexOf(v) >= 0) inner = houseFlowHTML(v);
+  else if(v === 'compass' && typeof renderBarCompass === 'function') inner = renderBarCompass();
   else if(v === 'fall' && typeof renderFallMenu === 'function') inner = renderFallMenu();
   else if(v === 'brew' && typeof renderBrew === 'function') inner = renderBrew();
   else if(v === 'stock') inner = menuStockHTML();
@@ -811,13 +808,8 @@ function renderMenu(){
   /* the study view of the house's drinks (js/house-study.js) when a house
      with drinks is current and Edit the menu is off; today's list otherwise */
   else inner = (typeof houseStudyOn === 'function' && houseStudyOn()) ? houseStudyHTML() : menuListHTML();
-  /* Vocabulary for the whole list, never an assignment to a house drink.
-     Keep the individual study card and its flashcard answers unchanged. */
-  if(v === 'menu' && !(typeof houseStudyOn === 'function' && houseStudyOn() && hsState().open)){
-    inner += glassShapesHTML();
-  }
   /* the desk's share, above every sub-view: what another room read and left
      for this bar is the first thing to know on opening the Menu tab */
   const waiting = (typeof deskWaitingHTML === 'function') ? deskWaitingHTML('menu') : '';
-  return '<div class="col"><nav class="tabs'+(v === 'compass' ? ' bc-menu-tabs' : v === 'brew' ? ' brew-menu-tabs' : '')+'" style="margin-bottom:4px">'+nav+'</nav>'+waiting+inner+'</div>';
+  return '<div class="col house-menu-flow">'+nav+waiting+inner+'</div>';
 }
