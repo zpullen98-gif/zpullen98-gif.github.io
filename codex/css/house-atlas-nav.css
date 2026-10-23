@@ -1,0 +1,32 @@
+/* Six destinations, with Practise and Wine Atlas kept side by side. */
+.wrap .house-topbar .appnav.v32nav.v47nav .navword {
+  min-width: 44px;
+  min-height: 44px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 600px) {
+  .wrap .house-topbar .appnav.v32nav.v47nav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-inline: 12px;
+  }
+  .wrap .house-topbar .appnav.v32nav.v47nav #nav-home,
+  .wrap .house-topbar .appnav.v32nav.v47nav #nav-brennans {
+    grid-column: span 2;
+  }
+  .wrap .house-topbar .appnav.v32nav.v47nav .navword {
+    padding: 10px 3px;
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+  .wrap .house-topbar .appnav.v32nav.v47nav .navword.v32more {
+    margin: 4px 0 4px 4px;
+    padding: 4px;
+  }
+  .wrap .house-topbar .appnav.v32nav.v47nav .v32pill {
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-inline: 2px 0;
+  }
+}
