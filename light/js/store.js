@@ -58,6 +58,7 @@ var FL = {
   morning: {},       // "YYYY-MM-DD"       -> {read,move,breathe,reflect}  the day's four, ticked
   moves: {},         // "YYYY-MM-DD"       -> n        movement sessions finished, for the level
   workoutSets: {},   // day -> video id -> {count, updated}; a personal counter, separate from completed sessions
+  anthologyRead: {}, // date:part:quotation-hash -> {done:0|1, updated}; explicit reading marks, including undo
   intents: {},       // "YYYY-MM-DD"       -> "Grief"  a named need, when one was named
   journal: {},       // id -> {d, ref, text, t}        writing; ref ties it to a day/quote/passage
   examen: {},        // "YYYY-MM-DD"       -> {well, short, tomorrow}
@@ -364,9 +365,25 @@ function flMergeWorkoutSets(incoming) {
   });
 }
 
-/* Merges rather than replaces, and never deletes. Importing a backup onto a device
-   that has since accumulated new mornings should end with both, not whichever file
-   was newer. Returns a summary so the UI can say what actually happened. */
+/* Reading marks merge by the latest explicit action, including an undo. */
+function flMergeAnthologyRead(incoming) {
+  if (!incoming || typeof incoming !== 'object' || Array.isArray(incoming)) return;
+  if (!FL.anthologyRead || typeof FL.anthologyRead !== 'object' || Array.isArray(FL.anthologyRead)) FL.anthologyRead = {};
+  Object.keys(incoming).forEach(function (key) {
+    if (!/^\d{4}-\d{2}-\d{2}:p[1-3]:[a-f0-9]{8}$/.test(key)) return;
+    var year = Number(key.slice(0, 4)), month = Number(key.slice(5, 7)), day = Number(key.slice(8, 10));
+    var date = new Date(year, month - 1, day, 12);
+    if (year < 1900 || year > 2100 || date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) return;
+    var row = incoming[key], mine = FL.anthologyRead[key];
+    var valid = function (entry) { return entry && typeof entry === 'object' && !Array.isArray(entry) && (entry.done === 0 || entry.done === 1) && Number.isSafeInteger(entry.updated) && entry.updated > 0; };
+    if (!valid(row)) return;
+    if (!valid(mine) || row.updated > mine.updated || (row.updated === mine.updated && row.done === 0)) {
+      FL.anthologyRead[key] = {done: row.done, updated: row.updated};
+    }
+  });
+}
+/* Merges rather than replaces. Importing a backup preserves each independent
+   record and the latest explicit Anthology reading marks. */
 function flImport(text) {
   var parsed = JSON.parse(text);
   var rec = (parsed && parsed.record) ? parsed.record : parsed;
@@ -392,6 +409,7 @@ function flImport(text) {
     if ((rec.moves[k] || 0) > (FL.moves[k] || 0)) FL.moves[k] = rec.moves[k];
   });
   flMergeWorkoutSets(rec.workoutSets);
+  flMergeAnthologyRead(rec.anthologyRead);
   /* the day's four ticks merge as a union: a thing done on either device was
      done, and this app does not take a finished morning back off anybody. */
   if (rec.morning) Object.keys(rec.morning).forEach(function (day) {
