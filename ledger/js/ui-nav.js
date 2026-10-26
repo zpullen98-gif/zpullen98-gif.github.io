@@ -709,6 +709,7 @@ function missesPanelHTML(qs){
         + '<span class="dim">' + esc(q.prompt) + (q.ticket ? ' [' + esc(q.ticket.name) + ']' : '') + (q.factCard ? ' [' + esc(q.factCard.name) + ']' : '') + '</span><br>'
         + '<span class="brass2">Answer: ' + esc(q.answer) + '</span>'
         + (q.explain ? '<br><span class="tiny dim">' + esc(q.explain) + '</span>' : '')
+        + (typeof quizLearnQuestionHTML === 'function' ? quizLearnQuestionHTML(q) : '')
         + '<div class="row" style="margin-top:6px">' + missLinkHTML(q) + '</div>'
         + '</div>';
     }).join('') + '</div>';

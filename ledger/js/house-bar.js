@@ -264,8 +264,8 @@ function qMyBarUpsell(b){
   const ans = sample(fit, 1)[0];
   const others = houseUpsellOthers(b);
   if(others.length < 3) return null;
-  return { prompt: stem, options: shuffle([ans].concat(sample(others, 3))), answer: ans,
-    explain: b.name + ', then ' + names.join(' or ') + '.' };
+  return { prompt: stem, options: shuffle([ans].concat(sample(others, 3))), answer: ans, ckey: 'My Bar · ' + b.name, houseItemId: b.id,
+    explain: b.name + ': the house has kept ' + names.join(' or ') + ' as an offer next. Ask what the guest enjoys before recommending.' };
 }
 /* A quiz question off the kept parts: which modifiers and key flavours are
    this drink's. Every option is the kept line of a drink on this house, so
@@ -281,7 +281,7 @@ function qMyBarParts(b){
     return p ? p.sauce : '';
   }).filter(function(t){ return t && houseFold(t) !== houseFold(ans); }));
   if(field.length < 3) return null;
-  return { prompt: stem, options: shuffle([ans].concat(sample(field, 3))), answer: ans,
+  return { prompt: stem, options: shuffle([ans].concat(sample(field, 3))), answer: ans, ckey: 'My Bar · ' + b.name, houseItemId: b.id,
     explain: b.name + ': ' + ans };
 }
 
@@ -310,7 +310,7 @@ function housePairWhy(){
 function houseQuestionOf(q, lib){
   const label = (lib.drills.DRILL_LABELS && lib.drills.DRILL_LABELS[q.kind]) || 'Which?';
   return { prompt: q.stem + '. ' + label, options: q.options.slice(), answer: q.answer,
-    explain: q.stem + ': ' + q.answer + '.', houseKind: q.kind };
+    explain: q.stem + ': ' + q.answer + '.', houseKind: q.kind, houseItemId: q.itemId };
 }
 /* up to ten, the two kinds in turn, no stem asked twice; empty when the
    house is not ready for either */
@@ -420,7 +420,7 @@ function qMyBarLine(b){
   const decoys = houseLineDecoys(b, ans);
   if(decoys.length < 3) return null;
   const secs = { s10:'ten seconds', s20:'twenty seconds', s45:'forty five seconds' }[key];
-  return { prompt:'Which is the line for ' + b.name + ' on your menu, said in ' + secs + '?',
+  return { prompt:'Which is the line for ' + b.name + ' on your menu, said in ' + secs + '?', ckey: 'My Bar · ' + b.name, houseItemId: b.id,
     options: shuffle([ans].concat(sample(decoys, 3))), answer: ans,
     explain: b.name + ': ' + ans };
 }
@@ -1788,6 +1788,7 @@ function houseSayHTML(h){
       + '<div class="col-sm" style="gap:4px;flex:1;min-width:220px"><div class="eyebrow">Your kept line</div><div class="small lh">' + esc(g.keptLine) + '</div></div>'
       + '<div class="col-sm" style="gap:4px;flex:1;min-width:220px"><div class="eyebrow">What you said</div><div class="small lh">' + esc(s.saidText || '') + '</div></div>'
       + '</div>'
+      + (typeof quizLearnSayHTML === 'function' ? quizLearnSayHTML(s.id) : '')
       + '<div class="row" style="gap:8px;flex-wrap:wrap">'
       + (s.recorded ? '<span class="small" role="status">Recorded.</span>' : '<button class="btn btn-brass" data-act="hd-say-record"' + HOUSE_TALL + '>Record it</button>')
       + '<button class="btn btn-ghost" data-act="hd-say-again"' + HOUSE_TALL + '>Try again</button>'
@@ -1822,6 +1823,7 @@ function houseRoleHTML(h){
       + houseNotesHTML(g.notes)
       + '<div class="col-sm" style="gap:4px"><div class="eyebrow">The kept answer</div><div class="small lh">' + esc(g.keptYou) + '</div></div>'
       + (g.principle ? '<div class="col-sm" style="gap:4px"><div class="eyebrow">The principle</div><div class="small lh">' + esc(g.principle) + '</div></div>' : '')
+      + (typeof quizLearnRoleHTML === 'function' ? quizLearnRoleHTML(entry, g) : '')
       + '<div class="row" style="gap:8px;flex-wrap:wrap">'
       + (r.recorded ? '<span class="small" role="status">Recorded.</span>' : '<button class="btn btn-brass" data-act="hd-role-record"' + HOUSE_TALL + '>Record it</button>')
       + '<button class="btn btn-ghost" data-act="hd-role-again"' + HOUSE_TALL + '>Try again</button>'

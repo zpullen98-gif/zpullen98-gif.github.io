@@ -81,7 +81,7 @@ function barCompassRecallHTML(card, flipped, head, front, answer, grade){
   return '<div class="col">'+head+'<div class="panel p5 col study-face">'+answer+heading+question+'<div class="bc-answer">'+barCompassParas(card.back)+'</div>'
     +'<p class="bc-caption">Authored training notes. Confirm the current house build and availability before service.</p>'+barCompassSources(card.sourceIds)
     +(d && d.fallItemId && typeof fallArtHTML === 'function' ? fallArtHTML(d.fallItemId,true) : '')
-    +'<a class="btn btn-ghost bc-read-link" href="'+esc(barCompassHref(card.itemId))+'">Read the full Bar Compass study</a>'+grade+'</div></div>';
+    +'<a class="btn btn-ghost bc-read-link" href="'+esc(barCompassHref(card.itemId))+'">Learn why: read the full Bar Compass study</a>'+grade+'</div></div>';
 }
 function barCompassOpen(id, workshop){
   const s = barCompassState(); state.tab = 'menu'; state.menu.view = 'compass';

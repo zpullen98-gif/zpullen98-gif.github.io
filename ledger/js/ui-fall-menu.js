@@ -102,7 +102,7 @@ function fallRecallHTML(card, flipped, head, front, answer, grade){
     + '<p class="small dim">Say your answer aloud before you reveal it.</p><button class="btn btn-brass" data-act="fc-flip">Flip</button></div></div>';
   return '<div class="col">' + head + '<div class="panel p5 col study-face">' + answer + heading + question
     + '<div class="fall-answer">' + fallParagraph(card.back) + '</div>' + fallCites(card.sourceIds) + fallArtHTML(card.itemId, true)
-    + '<a class="chip fall-read-link" href="' + esc(fallHref(card.itemId)) + '">Read the full study card</a>' + grade + '</div></div>';
+    + '<a class="chip fall-read-link" href="' + esc(fallHref(card.itemId)) + '">Learn why: read the full study card</a>' + grade + '</div></div>';
 }
 function fallArtHTML(itemId, collapsed){
   const id = 'fall-art-' + itemId;

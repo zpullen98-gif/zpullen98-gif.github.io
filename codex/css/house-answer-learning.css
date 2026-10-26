@@ -1,0 +1,14 @@
+/* Answer readings use the same paper, ink and brass in either service. */
+.v49-learn,.v49-completed{margin:20px 0;border:1px solid var(--gold);background:var(--bg2);border-radius:12px 3px;color:var(--parch);overflow-wrap:anywhere;text-align:left}
+.v49-learn>summary,.v49-completed>summary,.v49-example>summary{cursor:pointer;box-sizing:border-box;min-height:48px;padding:14px 16px;color:var(--gold-hi);font-size:20px;line-height:1.45}
+.v49-summary{display:block;font-size:17px;line-height:1.5;color:var(--parch2);margin:4px 0 0 18px}
+.v49-reading{padding:0 20px 18px;font-size:19px;line-height:1.65}
+.v49-reading h3{font:500 25px/1.35 var(--house-display,Cinzel,serif);color:var(--gold-hi);margin:20px 0 12px}
+.v49-reading h4{font-size:19px;line-height:1.4;color:var(--gold-hi);margin:18px 0 7px}
+.v49-reading p{margin:8px 0 14px}.v49-identity{font-size:17px;color:var(--parch2)}
+.v49-facts{margin:16px 0}.v49-facts>div{padding:10px 0;border-bottom:1px solid var(--line)}.v49-facts dt{font-weight:700;color:var(--gold-hi)}.v49-facts dd{margin:3px 0 0}
+.v49-profile-link{display:inline-flex;align-items:center;min-height:44px;line-height:1.4;color:var(--gold-hi);text-decoration:underline;text-underline-offset:4px}
+.v49-foot,.v49-boundary{font-size:17px;line-height:1.55;color:var(--parch2);border-top:1px solid var(--line);padding-top:12px}
+.v49-example{border-top:1px solid var(--line);margin:12px 0}.v49-example>.v49-profile{padding:0 10px 14px}.v49-completed>.miss{margin:12px;padding:12px}
+.v49-learn :is(summary,a,button):focus-visible,.v49-learn>summary:focus-visible,.v49-completed>summary:focus-visible{outline:3px solid var(--gold-hi);outline-offset:3px}
+@media(max-width:500px){.v49-reading{padding:0 14px 14px;font-size:18px}.v49-summary{margin-left:0}.v49-reading h3{font-size:22px}.v49-learn>summary,.v49-completed>summary{padding:13px;font-size:19px}}

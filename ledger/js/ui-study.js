@@ -627,7 +627,7 @@ function renderFlashcards(){
     return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+ANSWER
       + '<div class="font-display tc" style="font-size:1.2rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
       + '<div class="small lh tc" style="max-width:520px">'+esc(c.back || '')+'</div>'
-      + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')+grade+'</div></div>';
+      + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '') + (typeof quizLearnCardHTML === 'function' ? quizLearnCardHTML(c) : '')+grade+'</div></div>';
   }
 
   /* the three line modes: the drink's name on the face, the line a person
@@ -644,7 +644,7 @@ function renderFlashcards(){
     return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+ANSWER
       + '<div class="font-display tc" style="font-size:1.2rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
       + '<div class="small lh tc" style="max-width:520px">'+esc(line)+'</div>'
-      + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')
+      + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '') + (typeof quizLearnCardHTML === 'function' ? quizLearnCardHTML(c) : '')
       + grade+'</div></div>';
   }
 
@@ -660,7 +660,7 @@ function renderFlashcards(){
     return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+ANSWER
       + '<div class="font-display tc" style="font-size:1.2rem;color:var(--brass-2)">'+esc(c.name)+'</div>'
       + houseCardBackHTML(fc.mode, c)
-      + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')
+      + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '') + (typeof quizLearnCardHTML === 'function' ? quizLearnCardHTML(c) : '')
       + grade+'</div></div>';
   }
 
@@ -689,7 +689,7 @@ function renderFlashcards(){
     const foot = (c.src==='Cocktails' && typeof loreFootnote==='function' && loreFootnote(c))
       ? '<div class="tiny dim italic tc lh" style="max-width:400px">❦ '+esc(loreFootnote(c))+'</div>' : '';
     return '<div class="col">'+head+'<div class="panel p5 col study-face" style="align-items:center">'+ANSWER+back+foot+videoRowHTML(c)
-      + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')
+      + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '') + (typeof quizLearnCardHTML === 'function' ? quizLearnCardHTML(c) : '')
       + grade+'</div></div>';
   }
 
@@ -714,7 +714,7 @@ function renderFlashcards(){
       ? '<div class="explain"><span class="brass2 bold">'+(fc.lastOk?'Clean build. ':'Not quite. ')+'</span>'
         + esc(c.method)+' · '+esc(c.glass)+' · '+esc(c.garnish)+'.'+(c.note?' '+esc(c.note):'')+'</div>'
         + videoRowHTML(c)
-        + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')
+        + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '') + (typeof quizLearnCardHTML === 'function' ? quizLearnCardHTML(c) : '')
         + '<button class="btn btn-brass self-end" data-act="fc-next">Next card</button>'
       : '<button class="btn btn-brass self-end" data-act="fc-check"'+(fc.sel.length?'':' disabled')+'>Check the build</button>';
     return '<div class="col">'+head+'<div class="panel p5 col">'
@@ -736,7 +736,7 @@ function renderFlashcards(){
     const after = answered
       ? '<div class="explain"><span class="brass2 bold">'+(fc.lastOk?'Correct. ':'Not quite. ')+'</span>The missing line is "'+esc(c.spec[fc.clozeIdx])+'".'+(c.note?' '+esc(c.note):'')+'</div>'
         + videoRowHTML(c)
-        + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')
+        + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '') + (typeof quizLearnCardHTML === 'function' ? quizLearnCardHTML(c) : '')
         + '<button class="btn btn-brass self-end" data-act="fc-next">Next card</button>'
       : '';
     return '<div class="col">'+head+'<div class="panel p5 col" style="align-items:stretch">'
@@ -764,10 +764,10 @@ function renderFlashcards(){
       return '<div><div class="eyebrow mb1">'+label+'</div><div class="col-sm">'+rows+'</div></div>';
     }).join('');
     const after = allPicked
-      ? '<div class="explain"><span class="brass2 bold">'+(fc.lastOk?'All three. ':'Not clean. ')+'</span>'
+      ? '<div class="explain"><span class="brass2 bold">'+(fc.lastOk?'Service details matched. ':'Compare the recorded service details. ')+'</span>'
         + s.fields.map(f => '<span class="brass2">'+f+':</span> '+esc(c[f])).join(' · ')+'</div>'
         + videoRowHTML(c)
-        + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '')
+        + (typeof methodFeedbackHTML === 'function' ? methodFeedbackHTML(c,fc.mode) : '') + (typeof quizLearnCardHTML === 'function' ? quizLearnCardHTML(c) : '')
         + '<button class="btn btn-brass self-end" data-act="fc-next">Next card</button>'
       : '';
     return '<div class="col">'+head+'<div class="panel p5 col" style="align-items:stretch">'
@@ -1118,7 +1118,7 @@ function renderQuiz(){
       : pct>=0.9 ? 'Nearly clean. Read what you missed below, then take it to the drills.'
       : pct>=0.7 ? 'Solid. Read the misses below before you deal another.'
       : pct>=0.5 ? 'Half is a start. The explanations are where the round pays you back.'
-      : 'Everyone starts by polishing glassware. Run it again.';
+      : 'Take one explanation at a time, then replay the questions you missed.';
     /* what you missed, each with its card or its reading (js/ui-nav.js) */
     const missPanel = typeof missesPanelHTML === 'function' ? missesPanelHTML(z.missedQ) : '';
     const missCards = typeof missKeysOf === 'function' ? missKeysOf(z.missedQ).length : 0;
@@ -1148,6 +1148,7 @@ function renderQuiz(){
   }).join('');
   const after = answered
     ? '<div class="explain"><span class="brass2 bold">'+(q.options[z.picked]===q.answer?'Correct. ':'Not quite. ')+'</span>'+esc(q.explain)+'</div>'
+      + (typeof quizLearnQuestionHTML === 'function' ? quizLearnQuestionHTML(q) : '')
       + '<button class="btn btn-brass self-end" data-act="quiz-next">'+(z.idx+1>=z.round.length?'Close out the round':'Next question')+'</button>'
     : '';
   return '<div class="col">'

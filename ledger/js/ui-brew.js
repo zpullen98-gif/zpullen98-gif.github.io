@@ -210,7 +210,7 @@ function brewRecallHTML(card, flipped, head, front, answer, grade){
     + '<p class="small dim">Say how you would make it, out loud, then flip.</p><button class="btn btn-brass" data-act="fc-flip">Flip</button></div></div>';
   return '<div class="col">' + head + '<div class="panel p5 col study-face">' + answer + heading + question + '<div class="brew-answer">' + brewParas(card.back) + '</div>'
     + '<p class="brew-boundary">' + brewBoundary() + '</p>'
-    + '<a class="btn btn-ghost brew-read-link" href="' + esc(brewHref(card.itemId)) + '">Read the full entry</a>' + grade + '</div></div>';
+    + '<a class="btn btn-ghost brew-read-link" href="' + esc(brewHref(card.itemId)) + '">Learn why: read the full entry</a>' + grade + '</div></div>';
 }
 /* Ten entries round-robin across the groups (the group order shuffled each
    round), one of each entry's three questions, its options shuffled. Each

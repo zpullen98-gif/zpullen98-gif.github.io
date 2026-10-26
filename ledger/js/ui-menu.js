@@ -255,20 +255,20 @@ function myBarNameDecoys(b, n){
   return sample(own, n).concat(sample(canon, n)).slice(0, n);
 }
 function qMyBarTicket(b){
-  return { prompt:'Name this drink from your own menu:', ticket:b, ticketType:'mybar',
+  return { prompt:'Name this drink from your own menu:', ticket:b, ticketType:'mybar', ckey:'My Bar · ' + b.name, houseItemId:b.id,
     options: shuffle([b.name, ...myBarNameDecoys(b, 3)]), answer:b.name,
     explain: b.name+': '+(b.method||'as specced').toLowerCase()+(b.glass ? ', '+b.glass.toLowerCase() : '')+'. '+(b.note||'') };
 }
 function qMyBarGlass(b){
   const wrong = sample([...new Set(COCKTAILS.map(x => x.glass))].filter(g => g !== b.glass), 3);
-  return { prompt:'Which glass does your '+b.name+' go in?',
+  return { prompt:'Which glass does your '+b.name+' go in?', ckey:'My Bar · ' + b.name, houseItemId:b.id,
     options: shuffle([b.glass, ...wrong]), answer:b.glass,
     explain: b.name+': '+b.glass+'. '+(b.garnish ? 'Garnish: '+b.garnish+'.' : '') };
 }
 function qMyBarSpecLine(b){
   const line = b.spec[Math.floor(Math.random()*b.spec.length)];
   const wrong = decoyLines({ name:b.name, spec:b.spec, src:'My Bar', group:b.family }, 3);
-  return { prompt:'Which line belongs in your '+b.name+'?',
+  return { prompt:'Which line belongs in your '+b.name+'?', ckey:'My Bar · ' + b.name, houseItemId:b.id,
     options: shuffle([line, ...wrong]), answer:line,
     explain: b.name+': '+b.spec.join(' · ') };
 }

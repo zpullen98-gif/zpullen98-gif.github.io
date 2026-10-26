@@ -281,6 +281,7 @@ document.addEventListener('keydown', e => {
     e.preventDefault(); return;
   }
   if(typing) return;
+  if(typeof quizLearnOwnsKey === 'function' && quizLearnOwnsKey(e)) return;
   if(typeof houseFlowOwnsKey === 'function' && houseFlowOwnsKey(e)) return;
   if(typeof methodStudyOwnsKey === 'function' && methodStudyOwnsKey(e)) return;
   if(typeof fallOwnsKey === 'function' && fallOwnsKey(e)) return;
@@ -469,7 +470,7 @@ document.getElementById('view').addEventListener('click', e => {
         const c = fc.deck[fc.idx];
         const ok = s.fields.every(f => s.opts[f][s.picked[f]] === (s.keyed && s.keyed[f] ? s.keyed[f](c[f]) : c[f]));
         recordCard(ok); fc.lastOk = ok;
-        say(ok ? 'All three correct.' : 'Not clean: check the reveal.');
+        say(ok ? 'Service details matched.' : 'Compare the recorded service details below.');
       }
     } }
   else if(act==='fc-next'){ fc.idx++; prepCard(); }
