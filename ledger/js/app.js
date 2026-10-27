@@ -1,6 +1,6 @@
 /* ---------------- RENDER & EVENTS ---------------- */
 const prTicks = {};  /* one stopwatch interval per drill id */
-const TABS = [['home','Home'],['level','Levels'],['mine','More'],['record','Record and progress'],['videos','Videos'],['menu','Menu'],['families','Families'],['library','Library'],['shots','Shots'],['na','Zero Proof'],['service','Behind the Stick'],['ontap','On Tap'],['coffee','Coffee & Tea'],['prep','Prep'],['producers','Producers'],['notes','Notes'],['flashcards','Flashcards'],['quiz','Quiz'],['practice','Practice'],['riffs','Riffs'],['tools','Tools']];
+const TABS = [['home','Home'],['level','Levels'],['mine','More'],['record','Record and progress'],['videos','Videos'],['menu','Menu'],['casks','Whisky & Brandy'],['families','Families'],['library','Library'],['shots','Shots'],['na','Zero Proof'],['service','Behind the Stick'],['ontap','On Tap'],['coffee','Coffee & Tea'],['prep','Prep'],['producers','Producers'],['notes','Notes'],['flashcards','Flashcards'],['quiz','Quiz'],['practice','Practice'],['riffs','Riffs'],['tools','Tools']];
 /* Announce something to assistive tech. The region is outside #view so it
    survives the innerHTML swap below. */
 function say(msg){
@@ -42,7 +42,7 @@ function render(kind){
      TypeError that blanked the whole app, and a stale hash from an older
      build is enough to cause one. Landing on Home is a recoverable state; a
      white screen is not. */
-  const views = {home:renderHome, menu:renderMenu, families:renderFamilies, library:renderLibrary,
+  const views = {home:renderHome, menu:renderMenu, casks:renderCasks, families:renderFamilies, library:renderLibrary,
     shots:renderShots, na:renderNA, service:renderService, ontap:renderOnTap, coffee:renderCoffee, producers:renderProducers, prep:renderPrep,
     flashcards:renderFlashcards, quiz:renderQuiz, riffs:renderRiffs,
     practice:renderPractice, tools:renderTools, notes:renderNotes, level:renderLevel, mine:renderMine,
@@ -167,6 +167,7 @@ function render(kind){
   if(typeof barCompassAfterRender === 'function') barCompassAfterRender();
   if(typeof houseFlowAfterRender === 'function') houseFlowAfterRender();
   if(typeof brewAfterRender === 'function') brewAfterRender();
+  if(typeof caskAfterRender === 'function') caskAfterRender();
   /* Guarded on the element, not on state.tab, like every other post-paint
      hook in this function. It asks YouTube about the ONE film the reader
      opened, and nothing at all on any other tab. */
@@ -227,6 +228,7 @@ function navTab(ck){
     if(typeof NAV_WANT_SEC !== 'undefined') NAV_WANT_SEC = null;
   }
   else if(ck === 'library'){ state.lib = { q:'', fam:'All', tier:'All', open:null, level: typeof chosenLevel === 'function' ? chosenLevel() : null }; }
+  else if(ck === 'casks' && typeof caskOpen === 'function') caskOpen('');
   if(before !== null && typeof screenKey === 'function' && screenKey() === before){ try{ window.scrollTo(0, 0); }catch(e2){} }
   render();
 }
@@ -287,6 +289,7 @@ document.addEventListener('keydown', e => {
   if(typeof fallOwnsKey === 'function' && fallOwnsKey(e)) return;
   if(typeof barCompassOwnsKey === 'function' && barCompassOwnsKey(e)) return;
   if(typeof brewOwnsKey === 'function' && brewOwnsKey(e)) return;
+  if(typeof caskOwnsKey === 'function' && caskOwnsKey(e)) return;
   if(e.key === '/'){ openSearch(); e.preventDefault(); return; }
   if(e.key === 'Escape' && state.sheet){ closeSheet(); return; }
   const click = sel => { const b = document.querySelector(sel); if(b){ b.click(); e.preventDefault(); return true; } return false; };
@@ -1153,6 +1156,7 @@ function captureLiveInputs(){
   if(state.fallMenu) grab('fall-menu-q', state.fallMenu, 'q');
   if(state.barCompass) grab('bar-compass-q', state.barCompass, 'q');
   if(state.brew) grab('brew-q', state.brew, 'q');
+  if(state.casks) grab('cask-q', state.casks, 'q');
   grab('spill-what', state.tools, 'spillWhat');
   grab('spill-cost', state.tools, 'spillCost');
   grab('ob-name',    state.tools, 'obName');

@@ -470,6 +470,7 @@ function fcPickHTML(){
   if(typeof barCompassDeckDef === 'function') house += rowsNav('The Bar Compass', [deckRow('compass:today'),deckRow('compass:all'),deckRow('compass:again')]);
   /* Coffee and tea (js/ui-brew.js): its deck, its misses and its quiz, apart from the levels */
   if(typeof brewDeckDef === 'function') house += rowsNav('Coffee and tea', [deckRow('brew'), deckRow('brew:again'), quizRow('brew', 'The coffee and tea quiz', typeof brewQuizLine === 'function' ? brewQuizLine() : '')]);
+  if(typeof caskDoorHTML === 'function') house += caskDoorHTML();
   /* the level's subjects, or every level's, then one row to the level's rounds */
   const L = lv ? levelInfo(lv).name : 'Every level';
   const books = levelBooks(lv || 0).map(function(b){
@@ -734,6 +735,7 @@ function todayStudyHTML(n){
     + culinaryStudyDoorHTML()
     + (typeof fallStudyDoorHTML === 'function' ? fallStudyDoorHTML() : '')
     + (typeof barCompassStudyDoorHTML === 'function' ? barCompassStudyDoorHTML() : '')
+    + (typeof caskStart === 'function' ? rowDoor('data-act="cask-practice" data-id="all"', 'The Cask Atlas', 'Whisky and brandy: today\u2019s recall, regional distinctions and service knowledge.') : '')
     + rowDoor('data-act="today" data-d="read" data-n="' + n + '"', 'Next reading', nr ? nr.title + ' · ' + L : 'Everything at ' + L + ' is read. The Library holds the rest.')
     + '<button class="door" data-act="door" data-d="today"><span class="door-name">Tonight’s session</span><span class="door-line">' + esc(tn.line) + '</span>' + (tn.sub ? '<span class="door-sub">' + esc(tn.sub) + '</span>' : '') + '</button>'
     + '</nav></section>';
@@ -919,6 +921,7 @@ function navRestoreScroll(){
 /* The route of the screen showing: its address and its key. */
 function routeNow(){
   const t = state.tab;
+  if(t === 'casks' && typeof caskRouteNow === 'function') return caskRouteNow();
   let hash = '#/' + t, key = t;
   if(t === 'menu' && state.menu.view === 'fall' && typeof fallMenuRouteNow === 'function') return fallMenuRouteNow();
   if(t === 'menu' && state.menu.view === 'compass' && typeof barCompassRouteNow === 'function') return barCompassRouteNow();
@@ -1031,7 +1034,8 @@ function navSync(kind){
     const compassReference = state.tab === 'menu' && state.menu.view === 'compass'
       && state.barCompass && state.barCompass.item && /^flashcards\//.test(NAV.key || '');
     const brewRef = typeof brewReference === 'function' && brewReference(NAV.key);
-    if(NAV.d > 0 && st.ootp === r.key && !fallReference && !compassReference && !brewRef){
+    const caskRef = typeof caskReference === 'function' && caskReference(NAV.key);
+    if(NAV.d > 0 && st.ootp === r.key && !fallReference && !compassReference && !brewRef && !caskRef){
       NAV.key = r.key;
       NAV.kind = 'back';
       try { h.back(); } catch (e) {}
@@ -1110,6 +1114,7 @@ function navBack(){
 /* ---- the logical parent of every screen (design 4.10) --------------------- */
 function parentTab(){
   const t = state.tab;
+  if(t === 'casks') return caskState().page === 'index' ? 'home' : 'casks';
   if(t === 'home') return null;
   if(t === 'notes' && state.noteOpen === '__methods') return state.methodStudyId ? 'notes' : 'library';
   if(t === 'level') return state.lt ? 'quiz' : 'home';
@@ -1144,6 +1149,7 @@ function parentTab(){
 }
 function applyParent(){
   const t = state.tab;
+  if(t === 'casks' && typeof caskParent === 'function'){ caskParent(); return true; }
   const p = parentTab();
   if(!p) return false;
   if(t === 'notes' && state.noteOpen === '__methods' && state.methodStudyId){ state.methodStudyId = ''; return true; }
@@ -1231,6 +1237,7 @@ function navWatchBack(){
 
 /* ---- the screens' own acts ---------------------------------------------------- */
 function navAct(act, data, el){
+  if(typeof caskAct === 'function'){ const action = caskAct(act, data); if(action) return action; }
   if(typeof barCompassAct === 'function'){ const action = barCompassAct(act, data); if(action) return action; }
   if(typeof fallAct === 'function'){ const action = fallAct(act, data); if(action) return action; }
   if(typeof brewAct === 'function'){ const action = brewAct(act, data); if(action) return action; }
@@ -1347,6 +1354,7 @@ function navNormalise(){
    true when it applied the address, false for applyRoute's own branches. */
 function applyNavRoute(parts){
   const tab = parts[0], a = parts[1], b = parts[2];
+  if(typeof caskRoute === 'function' && caskRoute(parts)) return true;
   if(typeof barCompassRoute === 'function' && barCompassRoute(parts)) return true;
   if(typeof fallMenuRoute === 'function' && fallMenuRoute(parts)) return true;
   if(typeof brewRoute === 'function' && brewRoute(parts)) return true;

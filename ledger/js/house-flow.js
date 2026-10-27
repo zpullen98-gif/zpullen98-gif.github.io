@@ -101,6 +101,7 @@ function houseFlowStudiesHTML(h){
   const videoCount = h && typeof hsVideoGroups === 'function' ? hsVideoGroups(h).reduce(function(n, g){ return n + g.videos.length; }, 0) : 0;
   return houseFlowHeader('Bar studies', 'Choose one drink or method, understand why it works, then rehearse it in your own words.')
     + '<div class="house-flow-collections">' + doors + '</div>'
+    + (typeof caskDoorHTML === 'function' ? caskDoorHTML() : '')
     + houseFlowDisclosure('craft', 'Explore the craft', 'Families, methods, guest care and the wider drinks library.', reference)
     + houseFlowDisclosure('videos', 'Watch the technique', videoCount + ' videos connected to the house training.', videos)
     + '<div class="house-flow-next">' + rowDoor('data-act="menu-view" data-v="rehearsal"', 'Continue to service rehearsal', 'Recall the ingredients, describe the drink and guide the guest.') + '</div>';

@@ -22,6 +22,7 @@ const NAV_CLUSTERS = [
      loads. */
   ['home', 'Home', ['home','level']],
   ['brennans', 'Brennan’s', ['menu']],
+  ['casks', 'Whisky & Brandy', ['casks']],
   ['practise', 'Practise', ['flashcards','quiz','practice','riffs']],
   ['library', 'Library', ['library','families','shots','na','ontap','coffee','prep','producers','service','notes','videos']],
   ['more', 'More', ['mine','record','tools']],
@@ -238,6 +239,7 @@ function buildSearchIndex(){
   if(typeof fallSearchEntries === 'function') ix.push(...fallSearchEntries());
   if(typeof barCompassSearchEntries === 'function') ix.push(...barCompassSearchEntries());
   if(typeof brewSearchEntries === 'function') ix.push(...brewSearchEntries());
+  if(typeof caskSearchEntries === 'function') ix.push(...caskSearchEntries());
   /* the book by its name: a book is never numbered where a reader sees it */
   COCKTAILS.forEach(c => ix.push({ t:c.name, s:c.family+' · '+c.spirit+' · '+bookName(c.tier),
     body:(c.spec.join(' ')+' '+c.method+' '+c.garnish).toLowerCase(), h:'#/library/'+slugify(c.name) }));
@@ -1448,7 +1450,7 @@ function dashboardHTML(){
      spike exactly when you were struggling: keep them out of the trend */
   /* a Coffee and tea round (mode brew, js/ui-brew.js) shows under Recent
      rounds and is no level's, so it stays out of the trend as a replay does */
-  const quizzes = (progress.quizzes || []).filter(q => !q.replay && q.mode !== 'brew');
+  const quizzes = (progress.quizzes || []).filter(q => !q.replay && q.mode !== 'brew' && q.mode !== 'casks');
   const qVals = quizzes.slice(-20).map(q => Math.round(q.score / (q.total || 10) * 100));
   const quizBlock = qVals.length >= 2
     ? svgSpark(qVals, 220, 44, 100) + '<div class="tiny dim">last '+qVals.length+' rounds · best '+Math.max(...qVals)+'%</div>'

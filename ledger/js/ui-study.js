@@ -806,7 +806,7 @@ const QUIZ_MODES = [
    because the wine pool is where the surviving mode lives. */
 var MODE_WAS = { beerwine: 'wine' };
 /* the rounds that are rows and never chips: the quick quiz (js/ui-nav.js) */
-var QUIZ_LABELS = { quick: 'Quick quiz', brew: 'Coffee and tea' };
+var QUIZ_LABELS = { quick: 'Quick quiz', brew: 'Coffee and tea', casks: 'The Cask Atlas' };
 function modeLabel(m){
   if(QUIZ_LABELS[m]) return QUIZ_LABELS[m];
   var lv = (typeof levelModeLabel === 'function') ? levelModeLabel(m) : null;
