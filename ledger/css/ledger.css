@@ -95,30 +95,16 @@ nav.tabs{ display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
 .tab-btn:hover{ color:var(--brass-2); border-color:var(--brass); }
 .tab-btn.active{ background:var(--brass); color:var(--ink); border-color:var(--brass); }
 
-/* bottom nav (mobile) */
+/* The primary navigation stays above the content on every screen size.
+   The legacy duplicate is retained for the shared renderer, but not shown. */
 #bnav{ display:none; }
 #sheet{ display:none; }
 @media (max-width: 639px){
-  nav.tabs .clusters{ display:none; }
   /* 48px, not 32px: the suite's return chip rests at the top-left of every
      wing, a 44px disc at x 10 to 54, y 10 to 54 on a phone, and at 32px the
      h1's line box began at y 40 with the T of The under the disc. 48px puts
      the line box at y 56. The standalone Ledger has no chip and keeps 32px. */
-  .wrap{ padding-bottom:96px; padding-top:calc(48px + env(safe-area-inset-top)); }
-  #bnav{ position:fixed; left:0; right:0; bottom:0; z-index:50; display:flex;
-    background:var(--felt-2); border-top:2px solid var(--brass);
-    padding:6px 4px calc(6px + env(safe-area-inset-bottom));
-    /* The bar's buttons are built by script; reserving the full height keeps
-       the empty bar from growing when they land (that growth was the wing's
-       whole Lighthouse layout-shift score). 60px = 48px buttons + padding. */
-    min-height:calc(60px + env(safe-area-inset-bottom)); }
-  .bnav-btn{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
-    background:transparent; border:none; color:var(--cream-dim); cursor:pointer;
-    /* 0.58rem was 9px uppercase for the only navigation a phone has; the word
-       is the whole button now, so it is set at a size a thumb can read */
-    font-family:inherit; font-size:0.76rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:600;
-    padding:6px 2px; min-height:48px; }
-  .bnav-btn.active{ color:var(--brass-2); }
+  .wrap{ padding-top:calc(48px + env(safe-area-inset-top)); }
   #sheet.open{ display:block; position:fixed; inset:0; z-index:55; }
   .sheet-back{ position:absolute; inset:0; background:rgba(0,0,0,0.55); }
   .sheet-panel{ position:absolute; left:0; right:0; bottom:0; background:var(--felt-2);
@@ -313,7 +299,7 @@ details.story[open] summary{ margin-bottom:6px; }
 *:focus-visible{ outline:2px solid var(--brass-2); outline-offset:2px; }
 
 @media (max-width: 639px){
-  .sw-toast{ bottom:calc(78px + env(safe-area-inset-bottom)); }
+  .sw-toast{ bottom:calc(16px + env(safe-area-inset-bottom)); }
   .btn{ min-height:44px; }
   .input{ min-height:44px; }
   /* the filter chips were the one control left at ~29px; 0.72rem is the

@@ -15,7 +15,7 @@
     --house-reading:'House Garamond',Georgia,serif;
     --house-shadow:0 12px 34px #0004;
   }
-  html{scroll-padding-bottom:100px}
+  html{scroll-padding-bottom:24px}
   body{background:#050d09;color:var(--cream);line-height:1.55}
   body::before{opacity:1;background:radial-gradient(ellipse at 50% 0,#263b26aa,transparent 65%),#050d09;z-index:-1}
   .wrap{max-width:1160px;padding:0 0 40px;margin:24px auto 0;background:var(--felt);border:1px solid #564627;box-shadow:0 24px 90px #0008}
@@ -191,7 +191,7 @@
     .study-modes{grid-template-columns:1fr}
   }
   @media(max-width:639px){
-    .wrap{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+    .wrap{padding-bottom:calc(40px + env(safe-area-inset-bottom))}
     header.masthead{min-height:175px;padding:calc(49px + env(safe-area-inset-top)) 18px 20px}
     header.masthead h1{font-size:1.55rem}.house-brand{font-size:.57rem;letter-spacing:.14em}
     .mast-orn{margin-top:14px}
@@ -199,19 +199,13 @@
     body[data-ledger-page='home'] header.masthead h1{font-size:2rem;max-width:360px}
     body[data-ledger-page='home'] .house-art img{object-position:51% 62%}
     #view,nav#tabs,footer.foot{margin-left:17px;margin-right:17px}
-    nav#tabs{margin-bottom:24px;border-top:0;height:1px}
-    nav.tabs .clusters{display:none}
-    #bnav{background:#0c1b13f5;backdrop-filter:blur(16px);border-top:1px solid #ae8e50;padding:7px 6px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -8px 28px #0006}
-    /* The five words (18 October 2026), measured in Chromium at .65rem with
-       this letter spacing, each column a fifth of the bar less 2px padding
-       a side: at 375 the columns are 72.4 wide (More 73.4), at 390 75.4 (More
-       76.4), every tab 50 tall in one row. The widest words are Brennan's,
-       64.4 not lit in the day service (61.4 lit, and at night), and Practise
-       with a two figure due pill, 65.4 by day (62.4 at night): 3 to 4 to
-       spare at 375, 6 to 7 at 390, none wrapping. The flex fallback the plan
-       held in reserve is not needed. */
-    .bnav-btn{font-family:var(--house-display);font-weight:500;font-size:.65rem;letter-spacing:.015em;min-height:50px;position:relative}
-    .bnav-btn.active::before{content:'';position:absolute;top:-8px;height:2px;left:20%;right:20%;background:var(--brass-2)}
+    /* Use the same top navigation as the other wings. Natural word widths
+       keep the house name and due count intact; longer custom names can
+       scroll within the row without widening the page. */
+    nav#tabs{margin-bottom:24px;border-top:0;overflow-x:auto}
+    nav#tabs .clusters{grid-template-columns:repeat(4,minmax(max-content,1fr)) auto;gap:0;justify-content:start}
+    nav#tabs .cl-btn{font-size:.7rem;letter-spacing:.015em;min-height:52px;padding:12px 5px;line-height:1.4;white-space:nowrap}
+    nav#tabs .cl-btn:focus-visible{outline-offset:-4px}
     .levels,nav.quiet{gap:12px}.home4{gap:22px}nav.quiet{padding-top:22px}
     .level{min-height:142px;padding:22px 13px 18px}.lv-name{font-size:.88rem}.lv-stat{font-size:1.05rem}
     .door{padding:17px 13px;min-height:165px}.door-name{font-size:.65rem}.door-line{font-size:1.1rem}
@@ -226,7 +220,7 @@
     .opt-btn{padding:15px 16px}.search-panel{top:6vh;padding:18px}
     .books{grid-template-columns:repeat(2,minmax(0,1fr))}.book{padding:13px 11px}.book-name{font-size:1.05rem}
     .stat-grid{gap:10px}.stat-num{font-size:2rem}
-    .sw-toast{bottom:calc(84px + env(safe-area-inset-bottom))}
+    .sw-toast{bottom:calc(16px + env(safe-area-inset-bottom))}
   }
   /* The consolidation (4 October 2026): the one Back, the scope chip, the
      rows of the three roots, More's quiet word. Built from the components
@@ -268,7 +262,7 @@
   details.lv-holds>summary{font-size:.94rem}
   .sub-line,.sub-note,.door-sub,.deck-count,.study-modes .tiny,.study-modes .bold{font-size:1rem;line-height:1.45}
   .study-toolbar{font-size:1rem}
-  @media(max-width:359px){.books{grid-template-columns:1fr}.lv-name{font-size:.8rem}.door-name{font-size:.6rem}.bnav-btn{font-size:.59rem}}
+  @media(max-width:359px){nav#tabs{margin-inline:10px}.books{grid-template-columns:1fr}.lv-name{font-size:.8rem}.door-name{font-size:.6rem}.bnav-btn{font-size:.59rem}}
   @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
   @media(forced-colors:active){
     .house-art,header.masthead::before,.study-face::before{display:none}
