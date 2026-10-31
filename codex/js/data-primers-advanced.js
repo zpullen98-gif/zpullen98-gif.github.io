@@ -97,7 +97,7 @@ facts:[
 ["North, cru by cru","Côte-Rôtie (Syrah + up to 20% Viognier co-fermented), Condrieu and Château-Grillet (Viognier), Saint-Joseph, Crozes-Hermitage (largest), Hermitage, Cornas (Syrah only, no white permitted), Saint-Péray (white/sparkling only)."],
 ["Hermitage's climats","Les Bessards (granite, structure), Le Méal, L'Ermite, Les Greffieux. Chapoutier bottles them separately; Chave blends on principle."],
 ["Châteauneuf's count","Thirteen traditionally; eighteen if colour variants are counted separately. Galets roulés store heat; Rayas ignores them (sand, pure Grenache); Beaucastel plants all thirteen."],
-["The southern ladder","Côtes du Rhône, then Villages, then Villages with a geographical name (Séguret, Sablet, Plan de Dieu), then cru (Châteauneuf-du-Pape, Gigondas, Vacqueyras, Rasteau, Cairanne, Vinsobres, Lirac, Tavel, Beaumes-de-Venise)."],
+["The southern ladder","Côtes du Rhône, then Villages, then Villages with a geographical name (Séguret, Sablet, Plan de Dieu), then cru (Châteauneuf-du-Pape, Gigondas, Vacqueyras, Rasteau, Cairanne, Vinsobres, Lirac, Tavel, Beaumes-de-Venise, and Laudun from the 2024 vintage)."],
 ["Fortified","Muscat de Beaumes-de-Venise and Rasteau VDN: mutage with 96% spirit, unlike Port's 77%."],
 ["Producers","Guigal's La-Las (Mouline, Landonne, Turque), Chave, Jaboulet's La Chapelle, Clape and Allemand in Cornas, Vernay in Condrieu."]],
 traps:[
@@ -306,12 +306,12 @@ facts:[
 ["Altitude science","UV at 1,000 to 1,500 m thickens skins: more colour, tannin and florals, with diurnal swing preserving acid. Catena's Adrianna vineyard is the research site."],
 ["Argentina's whites","Torrontés (Muscat of Alexandria × Criolla Chica) at Cafayate/Salta up to ~3,000 m: smells sweet, finishes dry."],
 ["Chile's axis","The 2011 law added Costa / Entre Cordilleras / Andes to the north-south valleys. Casablanca and Leyda coastal; Maipo's Puente Alto for Cabernet; Colchagua's Apalta; Itata/Maule for old-vine País and Carignan (VIGNO)."],
-["Carmenère","Identified by Boursiquot in 1994 after decades as 'Merlot'. Needs long hanging; hoisin, paprika, bell pepper."],
+["Carmenère","Identified by an ampelographer in 1994 after decades as 'Merlot'. Needs long hanging; hoisin, paprika, bell pepper."],
 ["Phylloxera","Chile remains essentially free of it: own-rooted vinifera behind desert, mountains and ocean."]],
 traps:[
 "Uco Valley is higher and cooler than Luján de Cuyo: the style is floral and taut, not bigger.",
 "Torrontés is aromatic but dry.",
-"Bonarda in Argentina is Douce Noir/Corbeau (California's Charbono), not Italy's Bonarda.",
+"Bonarda in Argentina is Douce Noire/Corbeau (California's Charbono), not Italy's Bonarda.",
 "Berlin Tasting (2004), not Paris, Chile's own blind-tasting coup."]},
 
 {cat:"Australia",

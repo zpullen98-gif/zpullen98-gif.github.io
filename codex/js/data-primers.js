@@ -54,7 +54,7 @@ facts:[
 ["Right Bank","Merlot with Cabernet Franc. Saint-Émilion, on limestone and clay, was classified in 1955 and is revised about once a decade; Ausone and Cheval Blanc, then Angélus, withdrew before the 2022 revision, which named Figeac and Pavie its two Premiers Grands Crus Classés A. Pomerol, on clay and gravel, has no classification: Pétrus and Le Pin stand unranked."],
 ["Graves and Pessac-Léognan","Home of Haut-Brion, on the gravel soils that gave Graves its name. Its classification of 1953, revised in 1959, is the one that covers both red and dry white, and every classified estate lies within Pessac-Léognan, an appellation since 1987. Smoke, gravel, warm stones."],
 ["Sauternes and Barsac","Sémillon, thin-skinned and prone to botrytis, with Sauvignon Blanc and a little Muscadelle. Autumn mists rise where the cold Ciron meets the warmer Garonne and breed noble rot. Barsac may sell under its own name or as Sauternes. d'Yquem stands alone as Premier Cru Supérieur in the 1855 list of sweet wines."],
-["Entre-Deux-Mers","Between the Garonne and the Dordogne, the appellation covers dry white only, mostly Sauvignon Blanc and Sémillon; the reds of the same land sell as Bordeaux or Bordeaux Supérieur."],
+["Entre-Deux-Mers","Between the Garonne and the Dordogne. Long a dry white appellation, mostly Sauvignon Blanc and Sémillon, it has also covered red since the 2023 vintage, under stricter rules of its own (Merlot, the two Cabernets, Malbec and Petit Verdot, denser planting and longer ageing before release); reds of the same land that do not meet them still sell as Bordeaux or Bordeaux Supérieur."],
 ["The grapes","Red: Cabernet Sauvignon, Merlot, Cabernet Franc, Petit Verdot, Malbec and Carménère. White: Sémillon, Sauvignon Blanc, Muscadelle. Since 2021, Bordeaux and Bordeaux Supérieur may also use a few heat-tolerant newcomers, such as Marselan and Touriga Nacional, up to a tenth of the blend."],
 ["The system","Nearly everything is château-bottled and blended. 'Grand Vin' is unregulated, while 'Grand Cru Classé' means an actual classification: know which one. In Saint-Émilion, 'Grand Cru' alone is an appellation, not a rank."]],
 traps:[
@@ -126,7 +126,7 @@ facts:[
 ["Northern crus","Côte-Rôtie (Syrah with up to 20 per cent Viognier, co-fermented, on the Côte Brune and Côte Blonde), Condrieu and Château-Grillet (Viognier alone), Saint-Joseph, Crozes-Hermitage (the largest), Hermitage (the hill of power), Cornas (Syrah alone, no white grapes allowed) and Saint-Péray (still and sparkling white from Marsanne and Roussanne)."],
 ["Hermitage","Syrah for decades of ageing, and great whites from Marsanne and Roussanne. Jaboulet's 'La Chapelle', Chave and Chapoutier are the names."],
 ["Châteauneuf-du-Pape","Grenache-led blends with Syrah and Mourvèdre, many grown over galets roulés, round stones that store the day's heat. Thirteen varieties are allowed, eighteen if each colour form counts, whites among them. Its growers' rules of the 1920s were a model for France's AOC system. Many bottles are embossed with the papal keys. Rayas is all Grenache; Beaucastel uses all thirteen."],
-["The southern ladder","Côtes du Rhône, then Côtes du Rhône Villages, then Villages with a named commune (Séguret, Sablet), then the crus: Châteauneuf-du-Pape, Gigondas, Vacqueyras, Vinsobres, Rasteau, Cairanne, Beaumes-de-Venise, Lirac and Tavel."],
+["The southern ladder","Côtes du Rhône, then Côtes du Rhône Villages, then Villages with a named commune (Séguret, Sablet), then the crus: Châteauneuf-du-Pape, Gigondas, Vacqueyras, Vinsobres, Rasteau, Cairanne, Beaumes-de-Venise, Lirac, Tavel and Laudun, raised to cru for the 2024 vintage."],
 ["Tavel","Rosé only: Grenache-based, deep in colour, dry and made for the table. Lirac, beside it, makes all three colours."],
 ["Sweet and fortified","Muscat de Beaumes-de-Venise (a Vin Doux Naturel from Muscat) and Rasteau's Vin Doux Naturel (Grenache): mutage, a dose of grape spirit, stops the fermentation and keeps the sugar."],
 ["Climate and grapes","The north is continental, on steep slopes; the south is Mediterranean, dried and cleaned by the mistral, a cold north wind. Southern reds: Grenache, Syrah, Mourvèdre, Cinsault, Carignan. Whites: Viognier and Marsanne in the north, Grenache Blanc, Clairette and Bourboulenc in the south, Roussanne in both."],
@@ -198,7 +198,7 @@ lead:"Sangiovese's Tuscan heartland (Chianti Classico, Brunello, Vino Nobile), t
 exam:"Chianti Classico's rules and black rooster, Brunello's grape and ageing, the Montepulciano grape-and-town trap, the Super Tuscans, Aglianico's DOCGs, Primitivo and Zinfandel, Etna's Nerello, and the island grapes.",
 facts:[
 ["Chianti Classico","At least 80 per cent Sangiovese from the historic zone between Florence and Siena, under the black rooster (Gallo Nero). Riserva: 24 months. Gran Selezione at the top: estate fruit, 30 months, at least 90 per cent Sangiovese with native grapes only from the 2027 vintage, and the right to name one of eleven village areas (UGAs) such as Radda or Panzano."],
-["Chianti","A separate and larger DOCG around the Classico zone, at least 70 per cent Sangiovese, with subzones such as Rufina and Colli Senesi."],
+["Chianti","A separate and larger DOCG around the Classico zone. Sangiovese: at least 70 per cent, the figure the Court prints and the rule for earlier vintages, lowered to 60 per cent from the 2026/27 harvest campaign by the rules amended in June 2026. Its subzones, such as Rufina and Colli Senesi, number eight since Terre di Vinci was added in 2026."],
 ["Brunello di Montalcino","All Sangiovese, called Brunello here and long known as Sangiovese Grosso, with two years in wood, released in the fifth year after the harvest, the sixth for Riserva. Biondi-Santi is credited with the first bottlings in the late nineteenth century. Rosso di Montalcino is the earlier-drinking sibling."],
 ["Vino Nobile di Montepulciano","Sangiovese, here called Prugnolo Gentile, from the TOWN of Montepulciano in Tuscany: the name is not the grape."],
 ["Montepulciano d'Abruzzo","The GRAPE Montepulciano in Abruzzo: dark, soft, everyday value. Its deep rosé, Cerasuolo d'Abruzzo, has its own DOC."],
@@ -369,7 +369,7 @@ exam:"Malbec's Mendoza homes and what altitude does, Torrontés and Salta's extr
 facts:[
 ["Mendoza Malbec","Malbec is the Côt of Cahors, made Argentina's own. Luján de Cuyo, the classic plush heartland and a DOC, lies at roughly 900 to 1,100 m; the Uco Valley (Tupungato, Gualtallary, Altamira) climbs to 1,500 m and beyond on stony, often calcareous benches. Altitude trades heat for sun: deep colour, violet perfume and fresh acid."],
 ["Salta & Torrontés","In Salta's Calchaquí Valleys, Cafayate sits at about 1,700 m and vineyards further up the valley pass 3,000 m, among the highest in the world. Torrontés Riojano, a cross of Muscat of Alexandria and Criolla Chica (Listán Prieto), gives a jasmine and peach nose over a dry palate."],
-["Argentina beyond Mendoza","Bonarda, the country's second red, is the Douce Noir of Savoie (California's Charbono), not an Italian Bonarda. San Juan grows Syrah in hot valleys; Patagonia's Río Negro and Neuquén give cooler Pinot Noir and Malbec. The law nests IP and IG names, with two DOCs, Luján de Cuyo and San Rafael."],
+["Argentina beyond Mendoza","Bonarda, the country's second red, is the Douce Noire of Savoie (California's Charbono), not an Italian Bonarda. San Juan grows Syrah in hot valleys; Patagonia's Río Negro and Neuquén give cooler Pinot Noir and Malbec. The law nests IP and IG names, with two DOCs, Luján de Cuyo and San Rafael."],
 ["Carmenère","An old Bordeaux variety, sold in Chile as Merlot until 1994, when ampelography unmasked it (DNA confirmed it later). It ripens weeks after Merlot, and picked early it shows a green pyrazine edge over black fruit; Colchagua (Apalta) and Cachapoal (Peumo) give it the long warm season it needs."],
 ["Chile's geography","Transverse valleys run from the Andes to the Pacific, and since 2011 a label may add Costa, Entre Cordilleras or Andes for the band the fruit grew in. North to south: Coquimbo (Limarí's Chardonnay on limestone and fog, Elqui's high Syrah), Aconcagua (with coastal Casablanca and San Antonio's Leyda for Sauvignon Blanc and Pinot Noir), the Central Valley (Maipo, Rapel with Cachapoal and Colchagua, Curicó, Maule), then the cooler, wetter South (Itata, Bío-Bío, Malleco)."],
 ["Chile's signatures","Maipo is Cabernet's home, the 'Bordeaux of Chile', with Puente Alto on the gravels of Alto Maipo; Colchagua grows Carmenère and Syrah; Maule's dry-farmed old Carignan (the VIGNO group) and Itata's old País and Cinsault lead the old-vine revival. Variety, vintage and valley each need 75%, or 85% for wine bound for the European Union."],
@@ -380,7 +380,7 @@ traps:[
 "Torrontés smells sweet, from its Muscat parent, but usually finishes dry: a classic blind-tasting feint.",
 "The Uco Valley sits higher and cooler than Luján de Cuyo: the style turns floral and taut, not bigger.",
 "Casablanca is coastal and cool, a white-wine valley: do not file it with warm Colchagua.",
-"Argentine Bonarda is Douce Noir, California's Charbono; the Bonarda of Oltrepò Pavese is Croatina, another grape again.",
+"Argentine Bonarda is Douce Noire, California's Charbono; the Bonarda of Oltrepò Pavese is Croatina, another grape again.",
 "Apalta is in Colchagua and Peumo in Cachapoal: both sit inside the Rapel Valley."]},
 
 {cat:"Australia",
@@ -698,6 +698,6 @@ facts:[
 traps:[
 "Cost percentage and margin are complements: a 25% cost is a 75% margin. Read which one the question wants.",
 "A 3 × markup is a 67% margin, not a '300% margin': vocabulary is half the battle in business questions.",
-"Price the glass from the wholesale cost, not from the bottle's list price.",
+"Two glass sums are examined: the classic rule prices one glass at the bottle's wholesale cost, while the Court's BTG costing starts from the bottle's list price, divided by 25 oz (750 ml) and multiplied by the pour, so a bottle listed at $100 gives a 5 oz glass at $20.",
 "Inventory is valued at what you paid, never at menu price."]}
 ];
