@@ -34,7 +34,7 @@ export const SOURCES = {
    checked out in this project (First Light, Calendar For Life): a stale
    list there is reported as a carry-forward note, never a failure. */
 export const SURFACES = [
-  { id: 'hub', dir: '.', shell: 'index.html', pages: ['index.html', 'privacy.html', 'terms.html', '404.html', 'pricing.html', 'pass/index.html'], worker: 'sw.js', cachePrefix: 'oot-shell-v', sharedRel: 'shared/' },
+  { id: 'hub', dir: '.', shell: 'index.html', pages: ['index.html', '404.html', 'pass/index.html'], worker: 'sw.js', cachePrefix: 'oot-shell-v', sharedRel: 'shared/' },
   { id: 'ledger', dir: 'ledger', shell: 'ledger/index.html', pages: ['ledger/index.html'], worker: 'ledger/sw.js', cachePrefix: 'oot-ledger-v', sharedRel: '../shared/' },
   { id: 'codex', dir: 'codex', shell: 'codex/index.html', pages: ['codex/index.html'], worker: 'codex/sw.js', cachePrefix: 'oot-codex-v', sharedRel: '../shared/' },
   { id: 'light', dir: 'light', shell: 'light/index.html', pages: ['light/index.html'], worker: 'light/sw.js', cachePrefix: 'oot-light-v', sharedRel: '../shared/', exempt: true },

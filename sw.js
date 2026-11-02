@@ -15,7 +15,7 @@
  * narrower scope, and a narrower scope always wins, so /ledger/ is served by
  * ledger/sw.js and never by this file.
  */
-const CACHE = 'oot-shell-v32';
+const CACHE = 'oot-shell-v33';
 
 /* Every page asks for shared/oot-config.js?v=23 and the cache is matched with
    ignoreSearch, so the precached copy answers whatever stamp the page wears:
@@ -27,8 +27,6 @@ const ASSETS = [
   './',
   './index.html',
   './service/oot-service.js',
-  './privacy.html',
-  './terms.html',
   './404.html',
   './pass/',
   './pass/index.html',
@@ -46,7 +44,7 @@ const ASSETS = [
   './assets/fonts/cinzel-normal-400-900-latin.woff2',
   './assets/fonts/cinzel-normal-400-900-latin-ext.woff2',
   './shared/oot-home.css',
-  /* privacy.html links the font licence; offline, that link should answer */
+  /* the font licences travel with the fonts */
   './shared/licenses/OFL.txt',
   './shared/licenses/NOTICE.md',
   './shared/oot-config.js',
@@ -64,7 +62,7 @@ const ASSETS = [
    else's: another app on the origin, or one of our own wings, both of which
    must be left entirely alone. */
 const OWNED_PAGES = new Set([
-  '/', '/index.html', '/privacy.html', '/terms.html', '/404.html',
+  '/', '/index.html', '/404.html',
   '/manifest.webmanifest', '/icon.svg', '/favicon.ico', '/sw.js',
 ]);
 const OWNED_DIRS = ['/service/', '/assets/', '/shared/', '/icons/', '/pass/'];

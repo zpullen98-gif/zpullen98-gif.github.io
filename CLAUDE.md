@@ -1,5 +1,15 @@
 # Outside Of Time, the live site
 
+## Personal use only (the owner's rule, 2 November 2026)
+
+Outside Of Time is the owner's own study tool. It is not sold, has no customers and is
+used by the owner alone. So it carries no privacy policy, no terms, no pricing page, no
+legal footer, no disclaimer and no paywall, subscription, account or permission gating,
+and none may be added. The free flag in shared/oot-config.js stays on. The hub's
+privacy.html, terms.html and pricing.html and every footer link to them were removed on
+2 November 2026. First Light and the Calendar still link to them from their own repos;
+that is a carry-forward for those repos, never an edit here.
+
 ## Service controls, October 2026
 
 Day/night service and the collection guide are written once in

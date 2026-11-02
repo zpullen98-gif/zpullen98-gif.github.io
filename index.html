@@ -252,18 +252,8 @@ section.pricing{padding:clamp(52px,10vw,88px) 0 clamp(40px,8vw,64px)}
 .offer-actions .btn{min-width:min(100%,20em)}
 .offer-actions .btn[disabled]{opacity:.55;cursor:default}
 
-footer.foot{
-  border-top:1px solid var(--line);padding:28px 0 40px;text-align:center;
-  color:var(--dim);font-size:.82rem;
-}
 /* inline-block + vertical padding so the footer links clear a 44px tap target
    on a phone; the border sits on an inner span so it still hugs the text */
-footer.foot a{
-  display:inline-block; margin:0 .35em; padding:13px .25em;
-  text-decoration:none; border-bottom:1px solid transparent;
-}
-footer.foot a span{border-bottom:1px solid var(--line-2)}
-footer.foot a:hover{color:var(--brass-hi)}
 /* No stacked opacity here: --dim on --ink is 6.5:1, but multiplying it by .75
    dropped this paragraph to 4.17:1, under the 4.5:1 minimum for 12px text. */
 .legal{margin-top:1em;font-size:.76rem;max-width:52ch;margin-inline:auto}
@@ -272,7 +262,6 @@ footer.foot a:hover{color:var(--brass-hi)}
    lives on the privacy page. The owner's rule for this page is the painting
    and its doors and nothing else, so the footer never grows a paragraph. The
    link keeps its 44px target with its own padding at the smaller size. */
-footer.foot a.notice{font-size:.72rem;padding-block:14px}
 </style>
 <link rel="stylesheet" href="assets/hub-poster.css?v=13">
 <script src="service/oot-service.js" data-wing="hub"></script>
@@ -310,11 +299,6 @@ footer.foot a.notice{font-size:.72rem;padding-block:14px}
   <p id="offline-status" class="sr-only" role="status" aria-live="polite"></p>
 </main>
 
-<footer class="foot">
-  <div class="wrap">
-    <a href="privacy.html"><span>Privacy</span></a><a href="terms.html"><span>Terms</span></a><a class="notice" href="privacy.html#notice"><span>From 26 September 2026</span></a>
-  </div>
-</footer>
 
 <script src="shared/oot-config.js?v=32"></script>
 <script src="shared/oot-profiles.js?v=32"></script>
