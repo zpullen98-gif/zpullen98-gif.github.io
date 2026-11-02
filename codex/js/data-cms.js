@@ -2550,7 +2550,11 @@ var CMS = {
     ],
     "regions": [
      "provence",
-     "languedoc-roussillon"
+     "languedoc-roussillon",
+     "south-west-france",
+     "corsica",
+     "jura",
+     "savoie"
     ],
     "serviceRef": [],
     "techniques": [
@@ -3079,7 +3083,8 @@ var CMS = {
      "Nebbiolo"
     ],
     "regions": [
-     "lombardy"
+     "lombardy",
+     "emilia-romagna"
     ],
     "serviceRef": [
      "sparkling",
@@ -3871,9 +3876,13 @@ var CMS = {
     ],
     "regions": [
      "umbria",
+     "marche",
+     "lazio",
      "abruzzo",
      "campania",
-     "puglia"
+     "puglia",
+     "calabria-basilicata",
+     "liguria-valle-d-aosta"
     ],
     "serviceRef": [
      "decanting"
@@ -4271,6 +4280,7 @@ var CMS = {
     ],
     "regions": [
      "rias-baixas",
+     "ribeiro-ribeira-sacra",
      "bierzo"
     ],
     "serviceRef": [],
@@ -5386,7 +5396,10 @@ var CMS = {
     ],
     "regions": [
      "jumilla-yecla",
-     "la-mancha"
+     "la-mancha",
+     "navarra",
+     "txakoli",
+     "canary-islands"
     ],
     "serviceRef": [],
     "techniques": [
@@ -5685,6 +5698,9 @@ var CMS = {
      "douro",
      "dao",
      "bairrada",
+     "lisboa",
+     "tejo",
+     "setubal",
      "alentejo",
      "madeira"
     ],
@@ -5894,7 +5910,9 @@ var CMS = {
      "nahe",
      "franken",
      "baden",
-     "ahr"
+     "ahr",
+     "wurttemberg",
+     "mittelrhein"
     ],
     "serviceRef": [
      "temperatures",
@@ -6178,7 +6196,8 @@ var CMS = {
      "wachau-kamptal-kremstal",
      "burgenland",
      "steiermark",
-     "wien"
+     "wien",
+     "weinviertel"
     ],
     "serviceRef": [],
     "techniques": [
@@ -6427,7 +6446,15 @@ var CMS = {
      "Furmint"
     ],
     "regions": [
-     "tokaj"
+     "tokaj",
+     "eger",
+     "matra",
+     "sopron",
+     "badacsony",
+     "somlo",
+     "szekszard",
+     "villany",
+     "kunsag"
     ],
     "serviceRef": [
      "temperatures"
@@ -6656,7 +6683,14 @@ var CMS = {
     "regions": [
      "santorini",
      "naoussa",
-     "nemea"
+     "nemea",
+     "amyndeon",
+     "goumenissa",
+     "rapsani",
+     "mantinia",
+     "crete",
+     "kefalonia",
+     "samos"
     ],
     "serviceRef": [],
     "techniques": []
@@ -7505,7 +7539,8 @@ var CMS = {
     ],
     "regions": [
      "finger-lakes",
-     "long-island"
+     "long-island",
+     "virginia"
     ],
     "serviceRef": [],
     "techniques": [
@@ -8602,10 +8637,12 @@ var CMS = {
      "Syrah / Shiraz"
     ],
     "regions": [
+     "elqui-limari",
      "aconcagua-casablanca",
      "maipo-valley",
      "colchagua",
-     "curico-maule"
+     "curico-maule",
+     "itata-bio-bio"
     ],
     "serviceRef": [],
     "techniques": [
@@ -8843,6 +8880,8 @@ var CMS = {
     ],
     "regions": [
      "salta",
+     "la-rioja",
+     "san-juan",
      "mendoza",
      "patagonia"
     ],
@@ -10010,7 +10049,8 @@ var CMS = {
      "champagne",
      "penedes",
      "lombardy",
-     "veneto"
+     "veneto",
+     "emilia-romagna"
     ],
     "serviceRef": [
      "sparkling",

@@ -234,7 +234,7 @@ function v39Countries() { var d = v39Data(); return d ? v39Obj(d.countries) : {}
 function v39Join() {
   var d = v39Data();
   var j = d ? v39Obj(d.join) : {};
-  return { aliases: v39Obj(j.aliases), terroir: v39Obj(j.terroir), cats: v39Obj(j.cats), grapes: v39Obj(j.grapes), countryOnly: v39List(j.countryOnly) };
+  return { aliases: v39Obj(j.aliases), terroir: v39Obj(j.terroir), cats: v39Obj(j.cats), grapes: v39Obj(j.grapes), countryOnly: v39List(j.countryOnly), elsewhere: v39List(j.elsewhere) };
 }
 function v39Has() { return v39Regions().length > 0 || Object.keys(v39Countries()).length > 0; }
 
@@ -246,6 +246,9 @@ function v39Has() { return v39Regions().length > 0 || Object.keys(v39Countries()
    keys and names first), so the resolver below is its mirror rule for rule. */
 var V39_US_SHEETS = ['california', 'oregon', 'washington', 'new-york'];
 var V39_US_WORDS = ['usa', 'us', 'u s', 'u s a', 'united states', 'united states of america'];
+/* The country of a string naming a place with no record (REGIONS.join.elsewhere: Israel, Idaho), which no target is
+   in, so the string resolves to nothing rather than to a namesake elsewhere (codex56, regions-join's ELSEWHERE_GROUP). */
+var V39_ELSEWHERE = '!elsewhere';
 function v39Own(o, k) { return Object.prototype.hasOwnProperty.call(o, k); }
 /* A country key to its country: the four US sheets are one. */
 function v39CountryGroup(key) { return V39_US_SHEETS.indexOf(key) >= 0 ? 'usa' : String(key == null ? '' : key); }
@@ -297,6 +300,7 @@ function v39Index() {
     v39Targets(j.aliases[k]).forEach(function (t) { v39AddTarget(keys[t] ? ix.country : ix.article, v39Fold(k), t); });
   });
   V39_US_WORDS.forEach(function (w) { ix.words[w] = 'usa'; });
+  j.elsewhere.forEach(function (w) { var k = v39Fold(w); if (k && !v39Own(ix.words, k)) ix.words[k] = V39_ELSEWHERE; });
   ix.articleKeys = Object.keys(ix.article);
   ix.countryKeys = Object.keys(ix.country);
   V39_IDX = ix;
@@ -398,7 +402,8 @@ function v39DepthWord(depth) {
    the rule of .scripts/regions/regions-join.cjs, step for step: fold and
    split on commas; the string's country from the parts right to left (usa,
    us or united states, else a country key, name, alias or TERROIR row whose
-   targets lie in one country); then MOST SPECIFIC FIRST, the parts left to
+   targets lie in one country; a place with no record, from join.elsewhere,
+   names a country no target is in); then MOST SPECIFIC FIRST, the parts left to
    right, a part that is exactly a region name, an alias or a TERROIR row
    names its first article in that country (another country's is refused);
    then a part holding a key of that country as whole words (the longest),
