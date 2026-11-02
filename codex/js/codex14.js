@@ -389,17 +389,6 @@ function ootCodexGaps() {
   } catch (e) { return []; }
 }
 
-/* ---- the foot line ----------------------------------------------------
-   Every wing and The Pass carry the same pair, pointing at the root pages.
-   The Codex never had a foot line of its own, so it is added here at the end
-   of the home screen rather than patched into a copied file. */
-function ootCodexFoot() {
-  var f = document.createElement('footer');
-  f.className = 'oot-foot';
-  f.innerHTML = '<a href="../privacy.html">Privacy</a> \u00b7 <a href="../terms.html">Terms</a>';
-  return f;
-}
-
 var _v14Render = render;
 render = function () {
   if (S.view === 'oot-pass' && window.OOT && OOT.pass) {
@@ -423,12 +412,6 @@ render = function () {
     }
   }
   var out = _v14Render.apply(this, arguments);
-  try {
-    if (S.view === 'home') {
-      var appEl = document.getElementById('app');
-      if (appEl && !appEl.querySelector('.oot-foot')) appEl.appendChild(ootCodexFoot());
-    }
-  } catch (e) {}
   return out;
 };
 
@@ -456,9 +439,6 @@ render = function () {
 
 (function () {
   var css = document.createElement('style');
-  css.textContent = '.oot-sec-grid{margin-top:0!important}' +
-    '.oot-foot{text-align:center;margin:40px 0 12px;font-size:12px;color:var(--gold-soft,#c9b27a);letter-spacing:.4px}' +
-    '.oot-foot a{color:inherit;text-decoration:underline;text-underline-offset:2px}' +
-    '.oot-foot a:hover{color:var(--gold,#e2c777)}';
+  css.textContent = '.oot-sec-grid{margin-top:0!important}';
   document.head.appendChild(css);
 })();
