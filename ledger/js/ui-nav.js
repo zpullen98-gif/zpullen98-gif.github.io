@@ -281,6 +281,7 @@ function cardByKey(key){
   if(String(key).indexOf('Bar Compass · ') === 0 && typeof barCompassCardByKey === 'function') return barCompassCardByKey(key);
   if(String(key).indexOf('Fall 2026 · ') === 0 && typeof fallCardByKey === 'function') return fallCardByKey(key);
   if(String(key).indexOf('Brew Guide · ') === 0 && typeof brewCardByKey === 'function') return brewCardByKey(key);
+  if(String(key).indexOf('Back Bar · ') === 0 && typeof backbarCardByKey === 'function') return backbarCardByKey(key);
   if(String(key).indexOf('Words · ') === 0) return wordCardByKey(key);
   if(String(key).indexOf('Components · ') === 0) return componentCardByKey(key);
   if(String(key).indexOf('Producers · ') === 0) return producerCardByKey(key);
@@ -292,6 +293,7 @@ function deckDef(id, lvArg){
   if((id === 'compass' || id.indexOf('compass:') === 0) && typeof barCompassDeckDef === 'function') return barCompassDeckDef(id);
   if((id === 'fall' || id.indexOf('fall:') === 0) && typeof fallDeckDef === 'function') return fallDeckDef(id);
   if((id === 'brew' || id.indexOf('brew:') === 0) && typeof brewDeckDef === 'function') return brewDeckDef(id);
+  if((id === 'backbar' || id.indexOf('backbar:') === 0) && typeof backbarDeckDef === 'function') return backbarDeckDef(id);
   const lv = lvArg === undefined ? scopeLevel('flashcards') : lvArg;
   const L = lv ? levelInfo(lv).name : '';
   if(id === 'menu') return { name: 'The whole menu', preset: { src: 'My Bar' }, house: true };
@@ -470,6 +472,8 @@ function fcPickHTML(){
   if(typeof barCompassDeckDef === 'function') house += rowsNav('The Bar Compass', [deckRow('compass:today'),deckRow('compass:all'),deckRow('compass:again')]);
   /* Coffee and tea (js/ui-brew.js): its deck, its misses and its quiz, apart from the levels */
   if(typeof brewDeckDef === 'function') house += rowsNav('Coffee and tea', [deckRow('brew'), deckRow('brew:again'), quizRow('brew', 'The coffee and tea quiz', typeof brewQuizLine === 'function' ? brewQuizLine() : '')]);
+  /* the liquor shelf (js/ui-backbar.js): its deck, its misses and its quiz, apart from the levels */
+  if(typeof backbarDeckDef === 'function') house += rowsNav('The liquor shelf', [deckRow('backbar'), deckRow('backbar:again'), quizRow('backbar', 'The liquor shelf quiz', typeof backbarQuizLine === 'function' ? backbarQuizLine() : '')]);
   if(typeof caskDoorHTML === 'function') house += caskDoorHTML();
   /* the level's subjects, or every level's, then one row to the level's rounds */
   const L = lv ? levelInfo(lv).name : 'Every level';
@@ -668,6 +672,7 @@ function studyHashOf(key){
   if(d.src === 'Fall 2026' && typeof fallHref === 'function') return fallHref(d.itemId);
   if(d.src === 'Bar Compass' && typeof barCompassHref === 'function') return barCompassHref(d.itemId);
   if(d.src === 'Brew Guide' && typeof brewHref === 'function') return brewHref(d.itemId);
+  if(d.src === 'Back Bar' && typeof backbarHref === 'function') return backbarHref(d.itemId);
   if(d.src === 'Cocktails') return '#/library/' + slugify(d.name);
   if(d.src === 'My Bar') return '#/menu/' + slugify(d.name);
   if(d.src === 'Shots') return '#/shots/' + slugify(d.name);
@@ -926,6 +931,7 @@ function routeNow(){
   if(t === 'menu' && state.menu.view === 'fall' && typeof fallMenuRouteNow === 'function') return fallMenuRouteNow();
   if(t === 'menu' && state.menu.view === 'compass' && typeof barCompassRouteNow === 'function') return barCompassRouteNow();
   if(t === 'menu' && state.menu.view === 'brew' && typeof brewRouteNow === 'function') return brewRouteNow();
+  if(t === 'menu' && state.menu.view === 'backbar' && typeof backbarRouteNow === 'function') return backbarRouteNow();
   if(t === 'notes' && state.noteOpen === '__methods'){
     const id = typeof methodStudy === 'function' && methodStudy(state.methodStudyId) ? state.methodStudyId : '';
     hash = '#/notes/studies' + (id ? '/' + id : ''); key = 'notes/studies' + (id ? '/' + id : '');
@@ -1034,8 +1040,9 @@ function navSync(kind){
     const compassReference = state.tab === 'menu' && state.menu.view === 'compass'
       && state.barCompass && state.barCompass.item && /^flashcards\//.test(NAV.key || '');
     const brewRef = typeof brewReference === 'function' && brewReference(NAV.key);
+    const backbarRef = typeof backbarReference === 'function' && backbarReference(NAV.key);
     const caskRef = typeof caskReference === 'function' && caskReference(NAV.key);
-    if(NAV.d > 0 && st.ootp === r.key && !fallReference && !compassReference && !brewRef && !caskRef){
+    if(NAV.d > 0 && st.ootp === r.key && !fallReference && !compassReference && !brewRef && !backbarRef && !caskRef){
       NAV.key = r.key;
       NAV.kind = 'back';
       try { h.back(); } catch (e) {}
@@ -1159,6 +1166,7 @@ function applyParent(){
     if(state.menu.view === 'fall' && typeof fallState === 'function' && fallState().item){ fallState().item = ''; fallState().part = 'read'; return true; }
     if(state.menu.view === 'compass' && typeof barCompassState === 'function' && (barCompassState().item || barCompassState().workshop)){ barCompassState().item = ''; barCompassState().workshop = ''; return true; }
     if(state.menu.view === 'brew' && typeof brewState === 'function' && brewState().item){ brewState().item = ''; return true; }
+    if(state.menu.view === 'backbar' && typeof backbarState === 'function' && backbarState().item){ backbarState().item = ''; return true; }
     if((state.menu.view || 'menu') !== 'menu'){
       const group = typeof houseFlowGroup === 'function' ? houseFlowGroup(state.menu.view) : 'menu';
       state.menu.view = group !== state.menu.view ? group : 'menu';
@@ -1241,6 +1249,7 @@ function navAct(act, data, el){
   if(typeof barCompassAct === 'function'){ const action = barCompassAct(act, data); if(action) return action; }
   if(typeof fallAct === 'function'){ const action = fallAct(act, data); if(action) return action; }
   if(typeof brewAct === 'function'){ const action = brewAct(act, data); if(action) return action; }
+  if(typeof backbarAct === 'function'){ const action = backbarAct(act, data); if(action) return action; }
   if(act === 'go' && data.tab === 'notes' && state.noteOpen === '__methods'){ state.noteOpen = null; state.methodStudyId = ''; }
   if(act === 'back'){ navBack(); return 'done'; }
   if(act === 'hash'){ gotoHash(data.h); return 'done'; }
@@ -1358,6 +1367,7 @@ function applyNavRoute(parts){
   if(typeof barCompassRoute === 'function' && barCompassRoute(parts)) return true;
   if(typeof fallMenuRoute === 'function' && fallMenuRoute(parts)) return true;
   if(typeof brewRoute === 'function' && brewRoute(parts)) return true;
+  if(typeof backbarRoute === 'function' && backbarRoute(parts)) return true;
   /* A menu address must also close a learning hub on devices without a
      current house, where houseStudyRoute deliberately does nothing. */
   if(tab === 'menu' && a !== 'view') state.menu.view = 'menu';
@@ -1436,9 +1446,10 @@ function applyNavRoute(parts){
   if(tab === 'menu' && (a === 'section' || a === 'view')){
     state.tab = 'menu';
     if(a === 'view'){
-      state.menu.view = ['stock', 'add', 'fall', 'compass', 'studies', 'rehearsal', 'reference'].concat(typeof brewOpen === 'function' ? ['brew'] : []).indexOf(b) >= 0 ? b : 'menu';
-      /* #/menu/view/brew reads as the index (js/ui-brew.js) */
+      state.menu.view = ['stock', 'add', 'fall', 'compass', 'studies', 'rehearsal', 'reference'].concat(typeof brewOpen === 'function' ? ['brew'] : []).concat(typeof backbarOpen === 'function' ? ['backbar'] : []).indexOf(b) >= 0 ? b : 'menu';
+      /* #/menu/view/brew reads as the index (js/ui-brew.js), #/menu/view/backbar as the shelf (js/ui-backbar.js) */
       if(state.menu.view === 'brew') brewOpen('');
+      if(state.menu.view === 'backbar') backbarOpen('');
       return true;
     }
     state.menu.view = 'menu';

@@ -1,0 +1,77 @@
+/* The liquor shelf, under the house's tab (4 November 2026): the house tokens in
+   day and night service, typography rather than pictures, every control 44px.
+   The forty-five second line reads in the house reading face, the sale sits
+   under a brass rule, and the ten and the twenty stay quiet beneath them. */
+.backbar-index,.backbar-detail{max-width:960px;margin-inline:auto;min-width:0}
+.backbar-heading{padding:20px 0 24px;border-bottom:1px solid var(--house-line);margin-bottom:20px}
+.backbar-heading h2{font:500 clamp(1.5rem,4vw,2.25rem)/1.3 var(--house-display,Georgia,serif);color:var(--brass-2);margin:12px 0;text-wrap:balance;overflow-wrap:anywhere}
+.backbar-heading p{font-size:1.05rem;line-height:1.7;max-width:740px;margin:8px 0}
+.backbar-caption{font-size:.9rem;line-height:1.7;color:var(--cream-dim);margin:12px 0}
+.backbar-soft{color:var(--cream-dim);font-size:.9em;font-weight:400}
+.backbar-label{display:inline-block;margin-right:6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--brass-2);font-weight:600}
+p.backbar-label{display:block;margin:14px 0 6px}
+.backbar-practice,.backbar-links{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.backbar-practice .btn,.backbar-links .btn,.backbar-read-link{min-height:44px;white-space:normal;text-align:left;line-height:1.5;overflow-wrap:anywhere}
+.backbar-search{display:grid;gap:8px;margin:22px 0 12px}
+.backbar-search label{font-size:.9rem;color:var(--cream-dim)}
+.backbar-search input{min-height:48px;width:100%;min-width:0}
+.backbar-group{margin:26px 0}
+.backbar-group-h{font:500 1.25rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0 0 12px}
+.backbar-rows,.backbar-confirm-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.backbar-row,.backbar-door,.backbar-confirm-row,.backbar-use-row,.backbar-family-row{display:flex;flex-direction:column;gap:8px;min-width:0;padding:18px 20px;color:var(--cream);background:var(--felt-2);border:1px solid var(--house-line);border-top:2px solid var(--brass);text-decoration:none}
+.backbar-row,.backbar-door{min-height:44px}
+.backbar-row:hover,.backbar-door:hover{border-color:var(--brass);background:var(--felt-3)}
+.backbar-row-name,.backbar-use-name,.backbar-confirm-name{font:500 1.15rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0;overflow-wrap:anywhere}
+.backbar-row-line{font-size:.95rem;line-height:1.6}
+.backbar-row-foot{margin-top:auto;padding-top:6px;font-size:.84rem;color:var(--cream-dim)}
+.backbar-confirm-row{border-top-style:dashed}
+.backbar-confirm-row p{margin:0;font-size:.95rem;line-height:1.7}
+.backbar-ask{padding-top:6px;border-top:1px solid var(--house-line)}
+.backbar-door{margin:16px 0}.backbar-door strong{font:500 1.2rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2)}
+.backbar-door>span:last-child{font-size:.95rem;line-height:1.7;color:var(--cream-dim)}
+.backbar-detail{display:grid;gap:18px}
+.backbar-detail>.backbar-heading,.backbar-detail>.backbar-practice{margin-bottom:0}
+.backbar-say,.backbar-aka,.backbar-maker{font-size:1rem!important;line-height:1.7}
+.backbar-probable{font-weight:600;color:var(--brass-2)}
+.backbar-panel{padding:22px;border:1px solid var(--house-line);background:var(--felt-2);min-width:0}
+.backbar-panel h3{font:500 1.2rem/1.5 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0 0 14px}
+.backbar-panel p,.backbar-panel li,.backbar-panel dd{font-size:1rem;line-height:1.8}
+.backbar-panel p{margin:0 0 12px}.backbar-panel p:last-child{margin-bottom:0}
+.backbar-panel p.backbar-label{font-size:.78rem;line-height:1.5;margin:14px 0 6px}.backbar-panel p.backbar-label:first-of-type{margin-top:0}
+.backbar-panel ul{margin:0;padding-left:24px}.backbar-panel li{margin-bottom:8px}
+.backbar-panel blockquote{margin:0;padding:10px 0 10px 16px;border-left:2px solid var(--brass);font-size:1.12rem;line-height:1.8}
+.backbar-panel p.backbar-s45{font-family:var(--house-reading);font-size:1.3rem;line-height:1.6;color:var(--cream);max-width:720px;margin:0 0 18px}
+.backbar-sale{border-top:2px solid var(--brass);padding-top:12px;margin:0 0 18px;max-width:720px}
+.backbar-sale p:not(.backbar-label){font-size:1.08rem;line-height:1.7}
+.backbar-quiet p{font-size:.95rem;line-height:1.7;color:var(--cream-dim);margin:0 0 8px}
+.backbar-facts{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:0 0 16px}
+.backbar-facts dt{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--brass-2);font-weight:600;padding-top:3px}
+.backbar-facts dd{margin:0}
+/* a fact the schema writes in lower case (a yearly bottle's "varies by release", a place that opens on "the") still starts its line with a capital */
+.backbar-facts dd::first-letter{text-transform:uppercase}
+.backbar-panel>.backbar-facts:last-child,.backbar-facts dd:last-child{margin-bottom:0}
+.backbar-use-rows{display:grid;gap:12px;margin:12px 0}
+.backbar-use-row .backbar-links,.backbar-family-row .backbar-links{margin:6px 0 0}
+.backbar-printed{font-size:.95rem!important;line-height:1.7;margin:0!important}
+.backbar-not{font-weight:600;color:var(--brass-2)}
+.backbar-sub{font:500 1.08rem/1.5 var(--house-display,Georgia,serif);color:var(--brass-2);margin:20px 0 4px}
+.backbar-family{display:grid;gap:12px}
+.backbar-family-name{font:500 1.05rem/1.5 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0!important}
+.backbar-asks{margin-top:16px;padding-top:12px;border-top:1px solid var(--house-line)}
+.backbar-pointer{margin-top:16px!important;padding:10px 14px;border-left:2px solid var(--brass);background:var(--felt-3);font-size:.95rem!important}
+.backbar-detail a:not(.btn),.backbar-sources a{color:var(--brass-2);text-underline-offset:3px;overflow-wrap:anywhere}
+.backbar-sources a,.backbar-panel a.hs-link{display:inline-flex;align-items:center;min-height:44px}
+.backbar-recall summary,.backbar-sources summary{cursor:pointer;padding:12px 0;min-height:44px;line-height:1.6;color:var(--brass-2)}
+.backbar-recall+.backbar-recall{border-top:1px solid var(--house-line)}
+.backbar-sources{padding:0 22px;border:1px solid var(--house-line);background:var(--felt-2)}
+.backbar-sources ul{margin:0;padding-left:24px}.backbar-sources li{margin-bottom:10px;line-height:1.6}
+.backbar-question{font:500 clamp(1.2rem,3vw,1.5rem)/1.6 var(--house-display,Georgia,serif);color:var(--brass-2);max-width:720px;text-align:center}
+.backbar-answer{max-width:720px;font-size:1.05rem;line-height:1.8}.backbar-answer p{margin:0 0 12px}
+.backbar-empty{padding:20px 0;line-height:1.8}
+.backbar-row:focus-visible,.backbar-door:focus-visible,.backbar-recall summary:focus-visible,.backbar-sources summary:focus-visible{outline:3px solid var(--brass-2);outline-offset:4px}
+/* night service: the brass rules stay lit on the felt, the reading face in cream */
+html[data-service="night"] .backbar-sale{border-top-color:var(--brass-2)}
+html[data-service="night"] .backbar-panel p.backbar-s45{color:var(--cream)}
+html[data-service="night"] .backbar-row:hover,html[data-service="night"] .backbar-door:hover{border-color:var(--brass-2)}
+@media(max-width:639px){.backbar-rows,.backbar-confirm-rows{grid-template-columns:1fr}.backbar-panel,.backbar-row,.backbar-door,.backbar-confirm-row,.backbar-use-row,.backbar-family-row{padding:16px}.backbar-sources{padding:0 16px}.backbar-facts{grid-template-columns:1fr;gap:2px}.backbar-facts dd{margin-bottom:8px}.backbar-practice .btn{flex:1 1 160px}.backbar-panel p.backbar-s45{font-size:1.18rem}}
+@media print{.backbar-practice,.backbar-search{display:none}.backbar-row,.backbar-panel,.backbar-door,.backbar-confirm-row,.backbar-use-row,.backbar-family-row{background:white;color:#222;border-color:#777;break-inside:avoid}.backbar-heading h2,.backbar-panel h3,.backbar-row-name{color:#222}}

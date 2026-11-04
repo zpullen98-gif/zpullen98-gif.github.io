@@ -776,6 +776,7 @@ function renderMenu(){
   else if(v === 'compass' && typeof renderBarCompass === 'function') inner = renderBarCompass();
   else if(v === 'fall' && typeof renderFallMenu === 'function') inner = renderFallMenu();
   else if(v === 'brew' && typeof renderBrew === 'function') inner = renderBrew();
+  else if(v === 'backbar' && typeof renderBackbar === 'function') inner = renderBackbar();
   else if(v === 'stock') inner = menuStockHTML();
   else if(v === 'add'){
     /* the four doors, the review step and the form, all drawn by renderImport,

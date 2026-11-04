@@ -1,7 +1,7 @@
 /* The house's learning rooms. These are reading and navigation helpers only:
    every practice door uses an existing deck or action and its existing keys. */
 function houseFlowGroup(view){
-  if(['studies', 'compass', 'brew'].indexOf(view) >= 0) return 'studies';
+  if(['studies', 'compass', 'brew', 'backbar'].indexOf(view) >= 0) return 'studies';
   if(view === 'rehearsal') return 'rehearsal';
   if(['reference', 'stock', 'add'].indexOf(view) >= 0) return 'reference';
   return 'menu';
@@ -19,7 +19,8 @@ function houseFlowNavHTML(view){
   if(group === 'menu') secondary = [['menu', 'The menu']].concat(typeof renderFallMenu === 'function' ? [['fall', 'Fall 2026']] : []);
   if(group === 'studies') secondary = [['studies', 'Overview']]
     .concat(typeof renderBarCompass === 'function' ? [['compass', 'The Bar Compass']] : [])
-    .concat(typeof renderBrew === 'function' ? [['brew', 'Coffee and tea']] : []);
+    .concat(typeof renderBrew === 'function' ? [['brew', 'Coffee and tea']] : [])
+    .concat(typeof renderBackbar === 'function' ? [['backbar', 'The liquor shelf']] : []);
   if(group === 'reference') secondary = [['reference', 'Overview'], ['stock', 'The stock'], ['add', 'Add drinks']];
   return '<div class="house-flow-nav"><nav class="house-sections" aria-label="House learning sections">' + buttons(primary, group) + '</nav>'
     + (secondary.length > 1 ? '<nav class="house-subsections" aria-label="' + esc(primary.find(function(item){ return item[0] === group; })[1]) + ' pages">' + buttons(secondary, view) + '</nav>' : '') + '</div>';
@@ -88,6 +89,7 @@ function houseFlowOwnsKey(e){
 function houseFlowStudiesHTML(h){
   const doors = (typeof barCompassDoorHTML === 'function' ? barCompassDoorHTML() : '')
     + (typeof brewDoorHTML === 'function' ? brewDoorHTML() : '')
+    + (typeof backbarDoorHTML === 'function' ? backbarDoorHTML() : '')
     + (typeof methodStudyDoorHTML === 'function' ? methodStudyDoorHTML(!!h) : '');
   const reference = rowsNav('Explore the craft', [
     houseFlowLink('#/families', 'Cocktail families', 'Learn the shared structures that help you recognise and compare drinks.'),

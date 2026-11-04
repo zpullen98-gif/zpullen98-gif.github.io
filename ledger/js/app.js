@@ -167,6 +167,7 @@ function render(kind){
   if(typeof barCompassAfterRender === 'function') barCompassAfterRender();
   if(typeof houseFlowAfterRender === 'function') houseFlowAfterRender();
   if(typeof brewAfterRender === 'function') brewAfterRender();
+  if(typeof backbarAfterRender === 'function') backbarAfterRender();
   if(typeof caskAfterRender === 'function') caskAfterRender();
   /* Guarded on the element, not on state.tab, like every other post-paint
      hook in this function. It asks YouTube about the ONE film the reader
@@ -289,6 +290,7 @@ document.addEventListener('keydown', e => {
   if(typeof fallOwnsKey === 'function' && fallOwnsKey(e)) return;
   if(typeof barCompassOwnsKey === 'function' && barCompassOwnsKey(e)) return;
   if(typeof brewOwnsKey === 'function' && brewOwnsKey(e)) return;
+  if(typeof backbarOwnsKey === 'function' && backbarOwnsKey(e)) return;
   if(typeof caskOwnsKey === 'function' && caskOwnsKey(e)) return;
   if(e.key === '/'){ openSearch(); e.preventDefault(); return; }
   if(e.key === 'Escape' && state.sheet){ closeSheet(); return; }
@@ -447,7 +449,7 @@ document.getElementById('view').addEventListener('click', e => {
     prepCard(); }
   else if(act==='fc-flip'){ fc.flipped = true; }
   else if(act==='fc-grade'){
-    if(fc.deck[fc.idx] && ['Fall 2026','Bar Compass','Brew Guide'].indexOf(fc.deck[fc.idx].src) >= 0 && !fc.flipped) return;
+    if(fc.deck[fc.idx] && ['Fall 2026','Bar Compass','Brew Guide','Back Bar'].indexOf(fc.deck[fc.idx].src) >= 0 && !fc.flipped) return;
     say(el.dataset.ok==='1' ? 'Marked correct.' : 'Marked missed.');
     recordCard(el.dataset.ok==='1');
     fc.idx++; prepCard(); }
@@ -533,7 +535,8 @@ document.getElementById('view').addEventListener('click', e => {
       /* a Pair the menu round is a house drill: it rides no quiz history,
          no backup row and no dashboard trend (progress.house is its record,
          and only from piece 10) */
-      /* a Coffee and tea round (mode brew, js/ui-brew.js) is written here
+      /* a Coffee and tea round (mode brew, js/ui-brew.js) and a liquor shelf
+         round (mode backbar, js/ui-backbar.js) are written here
          as one Recent rounds row and kept out of the dashboard's trend
          line beside the replays (js/ui-new.js), since it is no level's */
       if(z.mode !== 'housepair'){
@@ -1027,6 +1030,7 @@ document.getElementById('view').addEventListener('click', e => {
     if(el.dataset.v === 'fall' && typeof fallOpen === 'function') fallOpen('');
     if(el.dataset.v === 'compass' && typeof barCompassOpen === 'function') barCompassOpen('');
     if(el.dataset.v === 'brew' && typeof brewOpen === 'function') brewOpen('');
+    if(el.dataset.v === 'backbar' && typeof backbarOpen === 'function') backbarOpen('');
     /* leaving the review list by any route closes whichever row was open, or
        menu-save keeps taking the importer branch for an ordinary edit and
        splices a row out of a list the user is no longer looking at */
@@ -1156,6 +1160,7 @@ function captureLiveInputs(){
   if(state.fallMenu) grab('fall-menu-q', state.fallMenu, 'q');
   if(state.barCompass) grab('bar-compass-q', state.barCompass, 'q');
   if(state.brew) grab('brew-q', state.brew, 'q');
+  if(state.backbar) grab('backbar-q', state.backbar, 'q');
   if(state.casks) grab('cask-q', state.casks, 'q');
   grab('spill-what', state.tools, 'spillWhat');
   grab('spill-cost', state.tools, 'spillCost');

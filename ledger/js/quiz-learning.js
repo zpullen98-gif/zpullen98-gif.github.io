@@ -99,6 +99,10 @@ function quizLearnCardData(card){
   } else if(card.src === 'Brew Guide' && typeof brewEntry === 'function'){
     const e = brewEntry(card.itemId);
     if(e){ title = e.name; href = brewHref(e.id); body = quizLearnSection('What it is', e.what) + quizLearnSection('How it tastes', e.taste) + quizLearnSection('At the table', e.serve) + quizLearnList('Watch for', e.watch) + quizLearnSection('What to say', e.guest); }
+  } else if(card.src === 'Back Bar' && typeof backbarEntry === 'function'){
+    const e = backbarEntry(card.itemId);
+    if(e){ title = e.name; href = backbarHref(e.id); body = quizLearnSection('What it is', e.guest) + quizLearnSection('How it is made', e.made) + quizLearnSection('How it tastes', e.taste)
+      + quizLearnSection('How we pour it', [e.serve && e.serve.neat, e.serve && e.serve.classic].filter(Boolean).join(' ')) + quizLearnList('Watch for', e.watch); }
   } else if(card.src === 'Cocktails'){
     const c = card.ref || card;
     title = c.name; href = '#/library/' + slugify(c.name);
