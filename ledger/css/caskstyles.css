@@ -1,0 +1,59 @@
+/* At the table: every style, in the Cask Atlas (5 November 2026): the house tokens
+   in day and night service, typography rather than pictures, every control 44px.
+   A style page sits inside the Cask Atlas's reading column; the forty-five second
+   line reads large in the house reading face, the sale sits under a brass rule,
+   and the ten and the twenty stay quiet beneath them. */
+.caskstyle-page{display:grid;gap:18px;min-width:0}
+.caskstyle-heading{padding:20px 0 22px;border-bottom:1px solid var(--house-line)}
+.caskstyle-heading h2{margin:10px 0 14px;text-wrap:balance}
+.caskstyle-page p.caskstyle-say,.caskstyle-page p.caskstyle-fam{margin:6px 0;font-size:18px;line-height:1.6}
+.caskstyle-label{display:inline-block;margin-right:6px;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--brass-2);font-weight:700;line-height:1.5}
+p.caskstyle-label{display:block;margin:16px 0 6px}
+.caskstyle-soft{color:var(--cream-dim);font-size:.85em;font-weight:400}
+.caskstyle-practice,.caskstyle-links,.caskstyle-door-row,.caskstyle-pager{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
+.caskstyle-page .caskstyle-practice{margin:0}
+.caskstyle-practice .btn,.caskstyle-links .btn,.caskstyle-door-row .btn,.caskstyle-pager .btn,.caskstyle-read-link{min-height:48px;white-space:normal;text-align:left;line-height:1.5;overflow-wrap:anywhere}
+.cask-atlas a.btn,.caskstyle-read-link{text-decoration:none}
+.caskstyle-panel{padding:22px 24px;border:1px solid var(--house-line);background:var(--felt-2);min-width:0}
+.caskstyle-panel h3{margin:0 0 14px}
+.caskstyle-page .caskstyle-panel p{margin:0 0 12px}.caskstyle-page .caskstyle-panel p:last-child{margin-bottom:0}
+.caskstyle-page .caskstyle-panel p.caskstyle-label{margin:16px 0 6px}.caskstyle-page .caskstyle-panel p.caskstyle-label:first-child{margin-top:0}
+.caskstyle-page .caskstyle-panel p.caskstyle-s45{font-family:var(--house-reading);font-size:1.32em;line-height:1.6;color:var(--cream);max-width:720px;margin:0 0 20px}
+.caskstyle-sale{border-top:2px solid var(--brass);padding-top:12px;margin:0 0 20px;max-width:720px}
+.caskstyle-page .caskstyle-sale p:not(.caskstyle-label){font-size:1.05em;line-height:1.7}
+.caskstyle-page .caskstyle-quiet p{font-size:17px;line-height:1.7;color:var(--cream-dim);margin:0 0 8px}
+.caskstyle-serve{margin:0}
+.caskstyle-serve>div{padding:10px 0;border-bottom:1px solid var(--house-line)}
+.caskstyle-serve>div:last-child{border-bottom:0;padding-bottom:0}.caskstyle-serve>div:first-child{padding-top:0}
+.caskstyle-serve dt{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--brass-2);font-weight:700}
+.caskstyle-serve dd{margin:4px 0 0}
+.caskstyle-ask+.caskstyle-ask{border-top:1px solid var(--house-line);padding-top:12px;margin-top:12px}
+.caskstyle-page .caskstyle-panel p.caskstyle-q{font-weight:700;color:var(--brass-2);margin:0 0 6px}
+.caskstyle-houses{margin:0 0 12px;padding-left:24px}.caskstyle-houses li{margin-bottom:6px}
+.caskstyle-recall summary,.caskstyle-sources summary{cursor:pointer;min-height:48px;line-height:1.5}
+.caskstyle-recall+.caskstyle-recall{border-top:1px solid var(--house-line)}
+/* scoped to the page so the Atlas's own details rule (casks.css) cannot take the padding */
+.caskstyle-page .caskstyle-sources{margin:0;padding:0 24px;border:1px solid var(--house-line);background:var(--felt-2)}
+.caskstyle-sources ul{margin:0;padding-left:24px}.caskstyle-sources li{margin-bottom:10px;line-height:1.6}
+.caskstyle-sources a{display:inline-flex;align-items:center;min-height:44px}
+.caskstyle-pager{justify-content:space-between;padding-top:14px;border-top:1px solid var(--house-line)}
+.caskstyle-pager .btn{flex:1 1 220px}.caskstyle-pager .caskstyle-next{justify-content:flex-end;text-align:right}
+/* the home's section: each family a group, each style a row */
+.caskstyle-family{margin:26px 0 0}
+.caskstyle-family-h{font:500 1.15rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0 0 12px}
+.caskstyle-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.cask-atlas a.caskstyle-row{display:flex;flex-direction:column;gap:6px;min-width:0;min-height:44px;padding:16px 18px;color:var(--cream);background:var(--felt-2);border:1px solid var(--house-line);border-top:2px solid var(--brass);text-decoration:none}
+.cask-atlas a.caskstyle-row:hover{border-color:var(--brass)}
+.caskstyle-row-name{font:500 1.1rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2);overflow-wrap:anywhere}
+.caskstyle-row-line{font-size:17px;line-height:1.55}
+.caskstyle-row-foot{margin-top:auto;padding-top:4px;font-size:16px;line-height:1.5;color:var(--cream-dim)}
+.cask-atlas a.caskstyle-row:focus-visible,.caskstyle-read-link:focus-visible{outline:3px solid var(--brass-2);outline-offset:4px}
+/* the flashcard face of a style card */
+.caskstyle-question{font:500 clamp(1.2rem,3vw,1.5rem)/1.6 var(--house-display,Georgia,serif);color:var(--brass-2);max-width:720px;text-align:center}
+.caskstyle-answer{max-width:720px;font-size:1.05rem;line-height:1.8}.caskstyle-answer p{margin:0 0 12px}
+/* night service: the brass rules stay lit on the felt, the reading face in cream */
+html[data-service="night"] .caskstyle-sale{border-top-color:var(--brass-2)}
+html[data-service="night"] .caskstyle-page .caskstyle-panel p.caskstyle-s45{color:var(--cream)}
+html[data-service="night"] .cask-atlas a.caskstyle-row:hover{border-color:var(--brass-2)}
+@media(max-width:640px){.caskstyle-rows{grid-template-columns:1fr}.caskstyle-panel{padding:16px}.caskstyle-page .caskstyle-sources{padding:0 16px}.caskstyle-practice .btn,.caskstyle-links .btn,.caskstyle-door-row .btn{flex:1 1 100%}.caskstyle-page .caskstyle-panel p.caskstyle-s45{font-size:1.2em}.cask-atlas a.caskstyle-row{padding:14px 16px}}
+@media print{.caskstyle-practice,.caskstyle-pager{display:none}.caskstyle-panel,.cask-atlas a.caskstyle-row,.caskstyle-page .caskstyle-sources{background:white;color:#222;border-color:#777;break-inside:avoid}.caskstyle-panel h3,.caskstyle-row-name{color:#222}}

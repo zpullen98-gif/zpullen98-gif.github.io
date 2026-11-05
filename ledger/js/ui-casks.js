@@ -18,7 +18,9 @@ function caskReviewed(chapters){ const dates=(chapters || caskChapters()).reduce
 function caskDaily(){
   const rows = caskEntries('all','cards');
   const last = function(r){ const p = progress.cards[r.key]; return p ? Number(p.last) || 0 : 0; };
-  const due = rows.filter(function(r){ return caskRecord(r).due; }).sort(function(a,b){ return last(a)-last(b); });
+  /* a style card that is due (js/ui-caskstyles.js) joins the due reviews; an unseen one never does */
+  const styleDue = typeof caskStyleDueRows === 'function' ? caskStyleDueRows() : [];
+  const due = rows.filter(function(r){ return caskRecord(r).due; }).concat(styleDue).sort(function(a,b){ return last(a)-last(b); });
   const fresh = rows.filter(function(r){ return !caskRecord(r).seen; });
   const spread = [], groups = {};
   fresh.forEach(function(r){ (groups[r.chapter] || (groups[r.chapter]=[])).push(r); });
@@ -56,12 +58,15 @@ function caskGrade(ok){
 }
 function caskRouteNow(){
   const s=caskState();let tail='';
+  if(s.page==='style' && typeof caskStyleRouteNow==='function'){ const r=caskStyleRouteNow(); if(r) return r; }
   if(s.page==='chapter' && caskChapter(s.item)) tail='/' + s.item;
   else if(s.page==='practice' || s.page==='run') tail='/practice/' + caskScope(s.scope) + (s.page==='run' && s.run ? '/' + s.run.mode : '');
   return {hash:'#/casks' + tail,key:'casks' + tail};
 }
 function caskRoute(parts){
   if(parts[0]!=='casks') return false;
+  /* #/casks/style/<id>: At the table: every style (js/ui-caskstyles.js) */
+  if(parts[1]==='style' && typeof caskStyleRoute==='function') return caskStyleRoute(parts);
   const s=caskState();state.tab='casks';
   if(parts[1]==='practice'){
     s.scope=caskScope(parts[2]);
@@ -69,7 +74,7 @@ function caskRoute(parts){
   } else { s.item=caskChapter(parts[1]) ? parts[1] : '';s.page=s.item ? 'chapter' : 'index'; }
   return true;
 }
-function caskReference(key){ return state.tab==='casks' && caskState().page==='chapter' && /^casks\/practice\//.test(key || ''); }
+function caskReference(key){ return state.tab==='casks' && caskState().page==='chapter' && /^casks\/practice\//.test(key || '') || typeof caskStyleReference==='function' && caskStyleReference(key); }
 function caskParent(){
   const s=caskState();
   if(s.page==='run'){s.page='practice';return;}
@@ -79,6 +84,11 @@ function caskParent(){
 }
 function caskOpen(id){ const s=caskState();state.tab='casks';s.item=caskChapter(id)?id:'';s.page=s.item?'chapter':'index'; }
 function caskButton(id,label,cls){ return '<button class="btn ' + (cls || 'btn-ghost') + '" data-act="cask-open" data-id="' + esc(id || '') + '">' + esc(label) + '</button>'; }
+/* a run row's reading door: its chapter, or for a style card its style (js/ui-caskstyles.js) */
+function caskRowDoor(row,label){
+  if(row && row.style && typeof caskStyleHref==='function') return '<a class="btn btn-ghost caskstyle-run-door" id="caskstyle-run-'+esc(row.style)+'" href="'+esc(caskStyleHref(row.style))+'">'+esc(label.replace('the full chapter','the whole style'))+'</a>';
+  return caskButton(row && row.chapter,label);
+}
 function caskSources(chapter){
   return '<details class="cask-sources"><summary>Sources and further reading</summary><ul>' + (chapter.sources || []).map(function(src){const url=caskSafeUrl(src.url);return '<li>'+(url?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(src.title)+'<span class="sr-only"> (opens in a new tab)</span></a>':esc(src.title))+(src.checked?' <span class="cask-muted">Checked '+esc(src.checked)+'</span>':'')+'</li>';}).join('')+'</ul><p class="cask-muted">Saved chapters work offline. External sources need a connection.</p></details>';
 }
@@ -92,6 +102,7 @@ function caskChapterHTML(c){
     +(c.id==='production'?'<figure class="cask-process"><figcaption>From grain to glass</figcaption><ol><li>Grain and malt</li><li>Mash and ferment</li><li>Distil and select</li><li>Mature in wood</li><li>Select and bottle</li></ol><p>Each decision changes the spirit. The chapter explains how.</p></figure>':'')
     +c.sections.map(function(s,i){return '<section class="cask-section" id="cask-section-'+i+'"><h3 tabindex="-1">'+esc(s.title)+'</h3>'+(s.paragraphs || []).map(caskText).join('')+((s.bullets || []).length?'<ul>'+s.bullets.map(function(b){return '<li>'+esc(b)+'</li>';}).join('')+'</ul>':'')+'</section>';}).join('')
     +(c.service?'<section class="cask-section cask-service"><h3>At the table</h3><p class="cask-label">Ask first</p>'+caskText(c.service.ask)+'<p class="cask-label">A concise guest explanation</p><blockquote>'+esc(c.service.say || '')+'</blockquote><p class="cask-label">Pairing and application</p>'+caskText(c.service.pairing)+'</section>':'')
+    +(typeof caskStyleChapterDoorsHTML==='function'?caskStyleChapterDoorsHTML(c.id):'')
     +((c.pitfalls || []).length?'<section class="cask-section"><h3>Avoid these traps</h3><ul>'+c.pitfalls.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul></section>':'')
     +'<section class="cask-section"><h3>Recall before revealing</h3>'+(c.recall || []).map(function(r){return '<details><summary>'+esc(r.q)+'</summary>'+caskText(r.a)+'</details>';}).join('')+'<p class="cask-muted">These reading prompts are unscored. Use practice to record your recall.</p></section>'
     +caskSources(c)
@@ -112,6 +123,7 @@ function caskIndexHTML(){
   return '<div class="cask-atlas"><header class="cask-heading cask-cover"><div class="cask-compass" aria-hidden="true"><svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="32" cy="32" r="23"/><path d="M32 2L38 26L62 32L38 38L32 62L26 38L2 32L26 26Z"/><circle cx="32" cy="32" r="5"/></svg></div><p class="eyebrow">Whisky &amp; Brandy</p><h2 tabindex="-1">The Cask Atlas</h2><p>Follow grain, fruit, copper and oak from their origins to the guest\u2019s glass.</p><p class="cask-muted">'+chapters.length+' chapters · '+cards.length+' recall cards · '+quiz.length+' knowledge checks</p></header>'
     +'<section class="cask-section"><h3>Your path through the atlas</h3><p>Begin with production and maturation, compare the traditions, then practise tasting, service and cocktail choices. Each chapter keeps its full explanation and sources together.</p><div class="cask-actions">'+(chapters[0]?caskButton(chapters[0].id,'Begin the journey','btn-brass'):'')+'<button class="btn btn-ghost" data-act="cask-practice" data-id="all">Choose practice</button></div></section>'
     +'<section class="cask-section cask-daily"><h3>Today\u2019s cask study</h3><p>'+ (daily.length?daily.length+' cards selected from due reviews and new material across chapters.':'You have no due or unseen cards. Return for your next review, or practise any chapter now.')+'</p><button class="btn btn-brass" data-act="cask-start" data-mode="cards" data-s="today" data-id="all"'+(!daily.length?' disabled':'')+'>Start today\u2019s study</button></section>'
+    +(typeof caskStyleHomeHTML==='function'?caskStyleHomeHTML():'')
     +caskReviewed()+caskCompareHTML()
     +'<section class="cask-browse" aria-labelledby="cask-browse-title"><h3 id="cask-browse-title">Explore the chapters</h3><div class="cask-filter"><label for="cask-q">Search topics, regions or techniques<input class="input" type="search" id="cask-q" value="'+esc(s.q)+'" placeholder="Try oak, peat, bourbon or Cognac"></label><label for="cask-category">Tradition or subject<select class="input" id="cask-category"><option value="all">All chapters</option>'+cats.map(function(c){return '<option value="'+esc(c)+'"'+(s.category===c?' selected':'')+'>'+esc(c)+'</option>';}).join('')+'</select></label></div><div id="cask-results">'+caskResultsHTML()+'</div></section></div>';
 }
@@ -122,19 +134,19 @@ function caskPracticeHTML(){
 }
 function caskRunHTML(){
   const run=caskState().run;if(!run)return caskPracticeHTML();
-  if(run.done){const correct=run.results.filter(function(r){return r.ok;}).length;return '<section class="cask-atlas"><header class="cask-heading"><p class="eyebrow">The Cask Atlas</p><h2 tabindex="-1">Your study review</h2><p>'+correct+' of '+run.rows.length+' '+(run.mode==='quiz'?'correct':'recalled by your assessment')+'.</p></header><div class="cask-actions"><button class="btn btn-brass" data-act="cask-retry"'+(correct===run.rows.length?' disabled':'')+'>Practise the misses</button><button class="btn btn-ghost" data-act="cask-practice" data-id="'+esc(run.scope)+'">Choose another round</button></div>'+run.results.map(function(r){const e=r.entry;return '<article class="cask-section"><p class="cask-label">'+(r.ok?'Correct':'Revisit')+'</p><h3>'+esc(e.q)+'</h3>'+caskText(run.mode==='quiz'?e.options[e.answer]:e.a)+(run.mode==='quiz'?caskText(e.why):'')+caskButton(e.chapter,'Read the full chapter')+'</article>';}).join('')+'</section>';}
+  if(run.done){const correct=run.results.filter(function(r){return r.ok;}).length;return '<section class="cask-atlas"><header class="cask-heading"><p class="eyebrow">The Cask Atlas</p><h2 tabindex="-1">Your study review</h2><p>'+correct+' of '+run.rows.length+' '+(run.mode==='quiz'?'correct':'recalled by your assessment')+'.</p></header><div class="cask-actions"><button class="btn btn-brass" data-act="cask-retry"'+(correct===run.rows.length?' disabled':'')+'>Practise the misses</button><button class="btn btn-ghost" data-act="cask-practice" data-id="'+esc(run.scope)+'">Choose another round</button></div>'+run.results.map(function(r){const e=r.entry;return '<article class="cask-section"><p class="cask-label">'+(r.ok?'Correct':'Revisit')+'</p><h3>'+esc(e.q)+'</h3>'+caskText(run.mode==='quiz'?e.options[e.answer]:e.a)+(run.mode==='quiz'?caskText(e.why):'')+caskRowDoor(e,'Read the full chapter')+'</article>';}).join('')+'</section>';}
   const row=run.rows[run.idx];if(!row)return caskPracticeHTML();
   const answer=run.mode==='quiz'?run.graded:run.flipped;
   let body='';
   if(run.mode==='quiz') body='<div class="cask-options" role="group" aria-label="Answer choices">'+row.choices.map(function(o,i){return '<button class="btn btn-ghost cask-option'+(run.graded&&o.correct?' cask-right':'')+'" data-act="cask-pick" data-i="'+i+'"'+(run.graded?' disabled':'')+'>'+esc(o.value)+(run.graded&&o.correct?' <strong>Correct answer</strong>':'')+(run.graded&&run.picked===i?' <span>Your choice</span>':'')+'</button>';}).join('')+'</div>';
   else if(!run.flipped)body='<button class="btn btn-brass" data-act="cask-flip">Reveal the answer</button>';
-  if(answer){body+='<section class="cask-answer" aria-label="Answer explanation"><h3>Answer and understanding</h3>'+caskText(run.mode==='quiz'?row.options[row.answer]:row.a)+(run.mode==='quiz'?caskText(row.why):'')+caskButton(row.chapter,'Learn why: read the full chapter')+'</section>';
+  if(answer){body+='<section class="cask-answer" aria-label="Answer explanation"><h3>Answer and understanding</h3>'+caskText(run.mode==='quiz'?row.options[row.answer]:row.a)+(run.mode==='quiz'?caskText(row.why):'')+caskRowDoor(row,'Learn why: read the full chapter')+'</section>';
     if(run.mode==='cards')body+='<div class="cask-actions" role="group" aria-label="Assess your recall"><button class="btn btn-brass" data-act="cask-grade" data-k="yes"'+(run.graded?' disabled':'')+'>Recalled it</button><button class="btn btn-ghost" data-act="cask-grade" data-k="no"'+(run.graded?' disabled':'')+'>Needs practice</button></div>';
   }
   if(run.graded)body+='<p class="cask-muted" role="status">'+(run.results[run.results.length-1].ok?'Recorded as correct.':'Saved for another review.')+'</p><button class="btn btn-brass" data-act="cask-next">'+(run.idx===run.rows.length-1?'See the review':'Next question')+'</button>';
   return '<section class="cask-atlas cask-run"><p class="eyebrow">The Cask Atlas · '+(run.mode==='quiz'?'Knowledge check':'Recall')+'</p><h2 tabindex="-1">'+esc(row.q)+'</h2><p class="cask-muted">'+(run.idx+1)+' of '+run.rows.length+'</p>'+body+'</section>';
 }
-function renderCasks(){const s=caskState();if(s.page==='chapter'&&caskChapter(s.item))return caskChapterHTML(caskChapter(s.item));if(s.page==='run')return caskRunHTML();if(s.page==='practice')return caskPracticeHTML();return caskIndexHTML();}
+function renderCasks(){const s=caskState();if(s.page==='style'&&typeof caskStyleRender==='function'){const out=caskStyleRender();if(out)return out;}if(s.page==='chapter'&&caskChapter(s.item))return caskChapterHTML(caskChapter(s.item));if(s.page==='run')return caskRunHTML();if(s.page==='practice')return caskPracticeHTML();return caskIndexHTML();}
 function caskAct(act,data){
   if(act==='fc-drill-weak'){
     const card=caskEntries('all','cards').find(function(r){return r.key===data.k;});

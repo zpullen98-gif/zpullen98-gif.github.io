@@ -282,6 +282,7 @@ function cardByKey(key){
   if(String(key).indexOf('Fall 2026 · ') === 0 && typeof fallCardByKey === 'function') return fallCardByKey(key);
   if(String(key).indexOf('Brew Guide · ') === 0 && typeof brewCardByKey === 'function') return brewCardByKey(key);
   if(String(key).indexOf('Back Bar · ') === 0 && typeof backbarCardByKey === 'function') return backbarCardByKey(key);
+  if(String(key).indexOf('Cask Styles · ') === 0 && typeof caskStyleCardByKey === 'function') return caskStyleCardByKey(key);
   if(String(key).indexOf('Words · ') === 0) return wordCardByKey(key);
   if(String(key).indexOf('Components · ') === 0) return componentCardByKey(key);
   if(String(key).indexOf('Producers · ') === 0) return producerCardByKey(key);
@@ -294,6 +295,7 @@ function deckDef(id, lvArg){
   if((id === 'fall' || id.indexOf('fall:') === 0) && typeof fallDeckDef === 'function') return fallDeckDef(id);
   if((id === 'brew' || id.indexOf('brew:') === 0) && typeof brewDeckDef === 'function') return brewDeckDef(id);
   if((id === 'backbar' || id.indexOf('backbar:') === 0) && typeof backbarDeckDef === 'function') return backbarDeckDef(id);
+  if((id === 'caskstyles' || id.indexOf('caskstyles:') === 0) && typeof caskStyleDeckDef === 'function') return caskStyleDeckDef(id);
   const lv = lvArg === undefined ? scopeLevel('flashcards') : lvArg;
   const L = lv ? levelInfo(lv).name : '';
   if(id === 'menu') return { name: 'The whole menu', preset: { src: 'My Bar' }, house: true };
@@ -475,6 +477,8 @@ function fcPickHTML(){
   /* the liquor shelf (js/ui-backbar.js): its deck, its misses and its quiz, apart from the levels */
   if(typeof backbarDeckDef === 'function') house += rowsNav('The liquor shelf', [deckRow('backbar'), deckRow('backbar:again'), quizRow('backbar', 'The liquor shelf quiz', typeof backbarQuizLine === 'function' ? backbarQuizLine() : '')]);
   if(typeof caskDoorHTML === 'function') house += caskDoorHTML();
+  /* At the table: every style (js/ui-caskstyles.js): its deck, its misses and its quiz, apart from the levels */
+  if(typeof caskStyleDeckDef === 'function') house += rowsNav('Every style at the table', [deckRow('caskstyles'), deckRow('caskstyles:again'), quizRow('caskstyles', 'The style quiz', typeof caskStyleQuizLine === 'function' ? caskStyleQuizLine() : '')]);
   /* the level's subjects, or every level's, then one row to the level's rounds */
   const L = lv ? levelInfo(lv).name : 'Every level';
   const books = levelBooks(lv || 0).map(function(b){
@@ -673,6 +677,7 @@ function studyHashOf(key){
   if(d.src === 'Bar Compass' && typeof barCompassHref === 'function') return barCompassHref(d.itemId);
   if(d.src === 'Brew Guide' && typeof brewHref === 'function') return brewHref(d.itemId);
   if(d.src === 'Back Bar' && typeof backbarHref === 'function') return backbarHref(d.itemId);
+  if(d.src === 'Cask Styles' && typeof caskStyleHref === 'function') return caskStyleHref(d.itemId);
   if(d.src === 'Cocktails') return '#/library/' + slugify(d.name);
   if(d.src === 'My Bar') return '#/menu/' + slugify(d.name);
   if(d.src === 'Shots') return '#/shots/' + slugify(d.name);
@@ -1246,6 +1251,7 @@ function navWatchBack(){
 /* ---- the screens' own acts ---------------------------------------------------- */
 function navAct(act, data, el){
   if(typeof caskAct === 'function'){ const action = caskAct(act, data); if(action) return action; }
+  if(typeof caskStyleAct === 'function'){ const action = caskStyleAct(act, data); if(action) return action; }
   if(typeof barCompassAct === 'function'){ const action = barCompassAct(act, data); if(action) return action; }
   if(typeof fallAct === 'function'){ const action = fallAct(act, data); if(action) return action; }
   if(typeof brewAct === 'function'){ const action = brewAct(act, data); if(action) return action; }

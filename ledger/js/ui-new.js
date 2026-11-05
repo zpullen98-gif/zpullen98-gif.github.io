@@ -241,6 +241,7 @@ function buildSearchIndex(){
   if(typeof brewSearchEntries === 'function') ix.push(...brewSearchEntries());
   if(typeof backbarSearchEntries === 'function') ix.push(...backbarSearchEntries());
   if(typeof caskSearchEntries === 'function') ix.push(...caskSearchEntries());
+  if(typeof caskStyleSearchEntries === 'function') ix.push(...caskStyleSearchEntries());
   /* the book by its name: a book is never numbered where a reader sees it */
   COCKTAILS.forEach(c => ix.push({ t:c.name, s:c.family+' · '+c.spirit+' · '+bookName(c.tier),
     body:(c.spec.join(' ')+' '+c.method+' '+c.garnish).toLowerCase(), h:'#/library/'+slugify(c.name) }));
@@ -1452,7 +1453,7 @@ function dashboardHTML(){
   /* a Coffee and tea round (mode brew, js/ui-brew.js) and a liquor shelf round
      (mode backbar, js/ui-backbar.js) show under Recent rounds and are no
      level's, so they stay out of the trend as a replay does */
-  const quizzes = (progress.quizzes || []).filter(q => !q.replay && q.mode !== 'brew' && q.mode !== 'backbar' && q.mode !== 'casks');
+  const quizzes = (progress.quizzes || []).filter(q => !q.replay && q.mode !== 'brew' && q.mode !== 'backbar' && q.mode !== 'casks' && q.mode !== 'caskstyles');
   const qVals = quizzes.slice(-20).map(q => Math.round(q.score / (q.total || 10) * 100));
   const quizBlock = qVals.length >= 2
     ? svgSpark(qVals, 220, 44, 100) + '<div class="tiny dim">last '+qVals.length+' rounds · best '+Math.max(...qVals)+'%</div>'

@@ -158,6 +158,21 @@ function backbarLinksHTML(e){
   return out.length ? '<section class="backbar-panel" aria-labelledby="backbar-d-links"><h3 id="backbar-d-links">In the Ledger</h3>'
     + '<p class="backbar-caption">The Library\u2019s builds are the classics\u2019, not the house\u2019s.</p><div class="backbar-links">' + out.join('') + '</div></section>' : '';
 }
+/* Its style at the table: the whisky styles (CASK_STYLES, js/data-caskstyles.js)
+   whose shelf list holds this bottle, each a door to the style's page in the
+   Cask Atlas at #/casks/style/<id> */
+function backbarStyles(e){
+  const all = typeof CASK_STYLES !== 'undefined' && CASK_STYLES && Array.isArray(CASK_STYLES.entries) ? CASK_STYLES.entries : [];
+  return e ? all.filter(function(s){ return Array.isArray(s.shelf) && s.shelf.indexOf(e.id) >= 0; }) : [];
+}
+function backbarStylesHTML(e){
+  const list = backbarStyles(e);
+  if(!list.length) return '';
+  return '<section class="backbar-panel" aria-labelledby="backbar-d-style"><h3 id="backbar-d-style">Its style at the table</h3>'
+    + '<p class="backbar-caption">How to present the style this bottle belongs to, in the Cask Atlas.</p><div class="backbar-links">'
+    + list.map(function(s){ return '<a class="btn btn-ghost backbar-style" href="' + esc(typeof caskStyleHref === 'function' ? caskStyleHref(s.id) : '#/casks/style/' + encodeURIComponent(s.id)) + '">' + esc(s.name) + ', at the table</a>'; }).join('')
+    + '</div></section>';
+}
 function backbarSourcesHTML(e){
   const rows = (e.sources || []).filter(function(s){ return s && s.title; });
   if(!rows.length) return '';
@@ -324,6 +339,7 @@ function backbarDetailHTML(e){
     + sec('story', 'The story', backbarParas(e.story))
     + sec('watchfor', 'Watch for', '<ul>' + (e.watch || []).map(function(w){ return '<li>' + esc(w) + '</li>'; }).join('') + '</ul>')
     + backbarLinksHTML(e)
+    + backbarStylesHTML(e)
     + sec('recall', 'Recall before you reveal', (e.recall || []).map(function(r){ return '<details class="backbar-recall"><summary>' + esc(r.prompt) + '</summary>' + backbarParas(r.answer) + '</details>'; }).join('')
       + '<p class="backbar-caption">Reading this answer is unscored. Practise the cards to record a recall.</p>')
     + backbarSourcesHTML(e)

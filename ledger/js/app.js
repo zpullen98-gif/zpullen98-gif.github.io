@@ -292,6 +292,7 @@ document.addEventListener('keydown', e => {
   if(typeof brewOwnsKey === 'function' && brewOwnsKey(e)) return;
   if(typeof backbarOwnsKey === 'function' && backbarOwnsKey(e)) return;
   if(typeof caskOwnsKey === 'function' && caskOwnsKey(e)) return;
+  if(typeof caskStyleOwnsKey === 'function' && caskStyleOwnsKey(e)) return;
   if(e.key === '/'){ openSearch(); e.preventDefault(); return; }
   if(e.key === 'Escape' && state.sheet){ closeSheet(); return; }
   const click = sel => { const b = document.querySelector(sel); if(b){ b.click(); e.preventDefault(); return true; } return false; };
@@ -449,7 +450,7 @@ document.getElementById('view').addEventListener('click', e => {
     prepCard(); }
   else if(act==='fc-flip'){ fc.flipped = true; }
   else if(act==='fc-grade'){
-    if(fc.deck[fc.idx] && ['Fall 2026','Bar Compass','Brew Guide','Back Bar'].indexOf(fc.deck[fc.idx].src) >= 0 && !fc.flipped) return;
+    if(fc.deck[fc.idx] && ['Fall 2026','Bar Compass','Brew Guide','Back Bar','Cask Styles'].indexOf(fc.deck[fc.idx].src) >= 0 && !fc.flipped) return;
     say(el.dataset.ok==='1' ? 'Marked correct.' : 'Marked missed.');
     recordCard(el.dataset.ok==='1');
     fc.idx++; prepCard(); }
@@ -535,8 +536,9 @@ document.getElementById('view').addEventListener('click', e => {
       /* a Pair the menu round is a house drill: it rides no quiz history,
          no backup row and no dashboard trend (progress.house is its record,
          and only from piece 10) */
-      /* a Coffee and tea round (mode brew, js/ui-brew.js) and a liquor shelf
-         round (mode backbar, js/ui-backbar.js) are written here
+      /* a Coffee and tea round (mode brew, js/ui-brew.js), a liquor shelf
+         round (mode backbar, js/ui-backbar.js) and a style round (mode
+         caskstyles, js/ui-caskstyles.js) are written here
          as one Recent rounds row and kept out of the dashboard's trend
          line beside the replays (js/ui-new.js), since it is no level's */
       if(z.mode !== 'housepair'){

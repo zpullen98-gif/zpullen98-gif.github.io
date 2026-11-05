@@ -511,7 +511,7 @@ var CASK_CHAPTERS = [
       },
       {
         "label": "Straight",
-        "value": "At least two years of ageing; a separate age-statement rule applies below four years."
+        "value": "At least two years of ageing; a separate age-statement rule applies below four years. Straight bourbons mixed together stay straight only when all were made in the same state."
       }
     ],
     "sections": [
@@ -529,7 +529,7 @@ var CASK_CHAPTERS = [
       {
         "title": "Follow the recipe through the distillery",
         "paragraphs": [
-          "Beyond corn, rye, wheat and malted barley can change the recipe. Wheated bourbon describes a recipe choice, not a separate federal whiskey type. Maker's Mark, for example, identifies soft red winter wheat and its own yeast in its production account. This is useful evidence for that producer, not proof that all wheated bourbons taste gentle or that all rye-recipe bourbons taste peppery.",
+          "Beyond corn, rye, wheat and malted barley can change the recipe. Wheated bourbon describes a recipe choice, not a separate federal whiskey type: wheat takes the place of rye beside the corn. Wheat is often found softer and rounder, but the grain is one influence among yeast, barrel, proof and age. Maker's Mark, for example, identifies soft red winter wheat and its own yeast in its production account. This is useful evidence for that producer, not proof that all wheated bourbons taste gentle or that all rye-recipe bourbons taste peppery.",
           "Build a production notebook with five questions: What is the mash bill? How is starch converted? What are the fermentation conditions? What stills and spirit selection are used? What is the barrel programme? If the producer does not publish a number, record it as undisclosed. Yeast, fermentation and distillation sit between grain and glass; the grain percentage cannot explain the entire aroma profile."
         ],
         "bullets": [
@@ -634,7 +634,7 @@ var CASK_CHAPTERS = [
       {
         "title": "eCFR: 27 CFR 5.143, whisky identity standards",
         "url": "https://www.ecfr.gov/current/title-27/chapter-I/subchapter-A/part-5/subpart-I/section-5.143",
-        "checked": "2026-10-27"
+        "checked": "2026-11-05"
       },
       {
         "title": "eCFR: 27 CFR 5.74, age statements",
@@ -645,6 +645,11 @@ var CASK_CHAPTERS = [
         "title": "Maker's Mark: producer account of fermentation, distillation and ageing",
         "url": "https://www.makersmark.com/distillery/how-its-made",
         "checked": "2026-10-27"
+      },
+      {
+        "title": "The Whiskey Wash: wheated bourbon and rye bourbon, flavour and style",
+        "url": "https://thewhiskeywash.com/bourbon/wheated-bourbon-vs-rye-bourbon-a-beginners-guide-to-flavor-and-style/",
+        "checked": "2026-11-05"
       }
     ],
     "related": [
@@ -821,11 +826,11 @@ var CASK_CHAPTERS = [
     "id": "american-single-malt",
     "title": "American Single Malt: A New Legal Landmark",
     "category": "American",
-    "summary": "Understand the federal standard introduced in 2025, its transitional labels and the wide creative territory within it.",
+    "summary": "Understand the federal standard published on 18 December 2024 and in force from 19 January 2025, its transitional labels and the wide creative territory within it.",
     "facts": [
       {
         "label": "Grain and place",
-        "value": "100% malted barley; US mash production and distillation at one US distillery."
+        "value": "100% malted barley; mashed, distilled and matured in the United States, with distillation at one distillery."
       },
       {
         "label": "Distillation",
@@ -848,7 +853,7 @@ var CASK_CHAPTERS = [
       {
         "title": "Read the new standard and its transition",
         "paragraphs": [
-          "The federal American single malt standard took effect on 19 January 2025. It establishes a distinct type rather than leaving single malt only as a producer description. The ordinary US malt whiskey type has a different grain threshold, so do not treat the two names as interchangeable. Single refers to the distillery of distillation, not one barrel, one barley variety or one vintage.",
+          "The federal American single malt standard was published on 18 December 2024 and took effect on 19 January 2025. It establishes a distinct type rather than leaving single malt only as a producer description. The ordinary US malt whiskey type has a different grain threshold, so do not treat the two names as interchangeable. Single refers to the distillery of distillation, not one barrel, one barley variety or one vintage.",
           "There is a material transition: the final rule permits qualifying legacy labelling on spirits bottled before 19 January 2030 under its transitional provision. Therefore a label encountered in the market during this period is not, by itself, perfect evidence that every new specification was followed. Check the producer's actual production details and the applicable rule instead of retroactively assuming full conformity for older bottlings."
         ],
         "bullets": [
@@ -898,13 +903,13 @@ var CASK_CHAPTERS = [
     "pitfalls": [
       "American single malt and American malt whiskey have identical grain requirements.",
       "Single means one barrel or one barley variety.",
-      "Every bottle already on sale necessarily follows all details of the new 2025 standard.",
+      "Every bottle already on sale necessarily follows all details of the standard in force since 19 January 2025.",
       "American single malt must use new charred oak or must be at least three years old."
     ],
     "recall": [
       {
         "id": "american-single-malt-r1",
-        "q": "Why is the 2025 standard not enough to interpret every bottle currently labelled American single malt?",
+        "q": "Why is the standard in force since 19 January 2025 not enough to interpret every bottle currently labelled American single malt?",
         "a": "The final rule contains a five-year transition for qualifying legacy labels on bottlings before 19 January 2030. Check actual production details rather than assuming every older expression meets every new provision."
       },
       {
@@ -954,7 +959,7 @@ var CASK_CHAPTERS = [
         "options": [
           "Verify its process and recognise the final rule's transitional provision.",
           "Reject it automatically because the category did not yet have a rule.",
-          "Assume the 2025 definition applies retroactively to every production detail.",
+          "Assume the new definition applies retroactively to every production detail.",
           "Assume it was aged three years because all single malt follows Scotch law."
         ],
         "answer": 0,
@@ -970,7 +975,12 @@ var CASK_CHAPTERS = [
       {
         "title": "Federal Register: TTB final rule and five-year transition, 18 December 2024",
         "url": "https://www.govinfo.gov/content/pkg/FR-2024-12-18/pdf/2024-29938.pdf",
-        "checked": "2026-10-27"
+        "checked": "2026-11-05"
+      },
+      {
+        "title": "TTB: American single malt whisky standard of identity established, effective 19 January 2025",
+        "url": "https://www.ttb.gov/public-information/featured-stories/ttb-establishes-american-single-malt-whisky-standard-identity",
+        "checked": "2026-11-05"
       }
     ],
     "related": [
@@ -993,7 +1003,7 @@ var CASK_CHAPTERS = [
       },
       {
         "label": "Straight",
-        "value": "A qualifying whiskey aged at least two years; not a single-barrel claim."
+        "value": "A qualifying whiskey aged at least two years; not a single-barrel claim. Straights of one type mixed together stay straight only when all were made in the same state; across states they make a blend of straight whiskies."
       },
       {
         "label": "Bottled in bond",
@@ -1005,7 +1015,7 @@ var CASK_CHAPTERS = [
       },
       {
         "label": "Tennessee",
-        "value": "A state-specific production identity with a maple-charcoal rule and a statutory exception, not a synonym for sour mash."
+        "value": "A state law of 2013, Tennessee Code Annotated section 57-2-106: a production identity with a maple-charcoal rule and one exception to it, not a synonym for sour mash."
       }
     ],
     "sections": [
@@ -1013,7 +1023,7 @@ var CASK_CHAPTERS = [
         "title": "Read in a dependable order",
         "paragraphs": [
           "Start with the legal type, then straight or bonded wording, age, proof, origin and any finishing statement. Marketing names come afterwards. Small batch does not provide a federally fixed barrel count. Single barrel is information about a particular bottling approach, not a guarantee of age, proof or preference. A high price or ornate label supplies none of those missing facts.",
-          "For a whisky without neutral spirits, an age statement is governed by the youngest whisky in the product, not an average. Under-four-year whiskies require the applicable age information. Straight alone establishes two years, so a two- or three-year straight whiskey still needs its age statement. Time in a sealed retail bottle does not add years of barrel maturation."
+          "For a whisky without neutral spirits, an age statement is governed by the youngest whisky in the product, not an average. Under-four-year whiskies require the applicable age information. Straight alone establishes two years, so a two- or three-year straight whiskey still needs its age statement. A straight whiskey may be a mix of straights of the same type only when all were produced in the same state; straights from different states make a blend of straight whiskies. Time in a sealed retail bottle does not add years of barrel maturation."
         ],
         "bullets": [
           "Check the complete label, not only a front-label photograph.",
@@ -1034,7 +1044,7 @@ var CASK_CHAPTERS = [
       {
         "title": "Tennessee, sour mash and other American types",
         "paragraphs": [
-          "Tennessee's statutory model adds production and ageing in Tennessee and maple-charcoal filtration before ageing to corn-led whiskey requirements. The statute includes an exception to the filtration condition. The familiar Lincoln County process therefore needs careful wording: it concerns treatment before ageing, not simply contact with a charred barrel. Verify the actual producer's method instead of asserting that every Tennessee whiskey follows an identical charcoal process.",
+          "Tennessee's law of 2013, Tennessee Code Annotated section 57-2-106, adds production and ageing in Tennessee and maple-charcoal filtration before ageing to corn-led whiskey requirements. Its one exception to the filtration condition is drawn by county and dates, and the state Attorney General's 2015 opinion read it as exempting a single distillery. The familiar Lincoln County process therefore needs careful wording: it concerns treatment before ageing, not simply contact with a charred barrel. Verify the actual producer's method instead of asserting that every Tennessee whiskey follows an identical charcoal process.",
           "Sour mash concerns the mash process and does not promise a sour-tasting finished whiskey. Keep that term separate from charcoal mellowing. Other US identities deserve the same precision: wheat whiskey requires a wheat majority; corn whiskey has an 80% corn threshold and distinct cooperage provisions. If stored, corn whiskey uses used or uncharred new oak under its standard. A high-corn bourbon is not automatically reclassified as corn whiskey."
         ],
         "bullets": [
@@ -1075,7 +1085,7 @@ var CASK_CHAPTERS = [
       {
         "id": "american-labels-r2",
         "q": "How would you explain Tennessee charcoal mellowing without confusing it with sour mash or barrel char?",
-        "a": "The statutory model specifies maple-charcoal filtration before ageing, with an exception. Sour mash describes a mash practice; barrel char describes cooperage. Check the individual producer before asserting its process."
+        "a": "Tennessee's 2013 law, Tennessee Code Annotated section 57-2-106, specifies maple-charcoal filtration before ageing, with one exception. Sour mash describes a mash practice; barrel char describes cooperage. Check the individual producer before asserting its process."
       },
       {
         "id": "american-labels-r3",
@@ -1130,7 +1140,7 @@ var CASK_CHAPTERS = [
       {
         "title": "eCFR: 27 CFR 5.143, American whisky types",
         "url": "https://www.ecfr.gov/current/title-27/chapter-I/subchapter-A/part-5/subpart-I/section-5.143",
-        "checked": "2026-10-27"
+        "checked": "2026-11-05"
       },
       {
         "title": "eCFR: 27 CFR 5.88, bottled in bond",
@@ -1148,9 +1158,14 @@ var CASK_CHAPTERS = [
         "checked": "2026-10-27"
       },
       {
-        "title": "Tennessee legislative text: Tennessee whiskey requirements",
-        "url": "https://www.capitol.tn.gov/Bills/108/Amend/SA0256.pdf",
-        "checked": "2026-10-27"
+        "title": "Tennessee Code Annotated, section 57-2-106: Tennessee whiskey, the state law of 2013",
+        "url": "https://law.justia.com/codes/tennessee/2019/title-57/chapter-2/section-57-2-106/",
+        "checked": "2026-11-05"
+      },
+      {
+        "title": "Associated Press, via KSL: the exemption in the Tennessee whiskey law and the Attorney General's opinion",
+        "url": "https://www.ksl.com/article/33886270",
+        "checked": "2026-11-05"
       },
       {
         "title": "eCFR: 27 CFR 5.1, proof and distilling-season definitions",
@@ -1386,7 +1401,7 @@ var CASK_CHAPTERS = [
       {
         "title": "Four identities worth knowing precisely",
         "paragraphs": [
-          "Under the registered specification linked here, pot still Irish whiskey uses at least 30% malted barley and 30% unmalted barley, with up to 5% other cereals, and pot-still distillation. Malt Irish whiskey uses 100% malted barley and pot stills. Grain Irish whiskey uses a mash with no more than 30% malted barley alongside whole unmalted cereals and column distillation. Blended Irish whiskey combines two or more of these types.",
+          "Under the registered specification linked here, pot still Irish whiskey uses at least 30% malted barley and 30% unmalted barley, with up to 5% other cereals, and pot-still distillation. In 2026 the Department of Agriculture, Food and the Marine consulted on an Irish Whiskey Association proposal to raise those other cereals from 5% to 30%; it is a proposal, not the rule, until the technical file is amended. Malt Irish whiskey uses 100% malted barley and pot stills. Grain Irish whiskey uses a mash with no more than 30% malted barley alongside whole unmalted cereals and column distillation. Blended Irish whiskey combines two or more of these types.",
           "Pot still in a style name is therefore more than a description of equipment. A malt whiskey also uses pot stills but has a different grain identity. A single pot still bottling may combine multiple casks from one distillery. A blend can be deliberately complex and should not be dismissed merely because single appears on a neighbouring bottle."
         ],
         "bullets": [
@@ -1509,6 +1524,11 @@ var CASK_CHAPTERS = [
         "title": "Revenue Ireland: Irish whiskey geographical indication verification",
         "url": "https://www.revenue.ie/en/companies-and-charities/excise-and-licences/irish-whiskey-and-irish-poteen-geographical-indications-verification-scheme/what-is-verification.aspx",
         "checked": "2026-10-27"
+      },
+      {
+        "title": "Vinetur: Ireland opens a consultation on the Irish whiskey technical file, June 2026",
+        "url": "https://www.vinetur.com/en/20260629103448/ireland-opens-review-that-could-redefine-irish-whiskey.html",
+        "checked": "2026-11-05"
       }
     ],
     "related": [
@@ -1866,7 +1886,7 @@ var CASK_CHAPTERS = [
       },
       {
         "label": "Timeline",
-        "value": "Established in 2021; the transition for existing products ended on 31 March 2024."
+        "value": "Established in 2021; the transition for existing products ended on 31 March 2024. In March 2025 the association added a JW logo for bottles that meet it."
       },
       {
         "label": "Under that standard",
@@ -1881,7 +1901,7 @@ var CASK_CHAPTERS = [
       {
         "title": "Start with the authority behind the words",
         "paragraphs": [
-          "The JSLMA published its Japanese whisky labelling standard in 2021, with a transition for existing products ending in March 2024. Japan's National Tax Agency described it as a voluntary industry standard. That is an important distinction from the national legal protection studied for Scotch. Do not present association compliance as a universal rule governing every Japanese-looking bottle.",
+          "The JSLMA published its Japanese whisky labelling standard in 2021, with a transition for existing products ending in March 2024. Japan's National Tax Agency described it as a voluntary industry standard. That is an important distinction from the national legal protection studied for Scotch. In March 2025 the association introduced a Japanese Whisky logo, the letters JW on a cask head, for bottles that meet the standard, and said it would seek a geographical indication and a National Tax Agency labelling standard under Japan's liquor business associations law, which would bind producers outside the association too. Those are aims, not yet law: until a binding rule is made, only the association's members are held to the standard. Do not present association compliance as a universal rule governing every Japanese-looking bottle.",
           "When researching a bottle, look for an explicit current producer statement about compliance and identify the producer. Japanese ownership, a Japanese address or Japanese lettering alone cannot establish where all the whisky was distilled and matured. An imported component may be completely legitimate in another product category while preventing a claim under this particular standard."
         ],
         "bullets": []
@@ -1995,6 +2015,11 @@ var CASK_CHAPTERS = [
         "title": "JSLMA: Standards for Labeling Japanese Whisky",
         "url": "https://www.yoshu.or.jp/files/libs/552/202303291555304944.pdf",
         "checked": "2026-10-27"
+      },
+      {
+        "title": "JSLMA via Business Wire: the Japanese Whisky logo and the path to a binding standard, 26 March 2025",
+        "url": "https://www.businesswire.com/news/home/20250326387650/en",
+        "checked": "2026-11-05"
       },
       {
         "title": "Japan National Tax Agency: 2021 report on voluntary labelling standards",
@@ -2207,7 +2232,7 @@ var CASK_CHAPTERS = [
       },
       {
         "label": "Distillation",
-        "value": "Charentais double distillation, completed by 31 March following the harvest. Current maximum is 73.7% ABV at 20°C in the daily collection vessel."
+        "value": "Charentais double distillation, completed by 31 March following the harvest. Current maximum is 73.7% ABV at 20 degrees Celsius in the daily collection vessel."
       },
       {
         "label": "Youngest component",
@@ -2239,7 +2264,7 @@ var CASK_CHAPTERS = [
         "title": "A seasonal double distillation",
         "paragraphs": [
           "The Charentais process is batch double distillation. The first chauffe produces brouillis; the bonne chauffe redistils it and separates the desired wine spirit from other fractions. Production must finish by 31 March after the harvest. Explain the sequence before reciting numbers: wine becomes a first distillate, then a selected spirit for maturation.",
-          "A useful correction for older study notes: the approved 2023 specification amendment raised the maximum strength after distillation from 72.4% to 73.7% ABV, measured at 20°C in the daily collection vessel. This is a distillation limit, not the bottle's serving strength. Cognac released for consumption is at least 40% ABV."
+          "A useful correction for older study notes: the approved 2023 specification amendment raised the maximum strength after distillation from 72.4% to 73.7% ABV, measured at 20 degrees Celsius in the daily collection vessel. This is a distillation limit, not the bottle's serving strength. Cognac released for consumption is at least 40% ABV."
         ],
         "bullets": []
       },
@@ -2280,7 +2305,7 @@ var CASK_CHAPTERS = [
       {
         "id": "cognac-r2",
         "q": "State the current distillation strength maximum and distinguish it from bottling strength.",
-        "a": "The current maximum is 73.7% ABV at 20°C in the daily collection vessel after double distillation, following the approved 2023 amendment. Older 72.4% notes are outdated. Cognac for consumption is bottled at a minimum of 40% ABV."
+        "a": "The current maximum is 73.7% ABV at 20 degrees Celsius in the daily collection vessel after double distillation, following the approved 2023 amendment. Older 72.4% notes are outdated. Cognac for consumption is bottled at a minimum of 40% ABV."
       },
       {
         "id": "cognac-r3",
@@ -2316,7 +2341,7 @@ var CASK_CHAPTERS = [
           "Remove the limit because double distillation has no maximum"
         ],
         "answer": 0,
-        "why": "The approved specification amendment raised the limit to 73.7% ABV at 20°C in the daily collection vessel. It is distinct from the minimum bottling strength and from whisky distillation limits."
+        "why": "The approved specification amendment raised the limit to 73.7% ABV at 20 degrees Celsius in the daily collection vessel. It is distinct from the minimum bottling strength and from whisky distillation limits."
       },
       {
         "id": "cognac-q3",

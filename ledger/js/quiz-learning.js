@@ -103,6 +103,10 @@ function quizLearnCardData(card){
     const e = backbarEntry(card.itemId);
     if(e){ title = e.name; href = backbarHref(e.id); body = quizLearnSection('What it is', e.guest) + quizLearnSection('How it is made', e.made) + quizLearnSection('How it tastes', e.taste)
       + quizLearnSection('How we pour it', [e.serve && e.serve.neat, e.serve && e.serve.classic].filter(Boolean).join(' ')) + quizLearnList('Watch for', e.watch); }
+  } else if(card.src === 'Cask Styles' && typeof caskStyleEntry === 'function'){
+    const e = caskStyleEntry(card.itemId);
+    if(e){ title = e.name; href = caskStyleHref(e.id); body = quizLearnSection('At the table', e.lines && e.lines.s20) + quizLearnSection('The law', e.law) + quizLearnSection('How it is made', e.made)
+      + quizLearnSection('How it tastes', e.taste) + quizLearnSection('How it differs', e.compare); }
   } else if(card.src === 'Cocktails'){
     const c = card.ref || card;
     title = c.name; href = '#/library/' + slugify(c.name);
