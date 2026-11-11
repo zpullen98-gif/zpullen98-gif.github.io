@@ -113,6 +113,7 @@ const GATES = [
   { repo: 'codex', script: '.scripts/check-brennans.js', target: 'wing', dirArg: true },
   { repo: 'codex', script: '.scripts/check-cms.js', target: 'wing', dirArg: true },
   { repo: 'codex', script: '.scripts/check-grapes.js', target: 'wing', dirArg: true },
+  { repo: 'codex', script: '.scripts/check-grapes-table.js', target: 'wing', dirArg: true },
   { repo: 'codex', script: '.scripts/check-card.js', target: 'wing', dirArg: true }
 ];
 
