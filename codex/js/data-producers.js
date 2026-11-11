@@ -6933,7 +6933,7 @@ var WINE_PRODUCERS = [
     country: 'Italy, Tuscany and the South', r: 'Umbria', sub: 'Montefalco Sagrantino DOCG',
     founded: '1971',
     holdings: 'Vineyards around Montefalco, with clonal and trellis research that underpinned the revival of Sagrantino from near extinction.',
-    style: 'Sagrantino pushed towards ripeness and long barrique ageing to tame the highest tannin load of any Italian variety.',
+    style: 'Sagrantino pushed towards ripeness and long barrique ageing to tame a grape with more tannin than almost any other.',
     t: 'Blackberry, ink and tar over tannin that dries the mouth like strong tea',
     why: 'Sagrantino has extraordinary tannin and polyphenol levels, and the Court uses Caprai to anchor Montefalco Sagrantino DOCG and its long mandatory ageing.',
     wines: [
@@ -7054,7 +7054,7 @@ var WINE_PRODUCERS = [
     ],
     traps: [
       'Verdicchio dei Castelli di Jesi Riserva is DOCG; the base wine is DOC',
-      'Verdicchio is not Trebbiano Toscano, but it is the same variety as Trebbiano di Soave and as Turbiana in Lugana'
+      'Verdicchio is not Trebbiano Toscano, but it is the same variety as Trebbiano di Soave, and so close to Turbiana in Lugana that the two are often taught as one'
     ]
   },
   {

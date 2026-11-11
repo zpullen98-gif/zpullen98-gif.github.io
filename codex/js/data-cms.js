@@ -1616,7 +1616,7 @@ var CMS = {
     },
     {
      "a": 1,
-     "exp": "Melon B is the name the appellation rules use for Muscadet's grape, the B standing for blanc, and the Court prints it with the older Melon de Bourgogne in brackets: the variety came from Burgundy after the hard winter of 1709. Folle Blanche makes Gros Plant du Pays Nantais, Chasselas makes Pouilly-sur-Loire, and Pineau de la Loire is an old name for Chenin Blanc.",
+     "exp": "Melon B is the name the appellation rules use for Muscadet's grape, the B standing for blanc, and the Court prints it with the older Melon de Bourgogne in brackets: the variety came from Burgundy and took over the Pays Nantais after the hard winter of 1709. Folle Blanche makes Gros Plant du Pays Nantais, Chasselas makes Pouilly-sur-Loire, and Pineau de la Loire is an old name for Chenin Blanc.",
      "grapes": [
       "Melon de Bourgogne"
      ],
@@ -4112,7 +4112,7 @@ var CMS = {
       "the sicilia doc"
      ],
      "ans": "Sicilia DOC",
-     "exp": "Sicilia DOC, the Court's Sicily DOC, was created in 2011 to replace the island wide IGT and has held varietal Grillo and Nero d'Avola to itself since the 2017 vintage, with Terre Siciliane IGT left beneath it for everything else.",
+     "exp": "Sicilia DOC, the Court's Sicily DOC, was created in 2011 to replace the island wide IGT and has shared varietal Grillo and Nero d'Avola only with the island's smaller DOCs, such as Erice for Grillo and Noto for Nero d'Avola, since the 2017 vintage, with Terre Siciliane IGT left beneath it for everything else.",
      "grapes": [
       "Nero d’Avola"
      ],
