@@ -1,7 +1,7 @@
 The World Table
-commit 7931c1494e5bc3eed30a2b00afd90fb3a3afeb31
-branch card-sale-wip
-built  2026-11-02T04:05:22.769Z
+commit 3dcc4b5a3dc4234c57345e099ebd7d92a4303834
+branch brennans-nov
+built  2026-11-15T18:07:05.133Z
 
 Written by tools/postbuild.mjs. The monorepo wing is a copy of this
 directory; this file is how a copy says where it came from.
