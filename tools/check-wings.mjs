@@ -69,8 +69,10 @@ if (unknown.length) { console.error('check-wings: unknown argument ' + unknown.j
 if (args.includes('--help') || args.includes('-h')) { console.log(USAGE); process.exit(0); }
 const VERBOSE = args.includes('--verbose');
 
-/* A gate's run is bounded: a sandbox that hangs is a failure, not a wait. */
-const TIMEOUT_MS = 180000;
+/* A gate's run is bounded: a sandbox that hangs is a failure, not a wait. The bound is ten minutes because the
+   Codex's check-flagships.js draws every page of the data it ships and grows with it: about two minutes at 415
+   records, close to four at 550, and the roster's last batch takes it to 685. */
+const TIMEOUT_MS = 600000;
 
 const REPOS = ['ledger', 'codex'];
 const WING = { ledger: join(ROOT, 'ledger'), codex: join(ROOT, 'codex') };
