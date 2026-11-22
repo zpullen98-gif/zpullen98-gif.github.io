@@ -1,7 +1,7 @@
 The World Table
-commit 3dcc4b5a3dc4234c57345e099ebd7d92a4303834
+commit 48ef2ee5230dc45fb431c3350afdf6a3141f5196
 branch brennans-nov
-built  2026-11-15T18:07:05.133Z
+built  2026-11-22T11:50:22.528Z
 
 Written by tools/postbuild.mjs. The monorepo wing is a copy of this
 directory; this file is how a copy says where it came from.
