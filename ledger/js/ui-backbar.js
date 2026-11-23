@@ -173,6 +173,22 @@ function backbarStylesHTML(e){
     + list.map(function(s){ return '<a class="btn btn-ghost backbar-style" href="' + esc(typeof caskStyleHref === 'function' ? caskStyleHref(s.id) : '#/casks/style/' + encodeURIComponent(s.id)) + '">' + esc(s.name) + ', at the table</a>'; }).join('')
     + '</div></section>';
 }
+/* Its house among the producers: the houses of Producers and flagships
+   (CASK_HOUSES, js/ui-caskhouses.js) whose record carries this bottle, each a
+   door to the house's page, saying plainly whether this bottle is its flagship */
+function backbarProducers(e){ return e && typeof caskHouseForBottle === 'function' ? caskHouseForBottle(e.id) : []; }
+function backbarProducerHTML(e){
+  const list = backbarProducers(e);
+  if(!list.length || typeof caskHouseHref !== 'function') return '';
+  return '<section class="backbar-panel" aria-labelledby="backbar-d-producer"><h3 id="backbar-d-producer">Its house among the producers</h3>'
+    + '<p class="backbar-caption">The house that makes this bottle, with its flagship bottling in depth, in the Cask Atlas.</p><div class="backbar-links">'
+    + list.map(function(r){
+      const same = typeof caskHouseShelfIsFlagship === 'function' && caskHouseShelfIsFlagship(r, e);
+      return '<a class="btn btn-ghost backbar-producer" id="backbar-producer-' + esc(r.key) + '" href="' + esc(caskHouseHref(r.group, r.key)) + '">' + esc(r.producer)
+        + (same ? ': this bottle is its flagship' : ': its flagship is ' + esc((r.bottle && r.bottle.name) || '')) + '</a>';
+    }).join('')
+    + '</div></section>';
+}
 function backbarSourcesHTML(e){
   const rows = (e.sources || []).filter(function(s){ return s && s.title; });
   if(!rows.length) return '';
@@ -340,6 +356,7 @@ function backbarDetailHTML(e){
     + sec('watchfor', 'Watch for', '<ul>' + (e.watch || []).map(function(w){ return '<li>' + esc(w) + '</li>'; }).join('') + '</ul>')
     + backbarLinksHTML(e)
     + backbarStylesHTML(e)
+    + backbarProducerHTML(e)
     + sec('recall', 'Recall before you reveal', (e.recall || []).map(function(r){ return '<details class="backbar-recall"><summary>' + esc(r.prompt) + '</summary>' + backbarParas(r.answer) + '</details>'; }).join('')
       + '<p class="backbar-caption">Reading this answer is unscored. Practise the cards to record a recall.</p>')
     + backbarSourcesHTML(e)

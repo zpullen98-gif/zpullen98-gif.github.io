@@ -28,7 +28,7 @@ const TASTE_CATS = {
     glass:"Copita, not a balloon snifter: the wide bowl just concentrates alcohol vapor.",
     nose:['grape/wine','dried fruit','fig/raisin','apricot','floral','honey','vanilla','oak','rancio (mushroom/nutty)','baking spice','leather','tobacco','apple/pear','citrus'],
     markers:["Rancio (a savory, mushroomy, nutty note) is the mark of genuinely old brandy and considered a virtue.","Grande Champagne cognac reads chalky and floral; Borderies reads nuttier and rounder.","Armagnac is rustic and more aromatic because it’s distilled once at lower proof.","Pisco should show bright, unaged grape character with no wood at all."],
-    benchmarks:["Pierre Ferrand 1840: cognac as the classics knew it","Château du Tariquet: armagnac’s rusticity","Christian Drouin: calvados benchmark","Caravedo: proper Peruvian pisco"],
+    benchmarks:["Pierre Ferrand 1840: cognac as the classics knew it","Château du Tariquet: armagnac’s rusticity","Christian Drouin: a Pays d’Auge calvados house","Caravedo: proper Peruvian pisco"],
   },
   'Amaro & Vermouth':{
     glass:"Small wine glass, lightly chilled. Taste them the way you’d serve them.",

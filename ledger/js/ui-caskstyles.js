@@ -207,6 +207,14 @@ function caskStylePagerHTML(e){
     + (next ? '<a class="btn btn-ghost caskstyle-next" href="' + esc(caskStyleHref(next.id)) + '"><span class="caskstyle-label">Next</span> ' + esc(next.name) + '</a>' : '')
     + '</nav>';
 }
+/* Five producers: the style's group in Producers and flagships
+   (js/ui-caskhouses.js), drawn only once that group is built */
+function caskStyleProducersHTML(e){
+  const g = typeof caskHouseGroupForStyle === 'function' ? caskHouseGroupForStyle(e.id) : null;
+  if(!g || typeof caskHouseHref !== 'function') return '';
+  return caskStyleSec('producers', 'Five producers', '<p class="cask-muted">The five houses to know for this style, each with its flagship bottling in depth.</p><div class="caskstyle-links">'
+    + '<a class="btn btn-ghost caskstyle-producers" id="caskstyle-producers-' + esc(g.key) + '" href="' + esc(caskHouseHref(g.key)) + '">Five producers: ' + esc(g.title) + '</a></div>');
+}
 function caskStylePageHTML(e){
   const lines = e.lines || {}, serve = e.serve || {}, fam = caskStyleFamilyTitle(e.family);
   const nb = caskStyleEntry(e.neighbour);
@@ -228,6 +236,7 @@ function caskStylePageHTML(e){
       + (nb ? '<div class="caskstyle-links"><a class="btn btn-ghost" href="' + esc(caskStyleHref(nb.id)) + '">Its neighbour: ' + esc(nb.name) + '</a></div>' : ''))
     + caskStyleSec('houses', 'The houses to name', '<ul class="caskstyle-houses">' + (e.benchmarks || []).map(function(b){ return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>'
       + '<p class="cask-muted">Houses and brands that show the style, never a statement of what the house pours.</p>')
+    + caskStyleProducersHTML(e)
     + (shelf.length ? caskStyleSec('shelf', 'On our shelf', '<p class="cask-muted">The liquor shelf\u2019s bottles of this style, each with its own tableside presentation.</p><div class="caskstyle-links">'
       + shelf.map(function(b){ return '<a class="btn btn-ghost caskstyle-bottle" href="' + esc(typeof backbarHref === 'function' ? backbarHref(b.id) : '#/menu/backbar/' + encodeURIComponent(b.id)) + '">' + esc(b.name) + '</a>'; }).join('') + '</div>') : '')
     + (chapters.length ? caskStyleSec('chapter', 'Read the chapter', '<div class="caskstyle-links">'

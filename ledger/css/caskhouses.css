@@ -1,0 +1,62 @@
+/* Producers and flagships, in the Cask Atlas (22 November 2026): the house tokens
+   in day and night service, typography rather than pictures, every control 44px.
+   The root lists the families and their groups, a group draws its five houses as
+   cards, and a house reads in the liquor shelf's order: the table line large in
+   the house reading face under a brass rule, then the flagship as a labelled list. */
+.caskhouse-page{display:grid;gap:18px;min-width:0}
+.caskhouse-heading{padding:20px 0 22px;border-bottom:1px solid var(--house-line)}
+.caskhouse-heading h2{margin:10px 0 14px;text-wrap:balance;overflow-wrap:anywhere}
+.caskhouse-page p.caskhouse-fact,.caskhouse-page p.caskhouse-styleline{margin:6px 0;font-size:18px;line-height:1.6}
+.caskhouse-label{display:inline-block;margin-right:6px;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--brass-2);font-weight:700;line-height:1.5}
+p.caskhouse-label{display:block;margin:18px 0 6px}
+.caskhouse-soft{color:var(--cream-dim);font-size:.85em;font-weight:400}
+.caskhouse-practice,.caskhouse-links,.caskhouse-pager{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
+.caskhouse-practice .btn,.caskhouse-links .btn,.caskhouse-pager .btn,.caskhouse-read-link,.caskhouse-run-door{min-height:48px;white-space:normal;text-align:left;line-height:1.5;overflow-wrap:anywhere}
+.cask-atlas a.btn.caskhouse-root-door,.caskhouse-libdoors a.btn,.caskhouse-read-link{text-decoration:none}
+.caskhouse-panel{padding:22px 24px;border:1px solid var(--house-line);background:var(--felt-2);min-width:0}
+.caskhouse-panel h3{margin:0 0 14px}
+.caskhouse-page .caskhouse-panel p{margin:0 0 12px}.caskhouse-page .caskhouse-panel p:last-child{margin-bottom:0}
+.caskhouse-table{border-top:2px solid var(--brass)}
+.caskhouse-page .caskhouse-panel p.caskhouse-tline{font-family:var(--house-reading);font-size:1.32em;line-height:1.6;color:var(--cream);max-width:720px}
+.caskhouse-page .caskhouse-panel p.caskhouse-bottle-name{font:500 1.2rem/1.45 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0 0 14px}
+.caskhouse-facts,.caskhouse-terms{margin:0}
+.caskhouse-facts>div,.caskhouse-terms>div{padding:10px 0;border-bottom:1px solid var(--house-line)}
+.caskhouse-facts>div:last-child,.caskhouse-terms>div:last-child{border-bottom:0;padding-bottom:0}.caskhouse-facts>div:first-child,.caskhouse-terms>div:first-child{padding-top:0}
+.caskhouse-facts dt,.caskhouse-terms dt{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--brass-2);font-weight:700}
+.caskhouse-terms dt{text-transform:none;letter-spacing:0;font-size:16px}
+.caskhouse-facts dd,.caskhouse-terms dd{margin:4px 0 0;line-height:1.65}
+.caskhouse-others,.caskhouse-traps{margin:0;padding-left:24px}.caskhouse-others li,.caskhouse-traps li{margin-bottom:10px;line-height:1.65}
+.caskhouse-oname{font-weight:700;color:var(--brass-2)}
+.caskhouse-recall summary,.caskhouse-sources summary{cursor:pointer;min-height:48px;line-height:1.5}
+.caskhouse-recall+.caskhouse-recall{border-top:1px solid var(--house-line)}
+/* scoped to the page so the Atlas's own details rule (casks.css) cannot take the padding */
+.caskhouse-page .caskhouse-sources{margin:0;padding:0 24px;border:1px solid var(--house-line);background:var(--felt-2)}
+.caskhouse-sources ul{margin:0;padding-left:24px}.caskhouse-sources li{margin-bottom:10px;line-height:1.6}
+.caskhouse-sources a{display:inline-flex;align-items:center;min-height:44px}
+.caskhouse-pager{justify-content:space-between;padding-top:14px;border-top:1px solid var(--house-line)}
+.caskhouse-pager .btn{flex:1 1 220px}.caskhouse-pager .caskhouse-next{justify-content:flex-end;text-align:right}
+/* the root: each family a group of rows; the search */
+.caskhouse-family{margin:8px 0 0}
+.caskhouse-family-h{font:500 1.15rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2);margin:0 0 12px}
+.caskhouse-rows,.caskhouse-cards,.caskhouse-hits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.cask-atlas a.caskhouse-grow,.cask-atlas a.caskhouse-card,.cask-atlas a.caskhouse-hit{display:flex;flex-direction:column;gap:6px;min-width:0;min-height:44px;padding:16px 18px;color:var(--cream);background:var(--felt-2);border:1px solid var(--house-line);border-top:2px solid var(--brass);text-decoration:none}
+.cask-atlas a.caskhouse-card{background:var(--felt-3)}
+.cask-atlas a.caskhouse-grow:hover,.cask-atlas a.caskhouse-card:hover,.cask-atlas a.caskhouse-hit:hover{border-color:var(--brass)}
+.caskhouse-grow-name,.caskhouse-card-name,.caskhouse-hit-name{font:500 1.1rem/1.4 var(--house-display,Georgia,serif);color:var(--brass-2);overflow-wrap:anywhere}
+.caskhouse-grow-style,.caskhouse-card-bottle,.caskhouse-hit-line{font-size:16px;line-height:1.5;color:var(--cream-dim)}
+.cask-atlas a.caskhouse-card .caskhouse-card-bottle{color:var(--cream)}
+.caskhouse-grow-labels,.caskhouse-card-table{font-size:17px;line-height:1.55}
+.caskhouse-search label{display:block;font-size:16px;color:var(--cream-dim);margin:0 0 8px}
+.caskhouse-search input{min-height:48px;width:100%;min-width:0;margin:0 0 12px}
+.cask-atlas a.caskhouse-grow:focus-visible,.cask-atlas a.caskhouse-card:focus-visible,.cask-atlas a.caskhouse-hit:focus-visible,.caskhouse-read-link:focus-visible{outline:3px solid var(--brass-2);outline-offset:4px}
+/* a Library producer's doors, inside its open entry */
+.caskhouse-libdoors{max-width:440px}.caskhouse-libdoors .caskhouse-links{margin:8px 0 0}
+/* the flashcard face of a house card */
+.caskhouse-question{font:500 clamp(1.2rem,3vw,1.5rem)/1.6 var(--house-display,Georgia,serif);color:var(--brass-2);max-width:720px;text-align:center}
+.caskhouse-answer{max-width:720px;font-size:1.05rem;line-height:1.8}.caskhouse-answer p{margin:0 0 12px}
+/* night service: the brass rules stay lit on the felt, the reading face in cream */
+html[data-service="night"] .caskhouse-table{border-top-color:var(--brass-2)}
+html[data-service="night"] .caskhouse-page .caskhouse-panel p.caskhouse-tline{color:var(--cream)}
+html[data-service="night"] .cask-atlas a.caskhouse-grow:hover,html[data-service="night"] .cask-atlas a.caskhouse-card:hover,html[data-service="night"] .cask-atlas a.caskhouse-hit:hover{border-color:var(--brass-2)}
+@media(max-width:640px){.caskhouse-rows,.caskhouse-cards,.caskhouse-hits{grid-template-columns:1fr}.caskhouse-panel{padding:16px}.caskhouse-page .caskhouse-sources{padding:0 16px}.caskhouse-practice .btn,.caskhouse-links .btn{flex:1 1 100%}.caskhouse-page .caskhouse-panel p.caskhouse-tline{font-size:1.2em}.cask-atlas a.caskhouse-grow,.cask-atlas a.caskhouse-card,.cask-atlas a.caskhouse-hit{padding:14px 16px}}
+@media print{.caskhouse-practice,.caskhouse-pager,.caskhouse-search{display:none}.caskhouse-panel,.cask-atlas a.caskhouse-card,.caskhouse-page .caskhouse-sources{background:white;color:#222;border-color:#777;break-inside:avoid}.caskhouse-panel h3,.caskhouse-card-name{color:#222}}

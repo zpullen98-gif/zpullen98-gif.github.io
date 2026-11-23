@@ -236,7 +236,7 @@ function allDrinks(){
   allDrinks._c = out;
   return out;
 }
-function cardKey(d){ return d.src === 'Bar Compass' && d.bcKey ? 'Bar Compass · ' + d.bcKey : d.src === 'Fall 2026' && d.fallKey ? 'Fall 2026 · ' + d.fallKey : d.src === 'Brew Guide' && d.brewKey ? 'Brew Guide · ' + d.brewKey : d.src === 'Back Bar' && d.backbarKey ? 'Back Bar · ' + d.backbarKey : d.src === 'Cask Styles' && d.caskStyleKey ? 'Cask Styles · ' + d.caskStyleKey : d.src==='Cocktails' ? d.name : d.src+' · '+d.name; }
+function cardKey(d){ return d.src === 'Bar Compass' && d.bcKey ? 'Bar Compass · ' + d.bcKey : d.src === 'Fall 2026' && d.fallKey ? 'Fall 2026 · ' + d.fallKey : d.src === 'Brew Guide' && d.brewKey ? 'Brew Guide · ' + d.brewKey : d.src === 'Back Bar' && d.backbarKey ? 'Back Bar · ' + d.backbarKey : d.src === 'Cask Styles' && d.caskStyleKey ? 'Cask Styles · ' + d.caskStyleKey : d.src === 'Cask Houses' && d.caskHouseKey ? 'Cask Houses · ' + d.caskHouseKey : d.src==='Cocktails' ? d.name : d.src+' · '+d.name; }
 function cardTicket(d, hideName){
   if(d.src==='Cocktails' || d.src==='My Bar') return ticketHTML(d.ref, hideName);
   if(d.src==='Shots') return shotTicketHTML(d.ref, hideName);
@@ -462,6 +462,7 @@ const FC_MODES = [
   ['brew','Coffee and tea recall','Say how a coffee or a tea is made and served, then flip and grade yourself.', d => d.src === 'Brew Guide'],
   ['backbar','Liquor shelf recall','Say what the bottle is, how it is made and how we pour it, then flip and grade yourself.', d => d.src === 'Back Bar'],
   ['caskstyles','Style recall','Present the whisky style as you would at the table, then flip and grade yourself.', d => d.src === 'Cask Styles'],
+  ['caskhouses','Flagship recall','Name the producer, its flagship and its story as you would at the table, then flip and grade yourself.', d => d.src === 'Cask Houses'],
   ['name2spec','Name to Spec','The order comes in. Recite the whole build out loud, then flip and grade yourself.', fitsName],
   ['spec2name','Spec to Name','Read a blind ticket and call the drink, the service-printer skill.', fitsName],
   ['build','Assemble the Ticket','An ingredient bank with decoys mixed in. Select every line that belongs in the spec.', hasSpec],
@@ -582,7 +583,7 @@ function renderFlashcards(){
   if(fc.idx >= fc.deck.length){
     const misses = fc.missed.length;
     const missList = misses
-      ? '<div class="tix-rule"></div><div class="tix-label">To see again</div>' + fc.missed.map(function(n){ const c=(String(n).indexOf('Bar Compass · ') === 0 || String(n).indexOf('Brew Guide · ') === 0 || String(n).indexOf('Back Bar · ') === 0 || String(n).indexOf('Cask Styles · ') === 0) && typeof cardByKey === 'function' ? cardByKey(n) : null; return '<div>'+esc(c ? c.group+': '+c.name : n)+'</div>'; }).join('')
+      ? '<div class="tix-rule"></div><div class="tix-label">To see again</div>' + fc.missed.map(function(n){ const c=(String(n).indexOf('Bar Compass · ') === 0 || String(n).indexOf('Brew Guide · ') === 0 || String(n).indexOf('Back Bar · ') === 0 || String(n).indexOf('Cask Styles · ') === 0 || String(n).indexOf('Cask Houses · ') === 0) && typeof cardByKey === 'function' ? cardByKey(n) : null; return '<div>'+esc(c ? c.group+': '+c.name : n)+'</div>'; }).join('')
       : '';
     return '<div class="col" style="align-items:center">'
       + '<div class="ticket"><div class="ticket-inner tc">'
@@ -621,6 +622,7 @@ function renderFlashcards(){
   if(c.src === 'Brew Guide' && typeof brewRecallHTML === 'function') return brewRecallHTML(c, fc.flipped, head, FRONT, ANSWER, grade);
   if(c.src === 'Back Bar' && typeof backbarRecallHTML === 'function') return backbarRecallHTML(c, fc.flipped, head, FRONT, ANSWER, grade);
   if(c.src === 'Cask Styles' && typeof caskStyleRecallHTML === 'function') return caskStyleRecallHTML(c, fc.flipped, head, FRONT, ANSWER, grade);
+  if(c.src === 'Cask Houses' && typeof caskHouseRecallHTML === 'function') return caskHouseRecallHTML(c, fc.flipped, head, FRONT, ANSWER, grade);
   if(fc.mode==='word' || fc.mode==='component' || fc.mode==='producer'){
     const kindLine = (fc.mode==='component' || fc.mode==='producer') && c.group ? '<div class="eyebrow fc-kind">'+esc(c.group)+'</div>' : '';
     if(!fc.flipped){
@@ -810,7 +812,7 @@ const QUIZ_MODES = [
    because the wine pool is where the surviving mode lives. */
 var MODE_WAS = { beerwine: 'wine' };
 /* the rounds that are rows and never chips: the quick quiz (js/ui-nav.js) */
-var QUIZ_LABELS = { quick: 'Quick quiz', brew: 'Coffee and tea', backbar: 'The liquor shelf', casks: 'The Cask Atlas', caskstyles: 'Every style at the table' };
+var QUIZ_LABELS = { quick: 'Quick quiz', brew: 'Coffee and tea', backbar: 'The liquor shelf', casks: 'The Cask Atlas', caskstyles: 'Every style at the table', caskhouses: 'Producers and flagships' };
 function modeLabel(m){
   if(QUIZ_LABELS[m]) return QUIZ_LABELS[m];
   var lv = (typeof levelModeLabel === 'function') ? levelModeLabel(m) : null;
@@ -987,6 +989,8 @@ function buildRound(mode, pool){
   if(mode === 'backbar') return typeof backbarQuizRound === 'function' ? backbarQuizRound() : [];
   /* At the table: every style (js/ui-caskstyles.js): ten styles across the families, carded and never banked */
   if(mode === 'caskstyles') return typeof caskStyleQuizRound === 'function' ? caskStyleQuizRound() : [];
+  /* Producers and flagships (js/ui-caskhouses.js): ten questions across the groups, or the one group asked for, carded and never banked */
+  if(mode === 'caskhouses') return typeof caskHouseQuizRound === 'function' ? caskHouseQuizRound() : [];
   /* the session passes the deck it just drilled, so the quiz reinforces
      tonight’s drinks rather than quizzing the Obscura at a Barback */
   const drinkPool = (pool && pool.length >= 8)

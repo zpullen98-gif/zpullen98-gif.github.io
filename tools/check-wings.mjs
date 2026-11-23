@@ -98,6 +98,8 @@ const GATES = [
   { repo: 'ledger', script: 'tools/check-brew.mjs', target: 'wing' },
   { repo: 'ledger', script: 'tools/check-backbar.mjs', target: 'wing' },
   { repo: 'ledger', script: 'tools/check-caskstyles.mjs', target: 'wing' },
+  { repo: 'ledger', script: 'tools/check-caskhouses.mjs', target: 'wing',
+    gap: 'the roster, fragments, schema, build and keys.v1.json are read from the source tree; the wing\'s js/data-caskhouses.js must equal the source\'s byte for byte' },
   { repo: 'ledger', script: 'tools/check-home.mjs', target: 'wing',
     gap: 'its script list comes from the source index.html and its door rule reads the source css/ledger.css, so the wing\'s own js/oot-ledger.js is never loaded and the wing\'s css/ledger.css is never read' },
   { repo: 'ledger', script: 'tools/check-levels.mjs', target: 'wing',

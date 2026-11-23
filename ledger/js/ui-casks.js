@@ -20,7 +20,9 @@ function caskDaily(){
   const last = function(r){ const p = progress.cards[r.key]; return p ? Number(p.last) || 0 : 0; };
   /* a style card that is due (js/ui-caskstyles.js) joins the due reviews; an unseen one never does */
   const styleDue = typeof caskStyleDueRows === 'function' ? caskStyleDueRows() : [];
-  const due = rows.filter(function(r){ return caskRecord(r).due; }).concat(styleDue).sort(function(a,b){ return last(a)-last(b); });
+  /* and so does a Producers and flagships card that is due (js/ui-caskhouses.js); an unseen one never does */
+  const houseDue = typeof caskHouseDueRows === 'function' ? caskHouseDueRows() : [];
+  const due = rows.filter(function(r){ return caskRecord(r).due; }).concat(styleDue).concat(houseDue).sort(function(a,b){ return last(a)-last(b); });
   const fresh = rows.filter(function(r){ return !caskRecord(r).seen; });
   const spread = [], groups = {};
   fresh.forEach(function(r){ (groups[r.chapter] || (groups[r.chapter]=[])).push(r); });
@@ -59,6 +61,8 @@ function caskGrade(ok){
 function caskRouteNow(){
   const s=caskState();let tail='';
   if(s.page==='style' && typeof caskStyleRouteNow==='function'){ const r=caskStyleRouteNow(); if(r) return r; }
+  /* Producers and flagships (js/ui-caskhouses.js): its root, a group and a house */
+  if(typeof caskHouseRouteNow==='function'){ const r=caskHouseRouteNow(); if(r) return r; }
   if(s.page==='chapter' && caskChapter(s.item)) tail='/' + s.item;
   else if(s.page==='practice' || s.page==='run') tail='/practice/' + caskScope(s.scope) + (s.page==='run' && s.run ? '/' + s.run.mode : '');
   return {hash:'#/casks' + tail,key:'casks' + tail};
@@ -67,6 +71,8 @@ function caskRoute(parts){
   if(parts[0]!=='casks') return false;
   /* #/casks/style/<id>: At the table: every style (js/ui-caskstyles.js) */
   if(parts[1]==='style' && typeof caskStyleRoute==='function') return caskStyleRoute(parts);
+  /* #/casks/houses[/<group>[/<house>]]: Producers and flagships (js/ui-caskhouses.js) */
+  if(parts[1]==='houses' && typeof caskHouseRoute==='function') return caskHouseRoute(parts);
   const s=caskState();state.tab='casks';
   if(parts[1]==='practice'){
     s.scope=caskScope(parts[2]);
@@ -74,9 +80,11 @@ function caskRoute(parts){
   } else { s.item=caskChapter(parts[1]) ? parts[1] : '';s.page=s.item ? 'chapter' : 'index'; }
   return true;
 }
-function caskReference(key){ return state.tab==='casks' && caskState().page==='chapter' && /^casks\/practice\//.test(key || '') || typeof caskStyleReference==='function' && caskStyleReference(key); }
+function caskReference(key){ return state.tab==='casks' && caskState().page==='chapter' && /^casks\/practice\//.test(key || '') || typeof caskStyleReference==='function' && caskStyleReference(key) || typeof caskHouseReference==='function' && caskHouseReference(key); }
 function caskParent(){
   const s=caskState();
+  /* Producers and flagships climbs its own levels: a house, its group, the root, then the Atlas home */
+  if(typeof caskHouseParent==='function' && caskHouseParent()) return;
   if(s.page==='run'){s.page='practice';return;}
   if(s.page==='practice' && caskChapter(s.scope)){s.item=s.scope;s.page='chapter';return;}
   if(s.page!=='index'){s.page='index';s.item='';return;}
@@ -86,6 +94,7 @@ function caskOpen(id){ const s=caskState();state.tab='casks';s.item=caskChapter(
 function caskButton(id,label,cls){ return '<button class="btn ' + (cls || 'btn-ghost') + '" data-act="cask-open" data-id="' + esc(id || '') + '">' + esc(label) + '</button>'; }
 /* a run row's reading door: its chapter, or for a style card its style (js/ui-caskstyles.js) */
 function caskRowDoor(row,label){
+  if(row && row.house && typeof caskHouseRowDoorHTML==='function') return caskHouseRowDoorHTML(row,label);
   if(row && row.style && typeof caskStyleHref==='function') return '<a class="btn btn-ghost caskstyle-run-door" id="caskstyle-run-'+esc(row.style)+'" href="'+esc(caskStyleHref(row.style))+'">'+esc(label.replace('the full chapter','the whole style'))+'</a>';
   return caskButton(row && row.chapter,label);
 }
@@ -103,6 +112,7 @@ function caskChapterHTML(c){
     +c.sections.map(function(s,i){return '<section class="cask-section" id="cask-section-'+i+'"><h3 tabindex="-1">'+esc(s.title)+'</h3>'+(s.paragraphs || []).map(caskText).join('')+((s.bullets || []).length?'<ul>'+s.bullets.map(function(b){return '<li>'+esc(b)+'</li>';}).join('')+'</ul>':'')+'</section>';}).join('')
     +(c.service?'<section class="cask-section cask-service"><h3>At the table</h3><p class="cask-label">Ask first</p>'+caskText(c.service.ask)+'<p class="cask-label">A concise guest explanation</p><blockquote>'+esc(c.service.say || '')+'</blockquote><p class="cask-label">Pairing and application</p>'+caskText(c.service.pairing)+'</section>':'')
     +(typeof caskStyleChapterDoorsHTML==='function'?caskStyleChapterDoorsHTML(c.id):'')
+    +(typeof caskHouseChapterDoorsHTML==='function'?caskHouseChapterDoorsHTML(c.id):'')
     +((c.pitfalls || []).length?'<section class="cask-section"><h3>Avoid these traps</h3><ul>'+c.pitfalls.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul></section>':'')
     +'<section class="cask-section"><h3>Recall before revealing</h3>'+(c.recall || []).map(function(r){return '<details><summary>'+esc(r.q)+'</summary>'+caskText(r.a)+'</details>';}).join('')+'<p class="cask-muted">These reading prompts are unscored. Use practice to record your recall.</p></section>'
     +caskSources(c)
@@ -124,6 +134,7 @@ function caskIndexHTML(){
     +'<section class="cask-section"><h3>Your path through the atlas</h3><p>Begin with production and maturation, compare the traditions, then practise tasting, service and cocktail choices. Each chapter keeps its full explanation and sources together.</p><div class="cask-actions">'+(chapters[0]?caskButton(chapters[0].id,'Begin the journey','btn-brass'):'')+'<button class="btn btn-ghost" data-act="cask-practice" data-id="all">Choose practice</button></div></section>'
     +'<section class="cask-section cask-daily"><h3>Today\u2019s cask study</h3><p>'+ (daily.length?daily.length+' cards selected from due reviews and new material across chapters.':'You have no due or unseen cards. Return for your next review, or practise any chapter now.')+'</p><button class="btn btn-brass" data-act="cask-start" data-mode="cards" data-s="today" data-id="all"'+(!daily.length?' disabled':'')+'>Start today\u2019s study</button></section>'
     +(typeof caskStyleHomeHTML==='function'?caskStyleHomeHTML():'')
+    +(typeof caskHouseHomeHTML==='function'?caskHouseHomeHTML():'')
     +caskReviewed()+caskCompareHTML()
     +'<section class="cask-browse" aria-labelledby="cask-browse-title"><h3 id="cask-browse-title">Explore the chapters</h3><div class="cask-filter"><label for="cask-q">Search topics, regions or techniques<input class="input" type="search" id="cask-q" value="'+esc(s.q)+'" placeholder="Try oak, peat, bourbon or Cognac"></label><label for="cask-category">Tradition or subject<select class="input" id="cask-category"><option value="all">All chapters</option>'+cats.map(function(c){return '<option value="'+esc(c)+'"'+(s.category===c?' selected':'')+'>'+esc(c)+'</option>';}).join('')+'</select></label></div><div id="cask-results">'+caskResultsHTML()+'</div></section></div>';
 }
@@ -146,7 +157,7 @@ function caskRunHTML(){
   if(run.graded)body+='<p class="cask-muted" role="status">'+(run.results[run.results.length-1].ok?'Recorded as correct.':'Saved for another review.')+'</p><button class="btn btn-brass" data-act="cask-next">'+(run.idx===run.rows.length-1?'See the review':'Next question')+'</button>';
   return '<section class="cask-atlas cask-run"><p class="eyebrow">The Cask Atlas · '+(run.mode==='quiz'?'Knowledge check':'Recall')+'</p><h2 tabindex="-1">'+esc(row.q)+'</h2><p class="cask-muted">'+(run.idx+1)+' of '+run.rows.length+'</p>'+body+'</section>';
 }
-function renderCasks(){const s=caskState();if(s.page==='style'&&typeof caskStyleRender==='function'){const out=caskStyleRender();if(out)return out;}if(s.page==='chapter'&&caskChapter(s.item))return caskChapterHTML(caskChapter(s.item));if(s.page==='run')return caskRunHTML();if(s.page==='practice')return caskPracticeHTML();return caskIndexHTML();}
+function renderCasks(){const s=caskState();if(typeof caskHouseRender==='function'){const out=caskHouseRender();if(out)return out;}if(s.page==='style'&&typeof caskStyleRender==='function'){const out=caskStyleRender();if(out)return out;}if(s.page==='chapter'&&caskChapter(s.item))return caskChapterHTML(caskChapter(s.item));if(s.page==='run')return caskRunHTML();if(s.page==='practice')return caskPracticeHTML();return caskIndexHTML();}
 function caskAct(act,data){
   if(act==='fc-drill-weak'){
     const card=caskEntries('all','cards').find(function(r){return r.key===data.k;});
